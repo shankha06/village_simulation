@@ -1,0 +1,1 @@
+{"id": "player_well_drinker_chain", "trigger_condition": "flag.player_drank_from_well == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.player_well_drinker_chain_fired", "value": true}]}]}

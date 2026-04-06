@@ -1,0 +1,1 @@
+{"id": "talisman_sacrifice_chain", "trigger_condition": "flag.talisman_sacrifice == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.talisman_sacrifice_chain_fired", "value": true}]}]}

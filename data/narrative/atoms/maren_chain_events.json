@@ -90,14 +90,14 @@
       "timing": "after_public_exposure",
       "conditions": [
         {"check": "flag.maren_imprisoned", "op": "==", "value": true},
-        {"check": "npc.harlan.alive", "op": "==", "value": true}
+        {"check": "npc.gate_guard.alive", "op": "==", "value": true}
       ],
       "location": "village_cell",
       "time": "late_night",
       "description": "Late at night. Harlan — Silas's best friend, the man who carried the coffin — brings a bowl of stew to the cell. He does not speak to Maren. He pushes the bowl through the bars. Their eyes meet. Harlan sees Silas's eyes looking back at him from the face of the man who poisoned Silas's village. He turns away. At the door he stops. 'Your father was the best man I ever knew,' he says, without turning around. 'I don't know what that makes you.' He leaves.",
       "effects": [
         {"set_state": "flag.harlan_visited_maren_in_cell", "value": true},
-        {"set_state": "npc.harlan.memory.visited_silas_son", "value": true}
+        {"set_state": "npc.gate_guard.memory.visited_silas_son", "value": true}
       ],
       "player_observation": "Harlan feeds the man who poisoned his village. Because the man has his dead best friend's eyes. There is no moral framework for this. There is only Harlan, and a bowl of stew, and thirty years of missing someone."
     },

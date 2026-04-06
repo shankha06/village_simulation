@@ -1,0 +1,1 @@
+{"id": "draven_killed_by_voss_chain", "trigger_condition": "flag.draven_killed_by_voss == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.draven_killed_by_voss_chain_fired", "value": true}]}]}

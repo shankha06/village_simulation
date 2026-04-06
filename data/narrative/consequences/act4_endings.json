@@ -74,7 +74,7 @@
           "value": true
         },
         {
-          "check": "flag.factions_united",
+          "check": "flag.ashvale_fully_united",
           "op": "==",
           "value": true
         },
@@ -118,7 +118,7 @@
           "value": true
         },
         {
-          "check": "flag.factions_united",
+          "check": "flag.ashvale_fully_united",
           "op": "!=",
           "value": true
         },
@@ -149,7 +149,7 @@
       "priority": 80,
       "conditions": [
         {
-          "check": "flag.pact_fulfilled_with_lord",
+          "check": "flag.ashworth_sacrifice",
           "op": "==",
           "value": true
         }
@@ -179,7 +179,7 @@
       "priority": 75,
       "conditions": [
         {
-          "check": "flag.pact_fulfilled_with_maren",
+          "check": "flag.maren_sacrifice",
           "op": "==",
           "value": true
         }
@@ -199,7 +199,7 @@
           "value": "renewed_with_maren"
         },
         {
-          "set_state": "npc.maren.alive",
+          "set_state": "npc.brother_maren.alive",
           "value": false
         },
         {
@@ -213,7 +213,7 @@
       "priority": 70,
       "conditions": [
         {
-          "check": "flag.pact_fulfilled_with_villager",
+          "check": "flag.villager_sacrifice",
           "op": "==",
           "value": true
         }
@@ -252,7 +252,7 @@
           "value": true
         },
         {
-          "check": "flag.factions_united",
+          "check": "flag.ashvale_fully_united",
           "op": "==",
           "value": true
         }
@@ -322,7 +322,7 @@
           "value": true
         },
         {
-          "check": "flag.factions_united",
+          "check": "flag.ashvale_fully_united",
           "op": "!=",
           "value": true
         }
@@ -431,7 +431,7 @@
     },
     {
       "id": "ironmarch_submitted_modifier",
-      "condition": "flag.ironmarch_ultimatum_result == 'submitted'",
+      "condition": "flag.accepted_legion_terms == true",
       "applies_to": [
         "ending_exodus",
         "ending_last_stand"
@@ -446,7 +446,7 @@
     },
     {
       "id": "ironmarch_defied_modifier",
-      "condition": "flag.ironmarch_ultimatum_result == 'defied'",
+      "condition": "flag.defied_legion == true",
       "applies_to": [
         "ending_last_stand",
         "ending_scorched_earth"

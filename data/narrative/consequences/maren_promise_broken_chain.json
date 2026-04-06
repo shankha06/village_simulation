@@ -1,0 +1,1 @@
+{"id": "maren_promise_broken_chain", "trigger_condition": "flag.maren_promise_broken == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.maren_promise_broken_chain_fired", "value": true}]}]}

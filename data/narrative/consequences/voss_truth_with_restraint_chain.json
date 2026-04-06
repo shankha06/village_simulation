@@ -1,0 +1,1 @@
+{"id": "voss_truth_with_restraint_chain", "trigger_condition": "flag.voss_truth_with_restraint == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.voss_truth_with_restraint_chain_fired", "value": true}]}]}

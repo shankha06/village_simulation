@@ -149,6 +149,10 @@
             {
               "set_state": "flag.lied_to_heartwood",
               "value": true
+            },
+            {
+              "set_state": "flag.player_lied_to_heartwood",
+              "value": true
             }
           ],
           "next": "caught_lying"

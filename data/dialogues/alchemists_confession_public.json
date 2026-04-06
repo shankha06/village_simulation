@@ -69,7 +69,7 @@
       "text": "Harlan pushes through the crowd. He stares down at Maren — Silas's son, the boy he once bounced on his knee before the Church took him. The boy who grew into the man who poisoned Silas's own village. Harlan's mouth opens. Closes. He turns away. He cannot look at the face that carries so much of his dead friend.",
       "triggers": [
         {
-          "set_state": "npc.harlan.memory.watched_maren_exposed",
+          "set_state": "npc.gate_guard.memory.watched_maren_exposed",
           "value": true
         }
       ],

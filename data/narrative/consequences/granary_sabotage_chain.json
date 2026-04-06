@@ -1,0 +1,1 @@
+{"id": "granary_sabotage_chain", "trigger_condition": "flag.granary_sabotaged == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.granary_sabotage_chain_fired", "value": true}]}]}

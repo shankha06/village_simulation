@@ -50,7 +50,7 @@
     "sacrifice_conversation": "ashworth_sacrifice_dialogue"
   },
   "default_greeting": "ashworth_intro",
-  "barks": [],
+  "barks": ["(stares at nothing)", "The carpet... no. It doesn't matter.", "Has anyone seen the sun today? I can't remember the sun.", "(whispers) Fourteen steps. Always fourteen."],
   "mundane_barks": [
     "(stares at nothing for a long moment)",
     "The carpet needs... no. It doesn't matter.",

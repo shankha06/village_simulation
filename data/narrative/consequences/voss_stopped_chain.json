@@ -1,0 +1,1 @@
+{"id": "voss_stopped_chain", "trigger_condition": "flag.voss_stopped == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.voss_stopped_chain_fired", "value": true}]}]}

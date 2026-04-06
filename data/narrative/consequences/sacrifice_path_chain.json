@@ -157,7 +157,7 @@
     {
       "type": "conditional_delayed",
       "delay_days": 1,
-      "condition": "flag.pact_fulfilled_with_maren == true",
+      "condition": "flag.maren_sacrifice == true",
       "effects": [
         {
           "set_state": "npc.old_maren.memory.lost_grandson_like_son",

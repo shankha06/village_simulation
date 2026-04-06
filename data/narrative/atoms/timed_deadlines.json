@@ -116,8 +116,7 @@
       "flag.discussed_voss_alliance != true"
     ],
     "effects": [
-      {"set_state": "flag.voss_left_ashvale", "value": true},
-      {"set_state": "npc.commander_voss.alive", "value": false}
+      {"set_state": "flag.voss_left_ashvale", "value": true}
     ],
     "notification_text": "Commander Voss's camp is empty. The mercenaries packed up in the night. She waited twelve days for a reason to stay. You never gave her one."
   },
@@ -135,5 +134,19 @@
       {"set_state": "flag.total_inaction_failure", "value": true}
     ],
     "notification_text": "You waited too long. The forest claims the eastern fields. The Legion marches from the west. Ashvale is caught between root and iron, and you \u2014 you did nothing. The village's fate was decided by your silence."
+  },
+  {
+    "id": "deadline_church_army_unconditional",
+    "category": "deadline",
+    "priority": 85,
+    "once_only": true,
+    "conditions": [
+      "time.day >= 28",
+      "flag.church_army_arrived != true"
+    ],
+    "effects": [
+      {"set_state": "flag.church_army_arrived", "value": true}
+    ],
+    "notification_text": "Smoke on the northeastern horizon. An army marches under the Ashen Light banner \u2014 soldiers and alchemists carrying enough fire to burn a continent. The Church has come for the Thornwood, whether Ashvale is ready or not."
   }
 ]

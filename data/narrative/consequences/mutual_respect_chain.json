@@ -1,0 +1,32 @@
+{
+  "id": "mutual_respect_chain",
+  "trigger_condition": "flag.draven_voss_mutual_respect == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {"set_state": "flag.mutual_respect_chain_fired", "value": true},
+        {"set_state": "flag.draven_respects_voss", "value": true},
+        {"set_state": "flag.voss_respects_draven", "value": true},
+        {"set_state": "npc.commander_voss.disposition", "delta": 15}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {"set_state": "flag.legion_softens_stance", "value": true},
+        {"set_state": "flag.voss_offers_mediation", "value": true},
+        {"set_state": "player.reputation.iron_road_company", "delta": 10}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {"set_state": "flag.potential_alliance_draven_voss", "value": true},
+        {"set_state": "flag.ironmarch_deadline_extended", "value": true}
+      ]
+    }
+  ]
+}

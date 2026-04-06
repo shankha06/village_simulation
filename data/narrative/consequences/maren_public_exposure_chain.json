@@ -1,0 +1,34 @@
+{
+  "id": "maren_public_exposure_chain",
+  "trigger_condition": "flag.maren_exposed_publicly == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {"set_state": "flag.maren_public_exposure_chain_fired", "value": true},
+        {"set_state": "flag.maren_dragged_to_square", "value": true},
+        {"set_state": "flag.maren_publicly_shamed", "value": true},
+        {"set_state": "npc.brother_maren.disposition", "delta": -30}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {"set_state": "flag.church_congregation_in_shock", "value": true},
+        {"set_state": "flag.village_divided_over_maren", "value": true},
+        {"set_state": "player.reputation.church_ashen_light", "delta": -20},
+        {"set_state": "player.reputation.city_guard", "delta": 15}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {"set_state": "flag.maren_imprisoned_by_guard", "value": true},
+        {"set_state": "flag.church_authority_weakened", "value": true},
+        {"set_state": "faction.church_ashen_light.power", "delta": -30}
+      ]
+    }
+  ]
+}

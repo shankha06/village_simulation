@@ -161,7 +161,7 @@
       "text": "I preached that the Ashen Light would burn away corruption. I was wrong. The Light doesn't burn. It grows. This \u2014 all of this \u2014 this is what divinity looks like. Not punishment. Symbiosis.",
       "conditions": [
         {
-          "check": "npc.maren.alive",
+          "check": "npc.brother_maren.alive",
           "op": "==",
           "value": true
         }

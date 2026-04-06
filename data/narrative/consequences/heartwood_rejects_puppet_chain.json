@@ -1,0 +1,1 @@
+{"id": "heartwood_rejects_puppet_chain", "trigger_condition": "flag.heartwood_rejects_puppet == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.heartwood_rejects_puppet_chain_fired", "value": true}]}]}

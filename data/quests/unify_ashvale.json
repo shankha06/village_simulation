@@ -44,8 +44,8 @@
           "conditions_met": [
             {
               "any_of": [
-                "flag.sabotage_completed == true",
-                "flag.sabotage_abandoned_peacefully == true",
+                "flag.silo_destroyed == true",
+                "flag.player_destroys_firebomb == true",
                 "flag.fenrick_owes_player == true",
                 "flag.blackmailed_fenrick == true"
               ]
@@ -78,7 +78,7 @@
           "conditions_met": [
             {
               "all_of": [
-                "flag.voss_shown_legion_proof == true",
+                "flag.voss_conditional_alliance == true",
                 {
                   "any_of": [
                     "flag.voss_paid_in_gold == true",

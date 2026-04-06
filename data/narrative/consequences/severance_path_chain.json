@@ -1,0 +1,1 @@
+{"id": "severance_path_chain", "trigger_condition": "flag.chose_sever_pact == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.severance_path_chain_fired", "value": true}]}]}

@@ -1,0 +1,30 @@
+{
+  "id": "partial_defense_chain",
+  "trigger_condition": "flag.ashvale_partial_defense == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {"set_state": "flag.partial_defense_chain_fired", "value": true},
+        {"set_state": "flag.defense_incomplete", "value": true}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {"set_state": "flag.some_factions_fled", "value": true},
+        {"set_state": "flag.remaining_factions_dig_in", "value": true},
+        {"set_state": "world.region.ashvale.defense_score", "delta": -20}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {"set_state": "flag.partial_defense_casualties", "value": true},
+        {"set_state": "world.region.ashvale.population", "delta": -10}
+      ]
+    }
+  ]
+}

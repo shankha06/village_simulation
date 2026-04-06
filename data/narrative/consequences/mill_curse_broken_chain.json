@@ -1,0 +1,31 @@
+{
+  "id": "mill_curse_broken_chain",
+  "trigger_condition": "flag.mill_curse_fully_resolved == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {"set_state": "flag.mill_curse_broken_chain_fired", "value": true},
+        {"set_state": "flag.mill_operational_again", "value": true},
+        {"set_state": "flag.wraith_at_peace", "value": true}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {"set_state": "flag.grain_production_restored", "value": true},
+        {"set_state": "world.region.ashvale.food_modifier", "delta": 10},
+        {"set_state": "player.reputation.ashvale_nobility", "delta": 15}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {"set_state": "flag.miller_grateful", "value": true},
+        {"set_state": "flag.village_morale_boost_from_mill", "value": true}
+      ]
+    }
+  ]
+}

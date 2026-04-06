@@ -1,0 +1,1 @@
+{"id": "elara_wants_revenge_chain", "trigger_condition": "flag.elara_wants_revenge == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.elara_wants_revenge_chain_fired", "value": true}]}]}

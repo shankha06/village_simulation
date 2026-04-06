@@ -1,0 +1,32 @@
+{
+  "id": "total_inaction_chain",
+  "trigger_condition": "flag.total_inaction_failure == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {"set_state": "flag.total_inaction_chain_fired", "value": true},
+        {"set_state": "flag.ashvale_falls_to_neglect", "value": true},
+        {"set_state": "world.region.ashvale.status", "value": "destroyed"}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {"set_state": "flag.forest_claims_eastern_fields", "value": true},
+        {"set_state": "flag.legion_marches_from_west", "value": true},
+        {"broadcast_disposition": "ashvale_npcs", "delta": -50}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {"set_state": "flag.survivors_scatter", "value": true},
+        {"set_state": "flag.ashvale_abandoned_through_inaction", "value": true},
+        {"set_state": "world.region.ashvale.population", "delta": -30}
+      ]
+    }
+  ]
+}

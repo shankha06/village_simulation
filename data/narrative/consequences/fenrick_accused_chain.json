@@ -1,0 +1,32 @@
+{
+  "id": "fenrick_accused_chain",
+  "trigger_condition": "flag.accused_fenrick == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {"set_state": "flag.fenrick_accused_chain_fired", "value": true},
+        {"set_state": "flag.fenrick_wrongly_accused", "value": true},
+        {"set_state": "npc.fenrick.disposition", "delta": -40}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {"set_state": "flag.guild_hostile_to_player", "value": true},
+        {"set_state": "flag.fenrick_demands_proof", "value": true},
+        {"set_state": "player.reputation.thieves_guild", "delta": -30}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {"set_state": "flag.fenrick_plots_revenge", "value": true},
+        {"set_state": "flag.guild_operations_go_underground", "value": true},
+        {"set_state": "flag.real_poisoner_still_active", "value": true}
+      ]
+    }
+  ]
+}

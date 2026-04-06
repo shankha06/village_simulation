@@ -90,6 +90,32 @@
     "elara_accepts_roots_continue": {
       "type": "text",
       "speaker": "elara",
+      "portrait": "warning",
+      "text": "If Old Maren dies... the counter-rite dies with her. The truth-speaking ceremony requires her knowledge. Are you CERTAIN?",
+      "next": "confirm_roots_continue"
+    },
+    "confirm_roots_continue": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "confirm_continue",
+          "text": "I'm certain. The children's lives come first.",
+          "conditions": [],
+          "triggers": [],
+          "next": "elara_accepts_roots_continue_confirmed"
+        },
+        {
+          "id": "reconsider_continue",
+          "text": "Wait... the counter-rite? Let me reconsider.",
+          "conditions": [],
+          "triggers": [],
+          "next": "the_choice"
+        }
+      ]
+    },
+    "elara_accepts_roots_continue_confirmed": {
+      "type": "text",
+      "speaker": "elara",
       "portrait": "sad",
       "text": "I thought you'd say that. I think I agree. But I'll hear their names in my sleep for the rest of my life.",
       "next": "elara_accepts_roots_continue_2"

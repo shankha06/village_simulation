@@ -1,0 +1,1 @@
+{"id": "maren_family_united_chain", "trigger_condition": "flag.maren_family_united == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.maren_family_united_chain_fired", "value": true}]}]}

@@ -1,0 +1,1 @@
+{"id": "mill_curse_partial_chain", "trigger_condition": "flag.mill_curse_partially_resolved == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.mill_curse_partial_chain_fired", "value": true}]}]}

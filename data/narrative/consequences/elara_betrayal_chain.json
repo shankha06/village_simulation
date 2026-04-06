@@ -1,0 +1,1 @@
+{"id": "elara_betrayal_chain", "trigger_condition": "flag.elara_betrayal == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.elara_betrayal_chain_fired", "value": true}]}]}

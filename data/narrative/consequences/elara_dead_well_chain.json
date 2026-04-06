@@ -1,0 +1,1 @@
+{"id": "elara_dead_well_chain", "trigger_condition": "flag.elara_dead_well == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.elara_dead_well_chain_fired", "value": true}]}]}

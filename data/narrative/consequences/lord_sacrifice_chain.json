@@ -1,0 +1,32 @@
+{
+  "id": "lord_sacrifice_chain",
+  "trigger_condition": "flag.ashworth_sacrifice == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {"set_state": "flag.lord_sacrifice_chain_fired", "value": true},
+        {"set_state": "npc.lord_ashworth.alive", "value": false},
+        {"set_state": "flag.pact_renewed_with_lord", "value": true},
+        {"set_state": "world.region.ashvale.pact_status", "value": "renewed_with_lord"},
+        {"set_state": "world.region.ashvale.status", "value": "recovering"}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {"set_state": "flag.ashvale_power_vacuum", "value": true},
+        {"set_state": "flag.poison_receding_from_wells", "value": true}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {"set_state": "flag.leadership_crisis", "value": true},
+        {"set_state": "flag.factions_jockey_for_power", "value": true}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"id": "elara_solo_trance_chain", "trigger_condition": "flag.elara_solo_trance == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.elara_solo_trance_chain_fired", "value": true}]}]}

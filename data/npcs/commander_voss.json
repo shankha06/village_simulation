@@ -55,7 +55,7 @@
     "hostile_pool": "voss_enemy"
   },
   "default_greeting": "voss_intro",
-  "barks": [],
+  "barks": ["Eyes on the treeline.", "My soldiers are restless. So am I.", "This village reminds me of Rivendale. Before.", "Twenty years of running. Maybe it's time to stand."],
   "mundane_barks": [
     "Wind's shifted. From the east.",
     "My lieutenant's getting sloppy.",

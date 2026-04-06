@@ -271,6 +271,49 @@
       "speaker": "old_maren",
       "portrait": "devastated",
       "text": "It's done. Old Maren's voice is hollow. The pact is broken. The forest is dead. Ashvale is free. She turns her blind eyes toward the sky. I hope it was worth it. I hope we were right. Because there is no going back from this. Not ever.",
+      "next": "aftermath_choice"
+    },
+    "aftermath_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "choose_last_stand",
+          "text": "The forest is dead, but the Legion is still out there. I won't run. We stand and fight for what's left of Ashvale.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.chose_last_stand",
+              "value": true
+            }
+          ],
+          "next": "last_stand_resolve"
+        },
+        {
+          "id": "choose_evacuation",
+          "text": "There's nothing left to defend. We need to get the survivors out before the land dies completely.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.chose_evacuation",
+              "value": true
+            }
+          ],
+          "next": "end"
+        },
+        {
+          "id": "choose_uncertain",
+          "text": "I don't know yet. Let me see what's left before I decide.",
+          "conditions": [],
+          "triggers": [],
+          "next": "end"
+        }
+      ]
+    },
+    "last_stand_resolve": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "grim",
+      "text": "Old Maren stares at you with her blind eyes. A long silence. Then she nods. 'Then we stand. On dead ground, with dead trees at our backs, we stand. The Legion will find us here. And they will learn that Ashvale does not break easily.'",
       "next": "end"
     },
     "stopped_at_last": {

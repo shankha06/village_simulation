@@ -1,0 +1,1 @@
+{"id": "renegotiation_path_chain", "trigger_condition": "flag.chose_renegotiate_pact == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.renegotiation_path_chain_fired", "value": true}]}]}

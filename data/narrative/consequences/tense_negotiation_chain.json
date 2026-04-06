@@ -1,0 +1,1 @@
+{"id": "tense_negotiation_chain", "trigger_condition": "flag.tense_negotiation == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.tense_negotiation_chain_fired", "value": true}]}]}

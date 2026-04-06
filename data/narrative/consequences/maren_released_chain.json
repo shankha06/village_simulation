@@ -1,0 +1,1 @@
+{"id": "maren_released_chain", "trigger_condition": "flag.maren_released == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.maren_released_chain_fired", "value": true}]}]}

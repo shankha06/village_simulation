@@ -1,0 +1,1 @@
+{"id": "counter_rite_complete_chain", "trigger_condition": "flag.counter_rite_completed == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.counter_rite_complete_chain_fired", "value": true}]}]}

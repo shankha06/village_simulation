@@ -41,5 +41,6 @@
     ]
   },
   "is_combatant": false,
-  "max_health": 30.0
+  "max_health": 30.0,
+  "can_surrender": true
 }

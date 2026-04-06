@@ -231,9 +231,9 @@
               "value": true
             },
             {
-              "check": "flag.ironmarch_ultimatum_result",
+              "check": "flag.defied_legion",
               "op": "==",
-              "value": "defied"
+              "value": true
             }
           ],
           "portrait": "stern",
@@ -261,7 +261,7 @@
           "id": "ashworth_sacrificed",
           "conditions": [
             {
-              "check": "flag.pact_fulfilled_with_lord",
+              "check": "flag.ashworth_sacrifice",
               "op": "==",
               "value": true
             }
@@ -308,7 +308,7 @@
           "id": "maren_sacrificed_family_known",
           "conditions": [
             {
-              "check": "flag.pact_fulfilled_with_maren",
+              "check": "flag.maren_sacrifice",
               "op": "==",
               "value": true
             },
@@ -324,7 +324,7 @@
           "id": "maren_sacrificed",
           "conditions": [
             {
-              "check": "flag.pact_fulfilled_with_maren",
+              "check": "flag.maren_sacrifice",
               "op": "==",
               "value": true
             }
@@ -336,7 +336,7 @@
           "id": "maren_rules",
           "conditions": [
             {
-              "check": "npc.maren.alive",
+              "check": "npc.brother_maren.alive",
               "op": "==",
               "value": true
             },
@@ -353,7 +353,7 @@
           "id": "maren_harmony",
           "conditions": [
             {
-              "check": "npc.maren.alive",
+              "check": "npc.brother_maren.alive",
               "op": "==",
               "value": true
             },
@@ -370,7 +370,7 @@
           "id": "maren_default",
           "conditions": [
             {
-              "check": "npc.maren.alive",
+              "check": "npc.brother_maren.alive",
               "op": "==",
               "value": true
             }

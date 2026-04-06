@@ -83,7 +83,7 @@
           "text": "Brother Maren's faith held the village together. Let the Church guide Ashvale.",
           "conditions": [
             {
-              "check": "npc.maren.alive",
+              "check": "npc.brother_maren.alive",
               "op": "==",
               "value": true
             },

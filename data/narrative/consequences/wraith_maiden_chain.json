@@ -1,0 +1,31 @@
+{
+  "id": "wraith_maiden_chain",
+  "trigger_condition": "flag.mill_wraith_escaped == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {"set_state": "flag.wraith_maiden_chain_fired", "value": true},
+        {"set_state": "flag.wraith_loose_in_village", "value": true},
+        {"set_state": "flag.mill_parents_panicking", "value": true}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {"set_state": "flag.children_frightened_of_mill", "value": true},
+        {"set_state": "flag.village_rumors_about_ghost", "value": true},
+        {"broadcast_disposition": "ashvale_npcs", "delta": -5}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {"set_state": "flag.wraith_attacks_miller", "value": true},
+        {"set_state": "npc.miller.health", "delta": -20}
+      ]
+    }
+  ]
+}

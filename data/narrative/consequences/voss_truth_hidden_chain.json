@@ -1,0 +1,1 @@
+{"id": "voss_truth_hidden_chain", "trigger_condition": "flag.voss_truth_hidden == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.voss_truth_hidden_chain_fired", "value": true}]}]}

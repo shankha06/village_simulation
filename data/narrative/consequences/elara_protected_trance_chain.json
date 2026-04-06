@@ -1,0 +1,1 @@
+{"id": "elara_protected_trance_chain", "trigger_condition": "flag.elara_protected_during_trance == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.elara_protected_trance_chain_fired", "value": true}]}]}

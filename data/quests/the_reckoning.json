@@ -32,15 +32,15 @@
           "to": "PATH_MARTYR"
         },
         {
-          "on": "flag.pact_fulfilled_with_lord == true",
+          "on": "flag.ashworth_sacrifice == true",
           "to": "PATH_NEW_ORDER"
         },
         {
-          "on": "flag.pact_fulfilled_with_maren == true",
+          "on": "flag.maren_sacrifice == true",
           "to": "PATH_ATONEMENT"
         },
         {
-          "on": "flag.pact_fulfilled_with_villager == true",
+          "on": "flag.villager_sacrifice == true",
           "to": "PATH_DARK_PRICE"
         },
         {
@@ -113,7 +113,7 @@
       ],
       "transitions": [
         {
-          "on": "flag.factions_united == true AND flag.pact_severed == true",
+          "on": "flag.ashvale_fully_united == true AND flag.pact_severed == true",
           "to": "PATH_EXODUS"
         },
         {
@@ -121,7 +121,7 @@
           "to": "PATH_LAST_STAND"
         },
         {
-          "on": "flag.severance_completed == true AND time.day >= severance_day + 5 AND flag.chose_last_stand != true AND flag.factions_united != true",
+          "on": "flag.severance_completed == true AND time.day >= severance_day + 5 AND flag.chose_last_stand != true AND flag.ashvale_fully_united != true",
           "to": "PATH_SCORCHED_EARTH"
         },
         {

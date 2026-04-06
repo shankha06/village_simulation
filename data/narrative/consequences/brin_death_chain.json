@@ -1,0 +1,33 @@
+{
+  "id": "brin_death_chain",
+  "trigger_condition": "flag.brin_died_from_flawed_antidote == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {"set_state": "flag.brin_death_chain_fired", "value": true},
+        {"set_state": "flag.brin_dead", "value": true},
+        {"set_state": "npc.tomas.disposition", "delta": -50}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {"set_state": "flag.tomas_grief_stricken", "value": true},
+        {"set_state": "flag.village_mourns_brin", "value": true},
+        {"set_state": "flag.elara_blames_herself", "value": true},
+        {"set_state": "npc.elara.disposition", "delta": -20}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {"set_state": "flag.tomas_demands_justice", "value": true},
+        {"set_state": "flag.village_trust_in_healer_shaken", "value": true},
+        {"broadcast_disposition": "ashvale_npcs", "delta": -10}
+      ]
+    }
+  ]
+}

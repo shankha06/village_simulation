@@ -1,0 +1,33 @@
+{
+  "id": "self_sacrifice_chain",
+  "trigger_condition": "flag.player_self_sacrifice == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {"set_state": "flag.self_sacrifice_chain_fired", "value": true},
+        {"set_state": "flag.pact_renewed_with_player", "value": true},
+        {"set_state": "world.region.ashvale.pact_status", "value": "renewed_with_player"},
+        {"set_state": "world.region.ashvale.status", "value": "thriving"}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {"set_state": "flag.poison_receding_from_wells", "value": true},
+        {"set_state": "flag.crops_beginning_to_grow", "value": true},
+        {"broadcast_disposition": "ashvale_npcs", "delta": 30}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {"set_state": "flag.village_mourns_player", "value": true},
+        {"set_state": "flag.memorial_erected_for_player", "value": true},
+        {"set_state": "flag.other_pacts_hear_of_sacrifice", "value": true}
+      ]
+    }
+  ]
+}

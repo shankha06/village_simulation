@@ -1,0 +1,31 @@
+{
+  "id": "maren_leverage_chain",
+  "trigger_condition": "flag.player_has_leverage_over_maren == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {"set_state": "flag.maren_leverage_chain_fired", "value": true},
+        {"set_state": "flag.maren_under_player_control", "value": true},
+        {"set_state": "npc.brother_maren.disposition", "delta": -20}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {"set_state": "flag.maren_obeys_reluctantly", "value": true},
+        {"set_state": "flag.church_resources_available", "value": true},
+        {"set_state": "player.moral_vector", "delta": -15}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "effects": [
+        {"set_state": "flag.maren_plans_escape", "value": true},
+        {"set_state": "flag.maren_resentment_growing", "value": true}
+      ]
+    }
+  ]
+}

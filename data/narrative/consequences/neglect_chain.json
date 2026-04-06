@@ -7,9 +7,9 @@
       "delay_days": 15,
       "effects": [
         {"set_state": "npc.greta.memory.player_abandoned_us", "value": true},
-        {"set_state": "npc.harlan.memory.lost_faith_in_player", "value": true},
+        {"set_state": "npc.gate_guard.memory.lost_faith_in_player", "value": true},
         {"set_state": "npc.greta.disposition", "delta": -15},
-        {"set_state": "npc.harlan.disposition", "delta": -15},
+        {"set_state": "npc.gate_guard.disposition", "delta": -15},
         {"set_state": "flag.village_losing_faith", "value": true}
       ]
     },

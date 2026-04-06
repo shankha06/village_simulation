@@ -1,0 +1,1 @@
+{"id": "elara_death_chain", "trigger_condition": "flag.elara_death == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.elara_death_chain_fired", "value": true}]}]}

@@ -1,0 +1,1 @@
+{"id": "voss_betrayal_chain", "trigger_condition": "flag.voss_betrayal == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.voss_betrayal_chain_fired", "value": true}]}]}

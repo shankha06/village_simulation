@@ -1,0 +1,33 @@
+{
+  "id": "villager_sacrifice_chain",
+  "trigger_condition": "flag.villager_sacrifice == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {"set_state": "flag.villager_sacrifice_chain_fired", "value": true},
+        {"set_state": "flag.pact_renewed_with_blood", "value": true},
+        {"set_state": "world.region.ashvale.pact_status", "value": "renewed_with_blood"},
+        {"set_state": "world.region.ashvale.status", "value": "recovering_bitter"}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {"set_state": "flag.village_knows_someone_was_chosen", "value": true},
+        {"set_state": "flag.poison_receding_from_wells", "value": true},
+        {"set_state": "player.reputation.ashvale_nobility", "delta": -40},
+        {"set_state": "player.reputation.city_guard", "delta": -30}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "effects": [
+        {"set_state": "flag.player_called_the_chooser", "value": true},
+        {"broadcast_disposition": "ashvale_npcs", "delta": -20}
+      ]
+    }
+  ]
+}

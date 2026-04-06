@@ -1,0 +1,31 @@
+{
+  "id": "lord_accused_chain",
+  "trigger_condition": "flag.accused_lord == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {"set_state": "flag.lord_accused_chain_fired", "value": true},
+        {"set_state": "flag.lord_wrongly_accused", "value": true},
+        {"set_state": "npc.lord_ashworth.disposition", "delta": -30}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {"set_state": "flag.manor_gates_closed", "value": true},
+        {"set_state": "flag.ashworth_retreats_further", "value": true},
+        {"set_state": "player.reputation.ashvale_nobility", "delta": -25}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {"set_state": "flag.nobility_turns_against_player", "value": true},
+        {"set_state": "flag.real_poisoner_still_active", "value": true}
+      ]
+    }
+  ]
+}

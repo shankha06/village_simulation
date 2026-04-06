@@ -1,0 +1,1 @@
+{"id": "elara_stopped_chain", "trigger_condition": "flag.elara_stopped == true", "consequences": [{"type": "immediate", "effects": [{"set_state": "flag.elara_stopped_chain_fired", "value": true}]}]}
