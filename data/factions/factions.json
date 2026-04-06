@@ -1,0 +1,93 @@
+{
+  "factions": [
+    {
+      "id": "thieves_guild",
+      "name": "The Hollow Hand",
+      "description": "A network of thieves, smugglers, and information brokers operating in the shadows of Ashvale.",
+      "initial_power": 35.0,
+      "initial_player_rep": 0
+    },
+    {
+      "id": "city_guard",
+      "name": "Ashvale Guard",
+      "description": "Lord Ashworth's enforcers. Underpaid, undermanned, and losing faith in their lord.",
+      "initial_power": 45.0,
+      "initial_player_rep": 0
+    },
+    {
+      "id": "ashvale_nobility",
+      "name": "House Ashworth",
+      "description": "The ruling family of Ashvale. Once proud, now crumbling under secrets and debt.",
+      "initial_power": 55.0,
+      "initial_player_rep": 0
+    },
+    {
+      "id": "church_ashen_light",
+      "name": "Church of the Ashen Light",
+      "description": "An austere religious order that sees suffering as divine will. Brother Maren leads the local chapter.",
+      "initial_power": 30.0,
+      "initial_player_rep": 10
+    },
+    {
+      "id": "ironmarch_legion",
+      "name": "Ironmarch Legion",
+      "description": "A militaristic faction from the east. They smell weakness in Ashvale like wolves smell blood.",
+      "initial_power": 70.0,
+      "initial_player_rep": 0
+    },
+    {
+      "id": "thornwood_druids",
+      "name": "Thornwood Circle",
+      "description": "Ancient keepers of the forest. They've watched Ashvale's rot spread for decades.",
+      "initial_power": 20.0,
+      "initial_player_rep": 0
+    }
+  ],
+  "relations": [
+    {
+      "faction_a": "thieves_guild",
+      "faction_b": "city_guard",
+      "affinity": -70
+    },
+    {
+      "faction_a": "thieves_guild",
+      "faction_b": "ashvale_nobility",
+      "affinity": -50
+    },
+    {
+      "faction_a": "thieves_guild",
+      "faction_b": "church_ashen_light",
+      "affinity": -20
+    },
+    {
+      "faction_a": "city_guard",
+      "faction_b": "ashvale_nobility",
+      "affinity": 60
+    },
+    {
+      "faction_a": "city_guard",
+      "faction_b": "church_ashen_light",
+      "affinity": 30
+    },
+    {
+      "faction_a": "ashvale_nobility",
+      "faction_b": "ironmarch_legion",
+      "affinity": -80
+    },
+    {
+      "faction_a": "church_ashen_light",
+      "faction_b": "thornwood_druids",
+      "affinity": -40
+    },
+    {
+      "faction_a": "thornwood_druids",
+      "faction_b": "ashvale_nobility",
+      "affinity": -30
+    },
+    {
+      "faction_a": "ironmarch_legion",
+      "faction_b": "thieves_guild",
+      "affinity": -10
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "id": "elara_maren_reconciliation",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The chapel is empty. Elara stands in the doorway, her hands clenched at her sides. Brother Maren is at the altar, his back to her. Neither has spoken. The silence has the weight of thirty years.",
+      "next": "elara_opens"
+    },
+    "elara_opens": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "You're my brother. You're my BROTHER. And you've been here for months. Praying ten feet from where I pick herbs. Walking past my garden every morning. And you said NOTHING.",
+      "next": "maren_turns"
+    },
+    "maren_turns": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "sad",
+      "text": "I didn't know. Elara, I swear -- I didn't know until the old woman told me. The Church took me when I was two. They gave me a new name. They said my family was dead.",
+      "next": "elara_disbelief"
+    },
+    "elara_disbelief": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "Dead. They told you we were DEAD. And you believed them? Our grandmother is alive. She's been alive this whole time, living in a cottage at the edge of the forest, waiting for you to come home. Thirty years. She waited THIRTY YEARS.",
+      "next": "maren_breaks"
+    },
+    "maren_breaks": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "sad",
+      "text": "I know. I know that now. Do you think that doesn't destroy me? I grew up in a stone dormitory memorizing scripture while my grandmother was whispering my name into the roots of trees, hoping the forest would carry the sound to wherever I was.",
+      "next": "player_choice_1"
+    },
+    "player_choice_1": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "mediate_calm",
+          "text": "Both of you. Breathe. You've lost thirty years. Don't lose what's left.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_mediates_siblings",
+              "value": true
+            }
+          ],
+          "next": "mediation_path"
+        },
+        {
+          "id": "support_elara",
+          "text": "Elara has every right to be angry, Maren.",
+          "conditions": [],
+          "triggers": [],
+          "next": "support_elara_path"
+        },
+        {
+          "id": "support_maren",
+          "text": "He was a child when they took him, Elara. He didn't choose this.",
+          "conditions": [],
+          "triggers": [],
+          "next": "support_maren_path"
+        },
+        {
+          "id": "stay_silent",
+          "text": "[Stay silent. This isn't your conversation.]",
+          "conditions": [],
+          "triggers": [],
+          "next": "silent_path"
+        }
+      ]
+    },
+    "mediation_path": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "You have father's hands. Did you know that? The same shape. The same way you hold things -- carefully, like everything might break. I noticed the first day you arrived. I didn't know why it bothered me so much.",
+      "next": "maren_tender"
+    },
+    "maren_tender": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "sad",
+      "text": "You have his eyes. The old woman -- our grandmother -- she told me. She said looking at you was like watching Silas come back to life every morning. That's why she visits the hollow tree. She tells him about you.",
+      "next": "reconciliation_moment"
+    },
+    "support_elara_path": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "sad",
+      "text": "You're right. She does. I owe her more than anger can express. Elara -- I'm not asking for forgiveness. I'm asking for a chance. One chance to be the brother I should have been.",
+      "next": "elara_considers"
+    },
+    "support_maren_path": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "I know he didn't choose it. I know. But someone has to be angry about what was taken from us, and our father is inside a tree and our grandmother is too tired to scream anymore. So it falls to me.",
+      "next": "elara_considers"
+    },
+    "silent_path": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "Say something. Anything. Tell me about the life they gave you instead of ours.",
+      "next": "maren_childhood"
+    },
+    "maren_childhood": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "sad",
+      "text": "Cold floors. Prayer at dawn. Silence at meals. They taught me to read by candlelight and to hate the forest before I could walk to it. I was good at the reading. I was terrible at the hating.",
+      "next": "elara_considers"
+    },
+    "elara_considers": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "I learned to heal because it was the closest thing to what father did. Working with living things. You learned to pray because they made you. We both became our cages. What a family we are.",
+      "next": "reconciliation_moment"
+    },
+    "reconciliation_moment": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Elara reaches into her pocket and pulls out a dried flower -- small, white, pressed between pages of her herb journal. She holds it out. Maren stares at it. His eyes widen.",
+      "next": "the_flower"
+    },
+    "the_flower": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "I found it growing where father entered the roots. I've carried it for fifteen years. I don't know why I'm giving it to you. Maybe because you lost him too. Maybe because I'm tired of carrying everything alone.",
+      "next": "maren_accepts"
+    },
+    "maren_accepts": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "sad",
+      "text": "I'll carry it. I'll carry all of it. The flower. The name. The guilt. Whatever you need me to hold, I'll hold. That's what brothers do. Even ones who are thirty years late.",
+      "triggers": [
+        {
+          "set_state": "flag.siblings_reconciled",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.memory.gave_flower_to_maren",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.memory.received_sister_flower",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

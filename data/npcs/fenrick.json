@@ -1,0 +1,66 @@
+{
+  "id": "fenrick",
+  "name": "Fenrick",
+  "description": "A sharp-eyed man with a crooked smile. Guild contact for the Hollow Hand. Deals in information, sabotage, and plausible deniability.",
+  "faction": "thieves_guild",
+  "personality": {
+    "courage": 0.4,
+    "greed": 0.8,
+    "loyalty": 0.3,
+    "cruelty": 0.4,
+    "curiosity": 0.5,
+    "honesty": 0.2
+  },
+  "schedule": [
+    {
+      "hour": 6,
+      "location": "hideout",
+      "activity": "sleeping"
+    },
+    {
+      "hour": 12,
+      "location": "back_alley",
+      "activity": "dealing"
+    },
+    {
+      "hour": 18,
+      "location": "inn_corner",
+      "activity": "drinking"
+    },
+    {
+      "hour": 23,
+      "location": "hideout",
+      "activity": "planning"
+    }
+  ],
+  "home_location": "guild_hideout",
+  "dialogue_pools": {
+    "greeting": "fenrick_intro",
+    "after_sabotage": "fenrick_post_sabotage",
+    "hostile": "fenrick_hostile",
+    "player_refused_job": "fenrick_second_chance",
+    "pressure": "fenrick_pressure",
+    "follow_up": "fenrick_follow_up",
+    "escort_quest": "fenrick_escort_quest",
+    "escort_encounter": "escort_encounter"
+  },
+  "default_greeting": "fenrick_intro",
+  "barks": [
+    "Tick tock, stranger.",
+    "You look like someone with a decision to make.",
+    "The Hand remembers its friends. And its enemies.",
+    "Gold doesn't grow on dead crops.",
+    "Keep walking if you've got nothing to say.",
+    "Time's running out for this village."
+  ],
+  "is_combatant": true,
+  "max_health": 60.0,
+  "attack_damage": 8.0,
+  "can_surrender": true,
+  "npc_relationships": {
+    "elara": -10,
+    "brother_maren": -30,
+    "greta": 30,
+    "lord_ashworth": -60
+  }
+}

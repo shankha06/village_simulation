@@ -1,0 +1,263 @@
+[gd_scene load_steps=6 format=3 uid="uid://main001"]
+
+[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_main"]
+[ext_resource type="Script" path="res://scenes/ui/dialogue_ui.gd" id="2_dialogue"]
+[ext_resource type="PackedScene" path="res://scenes/ui/journal_ui.tscn" id="3_journal"]
+[ext_resource type="Texture2D" path="res://assets/ui/splash_bg.png" id="4_splash"]
+[ext_resource type="PackedScene" path="res://scenes/ui/examine_popup.tscn" id="5_examine"]
+[ext_resource type="PackedScene" path="res://scenes/ui/inventory_ui.tscn" id="6_inventory"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_main")
+
+[node name="WorldContainer" type="Node2D" parent="."]
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="HUD" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimeLabel" type="Label" parent="UILayer/HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_bottom = 20.0
+grow_horizontal = 0
+text = "Day 1 - 8:00"
+horizontal_alignment = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="RegionLabel" type="Label" parent="UILayer/HUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_bottom = 24.0
+grow_horizontal = 2
+text = ""
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+
+[node name="HealthBar" type="ProgressBar" parent="UILayer/HUD"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 108.0
+offset_bottom = 20.0
+value = 100.0
+show_percentage = false
+
+[node name="QuestLabel" type="Label" parent="UILayer/HUD"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 300.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 10
+theme_override_colors/font_color = Color(0.7, 0.68, 0.6, 0.8)
+
+[node name="ButtonBar" type="HBoxContainer" parent="UILayer/HUD"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -32.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 4
+
+[node name="BtnInventory" type="Button" parent="UILayer/HUD/ButtonBar"]
+layout_mode = 2
+text = "I Bag"
+theme_override_font_sizes/font_size = 9
+
+[node name="BtnJournal" type="Button" parent="UILayer/HUD/ButtonBar"]
+layout_mode = 2
+text = "J Log"
+theme_override_font_sizes/font_size = 9
+
+[node name="BtnQuests" type="Button" parent="UILayer/HUD/ButtonBar"]
+layout_mode = 2
+text = "Q Quest"
+theme_override_font_sizes/font_size = 9
+
+[node name="BtnLore" type="Button" parent="UILayer/HUD/ButtonBar"]
+layout_mode = 2
+text = "L Lore"
+theme_override_font_sizes/font_size = 9
+
+[node name="BtnHelp" type="Button" parent="UILayer/HUD/ButtonBar"]
+layout_mode = 2
+text = "? Help"
+theme_override_font_sizes/font_size = 9
+
+[node name="HelpOverlay" type="PanelContainer" parent="UILayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -140.0
+offset_right = 180.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HelpText" type="RichTextLabel" parent="UILayer/HelpOverlay"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]THE HOLLOW VILLAGE — Controls[/b]
+
+[color=#dab048]Movement:[/color]  WASD or Arrow Keys
+[color=#dab048]Interact:[/color]   E  (talk to NPCs, examine objects)
+[color=#dab048]Dodge:[/color]       Space
+[color=#dab048]Attack:[/color]      Left Click
+
+[color=#dab048]Inventory:[/color]  I
+[color=#dab048]Journal:[/color]     J
+[color=#dab048]Quests:[/color]      Q
+[color=#dab048]Lore:[/color]         L
+[color=#dab048]Map:[/color]          M
+[color=#dab048]Cycle tabs:[/color] Tab
+
+[color=#dab048]Tips:[/color]
+• Walk near NPCs and objects — look for the [color=#dab048]E[/color] prompt
+• Talk to everyone — each NPC knows different secrets
+• Examine everything — graves, signs, barrels hide clues
+• Your choices have real consequences that unfold over days
+• Check your Quest Log [color=#dab048](Q)[/color] for current objectives
+• The Lore tab [color=#dab048](L)[/color] tracks discovered mysteries
+
+[i]Press [color=#dab048]H[/color] or [color=#dab048]Esc[/color] to close this help.[/i]"
+theme_override_font_sizes/normal_font_size = 11
+
+[node name="NotificationLabel" type="Label" parent="UILayer"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -60.0
+offset_right = 200.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 12
+
+[node name="DialogueUI" type="CanvasLayer" parent="."]
+layer = 20
+script = ExtResource("2_dialogue")
+
+[node name="Panel" type="PanelContainer" parent="DialogueUI"]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -120.0
+offset_right = -16.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBox" type="HBoxContainer" parent="DialogueUI/Panel"]
+layout_mode = 2
+
+[node name="Portrait" type="TextureRect" parent="DialogueUI/Panel/HBox"]
+visible = false
+layout_mode = 2
+custom_minimum_size = Vector2(80, 80)
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBox" type="VBoxContainer" parent="DialogueUI/Panel/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpeakerName" type="Label" parent="DialogueUI/Panel/HBox/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.9, 0.75, 0.4, 1)
+
+[node name="DialogueText" type="RichTextLabel" parent="DialogueUI/Panel/HBox/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+theme_override_font_sizes/normal_font_size = 12
+
+[node name="Choices" type="VBoxContainer" parent="DialogueUI/Panel/HBox/VBox"]
+visible = false
+layout_mode = 2
+
+[node name="ContinueIndicator" type="Label" parent="DialogueUI/Panel/HBox/VBox"]
+visible = false
+layout_mode = 2
+text = "▼"
+horizontal_alignment = 2
+theme_override_font_sizes/font_size = 10
+
+[node name="JournalUI" parent="." instance=ExtResource("3_journal")]
+
+[node name="ExaminePopup" parent="." instance=ExtResource("5_examine")]
+
+[node name="InventoryUI" parent="." instance=ExtResource("6_inventory")]
+
+[node name="FadeLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="FadeRect" type="ColorRect" parent="FadeLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="SplashLayer" type="CanvasLayer" parent="."]
+layer = 200
+
+[node name="Background" type="TextureRect" parent="SplashLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_splash")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="LoadingLabel" type="Label" parent="SplashLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -40.0
+offset_right = -20.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Loading..."
+horizontal_alignment = 2
+theme_override_font_sizes/font_size = 14

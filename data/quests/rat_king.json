@@ -1,0 +1,167 @@
+{
+  "id": "rat_king",
+  "name": "Rat King",
+  "description": "The rat population is booming since the granary situation. Greta's cellar is overrun. But the rats may not be the enemy they appear to be.",
+  "giver": "greta",
+  "region": "ashvale",
+  "tags": [
+    "side_quest",
+    "ecology",
+    "combat_optional",
+    "discovery",
+    "moral_choice"
+  ],
+  "priority": 5,
+  "states": {
+    "UNKNOWN": {
+      "transitions": [
+        {
+          "on": "npc.greta.met == true && world.day >= 5",
+          "to": "DISCOVERED"
+        }
+      ]
+    },
+    "DISCOVERED": {
+      "journal_entry": "Greta says her cellar is overrun with rats. They're getting into everything — the last of the stored food, the ale barrels, even the guest rooms. She's desperate for help.",
+      "transitions": [
+        {
+          "on": "flag.accepted_rat_quest == true",
+          "to": "ACTIVE"
+        }
+      ]
+    },
+    "ACTIVE": {
+      "journal_entry": "I agreed to clear Greta's cellar of rats. She gave me a key to the lower storage rooms. She says the infestation started right after the granary incident.",
+      "objectives": [
+        "Enter Greta's cellar",
+        "Investigate the rat infestation",
+        "Clear the rats or find another solution"
+      ],
+      "transitions": [
+        {
+          "on": "flag.entered_gretas_cellar == true",
+          "to": "CELLAR_ENTERED"
+        }
+      ]
+    },
+    "CELLAR_ENTERED": {
+      "journal_entry": "The cellar is worse than Greta described. Hundreds of rats. But something is strange — they're congregating around specific grain sacks, ignoring the clean supplies entirely.",
+      "objectives": [
+        "Examine what the rats are eating",
+        "Decide how to deal with the infestation"
+      ],
+      "transitions": [
+        {
+          "on": "flag.rats_killed == true",
+          "to": "COMPLETED_KILLED"
+        },
+        {
+          "on": "flag.rats_eating_poison_grain == true",
+          "to": "POISON_DISCOVERY"
+        },
+        {
+          "on": "flag.used_herbs_on_rats == true",
+          "to": "COMPLETED_HERBS"
+        },
+        {
+          "on": "flag.rat_king_spirit_revealed == true",
+          "to": "COMPLETED_SPIRIT"
+        }
+      ]
+    },
+    "POISON_DISCOVERY": {
+      "journal_entry": "The rats are eating the poisoned grain. They're actually containing the nightcap spread — their bodies are filtering the poison out of the food supply. If I kill them, the poison spreads unchecked.",
+      "objectives": [
+        "Decide what to do with this knowledge"
+      ],
+      "transitions": [
+        {
+          "on": "flag.rats_killed == true",
+          "to": "COMPLETED_KILLED_POISON_SPREAD"
+        },
+        {
+          "on": "flag.rats_preserved == true",
+          "to": "COMPLETED_PRESERVED"
+        },
+        {
+          "on": "flag.told_elara_about_rats == true",
+          "to": "COMPLETED_ELARA_INFORMED"
+        }
+      ]
+    },
+    "COMPLETED_KILLED": {
+      "journal_entry": "The rats are dead. Greta is grateful. The cellar is clear. Simple job, simple pay.",
+      "rewards": [
+        {
+          "gold": 40
+        },
+        {
+          "reputation": {
+            "ashvale_nobility": 5
+          }
+        }
+      ]
+    },
+    "COMPLETED_KILLED_POISON_SPREAD": {
+      "journal_entry": "I killed the rats despite knowing they were containing the poison. Within days, more villagers fell sick. Greta thanked me. Elara won't look at me.",
+      "consequence_chain": "rat_poison_spread_chain",
+      "rewards": [
+        {
+          "gold": 40
+        },
+        {
+          "reputation": {
+            "ashvale_nobility": -20
+          }
+        }
+      ]
+    },
+    "COMPLETED_HERBS": {
+      "journal_entry": "Old Maren's herb mixture drove the rats away peacefully. They scattered into the fields. Greta was skeptical but the cellar is clear. For now.",
+      "rewards": [
+        {
+          "gold": 25
+        },
+        {
+          "reputation": {
+            "thornwood_druids": 10
+          }
+        }
+      ]
+    },
+    "COMPLETED_PRESERVED": {
+      "journal_entry": "I convinced Greta to leave the rats alone. She thinks I'm mad. But the poison stays contained, and that's worth more than a clean cellar.",
+      "rewards": [
+        {
+          "reputation": {
+            "thornwood_druids": 15
+          }
+        }
+      ]
+    },
+    "COMPLETED_ELARA_INFORMED": {
+      "journal_entry": "I told Elara about the rats and the poison. She's studying them now — she thinks their resistance to nightcap could be the key to a better antidote. Science born from vermin.",
+      "rewards": [
+        {
+          "reputation": {
+            "ashvale_nobility": 10,
+            "thornwood_druids": 10
+          }
+        }
+      ]
+    },
+    "COMPLETED_SPIRIT": {
+      "journal_entry": "The 'rat king' was a forest spirit in disguise — a minor guardian testing whether Ashvale's people still understand the balance between destruction and preservation. I passed its test. Or failed. Hard to tell with spirits.",
+      "rewards": [
+        {
+          "item": "wardens_whisker"
+        },
+        {
+          "reputation": {
+            "thornwood_druids": 25
+          }
+        }
+      ]
+    }
+  }
+}

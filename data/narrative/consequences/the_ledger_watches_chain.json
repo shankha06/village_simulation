@@ -1,0 +1,61 @@
+{
+  "id": "the_ledger_watches_chain",
+  "trigger_condition": "flag.prologue_complete == true",
+  "consequences": [
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "set_state": "flag.mysterious_note_at_inn",
+          "value": true
+        },
+        {
+          "set_state": "player.has_item.ledger_note",
+          "value": true
+        },
+        {
+          "spawn_event": "mysterious_note_appears"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 7,
+      "effects": [
+        {
+          "set_state": "flag.guild_agent_arrives",
+          "value": true
+        },
+        {
+          "set_state": "npc.guild_agent.available",
+          "value": true
+        },
+        {
+          "spawn_event": "guild_agent_at_inn"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 14,
+      "effects": [
+        {
+          "set_state": "flag.ledger_sends_pact_map",
+          "value": true
+        },
+        {
+          "set_state": "player.has_item.pact_locations_map",
+          "value": true
+        },
+        {
+          "set_state": "flag.sequel_hook_planted",
+          "value": true
+        },
+        {
+          "spawn_event": "ledger_map_delivery"
+        }
+      ]
+    }
+  ]
+}

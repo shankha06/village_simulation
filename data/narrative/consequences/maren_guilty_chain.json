@@ -1,0 +1,50 @@
+{
+  "id": "maren_guilty_chain",
+  "trigger_condition": "flag.maren_proven_guilty == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "npc.brother_maren.memory.guilt_confirmed",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.memory.brother_truly_guilty",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.npc_relationships.brother_maren",
+          "value": -90
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {
+          "set_state": "flag.village_turns_on_maren",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.church_influence",
+          "delta": -40.0
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 7,
+      "effects": [
+        {
+          "set_state": "flag.maren_flees_or_faces_mob",
+          "value": true
+        },
+        {
+          "spawn_event": "maren_confrontation_village"
+        }
+      ]
+    }
+  ]
+}

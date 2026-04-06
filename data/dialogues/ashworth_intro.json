@@ -1,0 +1,617 @@
+{
+  "id": "ashworth_intro",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "fearful",
+      "text": "Who\u2014 how did you get in here?! The guards were supposed to\u2014 ...No. No, it doesn't matter. Nothing matters anymore.",
+      "triggers": [
+        {
+          "set_state": "npc.lord_ashworth.met",
+          "value": true
+        },
+        {
+          "set_state": "flag.entered_ashworth_manor",
+          "value": true
+        }
+      ],
+      "next": "start_2"
+    },
+    "start_2": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The lord's study is in chaos. Papers scattered across every surface, half-burned letters in the fireplace. Wine stains on ancient maps. Lord Ashworth himself looks like he hasn't slept in weeks \u2014 hollow eyes, trembling hands, the remnants of noble bearing crumbling in real time.",
+      "next": "choice_opening"
+    },
+    "choice_opening": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "gentle",
+          "text": "My lord, your people are starving. They need answers. What's happening to you?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.lord_ashworth.disposition",
+              "delta": 10
+            },
+            {
+              "set_state": "npc.lord_ashworth.memory.player_was_compassionate",
+              "value": true
+            }
+          ],
+          "next": "compassionate_response"
+        },
+        {
+          "id": "accusatory",
+          "text": "While you hide in here, your village is dying. The crops are poisoned. Did you know?",
+          "conditions": [
+            {
+              "check": "flag.evidence_nightcap_root",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.lord_ashworth.memory.player_confronted_about_poison",
+              "value": true
+            }
+          ],
+          "next": "confronted_response"
+        },
+        {
+          "id": "guild_threat",
+          "text": "The Hollow Hand sent me. They say you owe them. They say you know why.",
+          "conditions": [
+            {
+              "check": "flag.knows_about_guild",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.lord_ashworth.memory.player_mentioned_guild",
+              "value": true
+            },
+            {
+              "set_state": "npc.lord_ashworth.disposition",
+              "delta": -20
+            }
+          ],
+          "next": "guild_terror"
+        },
+        {
+          "id": "pact_knowledge",
+          "text": "I know about the pact. The thirty-year debt. The forest. Tell me everything, or I'll find out on my own.",
+          "conditions": [
+            {
+              "check": "flag.clue_ashworth_pact_with_forest",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.lord_ashworth.memory.player_knows_about_pact",
+              "value": true
+            }
+          ],
+          "next": "pact_breakdown"
+        }
+      ]
+    },
+    "compassionate_response": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "sad",
+      "text": "Answers... You want answers. Everyone wants answers. The church wants my confession. The guild wants my gold. The forest wants my\u2014 ",
+      "next": "compassionate_2"
+    },
+    "compassionate_2": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "fearful",
+      "text": "He stops himself. His hand moves instinctively to a drawer in his desk \u2014 then pulls away, as if burned.",
+      "next": "compassionate_3"
+    },
+    "compassionate_3": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "sad",
+      "text": "I am the last of the Ashworth line. My father told me what was required. His father told him. Three hundred years of... duty. And I thought I could break the chain. I thought I was brave enough to refuse.",
+      "triggers": [
+        {
+          "set_state": "flag.ashworth_admitted_refusal",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_ashworth_refused_duty",
+          "value": true
+        }
+      ],
+      "next": "choice_dig_deeper"
+    },
+    "confronted_response": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "fearful",
+      "text": "Poisoned? You're certain? Then it's worse than I\u2014 They told me it would be blight. A natural death, they said. Something that could be explained. But poison... that means someone in this village is working against me. Against all of us.",
+      "triggers": [
+        {
+          "set_state": "flag.ashworth_didnt_know_about_poison",
+          "value": true
+        }
+      ],
+      "next": "confronted_2"
+    },
+    "confronted_2": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "sad",
+      "text": "I know what you're thinking. 'He did this.' But why would I poison my own lands? I am BOUND to this soil. What kills Ashvale kills me. That is not metaphor \u2014 it is the literal truth of my family's curse.",
+      "triggers": [
+        {
+          "set_state": "flag.ashworth_mentioned_binding",
+          "value": true
+        }
+      ],
+      "next": "choice_dig_deeper"
+    },
+    "guild_terror": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "fearful",
+      "text": "The Hand\u2014 No. NO. They were supposed to leave me alone! I paid them. I paid everything they asked! The granary stores, the tax revenue, my mother's jewels\u2014 What more could they possibly want?!",
+      "triggers": [
+        {
+          "set_state": "flag.ashworth_paid_off_guild",
+          "value": true
+        }
+      ],
+      "next": "guild_terror_2"
+    },
+    "guild_terror_2": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "exploit_fear",
+          "text": "[Cruel] They want the manor. And you're going to give it to them, or I'll help them take it.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.lord_ashworth.disposition",
+              "delta": -40
+            },
+            {
+              "set_state": "flag.player_threatened_lord",
+              "value": true
+            }
+          ],
+          "next": "lord_breaks"
+        },
+        {
+          "id": "reassure",
+          "text": "I'm not with the Guild. But I need to understand what hold they have over you.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.lord_ashworth.disposition",
+              "delta": 15
+            }
+          ],
+          "next": "guild_truth"
+        },
+        {
+          "id": "bluff_done",
+          "text": "[Bluff complete] I lied. I'm not with them. But now I know they're blackmailing you. What do they know?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.lord_ashworth.memory.player_bluffed_guild_connection",
+              "value": true
+            }
+          ],
+          "next": "guild_truth"
+        }
+      ]
+    },
+    "guild_truth": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "sad",
+      "text": "They found the records. In the catacombs beneath the manor. Three hundred years of... transactions. Names. Dates. What the Ashworths gave to the forest and what the forest gave in return. Fertile soil. Protection from plague. Good harvests.",
+      "next": "guild_truth_2"
+    },
+    "guild_truth_2": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "fearful",
+      "text": "And what we paid. Every thirty years. A life. Given willingly to the Thornwood. My grandfather chose a criminal. My father chose a beggar. And when my time came... I chose no one. I refused. And the forest began to collect its own price.",
+      "triggers": [
+        {
+          "set_state": "flag.ashworth_confession_heard",
+          "value": true
+        },
+        {
+          "set_state": "flag.pact_fully_revealed",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_forest_demands_sacrifice",
+          "value": true
+        }
+      ],
+      "next": "choice_after_confession"
+    },
+    "pact_breakdown": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "fearful",
+      "text": "You\u2014 How do you know about that?! Who told you?! The druids? That damned priest?!",
+      "next": "pact_breakdown_2"
+    },
+    "pact_breakdown_2": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "sad",
+      "text": "He collapses into his chair, all pretense of authority gone. What sits before you is not a lord \u2014 it is a man crushed by an inheritance he never wanted.",
+      "next": "pact_breakdown_3"
+    },
+    "pact_breakdown_3": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "sad",
+      "text": "Yes. The pact. My ancestor Aldric made a bargain with the heart of Thornwood. The forest would make this land fertile and keep the plagues at bay. In return, every thirty years, the lord of Ashvale would deliver a sacrifice. A human life. Willingly given to the roots.",
+      "triggers": [
+        {
+          "set_state": "flag.ashworth_confession_heard",
+          "value": true
+        },
+        {
+          "set_state": "flag.pact_fully_revealed",
+          "value": true
+        }
+      ],
+      "next": "pact_breakdown_4"
+    },
+    "pact_breakdown_4": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "sad",
+      "text": "My time came two months ago. And I couldn't do it. I looked at the ritual chamber beneath the manor, I read the instructions my father left me, and I thought: 'Three hundred years of murder is enough.' So I refused. And now the forest is taking the entire village instead.",
+      "triggers": [
+        {
+          "set_state": "flag.clue_ashworth_refused_duty",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_forest_demands_sacrifice",
+          "value": true
+        }
+      ],
+      "next": "choice_after_confession"
+    },
+    "lord_breaks": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "fearful",
+      "text": "Then take it! Take everything! I don't care anymore! This house, this name, this CURSE \u2014 I'd burn it all if I thought it would save a single soul in this village. But it won't. Nothing I do will be enough. The forest doesn't forgive debts.",
+      "triggers": [
+        {
+          "set_state": "flag.ashworth_offered_everything",
+          "value": true
+        }
+      ],
+      "next": "choice_after_confession"
+    },
+    "choice_dig_deeper": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "ask_about_duty",
+          "text": "What 'duty' did your father pass down? What were you supposed to do?",
+          "conditions": [
+            {
+              "check": "flag.ashworth_admitted_refusal",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "pact_breakdown_3"
+        },
+        {
+          "id": "ask_about_binding",
+          "text": "What do you mean, you're 'bound to this soil'? Literally?",
+          "conditions": [
+            {
+              "check": "flag.ashworth_mentioned_binding",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "binding_explanation"
+        },
+        {
+          "id": "ask_drawer",
+          "text": "[Observant] What's in the drawer you keep reaching for?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_noticed_drawer",
+              "value": true
+            }
+          ],
+          "next": "drawer_secret"
+        }
+      ]
+    },
+    "binding_explanation": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "sad",
+      "text": "The pact bound the Ashworth bloodline to the land. When the crops thrive, we thrive. When the soil sickens... look at me. I'm dying with my village. Every dead field is a year off my life. I can feel the roots pulling at me even now.",
+      "triggers": [
+        {
+          "set_state": "flag.ashworth_bound_to_land",
+          "value": true
+        }
+      ],
+      "next": "choice_dig_deeper"
+    },
+    "drawer_secret": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "fearful",
+      "text": "He stares at you for a long moment. Then, with trembling hands, he opens the drawer and removes a leather-bound journal, ancient and stained.",
+      "next": "drawer_secret_2"
+    },
+    "drawer_secret_2": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "sad",
+      "text": "My father's instructions. The ritual. How to enter the chamber beneath the manor. How to... fulfill the pact. I've read it a thousand times. And a thousand times I've put it back and told myself there must be another way.",
+      "triggers": [
+        {
+          "set_state": "flag.saw_ritual_journal",
+          "value": true
+        },
+        {
+          "set_state": "player.has_item.ritual_journal_location",
+          "value": true
+        }
+      ],
+      "next": "choice_after_confession"
+    },
+    "confront_silas": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "fearful",
+      "text": "You found Silas's letter? ...I remember him. He was a good man. My father... he told Silas it was an honor. He told Silas the village would never forget. But as soon as the roots closed over him, we all tried to scrub the Maren name from our ledgers. We were ashamed of our survival.",
+      "triggers": [
+        {
+          "set_state": "flag.ashworth_silas_regret",
+          "value": true
+        },
+        {
+          "set_state": "npc.lord_ashworth.disposition",
+          "delta": -10
+        }
+      ],
+      "next": "confront_silas_2"
+    },
+    "confront_silas_2": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "sad",
+      "text": "And now Silas's boy is back. Brother Maren. He thinks he's serving the Light, but he's really just trying to burn away the darkness of his own family's trauma. And I... I'm the man who let it happen. I have his father's blood on my lineage, and I can't even look him in the eye.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_family_truth_revealed",
+          "value": true
+        }
+      ],
+      "next": "choice_after_confession"
+    },
+    "choice_after_confession": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "sympathize",
+          "text": "You did the right thing by refusing. There has to be a way to break the pact without more death.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.lord_ashworth.disposition",
+              "delta": 30
+            },
+            {
+              "set_state": "npc.lord_ashworth.memory.player_supports_refusal",
+              "value": true
+            },
+            {
+              "set_state": "flag.seeking_pact_alternative",
+              "value": true
+            }
+          ],
+          "next": "hope_response"
+        },
+        {
+          "id": "confront_with_letter",
+          "text": "[Show Silas's Letter] I found this in the crypts. Silas Maren died for your father. And now you're letting his son poison your wells.",
+          "conditions": [
+            {
+              "check": "flag.found_silas_letter",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "confront_silas"
+        },
+        {
+          "id": "pragmatic",
+          "text": "One life versus an entire village. You know what the math says, my lord.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.lord_ashworth.disposition",
+              "delta": -15
+            },
+            {
+              "set_state": "flag.player_suggested_sacrifice",
+              "value": true
+            }
+          ],
+          "next": "sacrifice_response"
+        },
+        {
+          "id": "investigate",
+          "text": "Before we decide anything \u2014 someone is poisoning the water supply. That's not the forest. That's a person. Let's find them first.",
+          "conditions": [
+            {
+              "check": "flag.evidence_nightcap_root",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.lord_ashworth.disposition",
+              "delta": 20
+            },
+            {
+              "set_state": "flag.ashworth_supports_investigation",
+              "value": true
+            }
+          ],
+          "next": "investigation_response"
+        },
+        {
+          "id": "dark_offer",
+          "text": "[Dark] I could be the one to fulfill the pact. For a price.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_offered_to_sacrifice",
+              "value": true
+            },
+            {
+              "set_state": "npc.lord_ashworth.memory.player_offered_dark_deal",
+              "value": true
+            }
+          ],
+          "next": "dark_response"
+        },
+        {
+          "id": "confront_with_ghost_letters",
+          "text": "[Show Ghost Letters] I found these in the catacombs. Five sacrifices. Five families destroyed.",
+          "conditions": [
+            {
+              "check": "flag.ghost_letters_collected_all",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.ashworth_confronted_with_full_history",
+              "value": true
+            }
+          ],
+          "next": "ghost_letter_confrontation"
+        }
+      ]
+    },
+    "hope_response": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "sad",
+      "text": "You truly believe that? ...Perhaps the Ashen Light was right about one thing. Perhaps I was meant to meet you. The old druid in the village \u2014 Old Maren. She might know if the pact can be broken. She's the last one who remembers the old ways.",
+      "triggers": [
+        {
+          "set_state": "flag.ashworth_pointed_to_old_maren",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "sacrifice_response": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "fearful",
+      "text": "You think I haven't done that calculation every waking hour?! Who, then? Name them. Look me in the eye and tell me which of my people deserves to die so the rest can eat. That's the math my ancestors did. I won't.",
+      "next": "end"
+    },
+    "investigation_response": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "neutral",
+      "text": "A poisoner? Working alongside the pact's decay? That means someone is accelerating Ashvale's death deliberately. Someone who wants this village to fall \u2014 and wants it to look natural. Find them. I'll give you full access to the manor records. Whatever you need.",
+      "triggers": [
+        {
+          "set_state": "flag.has_manor_access",
+          "value": true
+        },
+        {
+          "set_state": "player.has_item.manor_key",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "dark_response": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "fearful",
+      "text": "...What kind of person walks into a dying village and offers to kill for it? Are you a savior or a monster? ...Or is there even a difference, at the end?",
+      "next": "dark_response_2"
+    },
+    "dark_response_2": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "sad",
+      "text": "The ritual chamber is beneath the manor. The entrance is behind the family crypt. If you truly mean to do this... choose someone who deserves it. Or better yet \u2014 find another way entirely. I cannot live with more blood on the Ashworth name.",
+      "triggers": [
+        {
+          "set_state": "flag.knows_ritual_chamber_location",
+          "value": true
+        },
+        {
+          "set_state": "flag.dark_path_available",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "ghost_letter_confrontation": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "He reads them one by one. Hands shake worse with each letter. By the third, weeping. By the fifth, weeping has stopped \u2014 replaced by something harder. Resolve.",
+      "next": "ghost_letter_confrontation_2"
+    },
+    "ghost_letter_confrontation_2": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "sad",
+      "text": "Five families. We destroyed five families. And we told ourselves it was 'duty.' These letters are the voices we silenced. I hear them now.",
+      "triggers": [
+        {
+          "set_state": "flag.ashworth_full_guilt_awakened",
+          "value": true
+        }
+      ],
+      "next": "choice_after_confession"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

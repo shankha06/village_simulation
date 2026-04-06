@@ -1,0 +1,46 @@
+[
+  {
+    "id": "fork_elara_investigation_approach",
+    "description": "How the player investigates the poison affects THREE different systems",
+    "trigger": "flag.investigation_approach_chosen == true",
+    "forks": {
+      "direct_well_test": {
+        "sets": ["flag.poisoner_alerted", "flag.public_evidence_found", "flag.elara_at_risk_increased"],
+        "affects_quests": ["water_investigation", "granary_sabotage"],
+        "affects_npcs": ["elara", "brother_maren", "fenrick"]
+      },
+      "covert_upstream": {
+        "sets": ["flag.hidden_investigation", "flag.forest_encounter_likely", "flag.elara_trust_deepened"],
+        "affects_quests": ["water_investigation", "forest_expedition"],
+        "affects_npcs": ["elara", "old_maren"]
+      },
+      "solo_investigation": {
+        "sets": ["flag.elara_offended_but_free", "flag.player_operates_alone", "flag.guild_notices_solo_player"],
+        "affects_quests": ["water_investigation", "granary_sabotage", "ironmarch_ultimatum"],
+        "affects_npcs": ["elara", "fenrick", "commander_voss"]
+      }
+    }
+  },
+  {
+    "id": "fork_voss_alliance_type",
+    "description": "The type of alliance with Voss changes Act 2 and Act 3 fundamentally",
+    "trigger": "flag.voss_alliance_chosen == true",
+    "forks": {
+      "full_military": {
+        "sets": ["flag.military_presence_visible", "flag.legion_takes_ashvale_seriously", "flag.villagers_feel_occupied"],
+        "affects_quests": ["ironmarch_ultimatum", "unify_ashvale"],
+        "affects_npcs": ["commander_voss", "gate_guard", "fenrick"]
+      },
+      "intelligence_only": {
+        "sets": ["flag.voss_intel_network", "flag.legion_spy_identifiable", "flag.subtle_advantage"],
+        "affects_quests": ["ironmarch_ultimatum", "water_investigation"],
+        "affects_npcs": ["commander_voss", "fenrick", "brother_maren"]
+      },
+      "new_lord_proposal": {
+        "sets": ["flag.power_transition_discussed", "flag.ashworth_feels_threatened", "flag.radical_solution_on_table"],
+        "affects_quests": ["ironmarch_ultimatum", "the_reckoning"],
+        "affects_npcs": ["commander_voss", "lord_ashworth", "gate_guard"]
+      }
+    }
+  }
+]

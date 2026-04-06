@@ -1,0 +1,355 @@
+{
+  "id": "elara_follow_up",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "You're back. Good \u2014 I was hoping you would be.",
+      "next": "check_helped"
+    },
+    "check_helped": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "helped_greeting",
+          "text": "Any new developments with the water?",
+          "conditions": [
+            {
+              "check": "flag.agreed_to_help_elara",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "ally_update"
+        },
+        {
+          "id": "refused_greeting",
+          "text": "How are things holding up?",
+          "conditions": [
+            {
+              "check": "flag.agreed_to_help_elara",
+              "op": "!=",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "disappointed_but_sharing"
+        },
+        {
+          "id": "generous_greeting",
+          "text": "Do you need anything else?",
+          "conditions": [
+            {
+              "check": "npc.elara.memory.player_is_generous",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "grateful_update"
+        },
+        {
+          "id": "ask_well",
+          "text": "I heard something about the well. What do you know?",
+          "conditions": [],
+          "triggers": [],
+          "next": "well_sighting"
+        }
+      ]
+    },
+    "ally_update": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "I've been running more tests on the water samples. The nightcap root concentration is increasing \u2014 someone is adding more. This isn't a one-time poisoning. It's ongoing.",
+      "triggers": [
+        {
+          "set_state": "flag.elara_confirmed_ongoing_poison",
+          "value": true
+        }
+      ],
+      "next": "ally_update_2"
+    },
+    "ally_update_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "fearful",
+      "text": "But there's something else. I saw a figure near the well two nights ago. Hooded, moving carefully. They were carrying something \u2014 a jar or a vial. By the time I got close, they were gone.",
+      "triggers": [
+        {
+          "set_state": "flag.elara_saw_well_figure",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_well_figure",
+          "value": true
+        }
+      ],
+      "next": "investigation_choice"
+    },
+    "investigation_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "stake_out",
+          "text": "We should stake out the well. Catch them in the act.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.plan_well_stakeout",
+              "value": true
+            },
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "stakeout_plan"
+        },
+        {
+          "id": "ask_description",
+          "text": "Could you tell anything about them? Height, build, clothing?",
+          "conditions": [],
+          "triggers": [],
+          "next": "figure_description"
+        },
+        {
+          "id": "suspect_maren",
+          "text": "A hooded figure with vials... sounds like a certain priest.",
+          "conditions": [
+            {
+              "check": "flag.clue_maren_knows_alchemy",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.elara_suspects_maren_as_poisoner",
+              "value": true
+            }
+          ],
+          "next": "maren_suspicion"
+        }
+      ]
+    },
+    "stakeout_plan": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "I was thinking the same. Tomorrow night, I'll wait in the herb garden \u2014 it overlooks the well. If you can position yourself on the other side, by the old oak, we'll have them surrounded. Meet me after sunset.",
+      "triggers": [
+        {
+          "set_state": "flag.well_stakeout_planned",
+          "value": true
+        }
+      ],
+      "next": "tips"
+    },
+    "figure_description": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "Tall. Thin. Moved like someone used to sneaking around. The cloak was dark \u2014 not the brown wool the villagers wear. Something finer. And their hands... I thought I saw something on their fingers. Ash, maybe. Or soot.",
+      "triggers": [
+        {
+          "set_state": "flag.clue_figure_had_ash_hands",
+          "value": true
+        }
+      ],
+      "next": "figure_description_2"
+    },
+    "figure_description_2": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "ash_connection",
+          "text": "Ash on their hands. The Ashen Light uses ash in rituals, don't they?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.connected_ash_to_church",
+              "value": true
+            }
+          ],
+          "next": "maren_suspicion"
+        },
+        {
+          "id": "could_be_anyone",
+          "text": "That could be anyone. We need more evidence.",
+          "conditions": [],
+          "triggers": [],
+          "next": "tips"
+        }
+      ]
+    },
+    "maren_suspicion": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "I've thought the same since he arrived. But suspicion isn't proof, and he's got half the village eating from his hand now. If we accuse him publicly without evidence, WE become the villains. We need to be careful.",
+      "next": "tips"
+    },
+    "tips": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "A few things that might help your investigation: the chapel has a cellar that Brother Maren keeps locked. Greta at the inn hears everything. And Old Maren \u2014 the druid, not the priest \u2014 she can feel things through the earth that we can't see.",
+      "triggers": [
+        {
+          "set_state": "flag.elara_gave_investigation_tips",
+          "value": true
+        }
+      ],
+      "next": "closing_choice"
+    },
+    "disappointed_but_sharing": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "Worse. Two more families lost their last stores. Children are going hungry. I've been stretching my herb supplies thin trying to keep people from getting sick on the bad water.",
+      "next": "disappointed_but_sharing_2"
+    },
+    "disappointed_but_sharing_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "I won't pretend I'm not disappointed you wouldn't help before. But I'll tell you this much \u2014 I saw someone by the well at night. Someone who shouldn't have been there. This village is being poisoned, and whoever is doing it is still at it.",
+      "triggers": [
+        {
+          "set_state": "flag.elara_saw_well_figure",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_well_figure",
+          "value": true
+        }
+      ],
+      "next": "closing_choice"
+    },
+    "grateful_update": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "happy",
+      "text": "Your gold kept three families fed this week. They don't know who helped them \u2014 I thought it best to keep it quiet. But I wanted you to know it mattered.",
+      "next": "grateful_update_2"
+    },
+    "grateful_update_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "I've been watching the well at night. Two nights ago, I saw a hooded figure \u2014 tall, thin, ash on their hands \u2014 adding something to the water. The poisoning is deliberate and ongoing.",
+      "triggers": [
+        {
+          "set_state": "flag.elara_saw_well_figure",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_well_figure",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_figure_had_ash_hands",
+          "value": true
+        }
+      ],
+      "next": "investigation_choice"
+    },
+    "well_sighting": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "fearful",
+      "text": "You've heard? I saw someone at the well two nights ago. A figure in a dark cloak, pouring something into the water. I tried to follow but they vanished into the shadows near the chapel.",
+      "triggers": [
+        {
+          "set_state": "flag.elara_saw_well_figure",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_well_figure",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_figure_fled_toward_chapel",
+          "value": true
+        }
+      ],
+      "next": "closing_choice"
+    },
+    "closing_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "offer_help_now",
+          "text": "I want to help. Tell me what you need.",
+          "conditions": [
+            {
+              "check": "flag.agreed_to_help_elara",
+              "op": "!=",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.agreed_to_help_elara",
+              "value": true
+            },
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 20
+            },
+            {
+              "start_quest": "water_investigation"
+            }
+          ],
+          "next": "late_acceptance"
+        },
+        {
+          "id": "continue_investigation",
+          "text": "I'll keep digging. Stay safe, Elara.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 5
+            }
+          ],
+          "next": "farewell"
+        },
+        {
+          "id": "leave",
+          "text": "I need to go. We'll talk again.",
+          "conditions": [],
+          "triggers": [],
+          "next": "end"
+        }
+      ]
+    },
+    "late_acceptance": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "happy",
+      "text": "Thank you. I know I can't do this alone. Check the well at night \u2014 and be careful around the chapel. Whoever is doing this knows what they're doing.",
+      "triggers": [
+        {
+          "set_state": "npc.elara.memory.player_is_ally",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "farewell": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "You too. And... thank you. For coming back. It means more than you know.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

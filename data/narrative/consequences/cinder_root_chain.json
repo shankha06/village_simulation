@@ -1,0 +1,30 @@
+{
+  "id": "cinder_root_chain",
+  "trigger_condition": "flag.cinder_root_lost == true",
+  "consequences": [
+    {
+      "type": "delayed",
+      "delay_days": 30,
+      "effects": [
+        {
+          "set_state": "flag.root_lung_cases_rising",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 90,
+      "effects": [
+        {
+          "set_state": "flag.elara_health_declining",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.memory.melancholy_warden",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

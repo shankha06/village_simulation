@@ -1,0 +1,253 @@
+{
+  "id": "fenrick_intro",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "You don't look local. Good. I need someone without... attachments.",
+      "triggers": [
+        {
+          "set_state": "npc.fenrick.met",
+          "value": true
+        }
+      ],
+      "next": "choice_opening"
+    },
+    "choice_opening": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "curious",
+          "text": "I'm listening. What kind of work?",
+          "conditions": [],
+          "triggers": [],
+          "next": "the_job"
+        },
+        {
+          "id": "suspicious",
+          "text": "Who are you, and why are you lurking in an alley?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.fenrick.memory.player_was_suspicious",
+              "value": true
+            }
+          ],
+          "next": "introduction"
+        },
+        {
+          "id": "hostile",
+          "text": "I don't take work from men who skulk in shadows.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": -20
+            }
+          ],
+          "next": "rebuffed"
+        }
+      ]
+    },
+    "introduction": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Name's Fenrick. I represent certain... business interests in Ashvale. The Hollow Hand, if you've heard of us. We keep the real economy running while the lord counts his empty coffers.",
+      "triggers": [
+        {
+          "set_state": "flag.knows_about_guild",
+          "value": true
+        }
+      ],
+      "next": "the_job"
+    },
+    "the_job": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Lord Ashworth's granary. It's the last stockpile of grain in Ashvale. The lord's been hoarding it while the people starve. My employers want it... removed from the equation.",
+      "next": "the_job_2"
+    },
+    "the_job_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Burn it down. The lord loses his leverage, chaos erupts, and my employers move into the power vacuum. Simple. Two hundred gold for you.",
+      "triggers": [
+        {
+          "set_state": "flag.knows_sabotage_plan",
+          "value": true
+        }
+      ],
+      "next": "choice_sabotage"
+    },
+    "choice_sabotage": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept",
+          "text": "Two hundred gold to burn a building? I'm in.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_sabotage",
+              "value": true
+            },
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": 20
+            },
+            {
+              "start_quest": "granary_sabotage"
+            },
+            {
+              "modify_reputation": {
+                "thieves_guild": 20
+              }
+            }
+          ],
+          "next": "accept_response"
+        },
+        {
+          "id": "negotiate",
+          "text": "People will starve without that grain. Make it four hundred.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.fenrick.memory.player_negotiated",
+              "value": true
+            }
+          ],
+          "next": "negotiation"
+        },
+        {
+          "id": "refuse",
+          "text": "Burning food while people starve? I won't do it.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": -10
+            }
+          ],
+          "next": "refuse_response"
+        },
+        {
+          "id": "report",
+          "text": "[Bluff] Interesting. I'll think about it. (Plan to report to guards)",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.plans_to_report_guild",
+              "value": true
+            },
+            {
+              "set_state": "npc.fenrick.memory.player_will_think",
+              "value": true
+            }
+          ],
+          "next": "think_response"
+        }
+      ]
+    },
+    "accept_response": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Smart. Here's a firebomb \u2014 Guild-made, burns hot and fast. Plant it in the silo at night when the guards change shift. There's a gap between second and third watch. Don't get caught.",
+      "triggers": [
+        {
+          "set_state": "player.has_item.firebomb",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "negotiation": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Ha. You understand the game. Three hundred. Final offer. The Hand doesn't haggle twice.",
+      "next": "choice_negotiate_final"
+    },
+    "choice_negotiate_final": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept_300",
+          "text": "Three hundred. Deal.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_sabotage",
+              "value": true
+            },
+            {
+              "set_state": "flag.sabotage_payout",
+              "value": 300
+            },
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": 15
+            },
+            {
+              "start_quest": "granary_sabotage"
+            },
+            {
+              "modify_reputation": {
+                "thieves_guild": 20
+              }
+            }
+          ],
+          "next": "accept_response"
+        },
+        {
+          "id": "walk_away",
+          "text": "Not enough. I'm out.",
+          "conditions": [],
+          "triggers": [],
+          "next": "refuse_response"
+        }
+      ]
+    },
+    "refuse_response": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Your choice. But mark my words \u2014 that grain won't save this village. The rot here runs deeper than any silo. If you change your mind, you know where to find me.",
+      "triggers": [
+        {
+          "set_state": "npc.fenrick.memory.player_refused_job",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "think_response": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Don't think too long. Opportunities like this have a way of... expiring. Along with anyone who talks about them to the wrong people.",
+      "triggers": [
+        {
+          "set_state": "npc.fenrick.memory.threatened_player",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "rebuffed": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Principles. How refreshing. How useless. Walk away then, hero. This village will burn one way or another.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

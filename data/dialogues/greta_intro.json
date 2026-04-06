@@ -1,0 +1,367 @@
+{
+  "id": "greta_intro",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "Welcome to the Rotting Harvest! ...Don't look at me like that, I didn't name it. Drink's warm, beds are clean-ish, and I don't ask questions. What'll it be?",
+      "triggers": [
+        {
+          "set_state": "npc.greta.met",
+          "value": true
+        }
+      ],
+      "next": "choice_opening"
+    },
+    "choice_opening": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "buy_drink",
+          "text": "I'll take an ale. And some information.",
+          "conditions": [
+            {
+              "check": "player.gold",
+              "op": ">=",
+              "value": 8
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "player.gold",
+              "delta": -8
+            },
+            {
+              "set_state": "npc.greta.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "information_menu"
+        },
+        {
+          "id": "ask_about_village",
+          "text": "What's happening in Ashvale? The village looks like it's dying.",
+          "conditions": [],
+          "triggers": [],
+          "next": "village_gossip"
+        },
+        {
+          "id": "ask_about_rooms",
+          "text": "I need a room for the night.",
+          "conditions": [
+            {
+              "check": "player.gold",
+              "op": ">=",
+              "value": 15
+            }
+          ],
+          "triggers": [],
+          "next": "room_offer"
+        },
+        {
+          "id": "leave",
+          "text": "Just looking around. I'll be going.",
+          "conditions": [],
+          "triggers": [],
+          "next": "leave_response"
+        }
+      ]
+    },
+    "information_menu": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "Information, eh? I hear things. People talk when they drink, and I have an excellent memory. What do you want to know?",
+      "next": "choice_info"
+    },
+    "choice_info": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "ask_about_lord",
+          "text": "What's going on with Lord Ashworth?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.greta.memory.player_asked_about_lord",
+              "value": true
+            }
+          ],
+          "next": "lord_gossip"
+        },
+        {
+          "id": "ask_about_maren",
+          "text": "Tell me about the priest, Brother Maren.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.greta.memory.player_asked_about_maren",
+              "value": true
+            }
+          ],
+          "next": "maren_gossip"
+        },
+        {
+          "id": "ask_about_guild",
+          "text": "I've heard whispers about a thieves' guild operating here.",
+          "conditions": [
+            {
+              "check": "flag.knows_about_guild",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.greta.memory.player_asked_about_guild",
+              "value": true
+            }
+          ],
+          "next": "guild_gossip"
+        },
+        {
+          "id": "ask_about_stranger",
+          "text": "There's a mercenary captain camped outside. Who is she?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.greta.memory.player_asked_about_voss",
+              "value": true
+            }
+          ],
+          "next": "voss_gossip"
+        }
+      ]
+    },
+    "lord_gossip": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "Lord Ashworth? Haven't seen him in weeks. His guards come for supplies, but they look worse every time. I hear shouting from the manor some nights \u2014 and not the angry kind. More like... terror.",
+      "triggers": [
+        {
+          "set_state": "flag.lord_ashworth_reclusive",
+          "value": true
+        }
+      ],
+      "next": "lord_gossip_2"
+    },
+    "lord_gossip_2": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "His steward came through last week looking like death warmed over. Ordered three bottles of my strongest wine and muttered something about 'the thirty-year debt.' Make of that what you will.",
+      "triggers": [
+        {
+          "set_state": "flag.greta_mentioned_thirty_year_debt",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_thirty_year_cycle",
+          "value": true
+        }
+      ],
+      "next": "choice_info"
+    },
+    "maren_gossip": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "Brother Maren arrived two months ago and set up shop in the old chapel. Funny timing \u2014 the crops started dying a week later. Correlation isn't causation, but I've been tending bar long enough to know when someone's selling something.",
+      "triggers": [
+        {
+          "set_state": "flag.greta_suspects_maren_timing",
+          "value": true
+        }
+      ],
+      "next": "maren_gossip_2"
+    },
+    "maren_gossip_2": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "He comes in here sometimes. Orders water \u2014 WATER, in a tavern \u2014 and watches people. Not preaching. Just... cataloging. The man has cold eyes behind all that piety.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_watches_people",
+          "value": true
+        }
+      ],
+      "next": "choice_info"
+    },
+    "guild_gossip": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "fearful",
+      "text": "Keep your voice DOWN. Yes, the Hollow Hand operates here. They've been around longer than the lord's family, truth be told. Fenrick is their local... representative. He's usually in the alley behind my inn after dark.",
+      "next": "guild_gossip_2"
+    },
+    "guild_gossip_2": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "pay_for_more",
+          "text": "[Pay 20 gold] What are they planning?",
+          "conditions": [
+            {
+              "check": "player.gold",
+              "op": ">=",
+              "value": 20
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "player.gold",
+              "delta": -20
+            },
+            {
+              "set_state": "npc.greta.disposition",
+              "delta": 15
+            }
+          ],
+          "next": "guild_secret"
+        },
+        {
+          "id": "threaten",
+          "text": "You seem to know a lot about criminals for an innkeeper.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.greta.disposition",
+              "delta": -20
+            },
+            {
+              "set_state": "npc.greta.memory.player_threatened",
+              "value": true
+            }
+          ],
+          "next": "guild_deflect"
+        }
+      ]
+    },
+    "guild_secret": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "Word is they're planning something big. Something that'll shift the power in Ashvale permanently. I don't know the details \u2014 and honestly? I don't want to. But it involves the granary. That's all I know.",
+      "triggers": [
+        {
+          "set_state": "flag.greta_hinted_granary_plot",
+          "value": true
+        }
+      ],
+      "next": "choice_info"
+    },
+    "guild_deflect": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "angry",
+      "text": "I know how to survive, stranger. In a dying village, that means keeping your ears open and your mouth shut. You'd do well to learn the same.",
+      "next": "choice_info"
+    },
+    "voss_gossip": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "Commander Voss. She arrived three days ago with about twenty soldiers \u2014 mercenaries, by the look of them. Professional, disciplined, well-armed. Not the usual rabble.",
+      "next": "voss_gossip_2"
+    },
+    "voss_gossip_2": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "She's been asking around about the lord, the crops, the church. Sizing the place up, if you ask me. Whether she's looking for a contract or a conquest... that's the question, isn't it?",
+      "triggers": [
+        {
+          "set_state": "flag.voss_investigating_ashvale",
+          "value": true
+        }
+      ],
+      "next": "choice_info"
+    },
+    "village_gossip": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "sad",
+      "text": "Dying is the right word. Crops failed, lord's gone silent, and now we've got a priest telling everyone it's divine punishment and a mercenary company camping on our doorstep. Pick your poison \u2014 we've got plenty.",
+      "next": "choice_opening"
+    },
+    "room_offer": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "Fifteen gold a night. Includes breakfast \u2014 what's left of it. And a locked door between you and whatever's out there. Sleep well, stranger.",
+      "next": "choice_room"
+    },
+    "choice_room": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "take_room",
+          "text": "[Pay 15 gold] I'll take it.",
+          "conditions": [
+            {
+              "check": "player.gold",
+              "op": ">=",
+              "value": 15
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "player.gold",
+              "delta": -15
+            },
+            {
+              "set_state": "flag.has_inn_room",
+              "value": true
+            },
+            {
+              "set_state": "npc.greta.disposition",
+              "delta": 5
+            }
+          ],
+          "next": "room_confirmed"
+        },
+        {
+          "id": "too_expensive",
+          "text": "That's steep for a dying village.",
+          "conditions": [],
+          "triggers": [],
+          "next": "room_expensive"
+        }
+      ]
+    },
+    "room_confirmed": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "Second door on the left, upstairs. And stranger? Lock the door. Things have been... unsettled after dark.",
+      "triggers": [
+        {
+          "set_state": "flag.greta_warned_about_night",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "room_expensive": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "Supply and demand, love. I'm the only inn in town, and the demand for a safe place to sleep has never been higher. Come back when you can afford it.",
+      "next": "choice_opening"
+    },
+    "leave_response": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "Come back anytime. The Rotting Harvest never closes. Mostly because I can't afford to.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

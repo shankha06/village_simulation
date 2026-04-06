@@ -1,0 +1,50 @@
+{
+  "id": "escort_caught_chain",
+  "trigger_condition": "flag.caught_by_ironmarch == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "npc.fenrick.alive",
+          "value": true
+        },
+        {
+          "set_state": "npc.fenrick.memory.arrested",
+          "value": true
+        },
+        {
+          "set_state": "flag.fenrick_imprisoned",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "effects": [
+        {
+          "set_state": "flag.guild_operations_disrupted",
+          "value": true
+        },
+        {
+          "set_state": "faction.thieves_guild.power",
+          "delta": -20.0
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 10,
+      "effects": [
+        {
+          "set_state": "world.region.eastern_road.patrol_intensity",
+          "value": "high"
+        },
+        {
+          "spawn_event": "ironmarch_crackdown_ashvale"
+        }
+      ]
+    }
+  ]
+}

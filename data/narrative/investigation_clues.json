@@ -1,0 +1,108 @@
+{
+  "investigations": [
+    {
+      "id": "poison_mystery",
+      "name": "Who Poisoned the Well?",
+      "description": "The village water supply has been contaminated with nightcap root. Someone is deliberately poisoning Ashvale. The truth is more complex than any single suspect.",
+      "clues": [
+        {
+          "id": "clue_nightcap_in_water",
+          "source": "elara_investigation",
+          "text": "Nightcap root found in well water — deliberate poisoning confirmed.",
+          "flag": "flag.evidence_nightcap_root",
+          "points_to": ["brother_maren", "church_ashen_light", "unknown_agent"]
+        },
+        {
+          "id": "clue_maren_timing",
+          "source": "greta_gossip",
+          "text": "Brother Maren arrived 2 months ago. Crops started dying 1 week later.",
+          "flag": "flag.greta_suspects_maren_timing",
+          "points_to": ["brother_maren"]
+        },
+        {
+          "id": "clue_maren_chemicals",
+          "source": "greta_follow_up",
+          "text": "Chemical smell on Maren's robes. Not incense — something sharper.",
+          "flag": "flag.greta_smelled_chemicals_on_maren",
+          "points_to": ["brother_maren"]
+        },
+        {
+          "id": "clue_church_codename",
+          "source": "greta_secret",
+          "text": "Nightcap root shipments marked with codename 'Ash' — a Church identifier.",
+          "flag": "flag.clue_ashen_light_were_alchemists",
+          "points_to": ["church_ashen_light"]
+        },
+        {
+          "id": "clue_maren_alchemy",
+          "source": "old_maren_intro",
+          "text": "Maren recognized nightcap root instantly — he has alchemical knowledge.",
+          "flag": "flag.clue_maren_knows_alchemy",
+          "points_to": ["brother_maren"]
+        },
+        {
+          "id": "clue_ashworth_library",
+          "source": "maren_midnight",
+          "text": "Poison formulas found in Ashworth's library, not Maren's supplies.",
+          "flag": "flag.clue_formulas_from_ashworth_library",
+          "points_to": ["lord_ashworth"]
+        },
+        {
+          "id": "clue_church_salt_plan",
+          "source": "maren_midnight",
+          "text": "The Church's 'Salt the Root' plan — poisoning is Phase 1 of village eradication.",
+          "flag": "flag.church_salt_the_earth_plan",
+          "points_to": ["church_ashen_light"]
+        },
+        {
+          "id": "clue_nightcap_barrel",
+          "source": "church_outpost",
+          "text": "Barrels of nightcap root at the Church Outpost — definitive proof.",
+          "flag": "flag.found_nightcap_barrel_at_outpost",
+          "points_to": ["church_ashen_light"]
+        },
+        {
+          "id": "clue_thirty_year_pattern",
+          "source": "greta_gossip",
+          "text": "The steward mentioned 'the thirty-year debt.' A pattern in Ashworth history.",
+          "flag": "flag.clue_thirty_year_cycle",
+          "points_to": ["lord_ashworth", "pact"]
+        },
+        {
+          "id": "clue_old_maren_bias",
+          "source": "old_maren_intro",
+          "text": "Old Maren admits her testimony against Maren is biased by centuries of Church-Druid conflict.",
+          "flag": "flag.old_maren_admitted_bias",
+          "points_to": ["unreliable_witness"]
+        }
+      ],
+      "verdicts": [
+        {
+          "id": "verdict_maren_guilty",
+          "name": "Accuse Brother Maren",
+          "required_clues": ["clue_nightcap_in_water", "clue_maren_chemicals", "clue_maren_alchemy"],
+          "missing_clue_that_changes_everything": "clue_church_salt_plan",
+          "flag": "flag.accused_maren",
+          "correct": false,
+          "note": "Maren was a tool, not the architect. The Church sent him. He followed orders he didn't fully understand — or didn't want to understand. Accusing him removes a pawn but leaves the hand that moved it untouched."
+        },
+        {
+          "id": "verdict_church_guilty",
+          "name": "Expose the Church of the Ashen Light",
+          "required_clues": ["clue_nightcap_in_water", "clue_church_codename", "clue_church_salt_plan"],
+          "flag": "flag.found_true_poisoner",
+          "correct": true,
+          "note": "The Church orchestrated the poisoning as Phase 1 of 'Salt the Root' — a systematic plan to weaken the village, destroy the forest's influence, and claim the land for the Ashen Light. The poison was never about Ashvale. It was about killing the Thornwood Pact."
+        },
+        {
+          "id": "verdict_ashworth_guilty",
+          "name": "Accuse Lord Ashworth",
+          "required_clues": ["clue_nightcap_in_water", "clue_ashworth_library"],
+          "flag": "flag.accused_lord",
+          "correct": false,
+          "note": "Ashworth had the knowledge but not the motive. He's bound to the land — poisoning it would be poisoning himself. The formulas in his library are ancestral records, kept as warnings. He knew what nightcap root could do because his family has feared it for generations."
+        }
+      ]
+    }
+  ]
+}

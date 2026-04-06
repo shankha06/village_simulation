@@ -1,0 +1,789 @@
+{
+  "id": "fenrick_pressure",
+  "start_node": "start",
+  "conditions": [
+    {
+      "check": "flag.accepted_sabotage",
+      "op": "==",
+      "value": true
+    },
+    {
+      "check": "flag.silo_destroyed",
+      "op": "!=",
+      "value": true
+    },
+    {
+      "check": "time.day",
+      "op": ">=",
+      "value": 3
+    }
+  ],
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "angry",
+      "text": "Three days. Three days and the silo still stands. My employers are starting to wonder if they hired a professional or a tourist.",
+      "next": "start_2"
+    },
+    "start_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "The guard rotation changes tomorrow. After that, they double the watch. Whatever excuse you've been nursing, it expires tonight.",
+      "triggers": [
+        {
+          "set_state": "flag.fenrick_pressured_player",
+          "value": true
+        },
+        {
+          "set_state": "flag.sabotage_deadline_tonight",
+          "value": true
+        }
+      ],
+      "next": "pressure_choice"
+    },
+    "pressure_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "do_it",
+          "text": "Tonight. I'll do it tonight. The guard gap at second watch?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.sabotage_committed_tonight",
+              "value": true
+            },
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": 15
+            }
+          ],
+          "next": "do_it_response"
+        },
+        {
+          "id": "more_time",
+          "text": "I need more time. There are complications \u2014 the guard captain is suspicious.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.fenrick.memory.player_stalling",
+              "value": true
+            }
+          ],
+          "next": "more_time_response"
+        },
+        {
+          "id": "changed_mind",
+          "text": "I changed my mind. I'm not burning food while children starve.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_sabotage",
+              "value": false
+            },
+            {
+              "set_state": "flag.betrayed_guild_job",
+              "value": true
+            },
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": -40
+            }
+          ],
+          "next": "changed_mind_response"
+        },
+        {
+          "id": "renegotiate",
+          "text": "The price has changed. I want more \u2014 and I want a guarantee for someone.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.fenrick.memory.player_renegotiating",
+              "value": true
+            }
+          ],
+          "next": "renegotiate_response"
+        }
+      ]
+    },
+    "do_it_response": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Second watch, yes. The gap lasts about eight minutes \u2014 enough to plant the firebomb and clear the area. The blast will cover your tracks. Just make sure you're at least fifty paces away when it goes.",
+      "next": "do_it_details"
+    },
+    "do_it_details": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "One more thing. The Hand has people in position to control the aftermath. When the panic starts, stay away from the market square. Our people will be... managing the crowd. You don't want to be mistaken for competition.",
+      "triggers": [
+        {
+          "set_state": "flag.guild_has_crowd_plan",
+          "value": true
+        },
+        {
+          "set_state": "quest.granary_sabotage.stage",
+          "value": "tonight"
+        }
+      ],
+      "next": "do_it_warning"
+    },
+    "do_it_warning": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "understood",
+          "text": "Understood. Where do I collect payment after?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.sabotage_payment_arranged",
+              "value": true
+            }
+          ],
+          "next": "payment_location"
+        },
+        {
+          "id": "managing_crowd",
+          "text": "\"Managing the crowd\"? What exactly does the Hand plan to do during the panic?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_questioned_crowd_plan",
+              "value": true
+            }
+          ],
+          "next": "crowd_plan_reveal"
+        }
+      ]
+    },
+    "payment_location": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Behind the chapel, dawn. Bring the empty firebomb casing as proof. No casing, no coin. The Hand doesn't pay for promises.",
+      "next": "end"
+    },
+    "crowd_plan_reveal": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "The less you know, the better. But let's just say that when people are panicking about food, they don't notice what's happening in the lord's manor. The silo is a distraction. The real prize is Ashworth's private vault.",
+      "triggers": [
+        {
+          "set_state": "flag.guild_real_target_is_vault",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_guild_after_vault",
+          "value": true
+        }
+      ],
+      "next": "crowd_plan_choice"
+    },
+    "crowd_plan_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "ok_with_it",
+          "text": "The vault. Smart. I don't care what you steal from a lord who hoards while his people die.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": 10
+            },
+            {
+              "set_state": "flag.player_approves_vault_heist",
+              "value": true
+            }
+          ],
+          "next": "payment_location"
+        },
+        {
+          "id": "not_ok",
+          "text": "I signed up for sabotage, not a heist. If this goes wrong, people could die in the chaos.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_concerned_about_heist",
+              "value": true
+            }
+          ],
+          "next": "fenrick_dismisses_concern"
+        }
+      ]
+    },
+    "fenrick_dismisses_concern": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "People are already dying. Slowly, from hunger and bad water. We're just... accelerating the timeline so the right people end up in charge. You've already agreed to burn the silo. Don't pretend you have a conscience now.",
+      "next": "payment_location"
+    },
+    "more_time_response": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "angry",
+      "text": "Complications. Right. Here's a complication for you \u2014 my employers don't give extensions. They give replacements. And they make sure the previous hire doesn't talk about the job.",
+      "next": "more_time_2"
+    },
+    "more_time_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "You have until tomorrow night. One more day. After that, someone else does the job and you become... a loose end. The Hand doesn't leave those.",
+      "triggers": [
+        {
+          "set_state": "flag.fenrick_final_deadline",
+          "value": true
+        },
+        {
+          "set_state": "flag.sabotage_deadline_extended_one_day",
+          "value": true
+        }
+      ],
+      "next": "more_time_choice"
+    },
+    "more_time_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept_deadline",
+          "text": "Tomorrow night. You have my word.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "quest.granary_sabotage.stage",
+              "value": "final_deadline"
+            }
+          ],
+          "next": "deadline_accepted"
+        },
+        {
+          "id": "threaten_back",
+          "text": "Threaten me again and your employers will need a new representative in Ashvale.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": -15
+            },
+            {
+              "set_state": "npc.fenrick.memory.player_threatened_back",
+              "value": true
+            }
+          ],
+          "next": "threatened_back"
+        }
+      ]
+    },
+    "deadline_accepted": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Words are cheap. Results are what count. Don't disappoint me, stranger. The next person the Hand sends won't come to talk first.",
+      "next": "end"
+    },
+    "threatened_back": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Ha. There it is. I was wondering when the teeth would come out. Fine \u2014 I'll tell them you're working a more complex angle. But don't mistake my patience for weakness. I've buried better than you.",
+      "triggers": [
+        {
+          "set_state": "npc.fenrick.memory.respects_player_spine",
+          "value": true
+        },
+        {
+          "set_state": "npc.fenrick.disposition",
+          "delta": 5
+        }
+      ],
+      "next": "end"
+    },
+    "changed_mind_response": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "angry",
+      "text": "Changed your mind. How noble. How catastrophically stupid.",
+      "next": "changed_mind_2"
+    },
+    "changed_mind_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "angry",
+      "text": "You know the plan. You know the target. You know my name. Do you think the Hollow Hand lets people walk away with that kind of information? You've just made yourself a problem that needs solving.",
+      "next": "changed_mind_3"
+    },
+    "changed_mind_3": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "I know where you sleep \u2014 the inn, second floor, door on the left. Greta's not exactly discreet about her guests. So here's what's going to happen...",
+      "triggers": [
+        {
+          "set_state": "flag.fenrick_knows_player_location",
+          "value": true
+        },
+        {
+          "set_state": "flag.guild_threat_active",
+          "value": true
+        }
+      ],
+      "next": "threat_choice"
+    },
+    "threat_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "call_bluff",
+          "text": "You won't kill me. Dead strangers attract attention you can't afford.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.fenrick.memory.player_called_bluff",
+              "value": true
+            }
+          ],
+          "next": "bluff_response"
+        },
+        {
+          "id": "counter_threat",
+          "text": "I've already written everything down and given it to someone you'll never find. Touch me and it goes to Commander Voss.",
+          "conditions": [
+            {
+              "check": "npc.commander_voss.met",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.player_has_insurance_against_guild",
+              "value": true
+            },
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": -10
+            }
+          ],
+          "next": "insurance_response"
+        },
+        {
+          "id": "reverse_offer",
+          "text": "What if I give you something more valuable than a burned silo? Information about who's really poisoning this village.",
+          "conditions": [
+            {
+              "check": "flag.evidence_nightcap_root",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.offering_guild_poison_info",
+              "value": true
+            }
+          ],
+          "next": "info_trade"
+        },
+        {
+          "id": "submit",
+          "text": "...Fine. What do you want from me instead?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_submitted_to_guild",
+              "value": true
+            },
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": 5
+            }
+          ],
+          "next": "alternative_job"
+        }
+      ]
+    },
+    "bluff_response": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "You're right \u2014 I won't kill you. But a midnight visit, a knife at the throat, and a very specific warning? That's free. And next time, it won't be me they send. It'll be someone who doesn't bother with warnings.",
+      "triggers": [
+        {
+          "set_state": "flag.guild_will_intimidate",
+          "value": true
+        },
+        {
+          "set_state": "flag.midnight_guild_attack_planned",
+          "value": true
+        }
+      ],
+      "next": "bluff_response_2"
+    },
+    "bluff_response_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Keep looking over your shoulder, stranger. The Hand has a long reach and a longer memory.",
+      "triggers": [
+        {
+          "modify_reputation": {
+            "thieves_guild": -30
+          }
+        }
+      ],
+      "next": "end"
+    },
+    "insurance_response": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "fearful",
+      "text": "Voss? The mercenary captain? ...You're bluffing. But if you're not... that changes the calculation. Considerably.",
+      "next": "insurance_response_2"
+    },
+    "insurance_response_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Fine. You walk. The job didn't happen, we never met, and if anyone asks, I was drinking at the inn all week. But this isn't over. The Hand doesn't forget. One day, you'll need something, and you'll remember you made enemies today.",
+      "triggers": [
+        {
+          "set_state": "flag.guild_standoff",
+          "value": true
+        },
+        {
+          "set_state": "flag.fenrick_backed_down",
+          "value": true
+        },
+        {
+          "modify_reputation": {
+            "thieves_guild": -20
+          }
+        }
+      ],
+      "next": "end"
+    },
+    "info_trade": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Poisoning? Go on. The Hand didn't order any poisoning. If someone is contaminating the water supply independently, that's... a complication we didn't account for.",
+      "next": "info_trade_2"
+    },
+    "info_trade_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Our plan depends on the village being desperate, not dead. A famine we can exploit. A plague? That's bad for everyone's business \u2014 including ours. What do you know?",
+      "next": "info_trade_choice"
+    },
+    "info_trade_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "share_everything",
+          "text": "Nightcap root in the water supply. Deliberate. Someone with alchemy knowledge.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.guild_knows_about_poison",
+              "value": true
+            },
+            {
+              "set_state": "flag.guild_investigating_poisoner",
+              "value": true
+            },
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": 20
+            },
+            {
+              "modify_reputation": {
+                "thieves_guild": 10
+              }
+            }
+          ],
+          "next": "guild_investigates"
+        },
+        {
+          "id": "partial_info",
+          "text": "I'll give you the full picture once you guarantee my safety AND the safety of a friend.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.bargaining_with_guild",
+              "value": true
+            }
+          ],
+          "next": "guild_protection_bargain"
+        }
+      ]
+    },
+    "guild_investigates": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Nightcap root. That's not amateur work \u2014 that's someone who knows exactly how to kill a harvest without leaving obvious traces. The Hand has resources. I'll put feelers out. If the poisoner is using suppliers we know, we'll find them.",
+      "next": "guild_investigates_2"
+    },
+    "guild_investigates_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "You've bought yourself a reprieve. The silo job is on hold while we figure out who's trying to kill our golden goose. Don't make me regret this.",
+      "triggers": [
+        {
+          "set_state": "flag.sabotage_on_hold",
+          "value": true
+        },
+        {
+          "set_state": "quest.granary_sabotage.stage",
+          "value": "suspended"
+        }
+      ],
+      "next": "end"
+    },
+    "guild_protection_bargain": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "A friend. The herbalist? Elara? ...I see. She's the one who found the poison, isn't she?",
+      "next": "guild_protection_2"
+    },
+    "guild_protection_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "The Hand protects its investments, not its charities. But if your herbalist is the key to finding the poisoner \u2014 and the poisoner is bad for our business \u2014 then yes. We'll keep her alive. Professional courtesy.",
+      "triggers": [
+        {
+          "set_state": "flag.guild_protecting_elara",
+          "value": true
+        },
+        {
+          "set_state": "flag.guild_knows_about_poison",
+          "value": true
+        },
+        {
+          "set_state": "flag.sabotage_on_hold",
+          "value": true
+        },
+        {
+          "set_state": "npc.fenrick.disposition",
+          "delta": 10
+        },
+        {
+          "set_state": "quest.granary_sabotage.stage",
+          "value": "suspended"
+        }
+      ],
+      "next": "end"
+    },
+    "alternative_job": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Smart. The Hand always needs people. If you won't burn the silo, you can earn your silence a different way. Brother Maren's chapel has a cellar. There's something in there he doesn't want anyone to see.",
+      "next": "alternative_job_2"
+    },
+    "alternative_job_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Break in, find out what the good priest is hiding, and bring me proof. Whatever it is, it's worth more than a burned granary. Information is the most valuable currency there is.",
+      "triggers": [
+        {
+          "set_state": "flag.guild_alternative_job",
+          "value": true
+        },
+        {
+          "set_state": "flag.sabotage_on_hold",
+          "value": true
+        },
+        {
+          "start_quest": "chapel_infiltration"
+        },
+        {
+          "set_state": "quest.granary_sabotage.stage",
+          "value": "replaced"
+        }
+      ],
+      "next": "alternative_job_3"
+    },
+    "alternative_job_3": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Do this, and we're square. No silo, no threats, and maybe even a bonus if what you find is juicy enough. The Hand takes care of its useful friends.",
+      "next": "end"
+    },
+    "renegotiate_response": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "The price has changed? You've got nerve, I'll give you that. Most people don't try to squeeze the Hollow Hand for more coin after accepting a job. What's your angle?",
+      "next": "renegotiate_choice"
+    },
+    "renegotiate_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "more_gold",
+          "text": "Five hundred gold. The risk has increased \u2014 the guard is tighter than you said.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.fenrick.memory.player_wants_more_gold",
+              "value": true
+            }
+          ],
+          "next": "more_gold_response"
+        },
+        {
+          "id": "protect_elara",
+          "text": "I want the Guild to guarantee Elara's safety. She's an herbalist \u2014 she stays untouched.",
+          "conditions": [
+            {
+              "check": "npc.elara.met",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.demanded_guild_protect_elara",
+              "value": true
+            }
+          ],
+          "next": "protect_elara_response"
+        },
+        {
+          "id": "want_in",
+          "text": "Forget the one-time payment. I want a seat at the table. Permanent Guild membership.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_wants_guild_membership",
+              "value": true
+            }
+          ],
+          "next": "membership_response"
+        },
+        {
+          "id": "double_agent",
+          "text": "I want to know what the Guild's real endgame is. The silo is just the beginning, isn't it?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_probing_guild_endgame",
+              "value": true
+            }
+          ],
+          "next": "endgame_response"
+        }
+      ]
+    },
+    "more_gold_response": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "angry",
+      "text": "Five hundred? You were lucky to get two. But the Hand doesn't have time for another hire. Four hundred. Take it or burn alone.",
+      "triggers": [
+        {
+          "set_state": "flag.sabotage_payout",
+          "value": 400
+        }
+      ],
+      "next": "renegotiate_final"
+    },
+    "protect_elara_response": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "The herbalist? Why do you \u2014 ah. I see. Sentiment. Dangerous thing in this business. But protecting one woman is cheap insurance for a reliable operative. Done.",
+      "next": "protect_elara_2"
+    },
+    "protect_elara_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "The Hollow Hand will ensure no harm comes to Elara \u2014 from us or anyone else. She won't even know she's being watched. But if you betray us after this kindness? She becomes leverage instead of a protected asset. Understand?",
+      "triggers": [
+        {
+          "set_state": "flag.guild_protecting_elara",
+          "value": true
+        },
+        {
+          "set_state": "flag.elara_is_guild_leverage",
+          "value": true
+        },
+        {
+          "set_state": "npc.fenrick.disposition",
+          "delta": 5
+        }
+      ],
+      "next": "renegotiate_final"
+    },
+    "membership_response": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Membership? In the Hollow Hand? ...You don't just ask for that. You earn it. The silo is your entrance exam. Complete it cleanly, and I'll put your name forward to the chapter. No promises after that \u2014 the elders decide.",
+      "triggers": [
+        {
+          "set_state": "flag.guild_membership_possible",
+          "value": true
+        },
+        {
+          "set_state": "npc.fenrick.disposition",
+          "delta": 10
+        }
+      ],
+      "next": "renegotiate_final"
+    },
+    "endgame_response": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Perceptive. Yes, the silo is step one. The Hand wants Ashvale \u2014 not to rule it, but to own it. Every trade route, every supply chain, every official on our payroll. When the dust settles, it won't matter who sits on the lord's chair. The Hand controls the coin, the Hand controls everything.",
+      "triggers": [
+        {
+          "set_state": "flag.guild_endgame_revealed",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_guild_wants_economic_control",
+          "value": true
+        }
+      ],
+      "next": "renegotiate_final"
+    },
+    "renegotiate_final": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Now that we've settled terms \u2014 the job. Tonight. No more delays. The firebomb is primed and the window is closing. Are we clear?",
+      "triggers": [
+        {
+          "set_state": "flag.sabotage_committed_tonight",
+          "value": true
+        },
+        {
+          "set_state": "quest.granary_sabotage.stage",
+          "value": "tonight"
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "id": "old_maren_deathbed",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Old Maren's cottage smells of soil and dried herbs. She lies on her bed -- a narrow cot pushed against the wall closest to the forest. Her brown-stained hands rest on the blanket, fingers twitching as if reaching for roots that aren't there. Her breathing is shallow, but her eyes are clear.",
+      "next": "maren_speaks"
+    },
+    "maren_speaks": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "dying",
+      "text": "Don't look at me like that. I've been dying since the day they took my son. The body is just catching up.",
+      "next": "maren_speaks_2"
+    },
+    "maren_speaks_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "dying",
+      "text": "The roots are quiet today. First time in years I can't hear them. Either the forest is giving me peace or it's already forgotten me. Both are fine.",
+      "next": "player_choice"
+    },
+    "player_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "family_present",
+          "text": "Your grandchildren are here. Elara and Maren. They want to see you.",
+          "conditions": ["flag.siblings_reconciled == true"],
+          "triggers": [],
+          "next": "family_ending"
+        },
+        {
+          "id": "comfort",
+          "text": "You've done enough, Maren. Rest.",
+          "conditions": [],
+          "triggers": [],
+          "next": "rest_response"
+        },
+        {
+          "id": "ask_final_wisdom",
+          "text": "Is there anything left you need to tell me?",
+          "conditions": [],
+          "triggers": [],
+          "next": "final_wisdom"
+        }
+      ]
+    },
+    "family_ending": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "dying",
+      "text": "Bring them. Bring them both. Let me see Silas's eyes one more time. Let me see his hands.",
+      "next": "family_moment"
+    },
+    "family_moment": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Elara takes her left hand. Brother Maren takes her right. Old Maren looks from one to the other -- her granddaughter with Silas's eyes, her grandson with Silas's hands. She smiles. It is the first unguarded smile anyone has seen from her in thirty years.",
+      "next": "family_words"
+    },
+    "family_words": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "dying",
+      "text": "There you are. Both of you. Finally. Your father would be... he would be so... I'm going to tell him. I'm going right now to tell him.",
+      "triggers": [
+        {
+          "set_state": "flag.old_maren_died_with_family",
+          "value": true
+        }
+      ],
+      "next": "final_moment"
+    },
+    "rest_response": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "dying",
+      "text": "Rest. Funny word. I've spent sixty years with my hands in the dirt, listening for my son's voice in the roots. If that's not rest, I don't know what is. If that's not madness, I don't want to be sane.",
+      "next": "final_moment"
+    },
+    "final_wisdom": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "dying",
+      "text": "The druids are dying. Fourteen of us left. Soon thirteen. The pacts need tending and there's no one left who speaks the language. Learn it. Learn to put your hands in the soil and listen. The forest doesn't want blood. It wants someone to TALK to. We all do. Even the trees.",
+      "triggers": [
+        {
+          "set_state": "flag.old_maren_final_wisdom",
+          "value": true
+        }
+      ],
+      "next": "final_moment"
+    },
+    "final_moment": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Old Maren closes her eyes. Her lips move -- forming words too quiet to hear. But if you press your ear close, you can make out five words, repeated like a prayer: 'I'm coming, boy. Keep the light on.'",
+      "next": "death"
+    },
+    "death": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Her hands stop moving. Outside, a single tree at the forest's edge drops all its leaves at once -- green leaves, in the middle of the growing season, falling like grief made visible. The roots beneath the cottage pulse once, twice, then still. The last druid of the Thornwood Circle has gone to find her son.",
+      "triggers": [
+        {
+          "set_state": "flag.old_maren_dead",
+          "value": true
+        },
+        {
+          "set_state": "npc.old_maren.status",
+          "value": "dead"
+        },
+        {
+          "set_state": "world.druid_count",
+          "delta": -1
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

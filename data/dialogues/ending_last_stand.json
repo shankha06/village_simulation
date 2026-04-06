@@ -1,0 +1,161 @@
+{
+  "id": "ending_last_stand",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The pact is severed. The land is dying. And through the dust and the dead trees, the banners of the Ironmarch Legion crest the western hill. They smell weakness the way wolves smell blood. You could run. Everyone would understand if you ran. But there are people behind you who can't run \u2014 the old, the sick, the children, the stubborn. And you have had enough of running.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_last_stand_started",
+          "value": true
+        }
+      ],
+      "next": "rally"
+    },
+    "rally": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You stand at the gate of Ashvale and you look at what you have: a handful of guards with dented armor. Farmers holding pitchforks like they're swords. A few Guild members with knives and bad intentions. It isn't an army. It's barely a militia. But they're here, and they're not leaving, and sometimes that's all a last stand requires.",
+      "next": "voss_check"
+    },
+    "voss_check": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "conflicted",
+      "text": "I could order the charge that ends this. You know that. My soldiers outnumber your... whatever these people are... five to one. But I've seen what you did in the Thornwood. I've seen what this village is willing to sacrifice. So I'm going to give you one chance. Convince me this is worth more than conquest.",
+      "conditions": [
+        {
+          "check": "npc.commander_voss.alive",
+          "op": "==",
+          "value": true
+        },
+        {
+          "check": "flag.voss_spared_in_duel",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "next": "convince_voss"
+    },
+    "convince_voss": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "appeal_honor",
+          "text": "You've seen what we'll sacrifice for this land. Is the Legion willing to sacrifice the same? Or do you only fight when you know you'll win?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.voss_convinced",
+              "value": true
+            },
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": 30
+            }
+          ],
+          "next": "voss_joins"
+        },
+        {
+          "id": "appeal_pragmatism",
+          "text": "Conquest gives you a ruined village on dead land. Alliance gives you a grateful settlement that owes you everything. Do the arithmetic, Commander.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.voss_convinced",
+              "value": true
+            },
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": 15
+            }
+          ],
+          "next": "voss_joins"
+        },
+        {
+          "id": "refuse_to_beg",
+          "text": "I won't beg. If you want Ashvale, come and take it. But know that every person behind me will make you pay for every inch.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.defied_voss_final",
+              "value": true
+            }
+          ],
+          "next": "voss_respects"
+        }
+      ]
+    },
+    "voss_joins": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "resolved",
+      "text": "Damn you. Damn you and this village and every impossible thing I've seen since I marched through that gate. Stand down! All units, stand down! We hold the perimeter. No one enters, no one leaves. If anything comes out of that dying forest, we face it together.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_defected",
+          "value": true
+        },
+        {
+          "set_state": "world.ending.military_strength_modifier",
+          "delta": 0.5
+        }
+      ],
+      "next": "the_battle"
+    },
+    "voss_respects": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "stern",
+      "text": "You know, in twenty years of soldiering, I've never met anyone stupid enough to challenge the Legion with a handful of farmers. I've also never met anyone brave enough. Fall back! We'll camp at the ridge. Let's see if these fools survive the night. If they do... we'll talk terms in the morning.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_withdrew",
+          "value": true
+        }
+      ],
+      "next": "the_battle"
+    },
+    "the_battle": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The battle \u2014 if it can be called that \u2014 lasts through the night. Not against the Legion, but against the dying forest itself. As the pact unravels, the Thornwood convulses. Roots burst from the ground in death spasms. Dead trees topple. The air fills with spores and the sound of ancient wood cracking. You fight not soldiers but the death throes of a ten-thousand-year-old organism.",
+      "next": "dawn"
+    },
+    "dawn": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Dawn comes. The forest is still. The worst is over \u2014 the roots have retreated, the convulsions have stopped, and the Thornwood lies quiet for the first time in anyone's memory. Ashvale still stands. Barely. The eastern wall is rubble. The well has collapsed. Three houses are kindling. But the people who stood behind you through the night are alive, and they're looking at you like you're something more than a stranger.",
+      "next": "cost"
+    },
+    "cost": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The cost was terrible. You count the dead at dawn \u2014 faces you knew, names you learned, people who trusted you enough to stand beside you when reason said to run. The number isn't large by the standards of war. But Ashvale isn't large. Every loss is a crater.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_last_stand_complete",
+          "value": true
+        }
+      ],
+      "next": "epilogue"
+    },
+    "epilogue": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "They rebuild. Slowly, painfully, stone by stone. The land is dead \u2014 nothing grows without enormous effort, without hauling soil from elsewhere, without sweat and stubbornness. But the people of Ashvale have discovered something in the rubble of their last stand: they don't need a pact. They don't need magic soil or ancient bargains or blood in the roots. They need each other. It's not enough. But it's a start.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "id": "sibling_discovery_chain",
+  "trigger_condition": "flag.siblings_reunited == true",
+  "consequences": [
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "set_state": "flag.elara_silent",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.availability",
+          "value": "unavailable"
+        },
+        {
+          "set_state": "npc.elara.memory.identity_shock",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {
+          "set_state": "flag.elara_confronts_maren",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.availability",
+          "value": "at_chapel"
+        },
+        {
+          "spawn_event": "sibling_confrontation_at_chapel"
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 5,
+      "condition": "flag.player_mediates_siblings == true",
+      "effects": [
+        {
+          "set_state": "flag.siblings_reconciled",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": 20
+        },
+        {
+          "set_state": "npc.brother_maren.disposition",
+          "delta": 20
+        },
+        {
+          "spawn_event": "sibling_reconciliation"
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 5,
+      "condition": "flag.player_mediates_siblings == false",
+      "effects": [
+        {
+          "set_state": "flag.siblings_permanent_rift",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.memory.hates_maren",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.memory.lost_sister_again",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 7,
+      "condition": "flag.siblings_reconciled == true",
+      "effects": [
+        {
+          "set_state": "flag.siblings_work_together",
+          "value": true
+        },
+        {
+          "set_state": "flag.cure_research_accelerated",
+          "value": true
+        },
+        {
+          "spawn_event": "siblings_begin_cure_research"
+        }
+      ]
+    }
+  ]
+}

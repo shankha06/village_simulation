@@ -1,0 +1,388 @@
+{
+  "id": "fenrick_escort_quest",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Close the door. What I'm about to tell you doesn't leave this room.",
+      "next": "reveal"
+    },
+    "reveal": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "serious",
+      "text": "The Hand doesn't just move goods. We move people. Children, specifically. Orphans from the Ironmarch territories — kids who'd be conscripted into the Legion by age ten.",
+      "next": "reveal_2"
+    },
+    "reveal_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "I've got three of them in a safe room right now. A girl of twelve, twin boys barely six. They need to reach Crow's Rest on the Eastern Road — a safe house the Guild maintains. But the Ironmarch patrols have doubled in the last week.",
+      "triggers": [
+        {
+          "set_state": "npc.fenrick.memory.revealed_children_operation",
+          "value": true
+        }
+      ],
+      "next": "choice_react"
+    },
+    "choice_react": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept_noble",
+          "text": "Children shouldn't be soldiers. I'll help you get them out.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_escort_quest",
+              "value": true
+            },
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": 30
+            }
+          ],
+          "next": "fenrick_surprised"
+        },
+        {
+          "id": "ask_pay",
+          "text": "Smuggling children past a military patrol. What's it pay?",
+          "conditions": [],
+          "triggers": [],
+          "next": "discuss_payment"
+        },
+        {
+          "id": "suspicious",
+          "text": "Since when does the Hollow Hand care about orphans? What's the real game?",
+          "conditions": [],
+          "triggers": [],
+          "next": "fenrick_defensive"
+        },
+        {
+          "id": "report_threat",
+          "text": "[Intimidate] Interesting information. I wonder what the Ironmarch patrols would pay for it.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": -40
+            }
+          ],
+          "next": "fenrick_threatened"
+        },
+        {
+          "id": "refuse",
+          "text": "This is too dangerous. I'm out.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": -10
+            }
+          ],
+          "next": "fenrick_disappointed"
+        }
+      ]
+    },
+    "fenrick_surprised": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "No haggling? No conditions? You're either very brave or very stupid. Either way, I'll take it.",
+      "next": "plan_details"
+    },
+    "discuss_payment": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Seventy-five gold. And a Guild signet ring — it marks you as a friend of the Hand. Worth more than gold in the right circles. Doors open. Questions stop. People look the other way.",
+      "next": "choice_payment_response"
+    },
+    "choice_payment_response": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept_paid",
+          "text": "The ring. That's what interests me. I'm in.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_escort_quest",
+              "value": true
+            },
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": 15
+            }
+          ],
+          "next": "plan_details"
+        },
+        {
+          "id": "haggle",
+          "text": "Double the gold. These are Ironmarch soldiers, not village drunks.",
+          "conditions": [],
+          "triggers": [],
+          "next": "fenrick_haggle"
+        }
+      ]
+    },
+    "fenrick_haggle": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "A hundred. Final offer. The Hand's coffers aren't bottomless, and these kids don't generate revenue. This is... not a typical operation.",
+      "next": "choice_haggle_result"
+    },
+    "choice_haggle_result": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept_haggled",
+          "text": "A hundred gold and the ring. Deal.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_escort_quest",
+              "value": true
+            },
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "plan_details"
+        },
+        {
+          "id": "walk_away",
+          "text": "Not enough. Good luck, Fenrick.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": -15
+            }
+          ],
+          "next": "fenrick_disappointed"
+        }
+      ]
+    },
+    "fenrick_defensive": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "angry",
+      "text": "Not everything is a game, you self-righteous — Look. My sister was conscripted at nine. She died at fourteen holding a pike twice her size on a battlefield she couldn't even name. I don't let that happen to other kids. That clear enough for you?",
+      "triggers": [
+        {
+          "set_state": "npc.fenrick.memory.revealed_sister",
+          "value": true
+        }
+      ],
+      "next": "choice_after_truth"
+    },
+    "choice_after_truth": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "moved",
+          "text": "I'm sorry about your sister. I'll help. No payment needed.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_escort_quest",
+              "value": true
+            },
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": 35
+            },
+            {
+              "set_state": "npc.fenrick.memory.player_showed_compassion",
+              "value": true
+            }
+          ],
+          "next": "fenrick_vulnerable"
+        },
+        {
+          "id": "still_suspicious",
+          "text": "Sad story. But the Guild always has an angle. What are you not telling me?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": -10
+            }
+          ],
+          "next": "fenrick_cold"
+        }
+      ]
+    },
+    "fenrick_vulnerable": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Don't... don't make it a thing. Just help me get these kids out. That's all I need.",
+      "next": "plan_details"
+    },
+    "fenrick_cold": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "You want full disclosure? Fine. One of the children is the daughter of a Guild higher-up. But the other two? They're nobodies. I could have moved just the one. I chose all three. Make of that what you will.",
+      "next": "choice_react"
+    },
+    "fenrick_threatened": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "angry",
+      "text": "You'd sell out children to a military machine? I misjudged you. The Hand will remember this. Walk away now, and pray I'm feeling merciful tomorrow.",
+      "triggers": [
+        {
+          "set_state": "npc.fenrick.memory.player_threatened_children",
+          "value": true
+        }
+      ],
+      "next": "threat_choice"
+    },
+    "threat_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "follow_through_betray",
+          "text": "[Leave and report to Ironmarch]",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.reported_escort_to_ironmarch",
+              "value": true
+            },
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": -60
+            }
+          ],
+          "next": "end"
+        },
+        {
+          "id": "back_down",
+          "text": "Easy. I was testing you. If you care this much, I'll help.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_escort_quest",
+              "value": true
+            },
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": -5
+            }
+          ],
+          "next": "fenrick_wary"
+        }
+      ]
+    },
+    "fenrick_wary": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Testing me. Right. I'll remember that. Here's the plan — and if you double-cross me on the road, I'll know before you draw your next breath.",
+      "next": "plan_details"
+    },
+    "plan_details": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "We leave tonight at the ten o'clock bell. The patrol shifts at midnight — that gives us a two-hour window to clear the first checkpoint. I know a path that stays off the main road for the first mile.",
+      "next": "plan_details_2"
+    },
+    "plan_details_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "serious",
+      "text": "The stone bridge is the problem. It's the only crossing, and there's always a sentry. We'll need to deal with him — quietly. After that, it's three miles of open road to Crow's Rest.",
+      "next": "plan_choice"
+    },
+    "plan_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "suggest_thornwood",
+          "text": "What about going through Thornwood instead? No patrols in the forest.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.fenrick.memory.player_suggested_thornwood",
+              "value": true
+            }
+          ],
+          "next": "thornwood_option"
+        },
+        {
+          "id": "agree_plan",
+          "text": "Good plan. I'll meet you at the gate at ten.",
+          "conditions": [],
+          "triggers": [],
+          "next": "fenrick_final"
+        }
+      ]
+    },
+    "thornwood_option": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "fearful",
+      "text": "The forest? With three children? You've heard what happens in Thornwood after dark. The roots move. Things watch from the canopy. I'd rather face Ironmarch steel than whatever lives between those trees.",
+      "next": "thornwood_choice"
+    },
+    "thornwood_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "insist_thornwood",
+          "text": "The forest is dangerous but predictable. Soldiers are not. Trust me.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.escort_plan_thornwood",
+              "value": true
+            }
+          ],
+          "next": "thornwood_reluctant"
+        },
+        {
+          "id": "agree_road",
+          "text": "You're right. We stick to the road plan.",
+          "conditions": [],
+          "triggers": [],
+          "next": "fenrick_final"
+        }
+      ]
+    },
+    "thornwood_reluctant": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Against my better judgment. If one of those kids gets taken by the roots, that's on you. Meet me at the gate at ten.",
+      "next": "end"
+    },
+    "fenrick_final": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Ten o'clock. Village gate. Don't be late, and don't bring anyone else. The fewer people who know about this, the fewer can sell us out.",
+      "next": "end"
+    },
+    "fenrick_disappointed": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Fine. I'll find another way. I always do. But remember — you had a chance to do something that mattered, and you walked away from it.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

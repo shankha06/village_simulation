@@ -1,0 +1,133 @@
+{
+  "id": "sermon_of_ash",
+  "name": "The Sermon of Ash",
+  "description": "Brother Maren asks the player to retrieve a sacred text from the Church Outpost that could prove his innocence — or confirm his guilt.",
+  "giver": "brother_maren",
+  "region": "ashvale",
+  "tags": [
+    "side_quest",
+    "personal",
+    "investigation",
+    "church",
+    "moral_choice"
+  ],
+  "priority": 7,
+  "states": {
+    "UNKNOWN": {
+      "transitions": [
+        {
+          "on": "npc.brother_maren.met == true && flag.evidence_nightcap_root == true",
+          "to": "DISCOVERED"
+        }
+      ]
+    },
+    "DISCOVERED": {
+      "journal_entry": "Brother Maren claims there is a sacred text at the Church Outpost that will prove he was ordered to come to Ashvale, not sent as a poisoner. He begged me to retrieve it.",
+      "transitions": [
+        {
+          "on": "flag.accepted_maren_text_quest == true",
+          "to": "ACTIVE"
+        }
+      ]
+    },
+    "ACTIVE": {
+      "journal_entry": "I'm heading to the Church Outpost to find the Tome of Directives — the record of all orders given by the Ashen Light's inner circle. Maren says it's in the reliquary beneath the chapel.",
+      "objectives": [
+        "Travel to the Church Outpost",
+        "Find the reliquary beneath the chapel",
+        "Locate the Tome of Directives"
+      ],
+      "transitions": [
+        {
+          "on": "flag.reached_church_outpost == true",
+          "to": "OUTPOST_REACHED"
+        }
+      ]
+    },
+    "OUTPOST_REACHED": {
+      "journal_entry": "The Church Outpost is heavily guarded. The reliquary is below the main chapel. I'll need to find a way in — stealth, persuasion, or force.",
+      "objectives": [
+        "Enter the reliquary (stealth, persuasion, or force)",
+        "Find the Tome of Directives",
+        "Read the relevant entry about Maren's orders"
+      ],
+      "transitions": [
+        {
+          "on": "flag.sacred_text_found == true",
+          "to": "TEXT_FOUND"
+        }
+      ]
+    },
+    "TEXT_FOUND": {
+      "journal_entry": "I found the Tome. The entry about Maren's assignment to Ashvale is here. The truth is in my hands — but what I do with it will change everything.",
+      "objectives": [
+        "Decide what to do with the text"
+      ],
+      "transitions": [
+        {
+          "on": "flag.maren_proven_pawn == true",
+          "to": "COMPLETED_PAWN"
+        },
+        {
+          "on": "flag.maren_proven_guilty == true",
+          "to": "COMPLETED_GUILTY"
+        },
+        {
+          "on": "flag.sacred_text_destroyed == true",
+          "to": "COMPLETED_DESTROYED"
+        },
+        {
+          "on": "flag.blackmailing_church == true",
+          "to": "COMPLETED_BLACKMAIL"
+        }
+      ]
+    },
+    "COMPLETED_PAWN": {
+      "journal_entry": "The text proves it: the Church ordered Maren to Ashvale specifically to 'prepare the flock for purification.' He was a pawn — following orders he didn't fully understand. The guilt isn't his alone.",
+      "consequence_chain": "maren_pawn_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "church_ashen_light": -30
+          }
+        }
+      ]
+    },
+    "COMPLETED_GUILTY": {
+      "journal_entry": "The text is damning. Maren volunteered for the Ashvale mission. He wrote a letter requesting the assignment, calling it 'an opportunity for true purification.' He chose this.",
+      "consequence_chain": "maren_guilty_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "church_ashen_light": -20,
+            "ashvale_nobility": 15
+          }
+        }
+      ]
+    },
+    "COMPLETED_DESTROYED": {
+      "journal_entry": "I burned the Tome. No one will ever know the truth. Maren's guilt or innocence dies with the ash. He looked relieved. I'm not sure I am.",
+      "rewards": [
+        {
+          "reputation": {
+            "church_ashen_light": 10
+          }
+        }
+      ]
+    },
+    "COMPLETED_BLACKMAIL": {
+      "journal_entry": "I kept the Tome and sent word to the Church's inner circle: pay up, or the Tome goes public. Dangerous game — but lucrative.",
+      "consequence_chain": "church_blackmail_chain",
+      "rewards": [
+        {
+          "gold": 300
+        },
+        {
+          "reputation": {
+            "church_ashen_light": -60
+          }
+        }
+      ]
+    }
+  }
+}

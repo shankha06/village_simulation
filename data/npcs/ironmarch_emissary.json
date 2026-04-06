@@ -1,0 +1,78 @@
+{
+  "id": "ironmarch_emissary",
+  "name": "Captain Draven",
+  "description": "An Ironmarch Legion diplomat in polished black armor. Speaks softly, carries the authority of ten thousand soldiers behind him. Every word is a calculated move in a game he's played a hundred times before.",
+  "faction": "ironmarch_legion",
+  "personality": {
+    "courage": 0.7,
+    "greed": 0.3,
+    "loyalty": 0.8,
+    "cruelty": 0.5,
+    "curiosity": 0.4,
+    "honesty": 0.4
+  },
+  "schedule": [
+    {
+      "hour": 6,
+      "location": "inn_room",
+      "activity": "reviewing_reports"
+    },
+    {
+      "hour": 9,
+      "location": "village_square",
+      "activity": "observing"
+    },
+    {
+      "hour": 12,
+      "location": "inn_bar",
+      "activity": "dining"
+    },
+    {
+      "hour": 14,
+      "location": "village_square",
+      "activity": "speaking_with_villagers"
+    },
+    {
+      "hour": 18,
+      "location": "inn_bar",
+      "activity": "drinking"
+    },
+    {
+      "hour": 21,
+      "location": "inn_room",
+      "activity": "writing_dispatches"
+    },
+    {
+      "hour": 23,
+      "location": "inn_room",
+      "activity": "sleeping"
+    }
+  ],
+  "home_location": "inn_room",
+  "dialogue_pools": {
+    "greeting": "draven_intro",
+    "negotiation": "draven_negotiation",
+    "hostile": "draven_hostile",
+    "ultimatum_expired": "draven_ultimatum_expired"
+  },
+  "default_greeting": "draven_intro",
+  "barks": [
+    "The Legion offers order. The alternative is... unfortunate.",
+    "Seven days. Use them wisely.",
+    "I've seen what happens to villages that refuse. It's not pleasant.",
+    "Your lord is welcome to discuss terms. My patience, however, has limits.",
+    "The Legion remembers those who cooperate. And those who don't.",
+    "Lovely village. It would be a shame to see it garrisoned."
+  ],
+  "is_combatant": true,
+  "max_health": 150.0,
+  "attack_damage": 18.0,
+  "can_surrender": false,
+  "npc_relationships": {
+    "lord_ashworth": -40,
+    "commander_voss": -50,
+    "fenrick": 0,
+    "brother_maren": 10,
+    "elara": -10
+  }
+}

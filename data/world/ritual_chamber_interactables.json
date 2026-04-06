@@ -1,0 +1,53 @@
+{
+  "interactables": [
+    {
+      "id": "ritual_altar",
+      "type": "examine",
+      "name": "Ritual Altar",
+      "position": [160, 160],
+      "text": "Stained with three centuries of blood. The stone is warm to the touch \u2014 not from fire, but from something beneath. A root grows directly through its center, splitting the altar stone like a vein of living wood. The blood channels all lead here. All roads end here.",
+      "state_condition": "flag.understood_druid_circle == true",
+      "state_alt_text": "You understand now. The altar is a conduit. Blood feeds the root, the root feeds the forest, the forest feeds Ashvale. A closed loop of sacrifice and harvest. Break the loop, and everything falls.",
+      "sets_flag": "flag.examined_ritual_altar"
+    },
+    {
+      "id": "pulsing_root",
+      "type": "examine",
+      "name": "Pulsing Root",
+      "position": [160, 144],
+      "text": "It's warm. You can feel a heartbeat. Not yours. The root pulses with a slow, ancient rhythm \u2014 the breathing of something vast and patient. Sap beads on its surface like sweat. When you touch it, you hear whispers in a language older than words.",
+      "state_condition": "flag.has_druid_talisman == true",
+      "state_alt_text": "The talisman translates the whispers: 'We remember every drop. Every name. Every bargain. The covenant endures. Will you honor it, or end it?' The root seems to lean toward you.",
+      "sets_flag": "flag.communed_with_root"
+    },
+    {
+      "id": "ancient_inscription",
+      "type": "read",
+      "name": "Ancient Inscription",
+      "position": [160, 272],
+      "text": "Words carved deep into the south wall, in a language that predates Ashvale. The letters seem to shift when you look away.",
+      "state_condition": "flag.has_druid_talisman == true",
+      "state_alt_text": "The talisman burns as the words resolve:\n'I, ALDRIC, LORD OF ASH AND VALE, DO BIND MY BLOOD TO ROOT AND BOUGH.\nWHAT THE FOREST GIVES, THE FOREST SHALL RECLAIM.\nEVERY THIRTY YEARS, ONE SOUL FREELY GIVEN.\nBREAK THIS COVENANT AND THE LAND SHALL WITHER.\nHONOR IT AND THE HARVEST SHALL ENDURE.'\nThe original pact. Three hundred years of murder, justified by one man's bargain.",
+      "sets_flag": "flag.read_original_pact"
+    },
+    {
+      "id": "offering_bowl",
+      "type": "examine",
+      "name": "Offering Bowl",
+      "position": [128, 160],
+      "text": "A stone bowl carved from a single piece of root-threaded rock. Empty. Waiting. The inside is stained dark with centuries of offerings. The rim is worn smooth by countless hands.",
+      "state_condition": "flag.has_moonpetal_flower == true",
+      "state_alt_text": "You could place something in the bowl. The moonpetal flower pulses in your pack, as if it knows where it is."
+    },
+    {
+      "id": "silas_footprints",
+      "type": "examine",
+      "name": "Bare Footprints",
+      "position": [160, 224],
+      "text": "Bare footprints in the dust, leading to the root. They don't lead away. Silas Maren walked here thirty years ago, removed his shoes, and stepped into the embrace of the Heartwood. He never stepped back.",
+      "state_condition": "flag.maren_family_truth_revealed == true",
+      "state_alt_text": "Silas's footprints. Old Maren's son. Brother Maren's father. Elara's father. He walked this path so Ashvale could eat for another thirty years. And now the thirty years are up.",
+      "sets_flag": "flag.found_silas_footprints"
+    }
+  ]
+}

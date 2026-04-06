@@ -1,0 +1,51 @@
+{
+  "interactables": [
+    {
+      "id": "war_table",
+      "type": "examine",
+      "name": "War Table",
+      "position": [192, 176],
+      "text": "Maps of Thornwood with burn routes marked in red ink. Supply lines, patrol schedules, alchemical drop points. Across the center of Ashvale's map, written in bold strokes: 'Salt the Root \u2014 Phase 3.' The Church doesn't want to save this village. They want to destroy what's beneath it.",
+      "sets_flag": "flag.found_salt_the_root_plans"
+    },
+    {
+      "id": "nightcap_barrel",
+      "type": "search",
+      "name": "Nightcap Root Barrel",
+      "position": [296, 88],
+      "text": "Barrels stamped with the Church of Ashen Light's seal, filled with dried nightcap root \u2014 enough to poison a dozen wells for years. Definitive proof. The Church is the poisoner. The blight, the dying crops, the sick children \u2014 all orchestrated.",
+      "sets_flag": "flag.definitive_church_poison_proof",
+      "gives_item": "nightcap_root_evidence",
+      "one_shot": true
+    },
+    {
+      "id": "cage",
+      "type": "examine",
+      "name": "Iron Cage",
+      "position": [272, 200],
+      "text": "Small. Child-sized. Empty now. But the scratches on the bars tell a story of desperate fingers and broken nails. A scrap of fabric clings to the lock \u2014 a child's nightshirt. This connects to Fenrick's smuggling. The children didn't escape. They were taken.",
+      "state_condition": "flag.fenrick_smuggling_known == true",
+      "state_alt_text": "Fenrick's 'rescued' children were brought here. The Church used them as leverage \u2014 or worse, as test subjects for the nightcap root dosages. The fabric matches the orphanage blankets.",
+      "sets_flag": "flag.found_church_cage"
+    },
+    {
+      "id": "alchemist_journal",
+      "type": "read",
+      "name": "Alchemist's Journal",
+      "position": [320, 112],
+      "text": "A leather-bound journal in precise handwriting:\n'Day 14: Nightcap root concentration increased to 3 drams per barrel. Village well contamination proceeding as planned.\nDay 28: Crops showing expected blight pattern. The healer suspects water but lacks proof.\nDay 41: Phase 2 complete. Village weakened. Phase 3 \u2014 Salt the Root \u2014 awaits the Archdeacon's order.\nDay 55: Brother Maren suspects nothing. The fool prays while we poison his flock.'\nThe formula is detailed in full. Undeniable evidence of the Church's conspiracy.",
+      "sets_flag": "flag.read_alchemist_journal",
+      "gives_item": "alchemist_journal"
+    },
+    {
+      "id": "ash_sigil_circle",
+      "type": "examine",
+      "name": "Ash Sigil Circle",
+      "position": [112, 112],
+      "text": "A ritual circle drawn in ash on the stone floor. But these aren't Ashen Light prayers \u2014 the symbols are older. Druidic. Inverted. Someone in the Church understands the old magic well enough to pervert it. They're not just poisoning the water. They're trying to sever the covenant from their end.",
+      "state_condition": "flag.understood_druid_circle == true",
+      "state_alt_text": "The inverted druidic symbols mirror the ones in the Thornwood circle \u2014 but twisted, broken. Where the druids wrote 'give,' the Church wrote 'take.' Where the covenant says 'freely,' the Church says 'by force.' This isn't faith. It's magical warfare.",
+      "sets_flag": "flag.found_inverted_ritual"
+    }
+  ]
+}

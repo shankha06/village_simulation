@@ -1,0 +1,46 @@
+{
+  "id": "ledger_military_chain",
+  "trigger_condition": "flag.ledger_given_to_voss == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": 25
+        },
+        {
+          "set_state": "npc.commander_voss.memory.has_noble_leverage",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {
+          "set_state": "flag.voss_demands_garrison_rights",
+          "value": true
+        },
+        {
+          "spawn_event": "voss_confronts_ashworth"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 7,
+      "effects": [
+        {
+          "set_state": "flag.military_garrison_established",
+          "value": true
+        },
+        {
+          "set_state": "faction.ashvale_nobility.power",
+          "delta": -15.0
+        }
+      ]
+    }
+  ]
+}

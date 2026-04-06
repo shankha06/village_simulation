@@ -1,0 +1,88 @@
+{
+  "id": "compass_guidance_chain",
+  "trigger_condition": "player.has_item.marens_heirloom == true",
+  "consequences": [
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "set_state": "flag.compass_points_old_maren",
+          "value": true
+        },
+        {
+          "spawn_event": "compass_notification_old_maren"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {
+          "set_state": "flag.compass_points_well",
+          "value": true
+        },
+        {
+          "spawn_event": "compass_notification_well"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "effects": [
+        {
+          "set_state": "flag.compass_points_manor",
+          "value": true
+        },
+        {
+          "spawn_event": "compass_notification_manor"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 7,
+      "effects": [
+        {
+          "set_state": "flag.compass_points_catacombs",
+          "value": true
+        },
+        {
+          "spawn_event": "compass_notification_catacombs"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 10,
+      "effects": [
+        {
+          "set_state": "flag.compass_points_thornwood",
+          "value": true
+        },
+        {
+          "spawn_event": "compass_notification_thornwood"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 14,
+      "effects": [
+        {
+          "set_state": "flag.compass_points_down",
+          "value": true
+        },
+        {
+          "set_state": "flag.ritual_chamber_hinted",
+          "value": true
+        },
+        {
+          "spawn_event": "compass_notification_ritual_chamber"
+        }
+      ]
+    }
+  ]
+}

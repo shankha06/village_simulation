@@ -1,0 +1,203 @@
+{
+  "id": "warden_riddles",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "You return to the shrine. The roots remember. Do you come with questions, or with answers?",
+      "next": "choice_topic"
+    },
+    "choice_topic": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "ask_pact_nature",
+          "text": "Tell me about the original pact. Before it became sacrifice.",
+          "conditions": [],
+          "triggers": [],
+          "next": "original_pact"
+        },
+        {
+          "id": "ask_forest_wants",
+          "text": "What does the forest truly want?",
+          "conditions": [],
+          "triggers": [],
+          "next": "forest_desire"
+        },
+        {
+          "id": "ask_warden_nature",
+          "text": "What are you, Warden? Were you always this?",
+          "conditions": [],
+          "triggers": [],
+          "next": "warden_origin"
+        },
+        {
+          "id": "ask_renegotiation",
+          "text": "Can the pact be changed? Renegotiated?",
+          "conditions": [],
+          "triggers": [],
+          "next": "renegotiation"
+        },
+        {
+          "id": "ask_riddle_meaning",
+          "text": "Your riddle — 'what is given freely that cannot be taken.' Why that question?",
+          "conditions": [
+            {
+              "check": "flag.warden_test_begun",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "riddle_meaning"
+        },
+        {
+          "id": "ask_druids",
+          "text": "Old Maren speaks of the Thornwood Circle. What happened to the druids?",
+          "conditions": [
+            {
+              "check": "npc.old_maren.met",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "druids_fate"
+        },
+        {
+          "id": "leave",
+          "text": "I've learned enough. Thank you, Warden.",
+          "conditions": [],
+          "triggers": [],
+          "next": "warden_farewell"
+        }
+      ]
+    },
+    "original_pact": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "Before your stone villages, humans came to the forest's edge and spoke. They asked before cutting. They thanked after harvesting. The forest gave willingly — wood, fruit, shelter, medicine. This was the pact. No blood. No altar. Just conversation.",
+      "next": "original_pact_2"
+    },
+    "original_pact_2": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "Then came the lord who stopped asking. He demanded. When the forest withheld, he offered blood — thinking it was a price. The forest had never tasted blood before. It did not know what to do with it. It learned. And what it learned was hunger.",
+      "triggers": [
+        {
+          "set_state": "flag.warden_told_pact_origin",
+          "value": true
+        }
+      ],
+      "next": "choice_topic"
+    },
+    "forest_desire": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "To be heard. That is all. The forest is vast and ancient and desperately lonely. It watches your lives flicker like sparks and it wants — more than anything — for one of those sparks to sit still long enough to listen.",
+      "next": "forest_desire_2"
+    },
+    "forest_desire_2": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "The druids listened. For centuries, there was balance. Then the druids died or were driven away, and the forest was left speaking to silence. Imagine screaming into a void for thirty years. That is the Heartwood's pain.",
+      "triggers": [
+        {
+          "set_state": "flag.warden_told_forest_desire",
+          "value": true
+        }
+      ],
+      "next": "choice_topic"
+    },
+    "warden_origin": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "I am the forest's attention. Where it looks most closely, I appear. I was the face it showed to the druids — welcoming, curious, gentle. Now I am the face it shows to those who bring axes and fire.",
+      "next": "warden_origin_2"
+    },
+    "warden_origin_2": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "I remember being kind. I remember leading lost children home through the trees. Now I guard. I test. I fight. The forest made me what it needed, and it needs a wall more than it needs a door. I grieve that.",
+      "triggers": [
+        {
+          "set_state": "flag.warden_revealed_nature",
+          "value": true
+        }
+      ],
+      "next": "choice_topic"
+    },
+    "renegotiation": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "Changed? Perhaps. The forest is old but not rigid. It adapts. It learned to accept blood — it can learn to accept something else. But the change must come from both sides. Humans must offer conversation, not sacrifice. And the forest must remember how to receive it.",
+      "next": "renegotiation_2"
+    },
+    "renegotiation_2": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "A new druid. That is what is needed. Not the old kind — they are gone. A new kind. Someone who stands between forest and village and translates. Someone who plants roots in stone and stones in soil. If such a person existed, the pact could change.",
+      "triggers": [
+        {
+          "set_state": "flag.warden_suggests_new_druid",
+          "value": true
+        }
+      ],
+      "next": "choice_topic"
+    },
+    "riddle_meaning": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "Every truth the forest needs to hear is a truth that humans have forgotten. Trust, love, forgiveness — these were the currency of the old pact. They cannot be taken at sword-point. They can only be given. The pact broke when giving became taking.",
+      "next": "riddle_meaning_2"
+    },
+    "riddle_meaning_2": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "The riddle is not a test of knowledge. It is a test of instinct. Those who answer 'blood' reveal what they truly value. Those who answer 'trust' reveal what they truly seek. The forest listens to the answer behind the answer.",
+      "next": "choice_topic"
+    },
+    "druids_fate": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "sad",
+      "text": "The Thornwood Circle numbered twelve at its height. They were the bridge between forest and human. When the pact changed — when blood replaced words — the druids resisted. The first lord had six of them killed. The rest fled or hid.",
+      "next": "druids_fate_2"
+    },
+    "druids_fate_2": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "Old Maren is the last. Blind, old, sitting on a bench at the village edge. She still listens. She is the forest's last friend among your kind. When she dies, the bridge is ash. Unless someone rebuilds it.",
+      "triggers": [
+        {
+          "set_state": "flag.warden_told_druid_history",
+          "value": true
+        }
+      ],
+      "next": "choice_topic"
+    },
+    "warden_farewell": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "Go. The roots will remember your questions. That is more than most humans leave behind. Questions are seeds. Given time, they grow into understanding.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

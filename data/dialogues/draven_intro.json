@@ -1,0 +1,542 @@
+{
+  "id": "draven_intro",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "The inn door opens and a man enters in black plate armor, polished to a mirror shine. Two soldiers flank him, hands on sword hilts. The room falls silent. He removes his gloves one finger at a time and surveys the room with pale grey eyes.",
+      "triggers": [
+        {
+          "set_state": "flag.draven_arrived",
+          "value": true
+        },
+        {
+          "set_state": "npc.ironmarch_emissary.met",
+          "value": true
+        }
+      ],
+      "next": "start_2"
+    },
+    "start_2": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Captain Aldric Draven, Third Diplomatic Corps of the Ironmarch Legion. I represent General Harren and the will of the Iron Parliament. I've come to discuss the future of Ashvale.",
+      "next": "start_3"
+    },
+    "start_3": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "He sits without being invited, his soldiers taking positions by the door. He folds his hands on the table like a man about to deliver a sermon.",
+      "next": "start_4"
+    },
+    "start_4": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "The Legion has observed Ashvale's... difficulties. Crops failing. Factions feuding. A lord who won't leave his manor. You are a village waiting to be swallowed by the first strong wind. We are offering to be the wall against that wind.",
+      "next": "start_5"
+    },
+    "start_5": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Full integration into Legion territory. Your lord retains his title \u2014 ceremonially. A garrison of fifty soldiers stationed here for your protection. Trade routes opened to the east. In exchange: taxes, conscription quotas, and obedience to Legion law.",
+      "next": "start_6"
+    },
+    "start_6": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "He pauses, letting the silence do its work. Then, almost gently:",
+      "next": "start_7"
+    },
+    "start_7": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "You have seven days to accept. I'll be staying at the inn. The terms are generous, I assure you. I've seen what happens to villages that decline.",
+      "next": "choice_response"
+    },
+    "choice_response": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept_immediately",
+          "text": "Ashvale can't afford to refuse. We accept your terms.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_legion_terms",
+              "value": true
+            },
+            {
+              "set_state": "flag.immediate_submission",
+              "value": true
+            }
+          ],
+          "next": "accepted"
+        },
+        {
+          "id": "negotiate",
+          "text": "Those terms are a leash. Let's talk about something both sides can live with.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.chose_to_negotiate_with_draven",
+              "value": true
+            }
+          ],
+          "next": "negotiate_response"
+        },
+        {
+          "id": "refuse",
+          "text": "Ashvale has survived three hundred years without the Legion. We'll survive three hundred more.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.defied_legion",
+              "value": true
+            },
+            {
+              "set_state": "npc.ironmarch_emissary.disposition",
+              "delta": -30
+            }
+          ],
+          "next": "refused"
+        },
+        {
+          "id": "attack",
+          "text": "[ATTACK] Draw your weapon. This diplomat came to the wrong village.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.attacked_draven",
+              "value": true
+            },
+            {
+              "set_state": "flag.draven_hostile",
+              "value": true
+            }
+          ],
+          "next": "attack_response"
+        },
+        {
+          "id": "stall",
+          "text": "Seven days, you said? We'll need every one of them. Let us deliberate.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.stalling_draven",
+              "value": true
+            }
+          ],
+          "next": "stall_response"
+        }
+      ]
+    },
+    "accepted": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "pleased",
+      "text": "Draven's eyebrows rise \u2014 barely. He wasn't expecting that.",
+      "next": "accepted_2"
+    },
+    "accepted_2": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "pleased",
+      "text": "Wise. Most villages take the full seven days and still make the same choice. You've simply saved everyone the anxiety. I'll draft the formal terms tonight. Your lord will sign them in the morning.",
+      "next": "accepted_3"
+    },
+    "accepted_3": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "He stands, pulls on his gloves. At the door, he pauses.",
+      "next": "accepted_4"
+    },
+    "accepted_4": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "For what it's worth \u2014 the Legion isn't what the stories say. We bring order. Roads. Trade. Safety. The old way of doing things is dying. We're simply... hastening the inevitable.",
+      "triggers": [
+        {
+          "set_state": "flag.draven_respects_pragmatism",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "negotiate_response": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Draven tilts his head, studying you like a hawk studies a mouse that just stood on its hind legs.",
+      "next": "negotiate_response_2"
+    },
+    "negotiate_response_2": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "intrigued",
+      "text": "A leash. He almost smiles. I prefer 'partnership with clearly defined parameters.' But very well. You have something to say \u2014 say it. I was trained to listen before I was trained to fight.",
+      "triggers": [
+        {
+          "set_state": "flag.draven_willing_to_negotiate",
+          "value": true
+        },
+        {
+          "set_state": "npc.ironmarch_emissary.memory.player_has_spine",
+          "value": true
+        }
+      ],
+      "next": "negotiate_choice"
+    },
+    "negotiate_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "trade_only",
+          "text": "Trade access, yes. Garrison, no. Ashvale governs itself, pays a tribute in grain and goods.",
+          "conditions": [],
+          "triggers": [],
+          "next": "negotiate_trade"
+        },
+        {
+          "id": "information",
+          "text": "Before we discuss terms \u2014 tell me what the Legion really wants with a failing village in the middle of nowhere.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.ironmarch_emissary.memory.player_asks_hard_questions",
+              "value": true
+            }
+          ],
+          "next": "negotiate_truth"
+        },
+        {
+          "id": "offer_service",
+          "text": "What if I could offer the Legion something more valuable than a village? I could be useful to you \u2014 on the inside.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.offered_to_betray_ashvale",
+              "value": true
+            }
+          ],
+          "next": "betrayal_offer"
+        }
+      ]
+    },
+    "negotiate_trade": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "He drums his fingers on the table once. Twice.",
+      "next": "negotiate_trade_2"
+    },
+    "negotiate_trade_2": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Tribute in lieu of garrison. Partial autonomy. The Legion gets its trade route and its taxes, and your lord keeps his title with actual authority instead of ceremonial. It's... not unprecedented.",
+      "next": "negotiate_trade_3"
+    },
+    "negotiate_trade_3": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "I can take this to General Harren. But understand \u2014 if you default on tribute, even once, the garrison comes. No second negotiation. And I'll need something to sweeten the offer. Information, perhaps. About the other powers in this region.",
+      "triggers": [
+        {
+          "set_state": "flag.negotiated_with_legion",
+          "value": true
+        },
+        {
+          "set_state": "flag.legion_wants_intel",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "negotiate_truth": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Draven leans back. For the first time, his mask slips \u2014 just a fraction.",
+      "next": "negotiate_truth_2"
+    },
+    "negotiate_truth_2": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "The Thornwood road is the fastest route between the eastern provinces and the capital. Whoever controls Ashvale controls that road. Your village isn't the prize \u2014 it's the tollbooth.",
+      "next": "negotiate_truth_3"
+    },
+    "negotiate_truth_3": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "And \u2014 I'll tell you this for free, because it serves me \u2014 you already have a problem you don't know about. Someone in your village has been sending reports to the Legion for months. Your factions, your weaknesses, your lord's secrets. I know things about Ashvale that would make your lord weep.",
+      "triggers": [
+        {
+          "set_state": "flag.draven_revealed_spy",
+          "value": true
+        },
+        {
+          "set_state": "flag.legion_spy_in_ashvale",
+          "value": true
+        }
+      ],
+      "next": "negotiate_truth_4"
+    },
+    "negotiate_truth_4": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "who_is_spy",
+          "text": "Who is the spy? Give me a name.",
+          "conditions": [],
+          "triggers": [],
+          "next": "spy_response"
+        },
+        {
+          "id": "doesnt_matter",
+          "text": "It doesn't matter who the spy is. What matters is your answer \u2014 will you negotiate fairly or not?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.ironmarch_emissary.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "negotiate_trade_2"
+        }
+      ]
+    },
+    "spy_response": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Draven shakes his head slowly.",
+      "next": "spy_response_2"
+    },
+    "spy_response_2": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "I protect my assets. But I'll tell you this: they're closer to the lord than you think. Draw your own conclusions.",
+      "triggers": [
+        {
+          "set_state": "flag.spy_hint_close_to_lord",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "betrayal_offer": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "intrigued",
+      "text": "Draven goes very still. His soldiers shift at the door. He waves them down without looking.",
+      "next": "betrayal_offer_2"
+    },
+    "betrayal_offer_2": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "intrigued",
+      "text": "Now that is interesting. An outsider with no allegiance, embedded in a village's power structure, willing to work for the winning side. You're either very smart or very desperate.",
+      "next": "betrayal_offer_3"
+    },
+    "betrayal_offer_3": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Here's what I need: weaken the village's ability to resist. Sabotage the unity efforts. Keep the factions divided. When the Legion moves, I want Ashvale to fold like wet paper. Do this, and you'll have rank, land, and the General's personal favor.",
+      "triggers": [
+        {
+          "set_state": "flag.betrayed_ashvale_for_legion",
+          "value": true
+        },
+        {
+          "set_state": "flag.player_is_legion_agent",
+          "value": true
+        },
+        {
+          "set_state": "player.moral_vector",
+          "delta": -40
+        }
+      ],
+      "next": "betrayal_offer_4"
+    },
+    "betrayal_offer_4": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Report to me nightly. Tell no one. And understand: if you betray the Legion, the Legion does not forgive. We don't need to. We simply outlast.",
+      "next": "end"
+    },
+    "refused": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Draven regards you for a long moment. His expression doesn't change. If anything, he looks tired.",
+      "next": "refused_2"
+    },
+    "refused_2": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Three hundred years. That's what they always say. And then they see the Legion on the horizon and three hundred years of pride evaporates in about three minutes.",
+      "next": "refused_3"
+    },
+    "refused_3": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "cold",
+      "text": "You still have seven days. My offer stands until then. After that... well. I'll be recalled, and the people who replace me don't carry quills. They carry siege engines.",
+      "triggers": [
+        {
+          "set_state": "flag.draven_warned_of_siege",
+          "value": true
+        },
+        {
+          "set_state": "npc.ironmarch_emissary.memory.player_defiant",
+          "value": true
+        }
+      ],
+      "next": "refused_4"
+    },
+    "refused_4": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "He stands. His soldiers open the door.",
+      "next": "refused_5"
+    },
+    "refused_5": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "I respect conviction, even misguided conviction. Use the seven days. Talk to your people. Think about what you're willing to sacrifice for the word 'freedom.' Because the Legion will ask you to pay for it \u2014 in full.",
+      "next": "end"
+    },
+    "attack_response": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "cold",
+      "text": "Draven moves faster than a man in plate armor should. His sword clears the scabbard before you've finished drawing yours. His soldiers level crossbows at your chest.",
+      "next": "attack_response_2"
+    },
+    "attack_response_2": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "fight_anyway",
+          "text": "[FIGHT] Commit to the attack. Take Draven down.",
+          "conditions": [],
+          "triggers": [
+            {
+              "start_combat": true,
+              "enemies": [
+                "ironmarch_emissary",
+                "legion_soldier",
+                "legion_soldier"
+              ]
+            },
+            {
+              "set_state": "flag.draven_combat_started",
+              "value": true
+            }
+          ],
+          "next": "end"
+        },
+        {
+          "id": "back_down_attack",
+          "text": "...Lower your weapon. This was a mistake.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.ironmarch_emissary.disposition",
+              "delta": -40
+            },
+            {
+              "set_state": "npc.ironmarch_emissary.memory.player_attacked_then_cowered",
+              "value": true
+            }
+          ],
+          "next": "attack_backed_down"
+        }
+      ]
+    },
+    "attack_backed_down": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "cold",
+      "text": "Draven sheathes his sword slowly. Deliberately. Making you watch.",
+      "next": "attack_backed_down_2"
+    },
+    "attack_backed_down_2": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "cold",
+      "text": "That was remarkably stupid. I'm going to pretend it didn't happen \u2014 not for your sake, but because killing diplomats is bad for everyone's reputation, including mine. You now have six days instead of seven. Don't waste them.",
+      "triggers": [
+        {
+          "set_state": "flag.ultimatum_shortened",
+          "value": true
+        },
+        {
+          "set_state": "flag.stalling_draven",
+          "value": false
+        }
+      ],
+      "next": "end"
+    },
+    "stall_response": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Draven inclines his head slightly. A diplomat's nod \u2014 it commits to nothing.",
+      "next": "stall_response_2"
+    },
+    "stall_response_2": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Of course. Seven days is the standard period. I'll be here \u2014 observing, speaking with your people, getting to know this charming village. Don't worry, I'm quite pleasant company when I'm not delivering ultimatums.",
+      "next": "stall_response_3"
+    },
+    "stall_response_3": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "He pauses at the door, looking back over his shoulder.",
+      "next": "stall_response_4"
+    },
+    "stall_response_4": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "A word of advice, freely given: the longer you wait, the more your people will argue. Division is the real enemy here \u2014 not me. I'm just the messenger. What comes after me is... less articulate.",
+      "triggers": [
+        {
+          "set_state": "flag.draven_warned_about_division",
+          "value": true
+        },
+        {
+          "set_state": "npc.ironmarch_emissary.memory.player_is_cautious",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

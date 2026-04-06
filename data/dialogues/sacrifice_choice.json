@@ -1,0 +1,544 @@
+{
+  "id": "sacrifice_choice",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "calm",
+      "text": "The roots form a shallow basin in the earth \u2014 a cradle of living wood. Bioluminescence gathers in the hollow like pooling water.",
+      "next": "start_2"
+    },
+    "start_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "calm",
+      "text": "The vessel is ready. A willing soul must step into the roots and surrender. It will not hurt. We have done this nine times. Each time, we were gentle. The roots embrace. The earth opens. Then... the long dream begins.",
+      "next": "start_3"
+    },
+    "start_3": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "calm",
+      "text": "Who walks the last path?",
+      "next": "sacrifice_choice"
+    },
+    "sacrifice_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "self_sacrifice",
+          "text": "I will. This is my burden. I'll carry it to the end.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_offered_self",
+              "value": true
+            }
+          ],
+          "next": "self_sacrifice_confirm"
+        },
+        {
+          "id": "ashworth",
+          "text": "Lord Ashworth. His family made this pact. It's his duty to honor it.",
+          "conditions": [
+            {
+              "check": "flag.ashworth_present_at_heartwood",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "ashworth_sacrifice"
+        },
+        {
+          "id": "maren_atone",
+          "text": "Brother Maren. He poisoned Ashvale. Let this be his atonement.",
+          "conditions": [
+            {
+              "check": "flag.maren_exposed_as_poisoner",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.maren_present_at_heartwood",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "maren_sacrifice"
+        },
+        {
+          "id": "villager",
+          "text": "Ask for a volunteer from the village. Someone who is willing.",
+          "conditions": [],
+          "triggers": [],
+          "next": "villager_sacrifice"
+        },
+        {
+          "id": "refuse_all",
+          "text": "No. I won't condemn anyone. There must be another way.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.sacrifice_refused",
+              "value": true
+            }
+          ],
+          "next": "refuse_response"
+        }
+      ]
+    },
+    "self_sacrifice_confirm": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Your companions freeze. Elara grabs your arm. Voss steps forward, hand on her sword. Even the forest seems to hold its breath.",
+      "next": "self_sacrifice_confirm_2"
+    },
+    "self_sacrifice_confirm_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "calm",
+      "text": "You offer yourself. We taste your intent. It is... genuine. Not despair. Not guilt. Resolve. This is what willing means.",
+      "next": "self_sacrifice_confirm_3"
+    },
+    "self_sacrifice_confirm_3": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "confirm_yes",
+          "text": "I'm ready. Let the roots take me.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_self_sacrifice",
+              "value": true
+            },
+            {
+              "set_state": "flag.sacrifice_completed",
+              "value": true
+            }
+          ],
+          "next": "self_sacrifice_scene"
+        },
+        {
+          "id": "confirm_no",
+          "text": "...No. I can't. Not yet. There has to be another way.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_almost_sacrificed_self",
+              "value": true
+            }
+          ],
+          "next": "sacrifice_choice"
+        }
+      ]
+    },
+    "self_sacrifice_scene": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You step into the basin. The roots rise around your legs, warm as bathwater, gentle as a mother's hands. The bioluminescence engulfs you. You feel the forest \u2014 all of it \u2014 every root, every branch, every turning leaf. Thousands of years of memory flood through you.",
+      "next": "self_sacrifice_scene_2"
+    },
+    "self_sacrifice_scene_2": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You hear the nine \u2014 singing. Not in words, but in the language of growth. They welcome you. You feel the earth close over you, and it does not feel like dying. It feels like becoming vast.",
+      "next": "self_sacrifice_scene_3"
+    },
+    "self_sacrifice_scene_3": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The last thing you see, through closing eyes of bark, is the sunlight through the canopy. The last thing you hear is Elara weeping. The last thing you feel is the forest's gratitude \u2014 ancient and deep as the world's foundations.",
+      "triggers": [
+        {
+          "set_state": "flag.heroic_ending",
+          "value": true
+        },
+        {
+          "spawn_event": "ending_heroic_sacrifice"
+        }
+      ],
+      "next": "end"
+    },
+    "ashworth_sacrifice": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Lord Ashworth stands at the clearing's edge, pale and trembling. His eyes are wide, but not with fear \u2014 with something older. Recognition.",
+      "next": "ashworth_sacrifice_2"
+    },
+    "ashworth_sacrifice_2": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "resigned",
+      "text": "My grandfather walked this path. He lost his nerve at the last step and ran. My father tried to buy his way out with gold. The forest doesn't want gold.",
+      "next": "ashworth_sacrifice_3"
+    },
+    "ashworth_sacrifice_3": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "resolved",
+      "text": "Three generations of cowardice. Three generations of a village slowly dying because my family couldn't keep its word. He turns to you. I hid in my manor. I drank. I let my people starve rather than face what I owed. Let me do this one thing right.",
+      "next": "ashworth_sacrifice_choice"
+    },
+    "ashworth_sacrifice_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "let_him",
+          "text": "Are you certain? Truly certain? The forest will know if you're not.",
+          "conditions": [],
+          "triggers": [],
+          "next": "ashworth_certain"
+        },
+        {
+          "id": "stop_him",
+          "text": "No. You're not thinking clearly. There's another way.",
+          "conditions": [],
+          "triggers": [],
+          "next": "ashworth_stopped"
+        },
+        {
+          "id": "honor_him",
+          "text": "Then go with honor, Lord Ashworth. Ashvale will remember.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.lord_ashworth.memory.player_honored_his_sacrifice",
+              "value": true
+            }
+          ],
+          "next": "ashworth_certain"
+        }
+      ]
+    },
+    "ashworth_certain": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "calm",
+      "text": "The roots reach for him. They stop, waiting. He breathes once. Twice.",
+      "next": "ashworth_certain_2"
+    },
+    "ashworth_certain_2": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "peaceful",
+      "text": "He steps into the basin. The roots embrace him. He smiles \u2014 the first genuine smile you've ever seen on his face.",
+      "next": "ashworth_certain_3"
+    },
+    "ashworth_certain_3": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "peaceful",
+      "text": "Tell Ashvale... tell them their lord kept his word. At the end. Tell them I'm sorry it took so long.",
+      "triggers": [
+        {
+          "set_state": "flag.ashworth_sacrifice",
+          "value": true
+        },
+        {
+          "set_state": "flag.sacrifice_completed",
+          "value": true
+        },
+        {
+          "set_state": "npc.lord_ashworth.alive",
+          "value": false
+        },
+        {
+          "spawn_event": "ending_lord_sacrifice"
+        }
+      ],
+      "next": "ashworth_final"
+    },
+    "ashworth_final": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The earth takes him gently. Where Lord Ashworth stood, a sapling begins to grow \u2014 pale bark, silver leaves. The Heartwood hums with satisfaction. The clearing fills with golden light. The pact is fulfilled.",
+      "next": "end"
+    },
+    "ashworth_stopped": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "resigned",
+      "text": "Ashworth slumps. The brief fire in his eyes gutters out.",
+      "next": "ashworth_stopped_2"
+    },
+    "ashworth_stopped_2": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "defeated",
+      "text": "You're right. You're probably right. I... when was I ever certain of anything? Go. Find your other way. I'll be here. I'll always be here. Waiting for the nerve I never had.",
+      "next": "sacrifice_choice"
+    },
+    "maren_sacrifice": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Brother Maren stands apart from the group, his robes dirty, his face gaunt. Since being exposed as the poisoner, something has broken in him \u2014 or perhaps something has been set free.",
+      "next": "maren_sacrifice_2"
+    },
+    "maren_sacrifice_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "hollow",
+      "text": "I put nightcap root in their water. I watched them sicken and I preached that it was divine judgment. I made them afraid so they would need the Church. Need me.",
+      "next": "maren_sacrifice_3"
+    },
+    "maren_sacrifice_3": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "hollow",
+      "text": "The Ashen Light teaches that suffering purifies. I've caused enough suffering to purify a city. Perhaps it's time I learned what the teaching actually means.",
+      "next": "maren_sacrifice_4"
+    },
+    "maren_sacrifice_4": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "resolved",
+      "text": "He looks at the basin, then at the roots. His hands shake. But his voice doesn't.",
+      "next": "maren_sacrifice_5"
+    },
+    "maren_sacrifice_5": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "resolved",
+      "text": "Will it hurt?",
+      "next": "maren_sacrifice_6"
+    },
+    "maren_sacrifice_6": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "calm",
+      "text": "No more than being born.",
+      "next": "maren_sacrifice_choice"
+    },
+    "maren_sacrifice_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "let_maren",
+          "text": "This is your choice, Maren. If you're willing, the forest will accept.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.maren_willing_to_atone",
+              "value": true
+            }
+          ],
+          "next": "maren_goes"
+        },
+        {
+          "id": "stop_maren",
+          "text": "No. Atonement isn't death. You'll answer for what you did \u2014 in Ashvale, among the living.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.maren_stopped_from_sacrifice",
+              "value": true
+            }
+          ],
+          "next": "maren_stopped"
+        }
+      ]
+    },
+    "maren_goes": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Maren removes his robes. Beneath them he is thin, scarred from his own penitent rituals. He walks to the basin barefoot, the way the Ashen Light teaches \u2014 as you came into the world, so you leave it.",
+      "next": "maren_goes_2"
+    },
+    "maren_goes_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "peaceful",
+      "text": "Ash purifies. He steps into the roots. The Heartwood's light turns warm. Perhaps it does.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_sacrifice",
+          "value": true
+        },
+        {
+          "set_state": "flag.sacrifice_completed",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.alive",
+          "value": false
+        },
+        {
+          "spawn_event": "ending_maren_atonement"
+        }
+      ],
+      "next": "maren_final"
+    },
+    "maren_final": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Where Brother Maren knelt, a gnarled tree grows \u2014 twisted, bearing strange white flowers that smell of ash and rain. The Heartwood hums. The pact is fulfilled. Even the forest seems surprised by what grew from such bitter soil.",
+      "next": "end"
+    },
+    "maren_stopped": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "broken",
+      "text": "Maren stares at you. Something in his eyes \u2014 hope? Disappointment? Both?",
+      "next": "maren_stopped_2"
+    },
+    "maren_stopped_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "broken",
+      "text": "Among the living. You say that like it's a mercy. You don't know what it costs to live with what I've done. But... very well. If you think my suffering serves better above ground than below it.",
+      "next": "sacrifice_choice"
+    },
+    "villager_sacrifice": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "calm",
+      "text": "A volunteer from the village. We accept this \u2014 but remember, the sacrifice must be willing. Truly willing. Not bribed, not guilted, not threatened. The roots can taste coercion.",
+      "next": "villager_sacrifice_2"
+    },
+    "villager_sacrifice_2": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You return to Ashvale with the weight of the request. The announcement goes out: a volunteer is needed. Someone to walk into the forest and not return. For three days, no one steps forward.",
+      "next": "villager_sacrifice_3"
+    },
+    "villager_sacrifice_3": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "On the fourth day, an old farmer named Tomas comes to you. His wife died last winter. His sons left for the city years ago. His fields are ash. He says he has nothing left to lose and everything to give.",
+      "next": "villager_sacrifice_4"
+    },
+    "villager_sacrifice_4": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept_tomas",
+          "text": "Thank you, Tomas. Your sacrifice will save Ashvale.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.villager_sacrifice",
+              "value": true
+            },
+            {
+              "set_state": "flag.sacrifice_completed",
+              "value": true
+            },
+            {
+              "set_state": "flag.tomas_sacrificed",
+              "value": true
+            }
+          ],
+          "next": "tomas_sacrifice"
+        },
+        {
+          "id": "refuse_tomas",
+          "text": "No, Tomas. Grief isn't willingness. I won't send a broken man to die.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.heartwood.memory.player_refused_grief_sacrifice",
+              "value": true
+            }
+          ],
+          "next": "tomas_refused"
+        },
+        {
+          "id": "test_tomas",
+          "text": "Tomas \u2014 if your wife were alive, if your fields were green, would you still volunteer?",
+          "conditions": [],
+          "triggers": [],
+          "next": "tomas_test"
+        }
+      ]
+    },
+    "tomas_sacrifice": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Tomas walks into the Thornwood with the quiet dignity of a man who has made peace with the earth. He does not look back. The roots take him softly. Where he stood, wildflowers bloom in a ring \u2014 the kind his wife used to pick.",
+      "triggers": [
+        {
+          "spawn_event": "ending_villager_sacrifice"
+        },
+        {
+          "set_state": "player.moral_vector",
+          "delta": -15
+        }
+      ],
+      "next": "end"
+    },
+    "tomas_refused": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Tomas nods slowly. He does not argue. He simply turns and walks back to his empty house. The search continues \u2014 but no one else comes forward.",
+      "next": "sacrifice_choice"
+    },
+    "tomas_test": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Tomas is quiet for a long time. When he speaks, his voice is steady.",
+      "next": "tomas_test_2"
+    },
+    "tomas_test_2": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "No. I wouldn't. But my wife isn't alive. And the fields aren't green. And this village gave me forty good years. If my leaving gives them forty more... that's a fair trade. Better than fair.",
+      "next": "tomas_test_3"
+    },
+    "tomas_test_3": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "calm",
+      "text": "The roots pulse gently. This one speaks truth. Not full willing \u2014 but honest. Grief and generosity, tangled together. We will accept this root. It will grow strong.",
+      "next": "villager_sacrifice_4"
+    },
+    "refuse_response": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "disturbed",
+      "text": "The roots tense. The clearing darkens.",
+      "next": "refuse_response_2"
+    },
+    "refuse_response_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "cold",
+      "text": "You chose fulfillment. Fulfillment requires a soul. If no soul is given, the choice reverts. The hunger does not pause for your conscience, root-walker. Choose a different path, or bring us what was promised.",
+      "next": "refuse_response_3"
+    },
+    "refuse_response_3": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "cold",
+      "text": "We are patient. But there is a limit even to root-deep patience. Cross it, and we will fulfill the pact ourselves \u2014 with every soul in Ashvale.",
+      "triggers": [
+        {
+          "set_state": "flag.heartwood_patience_wearing",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+[
+  {
+    "_note": "NPC Interjection System (BG3-style). These are data-only definitions. Processing requires narrative_engine.gd to check for matching interjections when advancing dialogue nodes: on each node transition, scan this array for entries whose trigger_dialogue and trigger_node match, evaluate conditions, and if met, insert the interjection text as a temporary dialogue line before continuing.",
+    "id": "_meta"
+  },
+  {
+    "id": "elara_interjects_poison_accusation",
+    "trigger_dialogue": "maren_intro",
+    "trigger_node": "confronted_with_evidence",
+    "interjection_npc": "elara",
+    "conditions": ["npc.elara.met == true", "flag.evidence_nightcap_root == true"],
+    "text": "Elara steps forward from behind you. 'I can confirm the nightcap root. I tested it myself. Three times. Whoever did this knew exactly what they were doing.'",
+    "effects": [
+      {"set_state": "flag.elara_backed_up_evidence", "value": true},
+      {"set_state": "npc.brother_maren.disposition", "delta": -10}
+    ]
+  },
+  {
+    "id": "voss_interjects_legion_threat",
+    "trigger_dialogue": "draven_intro",
+    "trigger_node": "draven_ultimatum",
+    "interjection_npc": "commander_voss",
+    "conditions": ["flag.voss_conditional_alliance == true"],
+    "text": "Voss places her hand on her sword hilt. Not drawing — just resting. 'Before you answer, stranger — my company is watching. Twenty swords. Whatever you decide, we're part of the equation now.'",
+    "effects": [
+      {"set_state": "flag.voss_visible_during_ultimatum", "value": true}
+    ]
+  },
+  {
+    "id": "old_maren_interjects_sacrifice_discussion",
+    "trigger_dialogue": "ashworth_intro",
+    "trigger_node": "pact_breakdown_4",
+    "interjection_npc": "old_maren",
+    "conditions": ["flag.old_maren_confirmed_silas_mother == true"],
+    "text": "A voice from the doorway. Old Maren, leaning on her staff, blind eyes fixed on Ashworth. 'My son. You're talking about my son. Say his name. Say SILAS.'",
+    "effects": [
+      {"set_state": "flag.old_maren_confronted_ashworth", "value": true},
+      {"set_state": "npc.lord_ashworth.disposition", "delta": -20}
+    ]
+  }
+]

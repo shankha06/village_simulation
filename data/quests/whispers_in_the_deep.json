@@ -1,0 +1,137 @@
+{
+  "id": "whispers_in_the_deep",
+  "name": "Whispers in the Deep",
+  "description": "Strange sounds emanate from the ritual chamber beneath the manor. The dead are not silent — they are waiting.",
+  "giver": "old_maren",
+  "region": "ritual_chamber",
+  "tags": [
+    "side_quest",
+    "horror",
+    "supernatural",
+    "combat_optional",
+    "lore",
+    "moral_choice"
+  ],
+  "priority": 8,
+  "states": {
+    "UNKNOWN": {
+      "transitions": [
+        {
+          "on": "npc.old_maren.met == true && world.day >= 8",
+          "to": "DISCOVERED"
+        }
+      ]
+    },
+    "DISCOVERED": {
+      "journal_entry": "Old Maren says she hears voices from beneath the earth — the spirits of those sacrificed to the forest. They're calling from the ritual chamber under the manor. She says they want to be heard.",
+      "transitions": [
+        {
+          "on": "flag.accepted_whispers_quest == true",
+          "to": "ACTIVE"
+        }
+      ]
+    },
+    "ACTIVE": {
+      "journal_entry": "I'm heading into the ritual chamber beneath the manor. Old Maren gave me a bundle of dried thornleaf to burn — she says the smoke will let me see the spirits. If they want to be seen.",
+      "objectives": [
+        "Enter the ritual chamber beneath the manor",
+        "Burn the thornleaf bundle",
+        "Communicate with the spirits"
+      ],
+      "transitions": [
+        {
+          "on": "flag.ritual_chamber_entered == true",
+          "to": "CHAMBER_ENTERED"
+        }
+      ]
+    },
+    "CHAMBER_ENTERED": {
+      "journal_entry": "The chamber is cold. Ancient. The altar at its center is stained dark with decades of offerings. When I burned the thornleaf, the shadows began to move.",
+      "objectives": [
+        "Observe the spirit manifestations",
+        "Attempt to communicate"
+      ],
+      "transitions": [
+        {
+          "on": "flag.spirits_encountered == true",
+          "to": "SPIRITS_ENCOUNTERED"
+        }
+      ]
+    },
+    "SPIRITS_ENCOUNTERED": {
+      "journal_entry": "They're here. Dozens of shapes in the smoke — men, women, children. All taken by the pact. One steps forward. I recognize the face from the compass portrait. Silas Maren.",
+      "objectives": [
+        "Decide how to respond to the spirits"
+      ],
+      "transitions": [
+        {
+          "on": "flag.silas_spirit_communed == true",
+          "to": "COMPLETED_COMMUNION"
+        },
+        {
+          "on": "flag.spirits_hostile_defeated == true",
+          "to": "COMPLETED_COMBAT"
+        },
+        {
+          "on": "flag.spirits_want_altar_destroyed == true",
+          "to": "COMPLETED_ALTAR_DESTROYED"
+        },
+        {
+          "on": "flag.spirits_showed_vision == true",
+          "to": "COMPLETED_VISION"
+        }
+      ]
+    },
+    "COMPLETED_COMMUNION": {
+      "journal_entry": "Silas spoke through the smoke. His voice was roots grinding against stone. He told me the Heartwood is not the enemy — it is a wound. The forest is in pain, and the pact is a tourniquet that's killing the patient. He showed me a path through the roots that bypasses the Warden.",
+      "consequence_chain": "silas_guidance_chain",
+      "rewards": [
+        {
+          "item": "silas_root_map"
+        },
+        {
+          "reputation": {
+            "thornwood_druids": 30
+          }
+        }
+      ]
+    },
+    "COMPLETED_COMBAT": {
+      "journal_entry": "The spirits were hostile — twisted by decades of rage and pain. I fought shadow incarnations of the sacrificed. They dissolved into ash when struck. The chamber is quiet now. But I learned nothing.",
+      "rewards": [
+        {
+          "gold": 0
+        },
+        {
+          "item": "shadow_essence"
+        }
+      ]
+    },
+    "COMPLETED_ALTAR_DESTROYED": {
+      "journal_entry": "The spirits begged me to destroy the altar. I did — cracked the stone with the heaviest thing I could find. The chamber shuddered. Something far below screamed. The pact's anchor point in the village is severed.",
+      "consequence_chain": "altar_destroyed_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "thornwood_druids": 20,
+            "ashvale_nobility": -40
+          }
+        }
+      ]
+    },
+    "COMPLETED_VISION": {
+      "journal_entry": "The spirits showed me a vision: the forest as it was before the pact. Green, alive, welcoming. Then the first Ashworth lord cutting the first deal — 'blood for bounty.' The forest didn't want blood. It wanted communion. Conversation. The pact was a mistranslation. Thirty years of death for a misunderstanding.",
+      "consequence_chain": "forest_truth_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "thornwood_druids": 35
+          }
+        },
+        {
+          "item": "vision_of_the_old_forest"
+        }
+      ]
+    }
+  }
+}

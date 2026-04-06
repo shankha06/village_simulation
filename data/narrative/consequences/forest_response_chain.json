@@ -1,0 +1,212 @@
+{
+  "id": "forest_response_chain",
+  "trigger_condition": "flag.act_2_begun == true",
+  "consequences": [
+    {
+      "type": "conditional_delayed",
+      "delay_days": 10,
+      "condition": "flag.warden_appeared != true && flag.forest_investigation_started != true",
+      "effects": [
+        {
+          "spawn_npc": "thornwood_spirit",
+          "location": "forest_edge"
+        },
+        {
+          "set_state": "flag.warden_appeared_unsummoned",
+          "value": true
+        },
+        {
+          "spawn_event": "forest_spirits_at_edge"
+        },
+        {
+          "set_state": "world.region.ashvale.tension",
+          "delta": 5
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 12,
+      "condition": "flag.warden_appeared == true && flag.forest_expedition_started != true",
+      "effects": [
+        {
+          "set_state": "flag.forest_aggression_1",
+          "value": true
+        },
+        {
+          "spawn_event": "thornwolves_at_village_edge"
+        },
+        {
+          "set_state": "npc.old_maren.memory.forest_growing_impatient",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 16,
+      "condition": "flag.forest_aggression_1 == true && flag.forest_expedition_started != true",
+      "effects": [
+        {
+          "set_state": "flag.forest_aggression_2",
+          "value": true
+        },
+        {
+          "spawn_event": "roots_breach_village_well"
+        },
+        {
+          "set_state": "world.region.ashvale.food_supply",
+          "delta": -10
+        },
+        {
+          "set_state": "npc.elara.memory.roots_in_well_water",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 21,
+      "condition": "flag.forest_aggression_2 == true && flag.forest_expedition_started != true",
+      "effects": [
+        {
+          "set_state": "flag.forest_aggression_3",
+          "value": true
+        },
+        {
+          "spawn_event": "forest_encroachment"
+        },
+        {
+          "set_state": "world.region.ashvale.tension",
+          "delta": 20
+        },
+        {
+          "set_state": "flag.trees_growing_in_village",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 5,
+      "condition": "flag.honored_forest_offerings == true",
+      "effects": [
+        {
+          "set_state": "flag.forest_welcoming",
+          "value": true
+        },
+        {
+          "set_state": "npc.thornwood_spirit.disposition",
+          "delta": 20
+        },
+        {
+          "spawn_event": "forest_path_clears"
+        },
+        {
+          "set_state": "world.region.thornwood.hostility",
+          "delta": -20
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 1,
+      "condition": "flag.burned_blood_root_field == true",
+      "effects": [
+        {
+          "set_state": "flag.forest_enraged",
+          "value": true
+        },
+        {
+          "set_state": "world.region.thornwood.hostility",
+          "delta": 50
+        },
+        {
+          "spawn_event": "forest_retaliates_fire"
+        },
+        {
+          "set_state": "npc.thornwood_spirit.disposition",
+          "delta": -40
+        },
+        {
+          "set_state": "npc.heartwood.disposition",
+          "delta": -30
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 3,
+      "condition": "flag.burned_blood_root_field == true",
+      "effects": [
+        {
+          "spawn_event": "root_attack_village"
+        },
+        {
+          "set_state": "world.region.ashvale.tension",
+          "delta": 30
+        },
+        {
+          "set_state": "flag.forest_attacking_village",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 1,
+      "condition": "flag.calmed_thornwolves == true",
+      "effects": [
+        {
+          "set_state": "npc.thornwood_spirit.disposition",
+          "delta": 10
+        },
+        {
+          "set_state": "npc.heartwood.disposition",
+          "delta": 5
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 1,
+      "condition": "flag.killed_thornwolves == true",
+      "effects": [
+        {
+          "set_state": "npc.thornwood_spirit.disposition",
+          "delta": -15
+        },
+        {
+          "set_state": "npc.heartwood.disposition",
+          "delta": -10
+        },
+        {
+          "set_state": "world.region.thornwood.hostility",
+          "delta": 15
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 1,
+      "condition": "flag.killed_warden == true",
+      "effects": [
+        {
+          "set_state": "flag.forest_enraged",
+          "value": true
+        },
+        {
+          "set_state": "world.region.thornwood.hostility",
+          "value": 100
+        },
+        {
+          "set_state": "npc.heartwood.disposition",
+          "delta": -60
+        },
+        {
+          "spawn_event": "forest_declares_war"
+        }
+      ]
+    }
+  ]
+}

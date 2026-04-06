@@ -1,0 +1,354 @@
+{
+  "id": "heartwood_communion",
+  "name": "Communion",
+  "description": "The final confrontation with the Heartwood \u2014 the ancient forest consciousness that has held Ashvale in a blood pact for three centuries. Three paths. Three futures. One choice that cannot be undone.",
+  "giver": "heartwood",
+  "region": "thornwood",
+  "tags": [
+    "main_quest",
+    "act_3",
+    "finale",
+    "moral_choice",
+    "branching"
+  ],
+  "priority": 20,
+  "states": {
+    "INACTIVE": {
+      "transitions": [
+        {
+          "on": "flag.heartwood_communion_begun == true",
+          "to": "ACTIVE"
+        }
+      ]
+    },
+    "ACTIVE": {
+      "journal_entry": "The Heartwood has laid bare the truth: three hundred years of broken promises, nine souls given where hundreds were owed. The forest is dying of starvation, and it demands resolution. I must choose.",
+      "objectives": [
+        "Listen to the Heartwood's account of the pact",
+        "Choose: Fulfill the Pact (sacrifice), Sever the Pact (druidfire), or Renegotiate"
+      ],
+      "transitions": [
+        {
+          "on": "flag.chose_fulfill_pact == true",
+          "to": "SACRIFICE_PATH"
+        },
+        {
+          "on": "flag.chose_sever_pact == true",
+          "to": "SEVERANCE_PATH"
+        },
+        {
+          "on": "flag.chose_renegotiate_pact == true",
+          "to": "RENEGOTIATION_PATH"
+        }
+      ]
+    },
+    "SACRIFICE_PATH": {
+      "journal_entry": "I have chosen to honor the pact. A willing sacrifice must be offered to the Heartwood. The question that will haunt me forever: who?",
+      "objectives": [
+        "Choose who will be sacrificed to the Heartwood"
+      ],
+      "transitions": [
+        {
+          "on": "flag.player_self_sacrifice == true",
+          "to": "SACRIFICE_SELF"
+        },
+        {
+          "on": "flag.ashworth_sacrifice == true",
+          "to": "SACRIFICE_LORD"
+        },
+        {
+          "on": "flag.maren_sacrifice == true",
+          "to": "SACRIFICE_MAREN"
+        },
+        {
+          "on": "flag.villager_sacrifice == true",
+          "to": "SACRIFICE_VILLAGER"
+        },
+        {
+          "on": "flag.sacrifice_refused == true",
+          "to": "ACTIVE"
+        }
+      ]
+    },
+    "SACRIFICE_SELF": {
+      "journal_entry": "I offered myself. The Heartwood accepted. As the roots wrap around me, I feel the forest's gratitude \u2014 alien, vast, ancient. Ashvale will live. I will become part of something older than memory.",
+      "consequence_chain": "self_sacrifice_chain",
+      "rewards": [
+        {
+          "set_state": "flag.player_sacrificed",
+          "value": true
+        },
+        {
+          "set_state": "flag.pact_fulfilled",
+          "value": true
+        },
+        {
+          "set_state": "flag.heroic_ending",
+          "value": true
+        },
+        {
+          "set_state": "player.moral_vector",
+          "delta": 50
+        }
+      ]
+    },
+    "SACRIFICE_LORD": {
+      "journal_entry": "Lord Ashworth stepped forward. 'My family made this pact,' he said. 'My family broke it. Let it end with me.' The roots took him gently \u2014 more gently than I expected. He smiled at the last. The haunted man found peace.",
+      "conditions": [
+        {
+          "check": "flag.ashworth_willing == true",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "consequence_chain": "lord_sacrifice_chain",
+      "rewards": [
+        {
+          "set_state": "flag.ashworth_sacrificed",
+          "value": true
+        },
+        {
+          "set_state": "flag.pact_fulfilled",
+          "value": true
+        },
+        {
+          "set_state": "npc.lord_ashworth.alive",
+          "value": false
+        },
+        {
+          "set_state": "player.moral_vector",
+          "delta": 10
+        }
+      ]
+    },
+    "SACRIFICE_MAREN": {
+      "journal_entry": "Brother Maren knelt before the Heartwood. 'I poisoned their water to weaken them, to make them need the Church. Let this be my penance.' The Ashen Light teaches that suffering purifies. Perhaps he finally believed it.",
+      "conditions": [
+        {
+          "check": "flag.maren_exposed_as_poisoner == true",
+          "op": "==",
+          "value": true
+        },
+        {
+          "check": "flag.maren_willing_to_atone == true",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "consequence_chain": "maren_sacrifice_chain",
+      "rewards": [
+        {
+          "set_state": "flag.maren_sacrificed",
+          "value": true
+        },
+        {
+          "set_state": "flag.pact_fulfilled",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.alive",
+          "value": false
+        }
+      ]
+    },
+    "SACRIFICE_VILLAGER": {
+      "journal_entry": "I chose someone. A life for a village. They went willingly \u2014 or so I tell myself. The Heartwood does not care about the weight on my conscience. It only cares that the blood was given. This is the darkest thing I have ever done.",
+      "consequence_chain": "villager_sacrifice_chain",
+      "rewards": [
+        {
+          "set_state": "flag.villager_sacrificed",
+          "value": true
+        },
+        {
+          "set_state": "flag.pact_fulfilled",
+          "value": true
+        },
+        {
+          "set_state": "player.moral_vector",
+          "delta": -30
+        }
+      ]
+    },
+    "SEVERANCE_PATH": {
+      "journal_entry": "I will burn the blood-root with druidfire. Old Maren says the ritual will sever the connection permanently \u2014 but the cost is the forest itself. Every tree, every root, every living thing in the Thornwood will die.",
+      "objectives": [
+        "Learn the druidfire ritual from Old Maren",
+        "Gather the ritual components",
+        "Fight through the forest guardians to reach the blood-root",
+        "Complete the severance ritual"
+      ],
+      "transitions": [
+        {
+          "on": "flag.druidfire_ritual_learned == true",
+          "to": "SEVERANCE_PREPARED"
+        },
+        {
+          "on": "flag.old_maren_refused_to_teach == true",
+          "to": "SEVERANCE_BLOCKED"
+        }
+      ]
+    },
+    "SEVERANCE_PREPARED": {
+      "journal_entry": "I know the ritual. The components are gathered. All that remains is to reach the blood-root at the heart of the Heartwood and set it ablaze. The forest will fight us every step of the way. It knows what we intend.",
+      "objectives": [
+        "Reach the blood-root core",
+        "Perform the druidfire ritual"
+      ],
+      "transitions": [
+        {
+          "on": "flag.severance_completed == true",
+          "to": "SEVERANCE_COMPLETE"
+        },
+        {
+          "on": "flag.severance_failed == true",
+          "to": "ACTIVE"
+        }
+      ]
+    },
+    "SEVERANCE_BLOCKED": {
+      "journal_entry": "Old Maren refuses to teach the druidfire ritual. She says destroying the forest would be a crime worse than the pact itself. I must find another way \u2014 or convince her.",
+      "transitions": [
+        {
+          "on": "flag.convinced_old_maren == true",
+          "to": "SEVERANCE_PREPARED"
+        },
+        {
+          "on": "flag.found_ritual_in_ruins == true",
+          "to": "SEVERANCE_PREPARED"
+        },
+        {
+          "on": "flag.chose_fulfill_pact == true",
+          "to": "SACRIFICE_PATH"
+        },
+        {
+          "on": "flag.chose_renegotiate_pact == true",
+          "to": "RENEGOTIATION_PATH"
+        }
+      ]
+    },
+    "SEVERANCE_COMPLETE": {
+      "journal_entry": "The blood-root is ash. The Heartwood's scream echoed for hours \u2014 felt in the bones more than heard. The forest is dying. In weeks, the Thornwood will be a graveyard of dead wood. Ashvale is free. The pact is broken forever. But the land remembers what we did.",
+      "consequence_chain": "severance_complete_chain",
+      "rewards": [
+        {
+          "set_state": "flag.pact_severed",
+          "value": true
+        },
+        {
+          "set_state": "flag.thornwood_dead",
+          "value": true
+        },
+        {
+          "set_state": "npc.heartwood.alive",
+          "value": false
+        },
+        {
+          "set_state": "npc.thornwood_spirit.alive",
+          "value": false
+        },
+        {
+          "set_state": "player.moral_vector",
+          "delta": -15
+        }
+      ]
+    },
+    "RENEGOTIATION_PATH": {
+      "journal_entry": "I believe there is a third way. The Heartwood is ancient but not mindless \u2014 it wants something. If I can discover what the forest truly desires, perhaps I can offer it something better than blood.",
+      "objectives": [
+        "Discover what the Heartwood truly wants",
+        "Gather the knowledge needed to propose new terms",
+        "Convince the Heartwood to accept"
+      ],
+      "transitions": [
+        {
+          "on": "flag.discovered_forest_desire == true",
+          "to": "RENEGOTIATION_INFORMED"
+        },
+        {
+          "on": "flag.renegotiation_wrong_answer == true",
+          "to": "RENEGOTIATION_ANGERED"
+        }
+      ]
+    },
+    "RENEGOTIATION_INFORMED": {
+      "journal_entry": "I understand now. The forest doesn't hunger for souls \u2014 it hungers for space. For growth. The pact was crude \u2014 blood for tolerance. But what the Heartwood truly wants is room to expand. The dead farmland south of Ashvale... if the village surrendered those fields to the forest...",
+      "objectives": [
+        "Propose new terms to the Heartwood: land for peace",
+        "Convince Ashvale's factions to surrender the dead fields"
+      ],
+      "conditions": [
+        {
+          "check": "flag.all_factions_support_land_deal",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "transitions": [
+        {
+          "on": "flag.renegotiation_completed == true",
+          "to": "RENEGOTIATION_COMPLETE"
+        },
+        {
+          "on": "flag.factions_refused_land_deal == true",
+          "to": "RENEGOTIATION_BLOCKED"
+        }
+      ]
+    },
+    "RENEGOTIATION_ANGERED": {
+      "journal_entry": "I proposed the wrong terms. The Heartwood's fury shook the ground \u2014 roots erupted around us, and we barely escaped. I need to understand what it actually wants before trying again.",
+      "transitions": [
+        {
+          "on": "flag.discovered_forest_desire == true",
+          "to": "RENEGOTIATION_INFORMED"
+        },
+        {
+          "on": "flag.chose_fulfill_pact == true",
+          "to": "SACRIFICE_PATH"
+        },
+        {
+          "on": "flag.chose_sever_pact == true",
+          "to": "SEVERANCE_PATH"
+        }
+      ]
+    },
+    "RENEGOTIATION_BLOCKED": {
+      "journal_entry": "The factions refuse to surrender the farmland. Without their support, I cannot offer the Heartwood what it wants. I must find another path \u2014 or change their minds.",
+      "transitions": [
+        {
+          "on": "flag.all_factions_support_land_deal == true",
+          "to": "RENEGOTIATION_INFORMED"
+        },
+        {
+          "on": "flag.chose_fulfill_pact == true",
+          "to": "SACRIFICE_PATH"
+        },
+        {
+          "on": "flag.chose_sever_pact == true",
+          "to": "SEVERANCE_PATH"
+        }
+      ]
+    },
+    "RENEGOTIATION_COMPLETE": {
+      "journal_entry": "The Heartwood accepted. New roots are already spreading into the dead fields, and the poisoned earth is beginning to heal. The village shrinks but survives. The forest grows but forgives. It is not a perfect peace \u2014 but it is the only peace that doesn't demand blood or death.",
+      "consequence_chain": "renegotiation_complete_chain",
+      "rewards": [
+        {
+          "set_state": "flag.pact_renegotiated",
+          "value": true
+        },
+        {
+          "set_state": "flag.forest_expanding",
+          "value": true
+        },
+        {
+          "set_state": "flag.best_ending",
+          "value": true
+        },
+        {
+          "set_state": "player.moral_vector",
+          "delta": 40
+        }
+      ]
+    }
+  }
+}

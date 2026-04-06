@@ -1,0 +1,333 @@
+{
+  "id": "spirit_encounter",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The ritual chamber is beneath the manor, accessed through a door that should have been locked but hangs open — as if something invited you in. Steps spiral down into earth that smells of copper and loam.",
+      "triggers": [
+        {
+          "set_state": "flag.ritual_chamber_entered",
+          "value": true
+        }
+      ],
+      "next": "chamber_description"
+    },
+    "chamber_description": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The chamber is circular. An altar of dark stone stands at its center, stained with decades of offerings. Root tendrils push through the walls — the forest reaching down, even here. The air hums with a frequency just below hearing.",
+      "next": "burn_thornleaf"
+    },
+    "burn_thornleaf": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "burn_herbs",
+          "text": "Burn the thornleaf bundle Old Maren gave you.",
+          "conditions": [
+            {
+              "check": "player.has_item.thornleaf_bundle",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "smoke_rises"
+        },
+        {
+          "id": "approach_altar",
+          "text": "Approach the altar without the thornleaf.",
+          "conditions": [],
+          "triggers": [],
+          "next": "altar_direct"
+        },
+        {
+          "id": "speak_aloud",
+          "text": "\"I know you're here. Show yourselves.\"",
+          "conditions": [],
+          "triggers": [],
+          "next": "direct_address"
+        }
+      ]
+    },
+    "smoke_rises": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The thornleaf burns with a pale green flame. Smoke fills the chamber — thick, sweet, heavy. And in the smoke, shapes form. Dozens of them. Men, women, children. They flicker like candlelight, their mouths moving without sound.",
+      "triggers": [
+        {
+          "set_state": "flag.spirits_encountered",
+          "value": true
+        }
+      ],
+      "next": "spirits_appear"
+    },
+    "altar_direct": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Your hand touches the altar stone. It's warm — impossibly warm, as if blood still flows beneath the surface. The shadows in the room deepen and stretch. Eyes open in the darkness. Many eyes. Angry eyes.",
+      "triggers": [
+        {
+          "set_state": "flag.spirits_encountered",
+          "value": true
+        }
+      ],
+      "next": "hostile_spirits"
+    },
+    "direct_address": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Your voice echoes in the chamber. The roots in the walls shudder. Then, slowly, the air thickens. A shape coalesces from the darkness near the altar — a tall figure with hollow eyes and bark-covered hands.",
+      "triggers": [
+        {
+          "set_state": "flag.spirits_encountered",
+          "value": true
+        }
+      ],
+      "next": "silas_appears"
+    },
+    "spirits_appear": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "One spirit steps forward from the others. Taller. More defined. His face matches the portrait in the silver compass. Silas Maren — Elara's father, the first sacrifice.",
+      "next": "silas_appears"
+    },
+    "silas_appears": {
+      "type": "text",
+      "speaker": "silas_spirit",
+      "portrait": "neutral",
+      "text": "(A voice like roots grinding against stone) You carry my compass. You carry my daughter's hope. What do you seek in this place of the given?",
+      "next": "spirit_choice"
+    },
+    "spirit_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "seek_guidance",
+          "text": "I seek a path to the Heartwood. Can you show me the way?",
+          "conditions": [],
+          "triggers": [],
+          "next": "silas_guidance"
+        },
+        {
+          "id": "ask_about_pact",
+          "text": "I want to understand the pact. What does the forest really want?",
+          "conditions": [],
+          "triggers": [],
+          "next": "spirits_vision"
+        },
+        {
+          "id": "ask_about_altar",
+          "text": "This altar — can it be destroyed? Can the pact be severed from here?",
+          "conditions": [],
+          "triggers": [],
+          "next": "altar_destruction"
+        },
+        {
+          "id": "ask_about_elara",
+          "text": "Your daughter Elara is alive. She fights for this village every day.",
+          "conditions": [
+            {
+              "check": "npc.elara.met",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.elara.memory.silas_knows_shes_alive",
+              "value": true
+            }
+          ],
+          "next": "silas_daughter"
+        }
+      ]
+    },
+    "silas_guidance": {
+      "type": "text",
+      "speaker": "silas_spirit",
+      "portrait": "neutral",
+      "text": "The Heartwood is not what you think. It is not a place — it is a wound. The forest bleeds there. The pact is a tourniquet made of human souls, applied by men who didn't understand what they were binding.",
+      "next": "silas_path"
+    },
+    "silas_path": {
+      "type": "text",
+      "speaker": "silas_spirit",
+      "portrait": "neutral",
+      "text": "There is a path through the roots that the Warden cannot see. We walked it when we were given — down through the earth, into the heart. I will show you. But you must promise: when you reach the Heartwood, listen before you act.",
+      "triggers": [
+        {
+          "set_state": "flag.silas_spirit_communed",
+          "value": true
+        },
+        {
+          "set_state": "flag.silas_root_path_known",
+          "value": true
+        }
+      ],
+      "next": "silas_map"
+    },
+    "silas_map": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Silas reaches out a bark-covered hand. Where it touches the wall, roots rearrange themselves into a map — a hidden path beneath the forest floor, winding through root systems and underground streams, emerging directly at the Heartwood.",
+      "next": "end"
+    },
+    "spirits_vision": {
+      "type": "text",
+      "speaker": "silas_spirit",
+      "portrait": "neutral",
+      "text": "The forest never wanted blood. It wanted communion. Conversation. The first Ashworth lord misunderstood — he heard 'sacrifice' where the roots said 'speak with us.' Thirty years of death for a mistranslation.",
+      "next": "vision_shows"
+    },
+    "vision_shows": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The spirits swirl together and the chamber fills with images: the forest as it was — green, welcoming, alive with light. A lord kneeling at the Heartwood, offering blood when the roots reached for his voice. The first scream. The first death. The forest recoiling in horror, then hunger.",
+      "triggers": [
+        {
+          "set_state": "flag.spirits_showed_vision",
+          "value": true
+        },
+        {
+          "set_state": "flag.forest_truth_known",
+          "value": true
+        }
+      ],
+      "next": "vision_aftermath"
+    },
+    "vision_aftermath": {
+      "type": "text",
+      "speaker": "silas_spirit",
+      "portrait": "neutral",
+      "text": "The forest learned to accept blood because blood was all it was offered. But it remembers the old way. If someone speaks to it — truly speaks, without blade or bargain — the pact can be remade. Renegotiated. The dead can finally rest.",
+      "next": "end"
+    },
+    "altar_destruction": {
+      "type": "text",
+      "speaker": "silas_spirit",
+      "portrait": "neutral",
+      "text": "The altar is the anchor. Where the pact's roots grip deepest into the human world. Break it, and the connection frays. The forest cannot reach this far into Ashvale. But know this — severing the link is not ending the pact. It is amputation. The forest will feel the pain.",
+      "next": "altar_choice"
+    },
+    "altar_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "destroy_altar",
+          "text": "Stand back. I'm destroying it.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.spirits_want_altar_destroyed",
+              "value": true
+            },
+            {
+              "set_state": "flag.ritual_altar_destroyed",
+              "value": true
+            }
+          ],
+          "next": "altar_broken"
+        },
+        {
+          "id": "reconsider",
+          "text": "If it will hurt the forest... maybe there's a better way.",
+          "conditions": [],
+          "triggers": [],
+          "next": "spirit_choice"
+        }
+      ]
+    },
+    "altar_broken": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You bring the heaviest stone down on the altar. It cracks with a sound like a bone breaking. The roots in the walls writhe and retract. Somewhere far below, something screams — a sound that travels through the earth itself. The spirits dissolve. The chamber goes dark. Cold. Empty. The link is cut.",
+      "next": "end"
+    },
+    "silas_daughter": {
+      "type": "text",
+      "speaker": "silas_spirit",
+      "portrait": "sad",
+      "text": "Elara. My little root-finder. She has her mother's stubbornness and my curiosity. A dangerous combination.",
+      "next": "silas_daughter_2"
+    },
+    "silas_daughter_2": {
+      "type": "text",
+      "speaker": "silas_spirit",
+      "portrait": "neutral",
+      "text": "Tell her... tell her the roots remember her songs. She used to sing to the herb garden when she was small. The forest listened. It still listens for her voice.",
+      "triggers": [
+        {
+          "set_state": "flag.silas_message_for_elara",
+          "value": true
+        }
+      ],
+      "next": "spirit_choice"
+    },
+    "hostile_spirits": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The spirits are not calm. Without the thornleaf smoke to ease their passage, they manifest as raw fury — shadow incarnations of the sacrificed, twisted by decades of rage. They do not speak. They attack.",
+      "triggers": [
+        {
+          "set_state": "flag.spirits_hostile",
+          "value": true
+        }
+      ],
+      "next": "combat_spirits"
+    },
+    "combat_spirits": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "fight",
+          "text": "Draw your weapon and fight the shadow spirits.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.spirits_hostile_defeated",
+              "value": true
+            }
+          ],
+          "next": "combat_aftermath"
+        },
+        {
+          "id": "flee",
+          "text": "Run. Get out of the chamber.",
+          "conditions": [],
+          "triggers": [],
+          "next": "flee_chamber"
+        }
+      ]
+    },
+    "combat_aftermath": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The shadow spirits dissolve into ash when struck. Each one screams as it fades — not in pain, but in frustration. They wanted to be heard, not fought. But without the thornleaf, rage was all they had. The chamber falls silent. You stand alone among the ash.",
+      "next": "end"
+    },
+    "flee_chamber": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You scramble up the stairs as shadow hands grasp at your heels. The door slams shut behind you. From below, a chorus of voices — angry, betrayed, forgotten. They won't follow. They can't. They're trapped. Just as they've always been.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

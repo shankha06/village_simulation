@@ -1,0 +1,74 @@
+{
+  "id": "greta_intelligence_chain",
+  "trigger_condition": "flag.greta_hinted_granary_plot == true AND flag.greta_revealed_skimming == true",
+  "consequences": [
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "set_state": "flag.greta_intel_maren_purchases",
+          "value": true
+        },
+        {
+          "set_state": "npc.greta.memory.shared_maren_intel",
+          "value": true
+        },
+        {
+          "spawn_event": "greta_reveals_maren_purchases"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {
+          "set_state": "flag.greta_intel_legion_movements",
+          "value": true
+        },
+        {
+          "set_state": "player.knowledge.legion_troop_positions",
+          "value": true
+        },
+        {
+          "spawn_event": "greta_reveals_legion_movements"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 7,
+      "effects": [
+        {
+          "set_state": "flag.greta_reveals_tally_marks",
+          "value": true
+        },
+        {
+          "set_state": "flag.cellar_tally_marks_discovered",
+          "value": true
+        },
+        {
+          "spawn_event": "greta_shows_cellar_tallies"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 14,
+      "effects": [
+        {
+          "set_state": "flag.greta_offers_full_ledger",
+          "value": true
+        },
+        {
+          "set_state": "player.has_item.greta_intelligence_ledger",
+          "value": true
+        },
+        {
+          "spawn_event": "greta_full_ledger_handover"
+        }
+      ]
+    }
+  ]
+}

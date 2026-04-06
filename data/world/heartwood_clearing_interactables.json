@@ -1,0 +1,53 @@
+{
+  "interactables": [
+    {
+      "id": "heartwood_tree",
+      "type": "examine",
+      "name": "The Heartwood",
+      "position": [240, 240],
+      "text": "It's not a tree. It's a nerve ending. A synapse. The forest's mind, concentrated into wood and sap. The trunk is wider than a house, its bark etched with patterns that look like faces \u2014 hundreds of them, mouths open in silent speech. The air thrums with presence.",
+      "state_condition": "flag.has_druid_talisman == true",
+      "state_alt_text": "The talisman blazes with light. The faces in the bark turn toward you. The Heartwood speaks \u2014 not in words, but in feelings. Centuries of memory wash over you: every sacrifice accepted, every harvest granted, every covenant honored and broken. It knows you. It has been waiting.",
+      "sets_flag": "flag.touched_heartwood"
+    },
+    {
+      "id": "root_spiral",
+      "type": "examine",
+      "name": "Root Spiral",
+      "position": [192, 208],
+      "text": "The roots form a pattern. Not random growth \u2014 a deliberate spiral, like a galaxy seen from above. A language written in growth, in the patient grammar of centuries.",
+      "state_condition": "flag.has_druid_talisman == true",
+      "state_alt_text": "Your talisman translates the spiral: 'We remember.' Each ring of the spiral is a generation. Each branch is a life given. The outermost ring \u2014 the newest \u2014 has a gap. A missing branch. The next sacrifice is overdue.",
+      "sets_flag": "flag.read_root_spiral"
+    },
+    {
+      "id": "moonpetal_grove",
+      "type": "pickup",
+      "name": "Moonpetal Grove",
+      "position": [160, 160],
+      "text": "A cluster of luminous white flowers growing in the Heartwood's shadow. They pulse with the same rhythm as the great tree \u2014 alive with borrowed light. Old Maren spoke of these.",
+      "gives_item": "moonpetal_flower",
+      "one_shot": true
+    },
+    {
+      "id": "memory_pool",
+      "type": "examine",
+      "name": "Memory Pool",
+      "position": [208, 272],
+      "text": "The water shows... faces. Not reflections \u2014 faces from within. Silas. Wren. Eben. All the sacrificed, dreaming in the deep. Their eyes are open but unseeing, their mouths moving in unison. They are not dead. They are not alive. They are... remembered.",
+      "state_condition": "flag.found_ghost_letters == true",
+      "state_alt_text": "You recognize them now from the letters. Each face matches a farewell. They look peaceful, in a terrible way. The forest didn't consume them \u2014 it preserved them. Every soul given is a soul kept.",
+      "sets_flag": "flag.seen_memory_pool"
+    },
+    {
+      "id": "blood_root",
+      "type": "examine",
+      "name": "Blood-Root",
+      "position": [240, 296],
+      "text": "The original root where Aldric Ashworth cut his palm three hundred years ago. Still red after all this time \u2014 not rust, not paint, but blood that never dried. The covenant made flesh. Made wood. Made eternal.",
+      "state_condition": "flag.read_original_pact == true",
+      "state_alt_text": "Aldric's blood still lives in this root. You can feel his guilt, his desperation, his terrible pragmatism. He wasn't evil. He was hungry. His people were dying. And the forest offered a deal.",
+      "sets_flag": "flag.examined_blood_root"
+    }
+  ]
+}

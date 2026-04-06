@@ -1,0 +1,385 @@
+{
+  "id": "elara_intro",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "Another stranger on the road. You've picked a poor time to visit Ashvale.",
+      "triggers": [
+        {
+          "set_state": "npc.elara.met",
+          "value": true
+        }
+      ],
+      "next": "choice_opening"
+    },
+    "choice_opening": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "ask_whats_wrong",
+          "text": "What's happening here? The fields look... dead.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.memory.player_asked_about_village",
+              "value": true
+            }
+          ],
+          "next": "village_explanation"
+        },
+        {
+          "id": "show_heirloom_elara",
+          "text": "[Show Silver Compass] Silas Maren. Does that name mean anything to you?",
+          "conditions": [
+            {
+              "check": "player.has_item.marens_heirloom",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 40
+            },
+            {
+              "set_state": "flag.elara_trust_bond",
+              "value": true
+            }
+          ],
+          "next": "elara_recognition"
+        },
+        {
+          "id": "offer_help",
+          "text": "[Offer gold] You look like you haven't eaten properly in days.",
+          "conditions": [
+            {
+              "check": "player.gold",
+              "op": ">=",
+              "value": 50
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 30
+            },
+            {
+              "set_state": "player.gold",
+              "delta": -50
+            },
+            {
+              "set_state": "npc.elara.memory.player_gave_gold",
+              "value": true
+            }
+          ],
+          "next": "grateful_response"
+        },
+        {
+          "id": "dismiss",
+          "text": "Not my concern. I'm just passing through.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": -15
+            },
+            {
+              "set_state": "npc.elara.memory.player_was_dismissive",
+              "value": true
+            }
+          ],
+          "next": "cold_response"
+        },
+        {
+          "id": "confess_silo",
+          "text": "[Only if silo burned] The grain stores... I had a hand in that.",
+          "conditions": [
+            {
+              "check": "flag.silo_destroyed",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.elara.memory.knows_player_destroyed_silo",
+              "value": true
+            },
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": -60
+            }
+          ],
+          "next": "horrified_response"
+        }
+      ]
+    },
+    "elara_recognition": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "fearful",
+      "text": "Silas... that was my father's name. I haven't seen this compass since I was a child, before the night they took him to the manor. How did you\u2014 No, it doesn't matter. If you have this, then the forest sent you. Or the ghosts did.",
+      "next": "elara_recognition_2"
+    },
+    "elara_recognition_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "My father died for this soil, thirty years ago. He was the sacrifice that bought Ashvale its last 'peace.' Now the debt is due again, and the Lord just... ignores us. I won't let it happen twice. I'll find a way to stop this poison, or I'll burn the manor down myself.",
+      "triggers": [
+        {
+          "set_state": "flag.elara_revealed_father",
+          "value": true
+        }
+      ],
+      "next": "village_explanation_2"
+    },
+    "village_explanation": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "The crops started dying three weeks ago. Brother Maren says it's divine punishment for our sins. Lord Ashworth says nothing at all \u2014 he's locked himself in that manor of his.",
+      "next": "village_explanation_2"
+    },
+    "village_explanation_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "I'm an herbalist. I've been studying the dead soil. It's not blight. It's not drought. Something is wrong with the water.",
+      "triggers": [
+        {
+          "set_state": "flag.elara_mentioned_water",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.memory.told_player_about_water",
+          "value": true
+        }
+      ],
+      "next": "choice_investigate"
+    },
+    "choice_investigate": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "investigate_water",
+          "text": "The water? You think it's being poisoned deliberately?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_suspects_poison",
+              "value": true
+            },
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 15
+            }
+          ],
+          "next": "poison_suspicion"
+        },
+        {
+          "id": "ask_about_maren",
+          "text": "Tell me about this Brother Maren. What does the Church want?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.memory.player_asked_about_maren",
+              "value": true
+            }
+          ],
+          "next": "about_maren"
+        },
+        {
+          "id": "ask_about_lord",
+          "text": "Why has the lord shut himself away?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.memory.player_asked_about_lord",
+              "value": true
+            }
+          ],
+          "next": "about_lord"
+        }
+      ]
+    },
+    "poison_suspicion": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "fearful",
+      "text": "Keep your voice down. I... I found traces of nightcap root in the well water. That doesn't grow naturally here. Someone brought it in.",
+      "triggers": [
+        {
+          "set_state": "flag.evidence_nightcap_root",
+          "value": true
+        }
+      ],
+      "next": "poison_suspicion_2"
+    },
+    "poison_suspicion_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "I need someone to check the upstream water source in Thornwood. I can't go alone \u2014 the forest has been... hostile lately. Will you help me?",
+      "next": "choice_help_elara"
+    },
+    "choice_help_elara": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept_investigation",
+          "text": "I'll investigate with you. When do we go?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 25
+            },
+            {
+              "set_state": "flag.agreed_to_help_elara",
+              "value": true
+            },
+            {
+              "start_quest": "water_investigation"
+            }
+          ],
+          "next": "grateful_accept"
+        },
+        {
+          "id": "demand_payment",
+          "text": "I don't work for free. What's in it for me?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": -10
+            },
+            {
+              "set_state": "npc.elara.memory.player_demanded_payment",
+              "value": true
+            }
+          ],
+          "next": "payment_discussion"
+        },
+        {
+          "id": "refuse",
+          "text": "Sounds dangerous, and not my problem.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": -20
+            }
+          ],
+          "next": "disappointed_response"
+        }
+      ]
+    },
+    "grateful_accept": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "happy",
+      "text": "Thank you. Meet me at the eastern edge of the village at dawn. And... be careful who you talk to about this. Not everyone wants the truth found.",
+      "triggers": [
+        {
+          "set_state": "npc.elara.memory.player_is_ally",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "payment_discussion": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "I... don't have much. But I know herbs that can heal wounds no potion can. And if we find the poisoner, Lord Ashworth will surely reward us. Please.",
+      "next": "choice_help_elara"
+    },
+    "disappointed_response": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "I understand. The world teaches us to look out for ourselves. But people are dying here. If you change your mind, you know where to find me.",
+      "next": "end"
+    },
+    "about_maren": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "Brother Maren arrived two months ago. Convenient timing, don't you think? He preaches that the crop death is the Ashen Light's judgment on our 'wickedness.' People are starting to believe him.",
+      "triggers": [
+        {
+          "set_state": "flag.elara_suspects_maren",
+          "value": true
+        }
+      ],
+      "next": "about_maren_2"
+    },
+    "about_maren_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "Every day more villagers flock to his sermons. And every day, Lord Ashworth's authority weakens. I don't trust that man's piety.",
+      "next": "choice_investigate"
+    },
+    "about_lord": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "No one's seen Lord Ashworth in weeks. The guards say he's 'indisposed.' Greta at the inn says she's heard shouting from the manor at night. Something's eating at him.",
+      "triggers": [
+        {
+          "set_state": "flag.lord_ashworth_reclusive",
+          "value": true
+        }
+      ],
+      "next": "choice_investigate"
+    },
+    "grateful_response": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "happy",
+      "text": "That's... that's very kind. Most travelers don't even look us in the eye these days. I'm Elara. If you need herbs or healing, find me at the edge of the market.",
+      "triggers": [
+        {
+          "set_state": "npc.elara.memory.player_is_generous",
+          "value": true
+        }
+      ],
+      "next": "choice_investigate"
+    },
+    "cold_response": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "Then pass through quickly. This village has enough ghosts already without adding another.",
+      "next": "end"
+    },
+    "horrified_response": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "You... YOU did this? Do you have any idea what you've done? Children will starve. Families will die. Get away from me. Get AWAY!",
+      "triggers": [
+        {
+          "set_state": "npc.elara.memory.hates_player",
+          "value": true
+        },
+        {
+          "modify_reputation": {
+            "city_guard": -30,
+            "ashvale_nobility": -20
+          }
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

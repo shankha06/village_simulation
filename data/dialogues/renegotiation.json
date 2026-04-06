@@ -1,0 +1,435 @@
+{
+  "id": "renegotiation",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You stand before the Heartwood with the knowledge you've gathered \u2014 from Old Maren, from the dead fields, from the forest itself. The talisman hums steadily against your chest. The roots are still, waiting.",
+      "next": "start_2"
+    },
+    "start_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "awakening",
+      "text": "You return. The talisman carries new weight \u2014 you have walked the dead earth and listened to its silence. You have spoken with the old root-speaker. You carry understanding now, or the shape of it.",
+      "next": "start_3"
+    },
+    "start_3": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "awakening",
+      "text": "Speak. What do you offer in place of blood?",
+      "next": "proposal_choice"
+    },
+    "proposal_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "offer_land",
+          "text": "The dead fields south of Ashvale \u2014 forty acres of poisoned earth that no one can farm. I'm offering them to you. Room to grow. Room to spread your roots without competing with the village.",
+          "conditions": [
+            {
+              "check": "flag.discovered_forest_desire",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.offered_land_to_heartwood",
+              "value": true
+            }
+          ],
+          "next": "land_response"
+        },
+        {
+          "id": "offer_gold",
+          "text": "The village will pay tribute \u2014 gold, goods, resources \u2014 to fund the forest's maintenance.",
+          "conditions": [],
+          "triggers": [],
+          "next": "wrong_offer_gold"
+        },
+        {
+          "id": "offer_worship",
+          "text": "The druids will return. We'll restore the old ways \u2014 tending the forest, speaking the root-tongue, honoring the trees.",
+          "conditions": [],
+          "triggers": [],
+          "next": "wrong_offer_worship"
+        },
+        {
+          "id": "offer_partnership",
+          "text": "A true partnership. The forest protects the village from external threats. The village protects the forest from loggers and fire. Mutual survival.",
+          "conditions": [],
+          "triggers": [],
+          "next": "partial_offer_partnership"
+        }
+      ]
+    },
+    "land_response": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The roots shudder. The bioluminescence surges \u2014 green, gold, blinding white. The entire clearing seems to inhale.",
+      "next": "land_response_2"
+    },
+    "land_response_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "joyful",
+      "text": "Room. Room to grow. You understand. In three hundred years, no human has understood what we truly hunger for. Not blood \u2014 blood was the fuel for roots that had nowhere to reach. We are pressed against stone and settlement on every side. We cannot breathe.",
+      "next": "land_response_3"
+    },
+    "land_response_3": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "joyful",
+      "text": "Forty acres. Poisoned earth. We will drink the poison and make it green. New roots, new trees, new canopy. We will grow south while Ashvale grows north. The fields you cannot farm will become forest you never need to fear.",
+      "next": "land_response_4"
+    },
+    "land_response_4": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "calm",
+      "text": "But this is not yours alone to give. The fields belong to the village \u2014 to every faction that claims a stake. The lord, the guild, the guard, the church, the farmers. All must consent. Not because we demand it, but because a pact made by one and broken by many taught us this: true agreements require every root.",
+      "next": "consent_discussion"
+    },
+    "consent_discussion": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "calm",
+      "text": "Bring us their voices. Bring us the words of every faction: 'We give this earth freely.' When all have spoken, the new pact will be written \u2014 not in blood, but in root and soil and the slow patient language of growth.",
+      "next": "consent_choice"
+    },
+    "consent_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "have_consent",
+          "text": "I've already spoken with them. Every faction has agreed. The fields are yours.",
+          "conditions": [
+            {
+              "check": "flag.all_factions_support_land_deal",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.consent_presented",
+              "value": true
+            }
+          ],
+          "next": "consent_given"
+        },
+        {
+          "id": "need_time",
+          "text": "I'll go back and convince them. Give me time.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.needs_faction_consent_for_land",
+              "value": true
+            }
+          ],
+          "next": "time_to_convince"
+        },
+        {
+          "id": "lie_about_consent",
+          "text": "[LIE] They've all agreed. Every one of them.",
+          "conditions": [
+            {
+              "check": "flag.all_factions_support_land_deal",
+              "op": "!=",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.lied_to_heartwood",
+              "value": true
+            }
+          ],
+          "next": "caught_lying"
+        }
+      ]
+    },
+    "consent_given": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "joyful",
+      "text": "The roots reach out \u2014 gently, tentatively \u2014 and touch the earth at the clearing's edge. Testing. Tasting. Then they begin to move. Not toward Ashvale. South. Toward the dead fields.",
+      "next": "consent_given_2"
+    },
+    "consent_given_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "joyful",
+      "text": "We taste their consent in the soil. The lord's reluctant agreement. The guild's calculated acceptance. The guard's wary trust. The druid's joy. Yes. Yes, this is real. This is freely given.",
+      "next": "new_pact_formed"
+    },
+    "new_pact_formed": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The Heartwood begins to reshape. The gnarled root mass unfolds, stretching, reaching south like a river changing course. The bioluminescence flows along the new roots \u2014 warm gold, spreading outward.",
+      "next": "new_pact_formed_2"
+    },
+    "new_pact_formed_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "calm",
+      "text": "The old pact is dissolved. The blood-debt is forgiven. In its place: earth for root, root for earth. No more sacrifice. No more hunger. We will grow together or not at all.",
+      "next": "new_pact_formed_3"
+    },
+    "new_pact_formed_3": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "calm",
+      "text": "The blood-root that poisoned your wells will wither within the week. Your crops will grow again within the season. The soil will heal \u2014 we will help it heal. Consider it... a gift. The first of many, if this partnership holds.",
+      "next": "new_pact_formed_4"
+    },
+    "new_pact_formed_4": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "calm",
+      "text": "One condition: send someone to speak with us each season. The old root-speaker, or another who carries the talisman. A voice between forest and field. So that silence never again breeds misunderstanding.",
+      "triggers": [
+        {
+          "set_state": "flag.renegotiation_completed",
+          "value": true
+        },
+        {
+          "set_state": "flag.new_pact_formed",
+          "value": true
+        },
+        {
+          "set_state": "flag.best_ending",
+          "value": true
+        },
+        {
+          "spawn_event": "ending_renegotiation"
+        }
+      ],
+      "next": "final_scene"
+    },
+    "final_scene": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Old Maren kneels and places her palm on the soil. She smiles \u2014 a smile that transforms her weathered face into something radiant.",
+      "next": "final_scene_2"
+    },
+    "final_scene_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "joyful",
+      "text": "The roots are singing. Not the old song \u2014 something new. Something I've never heard before. She turns to you, tears on her blind face. You did it. Three hundred years of blood and silence, and you ended it with forty acres of dead earth and a little understanding.",
+      "next": "final_scene_3"
+    },
+    "final_scene_3": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "As you leave the clearing, the forest parts before you \u2014 not grudgingly, but openly. The branches form an archway. Sunlight filters through in golden columns. Behind you, the sound of new roots spreading south. In front of you, the village of Ashvale, imperfect and scarred, but alive. Still alive.",
+      "next": "end"
+    },
+    "time_to_convince": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "calm",
+      "text": "Go. Speak to your factions. We will wait \u2014 but not long. The hunger persists until the new roots take hold. If your village cannot agree before the next new moon, the old pact reasserts. Blood or fire. Those will be the only choices left.",
+      "triggers": [
+        {
+          "set_state": "flag.renegotiation_timer_started",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "caught_lying": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "angry",
+      "text": "The roots snap taut. The ground cracks beneath your feet. The bioluminescence turns blood-red.",
+      "next": "caught_lying_2"
+    },
+    "caught_lying_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "angry",
+      "text": "LIAR. We taste the soil where your village stands. We feel every footstep, every whispered argument, every faction that still clings to those dead fields. You bring us a lie wrapped in good intentions. This is EXACTLY what the Ashworths did. Promise and deceive. Promise and deceive.",
+      "next": "caught_lying_3"
+    },
+    "caught_lying_3": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "angry",
+      "text": "The roots recede violently. The clearing darkens.",
+      "next": "caught_lying_4"
+    },
+    "caught_lying_4": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "cold",
+      "text": "The third path is closed. You had our trust. You spent it on a lie. Blood or fire, root-walker. Those are the only languages your kind truly speaks.",
+      "triggers": [
+        {
+          "set_state": "flag.renegotiation_failed",
+          "value": true
+        },
+        {
+          "set_state": "flag.third_path_closed",
+          "value": true
+        },
+        {
+          "set_state": "npc.heartwood.disposition",
+          "delta": -50
+        },
+        {
+          "set_state": "player.moral_vector",
+          "delta": -20
+        }
+      ],
+      "next": "end"
+    },
+    "wrong_offer_gold": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "cold",
+      "text": "The roots are very still.",
+      "next": "wrong_offer_gold_2"
+    },
+    "wrong_offer_gold_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "cold",
+      "text": "Gold. You offer us metal dug from our bones. We cannot eat gold. We cannot grow in gold. You understand nothing. Try again, root-walker. But our patience thins with each wrong answer.",
+      "triggers": [
+        {
+          "set_state": "npc.heartwood.disposition",
+          "delta": -10
+        }
+      ],
+      "next": "proposal_choice"
+    },
+    "wrong_offer_worship": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "cold",
+      "text": "The roots sigh \u2014 a vast exhalation of air through a thousand hollow trunks.",
+      "next": "wrong_offer_worship_2"
+    },
+    "wrong_offer_worship_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "cold",
+      "text": "The druids. Yes, we remember them. They were kind. They understood. But their kindness did not feed our roots. Their understanding did not give us room. We need something tangible, not devotion. Try again.",
+      "triggers": [
+        {
+          "set_state": "npc.heartwood.disposition",
+          "delta": -10
+        }
+      ],
+      "next": "proposal_choice"
+    },
+    "partial_offer_partnership": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "awakening",
+      "text": "The roots stir with something like interest.",
+      "next": "partial_offer_partnership_2"
+    },
+    "partial_offer_partnership_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "awakening",
+      "text": "Partnership. Protection. This is closer. You see the shape of what we need but not the substance. We do not need protection \u2014 we have endured ice ages and wildfires and a thousand human wars. What we need is simpler and harder to give. Think, root-walker. What does any living thing need most to grow?",
+      "triggers": [
+        {
+          "set_state": "flag.heartwood_gave_hint",
+          "value": true
+        }
+      ],
+      "next": "hint_choice"
+    },
+    "hint_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "realize_space",
+          "text": "Space. You need space. Room to spread your roots. The dead fields \u2014 that's what you want.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.discovered_forest_desire",
+              "value": true
+            },
+            {
+              "set_state": "flag.offered_land_to_heartwood",
+              "value": true
+            }
+          ],
+          "next": "land_response"
+        },
+        {
+          "id": "guess_water",
+          "text": "Water? The wells drain the water table \u2014 you need more water.",
+          "conditions": [],
+          "triggers": [],
+          "next": "wrong_guess_water"
+        },
+        {
+          "id": "guess_time",
+          "text": "Time. You need time to recover.",
+          "conditions": [],
+          "triggers": [],
+          "next": "wrong_guess_time"
+        }
+      ]
+    },
+    "wrong_guess_water": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "cold",
+      "text": "We make our own water. Rain answers to no one, least of all humans. This is not what we need. You are further from the truth now, not closer.",
+      "triggers": [
+        {
+          "set_state": "npc.heartwood.disposition",
+          "delta": -10
+        }
+      ],
+      "next": "final_warning"
+    },
+    "wrong_guess_time": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "cold",
+      "text": "We have had three hundred years of time. Time changes nothing when the walls remain the same. A tree in a box does not need more time \u2014 it needs the box removed.",
+      "triggers": [
+        {
+          "set_state": "npc.heartwood.disposition",
+          "delta": -10
+        }
+      ],
+      "next": "final_warning"
+    },
+    "final_warning": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "cold",
+      "text": "We grow tired of guessing games. You came to renegotiate but you do not understand what you are negotiating for. Leave. Walk the dead fields south of your village. Put your hand in the soil and feel how empty it is. Feel how the roots strain against stone walls that your ancestors built to pen us in. Then return. Or don't.",
+      "triggers": [
+        {
+          "set_state": "flag.investigate_dead_fields",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

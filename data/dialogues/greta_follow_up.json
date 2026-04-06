@@ -1,0 +1,130 @@
+{
+  "id": "greta_follow_up",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "Back again? Good \u2014 I've been hearing things you'll want to know. Sit down, have a drink.",
+      "next": "choice_topics"
+    },
+    "choice_topics": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "new_gossip",
+          "text": "What have you heard?",
+          "conditions": [],
+          "triggers": [],
+          "next": "voss_legion_gossip"
+        },
+        {
+          "id": "maren_supplies",
+          "text": "Anything strange about Brother Maren lately?",
+          "conditions": [
+            {
+              "check": "npc.brother_maren.met",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "maren_strange_purchases"
+        },
+        {
+          "id": "buy_room",
+          "text": "I need a room for the night.",
+          "conditions": [
+            {
+              "check": "player.gold",
+              "op": ">=",
+              "value": 15
+            },
+            {
+              "check": "flag.has_inn_room",
+              "op": "!=",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "player.gold",
+              "delta": -15
+            },
+            {
+              "set_state": "flag.has_inn_room",
+              "value": true
+            }
+          ],
+          "next": "room_done"
+        },
+        {
+          "id": "leave",
+          "text": "Just checking in. I'll be going.",
+          "conditions": [],
+          "triggers": [],
+          "next": "end"
+        }
+      ]
+    },
+    "voss_legion_gossip": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "That mercenary captain \u2014 Voss \u2014 she was in here last night. Had a few drinks and started talking to her lieutenant. I wasn't eavesdropping, mind you. I was... nearby.",
+      "next": "voss_legion_2"
+    },
+    "voss_legion_2": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "fearful",
+      "text": "She mentioned the Ironmarch Legion by name. Said they've got scouts on the eastern road already. If Ashvale's lord falls, they'll move in within a month. Voss is trying to decide if she should defend this place or get out before the storm.",
+      "triggers": [
+        {
+          "set_state": "flag.greta_heard_voss_about_legion",
+          "value": true
+        },
+        {
+          "set_state": "flag.ironmarch_threat_confirmed",
+          "value": true
+        }
+      ],
+      "next": "choice_topics"
+    },
+    "maren_strange_purchases": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "Now THAT is interesting you ask. He's been buying candles \u2014 dozens of them. Black ones, not the church white. And last week, he came in asking if I had any ash from burned oak.",
+      "next": "maren_strange_2"
+    },
+    "maren_strange_2": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "But the strangest thing? I smelled something on his robes. Not incense. Something chemical. Sharp. Like the stuff the old apothecary used to keep in locked jars.",
+      "triggers": [
+        {
+          "set_state": "flag.greta_smelled_chemicals_on_maren",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_maren_uses_chemicals",
+          "value": true
+        }
+      ],
+      "next": "choice_topics"
+    },
+    "room_done": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "Same room as before. The sheets are... mostly fresh. Lock the door. And if you hear anything from the cellar, it's just rats. Probably.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

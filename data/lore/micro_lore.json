@@ -1,0 +1,286 @@
+{
+  "entries": [
+    {
+      "id": "micro_ashvale_bread",
+      "title": "Ashvale Bread",
+      "category": "daily_life",
+      "text": "Ashvale bread was once famous across three provinces. Bakers used water from the Thornwood springs -- the pact made it sweet. Since the crops died, the bread tastes like chalk and despair. Greta still serves it. Nobody complains.",
+      "discovered_by_default": false,
+      "conditions": ["npc.greta.met == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_well_taste",
+      "title": "The Well Water",
+      "category": "daily_life",
+      "text": "The well water has a metallic aftertaste now. Most people don't notice -- they think it's iron from the stone. Elara noticed. She says it tastes like nightshade smells: bitter almonds and broken promises.",
+      "discovered_by_default": false,
+      "conditions": ["flag.evidence_nightcap_root == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_harvest_festival",
+      "title": "The Rotting Harvest",
+      "category": "daily_life",
+      "text": "The Rotting Harvest was named during the last good year -- a joke about abundance so vast that food spoiled before it could be eaten. Nobody laughs at the name anymore.",
+      "discovered_by_default": false,
+      "conditions": ["npc.greta.met == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_thornwood_berries",
+      "title": "Root-Tears",
+      "category": "daily_life",
+      "text": "Deep in Thornwood, there are berries that glow faintly blue at dusk. The druids called them 'root-tears.' They taste like honey mixed with dirt. Eating one lets you hear the trees rustle in patterns that sound almost like language.",
+      "discovered_by_default": false,
+      "conditions": ["flag.has_druid_talisman == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_manor_wine",
+      "title": "Thornwood Red",
+      "category": "daily_life",
+      "text": "Lord Ashworth drinks Thornwood Red -- a wine made from grapes that only grow at the forest's edge. Each vintage is subtly different. The 'Year of Wren' vintage (the year after Wren's sacrifice) is said to taste of flowers and forgiveness. Ashworth drinks nothing else. He has three bottles left.",
+      "discovered_by_default": false,
+      "conditions": ["flag.entered_ashworth_manor == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_guard_rations",
+      "title": "Harlan's Pickled Onions",
+      "category": "daily_life",
+      "text": "The gate guards eat dried fish imported from the eastern coast. It tastes like salt and boredom. Harlan keeps a jar of pickled onions behind his post -- a luxury he's maintained for thirty-one years. He says they're the only thing that makes the job bearable.",
+      "discovered_by_default": false,
+      "conditions": ["npc.gate_guard.met == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_chapel_bells",
+      "title": "The Silent Bell",
+      "category": "sounds_smells",
+      "text": "The chapel bell hasn't rung since Brother Maren arrived. He says the sound 'disturbs his prayers.' Old Maren says the real reason is that the bell was forged from Thornwood iron -- it resonates at a frequency the forest can hear. Maren doesn't want the forest to know he's here.",
+      "discovered_by_default": false,
+      "conditions": ["npc.brother_maren.met == true", "flag.old_maren_suspects_maren_deeply == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_night_sounds",
+      "title": "Ashvale After Dark",
+      "category": "sounds_smells",
+      "text": "At night, Ashvale sounds like breathing. The wind through the dying wheat fields creates a rhythmic whisper-hush that Old Maren says is the forest counting the days until the pact deadline. Regular people say it's just wind. Regular people sleep badly.",
+      "discovered_by_default": false,
+      "conditions": ["time.day >= 3"],
+      "fragments": []
+    },
+    {
+      "id": "micro_forge_cold",
+      "title": "The Cold Forge",
+      "category": "sounds_smells",
+      "text": "The village forge has been cold for two months. The blacksmith left when the crops failed -- no customers, no food, no point. His anvil sits in the rain, slowly rusting. Someone carved 'COME BACK' into it with a chisel.",
+      "discovered_by_default": false,
+      "conditions": ["flag.dead_birds_found == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_root_smell",
+      "title": "The Smell of Thinking",
+      "category": "sounds_smells",
+      "text": "Near the eastern edge of Ashvale, the air smells of turned earth and something else -- something green and sharp, like crushed leaves but deeper. It's the smell of the Thornwood's root network, expanding. Getting closer. Old Maren says it smells like 'the forest thinking about you.'",
+      "discovered_by_default": false,
+      "conditions": ["flag.forest_encroaching == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_silas_workshop",
+      "title": "The Carpenter's Ghost",
+      "category": "objects",
+      "text": "Silas Maren's carpentry workshop still stands at the village edge. Nobody's used it in thirty years. His tools are exactly where he left them -- a plane mid-stroke on a half-finished chair. Sawdust on the floor. A child's drawing tacked to the wall: two stick figures, one tall, one small, holding hands under a tree.",
+      "discovered_by_default": false,
+      "conditions": ["flag.old_maren_confirmed_silas_mother == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The chair was for Elara. She was growing too big for her highchair. He never finished it. She still sits in the highchair-sized chair at Greta's inn -- she doesn't know why she chose it.",
+          "conditions": ["flag.elara_trust_bond == true"]
+        }
+      ]
+    },
+    {
+      "id": "micro_compass_inscription",
+      "title": "The Compass's Secret",
+      "category": "objects",
+      "text": "The inscription on Silas's compass isn't just his name. On the inside of the case, barely visible, are two more lines: 'For E -- find the sunlight. For M -- find the warmth.' E for Elara. M for Maren. His last message to children who were too young to read it.",
+      "discovered_by_default": false,
+      "conditions": ["player.has_item.marens_heirloom == true", "flag.maren_family_truth_revealed == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_wren_flower",
+      "title": "Wren's Heartbeat",
+      "category": "objects",
+      "text": "The white flower that grows where Wren entered the roots is exactly 210 years old. It never wilts, never spreads, never seeds. But if you press your ear to its petals, you can hear something. Not a voice. A rhythm. A heartbeat that matches the pulse of the roots. Wren is still in there. Still alive. Still healing.",
+      "discovered_by_default": false,
+      "conditions": ["flag.ghost_letter_4_read == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_aldric_crown",
+      "title": "The Living Crown",
+      "category": "objects",
+      "text": "The Ashworth family crown is locked in a glass case in the manor. It's a circle of twisted iron and living wood -- the wood still green after three centuries. The crown was not forged. It was GROWN. Aldric asked the Heartwood to make it as a symbol of their partnership. The Heartwood obliged. The wood pulses faintly if you watch long enough.",
+      "discovered_by_default": false,
+      "conditions": ["flag.entered_ashworth_manor == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Lord Ashworth has tried to put it on twice in the past month. Both times, the wood thorns pierced his temples and drew blood. The pact is punishing him for refusing the sacrifice.",
+          "conditions": ["flag.ashworth_bound_to_land == true"]
+        }
+      ]
+    },
+    {
+      "id": "micro_fenrick_knife",
+      "title": "The Bladeless Handle",
+      "category": "objects",
+      "text": "Fenrick carries a knife with no blade. The handle is worn smooth from years of nervous fidgeting. He says it belonged to his great-great-grandmother -- the widow sacrificed in Year 120. The lord's men took the blade when they came for her. Fenrick keeps the empty handle as a reminder: 'They take what's useful and leave you holding nothing.'",
+      "discovered_by_default": false,
+      "conditions": ["npc.fenrick.met == true", "flag.guild_real_motive_known == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_inn_cellar",
+      "title": "Four Thousand Marks",
+      "category": "places",
+      "text": "Greta's cellar smells of damp stone and old ale. The walls are covered in tally marks -- not Greta's. Her grandmother started them. Each mark represents a conversation overheard that 'might be useful someday.' There are over four thousand marks. The most recent are near the door, scratched fresh: Greta is still counting.",
+      "discovered_by_default": false,
+      "conditions": ["flag.greta_hinted_granary_plot == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_chapel_cellar",
+      "title": "Behind the False Panel",
+      "category": "places",
+      "text": "Brother Maren's chapel cellar is walled with books he brought from the Church archives. Most are theology. But one shelf, hidden behind a false panel, contains the Cinderfall Academy's original research notes -- handwritten, pre-Church, describing communion with forest consciousnesses in clinical detail. He reads them every night. He highlights passages in red ink.",
+      "discovered_by_default": false,
+      "conditions": ["flag.witnessed_maren_ritual == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_thornwood_hollow",
+      "title": "The Listener",
+      "category": "places",
+      "text": "There's a hollow tree in Thornwood that locals call 'The Listener.' If you whisper a secret into the hollow, the forest remembers it. Druids used it as a confession booth. Old Maren still visits it. She whispers the same thing every time, though she's never told anyone what. Elara once followed her and heard three words before retreating: 'I'm sorry, Silas.'",
+      "discovered_by_default": false,
+      "conditions": ["flag.heard_elara_lullaby == true", "flag.old_maren_confirmed_silas_mother == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_ironmarch_camp",
+      "title": "Draven's River Stone",
+      "category": "places",
+      "text": "The Ironmarch soldiers' tents are identical -- gray canvas, iron stakes, no decoration. Except Draven's. His tent has one personal item: a smooth river stone, small enough to fit in a palm. He holds it when he can't sleep. It's from the mountain that collapsed and killed his parents. He says it's the only thing he has left that doesn't remind him of war. He's wrong. It's the only thing that does.",
+      "discovered_by_default": false,
+      "conditions": ["flag.ironmarch_scout_spotted == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_ritual_chamber_marks",
+      "title": "The Unfinished Line",
+      "category": "places",
+      "text": "The ritual chamber walls are covered in scratch marks. Not decoration. Counting. Each sacrifice scratched a line into the stone. Nine lines over three centuries. But there's a tenth -- faint, unfinished, as if someone started to scratch and then stopped. Lord Ashworth's mark. He came down here with his fingernail ready. He stood at the wall for an hour. Then he climbed back up the stairs and locked the door. The unfinished mark is still there. A line that chose not to be.",
+      "discovered_by_default": false,
+      "conditions": ["flag.entered_crypt == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_greta_fenrick",
+      "title": "The Envelope Under the Barrel",
+      "category": "relationships",
+      "text": "Greta and Fenrick have never spoken about what they have in common. But twice a month, Greta leaves a sealed envelope under the third barrel in her cellar. Fenrick collects it before dawn. Inside: names, addresses, and safe passage routes for children. Neither has acknowledged this arrangement. If asked, both would deny it. The children are alive because two people chose silence over credit.",
+      "discovered_by_default": false,
+      "conditions": ["flag.guild_smuggles_children_to_safety == true", "flag.greta_revealed_skimming == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_voss_elara",
+      "title": "A Brief Exchange by the Well",
+      "category": "relationships",
+      "text": "Commander Voss and Elara have spoken exactly once -- a brief exchange by the well. Voss asked about field medicine. Elara taught her a poultice technique. Voss said 'Thank you' with a voice that suggested she hadn't said those words in years. Elara said 'You're welcome' with a voice that suggested she heard something familiar in Voss's grief.",
+      "discovered_by_default": false,
+      "conditions": ["npc.commander_voss.met == true", "npc.elara.met == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_harlan_letter",
+      "title": "The Unsent Letter",
+      "category": "relationships",
+      "text": "Harlan has an unsent letter in his jacket pocket. He's carried it for thirty years. It's addressed to 'Silas Maren, Wherever You Are.' He rewrites it every spring -- the paper gets fragile. The words never change: 'I should have stood between you and the trees. I should have been your friend when it mattered. I wasn't. I'm sorry. I'm still here. The gate is still open. Come home.'",
+      "discovered_by_default": false,
+      "conditions": ["flag.harlan_honest_with_player == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_ashworth_mirror",
+      "title": "The Covered Mirrors",
+      "category": "relationships",
+      "text": "Every mirror in Ashworth Manor is covered or turned to the wall. The lord stopped looking at himself when the crops began dying -- his face aged with the fields. In the two months since the pact default, he has gone from forty-two to a man who looks sixty. He shaves by touch. He dresses by memory. He hasn't seen his own eyes since the night he decided not to sacrifice anyone.",
+      "discovered_by_default": false,
+      "conditions": ["flag.saw_broken_mirror == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_old_maren_hands",
+      "title": "Hands Like Roots",
+      "category": "relationships",
+      "text": "Old Maren's hands are permanently stained brown -- not dirt, but tannin from decades of burying them in soil to commune with the roots. The stain goes deep, into the whorls of her fingerprints, into the lines of her palms. A palm reader once told her she had 'the lifeline of a tree.' She laughed for the first time in years.",
+      "discovered_by_default": false,
+      "conditions": ["flag.visited_old_maren == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_silverpine_letter",
+      "title": "The Mountain's Nursery",
+      "category": "world_beyond",
+      "text": "A letter from Silverpine, intercepted by the Guild's network, reads: 'The mountain moved the nursery closer to the surface today. It knows the children are cold. It reshapes itself around their needs. Yesterday it grew a window where there was only stone. Sunlight now reaches the cribs. The Church calls this corruption. We call it love.'",
+      "discovered_by_default": false,
+      "conditions": ["flag.guild_real_motive_known == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_wending_fisherman",
+      "title": "The River's Words",
+      "category": "world_beyond",
+      "text": "A fisherman downstream of Rivendale reports that the river has been doing something strange for the past month. Every night, the current spells a word against the riverbank in eddy patterns. The word changes nightly but follows a pattern. So far: 'COME.' 'BACK.' 'PLEASE.' 'I.' 'REMEMBER.' 'YOU.' The fisherman doesn't know who it's talking to. Voss does.",
+      "discovered_by_default": false,
+      "conditions": ["flag.voss_shared_past == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_ash_wastes_survivor",
+      "title": "The Whispering Sand",
+      "category": "world_beyond",
+      "text": "A merchant who crossed the Ash Wastes says the sand whispers at night. Not wind -- whispers. Words in a language no one speaks. The seven forests that General Kael burned are dead, but their root networks are still intact beneath the sand. They can't grow. They can't communicate. But they can remember. And what they remember is fire.",
+      "discovered_by_default": false,
+      "conditions": ["flag.ironmarch_threat_confirmed == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_church_archive",
+      "title": "The Vault of Regret",
+      "category": "world_beyond",
+      "text": "Deep in the Cinderfall Archives, there is a room called the 'Vault of Regret.' It contains the research the Church suppressed -- detailed studies of consciousness communion that prove the forests are NOT parasites. Every new Church leader reads the Vault as part of their initiation. Most burn their copy. Some keep it. Brother Maren kept his. It's in his chapel cellar, behind the false panel, annotated in his handwriting: 'They were right. We were wrong. How do I fix this?'",
+      "discovered_by_default": false,
+      "conditions": ["flag.maren_full_alliance == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_druid_conclave",
+      "title": "Thirteen Druids, Seventeen Pacts",
+      "category": "world_beyond",
+      "text": "The druid conclave's next meeting is in seven months. The meeting point changes each decade -- this time it's in the cave system beneath the Breathing Marshes. Fourteen druids remain alive across the continent. If Old Maren dies before the meeting, the number drops to thirteen. Thirteen druids, seventeen pacts, and a world that's running out of bridges.",
+      "discovered_by_default": false,
+      "conditions": ["flag.old_maren_is_druid == true"],
+      "fragments": []
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "interactables": [
+    {
+      "id": "water_source",
+      "type": "examine",
+      "name": "Stream Source",
+      "position": [
+        552,
+        48
+      ],
+      "text": "The stream runs clear here, but you notice a disturbed patch of earth upstream. Someone has been here recently.",
+      "state_condition": "flag.evidence_nightcap_root == true",
+      "state_alt_text": "The soil reeks of nightcap root. Someone buried a cache of it here to slowly poison the stream. Church symbols are scratched into a nearby stone \u2014 a ward? Or a signature?",
+      "sets_flag": "flag.found_water_source"
+    },
+    {
+      "id": "wolf_tracks",
+      "type": "examine",
+      "name": "Wolf Tracks",
+      "position": [
+        96,
+        112
+      ],
+      "text": "Large paw prints in the mud. Fresh. The pack is nearby.",
+      "state_condition": "time.hour >= 20",
+      "state_alt_text": "The tracks glisten in the moonlight. You hear low growling in the darkness. The wolves are hunting.",
+      "sets_flag": "flag.found_wolf_tracks"
+    },
+    {
+      "id": "carved_rune_tree",
+      "type": "examine",
+      "name": "Carved Rune Tree",
+      "position": [
+        352,
+        240
+      ],
+      "text": "An ancient oak scarred with deep carvings. The symbols shift and writhe when viewed directly \u2014 druidic script, older than Ashvale itself. The bark weeps sap like dark tears.",
+      "state_condition": "flag.has_druid_talisman == true",
+      "state_alt_text": "The talisman burns hot against your skin. The runes resolve into meaning: 'THE COVENANT BINDS LORD AND LAND. EVERY THIRTY YEARS THE ROOTS DEMAND THEIR DUE. WHAT IS FREELY GIVEN, FREELY GROWS. WHAT IS TAKEN, THE FOREST TAKES BACK TENFOLD.' This is the heart of the curse.",
+      "sets_flag": "flag.read_deep_runes"
+    },
+    {
+      "id": "moonpetal_flower",
+      "type": "pickup",
+      "name": "Moonpetal Flower",
+      "position": [
+        304,
+        176
+      ],
+      "text": "A luminous white flower that only blooms under moonlight. Old Maren mentioned needing these for her remedies.",
+      "state_condition": "time.hour >= 20",
+      "state_alt_text": "The moonpetal glows softly, its petals unfurled in the silver light. You carefully pluck it.",
+      "gives_item": "moonpetal_flower",
+      "one_shot": true,
+      "locked_text": "A cluster of tightly closed buds. They seem to be waiting for something \u2014 perhaps nightfall."
+    },
+    {
+      "id": "hidden_cache",
+      "type": "search",
+      "name": "Disturbed Earth",
+      "position": [
+        544,
+        64
+      ],
+      "text": "Freshly turned soil beneath a fallen log. Someone has been digging here.",
+      "state_condition": "flag.agreed_to_help_elara == true",
+      "state_alt_text": "You dig carefully and find a leather pouch containing dried nightcap root \u2014 enough to poison a village well for months. A wax seal on the pouch bears the Church of the Eternal Flame's sigil.",
+      "gives_item": "nightcap_root_stash",
+      "sets_flag": "flag.found_church_poison_cache",
+      "one_shot": true
+    },
+    {
+      "id": "druid_circle",
+      "type": "examine",
+      "name": "Ancient Druid Circle",
+      "position": [
+        320,
+        400
+      ],
+      "text": "Eight standing stones arranged around a flat altar, worn smooth by centuries of rain and ritual. The grass within the circle is unnaturally green \u2014 verdant even as the rest of the forest withers. Faint grooves in the altar stone could be channels for... liquid.",
+      "state_condition": "flag.read_deep_runes == true",
+      "state_alt_text": "Now you understand. This is where the covenant was sealed \u2014 where Ashworth lords once offered their blood to the forest in exchange for bountiful harvests. The altar channels lead to the roots below. The ritual has not been performed in thirty years. The forest is starving.",
+      "sets_flag": "flag.understood_druid_circle"
+    },
+    {
+      "id": "wolf_den",
+      "type": "examine",
+      "name": "Wolf Den",
+      "position": [
+        80,
+        64
+      ],
+      "text": "A natural cave formed by massive boulders. Bones litter the entrance \u2014 deer, rabbits, and something larger. The wolves have been well-fed, but the bones are old. Their prey is vanishing too.",
+      "sets_flag": "flag.found_wolf_den"
+    },
+    {
+      "id": "forest_mushrooms",
+      "type": "search",
+      "name": "Forest Mushrooms",
+      "position": [
+        336,
+        176
+      ],
+      "text": "A cluster of pale mushrooms growing at the base of a rotting stump. Some look edible. Some definitely don't.",
+      "gives_item": "forest_mushrooms",
+      "one_shot": true
+    },
+    {
+      "id": "old_campsite",
+      "type": "examine",
+      "name": "Abandoned Campsite",
+      "position": [
+        464,
+        224
+      ],
+      "text": "A cold fire pit surrounded by trampled grass. Military-issue rations wrappers. Voss's soldiers have been patrolling deeper into the forest than the village knows.",
+      "sets_flag": "flag.found_deep_patrol_camp"
+    }
+  ]
+}

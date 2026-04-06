@@ -1,0 +1,182 @@
+{
+  "id": "maren_confrontation",
+  "start_node": "start",
+  "trigger_conditions": [
+    {"check": "flag.maren_family_truth_revealed", "op": "==", "value": true}
+  ],
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "They stand in the chapel doorway. Old Maren, small and rigid as a dead branch. Her grandson, tall in his priest's robes, hands clasped so tightly the knuckles have gone white. Thirty years of silence between them, and the air thick with all the things that silence held.",
+      "next": "old_maren_speaks"
+    },
+    "old_maren_speaks": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_neutral",
+      "text": "You have your father's eyes. Did they tell you that, in the Church? Or did they scrub him out of you entirely -- replace Silas Maren with scripture and ash until there was nothing left of the boy I raised?",
+      "next": "brother_maren_reacts"
+    },
+    "brother_maren_reacts": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "angry",
+      "text": "You KNEW? You knew who I was from the moment I arrived -- and you said nothing? I have been in this village for two months. I have spoken to you. I have stood ten paces from you in the square. And you sat there on your bench and let me remain a stranger to my own blood.",
+      "next": "old_maren_retort"
+    },
+    "old_maren_retort": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_angry",
+      "text": "What should I have said? 'Welcome home, grandson. Please stop poisoning our neighbors'? You came here wearing the robes of the order that stole you from me. You came preaching the faith that burned our groves. I waited to see which part of you was real -- the blood or the doctrine.",
+      "next": "brother_maren_wounded"
+    },
+    "brother_maren_wounded": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "fearful",
+      "text": "I came here to understand what happened to my father. I came here because a four-year-old boy watched men carry his father into the trees and no one ever told him why. That is real. That has always been real.",
+      "next": "old_maren_softens"
+    },
+    "old_maren_softens": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_sad",
+      "text": "Silas walked into the Heartwood willingly. He was the sacrifice the pact demanded. He went so that the village would live another thirty years. He went because your grandfather was too cowardly to go himself, and the Ashworths were too proud to offer their own.",
+      "next": "silence_between"
+    },
+    "silence_between": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Neither speaks for a long moment. The candles in the chapel gutter as a draft moves through. Old Maren's fingers tremble at her sides. Brother Maren's jaw works silently, grinding words he cannot bring himself to say.",
+      "next": "player_choice"
+    },
+    "player_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "side_old_maren",
+          "text": "She's right to be angry. You came here and made things worse.",
+          "conditions": [],
+          "triggers": [
+            {"set_state": "npc.brother_maren.disposition", "delta": -15},
+            {"set_state": "npc.old_maren.disposition", "delta": 10},
+            {"set_state": "npc.brother_maren.memory.player_sided_with_grandmother", "value": true}
+          ],
+          "next": "brother_defensive"
+        },
+        {
+          "id": "side_brother_maren",
+          "text": "He deserved to know his own family. You owed him that.",
+          "conditions": [],
+          "triggers": [
+            {"set_state": "npc.brother_maren.disposition", "delta": 10},
+            {"set_state": "npc.old_maren.disposition", "delta": -10},
+            {"set_state": "npc.brother_maren.memory.player_defended_his_right", "value": true}
+          ],
+          "next": "old_maren_relents"
+        },
+        {
+          "id": "reveal_elara",
+          "text": "There's something else you both need to hear. Elara is your sister.",
+          "conditions": [
+            {"check": "flag.old_maren_revealed_two_children", "op": "==", "value": true},
+            {"check": "npc.elara.met", "op": "==", "value": true}
+          ],
+          "triggers": [
+            {"set_state": "flag.maren_knows_elara_is_sister", "value": true},
+            {"set_state": "flag.maren_confronted_old_maren", "value": true},
+            {"set_state": "flag.maren_family_reunion", "value": true}
+          ],
+          "next": "elara_bombshell"
+        },
+        {
+          "id": "stay_silent",
+          "text": "[Stay silent. Let them find their own way through this.]",
+          "conditions": [],
+          "triggers": [
+            {"set_state": "flag.player_let_marens_talk", "value": true},
+            {"set_state": "flag.maren_confronted_old_maren", "value": true}
+          ],
+          "next": "they_work_it_out"
+        }
+      ]
+    },
+    "brother_defensive": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "angry",
+      "text": "Made things worse. Yes. That is what the Church trained me to do, apparently -- arrive at the wound and press down. I did not know what I was walking into. I did not know the poison was already here before me. I did not know the woman on the bench was the grandmother who let the Church take me without a fight.",
+      "triggers": [
+        {"set_state": "flag.maren_confronted_old_maren", "value": true}
+      ],
+      "next": "uneasy_end"
+    },
+    "old_maren_relents": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_sad",
+      "text": "Perhaps. Perhaps I owed him that. But I have watched this village die slowly for thirty years, and when my grandson arrived wearing the uniform of its executioners, I did not see family. I saw another loss wearing a familiar face. Forgive an old woman her caution. I have buried too many to trust easily.",
+      "triggers": [
+        {"set_state": "flag.maren_confronted_old_maren", "value": true}
+      ],
+      "next": "uneasy_end"
+    },
+    "elara_bombshell": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The words land like a blade between them. Brother Maren's composure does not crack -- it shatters. The priest's mask falls away entirely and what is left is the face of a man who has just learned the dimensions of his own catastrophe.",
+      "next": "brother_maren_shattered"
+    },
+    "brother_maren_shattered": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "fearful",
+      "text": "The herbalist. Silas's daughter. She is -- I have been poisoning my own sister's village. I have stood in the square and preached divine punishment to a woman who shares my father's blood. I looked her in the eye and saw nothing. Nothing.",
+      "triggers": [
+        {"set_state": "npc.brother_maren.disposition", "delta": 20},
+        {"set_state": "flag.maren_mask_fully_broken", "value": true}
+      ],
+      "next": "old_maren_final"
+    },
+    "old_maren_final": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_sad",
+      "text": "Now you see. Now you see what the Church made of Silas's son. A weapon aimed at his own family. This is what they do -- they take the grieving and sharpen them into instruments of grief. And you let them. And I let them take you. We are all complicit in this.",
+      "next": "end"
+    },
+    "they_work_it_out": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You say nothing. The silence stretches between the three of you like a held breath. Old Maren reaches out, slowly, her blind hand finding the air near her grandson's sleeve. He flinches. Then holds still. She does not touch him. She simply holds her hand there, an inch from his arm, as if testing the warmth of a fire she is not sure she is allowed to sit beside.",
+      "next": "slow_resolution"
+    },
+    "slow_resolution": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "I need time. I came here with a purpose. I need to understand how much of that purpose was the Church's and how much was -- mine. Do not expect me to change overnight. But I will not pretend I do not know what I know now.",
+      "triggers": [
+        {"set_state": "flag.maren_confronted_old_maren", "value": true},
+        {"set_state": "npc.brother_maren.disposition", "delta": 10}
+      ],
+      "next": "end"
+    },
+    "uneasy_end": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Old Maren turns and walks away without another word, her stick tapping against the cobblestones. Brother Maren watches her go. His expression is unreadable -- but his hands, still clasped before him, are shaking.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

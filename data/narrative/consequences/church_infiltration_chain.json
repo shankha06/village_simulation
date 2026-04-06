@@ -1,0 +1,62 @@
+{
+  "id": "church_infiltration_chain",
+  "trigger_condition": "flag.church_salt_the_earth_plan == true AND flag.maren_full_alliance == true",
+  "consequences": [
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "set_state": "flag.maren_sends_coded_message",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.memory.sent_false_report",
+          "value": true
+        },
+        {
+          "spawn_event": "maren_writes_coded_message"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "effects": [
+        {
+          "set_state": "flag.church_army_delayed",
+          "value": true
+        },
+        {
+          "set_state": "world.church_army_arrival_day",
+          "delta": 5
+        },
+        {
+          "spawn_event": "church_army_delay_notification"
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 10,
+      "condition": "flag.found_outpost_evidence == true",
+      "effects": [
+        {
+          "set_state": "flag.maren_can_defect_publicly",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.memory.free_from_church",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.faction",
+          "value": "ashvale"
+        },
+        {
+          "spawn_event": "maren_public_defection"
+        }
+      ]
+    }
+  ]
+}

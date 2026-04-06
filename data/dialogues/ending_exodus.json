@@ -1,0 +1,198 @@
+{
+  "id": "ending_exodus",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You burned the old covenant. The forest screamed \u2014 a sound no one who heard it would ever forget. Not a human sound. Not an animal sound. The sound of something ancient learning, for the first time, what betrayal feels like. But the roots released their hold. For the first time in three hundred years, the people of Ashvale were free. Free, and homeless.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_exodus_started",
+          "value": true
+        }
+      ],
+      "next": "gathering"
+    },
+    "gathering": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You gather them at the eastern gate \u2014 every soul who can still walk. Farmers with empty sacks. Guards with rusted swords. Children clutching wooden toys carved from wood that was once alive. Behind you, the fields crack and blacken as the last of the pact's nourishment drains from the soil like blood from a wound.",
+      "next": "legion_check"
+    },
+    "legion_check": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The Ironmarch Legion watches from the western ridge. They expected conquest, not a funeral procession. Commander Voss \u2014 whether friend or foe \u2014 orders no attack. Even soldiers know when there's nothing left worth taking.",
+      "conditions": [
+        {
+          "check": "npc.commander_voss.alive",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "next": "elara_on_road"
+    },
+    "elara_on_road": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "determined",
+      "text": "I catalogued every plant between here and the eastern pass when I was sixteen. There's a valley three weeks east \u2014 good soil, clean water, sheltered from the wind. If we ration what we have, we can make it.",
+      "conditions": [
+        {
+          "check": "npc.elara.alive",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "triggers": [
+        {
+          "set_state": "npc.elara.memory.led_exodus_scouts",
+          "value": true
+        }
+      ],
+      "next": "the_march"
+    },
+    "the_march": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The march is brutal. You lose three wagons to a river crossing. An old woman dies on the seventh night \u2014 Old Maren's friend, they say, the last person who remembered Ashvale before the pact began to sour. You bury her at the roadside with stones from a land that isn't yours.",
+      "next": "silo_consequence"
+    },
+    "silo_consequence": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The hunger is worst on the twelfth day. The rations run thin \u2014 thinner than they should have been. You remember the grain stores. You remember the fire. Some debts don't need a creditor to collect.",
+      "conditions": [
+        {
+          "check": "flag.silo_destroyed",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "next": "arrival"
+    },
+    "arrival": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "On the twenty-second day, Elara points to a valley green with wildgrass and fed by a river that has never known a pact. No ancient bargain. No blood in the soil. Just earth and water and the simple, unmagical promise that if you plant seeds and tend them honestly, something will grow.",
+      "next": "new_beginning"
+    },
+    "new_beginning": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "name_it_ashvale",
+          "text": "We'll call it New Ashvale. We carry our home with us.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.new_settlement_name",
+              "value": "new_ashvale"
+            }
+          ],
+          "next": "settlement_named"
+        },
+        {
+          "id": "name_it_new",
+          "text": "No. Ashvale is dead. This place deserves its own name.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.new_settlement_name",
+              "value": "new_name"
+            }
+          ],
+          "next": "settlement_new_name"
+        },
+        {
+          "id": "let_them_choose",
+          "text": "Let the people name it. It's their home now, not mine.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.new_settlement_name",
+              "value": "peoples_choice"
+            }
+          ],
+          "next": "settlement_peoples_choice"
+        }
+      ]
+    },
+    "settlement_named": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "New Ashvale. The name catches on quickly \u2014 the old villagers say it with a crack in their voice, the children say it as though it were the only name the world has ever had. The first houses go up within a week. They're rough. They leak. They are more beautiful than any manor you've ever seen.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_exodus_complete",
+          "value": true
+        }
+      ],
+      "next": "epilogue"
+    },
+    "settlement_new_name": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "They choose the name Dawnsreach, because it was dawn when they first saw the valley. A new name for a new beginning. No ghosts. No pacts. No roots in the cellar whispering in the dark. Just people, building something with their own hands for the first time in three hundred years.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_exodus_complete",
+          "value": true
+        }
+      ],
+      "next": "epilogue"
+    },
+    "settlement_peoples_choice": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "They argue for three days about the name. Fenrick suggests 'Opportunity.' Elara suggests something in Old Thornish that no one can pronounce. A child suggests 'Mudtown,' and that's the name that sticks \u2014 not officially, but in practice. It makes people laugh, and laughter, after twenty-two days of marching, is worth more than any grand title.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_exodus_complete",
+          "value": true
+        }
+      ],
+      "next": "epilogue"
+    },
+    "epilogue": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Five years later, the settlement is thriving. Not prospering \u2014 thriving, which is different. Prospering means excess. Thriving means enough. The people of Ashvale learned the difference between those words the hard way. And sometimes, on clear nights, someone will look west and swear they can see a dark smudge on the horizon where the Thornwood once stood. They look away quickly. Some doors, once closed, should stay closed.",
+      "next": "sequel_hook_exodus"
+    },
+    "sequel_hook_exodus": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "thoughtful",
+      "text": "As the refugees march east, Voss falls into step beside you. She is quiet for a long time. Then: 'There's a river town. Rivendale. Or what's left of it. It's on the way.' She stares at the eastern horizon. 'I have... unfinished business there. A river that owes me an explanation. Or I owe it one. I can never decide which.'",
+      "conditions": [
+        {
+          "check": "npc.commander_voss.alive",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "triggers": [
+        {
+          "set_state": "flag.sequel_hook_rivendale",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

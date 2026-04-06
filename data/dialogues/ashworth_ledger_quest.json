@@ -1,0 +1,207 @@
+{
+  "id": "ashworth_ledger_quest",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "drunk",
+      "text": "You're still here? Most people with any sense left weeks ago. Sit. Have some wine. It's the last good vintage — everything after this tastes of ash.",
+      "next": "ashworth_rambling"
+    },
+    "ashworth_rambling": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "sad",
+      "text": "Do you know what it's like to inherit a ledger? Not land. Not title. A book of debts that can never be paid. My father kept it. His father before him. Thirty years of... arrangements.",
+      "next": "ashworth_slip"
+    },
+    "ashworth_slip": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "fearful",
+      "text": "Every name. Every deal. Written in ink that looks like — well. It's down there. In the catacombs. With the rest of the family's sins.",
+      "triggers": [
+        {
+          "set_state": "npc.lord_ashworth.memory.mentioned_ledger",
+          "value": true
+        }
+      ],
+      "next": "choice_respond"
+    },
+    "choice_respond": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "ask_about_ledger",
+          "text": "A ledger of deals with the forest? I need to see it.",
+          "conditions": [],
+          "triggers": [],
+          "next": "ashworth_hesitates"
+        },
+        {
+          "id": "ask_names",
+          "text": "Names? What names are in this ledger?",
+          "conditions": [],
+          "triggers": [],
+          "next": "ashworth_names"
+        },
+        {
+          "id": "offer_to_destroy",
+          "text": "Sounds like something that should be destroyed. Want me to take care of it?",
+          "conditions": [],
+          "triggers": [],
+          "next": "ashworth_tempted"
+        },
+        {
+          "id": "pressure_lord",
+          "text": "Your family has been sacrificing people for thirty years. The village deserves the truth.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.lord_ashworth.disposition",
+              "delta": -15
+            }
+          ],
+          "next": "ashworth_defensive"
+        },
+        {
+          "id": "sympathize",
+          "text": "That's a heavy burden. I can see why you drink.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.lord_ashworth.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "ashworth_softens"
+        }
+      ]
+    },
+    "ashworth_hesitates": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "fearful",
+      "text": "See it? Do you understand what's in that book? It's not just names — it's the mechanism. How the pact works. What was promised. What was given. If the wrong person reads it...",
+      "next": "ashworth_considers"
+    },
+    "ashworth_considers": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "neutral",
+      "text": "But maybe that's the point. Maybe someone outside this family should know the truth. The catacombs are beneath the manor. The entrance is in the wine cellar — behind the third rack. There are traps. My grandfather was... thorough.",
+      "triggers": [
+        {
+          "set_state": "flag.accepted_ledger_quest",
+          "value": true
+        },
+        {
+          "set_state": "npc.lord_ashworth.memory.gave_catacomb_access",
+          "value": true
+        }
+      ],
+      "next": "ashworth_catacomb_warning"
+    },
+    "ashworth_names": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "sad",
+      "text": "The names of everyone who was given to the forest. Silas Maren. Brin Thatcher. Little Dorrin who was only eight. My father wrote each one in his own hand. I was supposed to add the next name. I couldn't.",
+      "triggers": [
+        {
+          "set_state": "npc.lord_ashworth.memory.spoke_of_sacrifices",
+          "value": true
+        }
+      ],
+      "next": "ashworth_hesitates"
+    },
+    "ashworth_tempted": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "neutral",
+      "text": "Destroy it? I've thought about it every night for ten years. But the catacombs are trapped. And... part of me thinks the names deserve to be remembered. Even if remembering them damns my family.",
+      "next": "ashworth_considers"
+    },
+    "ashworth_defensive": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "angry",
+      "text": "You think I don't KNOW that? You think I sleep well? Every one of those names is a face I see when I close my eyes. I didn't start this. I was born into it. Just like my father. Just like his father.",
+      "next": "ashworth_deflates"
+    },
+    "ashworth_deflates": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "sad",
+      "text": "Fine. You want the truth? Go dig it up yourself. The catacombs are below. Maybe you'll understand, when you read it, why no Ashworth has ever had the courage to end this.",
+      "triggers": [
+        {
+          "set_state": "flag.accepted_ledger_quest",
+          "value": true
+        }
+      ],
+      "next": "ashworth_catacomb_warning"
+    },
+    "ashworth_softens": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "sad",
+      "text": "The drinking helps. Until it doesn't. Then it just makes the faces clearer. I need someone to take this burden from me. Not the title — the knowledge. Someone who can decide what to do with it without the weight of a family name crushing them.",
+      "next": "ashworth_considers"
+    },
+    "ashworth_catacomb_warning": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "neutral",
+      "text": "Three warnings. First: the pressure plates on the third stair — step over them. Second: the vault door opens with blood. Anyone's blood — a cut will do. Third: don't read the ledger down there. The catacombs listen. Read it in the open air, or not at all.",
+      "next": "final_choice"
+    },
+    "final_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "thank_him",
+          "text": "I'll bring the truth to light, Lord Ashworth. Whatever it costs.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.lord_ashworth.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "ashworth_farewell"
+        },
+        {
+          "id": "threaten",
+          "text": "If I find what I think I'll find, your family's rule is over.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.lord_ashworth.disposition",
+              "delta": -20
+            }
+          ],
+          "next": "ashworth_resigned"
+        }
+      ]
+    },
+    "ashworth_farewell": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "sad",
+      "text": "Maybe. Or maybe it will cost all of us. Go. And pour me another glass on your way out.",
+      "next": "end"
+    },
+    "ashworth_resigned": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "neutral",
+      "text": "It was over the moment my father wrote the first name. I've just been waiting for someone to say it aloud.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

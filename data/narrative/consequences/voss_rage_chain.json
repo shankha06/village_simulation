@@ -1,0 +1,54 @@
+{
+  "id": "voss_rage_chain",
+  "trigger_condition": "flag.rivendale_ironmarch_occupied == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": 20
+        },
+        {
+          "set_state": "npc.commander_voss.memory.ironmarch_at_rivendale",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_past_resolved",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_wants_war",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "effects": [
+        {
+          "set_state": "npc.commander_voss.memory.planning_assault",
+          "value": true
+        },
+        {
+          "spawn_event": "voss_rallies_soldiers"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 14,
+      "effects": [
+        {
+          "set_state": "flag.voss_rivendale_assault_ready",
+          "value": true
+        },
+        {
+          "set_state": "faction.ironmarch_legion.power",
+          "delta": -10.0
+        }
+      ]
+    }
+  ]
+}

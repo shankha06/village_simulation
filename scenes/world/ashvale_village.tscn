@@ -1,0 +1,104 @@
+[gd_scene load_steps=9 format=3 uid="uid://ashvale001"]
+
+[ext_resource type="Script" path="res://scenes/world/region_base.gd" id="1_region"]
+[ext_resource type="Script" path="res://scenes/effects/weather_system.gd" id="2_weather"]
+[ext_resource type="Script" path="res://scenes/world/transition_zone.gd" id="3_transition"]
+[ext_resource type="Texture2D" path="res://assets/sprites/world/silo_normal.png" id="4_silo_n"]
+[ext_resource type="Texture2D" path="res://assets/sprites/world/silo_destroyed.png" id="5_silo_d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_transition"]
+size = Vector2(16, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_transition2"]
+size = Vector2(16, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_transition3"]
+size = Vector2(16, 64)
+
+[node name="AshvaleVillage" type="Node2D"]
+script = ExtResource("1_region")
+region_id = "ashvale"
+region_name = "Ashvale Village"
+adjacent_regions = PackedStringArray("thornwood", "ashworth_manor", "eastern_road")
+tilemap_json = "res://data/world/ashvale_tilemap.json"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="DefaultSpawn" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(160, 180)
+
+[node name="FromThornwood" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(500, 160)
+
+[node name="FromManor" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(80, 60)
+
+[node name="FromEasternRoad" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(500, 200)
+
+[node name="SouthGateSpawn" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(160, 300)
+
+[node name="NPCSpawnPoints" type="Node2D" parent="."]
+
+[node name="ElaraSpawn" type="Marker2D" parent="NPCSpawnPoints"]
+position = Vector2(200, 150)
+
+[node name="FenrickSpawn" type="Marker2D" parent="NPCSpawnPoints"]
+position = Vector2(280, 200)
+
+[node name="GretaSpawn" type="Marker2D" parent="NPCSpawnPoints"]
+position = Vector2(160, 120)
+
+[node name="BrotherMarenSpawn" type="Marker2D" parent="NPCSpawnPoints"]
+position = Vector2(120, 80)
+
+[node name="OldMarenSpawn" type="Marker2D" parent="NPCSpawnPoints"]
+position = Vector2(320, 100)
+
+[node name="GateGuardSpawn" type="Marker2D" parent="NPCSpawnPoints"]
+position = Vector2(160, 290)
+
+[node name="Structures" type="Node2D" parent="."]
+
+[node name="Silo" type="Node2D" parent="Structures"]
+position = Vector2(350, 60)
+
+[node name="SiloNormal" type="Sprite2D" parent="Structures/Silo"]
+texture = ExtResource("4_silo_n")
+
+[node name="SiloDestroyed" type="Sprite2D" parent="Structures/Silo"]
+visible = false
+texture = ExtResource("5_silo_d")
+
+[node name="WeatherSystem" type="Node2D" parent="."]
+script = ExtResource("2_weather")
+
+[node name="TransitionToThornwood" type="Area2D" parent="."]
+position = Vector2(520, 160)
+script = ExtResource("3_transition")
+target_scene = "res://scenes/world/thornwood_forest.tscn"
+spawn_point = "FromAshvale"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionToThornwood"]
+shape = SubResource("RectangleShape2D_transition")
+
+[node name="TransitionToManor" type="Area2D" parent="."]
+position = Vector2(60, 40)
+script = ExtResource("3_transition")
+target_scene = "res://scenes/world/ashworth_manor.tscn"
+spawn_point = "FromAshvale"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TransitionToManor"]
+shape = SubResource("RectangleShape2D_transition2")
+
+[node name="TransitionToEasternRoad" type="Area2D" parent="."]
+position = Vector2(536, 200)
+script = ExtResource("3_transition")
+target_scene = "res://scenes/world/eastern_road.tscn"
+spawn_point = "FromAshvale"
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="TransitionToEasternRoad"]
+shape = SubResource("RectangleShape2D_transition3")

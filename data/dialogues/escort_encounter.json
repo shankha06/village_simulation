@@ -1,0 +1,259 @@
+{
+  "id": "escort_encounter",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "fearful",
+      "text": "Patrol ahead. Two soldiers at the bridge. The children are behind the rock — they're quiet, but the little ones are shaking.",
+      "next": "approach_choice"
+    },
+    "approach_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "stealth",
+          "text": "I'll circle around and create a distraction. When they move, you cross with the kids.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.escort_stealth_approach",
+              "value": true
+            }
+          ],
+          "next": "stealth_attempt"
+        },
+        {
+          "id": "bluff",
+          "text": "[Persuasion] Let me talk to them. I'll say I'm a merchant looking for the Eastern Road inn.",
+          "conditions": [
+            {
+              "check": "player.stats.charisma",
+              "op": ">=",
+              "value": 3
+            }
+          ],
+          "triggers": [],
+          "next": "bluff_attempt"
+        },
+        {
+          "id": "fight",
+          "text": "Two soldiers. We can take them quietly.",
+          "conditions": [],
+          "triggers": [],
+          "next": "fight_warning"
+        },
+        {
+          "id": "thornwood_reroute",
+          "text": "Forget the bridge. We cut through the forest.",
+          "conditions": [
+            {
+              "check": "flag.escort_plan_thornwood",
+              "op": "!=",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.rerouted_through_thornwood",
+              "value": true
+            }
+          ],
+          "next": "thornwood_reroute_react"
+        },
+        {
+          "id": "betray_midway",
+          "text": "[Betray] Actually, I'll go talk to those soldiers. About you.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.betrayed_escort_midway",
+              "value": true
+            },
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": -80
+            }
+          ],
+          "next": "betrayal_scene"
+        }
+      ]
+    },
+    "stealth_attempt": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You creep through the underbrush, snapping a branch deliberately fifty yards downstream. The soldiers turn, lanterns swinging. Fenrick moves like shadow — the children cling to his coat as they dash across the bridge.",
+      "next": "stealth_result"
+    },
+    "stealth_result": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Clean. Not a sound. You're better at this than most Hand operatives. Crow's Rest is just over the next hill.",
+      "triggers": [
+        {
+          "set_state": "flag.children_delivered_safely",
+          "value": true
+        },
+        {
+          "set_state": "flag.guild_children_safe",
+          "value": true
+        }
+      ],
+      "next": "safe_arrival"
+    },
+    "bluff_attempt": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You approach the soldiers with an easy stride, hands visible. The taller one narrows his eyes but lets you talk. Your story holds — barely. They wave you past, grumbling about lost merchants.",
+      "next": "bluff_success"
+    },
+    "bluff_success": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Silver tongue. I'm impressed. While you had their attention, we slipped past downstream. The kids are already at Crow's Rest.",
+      "triggers": [
+        {
+          "set_state": "flag.children_delivered_safely",
+          "value": true
+        },
+        {
+          "set_state": "flag.guild_children_safe",
+          "value": true
+        }
+      ],
+      "next": "safe_arrival"
+    },
+    "fight_warning": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "serious",
+      "text": "If we fight, we fight silent. One shout and every patrol within a mile converges on us. And the children watch. They've seen enough killing.",
+      "next": "fight_choice"
+    },
+    "fight_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "fight_nonlethal",
+          "text": "Knock them out. No killing in front of the kids.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.children_delivered_safely",
+              "value": true
+            },
+            {
+              "set_state": "flag.guild_children_safe",
+              "value": true
+            },
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "fight_nonlethal_result"
+        },
+        {
+          "id": "fight_lethal",
+          "text": "Dead men tell no tales. Quick and clean.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.children_delivered_safely",
+              "value": true
+            },
+            {
+              "set_state": "flag.guild_children_safe",
+              "value": true
+            },
+            {
+              "set_state": "flag.killed_ironmarch_soldiers",
+              "value": true
+            }
+          ],
+          "next": "fight_lethal_result"
+        }
+      ]
+    },
+    "fight_nonlethal_result": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Tied and gagged. They'll wake up with headaches and a story no one will believe. Let's move — Crow's Rest is close.",
+      "next": "safe_arrival"
+    },
+    "fight_lethal_result": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Done. The girl saw it. She didn't scream — she's seen worse. That's the worst part. Let's go. Crow's Rest is close.",
+      "triggers": [
+        {
+          "set_state": "npc.fenrick.memory.player_killed_soldiers",
+          "value": true
+        }
+      ],
+      "next": "safe_arrival"
+    },
+    "thornwood_reroute_react": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "fearful",
+      "text": "Through Thornwood? At night? With children? You're insane. But the bridge is a death trap... Fine. Stay close. Everyone holds hands. No one lets go, no matter what they hear.",
+      "next": "end"
+    },
+    "safe_arrival": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "happy",
+      "text": "There. The lantern in the window — that's the signal. The safe house mother will take them from here. New names, new village, new life.",
+      "next": "children_farewell"
+    },
+    "children_farewell": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The twelve-year-old girl turns at the door. She doesn't smile — children from Ironmarch don't smile easily. But she nods. Once. And then the door closes, and they're gone.",
+      "next": "fenrick_reflection"
+    },
+    "fenrick_reflection": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "That's seven this year. Seven out of thousands. It's not enough. It's never enough. But it's something.",
+      "next": "end"
+    },
+    "betrayal_scene": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "angry",
+      "text": "You... you piece of — RUN! Kids, RUN!",
+      "triggers": [
+        {
+          "set_state": "flag.caught_by_ironmarch",
+          "value": true
+        },
+        {
+          "set_state": "npc.fenrick.memory.betrayed_by_player",
+          "value": true
+        }
+      ],
+      "next": "betrayal_aftermath"
+    },
+    "betrayal_aftermath": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The soldiers move fast. Fenrick fights — breaks one soldier's nose — but they overwhelm him. The children scream. The Ironmarch captain hands you a pouch of gold and a receipt. 'Smugglers and contraband,' he writes. Contraband. He means the children.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

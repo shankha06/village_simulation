@@ -1,0 +1,63 @@
+{
+  "id": "commander_voss",
+  "name": "Commander Voss",
+  "description": "A battle-hardened mercenary captain passing through Ashvale. She fights for coin, but lives by a code. A dangerous woman to have as enemy or friend.",
+  "faction": "",
+  "personality": {
+    "courage": 0.95,
+    "greed": 0.4,
+    "loyalty": 0.7,
+    "cruelty": 0.3,
+    "curiosity": 0.2,
+    "honesty": 0.6
+  },
+  "schedule": [
+    {
+      "hour": 6,
+      "location": "camp_outskirts",
+      "activity": "training"
+    },
+    {
+      "hour": 10,
+      "location": "inn_bar",
+      "activity": "drinking"
+    },
+    {
+      "hour": 14,
+      "location": "camp_outskirts",
+      "activity": "drilling_soldiers"
+    },
+    {
+      "hour": 20,
+      "location": "camp_outskirts",
+      "activity": "planning"
+    },
+    {
+      "hour": 23,
+      "location": "camp_outskirts",
+      "activity": "sleeping"
+    }
+  ],
+  "home_location": "mercenary_camp",
+  "dialogue_pools": {
+    "greeting": "voss_intro",
+    "combat_offer": "voss_duel",
+    "spared": "voss_spared",
+    "allied": "voss_alliance",
+    "alliance_deep": "voss_alliance_deep",
+    "hostile": "voss_enemy",
+    "ghost_quest": "voss_ghost_quest",
+    "rivendale_discovery": "rivendale_discovery"
+  },
+  "default_greeting": "voss_intro",
+  "is_combatant": true,
+  "max_health": 120.0,
+  "attack_damage": 15.0,
+  "can_surrender": true,
+  "npc_relationships": {
+    "elara": 0,
+    "fenrick": -20,
+    "brother_maren": -10,
+    "lord_ashworth": -30
+  }
+}

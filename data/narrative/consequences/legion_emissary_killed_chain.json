@@ -1,0 +1,99 @@
+{
+  "id": "legion_emissary_killed_chain",
+  "trigger_condition": "flag.draven_killed == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "flag.legion_enraged",
+          "value": true
+        },
+        {
+          "set_state": "npc.ironmarch_emissary.alive",
+          "value": false
+        },
+        {
+          "set_state": "world.region.ashvale.tension",
+          "delta": 40
+        },
+        {
+          "set_state": "player.reputation.ironmarch_legion",
+          "delta": -80
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "spawn_event": "draven_body_discovered"
+        },
+        {
+          "set_state": "npc.greta.memory.diplomat_killed_in_village",
+          "value": true
+        },
+        {
+          "set_state": "flag.village_in_shock",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {
+          "set_state": "flag.legion_scouts_withdraw",
+          "value": true
+        },
+        {
+          "spawn_event": "ominous_silence_from_east"
+        },
+        {
+          "set_state": "npc.commander_voss.memory.legion_will_retaliate_hard",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "effects": [
+        {
+          "set_state": "flag.legion_punitive_force_assembling",
+          "value": true
+        },
+        {
+          "spawn_event": "rumors_of_legion_army"
+        },
+        {
+          "set_state": "world.region.ashvale.tension",
+          "delta": 30
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 10,
+      "effects": [
+        {
+          "set_state": "flag.legion_punitive_force_arrives",
+          "value": true
+        },
+        {
+          "set_state": "flag.defense_day_arrived",
+          "value": true
+        },
+        {
+          "spawn_event": "legion_punitive_army_on_horizon"
+        },
+        {
+          "set_state": "world.region.ashvale.tension",
+          "value": 100
+        }
+      ]
+    }
+  ]
+}

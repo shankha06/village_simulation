@@ -1,0 +1,77 @@
+[
+  {
+    "id": "ghost_whisper_crypt",
+    "category": "mystery",
+    "priority": 55,
+    "once_only": true,
+    "conditions": [
+      "time.hour >= 22",
+      "flag.entered_crypt == true"
+    ],
+    "dialogue_id": "",
+    "description": "At night in the crypt, voices seep from the stone -- the echoes of past sacrifices asking if they were truly willing.",
+    "effects": [
+      {
+        "set_state": "flag.heard_crypt_whispers",
+        "value": true
+      }
+    ],
+    "notification_text": "The crypt breathes. Voices seep from stone: 'Willing.' They are asking you a question."
+  },
+  {
+    "id": "ghost_apparition_silas",
+    "category": "mystery",
+    "priority": 65,
+    "once_only": true,
+    "conditions": [
+      "flag.found_ghost_letters_cache == true",
+      "time.hour >= 22",
+      "flag.entered_ashworth_manor == true"
+    ],
+    "dialogue_id": "",
+    "description": "After finding the ghost letters, at night in the manor, the apparition of Silas Maren appears briefly.",
+    "effects": [
+      {
+        "set_state": "flag.saw_silas_apparition",
+        "value": true
+      }
+    ],
+    "notification_text": "A translucent figure in the manor hall. Silas Maren, thirty years dead, looking at you with eyes that say: 'Take care of them.' Then gone."
+  },
+  {
+    "id": "ghost_compass_trembles",
+    "category": "mystery",
+    "priority": 45,
+    "once_only": false,
+    "cooldown_days": 2,
+    "conditions": [
+      "time.hour >= 22",
+      "player.has_item.heirloom_compass == true",
+      "player.location == thornwood"
+    ],
+    "dialogue_id": "",
+    "description": "At night in Thornwood while carrying the heirloom compass, the needle spins and points downward into the roots.",
+    "effects": [],
+    "notification_text": "The compass needle spins, then points DOWN. Into the roots. Something below remembers the name on its back."
+  },
+  {
+    "id": "ghost_old_maren_communion",
+    "category": "mystery",
+    "priority": 70,
+    "once_only": true,
+    "conditions": [
+      "time.hour >= 2",
+      "time.hour <= 4",
+      "flag.maren_family_truth_revealed == true"
+    ],
+    "dialogue_id": "",
+    "description": "Between 2-4 AM, after the family truth is revealed, witness Old Maren communing with her dead son through the soil.",
+    "effects": [
+      {
+        "set_state": "flag.witnessed_old_maren_communion",
+        "value": true
+      }
+    ],
+    "notification_text": "Old Maren's hands buried in soil up to wrists. 'I know, Silas. I'm watching them. Both of them.'"
+  }
+]

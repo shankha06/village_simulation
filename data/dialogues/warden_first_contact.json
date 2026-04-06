@@ -1,0 +1,359 @@
+{
+  "id": "warden_first_contact",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The trees at the forest edge begin to move. Not swaying \u2014 shifting. Bark splits and re-forms. Branches weave together into something that might be a shape, might be a face. The air drops ten degrees. The ground hums.",
+      "next": "start_2"
+    },
+    "start_2": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "manifesting",
+      "text": "We have waited.",
+      "triggers": [
+        {
+          "set_state": "npc.thornwood_spirit.met",
+          "value": true
+        },
+        {
+          "set_state": "flag.warden_appeared",
+          "value": true
+        }
+      ],
+      "next": "start_3"
+    },
+    "start_3": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "manifesting",
+      "text": "The blood-debt is overdue. The roots hunger. You carry the scent of the old pact on your skin.",
+      "next": "start_4"
+    },
+    "start_4": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "manifesting",
+      "text": "Speak, root-walker. We are listening. We are always listening.",
+      "next": "choice_first"
+    },
+    "choice_first": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "ask_about_pact",
+          "text": "What is this pact? Tell me what Ashvale owes.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.asked_warden_about_pact",
+              "value": true
+            }
+          ],
+          "next": "pact_explanation"
+        },
+        {
+          "id": "offer_help",
+          "text": "I want to help. Tell me what the forest needs.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.thornwood_spirit.disposition",
+              "delta": 15
+            },
+            {
+              "set_state": "npc.thornwood_spirit.memory.player_offered_help",
+              "value": true
+            }
+          ],
+          "next": "help_response"
+        },
+        {
+          "id": "threaten",
+          "text": "I'm not afraid of trees. Speak plainly or I'll bring an axe next time.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.thornwood_spirit.disposition",
+              "delta": -30
+            },
+            {
+              "set_state": "npc.thornwood_spirit.memory.player_threatened_forest",
+              "value": true
+            }
+          ],
+          "next": "threaten_response"
+        },
+        {
+          "id": "plead",
+          "text": "The village is dying. People are starving. Whatever this debt is \u2014 please, give us time.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.thornwood_spirit.memory.player_pleaded",
+              "value": true
+            }
+          ],
+          "next": "plead_response"
+        },
+        {
+          "id": "use_talisman",
+          "text": "[DRUID TALISMAN] Hold the talisman forward and let it resonate with the spirit.",
+          "conditions": [
+            {
+              "check": "flag.has_druid_talisman",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.thornwood_spirit.disposition",
+              "delta": 25
+            },
+            {
+              "set_state": "flag.talisman_resonated_with_warden",
+              "value": true
+            }
+          ],
+          "next": "talisman_response"
+        }
+      ]
+    },
+    "pact_explanation": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "manifesting",
+      "text": "The voice comes from everywhere \u2014 the soil, the bark, the leaves overhead.",
+      "next": "pact_explanation_2"
+    },
+    "pact_explanation_2": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "manifesting",
+      "text": "Three hundred turnings ago, a man with an axe came to our edge. He wanted land. We wanted to be left whole. A bargain was struck. We gave earth. He gave blood. One soul each turning of the great wheel. Willing. Given, not taken.",
+      "next": "pact_explanation_3"
+    },
+    "pact_explanation_3": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "manifesting",
+      "text": "Nine souls came. Nine became root, became bark, became us. Then the blood stopped. The family of axes promised and promised and sent nothing. We waited. We are patient. But patience has a season, and that season is ending.",
+      "triggers": [
+        {
+          "set_state": "flag.pact_lore_known",
+          "delta": 1
+        },
+        {
+          "set_state": "flag.warden_explained_pact",
+          "value": true
+        }
+      ],
+      "next": "pact_choice"
+    },
+    "pact_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "nine_souls",
+          "text": "Nine people... became part of the forest? Willingly?",
+          "conditions": [],
+          "triggers": [],
+          "next": "nine_souls_answer"
+        },
+        {
+          "id": "what_happens",
+          "text": "What happens if the pact is never fulfilled?",
+          "conditions": [],
+          "triggers": [],
+          "next": "unfulfilled_pact"
+        }
+      ]
+    },
+    "nine_souls_answer": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "manifesting",
+      "text": "We remember each name. Aldric's daughter, who came singing. The smith's widow, who came weeping. The soldier, who came silently. They are us now. Their memories feed our roots. Their voices join our chorus. It is not death. It is... expansion.",
+      "triggers": [
+        {
+          "set_state": "flag.pact_lore_known",
+          "delta": 1
+        }
+      ],
+      "next": "unfulfilled_pact"
+    },
+    "unfulfilled_pact": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "angry",
+      "text": "The ground shakes. Trees groan. Birds flee in every direction.",
+      "next": "unfulfilled_pact_2"
+    },
+    "unfulfilled_pact_2": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "angry",
+      "text": "Then we take what is owed. Not one soul. All of them. The roots will rise. The village will be reclaimed. Every stone, every beam, every screaming body \u2014 swallowed into the earth where the pact was written. This is not cruelty. This is the contract.",
+      "triggers": [
+        {
+          "set_state": "flag.warden_threatened_village",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "help_response": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "manifesting",
+      "text": "The branches soften slightly. The temperature rises a single degree.",
+      "next": "help_response_2"
+    },
+    "help_response_2": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "manifesting",
+      "text": "You offer what the axe-family would not. That is... noted. The Heartwood will hear of you. Come to the deep places. Carry the old woman's token \u2014 the one who still remembers the tongue of roots. Without it, the forest will not let you pass. With it... we will speak further.",
+      "triggers": [
+        {
+          "set_state": "flag.warden_invited_to_heartwood",
+          "value": true
+        },
+        {
+          "set_state": "flag.needs_druid_talisman",
+          "value": true
+        }
+      ],
+      "next": "help_response_3"
+    },
+    "help_response_3": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "manifesting",
+      "text": "But come soon. The hunger grows with each moon. We are patient, root-walker, but we are not infinite.",
+      "next": "end"
+    },
+    "threaten_response": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "angry",
+      "text": "The ground heaves. A root as thick as a man's torso erupts from the earth and coils around your ankles. Not crushing \u2014 not yet \u2014 but holding.",
+      "next": "threaten_response_2"
+    },
+    "threaten_response_2": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "angry",
+      "text": "Axes. Fire. Threats. Your kind speaks only in destruction. We have endured a thousand axes. We have swallowed a thousand fires. We were ancient when your ancestors were learning to stack stones.",
+      "next": "threaten_response_3"
+    },
+    "threaten_response_3": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "angry",
+      "text": "Bring your axe, root-walker. We will add it to the collection buried beneath our bark. And you with it.",
+      "triggers": [
+        {
+          "set_state": "flag.forest_hostility_increase",
+          "value": true
+        },
+        {
+          "set_state": "flag.warden_hostile",
+          "value": true
+        }
+      ],
+      "next": "threaten_response_4"
+    },
+    "threaten_response_4": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The root releases your ankles and recedes into the earth. The Warden dissolves into the treeline, leaving only the sound of wood creaking and leaves falling where there should be none.",
+      "next": "end"
+    },
+    "plead_response": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "manifesting",
+      "text": "A long silence. The forest seems to breathe.",
+      "next": "plead_response_2"
+    },
+    "plead_response_2": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "manifesting",
+      "text": "We too are dying. The roots thin. The deep soil grows cold. The pact was not cruelty \u2014 it was symbiosis. Blood feeds root. Root feeds soil. Soil feeds crop. Your village prospered because we prospered. Now both starve.",
+      "next": "plead_response_3"
+    },
+    "plead_response_3": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "manifesting",
+      "text": "Time. You ask for time. We have given three hundred years of time. But... you are not the family of axes. You did not make the promise. Perhaps you can unmake it. Or remake it. Come to the Heartwood. Bring the druid's token. There is still a way that does not end in root and ruin.",
+      "triggers": [
+        {
+          "set_state": "flag.warden_offered_hope",
+          "value": true
+        },
+        {
+          "set_state": "flag.warden_invited_to_heartwood",
+          "value": true
+        },
+        {
+          "set_state": "flag.needs_druid_talisman",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "talisman_response": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The talisman warms in your hand. The carved wood pulses with green light. The Warden's form solidifies \u2014 becoming more defined, almost human. Almost.",
+      "next": "talisman_response_2"
+    },
+    "talisman_response_2": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "calm",
+      "text": "You carry the old tongue. The root-speaker's gift. We hear you more clearly through it, and you hear us. Good. There is much to say and little time to say it.",
+      "next": "talisman_response_3"
+    },
+    "talisman_response_3": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "calm",
+      "text": "The Heartwood wishes to speak with you directly. It has not spoken to a human in... many turnings. It remembers the old ways. It remembers a time when forest and field were not enemies. Come to the deep clearing. The talisman will guide you. We will ensure the path is... passable.",
+      "triggers": [
+        {
+          "set_state": "flag.warden_invited_to_heartwood",
+          "value": true
+        },
+        {
+          "set_state": "flag.forest_path_opened",
+          "value": true
+        },
+        {
+          "set_state": "flag.warden_trusts_player",
+          "value": true
+        }
+      ],
+      "next": "talisman_response_4"
+    },
+    "talisman_response_4": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "calm",
+      "text": "But be warned: the Heartwood sees into the marrow of things. It will know what you have done, what you intend, what you fear. Do not bring lies into the deep places. The roots can taste deception.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

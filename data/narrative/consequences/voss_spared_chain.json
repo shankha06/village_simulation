@@ -1,0 +1,55 @@
+{
+  "id": "voss_spared_chain",
+  "trigger_condition": "flag.voss_spared_in_duel == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": 50
+        },
+        {
+          "set_state": "npc.commander_voss.memory.player_showed_mercy",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_respects_player",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {
+          "set_state": "flag.voss_offers_alliance",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.memory.decided_to_help",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 45,
+      "condition": "flag.player_fortress_under_siege == true",
+      "effects": [
+        {
+          "set_state": "flag.voss_rides_to_rescue",
+          "value": true
+        },
+        {
+          "spawn_event": "voss_cavalry_arrives"
+        },
+        {
+          "set_state": "faction.ironmarch_legion.power",
+          "delta": -20.0
+        }
+      ]
+    }
+  ]
+}

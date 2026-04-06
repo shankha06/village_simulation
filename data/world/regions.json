@@ -1,0 +1,166 @@
+{
+  "regions": [
+    {
+      "id": "ashvale",
+      "name": "Ashvale Village",
+      "description": "A once-prosperous farming village on the edge of Thornwood. Now dying slowly under a mysterious blight.",
+      "scene_path": "res://scenes/world/ashvale_village.tscn",
+      "initial_status": "normal",
+      "initial_food_supply": 60.0,
+      "ruler": "ashvale_nobility",
+      "adjacent_regions": [
+        "thornwood",
+        "ashworth_manor",
+        "eastern_road"
+      ],
+      "npcs": [
+        "elara",
+        "fenrick",
+        "brother_maren",
+        "greta",
+        "old_maren"
+      ],
+      "ecology": {
+        "crops": {
+          "pop": 1.0,
+          "growth_rate": -0.02,
+          "carrying_capacity": 3.0,
+          "predators": [],
+          "prey": []
+        }
+      },
+      "economy": {
+        "base_prices": {
+          "bread": 5,
+          "ale": 8,
+          "herb_poultice": 15,
+          "iron_dagger": 40,
+          "rope": 10
+        }
+      }
+    },
+    {
+      "id": "thornwood",
+      "name": "Thornwood Forest",
+      "description": "A dense, ancient forest east of Ashvale. The trees seem to watch. The druids say it's alive.",
+      "scene_path": "res://scenes/world/thornwood_forest.tscn",
+      "initial_status": "normal",
+      "initial_food_supply": 100.0,
+      "ruler": "",
+      "adjacent_regions": [
+        "ashvale",
+        "heartwood_clearing",
+        "church_outpost"
+      ],
+      "npcs": [],
+      "ecology": {
+        "wolves": {
+          "pop": 1.5,
+          "growth_rate": 0.01,
+          "carrying_capacity": 3.0,
+          "predators": [],
+          "prey": [
+            "deer"
+          ]
+        },
+        "deer": {
+          "pop": 2.0,
+          "growth_rate": 0.03,
+          "carrying_capacity": 5.0,
+          "predators": [
+            "wolves"
+          ],
+          "prey": []
+        }
+      }
+    },
+    {
+      "id": "ashworth_manor",
+      "name": "Ashworth Manor",
+      "description": "The fortified estate of Lord Ashworth. Its gates have been shut for weeks. Guards patrol nervously.",
+      "scene_path": "res://scenes/world/ashworth_manor.tscn",
+      "initial_status": "normal",
+      "initial_food_supply": 90.0,
+      "ruler": "ashvale_nobility",
+      "adjacent_regions": [
+        "ashvale",
+        "manor_catacombs"
+      ],
+      "npcs": [
+        "lord_ashworth",
+        "commander_voss"
+      ]
+    },
+    {
+      "id": "eastern_road",
+      "name": "Eastern Road",
+      "description": "A trade road east of Ashvale. Ironmarch scouts patrol here, and trade caravans once passed through. Now the road feels watched.",
+      "scene_path": "res://scenes/world/eastern_road.tscn",
+      "initial_status": "normal",
+      "initial_food_supply": 0.0,
+      "ruler": "",
+      "adjacent_regions": [
+        "ashvale"
+      ],
+      "npcs": [
+        "ironmarch_emissary"
+      ]
+    },
+    {
+      "id": "manor_catacombs",
+      "name": "Manor Catacombs",
+      "description": "Ancient tunnels beneath Ashworth Manor. The air is cold and carries the scent of damp earth and old blood. Three centuries of secrets lie buried here.",
+      "scene_path": "res://scenes/world/manor_catacombs.tscn",
+      "initial_status": "normal",
+      "initial_food_supply": 0.0,
+      "ruler": "",
+      "adjacent_regions": [
+        "ashworth_manor",
+        "ritual_chamber"
+      ],
+      "npcs": []
+    },
+    {
+      "id": "ritual_chamber",
+      "name": "Ritual Chamber",
+      "description": "The deepest room beneath the manor. Where sacrifices were performed for three hundred years. The root grows through the altar, pulsing with ancient life.",
+      "scene_path": "res://scenes/world/ritual_chamber.tscn",
+      "initial_status": "normal",
+      "initial_food_supply": 0.0,
+      "ruler": "",
+      "adjacent_regions": [
+        "manor_catacombs"
+      ],
+      "npcs": []
+    },
+    {
+      "id": "heartwood_clearing",
+      "name": "Heartwood Clearing",
+      "description": "Deep in Thornwood. A perfect circle of ancient trees surrounds the heart of the forest \u2014 the Heartwood itself. The air hums with consciousness.",
+      "scene_path": "res://scenes/world/heartwood_clearing.tscn",
+      "initial_status": "normal",
+      "initial_food_supply": 0.0,
+      "ruler": "",
+      "adjacent_regions": [
+        "thornwood"
+      ],
+      "npcs": [
+        "heartwood",
+        "thornwood_spirit"
+      ]
+    },
+    {
+      "id": "church_outpost",
+      "name": "Church Outpost",
+      "description": "A hidden Church of Ashen Light forward base, concealed in a cave northeast of Thornwood. Alchemical supplies and damning evidence fill the makeshift chapel.",
+      "scene_path": "res://scenes/world/church_outpost.tscn",
+      "initial_status": "normal",
+      "initial_food_supply": 0.0,
+      "ruler": "",
+      "adjacent_regions": [
+        "thornwood"
+      ],
+      "npcs": []
+    }
+  ]
+}

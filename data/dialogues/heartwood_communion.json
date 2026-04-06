@@ -1,0 +1,648 @@
+{
+  "id": "heartwood_communion",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The clearing is vast. Ancient trees ring it like pillars in a cathedral, their canopy so thick that only threads of light reach the ground. In the center, a mass of roots rises from the earth \u2014 gnarled, intertwined, pulsing with a faint bioluminescence. The talisman burns hot against your chest.",
+      "next": "start_2"
+    },
+    "start_2": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The ground shudders. The roots begin to move \u2014 slowly, deliberately \u2014 reshaping themselves into something like a face. Or a mouth. Or a wound. The talisman translates the vibrations into words that form behind your eyes, not in your ears.",
+      "triggers": [
+        {
+          "set_state": "flag.heartwood_contact_made",
+          "value": true
+        }
+      ],
+      "next": "heartwood_speaks"
+    },
+    "heartwood_speaks": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "awakening",
+      "text": "Three hundred turnings of the sun. Three hundred souls promised. Nine given. The rest... stolen.",
+      "next": "heartwood_speaks_2"
+    },
+    "heartwood_speaks_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "awakening",
+      "text": "We remember each name. Each root that grew from their willing flesh. Alara Ashworth, the first, who sang as the earth took her. Brennan the smith's widow, who wept and then was still. Cael the soldier, who knelt without a word.",
+      "next": "heartwood_speaks_3"
+    },
+    "heartwood_speaks_3": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "awakening",
+      "text": "Nine. Out of three hundred. Do you understand what was taken from us?",
+      "next": "heartwood_speaks_4"
+    },
+    "heartwood_speaks_4": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "awakening",
+      "text": "Not cruelty. Not vengeance. Starvation. We are dying, root-walker. The forest thins. The deep soil cools. Without the blood-tithe, the roots cannot reach, the trees cannot grow, the cycle breaks. Your village took our land and promised sustenance. Then it starved us.",
+      "triggers": [
+        {
+          "set_state": "flag.heartwood_communion_begun",
+          "value": true
+        },
+        {
+          "set_state": "flag.pact_fully_revealed",
+          "value": true
+        }
+      ],
+      "next": "first_response"
+    },
+    "first_response": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "empathy",
+          "text": "I understand. Your hunger is just. The Ashworths broke their word.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.heartwood.disposition",
+              "delta": 15
+            },
+            {
+              "set_state": "npc.heartwood.memory.player_acknowledged_debt",
+              "value": true
+            }
+          ],
+          "next": "empathy_response"
+        },
+        {
+          "id": "challenge",
+          "text": "Souls are not currency. The pact was wrong from the beginning \u2014 no one has the right to promise lives.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.heartwood.memory.player_challenged_pact_morality",
+              "value": true
+            }
+          ],
+          "next": "challenge_response"
+        },
+        {
+          "id": "pragmatic",
+          "text": "What's done is done. The past is root-deep. Let's talk about what happens now.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.heartwood.memory.player_is_pragmatic",
+              "value": true
+            }
+          ],
+          "next": "pragmatic_response"
+        },
+        {
+          "id": "hostile",
+          "text": "You're a network of roots making demands. Ashvale owes you nothing.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.heartwood.disposition",
+              "delta": -30
+            },
+            {
+              "set_state": "npc.heartwood.memory.player_hostile",
+              "value": true
+            }
+          ],
+          "next": "hostile_response"
+        }
+      ]
+    },
+    "empathy_response": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "calm",
+      "text": "The roots settle. The bioluminescence brightens \u2014 warmer, almost golden.",
+      "next": "empathy_response_2"
+    },
+    "empathy_response_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "calm",
+      "text": "You see clearly. That is rare among your kind. The family of axes could not look at us without flinching. You look and you see. Good. Then you will understand what we offer: three paths to resolve the debt. Each has a cost. None are free.",
+      "next": "three_paths"
+    },
+    "challenge_response": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "disturbed",
+      "text": "The ground trembles. Roots coil and uncoil around the clearing's edge.",
+      "next": "challenge_response_2"
+    },
+    "challenge_response_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "disturbed",
+      "text": "Wrong? The first Ashworth came with fire and axes. He would have burned us to stumps. The pact saved both \u2014 forest and settlement. Willing souls. Not taken. Given. Each one chose. Can you say the same about the soldiers your villages send to war? The workers you grind to dust in your fields?",
+      "next": "challenge_response_3"
+    },
+    "challenge_response_3": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "disturbed",
+      "text": "Your morality is a sapling. Our roots are older than your language. But we did not bring you here to debate. We brought you here to choose.",
+      "next": "three_paths"
+    },
+    "pragmatic_response": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "awakening",
+      "text": "Good. We have no use for grief or guilt. The past feeds the soil. The future is what matters. You are practical. We can work with practical.",
+      "next": "three_paths"
+    },
+    "hostile_response": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "angry",
+      "text": "The roots erupt around the clearing. The earth cracks. Trees lean inward, branches reaching like fingers. Your companions stumble backward.",
+      "next": "hostile_response_2"
+    },
+    "hostile_response_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "angry",
+      "text": "Owes us nothing? We ARE the ground you stand on. We are the rain that feeds your wells, the wood that builds your homes, the soil that grows your grain. Without us, your village is dust on bare rock.",
+      "next": "hostile_response_3"
+    },
+    "hostile_response_3": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "angry",
+      "text": "The roots slowly recede. The trees straighten. The Heartwood's voice becomes cold and measured.",
+      "next": "hostile_response_4"
+    },
+    "hostile_response_4": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "cold",
+      "text": "We will speak once more. Only once. Three paths lie before you. Choose wisely, or we will choose for you \u2014 and our choice involves roots and silence and a village that becomes a grove.",
+      "next": "three_paths"
+    },
+    "three_paths": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "awakening",
+      "text": "Three paths to resolve the debt between forest and field. Listen carefully. We will not repeat ourselves.",
+      "next": "path_a_explain"
+    },
+    "path_a_explain": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "awakening",
+      "text": "The First Path: Fulfillment. One willing soul, given freely to the roots. Not three hundred \u2014 we are not unreasonable. One soul, given with full understanding, will satisfy the debt for another generation. The cycle continues. The forest heals. The village prospers.",
+      "next": "path_b_explain"
+    },
+    "path_b_explain": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "awakening",
+      "text": "The Second Path: Severance. There is a fire that burns root and pact alike \u2014 druidfire, the old druid calls it. It will destroy the blood-root that connects us to the village. The pact dies. But so do we. Every tree, every root, every living thing in the Thornwood \u2014 ash. The land will be barren for a generation. But the village will owe us nothing ever again.",
+      "next": "path_c_explain"
+    },
+    "path_c_explain": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "awakening",
+      "text": "The Third Path: Renegotiation. The pact was made in desperation by beings who did not understand each other. Perhaps... it can be remade. By beings who do. But this path requires something rare: understanding. You must know what we truly want. Not what you think we want. Not blood. Not death. Something else entirely.",
+      "next": "path_c_explain_2"
+    },
+    "path_c_explain_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "awakening",
+      "text": "If you can name it \u2014 our true desire \u2014 we will listen. If you name it wrong... we will know you do not understand us, and the third path closes forever.",
+      "next": "choice_path"
+    },
+    "choice_path": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "choose_sacrifice",
+          "text": "The First Path. Fulfillment. A willing soul to honor the pact.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.chose_fulfill_pact",
+              "value": true
+            }
+          ],
+          "next": "sacrifice_chosen"
+        },
+        {
+          "id": "choose_severance",
+          "text": "The Second Path. Severance. Burn the blood-root. End this forever.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.chose_sever_pact",
+              "value": true
+            }
+          ],
+          "next": "severance_chosen"
+        },
+        {
+          "id": "choose_renegotiate",
+          "text": "The Third Path. Renegotiation. I believe I know what you want.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.chose_renegotiate_pact",
+              "value": true
+            }
+          ],
+          "next": "renegotiate_chosen"
+        },
+        {
+          "id": "ask_more_time",
+          "text": "I need time to consider. Can I return?",
+          "conditions": [],
+          "triggers": [],
+          "next": "time_response"
+        },
+        {
+          "id": "ask_about_nine",
+          "text": "The nine souls who were given \u2014 are they still... aware? Can they speak?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.asked_about_absorbed_souls",
+              "value": true
+            }
+          ],
+          "next": "nine_souls_response"
+        }
+      ]
+    },
+    "nine_souls_response": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "calm",
+      "text": "The bioluminescence shifts. Nine distinct points of light appear along the root mass \u2014 like stars embedded in wood.",
+      "next": "nine_souls_response_2"
+    },
+    "nine_souls_response_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "calm",
+      "text": "They are us. We are them. They remember being human. We remember being forest. Together we are... more. They do not suffer. They dream the long dream of roots and rain and seasons turning. If you listen carefully...",
+      "next": "nine_souls_response_3"
+    },
+    "nine_souls_response_3": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "A faint sound rises from the roots. Not words \u2014 a melody. Something a mother might hum to a sleeping child. It is unbearably beautiful and profoundly alien at the same time.",
+      "triggers": [
+        {
+          "set_state": "flag.heard_the_absorbed_souls",
+          "value": true
+        },
+        {
+          "set_state": "flag.pact_lore_known",
+          "delta": 1
+        }
+      ],
+      "next": "choice_path"
+    },
+    "time_response": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "disturbed",
+      "text": "The roots shift impatiently.",
+      "next": "time_response_2"
+    },
+    "time_response_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "disturbed",
+      "text": "Time. Always time. Your kind measures life in heartbeats and wonders why it runs out. Very well. The talisman will guide you back. But do not delay long. The hunger does not wait, and our patience is a thinner root than you imagine.",
+      "triggers": [
+        {
+          "set_state": "flag.heartwood_granted_time",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "sacrifice_chosen": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "calm",
+      "text": "The roots settle into stillness. The clearing feels almost peaceful.",
+      "next": "sacrifice_chosen_2"
+    },
+    "sacrifice_chosen_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "calm",
+      "text": "Fulfillment. The old way. Bring us a willing soul \u2014 truly willing, not coerced, not deceived. We will know the difference. The roots can taste a lie. When the sacrifice is given, the pact renews. The crops will grow. The forest will heal. Another generation of peace.",
+      "next": "sacrifice_chosen_3"
+    },
+    "sacrifice_chosen_3": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "calm",
+      "text": "But know this: the next generation will face the same choice. And the next. The wheel turns, root-walker. You are not ending anything. You are continuing it.",
+      "next": "end"
+    },
+    "severance_chosen": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "angry",
+      "text": "The clearing shudders. Every tree groans. Sap weeps from the bark like blood.",
+      "next": "severance_chosen_2"
+    },
+    "severance_chosen_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "angry",
+      "text": "You would kill us. After three hundred years of patience. After we sheltered your village from storms, enriched your soil, gave you wood and shade and the very air you breathe. You would burn it all.",
+      "next": "severance_chosen_3"
+    },
+    "severance_chosen_3": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "cold",
+      "text": "So be it. We cannot stop you \u2014 the druidfire is one of the few things older than we are. But we will not make it easy. Every root, every branch, every spirit in the Thornwood will fight you. You will earn your freedom in blood and ash. And when the last tree falls, remember: you chose this.",
+      "triggers": [
+        {
+          "set_state": "flag.heartwood_warned_of_resistance",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "renegotiate_chosen": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "awakening",
+      "text": "The roots lean toward you. The bioluminescence brightens with what might be curiosity \u2014 or hunger.",
+      "next": "renegotiate_chosen_2"
+    },
+    "renegotiate_chosen_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "awakening",
+      "text": "Bold. The third path has not been walked in all our long memory. Speak, then. What do you believe we truly desire? Choose your words carefully. You will have one chance.",
+      "next": "renegotiate_guess"
+    },
+    "renegotiate_guess": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "guess_growth",
+          "text": "You want to grow. Not blood, not souls \u2014 space. Room to expand. The dead farmland south of Ashvale. Give the forest room to spread, and it doesn't need blood to sustain itself.",
+          "conditions": [
+            {
+              "check": "flag.discovered_forest_desire",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.renegotiation_correct_answer",
+              "value": true
+            }
+          ],
+          "next": "correct_answer"
+        },
+        {
+          "id": "guess_revenge",
+          "text": "You want revenge. The Ashworths broke the pact \u2014 you want them punished.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.renegotiation_wrong_answer",
+              "value": true
+            }
+          ],
+          "next": "wrong_answer_revenge"
+        },
+        {
+          "id": "guess_worship",
+          "text": "You want to be worshipped. The druids used to tend the forest \u2014 you want that devotion back.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.renegotiation_wrong_answer",
+              "value": true
+            }
+          ],
+          "next": "wrong_answer_worship"
+        },
+        {
+          "id": "guess_freedom",
+          "text": "You want to be free of the pact too. It binds you as much as it binds Ashvale.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.renegotiation_wrong_answer",
+              "value": true
+            }
+          ],
+          "next": "wrong_answer_freedom"
+        },
+        {
+          "id": "guess_growth_uninformed",
+          "text": "You want... land? Room to grow?",
+          "conditions": [
+            {
+              "check": "flag.discovered_forest_desire",
+              "op": "!=",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "half_right"
+        }
+      ]
+    },
+    "correct_answer": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Silence. Absolute silence. Even the wind stops. Then the clearing erupts in light \u2014 green and gold, pouring from every root, every branch, every leaf. The Heartwood's voice comes soft and vast, like a cathedral's echo.",
+      "next": "correct_answer_2"
+    },
+    "correct_answer_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "joyful",
+      "text": "Yes. YES. You understand. In three hundred years, not one of your kind has understood. The blood was never the point. The blood was fuel for growth that had no room to grow. Your village sits on our roots like a stone on a seedling.",
+      "next": "correct_answer_3"
+    },
+    "correct_answer_3": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "joyful",
+      "text": "Give us the dead fields. The poisoned earth your crops cannot touch. We will drink the poison from the soil and make it forest. The roots will spread south instead of up, and Ashvale can grow north. Two living things, side by side, neither strangling the other.",
+      "next": "correct_answer_4"
+    },
+    "correct_answer_4": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "calm",
+      "text": "But this requires more than your word, root-walker. Your village must agree. Every faction, every voice. The fields belong to all of them. Bring us their consent \u2014 genuine consent, not forced \u2014 and the pact will be rewritten. No more blood. No more debt. Only growth.",
+      "triggers": [
+        {
+          "set_state": "flag.renegotiation_terms_offered",
+          "value": true
+        },
+        {
+          "set_state": "flag.needs_faction_consent_for_land",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "wrong_answer_revenge": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "cold",
+      "text": "The light dims. The roots coil inward.",
+      "next": "wrong_answer_revenge_2"
+    },
+    "wrong_answer_revenge_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "cold",
+      "text": "Revenge. You think we are so small? Revenge is a human sickness. We do not hate the Ashworths. We hunger. There is a difference a forest understands and a human does not. You have not seen us. The third path is closed.",
+      "triggers": [
+        {
+          "set_state": "flag.third_path_closed",
+          "value": true
+        }
+      ],
+      "next": "wrong_fallback"
+    },
+    "wrong_answer_worship": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "cold",
+      "text": "The roots shudder \u2014 the closest thing a forest can do to laughing.",
+      "next": "wrong_answer_worship_2"
+    },
+    "wrong_answer_worship_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "cold",
+      "text": "Worship. We are not your gods, root-walker. We do not need prayers. We need rain and soil and room. Your devotion means nothing to roots. The third path is closed. You do not understand us.",
+      "triggers": [
+        {
+          "set_state": "flag.third_path_closed",
+          "value": true
+        }
+      ],
+      "next": "wrong_fallback"
+    },
+    "wrong_answer_freedom": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "cold",
+      "text": "The roots still.",
+      "next": "wrong_answer_freedom_2"
+    },
+    "wrong_answer_freedom_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "cold",
+      "text": "Freedom from the pact? We ARE the pact. It is woven into our roots, our bark, our deepest sapwood. We do not wish to be free of it \u2014 we wish it to be honored, or remade, or ended cleanly. Not abandoned. Not ignored. You do not understand us. The third path is closed.",
+      "triggers": [
+        {
+          "set_state": "flag.third_path_closed",
+          "value": true
+        }
+      ],
+      "next": "wrong_fallback"
+    },
+    "half_right": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "awakening",
+      "text": "The roots pause. The bioluminescence flickers uncertainly.",
+      "next": "half_right_2"
+    },
+    "half_right_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "awakening",
+      "text": "Close. Closer than anyone has come. But 'land' is a human word for something we feel differently. You sense the shape of the truth but cannot name it. Go. Learn more. Speak with the old root-speaker. Walk the dead fields south of the village. Feel what the earth feels. Then return with certainty, not guessing.",
+      "triggers": [
+        {
+          "set_state": "flag.heartwood_gave_hint",
+          "value": true
+        },
+        {
+          "set_state": "flag.investigate_dead_fields",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "wrong_fallback": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "cold",
+      "text": "Two paths remain. Fulfillment or severance. Blood or fire. Choose.",
+      "next": "fallback_choice"
+    },
+    "fallback_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "fallback_sacrifice",
+          "text": "Fulfillment. A willing soul.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.chose_fulfill_pact",
+              "value": true
+            }
+          ],
+          "next": "sacrifice_chosen"
+        },
+        {
+          "id": "fallback_severance",
+          "text": "Severance. The druidfire.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.chose_sever_pact",
+              "value": true
+            }
+          ],
+          "next": "severance_chosen"
+        },
+        {
+          "id": "fallback_leave",
+          "text": "I need to think. I'll return.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.heartwood_granted_time",
+              "value": true
+            }
+          ],
+          "next": "time_response_2"
+        }
+      ]
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

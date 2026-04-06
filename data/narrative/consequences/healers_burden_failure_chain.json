@@ -1,0 +1,51 @@
+{
+  "id": "healers_burden_failure_chain",
+  "trigger_condition": "flag.antidote_failed == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "flag.thomas_died",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.memory.thomas_death_guilt",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": -15
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {
+          "set_state": "world.region.ashvale.morale",
+          "delta": -10.0
+        },
+        {
+          "set_state": "npc.greta.memory.thomas_dead",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 7,
+      "effects": [
+        {
+          "set_state": "npc.elara.memory.questioning_skills",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.memory.uses_death_in_sermons",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

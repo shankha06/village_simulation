@@ -1,0 +1,275 @@
+{
+  "id": "forest_expedition",
+  "name": "The Deep Path",
+  "description": "The Thornwood holds the key to Ashvale's ancient curse \u2014 and perhaps its salvation. Armed with the druid talisman, the player must venture into the heart of the forest to find the Heartwood and learn the truth of the pact.",
+  "giver": "old_maren",
+  "region": "thornwood",
+  "tags": [
+    "main_quest",
+    "act_2",
+    "exploration",
+    "mystery",
+    "combat"
+  ],
+  "priority": 13,
+  "states": {
+    "INACTIVE": {
+      "transitions": [
+        {
+          "on": "flag.has_druid_talisman == true && flag.forest_path_opened == true",
+          "to": "ACTIVE"
+        },
+        {
+          "on": "flag.old_maren_trusts_player == true && flag.has_druid_talisman == true",
+          "to": "ACTIVE"
+        }
+      ]
+    },
+    "ACTIVE": {
+      "journal_entry": "Old Maren has shown me the way into the deep Thornwood. The talisman hums against my chest \u2014 the forest knows I'm coming. I should choose my companions carefully. Not everyone will survive what waits within.",
+      "objectives": [
+        "Enter the Thornwood through the druid path",
+        "Navigate to the ancient clearing",
+        "(Optional) Bring allies: Elara, Voss, or Old Maren"
+      ],
+      "transitions": [
+        {
+          "on": "flag.entered_deep_thornwood == true",
+          "to": "IN_THE_WOODS"
+        },
+        {
+          "on": "flag.refused_forest_expedition == true",
+          "to": "ABANDONED"
+        }
+      ]
+    },
+    "IN_THE_WOODS": {
+      "journal_entry": "The forest closes behind us. The path Old Maren described is barely visible \u2014 roots shift and trees lean to block our way. The talisman pulses with each step, guiding us deeper. We are not welcome here, but we are expected.",
+      "objectives": [
+        "Follow the talisman's guidance deeper into Thornwood",
+        "Survive the forest's trials"
+      ],
+      "encounters": [
+        {
+          "id": "wolf_pack",
+          "type": "combat_or_skill",
+          "description": "A pack of thornwolves \u2014 wolves bound with living bark and root. They can be fought, calmed with the talisman, or avoided with stealth.",
+          "options": [
+            {
+              "action": "fight",
+              "flag": "flag.killed_thornwolves",
+              "consequence": "forest_hostility_increase"
+            },
+            {
+              "action": "calm_with_talisman",
+              "flag": "flag.calmed_thornwolves",
+              "condition": "flag.has_druid_talisman == true"
+            },
+            {
+              "action": "sneak_past",
+              "flag": "flag.avoided_thornwolves",
+              "skill_check": "stealth"
+            }
+          ]
+        },
+        {
+          "id": "spirit_guardians",
+          "type": "puzzle",
+          "description": "Three spirit guardians block the path. Each asks a question about the pact. Correct answers (learned from lore) let you pass. Wrong answers trigger combat.",
+          "options": [
+            {
+              "action": "answer_correctly",
+              "flag": "flag.passed_spirit_test",
+              "condition": "flag.pact_lore_known >= 2"
+            },
+            {
+              "action": "force_through",
+              "flag": "flag.fought_spirit_guardians",
+              "consequence": "forest_hostility_increase"
+            },
+            {
+              "action": "old_maren_vouches",
+              "flag": "flag.maren_spoke_to_spirits",
+              "condition": "flag.old_maren_in_party == true"
+            }
+          ]
+        },
+        {
+          "id": "blood_root_field",
+          "type": "environmental",
+          "description": "A field of blood-root \u2014 the poisonous fungus that has been killing Ashvale's crops. It grows in vast quantities here, feeding the Heartwood. This is not sabotage. This is the forest's hunger made manifest.",
+          "options": [
+            {
+              "action": "study",
+              "flag": "flag.understood_blood_root_origin",
+              "triggers": [
+                {
+                  "set_state": "flag.pact_lore_known",
+                  "delta": 1
+                }
+              ]
+            },
+            {
+              "action": "burn",
+              "flag": "flag.burned_blood_root_field",
+              "consequence": "forest_hostility_major_increase"
+            },
+            {
+              "action": "elara_analyzes",
+              "flag": "flag.elara_blood_root_discovery",
+              "condition": "flag.elara_in_party == true"
+            }
+          ]
+        }
+      ],
+      "transitions": [
+        {
+          "on": "flag.reached_ancient_clearing == true",
+          "to": "REACHED_CLEARING"
+        }
+      ]
+    },
+    "REACHED_CLEARING": {
+      "journal_entry": "We've reached the ancient clearing. The trees here are older than Ashvale itself \u2014 twisted, massive, their roots exposed like veins on an old man's hand. In the center, the ground breathes. Something vast sleeps beneath us. The talisman burns hot.",
+      "objectives": [
+        "Approach the central root mass",
+        "Use the talisman to make contact with the Heartwood"
+      ],
+      "transitions": [
+        {
+          "on": "flag.heartwood_contact_made == true",
+          "to": "FOUND_HEARTWOOD"
+        }
+      ]
+    },
+    "FOUND_HEARTWOOD": {
+      "journal_entry": "The Heartwood is not a tree. It is the forest \u2014 every root, every branch, every leaf connected to a single ancient consciousness beneath the earth. It knows my name. It knows what Ashvale owes. And it is patient no longer.",
+      "objectives": [
+        "Commune with the Heartwood",
+        "Learn the full truth of the pact"
+      ],
+      "transitions": [
+        {
+          "on": "flag.heartwood_communion_begun == true",
+          "to": "COMMUNION"
+        }
+      ]
+    },
+    "COMMUNION": {
+      "journal_entry": "The Heartwood has spoken. Three hundred years of broken promises. Nine souls given where hundreds were owed. The forest is dying of starvation, and Ashvale is the meal that was promised. Now I must choose.",
+      "objectives": [
+        "Choose the path forward: Fulfill, Sever, or Renegotiate the pact"
+      ],
+      "transitions": [
+        {
+          "on": "flag.chose_fulfill_pact == true",
+          "to": "PATH_A_SACRIFICE"
+        },
+        {
+          "on": "flag.chose_sever_pact == true",
+          "to": "PATH_B_SEVERANCE"
+        },
+        {
+          "on": "flag.chose_renegotiate_pact == true",
+          "to": "PATH_C_RENEGOTIATION"
+        }
+      ]
+    },
+    "PATH_A_SACRIFICE": {
+      "journal_entry": "I have chosen to fulfill the pact. A willing soul must be given to the Heartwood. The forest will be sated, and Ashvale will prosper again \u2014 watered by sacrifice.",
+      "consequence_chain": "sacrifice_path_chain",
+      "transitions": [
+        {
+          "on": "flag.sacrifice_completed == true",
+          "to": "COMPLETED_SACRIFICE"
+        }
+      ]
+    },
+    "PATH_B_SEVERANCE": {
+      "journal_entry": "I have chosen to sever the pact. Old Maren will teach me the ritual of druidfire \u2014 to burn the blood-root and break the connection forever. The forest will die. Ashvale will be free. The land will be scarred.",
+      "consequence_chain": "severance_path_chain",
+      "transitions": [
+        {
+          "on": "flag.severance_completed == true",
+          "to": "COMPLETED_SEVERANCE"
+        }
+      ]
+    },
+    "PATH_C_RENEGOTIATION": {
+      "journal_entry": "I have chosen to renegotiate. The Heartwood is ancient but not unreasonable \u2014 it wants to grow. If I can offer it something it values more than souls... but what could that be?",
+      "consequence_chain": "renegotiation_path_chain",
+      "transitions": [
+        {
+          "on": "flag.renegotiation_completed == true",
+          "to": "COMPLETED_RENEGOTIATION"
+        },
+        {
+          "on": "flag.renegotiation_failed == true",
+          "to": "COMMUNION"
+        }
+      ]
+    },
+    "COMPLETED_SACRIFICE": {
+      "journal_entry": "It is done. The Heartwood accepted the offering. The roots receded, the crops will grow, and Ashvale will live another generation. But I will never forget the sound the earth made when it swallowed them whole.",
+      "rewards": [
+        {
+          "set_state": "flag.pact_fulfilled",
+          "value": true
+        },
+        {
+          "set_state": "flag.forest_sated",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.food_supply",
+          "delta": 40
+        }
+      ]
+    },
+    "COMPLETED_SEVERANCE": {
+      "journal_entry": "The blood-root burns. The Heartwood screams \u2014 a sound that shakes the earth for miles. Trees wither. The connection shatters. Ashvale is free from the pact forever. But the land around the village is dead. No forest, no shelter, no mystery. Just bare earth and ash.",
+      "rewards": [
+        {
+          "set_state": "flag.pact_severed",
+          "value": true
+        },
+        {
+          "set_state": "flag.thornwood_dead",
+          "value": true
+        },
+        {
+          "set_state": "world.region.thornwood.status",
+          "value": "dead"
+        },
+        {
+          "set_state": "world.region.ashvale.food_supply",
+          "delta": -20
+        }
+      ]
+    },
+    "COMPLETED_RENEGOTIATION": {
+      "journal_entry": "The Heartwood considered my offer and found it... acceptable. The dead farmland to the south will be surrendered to the forest. The roots will spread, the trees will grow, and no more souls will be demanded. Ashvale shrinks, but it endures. The forest and the village will grow old together.",
+      "rewards": [
+        {
+          "set_state": "flag.pact_renegotiated",
+          "value": true
+        },
+        {
+          "set_state": "flag.forest_expanding",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.food_supply",
+          "delta": 15
+        },
+        {
+          "set_state": "player.moral_vector",
+          "delta": 30
+        }
+      ]
+    },
+    "ABANDONED": {
+      "journal_entry": "I chose not to enter the Thornwood. The forest's hunger will only grow. Eventually, it will come to Ashvale whether I go to it or not."
+    }
+  }
+}

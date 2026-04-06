@@ -1,0 +1,485 @@
+{
+  "id": "warden_test",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "(The forest constricts around you. Roots rise like walls. The Warden materializes — a shifting mass of bark, moss, and pale amber light. Its voice is the sound of trees breaking in slow motion.)",
+      "next": "warden_speaks"
+    },
+    "warden_speaks": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "You seek the Heartwood. All who come here seek it. Most are turned away. Some are turned to mulch. I offer you a choice: prove your understanding, or test your strength.",
+      "next": "initial_choice"
+    },
+    "initial_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept_test",
+          "text": "I'll take your tests, Warden. What must I prove?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_warden_test",
+              "value": true
+            },
+            {
+              "set_state": "flag.warden_test_begun",
+              "value": true
+            }
+          ],
+          "next": "test_one_intro"
+        },
+        {
+          "id": "refuse_test",
+          "text": "I don't need your permission. There must be another way through.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.refused_warden_test",
+              "value": true
+            }
+          ],
+          "next": "warden_refusal"
+        },
+        {
+          "id": "silas_path",
+          "text": "[Silas's root map] I know a path beneath the roots. I don't need to pass through here.",
+          "conditions": [
+            {
+              "check": "flag.silas_root_path_known",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "warden_impressed"
+        },
+        {
+          "id": "fight_warden",
+          "text": "I'll carve my own path. Move aside or be moved.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.warden_tests_failed",
+              "value": true
+            }
+          ],
+          "next": "warden_combat"
+        }
+      ]
+    },
+    "test_one_intro": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "Three tests. Three truths the forest needs to hear from human lips. The first: a riddle. Answer well and the roots open. Answer poorly and they tighten.",
+      "next": "riddle"
+    },
+    "riddle": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "What is given freely that cannot be taken?",
+      "next": "riddle_choice"
+    },
+    "riddle_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "answer_trust",
+          "text": "Trust.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.warden_test_one_passed",
+              "value": true
+            }
+          ],
+          "next": "riddle_correct"
+        },
+        {
+          "id": "answer_love",
+          "text": "Love.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.warden_test_one_passed",
+              "value": true
+            }
+          ],
+          "next": "riddle_correct"
+        },
+        {
+          "id": "answer_forgiveness",
+          "text": "Forgiveness.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.warden_test_one_passed",
+              "value": true
+            }
+          ],
+          "next": "riddle_correct"
+        },
+        {
+          "id": "answer_blood",
+          "text": "Blood. Sacrifice.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.warden_test_one_failed",
+              "value": true
+            }
+          ],
+          "next": "riddle_wrong"
+        },
+        {
+          "id": "answer_life",
+          "text": "Life.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.warden_test_one_failed",
+              "value": true
+            }
+          ],
+          "next": "riddle_partial"
+        }
+      ]
+    },
+    "riddle_correct": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "(The roots relax. The amber light brightens.) Yes. The forest gave freely for centuries before the pact. It was the taking that poisoned everything. The first test is passed.",
+      "next": "test_two_intro"
+    },
+    "riddle_wrong": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "angry",
+      "text": "(The roots tighten. Bark creaks.) Blood can always be taken. That is the lesson your kind taught the forest. That answer carries the stink of the pact. The first test is failed.",
+      "next": "test_two_intro"
+    },
+    "riddle_partial": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "(The roots hesitate.) Life can be taken — the forest knows this too well. But you are close to understanding. Close is not enough. The first test is failed.",
+      "next": "test_two_intro"
+    },
+    "test_two_intro": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "The second test. An offering at the forest shrine. Not blood. Not gold. Something that costs you truly. Place it upon the moss and step back.",
+      "next": "shrine_appears"
+    },
+    "shrine_appears": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The roots part to reveal a stone shrine overgrown with luminescent moss. It's ancient — older than Ashvale, older than the pact. The air around it tastes of rain.",
+      "next": "offering_choice"
+    },
+    "offering_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "offer_compass",
+          "text": "[Offer Silas's compass] This belonged to the first sacrifice. It carries his memory.",
+          "conditions": [
+            {
+              "check": "player.has_item.marens_heirloom",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.warden_test_two_passed",
+              "value": true
+            },
+            {
+              "set_state": "player.has_item.marens_heirloom",
+              "value": false
+            }
+          ],
+          "next": "offering_meaningful"
+        },
+        {
+          "id": "offer_weapon",
+          "text": "[Offer your weapon] I lay down my means of violence.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.warden_test_two_passed",
+              "value": true
+            }
+          ],
+          "next": "offering_meaningful"
+        },
+        {
+          "id": "offer_gold",
+          "text": "[Offer gold] This is what humans value most.",
+          "conditions": [
+            {
+              "check": "player.gold",
+              "op": ">=",
+              "value": 100
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.warden_test_two_failed",
+              "value": true
+            },
+            {
+              "set_state": "player.gold",
+              "delta": -100
+            }
+          ],
+          "next": "offering_shallow"
+        },
+        {
+          "id": "offer_nothing",
+          "text": "I have nothing the forest would want.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.warden_test_two_failed",
+              "value": true
+            }
+          ],
+          "next": "offering_refused"
+        }
+      ]
+    },
+    "offering_meaningful": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "(The moss glows brighter. Roots curl protectively around the offering.) A true cost. Not in gold, but in meaning. The forest accepts. The second test is passed.",
+      "next": "test_three_intro"
+    },
+    "offering_shallow": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "angry",
+      "text": "(The gold sits on the moss, dull and cold. The roots do not move.) Metal. Value measured by humans, meaningless to the earth. The forest cannot eat gold. The second test is failed.",
+      "next": "test_three_intro"
+    },
+    "offering_refused": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "(Silence. The shrine's glow dims.) Nothing offered. Nothing received. The cycle of the pact continues in you. The second test is failed.",
+      "next": "test_three_intro"
+    },
+    "test_three_intro": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "The final test. Walk the root path to the Heartwood. Without weapon. Without talisman. Without protection. Trust that the forest will not consume you. Trust, as the forest once trusted humans.",
+      "next": "trust_choice"
+    },
+    "trust_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "walk_unarmed",
+          "text": "Step onto the root path, unarmed, unprotected. Trust the forest.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.warden_test_three_passed",
+              "value": true
+            }
+          ],
+          "next": "trust_walk"
+        },
+        {
+          "id": "walk_armed",
+          "text": "Walk the path, but keep a hidden blade. Just in case.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.warden_test_three_failed",
+              "value": true
+            }
+          ],
+          "next": "trust_betrayed"
+        },
+        {
+          "id": "refuse_walk",
+          "text": "I won't walk unarmed into a forest that eats people.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.warden_test_three_failed",
+              "value": true
+            }
+          ],
+          "next": "trust_refused"
+        }
+      ]
+    },
+    "trust_walk": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You step onto the root path. The roots shift beneath your feet — alive, aware. They could crush you in an instant. They don't. They guide. Each step is firm, each root holding steady. The forest carries you forward as gently as a river carries a leaf.",
+      "next": "trust_complete"
+    },
+    "trust_complete": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "(The Warden's amber light pulses warmly.) You walk as the druids once walked. Without fear. Without blade. The forest remembers this feeling. It has missed it. The third test is passed.",
+      "next": "tally_results"
+    },
+    "trust_betrayed": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You walk the path. The roots steady you. Then, halfway through, a root brushes your hip — and finds the hidden blade. The root recoils. The path bucks. You stumble.",
+      "next": "trust_betrayed_result"
+    },
+    "trust_betrayed_result": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "angry",
+      "text": "Steel. Hidden against the skin. You cannot trust what you arm yourself against. The forest felt the blade before you drew it. The third test is failed.",
+      "next": "tally_results"
+    },
+    "trust_refused": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "Fear is honest. More honest than a hidden blade. But it is not trust. The third test is failed.",
+      "next": "tally_results"
+    },
+    "tally_results": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The Warden is silent for a long moment. The forest creaks and whispers around you as it considers.",
+      "next": "result_branch"
+    },
+    "result_branch": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "all_passed",
+          "text": "[All three tests passed]",
+          "conditions": [
+            {
+              "check": "flag.warden_test_one_passed",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.warden_test_two_passed",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.warden_test_three_passed",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.warden_all_tests_passed",
+              "value": true
+            }
+          ],
+          "next": "result_ally"
+        },
+        {
+          "id": "two_passed",
+          "text": "[Two of three tests passed]",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.warden_two_tests_passed",
+              "value": true
+            }
+          ],
+          "next": "result_watched"
+        }
+      ]
+    },
+    "result_ally": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "(The Warden bows — an ancient gesture, roots dipping like a head inclined.) You understand. Not perfectly. No human can, yet. But enough. The forest will walk with you. When the time comes, the roots will fight beside you.",
+      "triggers": [
+        {
+          "set_state": "flag.warden_is_ally",
+          "value": true
+        }
+      ],
+      "next": "ally_gift"
+    },
+    "ally_gift": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "A section of the Warden's bark peels away and hardens in the air — forming a shield of living wood, warm to the touch. The path to the Heartwood opens before you, lit with amber light.",
+      "next": "end"
+    },
+    "result_watched": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "You see part of the truth. That is enough to pass. Not enough to trust. The path is open. Walk it. But know that the forest watches, and it remembers every step.",
+      "next": "end"
+    },
+    "warden_refusal": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "Then find your own way. The deep forest is old, and dark, and it does not forgive trespassers. But there are paths the roots have forgotten. If you are clever enough to find them.",
+      "next": "end"
+    },
+    "warden_impressed": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "neutral",
+      "text": "(The amber eyes widen. The roots shudder.) The dead man's path. You spoke with the given. The forest... did not expect this. Go. The roots will not hinder one who walks with the remembered.",
+      "triggers": [
+        {
+          "set_state": "flag.warden_two_tests_passed",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "warden_combat": {
+      "type": "text",
+      "speaker": "thornwood_spirit",
+      "portrait": "angry",
+      "text": "VIOLENCE. The language your kind knows best. So be it. The forest will speak in your tongue.",
+      "next": "combat_begins"
+    },
+    "combat_begins": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The Warden erupts. Roots burst from the earth. Bark hardens into armor. The amber light turns crimson. This is the forest's full fury — five hundred years of patience broken in an instant.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

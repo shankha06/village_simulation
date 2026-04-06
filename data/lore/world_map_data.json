@@ -1,0 +1,184 @@
+{
+  "continent": "Valdris",
+  "description": "A continent scarred by the Severance Wars, where ancient consciousnesses and human settlements exist in an uneasy balance of pacts, silence, and simmering conflict.",
+  "regions": [
+    {
+      "id": "ashvale_region",
+      "name": "Ashvale Reach",
+      "type": "pacted_forest",
+      "status": "active_crisis",
+      "pact_number": 14,
+      "consciousness_type": "forest",
+      "consciousness_name": "Thornwood Heartwood",
+      "description": "A village on the edge of the ancient Thornwood, bound by a three-hundred-year pact that demands blood sacrifice every thirty years. The soil is poisoned, the lord is dying, and the forest is hungry.",
+      "connected_to": ["wending_headwaters", "eastern_frontier"],
+      "threat_level": "critical"
+    },
+    {
+      "id": "ash_wastes",
+      "name": "The Ash Wastes",
+      "type": "destroyed_pact",
+      "status": "wasteland",
+      "pact_numbers": [1, 2, 3, 4, 5, 6, 7],
+      "consciousness_type": "forest_destroyed",
+      "consciousness_name": "Ur-Root's Daughter (dead)",
+      "description": "A vast desert stretching four hundred miles, once home to seven thriving pacted villages. General Kael burned the consciousness and every root connected to it. Nothing grows here. The Ironmarch Legion calls it 'liberated land.' The druids call it 'the wound that will not heal.'",
+      "connected_to": ["ironhold", "eastern_frontier"],
+      "threat_level": "none"
+    },
+    {
+      "id": "rivendale_basin",
+      "name": "Rivendale Basin",
+      "type": "pacted_river",
+      "status": "dormant_threat",
+      "pact_number": 11,
+      "consciousness_type": "river",
+      "consciousness_name": "The Wending (diminished)",
+      "description": "The drowned ruins of Rivendale sit half-submerged in an unnatural lake. The river consciousness that destroyed the village retreated upstream but still calls to its sole survivor, Commander Voss, through dreams and the sound of running water.",
+      "connected_to": ["wending_headwaters", "ashvale_region"],
+      "threat_level": "unknown"
+    },
+    {
+      "id": "silverpine_range",
+      "name": "Silverpine Mountains",
+      "type": "pacted_mountain",
+      "status": "thriving",
+      "pact_number": 15,
+      "consciousness_type": "mountain",
+      "consciousness_name": "The Silverpine Consciousness",
+      "description": "A living city built into the mountain itself, where stone shapes around inhabitants and rooms grow where needed. A thousand years of peaceful coexistence — the only pact that never degraded into transaction. The Church has declared it an abomination and is planning a crusade.",
+      "connected_to": ["northern_marshes", "druid_conclave"],
+      "threat_level": "imminent_siege"
+    },
+    {
+      "id": "ironhold",
+      "name": "Ironhold",
+      "type": "military",
+      "status": "hostile",
+      "description": "The Ironmarch Legion's capital, built on the charred bones of the Ur-Root's Daughter. Nothing grows within the city walls. All food is imported. The Iron Doctrine — 'Cut the roots before the roots cut us' — is carved into the gates. General Kael's tomb stands at the city's center, a monument to the war against the consciousnesses.",
+      "connected_to": ["ash_wastes", "eastern_frontier"],
+      "threat_level": "high"
+    },
+    {
+      "id": "cinderfall",
+      "name": "Cinderfall",
+      "type": "religious",
+      "status": "hostile",
+      "description": "Seat of the Church of the Ashen Light, formerly the Cinderfall Academy of alchemists. The original research vaults — containing knowledge of consciousness transfer and possibly the formula for reversing sacrifice absorption — are sealed beneath the cathedral with seven locks. The Purgation Index is maintained here, tracking all seventeen known pacts.",
+      "connected_to": ["eastern_frontier", "silverpine_range"],
+      "threat_level": "high"
+    },
+    {
+      "id": "wending_headwaters",
+      "name": "The Wending Headwaters",
+      "type": "pacted_river",
+      "status": "dormant",
+      "pact_number": 11,
+      "consciousness_type": "river_diminished",
+      "consciousness_name": "The Wending (fragmented)",
+      "description": "Mountain streams and underground aquifers where the remnants of the Wending consciousness have retreated. Scattered and diminished like a mind after a stroke, it persists in these cold waters, calling for the girl who escaped the flood twenty years ago.",
+      "connected_to": ["rivendale_basin", "silverpine_range"],
+      "threat_level": "low"
+    },
+    {
+      "id": "hollowreach",
+      "name": "Hollowreach",
+      "type": "underground",
+      "status": "hidden",
+      "description": "A city that appears on no map, accessible only by following an underground river for three days. Headquarters of the Hollow Hand's continental network and the seat of The Ledger — the enigmatic coordinator who knows the status of every pact, every sacrifice schedule, and every Church operation on the continent. Some say it was built in the ruins of a consciousness that chose to shelter humans rather than fight them.",
+      "connected_to": ["ashvale_region", "rivendale_basin", "eastern_frontier"],
+      "threat_level": "none"
+    },
+    {
+      "id": "northern_marshes",
+      "name": "The Breathing Marshes",
+      "type": "pacted_wetland",
+      "status": "unknown",
+      "pact_number": 16,
+      "consciousness_type": "wetland",
+      "consciousness_name": "Unknown",
+      "description": "Vast marshlands in the north that visibly expand and contract with a rhythm that matches no known tide. The Church has sent three expeditions to catalogue the pact. None returned. The marshes are not hostile — the expeditions simply... never found their way out. They are still walking, some say, following paths that shift beneath their feet.",
+      "connected_to": ["silverpine_range", "shattered_coast"],
+      "threat_level": "unknown"
+    },
+    {
+      "id": "sea_of_glass",
+      "name": "The Sea of Glass",
+      "type": "destroyed_pact",
+      "status": "dead_zone",
+      "description": "A stretch of coastline where the sand has been fused into glass as far as the eye can see. Once a coastal village bound to a tidal consciousness. During the Severance Wars, the coalition used alchemical fire to boil the shallows. The consciousness died. The heat fused the beach into a mirror that reflects the sky so perfectly sailors mistake it for open water and run aground. The glass sings when the wind blows across it — a high, keening note that sounds like grief.",
+      "connected_to": ["ash_wastes", "shattered_coast"],
+      "threat_level": "none"
+    },
+    {
+      "id": "druid_conclave",
+      "name": "The Hidden Grove",
+      "type": "druid_sanctuary",
+      "status": "secret",
+      "description": "The location shifts every decade, communicated through the Deep Root Network to the fewer than forty surviving druids. The current grove is somewhere in the mountains north of Silverpine — chosen because the mountain consciousness provides protection. The conclave's great debate continues: reveal themselves and broker peace, or remain hidden and preserve their knowledge for a future generation.",
+      "connected_to": ["silverpine_range", "northern_marshes"],
+      "threat_level": "none"
+    },
+    {
+      "id": "eastern_frontier",
+      "name": "The Eastern Frontier",
+      "type": "contested",
+      "status": "war_zone",
+      "pact_numbers": [8, 9, 10],
+      "consciousness_type": "mixed",
+      "description": "A volatile region where three pacted villages are currently under siege by Church agents using nightcap root — the same method deployed in Ashvale. The villages are turning against their own consciousnesses, believing the pacts have gone hostile. The Legion patrols the borders, waiting to 'liberate' whatever remains. It is Ashvale's crisis repeated three times over.",
+      "connected_to": ["ash_wastes", "ironhold", "ashvale_region"],
+      "threat_level": "critical"
+    },
+    {
+      "id": "shattered_coast",
+      "name": "The Shattered Coast",
+      "type": "pacted_ocean",
+      "status": "active",
+      "pact_number": 17,
+      "consciousness_type": "ocean",
+      "consciousness_name": "The Depthless (presumed)",
+      "description": "A treacherous stretch of coast where the ocean consciousness — the oldest and most powerful on the continent — maintains an active pact with fishing communities who have never defaulted. The Church cannot even locate it; every survey vessel is sunk by waves that move with surgical precision. The ocean consciousness is the one that has been listening to every argument in the Deep Root Network for three thousand years. Its verdict on humanity will determine the Convergence.",
+      "connected_to": ["sea_of_glass", "northern_marshes"],
+      "threat_level": "unknown"
+    },
+    {
+      "id": "pact_12_ruins",
+      "name": "The Whispering Stones",
+      "type": "pacted_mountain",
+      "status": "dormant",
+      "pact_number": 12,
+      "consciousness_type": "mountain_dormant",
+      "description": "Ruins of a mountain village whose consciousness withdrew after its people emigrated during a famine. The empty buildings stand among boulders that occasionally shift position overnight. The consciousness is not dead — merely waiting. Waiting for someone to return and resume the conversation.",
+      "connected_to": ["eastern_frontier", "silverpine_range"],
+      "threat_level": "none"
+    },
+    {
+      "id": "pact_13_grove",
+      "name": "The Thornless Wood",
+      "type": "pacted_forest",
+      "status": "dormant",
+      "pact_number": 13,
+      "consciousness_type": "forest_dormant",
+      "description": "A forest that was once bound to a logging community. When the community overharvested, the consciousness withdrew into dormancy rather than retaliate. The forest still stands, eerily quiet — no birdsong, no insect hum, no wind in the leaves. The trees are alive but the intelligence behind them is sleeping. The loggers' descendants still live at the forest's edge, waiting for something they cannot name.",
+      "connected_to": ["eastern_frontier", "ashvale_region"],
+      "threat_level": "none"
+    }
+  ],
+  "pact_status_summary": {
+    "destroyed": [1, 2, 3, 4, 5, 6, 7],
+    "under_church_attack": [8, 9, 10],
+    "dormant": [11, 12, 13],
+    "active_crisis": [14],
+    "thriving": [15],
+    "unknown": [16, 17]
+  },
+  "deep_root_network": {
+    "status": "damaged_but_active",
+    "intact_connections": 27,
+    "estimated_total_original": "hundreds",
+    "current_message": "Distress call from Thornwood Heartwood propagating. First network-wide alert in over a century.",
+    "convergence_status": "imminent",
+    "convergence_arbiter": "The Depthless (ocean consciousness, Shattered Coast)"
+  }
+}

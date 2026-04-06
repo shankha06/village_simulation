@@ -1,0 +1,205 @@
+{
+  "items": [
+    {
+      "id": "firebomb",
+      "name": "Guild Firebomb",
+      "description": "A volatile alchemical device made by the Hollow Hand. Burns hot enough to ignite stone. Handle with extreme care.",
+      "type": "KEY_ITEM",
+      "base_value": 0,
+      "stackable": false,
+      "is_quest_item": true
+    },
+    {
+      "id": "gold_pouch_large",
+      "name": "Heavy Gold Pouch",
+      "description": "A leather pouch stuffed with gold coins. Payment for dirty work.",
+      "type": "KEY_ITEM",
+      "base_value": 200,
+      "stackable": false
+    },
+    {
+      "id": "nightcap_sample",
+      "name": "Nightcap Root Sample",
+      "description": "A dried sample of the fungal root poisoning Ashvale's water. Proof of sabotage.",
+      "type": "LORE",
+      "base_value": 0,
+      "stackable": false,
+      "is_quest_item": true,
+      "codex_entry": "lore_nightcap_root"
+    },
+    {
+      "id": "herb_poultice",
+      "name": "Herb Poultice",
+      "description": "A healing salve made from forest herbs. Stops bleeding and dulls pain.",
+      "type": "CONSUMABLE",
+      "base_value": 15,
+      "stackable": true,
+      "max_stack": 10,
+      "heal_amount": 25.0
+    },
+    {
+      "id": "bread",
+      "name": "Stale Bread",
+      "description": "Hard and tasteless, but it fills the stomach. Luxury in times of famine.",
+      "type": "CONSUMABLE",
+      "base_value": 5,
+      "stackable": true,
+      "max_stack": 20,
+      "heal_amount": 5.0
+    },
+    {
+      "id": "iron_dagger",
+      "name": "Iron Dagger",
+      "description": "A simple but serviceable blade. Won't win any duels, but better than bare hands.",
+      "type": "WEAPON",
+      "base_value": 40,
+      "stackable": false,
+      "equip_slot": "weapon",
+      "attack_bonus": 5.0
+    },
+    {
+      "id": "leather_vest",
+      "name": "Leather Vest",
+      "description": "Worn leather armor. Offers modest protection against claws and blades.",
+      "type": "ARMOR",
+      "base_value": 30,
+      "stackable": false,
+      "equip_slot": "armor",
+      "defense_bonus": 3.0
+    },
+    {
+      "id": "manor_key",
+      "name": "Manor Key",
+      "description": "An ornate iron key bearing the Ashworth crest. Opens the manor's front gate.",
+      "type": "KEY_ITEM",
+      "base_value": 0,
+      "stackable": false,
+      "is_quest_item": true
+    },
+    {
+      "id": "torn_cloth",
+      "name": "Torn Cloth Fragment",
+      "description": "A scrap of fine cloth found near the poisoned water source. Bears a partial emblem \u2014 but whose?",
+      "type": "LORE",
+      "base_value": 0,
+      "stackable": false,
+      "is_quest_item": true
+    },
+    {
+      "id": "old_maren_talisman",
+      "name": "Druid's Talisman",
+      "description": "A carved wooden pendant given by Old Maren. She says it will 'show you what the forest wants you to see.'",
+      "type": "KEY_ITEM",
+      "base_value": 0,
+      "stackable": false,
+      "is_quest_item": true,
+      "codex_entry": "lore_thornwood_pact"
+    },
+    {
+      "id": "marens_heirloom",
+      "name": "Maren's Silver Compass",
+      "description": "A tarnished silver compass that no longer points north. The name 'Silas Maren' is scratched into the back in a child's handwriting. The needle trembles when held near old trees.",
+      "type": "KEY_ITEM",
+      "base_value": 0,
+      "stackable": false,
+      "is_quest_item": true,
+      "codex_entry": "lore_maren_family"
+    },
+    {
+      "id": "nightcap_antidote",
+      "name": "Nightcap Antidote",
+      "description": "A carefully brewed remedy that neutralizes nightcap root poisoning. The mixture smells of clean earth and tastes like forgiveness.",
+      "type": "CONSUMABLE",
+      "base_value": 50,
+      "stackable": true,
+      "max_stack": 5,
+      "heal_amount": 40.0,
+      "is_quest_item": true
+    },
+    {
+      "id": "druidfire_torch",
+      "name": "Druidfire Torch",
+      "description": "A torch that burns with an eerie green flame. Old Maren says it can sever magical bonds and reveal hidden paths. The fire doesn't consume the wood — it feeds on something else entirely.",
+      "type": "KEY_ITEM",
+      "base_value": 0,
+      "stackable": false,
+      "is_quest_item": true
+    },
+    {
+      "id": "truth_potion",
+      "name": "Tongueloose Draught",
+      "description": "A murky amber liquid that loosens inhibitions and encourages honesty. Slip it into a drink during conversation for... illuminating results. Elara insists it's not poison. Technically.",
+      "type": "CONSUMABLE",
+      "base_value": 30,
+      "stackable": true,
+      "max_stack": 3
+    },
+    {
+      "id": "smoke_bomb",
+      "name": "Smoke Bomb",
+      "description": "A compact alchemical device that releases a thick cloud of choking gray smoke. Fenrick's design — compact, reliable, and just unpleasant enough to buy you time.",
+      "type": "CONSUMABLE",
+      "base_value": 25,
+      "stackable": true,
+      "max_stack": 5
+    },
+    {
+      "id": "moonpetal_flower",
+      "name": "Moonpetal Flower",
+      "description": "A delicate silver-white flower that only blooms in the Heartwood Clearing under moonlight. Its petals glow faintly, even after picking. Old Maren says the forest gives these freely — but only to those it trusts.",
+      "type": "LORE",
+      "base_value": 0,
+      "stackable": true,
+      "max_stack": 5,
+      "is_quest_item": true
+    },
+    {
+      "id": "moonpetal_tea",
+      "name": "Moonpetal Tea",
+      "description": "A luminous tea brewed from moonpetal flowers. Drinking it lets you hear whispers in the wind — the forest's voice, speaking in impressions and emotions rather than words. The effect lasts about an hour.",
+      "type": "CONSUMABLE",
+      "base_value": 0,
+      "stackable": true,
+      "max_stack": 3,
+      "is_quest_item": true
+    },
+    {
+      "id": "torch",
+      "name": "Torch",
+      "description": "A simple wooden torch wrapped in oil-soaked cloth. Burns for about four hours. Essential for the catacombs, where the darkness is not merely the absence of light.",
+      "type": "CONSUMABLE",
+      "base_value": 5,
+      "stackable": true,
+      "max_stack": 10
+    },
+    {
+      "id": "crypt_key",
+      "name": "Crypt Key",
+      "description": "A heavy iron key, black with age, found on the body of the dead messenger. The teeth are carved with the Ashworth family motto: 'The Root Remembers.' Opens the sealed section of the catacombs.",
+      "type": "KEY_ITEM",
+      "base_value": 0,
+      "stackable": false,
+      "is_quest_item": true
+    },
+    {
+      "id": "sacred_text",
+      "name": "Sacred Text of the Ashen Light",
+      "description": "A leather-bound book of Church doctrine. Most of it is standard religious text, but the final chapter — 'On the Purification of Corrupted Lands' — reads like a military operations manual. Annotated in Brother Maren's handwriting.",
+      "type": "LORE",
+      "base_value": 0,
+      "stackable": false,
+      "is_quest_item": true,
+      "codex_entry": "lore_ashen_light_doctrine"
+    },
+    {
+      "id": "ashworth_ledger",
+      "name": "Ashworth Family Ledger",
+      "description": "A crumbling ledger spanning generations of Ashworth lords. Every thirty years, an entry is marked in red ink: 'The Debt Paid.' The payments are never described. The names beside them are never mentioned again.",
+      "type": "LORE",
+      "base_value": 0,
+      "stackable": false,
+      "is_quest_item": true,
+      "codex_entry": "lore_ashworth_pact_history"
+    }
+  ]
+}

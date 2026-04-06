@@ -1,0 +1,89 @@
+{
+  "id": "old_maren_prophecy",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "neutral",
+      "text": "She grips your wrist. Her blind eyes widen. The roots beneath you pulse once.",
+      "next": "prophecy"
+    },
+    "prophecy": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "fearful",
+      "text": "I see... three paths. On one, the forest swallows the village whole. On another, the village burns the forest to ash. On the third... the third is unclear. Someone walks into the roots who should not. Someone dies who was meant to live. And someone lives who was meant to die.",
+      "triggers": [
+        {"set_state": "flag.prophecy_spoken", "value": true},
+        {"set_state": "flag.prophecy_someone_dies", "value": true},
+        {"set_state": "flag.prophecy_someone_lives", "value": true}
+      ],
+      "next": "prophecy_2"
+    },
+    "prophecy_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "neutral",
+      "text": "She releases your wrist. The pulse stops. She looks shaken.",
+      "next": "prophecy_choice"
+    },
+    "prophecy_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "who_dies",
+          "text": "Who dies? Who was meant to live?",
+          "conditions": [],
+          "triggers": [],
+          "next": "who_dies_response"
+        },
+        {
+          "id": "refuse_fate",
+          "text": "I don't believe in prophecy. We make our own choices.",
+          "conditions": [],
+          "triggers": [
+            {"set_state": "flag.player_rejects_prophecy", "value": true}
+          ],
+          "next": "refuse_response"
+        },
+        {
+          "id": "third_path",
+          "text": "The third path. The unclear one. How do I find it?",
+          "conditions": [],
+          "triggers": [
+            {"set_state": "flag.player_seeks_third_path", "value": true}
+          ],
+          "next": "third_path_response"
+        }
+      ]
+    },
+    "who_dies_response": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "sad",
+      "text": "I don't know. The roots showed me shapes, not names. But I felt... family. The one who dies is connected to the one who lives by blood. And the one who walks into the roots goes willingly, but not happily.",
+      "next": "end"
+    },
+    "refuse_response": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "neutral",
+      "text": "She smiles. It is the saddest smile you have ever seen. 'That is exactly what the last one said. Thirty years ago. Before he walked into the roots.'",
+      "next": "end"
+    },
+    "third_path_response": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "neutral",
+      "text": "The third path is not found. It is made. By someone who refuses to accept the world as it is. Someone who listens when the forest speaks, and speaks when the forest listens. Someone who carries a compass that doesn't point north.",
+      "triggers": [
+        {"set_state": "flag.old_maren_hinted_third_path", "value": true}
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

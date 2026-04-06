@@ -1,0 +1,120 @@
+{
+  "id": "legion_negotiation_chain",
+  "trigger_condition": "flag.negotiated_with_legion == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "flag.ashvale_tributary_state",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.tension",
+          "delta": -10
+        },
+        {
+          "set_state": "npc.ironmarch_emissary.disposition",
+          "delta": 15
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 2,
+      "effects": [
+        {
+          "spawn_event": "draven_departs_professional"
+        },
+        {
+          "set_state": "flag.draven_reports_to_general",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 7,
+      "effects": [
+        {
+          "set_state": "flag.tributary_terms_official",
+          "value": true
+        },
+        {
+          "spawn_event": "legion_trade_envoy_arrives"
+        },
+        {
+          "set_state": "economy.ashvale.trade_bonus",
+          "value": 1.2
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 7,
+      "condition": "flag.accepted_waystation_compromise == true",
+      "effects": [
+        {
+          "spawn_event": "waystation_construction_begins"
+        },
+        {
+          "set_state": "flag.legion_waystation_built",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 14,
+      "effects": [
+        {
+          "set_state": "flag.first_tribute_due",
+          "value": true
+        },
+        {
+          "spawn_event": "tribute_collection_day"
+        },
+        {
+          "set_state": "world.region.ashvale.food_supply",
+          "delta": -5
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 14,
+      "condition": "flag.planning_resistance == true",
+      "effects": [
+        {
+          "set_state": "flag.secret_resistance_forming",
+          "value": true
+        },
+        {
+          "spawn_event": "resistance_meeting"
+        },
+        {
+          "set_state": "npc.commander_voss.memory.player_playing_both_sides",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 30,
+      "effects": [
+        {
+          "set_state": "flag.tributary_status_normalized",
+          "value": true
+        },
+        {
+          "set_state": "npc.greta.memory.legion_trade_brings_goods",
+          "value": true
+        },
+        {
+          "set_state": "economy.ashvale.price_mod",
+          "value": 0.8
+        }
+      ]
+    }
+  ]
+}

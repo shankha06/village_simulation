@@ -1,0 +1,181 @@
+{
+  "id": "greta_intelligence",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "serious",
+      "text": "Close the door. What I'm about to show you, I've never shown anyone. My grandmother would have skinned me for it. Then again, my grandmother would have skinned me for a lot of things I've done.",
+      "next": "cellar_descent"
+    },
+    "cellar_descent": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Greta leads you down stone steps into the cellar. The air smells of damp stone and old ale. As your eyes adjust, you see the walls. Every surface is covered in tally marks -- thousands of them, scratched into stone with varying depth and urgency.",
+      "next": "tally_explain"
+    },
+    "tally_explain": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "serious",
+      "text": "Four thousand, two hundred and seventeen. Each mark is a conversation overheard that 'might be useful someday.' My grandmother started them. My mother continued. I've added... more than I'd like to admit.",
+      "next": "tally_response"
+    },
+    "tally_response": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "impressed",
+          "text": "Three generations of intelligence gathering. That's remarkable.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.greta.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "the_ledger"
+        },
+        {
+          "id": "suspicious",
+          "text": "You've been spying on your own neighbors for decades?",
+          "conditions": [],
+          "triggers": [],
+          "next": "not_spying"
+        },
+        {
+          "id": "why_now",
+          "text": "Why show me this now?",
+          "conditions": [],
+          "triggers": [],
+          "next": "why_now_answer"
+        }
+      ]
+    },
+    "not_spying": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "serious",
+      "text": "Listening. There's a difference. A spy serves a master. I serve the village. When the lord's men came for Silas, I knew three days in advance. Couldn't stop it. But I got word to Old Maren. She had time to... prepare. Whatever that's worth when your son is walking into the trees.",
+      "next": "the_ledger"
+    },
+    "why_now_answer": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "serious",
+      "text": "Because my grandmother said: 'Information is the only currency that doesn't rot.' She was wrong. Even information rots if no one acts on it. I've been hoarding secrets for thirty years. The village is dying. If I don't spend this currency now, it dies with me.",
+      "next": "the_ledger"
+    },
+    "the_ledger": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Greta reaches behind the third barrel from the left and pulls out a thick leather-bound book. The cover is stained with ale rings and candle wax. Inside, the handwriting is meticulous -- three different hands across three generations.",
+      "next": "ledger_contents"
+    },
+    "ledger_contents": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "serious",
+      "text": "Everything's in here. Who visits the manor at odd hours. What Brother Maren orders from the traveling merchants -- ingredients that no priest needs. Which families the Guild contacts first when they need something moved. The Legion scouts' patrol routes. All of it. Cross-referenced by date, name, and topic.",
+      "next": "what_to_share"
+    },
+    "what_to_share": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "maren_info",
+          "text": "Tell me about Brother Maren's purchases.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.greta_intel_maren_purchases",
+              "value": true
+            }
+          ],
+          "next": "maren_purchases"
+        },
+        {
+          "id": "legion_info",
+          "text": "What do you know about the Legion's movements?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.greta_intel_legion_movements",
+              "value": true
+            }
+          ],
+          "next": "legion_intel"
+        },
+        {
+          "id": "take_all",
+          "text": "Give me the whole ledger. I'll use it.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.greta_offers_full_ledger",
+              "value": true
+            },
+            {
+              "set_state": "player.has_item.greta_intelligence_ledger",
+              "value": true
+            }
+          ],
+          "next": "full_handover"
+        }
+      ]
+    },
+    "maren_purchases": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "serious",
+      "text": "Salt. Lots of it. Church-grade purification salt -- the kind they use to 'cleanse' pact sites. He also ordered three vials of something called 'essence of severance' from a merchant who didn't know I was listening from behind the kitchen wall. That's not theology. That's alchemy. The kind that kills forests.",
+      "next": "more_to_share"
+    },
+    "legion_intel": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "serious",
+      "text": "Two scouts rotate through weekly. They camp in the abandoned barn east of the granary. They report to a woman -- tall, armored, cold eyes. She's been here three times but never enters the village proper. Watches from the treeline. Patient. Like she's waiting for something to die so she can pick through the remains.",
+      "next": "more_to_share"
+    },
+    "full_handover": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "serious",
+      "text": "Take it. Three generations of women, listening in the dark, writing by candlelight, pretending to wipe tables while memorizing every word. It's all in there. Use it well. And if you get us all killed... at least we died doing something other than waiting.",
+      "triggers": [
+        {
+          "set_state": "flag.greta_full_intelligence_shared",
+          "value": true
+        }
+      ],
+      "next": "closing"
+    },
+    "more_to_share": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "serious",
+      "text": "There's more. There's always more. Come back when you need it. The cellar will be open. Just don't tell anyone about the tally marks. Some secrets protect better when they stay in the dark.",
+      "next": "closing"
+    },
+    "closing": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "One more thing. The envelopes under the third barrel -- don't touch those. They're for someone else. Someone who needs them more than you do.",
+      "triggers": [
+        {
+          "set_state": "flag.greta_intelligence_conversation_complete",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

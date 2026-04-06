@@ -1,0 +1,136 @@
+{
+  "id": "ashworth_dying",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The manor bedroom smells of sweat and dying flowers. Lord Ashworth lies in bed, his skin the color of old parchment, his breathing shallow and irregular. Every mirror in the room faces the wall. He doesn't notice you enter. Or perhaps he does, and no longer cares.",
+      "next": "ashworth_speaks"
+    },
+    "ashworth_speaks": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "dying",
+      "text": "I went down to the chamber. The ritual chamber. I stood at the wall where the others had scratched their lines. Nine marks. I put my fingernail to the stone. I was going to make the tenth.",
+      "next": "ashworth_speaks_2"
+    },
+    "ashworth_speaks_2": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "dying",
+      "text": "But I couldn't finish the line. Because finishing it meant choosing someone. A name. A face. A person who would walk into those trees and never come back. My father chose Silas. His father chose a prisoner. His father chose a child.",
+      "next": "ashworth_speaks_3"
+    },
+    "ashworth_speaks_3": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "dying",
+      "text": "I was supposed to be brave enough to break the chain. Instead I just... stopped pulling. And the chain kept tightening. Around the village. Around the fields. Around my own throat.",
+      "next": "player_choice"
+    },
+    "player_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "listen",
+          "text": "[Listen silently.]",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.lord_ashworth.memory.player_listened",
+              "value": true
+            }
+          ],
+          "next": "confession_continues"
+        },
+        {
+          "id": "comfort",
+          "text": "You chose not to kill. That took courage.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.lord_ashworth.disposition",
+              "delta": 15
+            }
+          ],
+          "next": "comfort_response"
+        },
+        {
+          "id": "confront",
+          "text": "You didn't break the chain. You just let everyone starve instead.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.lord_ashworth.memory.player_confronted_him",
+              "value": true
+            }
+          ],
+          "next": "confront_response"
+        }
+      ]
+    },
+    "confession_continues": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "dying",
+      "text": "The wine is gone. The last bottle of Thornwood Red -- the Year of Wren vintage. I drank it last night. It tasted like flowers and forgiveness. I don't deserve either.",
+      "next": "final_words"
+    },
+    "comfort_response": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "dying",
+      "text": "Courage. Is that what we're calling it? I've seen courage. Wren had courage -- she walked into the roots singing. Silas had courage -- he walked in silent, for his children. I just... sat in a manor and aged. That's not courage. That's exhaustion wearing a crown.",
+      "next": "final_words"
+    },
+    "confront_response": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "dying",
+      "text": "Yes. Yes, that's exactly what I did. I replaced one cruelty with another and called it mercy. A lord who won't sacrifice his people and won't save them either. What do you call that? Besides useless?",
+      "next": "final_words"
+    },
+    "final_words": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "dying",
+      "text": "The crown is in the case downstairs. The living wood one. It won't let me wear it anymore -- the thorns draw blood. But maybe it will let someone else. Someone who isn't an Ashworth. Someone who can look at the forest and see a partner instead of a creditor.",
+      "next": "final_words_2"
+    },
+    "final_words_2": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "dying",
+      "text": "Tell Elara I'm sorry about her father. Tell Brother Maren the books in the cellar are real. Tell Harlan... tell him the gate was never meant to keep things out. It was meant to keep us in. We were never free to leave. None of us were.",
+      "triggers": [
+        {
+          "set_state": "flag.ashworth_final_confession",
+          "value": true
+        },
+        {
+          "set_state": "flag.ashworth_mentioned_crown_transfer",
+          "value": true
+        }
+      ],
+      "next": "end_scene"
+    },
+    "end_scene": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Lord Ashworth closes his eyes. His breathing slows to match the rhythm of the wind outside -- the same whisper-hush that sounds like the forest counting. The unfinished scratch mark in the ritual chamber will never be completed. The tenth lord of Ashvale has made his final choice: to be a line that refused to be drawn.",
+      "triggers": [
+        {
+          "set_state": "flag.ashworth_deathbed_scene_complete",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "id": "warden_defeated_chain",
+  "trigger_condition": "flag.warden_tests_failed == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "npc.thornwood_spirit.disposition",
+          "delta": -50
+        },
+        {
+          "set_state": "faction.thornwood_druids.power",
+          "delta": -20.0
+        },
+        {
+          "set_state": "flag.forest_hostile_to_player",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "set_state": "world.region.thornwood.behavior",
+          "value": "hostile"
+        },
+        {
+          "set_state": "npc.old_maren.disposition",
+          "delta": -30
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "effects": [
+        {
+          "spawn_event": "forest_attacks_village_edge"
+        },
+        {
+          "set_state": "world.region.ashvale.threat_level",
+          "value": "high"
+        }
+      ]
+    }
+  ]
+}

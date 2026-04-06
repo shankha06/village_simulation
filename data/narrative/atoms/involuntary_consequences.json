@@ -1,0 +1,77 @@
+[
+  {
+    "id": "involuntary_elara_distrust",
+    "category": "consequence",
+    "priority": 50,
+    "once_only": true,
+    "conditions": [
+      "flag.accepted_sabotage == true",
+      "flag.agreed_to_help_elara == true",
+      "time.day >= 4"
+    ],
+    "effects": [
+      {"set_state": "npc.elara.disposition", "delta": -25},
+      {"set_state": "npc.elara.memory.suspects_player_duplicity", "value": true}
+    ],
+    "notification_text": "Elara looks at you differently today. She doesn't say why. But her hand hovers near her herb pouch — the one with the sedatives — whenever you're close. Someone told her you've been seen with Fenrick."
+  },
+  {
+    "id": "involuntary_voss_doubts",
+    "category": "consequence",
+    "priority": 45,
+    "once_only": true,
+    "conditions": [
+      "flag.voss_conditional_alliance == true",
+      "flag.player_threatened_lord == true"
+    ],
+    "effects": [
+      {"set_state": "npc.commander_voss.disposition", "delta": -15},
+      {"set_state": "flag.voss_heard_about_threat", "value": true}
+    ],
+    "notification_text": "Commander Voss meets your eyes across the village square. Her expression is unreadable. Then she turns away. Word travels fast in a dying village."
+  },
+  {
+    "id": "involuntary_greta_profit",
+    "category": "consequence",
+    "priority": 35,
+    "once_only": true,
+    "conditions": [
+      "world.region.ashvale.status == famine",
+      "npc.greta.disposition > 20"
+    ],
+    "effects": [
+      {"set_state": "npc.greta.memory.profiting_from_famine", "value": true}
+    ],
+    "notification_text": "You notice Greta's inn is busier than ever. Not with drinkers — with desperate people buying the last of her food stores at triple prices. She catches your eye and looks away. Even kindness has its limits when survival is at stake."
+  },
+  {
+    "id": "involuntary_old_maren_decline",
+    "category": "consequence",
+    "priority": 60,
+    "once_only": true,
+    "conditions": [
+      "flag.maren_family_truth_revealed == true",
+      "time.day >= 8"
+    ],
+    "effects": [
+      {"set_state": "npc.old_maren.health", "delta": -15},
+      {"set_state": "flag.old_maren_weakening", "value": true}
+    ],
+    "notification_text": "Old Maren looks frailer today. The weight of what she knows — her grandson, her granddaughter, the pact that ate her son — is becoming physical. The earth feels heavier to her now, she says. As if the roots are already reaching for her."
+  },
+  {
+    "id": "involuntary_compass_points_to_crypt",
+    "category": "mystery",
+    "priority": 40,
+    "once_only": true,
+    "conditions": [
+      "player.has_item.marens_heirloom == true",
+      "flag.entered_ashworth_manor == true",
+      "flag.found_ghost_letters_cache != true"
+    ],
+    "effects": [
+      {"set_state": "flag.compass_points_to_crypt", "value": true}
+    ],
+    "notification_text": "The compass needle swings hard toward the crypt entrance. It vibrates in your hand. Silas's compass wants you to go DOWN. Into the dark. Into the place where the dead keep their secrets."
+  }
+]

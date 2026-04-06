@@ -1,0 +1,215 @@
+{
+  "id": "ending_harmony",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You spoke to the Heartwood not as a supplicant, not as a conqueror, but as an equal. And for the first time in ten thousand years, the ancient thing listened. Not because you were powerful. Because you were honest.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_harmony_started",
+          "value": true
+        }
+      ],
+      "next": "the_accord"
+    },
+    "the_accord": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "ancient",
+      "text": "You offer... not blood. Not submission. You offer... change. This is new. In all my long remembering, no one has offered change.",
+      "next": "player_response"
+    },
+    "player_response": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "we_change_together",
+          "text": "Both sides change. The forest gives ground, and the village gives ground. That's what an accord means.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accord_mutual",
+              "value": true
+            }
+          ],
+          "next": "heartwood_considers"
+        },
+        {
+          "id": "we_were_wrong",
+          "text": "We were wrong to take so much. The village will learn to live with the forest, not against it.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accord_humble",
+              "value": true
+            }
+          ],
+          "next": "heartwood_considers"
+        }
+      ]
+    },
+    "heartwood_considers": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "ancient",
+      "text": "Then let the fields become groves. Let the houses grow roots. Let the well water run through my veins and yours alike. I am tired of the old pact. Tired of blood. Let us try... this new thing.",
+      "next": "transformation_begins"
+    },
+    "transformation_begins": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "It happens slowly at first. A vine curls around a fencepost. Moss spreads across a stone wall, not consuming it but adorning it, like embroidery on cloth. The dead fields don't return to bare soil \u2014 they become meadows, then copses, then something in between: orchards of trees no one has ever seen before, bearing fruit that tastes like sunlight and good earth.",
+      "next": "harmony_hidden_cost"
+    },
+    "harmony_hidden_cost": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "But not everything survives the transformation. The outer fields -- the ones that grew Cinder-Root, the only treatment for root-lung disease -- are swallowed by the new forest. What was tilled earth becomes loam and moss. The village gains a miracle. And quietly, in the margin of the miracle, something irreplaceable is lost.",
+      "triggers": [
+        {
+          "set_state": "flag.cinder_root_lost",
+          "value": true
+        },
+        {
+          "set_state": "flag.harmony_has_cost",
+          "value": true
+        }
+      ],
+      "next": "village_reacts"
+    },
+    "village_reacts": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You stand in the village square and watch the transformation ripple outward. The well water runs clear and sweet \u2014 sweeter than it has ever been, the old-timers say. Roots push up through the cobblestones, but gently, finding the gaps between the stones rather than breaking them.",
+      "next": "elara_wonder"
+    },
+    "elara_wonder": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "happy",
+      "text": "Look at this. Just \u2014 look at it. These plants... I've never seen half these species. The Heartwood isn't just sharing the land. It's sharing its knowledge. A thousand years of botanical memory, growing right out of the ground.",
+      "conditions": [
+        {
+          "check": "npc.elara.alive",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "triggers": [
+        {
+          "set_state": "npc.elara.memory.witnessed_harmony",
+          "value": true
+        }
+      ],
+      "next": "elara_cost_acceptance"
+    },
+    "elara_cost_acceptance": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "The Cinder-Root is gone. The canopy took the last field where it grew. That herb was the only treatment for root-lung. Without it... She looks at the new forest, and her expression is joy and grief braided together like roots.",
+      "triggers": [
+        {
+          "set_state": "flag.elara_knows_cinder_root_gone",
+          "value": true
+        }
+      ],
+      "next": "factions_gather"
+    },
+    "factions_gather": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The factions gather in the village square \u2014 all of them, together, for the first time. The Guard lays down its suspicion. The Guild sets aside its ledgers. The Church kneels not in penance but in wonder. Even the hardest faces soften when they see what the forest is becoming. What they are all becoming.",
+      "next": "voss_reaction"
+    },
+    "voss_reaction": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "thoughtful",
+      "text": "I came to Ashvale to claim it for the Legion. I... don't think the Legion has a word for what this place is becoming. My superiors won't understand. But I'll make them understand. Or I'll stop being their commander. Either way.",
+      "conditions": [
+        {
+          "check": "npc.commander_voss.alive",
+          "op": "==",
+          "value": true
+        },
+        {
+          "check": "flag.voss_spared_in_duel",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "triggers": [
+        {
+          "set_state": "npc.commander_voss.memory.chose_ashvale",
+          "value": true
+        }
+      ],
+      "next": "maren_prayer"
+    },
+    "maren_prayer": {
+      "type": "text",
+      "speaker": "maren",
+      "portrait": "peaceful",
+      "text": "I preached that the Ashen Light would burn away corruption. I was wrong. The Light doesn't burn. It grows. This \u2014 all of this \u2014 this is what divinity looks like. Not punishment. Symbiosis.",
+      "conditions": [
+        {
+          "check": "npc.maren.alive",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "next": "seasons_pass"
+    },
+    "seasons_pass": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The seasons pass. Ashvale doesn't die \u2014 it transforms. The houses grow living walls of bark and leaf. The streets become paths through a garden that tends itself. Travelers come from distant lands to see the village-forest, the place where humanity and the wild made peace. They leave with seeds in their pockets and wonder in their eyes.",
+      "next": "heartwood_final"
+    },
+    "heartwood_final": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The fields became groves. The houses grew roots. The well water ran clear and sweet. Ashvale didn't die \u2014 it transformed. And the Heartwood, for the first time in ten thousand years, spoke a new word: 'Friend.'",
+      "triggers": [
+        {
+          "set_state": "flag.ending_harmony_complete",
+          "value": true
+        }
+      ],
+      "next": "epilogue"
+    },
+    "epilogue": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You sit beneath the great canopy where the village square once was, and you listen to the wind moving through leaves that grow from rooftops and window frames. A child offers you a fruit from one of the new trees \u2014 something that has no name yet, because it has never existed before. You bite into it. It tastes like the future.",
+      "next": "sequel_hook_harmony"
+    },
+    "sequel_hook_harmony": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "ancient",
+      "text": "One last thing, bridge-builder. A message has arrived through the deep roots. From the mountain in the north. Silverpine. It says: 'The walkers of fire come for us next. You found a walker who listens. Send them to us.' You are a bridge now. Build more bridges. Before the roots decide to stop trying.",
+      "triggers": [
+        {
+          "set_state": "flag.sequel_hook_silverpine",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

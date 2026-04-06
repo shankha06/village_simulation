@@ -1,0 +1,77 @@
+[
+  {
+    "id": "night_smuggler_activity",
+    "category": "discovery",
+    "priority": 40,
+    "once_only": true,
+    "conditions": [
+      "time.hour >= 23",
+      "player.current_region == ashvale",
+      "npc.fenrick.met == true"
+    ],
+    "effects": [
+      {"set_state": "flag.witnessed_smuggling", "value": true}
+    ],
+    "notification_text": "Movement in the shadows near the inn's back door. Fenrick and two hooded figures loading a cart with... something. They don't see you. Yet."
+  },
+  {
+    "id": "dawn_elara_gathering",
+    "category": "discovery",
+    "priority": 35,
+    "once_only": true,
+    "conditions": [
+      "time.hour >= 5",
+      "time.hour <= 7",
+      "player.current_region == ashvale",
+      "npc.elara.met == true"
+    ],
+    "effects": [
+      {"set_state": "flag.saw_elara_dawn_gathering", "value": true}
+    ],
+    "notification_text": "Elara moves through the morning mist like a ghost, gathering herbs by touch. She knows every plant by feel. There's something sacred about watching someone love their work this much."
+  },
+  {
+    "id": "midnight_manor_light",
+    "category": "mystery",
+    "priority": 50,
+    "once_only": true,
+    "conditions": [
+      "time.hour >= 0",
+      "time.hour <= 2",
+      "player.current_region == ashvale"
+    ],
+    "effects": [
+      {"set_state": "flag.saw_manor_midnight_light", "value": true}
+    ],
+    "notification_text": "A light in Ashworth Manor. Moving from window to window. Someone — or something — paces the halls at midnight. The light flickers blue, not candle-orange. Blue."
+  },
+  {
+    "id": "dusk_forest_choir",
+    "category": "atmosphere",
+    "priority": 30,
+    "once_only": false,
+    "cooldown_days": 5,
+    "conditions": [
+      "time.hour >= 18",
+      "time.hour <= 20",
+      "player.current_region == thornwood"
+    ],
+    "effects": [],
+    "notification_text": "At dusk, the forest sings. Not birdsong — something deeper. A harmonic resonance that rises from the roots and vibrates through every trunk. The Thornwood is alive. It has always been alive. And tonight, it wants you to know."
+  },
+  {
+    "id": "night_crypt_sounds",
+    "category": "horror",
+    "priority": 55,
+    "once_only": true,
+    "conditions": [
+      "time.hour >= 22",
+      "player.current_region == ashworth_manor",
+      "flag.entered_crypt != true"
+    ],
+    "effects": [
+      {"set_state": "flag.heard_crypt_from_above", "value": true}
+    ],
+    "notification_text": "A sound from below the floor. Scratching. Rhythmic. Patient. Something is alive in the catacombs. Or something that was alive once, and hasn't quite stopped."
+  }
+]

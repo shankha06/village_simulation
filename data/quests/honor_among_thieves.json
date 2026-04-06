@@ -1,0 +1,166 @@
+{
+  "id": "honor_among_thieves",
+  "name": "Honor Among Thieves",
+  "description": "Fenrick needs help escorting smuggled children to safety on the Eastern Road. The Ironmarch patrols are closing in.",
+  "giver": "fenrick",
+  "region": "ashvale",
+  "tags": [
+    "side_quest",
+    "personal",
+    "escort",
+    "moral_choice",
+    "guild"
+  ],
+  "priority": 8,
+  "states": {
+    "UNKNOWN": {
+      "transitions": [
+        {
+          "on": "npc.fenrick.disposition >= 10 && flag.accepted_sabotage == true || flag.blackmailed_fenrick == true",
+          "to": "DISCOVERED"
+        }
+      ]
+    },
+    "DISCOVERED": {
+      "journal_entry": "Fenrick let something slip — the Guild isn't just about coin. They're smuggling orphaned children out of Ironmarch territory to a safe house on the Eastern Road.",
+      "transitions": [
+        {
+          "on": "flag.accepted_escort_quest == true",
+          "to": "ACTIVE"
+        },
+        {
+          "on": "flag.reported_escort_to_ironmarch == true",
+          "to": "COMPLETED_BETRAYED_GUILD"
+        }
+      ]
+    },
+    "ACTIVE": {
+      "journal_entry": "I agreed to help Fenrick escort three children through the Eastern Road to a Guild safe house. Ironmarch patrols have been increasing — we need to move at night.",
+      "objectives": [
+        "Meet Fenrick at the village gate after dark (22:00)",
+        "Escort the children along the Eastern Road",
+        "Avoid or neutralize Ironmarch patrols",
+        "Reach the safe house at Crow's Rest"
+      ],
+      "transitions": [
+        {
+          "on": "flag.escort_begun == true",
+          "to": "ESCORT_BEGUN"
+        }
+      ]
+    },
+    "ESCORT_BEGUN": {
+      "journal_entry": "We're on the road. Three children — the oldest can't be more than twelve. Fenrick is tense. He says there are at least two patrol routes between us and the safe house.",
+      "objectives": [
+        "Navigate past the first patrol checkpoint",
+        "Cross the stone bridge without being seen",
+        "Reach Crow's Rest safe house"
+      ],
+      "transitions": [
+        {
+          "on": "flag.children_delivered_safely == true",
+          "to": "COMPLETED_SUCCESS"
+        },
+        {
+          "on": "flag.caught_by_ironmarch == true",
+          "to": "COMPLETED_CAUGHT"
+        },
+        {
+          "on": "flag.rerouted_through_thornwood == true",
+          "to": "THORNWOOD_DETOUR"
+        },
+        {
+          "on": "flag.betrayed_escort_midway == true",
+          "to": "COMPLETED_BETRAYED_GUILD"
+        }
+      ]
+    },
+    "THORNWOOD_DETOUR": {
+      "journal_entry": "I led the group through Thornwood instead. It's longer and the forest is hostile, but there are no Ironmarch soldiers among the trees. The children are terrified.",
+      "objectives": [
+        "Guide the children through Thornwood safely",
+        "Deal with forest hazards",
+        "Emerge near the safe house"
+      ],
+      "transitions": [
+        {
+          "on": "flag.children_delivered_safely == true",
+          "to": "COMPLETED_THORNWOOD_SUCCESS"
+        },
+        {
+          "on": "flag.child_lost_in_thornwood == true",
+          "to": "COMPLETED_THORNWOOD_LOSS"
+        }
+      ]
+    },
+    "COMPLETED_SUCCESS": {
+      "journal_entry": "The children are safe at Crow's Rest. Fenrick actually smiled — the first real smile I've seen from him. 'The Hand protects its own,' he said. For once, I believed him.",
+      "consequence_chain": "children_escort_chain",
+      "rewards": [
+        {
+          "gold": 75
+        },
+        {
+          "reputation": {
+            "thieves_guild": 35
+          }
+        },
+        {
+          "item": "guild_signet_ring"
+        }
+      ]
+    },
+    "COMPLETED_CAUGHT": {
+      "journal_entry": "Ironmarch caught us. The children were taken. Fenrick was arrested. He looked at me like it was my fault. Maybe it was.",
+      "consequence_chain": "escort_caught_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "thieves_guild": -30,
+            "ironmarch_legion": 10
+          }
+        }
+      ]
+    },
+    "COMPLETED_BETRAYED_GUILD": {
+      "journal_entry": "I told the Ironmarch patrol about the escort route. They paid well. Fenrick will never know it was me — unless he does.",
+      "consequence_chain": "escort_betrayal_chain",
+      "rewards": [
+        {
+          "gold": 200
+        },
+        {
+          "reputation": {
+            "ironmarch_legion": 25,
+            "thieves_guild": -50
+          }
+        }
+      ]
+    },
+    "COMPLETED_THORNWOOD_SUCCESS": {
+      "journal_entry": "The forest route was harrowing but the children made it. Fenrick was furious about the risk but grateful for the result. The Warden watched us pass — I felt it.",
+      "consequence_chain": "children_escort_chain",
+      "rewards": [
+        {
+          "gold": 75
+        },
+        {
+          "reputation": {
+            "thieves_guild": 30,
+            "thornwood_druids": 15
+          }
+        }
+      ]
+    },
+    "COMPLETED_THORNWOOD_LOSS": {
+      "journal_entry": "One of the children wandered off the path. The forest took her. Fenrick is inconsolable. We saved two, but lost one to my decision.",
+      "rewards": [
+        {
+          "reputation": {
+            "thieves_guild": -10
+          }
+        }
+      ]
+    }
+  }
+}

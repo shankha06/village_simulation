@@ -1,0 +1,89 @@
+{
+  "id": "brother_maren",
+  "name": "Brother Maren",
+  "description": "A gaunt priest of the Ashen Light who arrived two months ago. Preaches that the crop death is divine punishment. His true motives are unclear.",
+  "faction": "church_ashen_light",
+  "personality": {
+    "courage": 0.7,
+    "greed": 0.5,
+    "loyalty": 0.4,
+    "cruelty": 0.6,
+    "curiosity": 0.3,
+    "honesty": 0.2
+  },
+  "schedule": [
+    {
+      "hour": 5,
+      "location": "chapel",
+      "activity": "praying"
+    },
+    {
+      "hour": 8,
+      "location": "village_square",
+      "activity": "preaching"
+    },
+    {
+      "hour": 12,
+      "location": "chapel",
+      "activity": "writing"
+    },
+    {
+      "hour": 16,
+      "location": "village_square",
+      "activity": "counseling"
+    },
+    {
+      "hour": 20,
+      "location": "chapel_cellar",
+      "activity": "private_ritual"
+    },
+    {
+      "hour": 23,
+      "location": "chapel",
+      "activity": "sleeping"
+    }
+  ],
+  "home_location": "chapel",
+  "dialogue_pools": {
+    "greeting": "maren_intro",
+    "about_curse": "maren_curse_sermon",
+    "confronted": "maren_confronted",
+    "friendly": "maren_confides",
+    "hostile": "maren_threatens",
+    "midnight_meeting": "maren_midnight",
+    "follow_up": "brother_maren_follow_up",
+    "sacred_text_quest": "maren_sacred_text"
+  },
+  "default_greeting": "maren_intro",
+  "barks": [
+    "The Light sees all, child.",
+    "Have you come to pray?",
+    "Ash purifies. Remember that.",
+    "This village needs faith now more than ever.",
+    "The wicked will be cleansed.",
+    "Hmm... interesting."
+  ],
+  "family": {
+    "father_deceased": "silas_maren",
+    "grandmother": "old_maren",
+    "sister": "elara"
+  },
+  "conditional_barks": [
+    {
+      "text": "My father walked into those roots. I will burn them all.",
+      "conditions": [
+        {"check": "flag.maren_family_truth_revealed", "op": "==", "value": true}
+      ]
+    }
+  ],
+  "is_combatant": false,
+  "max_health": 40.0,
+  "can_surrender": false,
+  "npc_relationships": {
+    "elara": -30,
+    "fenrick": -30,
+    "greta": 10,
+    "lord_ashworth": -40,
+    "old_maren": -50
+  }
+}

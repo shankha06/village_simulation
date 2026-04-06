@@ -1,0 +1,236 @@
+{
+  "id": "rat_cellar",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The cellar air is thick with the smell of rot and animal musk. Your torch illuminates dozens of gleaming eyes in the darkness. The rats don't flee — they watch.",
+      "triggers": [
+        {
+          "set_state": "flag.entered_gretas_cellar",
+          "value": true
+        }
+      ],
+      "next": "observe"
+    },
+    "observe": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "In the far corner, a mass of rats swarms over several grain sacks. But the fresh barrels nearby are untouched. The rats have organized themselves around specific supplies — the manor surplus grain.",
+      "next": "choice_action"
+    },
+    "choice_action": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "attack",
+          "text": "Draw your weapon and clear the nest.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.rats_killed",
+              "value": true
+            }
+          ],
+          "next": "combat_result"
+        },
+        {
+          "id": "examine_grain",
+          "text": "Examine the grain sacks the rats are eating.",
+          "conditions": [],
+          "triggers": [],
+          "next": "grain_examination"
+        },
+        {
+          "id": "use_herbs",
+          "text": "[Requires Old Maren's herbs] Scatter the herb mixture around the cellar.",
+          "conditions": [
+            {
+              "check": "player.has_item.maren_rat_herbs",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.used_herbs_on_rats",
+              "value": true
+            }
+          ],
+          "next": "herbs_result"
+        },
+        {
+          "id": "watch_longer",
+          "text": "Stay still and observe the rats' behavior more carefully.",
+          "conditions": [],
+          "triggers": [],
+          "next": "deep_observation"
+        }
+      ]
+    },
+    "combat_result": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The rats scatter and fight in equal measure. It takes an hour of grim work, but the cellar is clear. The grain sacks lie torn open, their contents scattered. A simple job, simply done. Greta will be pleased.",
+      "next": "end"
+    },
+    "grain_examination": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You cut open one of the sacks the rats have been feeding on. The grain inside is discolored — a faint purple tinge at the kernel's edge. Nightcap residue. This grain is poisoned.",
+      "triggers": [
+        {
+          "set_state": "flag.rats_eating_poison_grain",
+          "value": true
+        }
+      ],
+      "next": "poison_realization"
+    },
+    "poison_realization": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The rats aren't just eating — they're gorging on the poisoned grain specifically. Their small bodies are metabolizing the nightcap, filtering it out of the food supply. If you kill them, the poison remains in the grain. If the grain enters the village supply...",
+      "next": "poison_choice"
+    },
+    "poison_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "kill_anyway",
+          "text": "Kill them anyway. The poisoned grain should be destroyed, not eaten by rats.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.rats_killed",
+              "value": true
+            }
+          ],
+          "next": "kill_knowing"
+        },
+        {
+          "id": "leave_rats",
+          "text": "Leave the rats alone. They're doing more good than harm.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.rats_preserved",
+              "value": true
+            }
+          ],
+          "next": "preserve_rats"
+        },
+        {
+          "id": "tell_elara",
+          "text": "This is important. Elara needs to know about this immediately.",
+          "conditions": [
+            {
+              "check": "npc.elara.met",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.told_elara_about_rats",
+              "value": true
+            }
+          ],
+          "next": "elara_informed"
+        }
+      ]
+    },
+    "kill_knowing": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You clear the cellar. Every last rat. The poisoned grain sits in torn sacks, its purple-tinged kernels exposed to the air. Without the rats to consume it, the nightcap will spread through moisture and contact. You've solved one problem and created another.",
+      "next": "end"
+    },
+    "preserve_rats": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You climb back up the stairs. The rats continue their grim feast below — nature's unlikely antidote to human malice. Greta won't understand. But sometimes the cure looks a lot like the disease.",
+      "next": "end"
+    },
+    "elara_informed": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You rush to Elara's cottage. When she hears about the rats and the poisoned grain, her eyes go wide. 'If the rats are metabolizing nightcap... their blood might contain antibodies. This could be the key to a better antidote.' She grabs her kit and follows you back to the cellar.",
+      "next": "end"
+    },
+    "herbs_result": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The herb mixture sends up a thick, pungent smoke. The rats squeal and scatter — pouring out of cracks in the walls, flooding toward the drains and the outside world. Within minutes, the cellar is empty. Peaceful. Old Maren's knowledge serves once more.",
+      "next": "end"
+    },
+    "deep_observation": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You crouch in the shadows and watch. The rats move with strange coordination — almost like a single organism. At the center of the swarm, sitting atop the largest grain sack, is a rat unlike the others. Larger. Its eyes gleam with an amber light that no natural rat possesses.",
+      "next": "spirit_reveal"
+    },
+    "spirit_reveal": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The large rat meets your gaze. For a moment, the cellar smells of forest loam instead of decay. The amber eyes blink slowly — deliberately — and you understand. This is not vermin. This is a test.",
+      "triggers": [
+        {
+          "set_state": "flag.rat_king_spirit_revealed",
+          "value": true
+        }
+      ],
+      "next": "spirit_choice"
+    },
+    "spirit_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "bow",
+          "text": "Bow your head to the forest spirit.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.thornwood_spirit.disposition",
+              "delta": 15
+            }
+          ],
+          "next": "spirit_acknowledged"
+        },
+        {
+          "id": "speak",
+          "text": "\"I see you, Warden. What would you have me do?\"",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.thornwood_spirit.disposition",
+              "delta": 20
+            }
+          ],
+          "next": "spirit_acknowledged"
+        }
+      ]
+    },
+    "spirit_acknowledged": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The spirit-rat twitches its whiskers. The other rats fall silent and still. Then, one by one, they file toward the drain in perfect order — taking the poisoned grain with them in their bellies. The cellar empties. The spirit is the last to leave, pausing at the drain to look back once. Then it's gone. Only the smell of loam remains.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

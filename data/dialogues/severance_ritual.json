@@ -1,0 +1,322 @@
+{
+  "id": "severance_ritual",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Old Maren kneels at the base of the blood-root \u2014 the central artery that connects the Heartwood to the village's soil. It pulses with sickly red light, thick as a man's torso, buried deep. Around you, the forest groans.",
+      "next": "start_2"
+    },
+    "start_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "grim",
+      "text": "This is the blood-root. Every drop of poison in Ashvale's soil flows from this vein. Every crop that died, every well that soured \u2014 it starts here. Cut this, and the connection dies. The forest dies. The pact dies.",
+      "next": "start_3"
+    },
+    "start_3": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "grim",
+      "text": "She places her hands on the root. Her fingers glow faintly \u2014 the last embers of druid magic.",
+      "next": "start_4"
+    },
+    "start_4": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "sad",
+      "text": "I spent my life listening to these roots. They taught me the language of growing things. What rain sounds like to soil. What sunlight feels like to a leaf. And now I'm going to set it all on fire.",
+      "next": "start_5"
+    },
+    "start_5": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "grim",
+      "text": "She looks at you with her blind eyes. Somehow, she sees you perfectly.",
+      "next": "start_6"
+    },
+    "start_6": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "grim",
+      "text": "Are you certain? Once the druidfire starts, it cannot be stopped. Every tree in the Thornwood will burn from the roots up. Every spirit will die. The Warden. The Heartwood. The nine souls absorbed over centuries. All of them \u2014 gone. Truly gone. Not even ash remembers.",
+      "next": "ritual_choice"
+    },
+    "ritual_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "proceed",
+          "text": "I'm certain. The cycle has to end. Ashvale can't live under this threat forever.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.confirmed_severance",
+              "value": true
+            }
+          ],
+          "next": "ritual_begins"
+        },
+        {
+          "id": "hesitate",
+          "text": "The nine souls... they'll die? Truly die? Not just... return to the earth?",
+          "conditions": [],
+          "triggers": [],
+          "next": "souls_clarification"
+        },
+        {
+          "id": "abort",
+          "text": "No. I can't do this. There has to be a way that doesn't kill the entire forest.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.severance_aborted",
+              "value": true
+            }
+          ],
+          "next": "abort_response"
+        }
+      ]
+    },
+    "souls_clarification": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "sad",
+      "text": "Old Maren is quiet for a long time. When she speaks, her voice is rough.",
+      "next": "souls_clarification_2"
+    },
+    "souls_clarification_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "sad",
+      "text": "They're part of the forest now. When the forest dies, they die. Not the way we die \u2014 not pain, not fear. More like... a candle going out. One moment they dream the long dream. The next, nothing. Alara Ashworth, who sang. Brennan's widow, who wept. Cael, who knelt. Nine names that will simply... stop.",
+      "next": "souls_clarification_3"
+    },
+    "souls_clarification_3": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "grim",
+      "text": "Is that murder? I've asked myself that question every night since I learned this ritual. I still don't have an answer. But you need one. Now.",
+      "next": "ritual_choice"
+    },
+    "abort_response": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "neutral",
+      "text": "Old Maren withdraws her hands from the blood-root. The glow fades.",
+      "next": "abort_response_2"
+    },
+    "abort_response_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "neutral",
+      "text": "Then we leave, and we find another way. I won't lie to you \u2014 I'm relieved. I've loved this forest since before I lost my eyes. Burning it would have been like burning myself.",
+      "triggers": [
+        {
+          "set_state": "flag.old_maren_relieved",
+          "value": true
+        },
+        {
+          "set_state": "npc.old_maren.disposition",
+          "delta": 20
+        }
+      ],
+      "next": "abort_response_3"
+    },
+    "abort_response_3": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "neutral",
+      "text": "But understand: the other paths have their own costs. There is no choice here without blood or loss. That's what the founders understood when they made the pact. Every arrangement with the earth costs something.",
+      "next": "end"
+    },
+    "ritual_begins": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "grim",
+      "text": "Old Maren nods once. She reaches into her pouch and produces three things: a phial of white sap, a handful of bone dust, and a single seed that glows with an inner fire.",
+      "next": "ritual_begins_2"
+    },
+    "ritual_begins_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "grim",
+      "text": "Druidfire. The one flame that burns root as easily as branch. The druids made it a thousand years ago to clear dead forests and make way for new growth. They never intended it for this.",
+      "next": "ritual_begins_3"
+    },
+    "ritual_begins_3": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "She mixes the components in her palm. The seed cracks. White fire blooms between her fingers \u2014 cold, silent, and impossibly bright. The forest recoils. Trees lean away. The blood-root convulses.",
+      "next": "heartwood_reacts"
+    },
+    "heartwood_reacts": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "terrified",
+      "text": "The Heartwood's voice erupts \u2014 not through the talisman, but through the earth itself. Every root, every stone, every grain of soil screams in a frequency felt in the bones.",
+      "next": "heartwood_reacts_2"
+    },
+    "heartwood_reacts_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "terrified",
+      "text": "STOP. WE BEG. WE WHO HAVE NEVER BEGGED. THREE HUNDRED YEARS OF PATIENCE AND THIS IS HOW IT ENDS? WITH FIRE? WE GAVE YOU SHADE. WE GAVE YOU SOIL. WE GAVE YOU THE AIR IN YOUR LUNGS.",
+      "next": "last_chance"
+    },
+    "last_chance": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "continue_ritual",
+          "text": "Old Maren \u2014 now. Light the blood-root.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.ritual_completed",
+              "value": true
+            }
+          ],
+          "next": "fire_scene"
+        },
+        {
+          "id": "stop_ritual",
+          "text": "STOP! Maren, put it out. We can't do this.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.severance_aborted_at_last_moment",
+              "value": true
+            }
+          ],
+          "next": "stopped_at_last"
+        }
+      ]
+    },
+    "fire_scene": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Old Maren presses the druidfire into the blood-root. For one heartbeat, nothing happens. Then the white flame enters the root like water into a crack, and the world splits open.",
+      "next": "fire_scene_2"
+    },
+    "fire_scene_2": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The blood-root ignites from within. White fire races along its length, branching into the capillary roots, spreading outward in a web of cold light. The ground heaves. Trees begin to wither \u2014 bark peeling, leaves falling in sheets, sap boiling away in hissing streams.",
+      "next": "fire_scene_3"
+    },
+    "fire_scene_3": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "dying",
+      "text": "The Heartwood's voice breaks apart. What remains is not words but feelings \u2014 transmitted through the talisman in waves. Betrayal. Grief. And beneath it all, a terrible understanding.",
+      "next": "fire_scene_4"
+    },
+    "fire_scene_4": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "dying",
+      "text": "We... knew. We always knew this was how it would end. Your kind builds and burns. Builds and burns. We hoped... we hoped you were different.",
+      "next": "fire_scene_5"
+    },
+    "fire_scene_5": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The druidfire reaches the nine soul-roots. Nine points of bioluminescence flicker \u2014 and go out. One by one. Alara's song stops mid-note. Brennan's widow's tears dry. Cael's silent vigil ends. They do not scream. They simply... cease.",
+      "next": "fire_scene_6"
+    },
+    "fire_scene_6": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Old Maren weeps. She cannot see the destruction, but she feels it \u2014 every root that dies is a nerve she shared. Her hands shake. She does not stop the fire. She cannot.",
+      "next": "fire_scene_7"
+    },
+    "fire_scene_7": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The Thornwood dies in silence. No crash, no roar \u2014 just the soft sound of a thousand trees exhaling their last breath. The canopy opens. Sunlight \u2014 harsh, unfiltered, merciless \u2014 floods the clearing for the first time in centuries.",
+      "triggers": [
+        {
+          "set_state": "flag.severance_completed",
+          "value": true
+        },
+        {
+          "set_state": "flag.thornwood_dead",
+          "value": true
+        },
+        {
+          "set_state": "npc.heartwood.alive",
+          "value": false
+        },
+        {
+          "set_state": "npc.thornwood_spirit.alive",
+          "value": false
+        },
+        {
+          "spawn_event": "ending_severance"
+        }
+      ],
+      "next": "aftermath"
+    },
+    "aftermath": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "devastated",
+      "text": "It's done. Old Maren's voice is hollow. The pact is broken. The forest is dead. Ashvale is free. She turns her blind eyes toward the sky. I hope it was worth it. I hope we were right. Because there is no going back from this. Not ever.",
+      "next": "end"
+    },
+    "stopped_at_last": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Old Maren closes her fist around the druidfire. It dies, leaving a burn on her palm that she will carry forever. The forest exhales. The blood-root stops convulsing.",
+      "next": "stopped_at_last_2"
+    },
+    "stopped_at_last_2": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "shaken",
+      "text": "You stopped. You held the fire and you stopped. We... will remember this. The roots will remember. Perhaps there is still a way that does not end in ash.",
+      "triggers": [
+        {
+          "set_state": "npc.heartwood.disposition",
+          "delta": 30
+        },
+        {
+          "set_state": "flag.heartwood_grateful_for_mercy",
+          "value": true
+        },
+        {
+          "set_state": "flag.severance_aborted",
+          "value": true
+        }
+      ],
+      "next": "stopped_at_last_3"
+    },
+    "stopped_at_last_3": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "relieved",
+      "text": "She cradles her burned hand and looks at you. Her blind eyes are wet.",
+      "next": "stopped_at_last_4"
+    },
+    "stopped_at_last_4": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "relieved",
+      "text": "Thank you. I don't think I could have lived with it. Now go \u2014 find the other way. The Heartwood will listen. After what you just did, it will listen.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

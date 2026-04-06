@@ -1,0 +1,90 @@
+[
+  {
+    "id": "overhear_greta_elara_poison",
+    "conditions": ["flag.evidence_nightcap_root == true", "npc.elara.met == true"],
+    "speakers": ["greta", "elara"],
+    "lines": [
+      {"speaker": "greta", "text": "You really think someone's poisoning the well?"},
+      {"speaker": "elara", "text": "I KNOW someone is. The question is who benefits from a dead village."},
+      {"speaker": "greta", "text": "Everyone with a grudge and a bottle of nightcap, apparently."}
+    ],
+    "once_only": true
+  },
+  {
+    "id": "overhear_guard_maren_sermon",
+    "conditions": ["npc.brother_maren.met == true", "time.day >= 2"],
+    "speakers": ["gate_guard", "villager"],
+    "lines": [
+      {"speaker": "gate_guard", "text": "Another sermon today. Third this week."},
+      {"speaker": "villager", "text": "My wife went. Says he's right — the crops dying IS punishment."},
+      {"speaker": "gate_guard", "text": "Punishment for what? Being poor?"}
+    ],
+    "once_only": true
+  },
+  {
+    "id": "overhear_villagers_famine",
+    "conditions": ["world.region.ashvale.status == famine"],
+    "speakers": ["villager_1", "villager_2"],
+    "lines": [
+      {"speaker": "villager_1", "text": "The Miller family left yesterday. Just packed up and walked east."},
+      {"speaker": "villager_2", "text": "Can't blame them. Three children and nothing to feed them."},
+      {"speaker": "villager_1", "text": "If the lord doesn't act soon, we'll all be walking."}
+    ],
+    "once_only": false
+  },
+  {
+    "id": "overhear_silo_destroyed",
+    "conditions": ["flag.silo_destroyed == true"],
+    "speakers": ["villager", "greta"],
+    "lines": [
+      {"speaker": "villager", "text": "Who would burn the granary? That was everything we had."},
+      {"speaker": "greta", "text": "Someone who wants us desperate. And it's working."}
+    ],
+    "once_only": true
+  },
+  {
+    "id": "overhear_ironmarch_fear",
+    "conditions": ["flag.ironmarch_scout_spotted == true"],
+    "speakers": ["gate_guard", "villager"],
+    "lines": [
+      {"speaker": "gate_guard", "text": "Ironmarch riders on the east road again. Third time this week."},
+      {"speaker": "villager", "text": "They're counting our walls. Measuring us for a coffin."},
+      {"speaker": "gate_guard", "text": "We don't even HAVE walls worth counting."}
+    ],
+    "once_only": true
+  },
+  {
+    "id": "overhear_forest_creeping",
+    "conditions": ["flag.forest_encroaching == true"],
+    "speakers": ["old_maren", "elara"],
+    "lines": [
+      {"speaker": "old_maren", "text": "The roots are closer today. Can you feel them?"},
+      {"speaker": "elara", "text": "I can see them. They broke through the eastern fence overnight."},
+      {"speaker": "old_maren", "text": "The forest is tired of waiting. It's coming to collect."}
+    ],
+    "once_only": true
+  },
+  {
+    "id": "overhear_maren_family",
+    "conditions": ["flag.maren_family_truth_revealed == true"],
+    "speakers": ["greta", "gate_guard"],
+    "lines": [
+      {"speaker": "greta", "text": "Did you hear? The priest — he's Old Maren's grandson."},
+      {"speaker": "gate_guard", "text": "Silas's boy? The one the Church took?"},
+      {"speaker": "greta", "text": "The same. And Elara's his sister. She doesn't know yet."},
+      {"speaker": "gate_guard", "text": "God help this village. We break everything we touch."}
+    ],
+    "once_only": true
+  },
+  {
+    "id": "overhear_children_smuggling",
+    "conditions": ["flag.guild_smuggles_children_to_safety == true"],
+    "speakers": ["fenrick", "unknown"],
+    "lines": [
+      {"speaker": "fenrick", "text": "The last three leave tomorrow. Before dawn."},
+      {"speaker": "unknown", "text": "The youngest won't stop crying for her mother."},
+      {"speaker": "fenrick", "text": "...Tell her mother's waiting at the end of the road. It's kinder than the truth."}
+    ],
+    "once_only": true
+  }
+]

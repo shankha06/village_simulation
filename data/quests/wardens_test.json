@@ -1,0 +1,132 @@
+{
+  "id": "wardens_test",
+  "name": "The Warden's Test",
+  "description": "The Thornwood Spirit blocks the path to the Heartwood. Only those who understand the forest's truth may pass.",
+  "giver": "thornwood_spirit",
+  "region": "heartwood_clearing",
+  "tags": [
+    "side_quest",
+    "exploration",
+    "puzzle",
+    "combat_optional",
+    "critical_path",
+    "moral_choice"
+  ],
+  "priority": 9,
+  "states": {
+    "UNKNOWN": {
+      "transitions": [
+        {
+          "on": "flag.warden_first_contact_complete == true && world.day >= 12",
+          "to": "DISCOVERED"
+        }
+      ]
+    },
+    "DISCOVERED": {
+      "journal_entry": "The Warden stands between me and the Heartwood. It won't let me pass without a test — three trials to prove I understand the forest. Or I can try to fight my way through.",
+      "transitions": [
+        {
+          "on": "flag.accepted_warden_test == true",
+          "to": "ACTIVE"
+        },
+        {
+          "on": "flag.refused_warden_test == true",
+          "to": "HIDDEN_PATH"
+        }
+      ]
+    },
+    "ACTIVE": {
+      "journal_entry": "I've accepted the Warden's challenge. Three tests of understanding. The Warden says the forest will judge my answers — not with words, but with roots.",
+      "objectives": [
+        "Complete the Warden's first test: The Riddle of Sacrifice",
+        "Complete the Warden's second test: The Offering at the Shrine",
+        "Complete the Warden's third test: Walk the Root Path"
+      ],
+      "transitions": [
+        {
+          "on": "flag.warden_test_begun == true",
+          "to": "TEST_BEGUN"
+        }
+      ]
+    },
+    "TEST_BEGUN": {
+      "journal_entry": "The first test begins. The Warden speaks in a voice of many voices: 'What is given freely that cannot be taken?'",
+      "transitions": [
+        {
+          "on": "flag.warden_all_tests_passed == true",
+          "to": "COMPLETED_ALLY"
+        },
+        {
+          "on": "flag.warden_two_tests_passed == true",
+          "to": "COMPLETED_WATCHED"
+        },
+        {
+          "on": "flag.warden_tests_failed == true",
+          "to": "COMPLETED_COMBAT"
+        }
+      ]
+    },
+    "HIDDEN_PATH": {
+      "journal_entry": "I refused the Warden's test. There must be another way around — through the deeper forest, where even the Warden's roots don't reach.",
+      "objectives": [
+        "Find the hidden path through the deep forest",
+        "Navigate without the Warden's protection"
+      ],
+      "transitions": [
+        {
+          "on": "flag.hidden_path_found == true",
+          "to": "COMPLETED_BYPASS"
+        }
+      ]
+    },
+    "COMPLETED_ALLY": {
+      "journal_entry": "All three tests passed. The Warden bowed — an ancient gesture, roots dipping like a head inclined. 'You understand,' it said. 'The forest will walk with you.' The path to the Heartwood is open, and the Warden will fight beside me when the time comes.",
+      "consequence_chain": "warden_ally_chain",
+      "rewards": [
+        {
+          "item": "wardens_bark_shield"
+        },
+        {
+          "reputation": {
+            "thornwood_druids": 50
+          }
+        }
+      ]
+    },
+    "COMPLETED_WATCHED": {
+      "journal_entry": "Two of three tests passed. The Warden allows me through but watches with suspicion. 'You see part of the truth,' it said. 'That is enough to pass. Not enough to trust.' The path is open, but I walk it alone.",
+      "rewards": [
+        {
+          "reputation": {
+            "thornwood_druids": 25
+          }
+        }
+      ]
+    },
+    "COMPLETED_COMBAT": {
+      "journal_entry": "I failed the tests. The Warden attacked — a storm of root and bark and fury. I barely survived. The path is open only because I broke through by force. The forest remembers violence.",
+      "consequence_chain": "warden_defeated_chain",
+      "rewards": [
+        {
+          "item": "wardens_heartwood_shard"
+        },
+        {
+          "reputation": {
+            "thornwood_druids": -40
+          }
+        }
+      ]
+    },
+    "COMPLETED_BYPASS": {
+      "journal_entry": "I found a way around the Warden — a narrow path through the deep forest where the roots thin and the canopy opens to bare sky. But the forest knows. The trees lean away from me now. I'm tolerated, not welcome.",
+      "consequence_chain": "warden_bypassed_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "thornwood_druids": -20
+          }
+        }
+      ]
+    }
+  }
+}

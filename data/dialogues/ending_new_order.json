@@ -1,0 +1,226 @@
+{
+  "id": "ending_new_order",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Lord Ashworth walked into the roots with his back straight and his jaw set. He did not weep. He did not beg. He looked at you once \u2014 just once \u2014 and you saw something you'd never seen in his eyes before. Relief.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_new_order_started",
+          "value": true
+        }
+      ],
+      "next": "return_to_ashvale"
+    },
+    "return_to_ashvale": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You return to Ashvale carrying the lord's signet ring and the weight of what comes next. The crops are already greening at the edges. The water runs clearer. The pact is renewed. But the manor stands empty, and every eye in the village turns to you.",
+      "next": "power_vacuum"
+    },
+    "power_vacuum": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Three days pass. The factions circle the empty seat of power like wolves around a carcass. Someone must lead. Someone must decide what Ashvale becomes now that the Ashworth line has ended.",
+      "next": "leadership_choice"
+    },
+    "leadership_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "voss_leads",
+          "text": "Commander Voss should lead. Ashvale needs strength and order.",
+          "conditions": [
+            {
+              "check": "npc.commander_voss.alive",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.voss_spared_in_duel",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.new_leader_voss",
+              "value": true
+            }
+          ],
+          "next": "voss_leadership"
+        },
+        {
+          "id": "fenrick_leads",
+          "text": "Fenrick and the Guild know how to keep things running. Let them take the reins.",
+          "conditions": [
+            {
+              "check": "npc.fenrick.alive",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "player.reputation.thieves_guild",
+              "op": ">=",
+              "value": 20
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.new_leader_fenrick",
+              "value": true
+            }
+          ],
+          "next": "guild_leadership"
+        },
+        {
+          "id": "church_leads",
+          "text": "Brother Maren's faith held the village together. Let the Church guide Ashvale.",
+          "conditions": [
+            {
+              "check": "npc.maren.alive",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "player.reputation.church_ashen_light",
+              "op": ">=",
+              "value": 10
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.new_leader_church",
+              "value": true
+            }
+          ],
+          "next": "church_leadership"
+        },
+        {
+          "id": "player_leads",
+          "text": "I'll do it. Someone has to, and I've bled enough for this village to earn the right.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.new_leader_player",
+              "value": true
+            }
+          ],
+          "next": "player_leadership"
+        },
+        {
+          "id": "no_one_leads",
+          "text": "No single person should rule. Let the people decide for themselves.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.new_leader_council",
+              "value": true
+            }
+          ],
+          "next": "council_leadership"
+        }
+      ]
+    },
+    "voss_leadership": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Commander Voss takes the signet ring with a soldier's precision and a politician's smile. Within a week, the guard patrols double. Within a month, the walls are rebuilt. Ashvale becomes the most orderly village in the region \u2014 and the most watched. Voss rules fairly, but the iron hand beneath the velvet glove never fully unclenches. Order, after all, requires vigilance.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_new_order_complete",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.ruler",
+          "value": "voss"
+        }
+      ],
+      "next": "ashworth_memory"
+    },
+    "guild_leadership": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Fenrick never sits in the lord's chair. He doesn't need to. Within a month, the Guild's network becomes the village's nervous system \u2014 trade routes open, debts are settled, and everyone prospers. The catch, as always with the Guild, is in the fine print. Ashvale grows rich, but every transaction carries a tithe. Every secret has a price. Fenrick smiles his crooked smile and assures you it's all for the common good.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_new_order_complete",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.ruler",
+          "value": "guild"
+        }
+      ],
+      "next": "ashworth_memory"
+    },
+    "church_leadership": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Brother Maren takes the role with trembling hands and a prayer on his lips. The Church of the Ashen Light fills the void Lord Ashworth left, and the village finds comfort in ritual and faith. The sermons grow longer. The tithes grow heavier. But the people sleep soundly, because Maren tells them that suffering has meaning, and in these dark times, meaning is worth more than gold.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_new_order_complete",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.ruler",
+          "value": "church"
+        }
+      ],
+      "next": "ashworth_memory"
+    },
+    "player_leadership": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You take Lord Ashworth's seat. The wood is cold. The room smells of dust and old decisions. The people of Ashvale look to you now \u2014 for justice, for food, for answers you may not have. You came here as a stranger. Now you are bound to this village by blood and soil and the weight of a dead man's ring on your finger. You wonder, in the quiet hours, if Ashworth felt this same crushing gravity.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_new_order_complete",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.ruler",
+          "value": "player"
+        }
+      ],
+      "next": "ashworth_memory"
+    },
+    "council_leadership": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You place the signet ring on the table at the village hall and walk away. Let them argue, you tell yourself. Let them build something better than one person's rule. The council that forms is fractious, slow, and maddening. But it is theirs. For the first time in three hundred years, the people of Ashvale choose their own path. Whether that path leads to ruin or redemption... well. That's what freedom means.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_new_order_complete",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.ruler",
+          "value": "council"
+        }
+      ],
+      "next": "ashworth_memory"
+    },
+    "ashworth_memory": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Years later, someone finds Lord Ashworth's journal in a hidden compartment of his desk. The last entry reads: 'The pact was never my ancestors' sin alone. It was every generation's silence. Every harvest we ate without asking where the plenty came from. I go to the roots not as punishment, but as the first honest thing an Ashworth has done in three hundred years.'",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

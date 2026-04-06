@@ -1,0 +1,124 @@
+{
+  "id": "legion_submission_chain",
+  "trigger_condition": "flag.accepted_legion_terms == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "flag.ashvale_under_legion_control",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.tension",
+          "delta": -20
+        },
+        {
+          "set_state": "faction.ironmarch_legion.power",
+          "delta": 40
+        },
+        {
+          "set_state": "faction.ashvale_nobility.power",
+          "delta": -40
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "spawn_event": "legion_garrison_arrives"
+        },
+        {
+          "set_state": "flag.legion_soldiers_in_village",
+          "value": true
+        },
+        {
+          "swap_visuals": "ashvale_castle_flags",
+          "variant": "ironmarch"
+        },
+        {
+          "set_state": "npc.commander_voss.memory.player_surrendered_village",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": -30
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {
+          "set_state": "flag.lord_ashworth_stripped_of_power",
+          "value": true
+        },
+        {
+          "set_state": "npc.lord_ashworth.memory.lost_everything",
+          "value": true
+        },
+        {
+          "spawn_event": "ashworth_ceremonial_only"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 7,
+      "effects": [
+        {
+          "set_state": "flag.legion_enforcing_law",
+          "value": true
+        },
+        {
+          "set_state": "npc.fenrick.memory.guild_operations_threatened",
+          "value": true
+        },
+        {
+          "set_state": "npc.greta.memory.legion_soldiers_everywhere",
+          "value": true
+        },
+        {
+          "spawn_event": "legion_crackdown_begins"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 14,
+      "effects": [
+        {
+          "set_state": "flag.conscription_begins",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.tension",
+          "delta": 15
+        },
+        {
+          "spawn_event": "first_conscription_notice"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 30,
+      "effects": [
+        {
+          "set_state": "world.region.ashvale.ruler",
+          "value": "ironmarch"
+        },
+        {
+          "set_state": "flag.ashvale_fully_absorbed",
+          "value": true
+        },
+        {
+          "spawn_event": "ashvale_identity_fading"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "id": "greta",
+  "name": "Greta",
+  "description": "The innkeeper of the Rotting Harvest tavern. Knows everything, tells everything \u2014 for a price. Loyalty goes to the highest bidder.",
+  "faction": "",
+  "personality": {
+    "courage": 0.3,
+    "greed": 0.7,
+    "loyalty": 0.2,
+    "cruelty": 0.2,
+    "curiosity": 0.6,
+    "honesty": 0.4
+  },
+  "schedule": [
+    {
+      "hour": 6,
+      "location": "inn_kitchen",
+      "activity": "cooking"
+    },
+    {
+      "hour": 10,
+      "location": "inn_bar",
+      "activity": "serving"
+    },
+    {
+      "hour": 14,
+      "location": "inn_bar",
+      "activity": "gossiping"
+    },
+    {
+      "hour": 22,
+      "location": "inn_upstairs",
+      "activity": "sleeping"
+    }
+  ],
+  "home_location": "inn",
+  "dialogue_pools": {
+    "greeting": "greta_intro",
+    "buy_info": "greta_gossip",
+    "about_lord": "greta_lord_gossip",
+    "about_fenrick": "greta_guild_gossip",
+    "famine_reaction": "greta_famine",
+    "secret": "greta_secret",
+    "follow_up": "greta_follow_up",
+    "rat_quest": "greta_rat_quest",
+    "rat_cellar": "rat_cellar"
+  },
+  "default_greeting": "greta_intro",
+  "barks": [
+    "Ale's warm, beds are... adequate.",
+    "Heard something interesting last night...",
+    "Everyone's got secrets in Ashvale.",
+    "Business is terrible. Nobody's buying.",
+    "The manor's been quiet. Too quiet.",
+    "Come in, come in. I don't bite."
+  ],
+  "is_combatant": false,
+  "max_health": 25.0,
+  "can_surrender": true,
+  "npc_relationships": {
+    "elara": 20,
+    "fenrick": 30,
+    "brother_maren": 10,
+    "lord_ashworth": -10
+  }
+}

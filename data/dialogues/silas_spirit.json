@@ -1,0 +1,189 @@
+{
+  "id": "silas_spirit",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "silas_spirit",
+      "portrait": "neutral",
+      "text": "You return. The roots remember your footsteps now.",
+      "next": "silas_greeting"
+    },
+    "silas_greeting": {
+      "type": "text",
+      "speaker": "silas_spirit",
+      "portrait": "neutral",
+      "text": "I was the first to walk this path. The first to be given. I went willingly — the lord said one life could save a hundred. He wasn't wrong. But he wasn't right, either.",
+      "next": "choice_ask"
+    },
+    "choice_ask": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "ask_heartwood",
+          "text": "What is the Heartwood, truly?",
+          "conditions": [],
+          "triggers": [],
+          "next": "heartwood_truth"
+        },
+        {
+          "id": "ask_warden",
+          "text": "Tell me about the Warden. Can it be reasoned with?",
+          "conditions": [],
+          "triggers": [],
+          "next": "warden_insight"
+        },
+        {
+          "id": "ask_counter_rite",
+          "text": "Your mother speaks of a counter-rite. Is it real?",
+          "conditions": [
+            {
+              "check": "npc.old_maren.met",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "counter_rite"
+        },
+        {
+          "id": "ask_family",
+          "text": "Elara and Maren — your children. They've become very different people.",
+          "conditions": [
+            {
+              "check": "flag.maren_family_truth_revealed",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "family_pain"
+        },
+        {
+          "id": "ask_forgiveness",
+          "text": "Do you blame the Ashworths? Do you blame anyone?",
+          "conditions": [],
+          "triggers": [],
+          "next": "forgiveness"
+        },
+        {
+          "id": "farewell",
+          "text": "I have what I need. Thank you, Silas.",
+          "conditions": [],
+          "triggers": [],
+          "next": "silas_farewell"
+        }
+      ]
+    },
+    "heartwood_truth": {
+      "type": "text",
+      "speaker": "silas_spirit",
+      "portrait": "neutral",
+      "text": "The Heartwood is the forest's voice. Where it speaks loudest. Where its pain is most real. It was a place of communion once — druids would sit among the roots and listen for days. Now it screams. It has been screaming for thirty years, and no one comes to listen.",
+      "next": "heartwood_advice"
+    },
+    "heartwood_advice": {
+      "type": "text",
+      "speaker": "silas_spirit",
+      "portrait": "neutral",
+      "text": "When you reach the Heartwood, do not bring weapons. Do not bring demands. Bring only yourself and the willingness to hear something that may be terrible. That is what the forest has always wanted.",
+      "triggers": [
+        {
+          "set_state": "flag.silas_heartwood_advice",
+          "value": true
+        }
+      ],
+      "next": "choice_ask"
+    },
+    "warden_insight": {
+      "type": "text",
+      "speaker": "silas_spirit",
+      "portrait": "neutral",
+      "text": "The Warden is the forest's fist. It was not always so — once it was the forest's hand, extended in greeting. But after thirty years of blood offerings, it learned that hands get cut. So it became a fist.",
+      "next": "warden_advice"
+    },
+    "warden_advice": {
+      "type": "text",
+      "speaker": "silas_spirit",
+      "portrait": "neutral",
+      "text": "It can be reasoned with, but not with words alone. The Warden tests through action. Show it that humans can give without being forced. Offer without expecting return. That is the language it remembers from before.",
+      "triggers": [
+        {
+          "set_state": "flag.silas_warden_advice",
+          "value": true
+        }
+      ],
+      "next": "choice_ask"
+    },
+    "counter_rite": {
+      "type": "text",
+      "speaker": "silas_spirit",
+      "portrait": "neutral",
+      "text": "Mother. She's still alive? Still sitting on that bench, listening to the roots? Of course she is. Stubbornness runs deep in this family — deeper than the roots themselves.",
+      "next": "counter_rite_2"
+    },
+    "counter_rite_2": {
+      "type": "text",
+      "speaker": "silas_spirit",
+      "portrait": "neutral",
+      "text": "The counter-rite is real. The pact feeds on silence — on the names of the given being forgotten, on the deals being buried. If every name is spoken aloud at the Heartwood, in the presence of the forest's full attention, the silence breaks. The pact cannot sustain itself without the forgetting.",
+      "triggers": [
+        {
+          "set_state": "flag.silas_confirmed_counter_rite",
+          "value": true
+        }
+      ],
+      "next": "choice_ask"
+    },
+    "family_pain": {
+      "type": "text",
+      "speaker": "silas_spirit",
+      "portrait": "sad",
+      "text": "Elara tends roots. Maren burns them. My children, split down the middle by my death. One heals what I loved. The other destroys it in my name. Both think they're honoring me. Neither is wrong. Neither is right.",
+      "next": "family_request"
+    },
+    "family_request": {
+      "type": "text",
+      "speaker": "silas_spirit",
+      "portrait": "neutral",
+      "text": "If you can bring them together — even for a moment, even in anger — the roots will feel it. A family reunited is the smallest form of the communion the forest craves. It would be a start.",
+      "triggers": [
+        {
+          "set_state": "flag.silas_wants_family_reunion",
+          "value": true
+        }
+      ],
+      "next": "choice_ask"
+    },
+    "forgiveness": {
+      "type": "text",
+      "speaker": "silas_spirit",
+      "portrait": "neutral",
+      "text": "Blame is a luxury of the living. Down here, in the roots, there is only the pattern. The lord was afraid. The forest was hungry. I was willing. Each of us played our part in a tragedy that none of us authored.",
+      "next": "forgiveness_2"
+    },
+    "forgiveness_2": {
+      "type": "text",
+      "speaker": "silas_spirit",
+      "portrait": "neutral",
+      "text": "If I blame anyone, I blame the silence. The refusal to speak. The refusal to listen. That is the true poison — not nightcap root, not forest curses. Just people refusing to hear each other.",
+      "next": "choice_ask"
+    },
+    "silas_farewell": {
+      "type": "text",
+      "speaker": "silas_spirit",
+      "portrait": "neutral",
+      "text": "Go well, walker. The roots will guide you if you let them. And when you see my Elara... tell her the herbs she planted on my grave last spring are growing. Even here. Even in the dark.",
+      "triggers": [
+        {
+          "set_state": "flag.silas_farewell_message",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

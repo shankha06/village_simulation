@@ -1,0 +1,191 @@
+[
+  {
+    "id": "midnight_scream",
+    "category": "cliffhanger",
+    "priority": 80,
+    "once_only": true,
+    "conditions": [
+      "time.day >= 2",
+      "flag.has_inn_room == true"
+    ],
+    "dialogue_id": "",
+    "description": "At midnight on the player's second night, the first 'echo' of the pact's hunger is heard from the manor. Greta recognizes it as the 'debt-call'.",
+    "effects": [
+      {
+        "set_state": "flag.midnight_scream_heard",
+        "value": true
+      },
+      {
+        "set_state": "flag.something_happened_at_manor",
+        "value": true
+      }
+    ],
+    "notification_text": "A blood-curdling scream pierces the night -- not from the manor, but from beneath it. From the earth itself. It sounds like a name being called. Your name. Or a name that was yours, once, in a life the roots remember."
+  },
+  {
+    "id": "dead_bird_omen",
+    "category": "mystery",
+    "priority": 40,
+    "once_only": true,
+    "conditions": [
+      "time.day >= 1",
+      "flag.entered_ashworth_manor != true"
+    ],
+    "dialogue_id": "",
+    "description": "Player finds dead birds near the village well. Environmental storytelling about the poison.",
+    "effects": [
+      {
+        "set_state": "flag.dead_birds_found",
+        "value": true
+      }
+    ],
+    "notification_text": "Dead songbirds litter the ground near the village well. Their beaks are stained black, as if they drank something foul. But it's their eyes that unsettle you -- still open, still bright, fixed on the sky as if watching for something that never came to save them."
+  },
+  {
+    "id": "maren_night_ritual",
+    "category": "mystery",
+    "priority": 60,
+    "once_only": true,
+    "conditions": [
+      "time.hour >= 22",
+      "npc.brother_maren.met == true",
+      "flag.noticed_maren_recognition == true"
+    ],
+    "dialogue_id": "",
+    "description": "If player investigates at night after noticing Maren's suspicious reaction, they can witness him performing a secret ritual in the chapel cellar.",
+    "effects": [
+      {
+        "set_state": "flag.witnessed_maren_ritual",
+        "value": true
+      },
+      {
+        "set_state": "flag.maren_past_discovered",
+        "value": true
+      }
+    ],
+    "notification_text": "Through a crack in the cellar floor, you see Brother Maren kneeling before a sigil drawn in ash \u2014 chanting words that are NOT from any prayer book."
+  },
+  {
+    "id": "elara_attacked",
+    "category": "consequence",
+    "priority": 90,
+    "once_only": true,
+    "conditions": [
+      "flag.agreed_to_help_elara == true",
+      "time.day >= 3",
+      "flag.evidence_nightcap_root == true"
+    ],
+    "dialogue_id": "",
+    "description": "If the player has been investigating the poison openly, the poisoner strikes at Elara to silence her.",
+    "effects": [
+      {
+        "set_state": "flag.elara_attacked",
+        "value": true
+      },
+      {
+        "set_state": "npc.elara.health",
+        "delta": -20
+      }
+    ],
+    "notification_text": "You find Elara's herb garden ransacked and Elara herself unconscious, a bruise blooming across her temple. Someone tried to silence her."
+  },
+  {
+    "id": "ironmarch_scout",
+    "category": "world_event",
+    "priority": 50,
+    "once_only": true,
+    "conditions": [
+      "time.day >= 5",
+      "faction.ashvale_nobility.power < 40"
+    ],
+    "dialogue_id": "",
+    "description": "An Ironmarch scout is spotted on the eastern road, confirming Voss's warning.",
+    "effects": [
+      {
+        "set_state": "flag.ironmarch_scout_spotted",
+        "value": true
+      },
+      {
+        "set_state": "npc.commander_voss.memory.scout_confirmed_fears",
+        "value": true
+      }
+    ],
+    "notification_text": "A rider bearing the Ironmarch banner was spotted on the eastern road. They watched the village for an hour before riding back the way they came."
+  },
+  {
+    "id": "prologue_cliffhanger_rider",
+    "category": "cliffhanger",
+    "priority": 100,
+    "once_only": true,
+    "conditions": [
+      "flag.village_knows_truth == true"
+    ],
+    "dialogue_id": "",
+    "description": "The prologue ending: a rider arrives with news that changes everything.",
+    "effects": [
+      {
+        "set_state": "flag.prologue_complete",
+        "value": true
+      },
+      {
+        "set_state": "flag.rider_arrived",
+        "value": true
+      }
+    ],
+    "notification_text": "A rider bursts through the village gate, horse frothing at the mouth. They collapse from the saddle, clutching a sealed letter bearing the Ironmarch seal. 'War,' they gasp. 'They're coming. All of them.'"
+  },
+  {
+    "id": "compass_needle_trembles",
+    "category": "mystery",
+    "priority": 35,
+    "once_only": true,
+    "conditions": [
+      "player.has_item.marens_heirloom == true",
+      "time.day >= 1"
+    ],
+    "effects": [
+      {
+        "set_state": "flag.compass_reacted",
+        "value": true
+      }
+    ],
+    "notification_text": "The silver compass in your pack grows warm. The needle, which hasn't moved since you found it, twitches once. Toward Ashvale. Toward home. Toward whatever 'home' means in a place like this."
+  },
+  {
+    "id": "villager_desperate_plea",
+    "category": "flavor",
+    "priority": 30,
+    "once_only": false,
+    "cooldown_days": 3,
+    "conditions": [
+      "world.region.ashvale.food_supply < 30"
+    ],
+    "dialogue_id": "",
+    "description": "A desperate villager begs the player for help as famine worsens.",
+    "effects": [],
+    "notification_text": "A gaunt woman clutches your arm. 'Please... my children haven't eaten in two days. Can you spare anything? Anything at all?'"
+  },
+  {
+    "id": "forest_encroachment",
+    "category": "world_event",
+    "priority": 60,
+    "once_only": true,
+    "conditions": [
+      "time.day >= 7",
+      "flag.pact_fully_revealed != true"
+    ],
+    "dialogue_id": "",
+    "description": "Thornwood roots begin visibly creeping toward the village edge.",
+    "effects": [
+      {
+        "set_state": "flag.forest_encroaching",
+        "value": true
+      },
+      {
+        "swap_visuals": "village_eastern_edge",
+        "variant": "roots_creeping"
+      }
+    ],
+    "notification_text": "The villagers whisper fearfully \u2014 thick, gnarled roots have broken through the soil at the eastern edge of Ashvale, creeping toward the houses like slow fingers."
+  }
+]

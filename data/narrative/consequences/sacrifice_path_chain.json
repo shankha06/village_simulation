@@ -1,0 +1,194 @@
+{
+  "id": "sacrifice_path_chain",
+  "trigger_condition": "flag.sacrifice_completed == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "flag.pact_fulfilled",
+          "value": true
+        },
+        {
+          "set_state": "flag.forest_sated",
+          "value": true
+        },
+        {
+          "set_state": "world.region.thornwood.hostility",
+          "value": 0
+        },
+        {
+          "set_state": "npc.thornwood_spirit.disposition",
+          "delta": 50
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "set_state": "world.region.ashvale.food_supply",
+          "delta": 20
+        },
+        {
+          "set_state": "flag.blood_root_receding",
+          "value": true
+        },
+        {
+          "spawn_event": "crops_begin_healing"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {
+          "set_state": "world.region.ashvale.food_supply",
+          "delta": 20
+        },
+        {
+          "set_state": "flag.wells_clearing",
+          "value": true
+        },
+        {
+          "spawn_event": "village_relief"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 7,
+      "effects": [
+        {
+          "set_state": "world.region.ashvale.status",
+          "value": "recovering"
+        },
+        {
+          "spawn_event": "first_harvest_since_pact"
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 1,
+      "condition": "flag.player_self_sacrifice == true",
+      "effects": [
+        {
+          "set_state": "flag.player_becomes_forest",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.memory.player_sacrificed_self",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.memory.player_sacrificed_self",
+          "value": true
+        },
+        {
+          "spawn_event": "memorial_for_player"
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 1,
+      "condition": "flag.ashworth_sacrifice == true",
+      "effects": [
+        {
+          "set_state": "flag.ashvale_needs_new_leader",
+          "value": true
+        },
+        {
+          "set_state": "faction.ashvale_nobility.power",
+          "delta": -30
+        },
+        {
+          "spawn_event": "lord_ashworth_memorial"
+        },
+        {
+          "set_state": "npc.greta.memory.lord_gave_himself",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 1,
+      "condition": "flag.maren_sacrifice == true",
+      "effects": [
+        {
+          "set_state": "flag.church_leaderless_in_ashvale",
+          "value": true
+        },
+        {
+          "set_state": "faction.church_ashen_light.power",
+          "delta": -20
+        },
+        {
+          "spawn_event": "maren_atonement_remembered"
+        },
+        {
+          "set_state": "npc.old_maren.memory.namesake_found_peace",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 1,
+      "condition": "flag.villager_sacrifice == true",
+      "effects": [
+        {
+          "set_state": "flag.village_mourns_volunteer",
+          "value": true
+        },
+        {
+          "set_state": "npc.greta.memory.someone_gave_themselves",
+          "value": true
+        },
+        {
+          "spawn_event": "village_mourning"
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 1,
+      "condition": "flag.pact_fulfilled_with_maren == true",
+      "effects": [
+        {
+          "set_state": "npc.old_maren.memory.lost_grandson_like_son",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.memory.lost_brother_to_roots",
+          "value": true
+        },
+        {
+          "set_state": "flag.maren_family_double_sacrifice",
+          "value": true
+        },
+        {
+          "spawn_event": "old_maren_collapses_at_shrine"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 30,
+      "effects": [
+        {
+          "set_state": "flag.pact_cycle_continues",
+          "value": true
+        },
+        {
+          "set_state": "npc.old_maren.memory.next_generation_will_face_this",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

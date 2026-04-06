@@ -1,0 +1,79 @@
+{
+  "id": "elara",
+  "name": "Elara",
+  "description": "A quiet herbalist who knows more than she lets on. She's been studying the dying crops and suspects foul play.",
+  "faction": "",
+  "personality": {
+    "courage": 0.6,
+    "greed": 0.1,
+    "loyalty": 0.8,
+    "cruelty": 0.0,
+    "curiosity": 0.9,
+    "honesty": 0.7
+  },
+  "schedule": [
+    {
+      "hour": 6,
+      "location": "herb_garden",
+      "activity": "gathering_herbs"
+    },
+    {
+      "hour": 10,
+      "location": "market_stall",
+      "activity": "selling_herbs"
+    },
+    {
+      "hour": 14,
+      "location": "village_well",
+      "activity": "testing_water"
+    },
+    {
+      "hour": 18,
+      "location": "home",
+      "activity": "studying"
+    },
+    {
+      "hour": 22,
+      "location": "home",
+      "activity": "sleeping"
+    }
+  ],
+  "home_location": "elara_cottage",
+  "dialogue_pools": {
+    "greeting": "elara_intro",
+    "about_famine": "elara_famine_reaction",
+    "about_poison": "elara_poison_discussion",
+    "friendly": "elara_friendly",
+    "hostile": "elara_hostile",
+    "player_asked_about_village": "elara_village_detail",
+    "player_is_ally": "elara_ally_dialogue",
+    "investigation": "elara_investigation",
+    "follow_up": "elara_follow_up",
+    "herb_quest": "elara_herb_quest",
+    "antidote_result": "elara_antidote_result"
+  },
+  "default_greeting": "elara_intro",
+  "barks": [
+    "The soil smells wrong today...",
+    "Another wilted patch. This isn't natural.",
+    "If you need healing herbs, I have a few left.",
+    "I keep finding dead insects near the well.",
+    "Someone has to figure this out before it's too late.",
+    "The water... I need to test it again."
+  ],
+  "family": {
+    "father_deceased": "silas_maren",
+    "grandmother": "old_maren",
+    "brother": "brother_maren"
+  },
+  "is_combatant": false,
+  "max_health": 30.0,
+  "can_surrender": true,
+  "npc_relationships": {
+    "brother_maren": -30,
+    "greta": 20,
+    "old_maren": 40,
+    "fenrick": -10,
+    "lord_ashworth": -20
+  }
+}

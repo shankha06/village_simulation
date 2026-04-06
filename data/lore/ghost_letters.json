@@ -1,0 +1,79 @@
+{
+  "entries": [
+    {
+      "id": "ghost_letter_maelis",
+      "title": "Ghost Letter: Maelis (Year 30)",
+      "category": "ghost_letters",
+      "text": "To whoever finds this -- know that my husband did not go willingly. They called it 'willing.' He was a debt-bonded servant. He had no will of his own. Lord Ashworth the Second looked him in the eye and said, 'You are chosen.' Chosen. As if a man who cannot refuse has a choice. I watched from the tree line. I watched the roots take him. He screamed for exactly eleven heartbeats. I counted. I will count them every night for the rest of my life. -- Maelis, wife of the first sacrifice after Aldric. Year 30 of the Pact.",
+      "discovered_by_default": false,
+      "conditions": ["flag.found_ghost_letters_cache == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The first sacrifice after Aldric was coerced, not truly willing. He was a debt-bonded servant with no power to refuse.",
+          "conditions": ["flag.ghost_letter_1_read == true"]
+        }
+      ]
+    },
+    {
+      "id": "ghost_letter_eben",
+      "title": "Ghost Letter: Eben the Woodcutter (Year 90)",
+      "category": "ghost_letters",
+      "text": "My dear girls -- you will not remember me. You are too small. But I need you to know: your father loved you more than breath. More than the sky loves the morning. More than the river loves the sea. The lord promised my girls would be cared for. Tell them their father loved them more than breath. Tell them I chose this so they would never go hungry. Tell them -- no. Don't tell them anything. Let them think I went away. Let them think I was a coward. Anything is better than the truth. -- Your father, Eben. Year 90.",
+      "discovered_by_default": false,
+      "conditions": ["flag.found_ghost_letters_cache == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Eben's twin daughters were given to the Church of the Ashen Light after his sacrifice. The lord's promise of care was fulfilled in the cruelest possible way.",
+          "conditions": ["flag.ghost_letter_2_read == true"]
+        }
+      ]
+    },
+    {
+      "id": "ghost_letter_deserter",
+      "title": "Ghost Letter: The Deserter (Year 150)",
+      "category": "ghost_letters",
+      "text": "No name. Names are for people who belong somewhere. I ran from the Legion at Blackhollow. Killed a man who deserved it and two who didn't. Found this village. Thought I could disappear. Turns out disappearing is exactly what they needed. The Ashworths have learned their craft by now -- they choose the ones nobody will miss. The drifters. The criminals. The broken. I ran from one war into another. At least this one ends quickly. If anyone reads this: I don't want your pity. I want you to know that the lords of Ashvale are butchers who pick their cattle from the margins of the herd. -- No one. Year 150.",
+      "discovered_by_default": false,
+      "conditions": ["flag.found_ghost_letters_cache == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "By the fifth generation, the Ashworths had refined their selection: they chose outcasts, drifters, criminals -- people who wouldn't be missed. The sacrifice became invisible.",
+          "conditions": ["flag.ghost_letter_3_read == true"]
+        }
+      ]
+    },
+    {
+      "id": "ghost_letter_wren",
+      "title": "Ghost Letter: Wren the Healer (Year 210)",
+      "category": "ghost_letters",
+      "text": "I go willingly. Let that be clear, if nothing else is. I have spent my life with my hands in the soil, listening to what grows and what grieves. And I can hear the forest's pain. It does not enjoy this any more than we do. The Heartwood is not a monster -- it is a wound that was never treated, an old hurt that learned to demand instead of ask. Let me go. Let me show it that some of us understand. Lord Ashworth begged me to reconsider. I told him: reconsider what? Living in a village built on bones? I would rather become the roots than stand on them pretending they aren't there. -- Wren, Healer of Ashvale. Year 210. The only one who chose.",
+      "discovered_by_default": false,
+      "conditions": ["flag.found_ghost_letters_cache == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Wren was the only truly willing sacrifice in three hundred years. After her death, the crops flourished for thirty-five years -- more than triple the usual cycle. The forest responded to genuine willingness differently.",
+          "conditions": ["flag.ghost_letter_4_read == true"]
+        }
+      ]
+    },
+    {
+      "id": "ghost_letter_silas",
+      "title": "Ghost Letter: Silas Maren (Year 270)",
+      "category": "ghost_letters",
+      "text": "My little Elara -- by the time you read this, if you ever read this, you will have grown into someone I cannot imagine. I hope you have your mother's stubbornness and none of my foolishness. The world will try to make you small. Don't let it.\n\nMy boy -- I don't even know what name the Church will give you. They'll take you from your grandmother's arms and fill your head with ash and fire. But you are not ash. You are not fire. You are mine. You are the son of a man who loved you enough to die so you could live.\n\nThe compass is for you both. It was supposed to always point you home. But home is where they bury your father in the roots. I'm sorry. I'm sorry I couldn't find another way. I'm sorry your grandmother will carry this weight until it breaks her. She'll blame herself forever, and she shouldn't. The only ones to blame wear the Ashworth name.\n\nTake care of each other. You're all you have.\n\n-- Your father, Silas Maren. Year 270.",
+      "discovered_by_default": false,
+      "conditions": ["flag.found_ghost_letters_cache == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Silas Maren knew that Old Maren would blame herself forever. He knew the Church would take his son. He knew Elara would grow up without a father. He knew all of it, and he walked into the roots anyway.",
+          "conditions": ["flag.ghost_letter_5_read == true"]
+        }
+      ]
+    }
+  ]
+}

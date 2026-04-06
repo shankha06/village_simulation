@@ -1,0 +1,221 @@
+{
+  "id": "ledger_discovery",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The catacombs are cold and old. The air tastes of stone and something sweeter — decay masked with incense. Your torch reveals arched corridors lined with alcoves, each holding the bones of an Ashworth ancestor.",
+      "next": "navigate"
+    },
+    "navigate": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Past the trapped stairs, past the blood-locked vault door, you find it. A small chamber with a single desk. On the desk: a leather-bound book, its cover stained dark. The thirty-year ledger.",
+      "triggers": [
+        {
+          "set_state": "flag.ledger_found",
+          "value": true
+        }
+      ],
+      "next": "read_choice"
+    },
+    "read_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "read_here",
+          "text": "Open the ledger and read it here, in the catacombs.",
+          "conditions": [],
+          "triggers": [],
+          "next": "catacomb_reading"
+        },
+        {
+          "id": "take_upstairs",
+          "text": "Take the ledger outside to read in the open air, as Ashworth warned.",
+          "conditions": [],
+          "triggers": [],
+          "next": "surface_reading"
+        }
+      ]
+    },
+    "catacomb_reading": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The catacombs listen, Ashworth said. As you open the ledger, the torch dims. The temperature drops. Something watches from the alcoves. But the words are clear.",
+      "next": "ledger_contents"
+    },
+    "surface_reading": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "In the daylight, the ledger seems smaller. Less terrible. Just a book. But when you open it, the weight of its contents is immense.",
+      "next": "ledger_contents"
+    },
+    "ledger_contents": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The first entry, dated thirty years ago: 'Silas Maren. Given willingly. The forest accepts. Crops restored within the fortnight. The pact holds.' Below it, in shakier handwriting: 'God forgive me. He had children.'",
+      "next": "ledger_contents_2"
+    },
+    "ledger_contents_2": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Page after page. A sacrifice every three to five years. Men and women chosen by lottery — or by the lord's private judgment. Some went willingly. Most did not. The forest always accepted. The crops always returned. Until now.",
+      "next": "ledger_final_entry"
+    },
+    "ledger_final_entry": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The final entry, two weeks old: 'The forest demands again. I cannot. I will not. Let the crops die. Let it all die. I am the last Ashworth, and I will be the first to say no.' Below, in a trembling hand: 'What have I done?'",
+      "next": "decision"
+    },
+    "decision": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "share_public",
+          "text": "The village must know. Read this aloud in the square.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.ledger_shared_publicly",
+              "value": true
+            }
+          ],
+          "next": "public_reading"
+        },
+        {
+          "id": "give_fenrick",
+          "text": "Fenrick could use this. The Guild would pay handsomely for noble secrets.",
+          "conditions": [
+            {
+              "check": "npc.fenrick.met",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.ledger_given_to_fenrick",
+              "value": true
+            }
+          ],
+          "next": "guild_delivery"
+        },
+        {
+          "id": "give_voss",
+          "text": "Commander Voss could leverage this for the village's military defense.",
+          "conditions": [
+            {
+              "check": "npc.commander_voss.met",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.ledger_given_to_voss",
+              "value": true
+            }
+          ],
+          "next": "military_delivery"
+        },
+        {
+          "id": "burn_it",
+          "text": "Some truths are better left buried. Burn the ledger.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.ledger_burned",
+              "value": true
+            }
+          ],
+          "next": "burning"
+        },
+        {
+          "id": "give_old_maren",
+          "text": "Old Maren. She'll know what to do with the names of the sacrificed.",
+          "conditions": [
+            {
+              "check": "npc.old_maren.met",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.ledger_given_to_old_maren",
+              "value": true
+            }
+          ],
+          "next": "druid_delivery"
+        }
+      ]
+    },
+    "public_reading": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You stand in the village square, ledger open. You read every name. Every date. Every deal. The silence that follows is worse than screaming. Then Greta throws a stone at the manor gates. Others follow. Lord Ashworth's Ashvale dies in the time it takes to read a book.",
+      "next": "end"
+    },
+    "guild_delivery": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Names, dates, proof of noble families sacrificing their own people to keep their crops growing. This is the most valuable thing anyone has ever handed me. The Hand will remember this. The noble houses will wish you hadn't.",
+      "next": "end"
+    },
+    "military_delivery": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Ashworth's been feeding people to the forest? And they call soldiers monsters. With this, I can force him to grant garrison rights. Or I release it and let the mob do the rest. Either way, this changes the balance of power in Ashvale.",
+      "next": "end"
+    },
+    "burning": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The pages curl and blacken. Names become ash. Deals become smoke. Thirty years of secrets rise into the sky and vanish. The pact continues. The silence continues. Nothing changes. Lord Ashworth watches from his window and weeps with relief.",
+      "next": "end"
+    },
+    "druid_delivery": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "neutral",
+      "text": "Give it here, child. Let me touch the pages.",
+      "next": "old_maren_reads"
+    },
+    "old_maren_reads": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "sad",
+      "text": "I can feel them. Every name pressed into the page. My son is here. Silas. The first name. And all the others who followed him into the roots.",
+      "next": "old_maren_resolve"
+    },
+    "old_maren_resolve": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "neutral",
+      "text": "The pact feeds on silence. On forgetting. On the names of the dead buried under thirty years of shame. But if someone speaks them — all of them, aloud, where the roots can hear — the silence breaks. The pact falters. This is the beginning of the counter-rite.",
+      "triggers": [
+        {
+          "set_state": "flag.counter_rite_possible",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

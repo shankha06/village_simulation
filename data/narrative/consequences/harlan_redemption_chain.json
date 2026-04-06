@@ -1,0 +1,74 @@
+{
+  "id": "harlan_redemption_chain",
+  "trigger_condition": "flag.harlan_honest_with_player == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "npc.gate_guard.disposition",
+          "delta": 15
+        },
+        {
+          "set_state": "npc.gate_guard.memory.confession_made",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 2,
+      "effects": [
+        {
+          "set_state": "flag.gate_unlocked_at_night",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.gate_night_status",
+          "value": "unlocked"
+        },
+        {
+          "spawn_event": "harlan_leaves_gate_unlocked"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "effects": [
+        {
+          "set_state": "flag.hidden_passage_revealed",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.gate_passage_visible",
+          "value": true
+        },
+        {
+          "spawn_event": "harlan_reveals_passage"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 10,
+      "effects": [
+        {
+          "set_state": "flag.harlan_volunteers_defense",
+          "value": true
+        },
+        {
+          "set_state": "npc.gate_guard.role",
+          "value": "village_defender"
+        },
+        {
+          "set_state": "npc.gate_guard.disposition",
+          "delta": 20
+        },
+        {
+          "spawn_event": "harlan_joins_defense"
+        }
+      ]
+    }
+  ]
+}

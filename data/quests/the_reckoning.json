@@ -1,0 +1,277 @@
+{
+  "id": "the_reckoning",
+  "name": "The Reckoning",
+  "description": "Every choice has led to this moment. Ashvale's fate \u2014 and yours \u2014 will be decided before the sun sets.",
+  "giver": "narrative",
+  "region": "ashvale",
+  "tags": [
+    "main_quest",
+    "act4",
+    "finale",
+    "multiple_endings"
+  ],
+  "priority": 100,
+  "states": {
+    "UNKNOWN": {
+      "transitions": [
+        {
+          "on": "flag.act3_complete == true",
+          "to": "CONVERGENCE"
+        }
+      ]
+    },
+    "CONVERGENCE": {
+      "journal_entry": "The journey into Thornwood is over. The choice I made at the Heartwood echoes through every root and branch. Now I must face what comes next.",
+      "objectives": [
+        "Return to Ashvale",
+        "Face the consequences of your choices"
+      ],
+      "transitions": [
+        {
+          "on": "flag.player_self_sacrifice == true",
+          "to": "PATH_MARTYR"
+        },
+        {
+          "on": "flag.pact_fulfilled_with_lord == true",
+          "to": "PATH_NEW_ORDER"
+        },
+        {
+          "on": "flag.pact_fulfilled_with_maren == true",
+          "to": "PATH_ATONEMENT"
+        },
+        {
+          "on": "flag.pact_fulfilled_with_villager == true",
+          "to": "PATH_DARK_PRICE"
+        },
+        {
+          "on": "flag.pact_severed == true",
+          "to": "PATH_SEVERANCE"
+        },
+        {
+          "on": "flag.pact_renegotiated == true",
+          "to": "PATH_ACCORD"
+        }
+      ]
+    },
+    "PATH_MARTYR": {
+      "journal_entry": "I gave myself to the Heartwood. The roots accepted. The poison recedes from the water, and the land drinks deep. I can feel myself fading \u2014 not in pain, but in quiet. Like autumn.",
+      "objectives": [
+        "Say your farewells"
+      ],
+      "consequence_chain": "act4_endings",
+      "transitions": [
+        {
+          "on": "flag.ending_martyr_complete == true",
+          "to": "ENDING_MARTYR"
+        }
+      ]
+    },
+    "PATH_NEW_ORDER": {
+      "journal_entry": "Lord Ashworth stepped into the roots willingly. He said he owed the village this much \u2014 and more. The Heartwood accepted him. The pact is renewed. But Ashvale has no lord now.",
+      "objectives": [
+        "Return to Ashvale and address the power vacuum",
+        "Decide who should lead"
+      ],
+      "transitions": [
+        {
+          "on": "flag.ending_new_order_complete == true",
+          "to": "ENDING_NEW_ORDER"
+        }
+      ]
+    },
+    "PATH_ATONEMENT": {
+      "journal_entry": "Brother Maren gave himself to the forest. He walked into the roots murmuring prayers to a god he wasn't sure still listened. The Church of the Ashen Light has lost its shepherd in Ashvale.",
+      "objectives": [
+        "Return to Ashvale",
+        "Address the faithful who have lost their guide"
+      ],
+      "transitions": [
+        {
+          "on": "flag.ending_atonement_complete == true",
+          "to": "ENDING_ATONEMENT"
+        }
+      ]
+    },
+    "PATH_DARK_PRICE": {
+      "journal_entry": "I chose someone. A name, a face, a life \u2014 offered to the roots like grain to a mill. The Heartwood did not care who it was. Only that someone was given. The crops will grow. The guilt will grow faster.",
+      "objectives": [
+        "Return to Ashvale",
+        "Face the village with what you've done"
+      ],
+      "transitions": [
+        {
+          "on": "flag.ending_dark_price_complete == true",
+          "to": "ENDING_DARK_PRICE"
+        }
+      ]
+    },
+    "PATH_SEVERANCE": {
+      "journal_entry": "I severed the pact. Three hundred years of blood and rootwork, cut in a single act. The Heartwood screamed \u2014 I can still hear it. The forest is dying. The land is dying. We need to leave.",
+      "objectives": [
+        "Rally survivors for evacuation",
+        "Deal with the Ironmarch Legion at the gates"
+      ],
+      "transitions": [
+        {
+          "on": "flag.factions_united == true AND flag.pact_severed == true",
+          "to": "PATH_EXODUS"
+        },
+        {
+          "on": "flag.chose_last_stand == true",
+          "to": "PATH_LAST_STAND"
+        },
+        {
+          "on": "flag.abandoned_ashvale == true",
+          "to": "PATH_SCORCHED_EARTH"
+        }
+      ]
+    },
+    "PATH_EXODUS": {
+      "journal_entry": "We march east. Every faction that still stands sends what people they can spare. The road is long and the land behind us turns to dust. But we march together.",
+      "objectives": [
+        "Lead the survivors east",
+        "Find land that will sustain the people of Ashvale"
+      ],
+      "transitions": [
+        {
+          "on": "flag.ending_exodus_complete == true",
+          "to": "ENDING_EXODUS"
+        }
+      ]
+    },
+    "PATH_LAST_STAND": {
+      "journal_entry": "The Legion sees our weakness. Commander Voss \u2014 ally or enemy \u2014 stands at the gate. I will not run. Ashvale may be dying, but it will not die quietly.",
+      "objectives": [
+        "Prepare defenses with remaining allies",
+        "Face the Ironmarch Legion"
+      ],
+      "transitions": [
+        {
+          "on": "flag.ending_last_stand_complete == true",
+          "to": "ENDING_LAST_STAND"
+        }
+      ]
+    },
+    "PATH_SCORCHED_EARTH": {
+      "journal_entry": "There is nothing left to save. The forest burns. The village crumbles. The Legion circles like crows. I walk away. I walk alone.",
+      "objectives": [
+        "Leave Ashvale behind"
+      ],
+      "transitions": [
+        {
+          "on": "flag.ending_scorched_earth_complete == true",
+          "to": "ENDING_SCORCHED_EARTH"
+        }
+      ]
+    },
+    "PATH_ACCORD": {
+      "journal_entry": "The Heartwood and I struck an accord. The fields will become forest. The village will change. The question is whether everyone can accept the new world we've made.",
+      "objectives": [
+        "Return to Ashvale and announce the accord",
+        "Unite the factions behind the new covenant"
+      ],
+      "transitions": [
+        {
+          "on": "flag.all_factions_accept_accord == true",
+          "to": "PATH_HARMONY"
+        },
+        {
+          "on": "flag.some_factions_reject_accord == true",
+          "to": "PATH_UNEASY_PEACE"
+        },
+        {
+          "on": "flag.player_lied_to_heartwood == true",
+          "to": "PATH_BETRAYED"
+        }
+      ]
+    },
+    "PATH_HARMONY": {
+      "journal_entry": "Every faction agreed. The fields became groves. The houses grew roots. Ashvale transformed into something no one alive has ever seen \u2014 a place where the forest and the village are one.",
+      "objectives": [
+        "Witness the transformation of Ashvale"
+      ],
+      "transitions": [
+        {
+          "on": "flag.ending_harmony_complete == true",
+          "to": "ENDING_HARMONY"
+        }
+      ]
+    },
+    "PATH_UNEASY_PEACE": {
+      "journal_entry": "Not everyone accepted the accord. Some factions refused to bend. The forest and village coexist, but the peace is fragile \u2014 a single wrong word could shatter it.",
+      "objectives": [
+        "Mediate between the holdouts and the forest",
+        "Establish a fragile peace"
+      ],
+      "transitions": [
+        {
+          "on": "flag.ending_uneasy_peace_complete == true",
+          "to": "ENDING_UNEASY_PEACE"
+        }
+      ]
+    },
+    "PATH_BETRAYED": {
+      "journal_entry": "The Heartwood knows. I don't know how \u2014 perhaps it tasted the lie in my blood, or read it in the soil where I stood. The roots are moving. Not slowly. Not gently.",
+      "objectives": [
+        "Survive the forest's wrath",
+        "Escape Ashvale"
+      ],
+      "transitions": [
+        {
+          "on": "flag.ending_betrayed_complete == true",
+          "to": "ENDING_BETRAYED"
+        }
+      ]
+    },
+    "ENDING_MARTYR": {
+      "journal_entry": "I gave my life for Ashvale. The village will remember. The crops will grow. And somewhere beneath the roots, I sleep \u2014 not dead, not alive, but woven into the pact forever.",
+      "consequence_chain": "act4_endings",
+      "rewards": [
+        {
+          "reputation": {
+            "ashvale_nobility": 100,
+            "city_guard": 50,
+            "church_ashen_light": 50,
+            "thieves_guild": 30
+          }
+        }
+      ]
+    },
+    "ENDING_NEW_ORDER": {
+      "journal_entry": "Lord Ashworth is gone. Ashvale needs a new leader. The choice \u2014 if there is one \u2014 may be the most important decision left to make.",
+      "consequence_chain": "act4_endings"
+    },
+    "ENDING_ATONEMENT": {
+      "journal_entry": "Brother Maren's sacrifice silenced the Church in Ashvale. His flock scatters. Some find their own faith. Others find nothing at all. The village heals, but the soul of it has changed.",
+      "consequence_chain": "act4_endings"
+    },
+    "ENDING_DARK_PRICE": {
+      "journal_entry": "They call me the Chooser now. Not savior. Chooser. Every spring the crops grow tall. Every spring a black flower appears on my doorstep.",
+      "consequence_chain": "act4_endings"
+    },
+    "ENDING_EXODUS": {
+      "journal_entry": "We found new land three weeks east. It's not home \u2014 not yet. But the people of Ashvale have survived worse. They'll survive this too.",
+      "consequence_chain": "act4_endings"
+    },
+    "ENDING_LAST_STAND": {
+      "journal_entry": "We held the line. The cost was terrible. But Ashvale \u2014 or what's left of it \u2014 still stands. Barely.",
+      "consequence_chain": "act4_endings"
+    },
+    "ENDING_SCORCHED_EARTH": {
+      "journal_entry": "Nothing remains. Not the village, not the forest, not the pact. Just ash and a road and the sound of my own footsteps.",
+      "consequence_chain": "act4_endings"
+    },
+    "ENDING_HARMONY": {
+      "journal_entry": "The Heartwood spoke a new word today. After ten thousand years of silence and hunger and blood, it said: Friend.",
+      "consequence_chain": "act4_endings"
+    },
+    "ENDING_UNEASY_PEACE": {
+      "journal_entry": "The accord holds. For now. But I see the way the holdouts look at the forest, and the way the branches lean toward them when they pass. Trust is a crop that grows slowly.",
+      "consequence_chain": "act4_endings"
+    },
+    "ENDING_BETRAYED": {
+      "journal_entry": "I escaped. Behind me, where Ashvale stood, a forest grows impossibly fast. And somewhere in its depths, the Heartwood whispers my name.",
+      "consequence_chain": "act4_endings"
+    }
+  }
+}

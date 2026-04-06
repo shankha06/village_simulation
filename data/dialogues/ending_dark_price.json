@@ -1,0 +1,140 @@
+{
+  "id": "ending_dark_price",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You chose. That's what they can't forgive \u2014 not the death, but the choosing. The Heartwood didn't demand a name. It demanded a life. You're the one who decided whose life it would be.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_dark_price_started",
+          "value": true
+        }
+      ],
+      "next": "the_moment"
+    },
+    "the_moment": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "They didn't understand at first. The one you chose looked at you with confusion, then recognition, then something worse than hatred \u2014 trust betrayed. The roots were gentle. That was the cruelest part. They took their offering gently, like a parent lifting a sleeping child.",
+      "next": "return_to_village"
+    },
+    "return_to_village": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You return to Ashvale alone. The crops are already recovering \u2014 you can see it in the way the dead stalks straighten, the way the soil darkens from gray to brown. Life flows back into the land like water filling a ditch. The price has been paid. The pact is renewed.",
+      "next": "village_knows"
+    },
+    "village_knows": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "They know. You don't know how \u2014 perhaps the forest whispered it through the roots, or perhaps guilt writes itself on the face in a language everyone can read. But they know. And when you walk through the village, they step aside. Not in fear. Not in respect. In something colder than both.",
+      "next": "elara_confrontation"
+    },
+    "elara_confrontation": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "Don't. Don't you dare tell me it was necessary. Don't tell me the numbers made sense. You looked at a person \u2014 a living, breathing person \u2014 and you weighed their life against a harvest. And the harvest won.",
+      "conditions": [
+        {
+          "check": "npc.elara.alive",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "next": "player_choice"
+    },
+    "player_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept_guilt",
+          "text": "You're right. There's nothing I can say that makes this acceptable.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_guilt",
+              "value": true
+            },
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "accepted"
+        },
+        {
+          "id": "defend_choice",
+          "text": "Everyone else would have died. I chose the only path that saved the most lives.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.defended_choice",
+              "value": true
+            },
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": -20
+            }
+          ],
+          "next": "defended"
+        },
+        {
+          "id": "say_nothing",
+          "text": "[Say nothing.]",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.silent_guilt",
+              "value": true
+            }
+          ],
+          "next": "silence"
+        }
+      ]
+    },
+    "accepted": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "At least you know that. At least you don't pretend. I don't forgive you. I don't think I ever will. But I believe you when you say you know what you did.",
+      "next": "epilogue"
+    },
+    "defended": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "You sound like Lord Ashworth. You sound like every lord who ever sat in that manor and told themselves the pact was 'necessary.' Congratulations. You saved the village and lost your soul in the same breath.",
+      "next": "epilogue"
+    },
+    "silence": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Elara stares at you for a long moment. Then she turns and walks away. She doesn't look back. Some silences say more than words ever could \u2014 and some silences are just empty.",
+      "next": "epilogue"
+    },
+    "epilogue": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "They call you the Chooser now. Not savior \u2014 Chooser. You chose who would live and who would feed the roots. Every spring, the crops grow tall and green, taller and greener than anyone can remember. The harvest festivals are lavish. The children are well-fed. And every spring, the family of the one you chose places a black flower on your doorstep. You never remove it. You let it wilt and die there, because that feels right. Because some things should be allowed to die naturally.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_dark_price_complete",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

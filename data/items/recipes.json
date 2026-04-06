@@ -1,0 +1,49 @@
+{
+  "recipes": [
+    {
+      "id": "recipe_antidote",
+      "name": "Nightcap Antidote",
+      "ingredients": ["herb_poultice", "nightcap_sample"],
+      "result": "nightcap_antidote",
+      "description": "Neutralizes nightcap root poisoning. Elara must teach you first.",
+      "requires_flag": "flag.elara_taught_alchemy",
+      "crafting_time_hours": 2
+    },
+    {
+      "id": "recipe_druidfire",
+      "name": "Druidfire Torch",
+      "ingredients": ["torch", "old_maren_talisman"],
+      "result": "druidfire_torch",
+      "description": "A torch that burns with green flame. Can sever magical bonds.",
+      "requires_flag": "flag.old_maren_taught_druidfire",
+      "crafting_time_hours": 4
+    },
+    {
+      "id": "recipe_truth_potion",
+      "name": "Tongueloose Draught",
+      "ingredients": ["herb_poultice", "bread"],
+      "result": "truth_potion",
+      "description": "Makes the drinker more... forthcoming. Use during dialogue for bonus options.",
+      "requires_flag": "flag.elara_taught_alchemy",
+      "crafting_time_hours": 1
+    },
+    {
+      "id": "recipe_smoke_bomb",
+      "name": "Smoke Bomb",
+      "ingredients": ["firebomb", "herb_poultice"],
+      "result": "smoke_bomb",
+      "description": "Creates a cloud of obscuring smoke. Useful for escaping or sneaking.",
+      "requires_flag": "flag.fenrick_taught_smoke_craft",
+      "crafting_time_hours": 1
+    },
+    {
+      "id": "recipe_moonpetal_tea",
+      "name": "Moonpetal Tea",
+      "ingredients": ["moonpetal_flower", "bread"],
+      "result": "moonpetal_tea",
+      "description": "Lets you hear the forest's voice for a brief time. Old Maren's recipe.",
+      "requires_flag": "flag.moonpetal_quest_given",
+      "crafting_time_hours": 1
+    }
+  ]
+}

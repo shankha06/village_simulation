@@ -1,0 +1,94 @@
+{
+  "id": "village_morale_chain",
+  "trigger_condition": "world.region.ashvale.status == famine",
+  "consequences": [
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "effects": [
+        {
+          "set_state": "flag.families_leaving",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.population",
+          "delta": -15
+        },
+        {
+          "set_state": "world.region.ashvale.morale",
+          "value": "fearful"
+        },
+        {
+          "spawn_event": "families_packing_wagons"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 10,
+      "effects": [
+        {
+          "set_state": "flag.market_closed",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.market_status",
+          "value": "closed_permanently"
+        },
+        {
+          "set_state": "world.region.ashvale.population",
+          "delta": -20
+        },
+        {
+          "set_state": "world.region.ashvale.morale",
+          "value": "despairing"
+        },
+        {
+          "spawn_event": "market_shutters_close"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 15,
+      "effects": [
+        {
+          "set_state": "flag.guard_desertions",
+          "value": true
+        },
+        {
+          "set_state": "faction.city_guard.power",
+          "delta": -30
+        },
+        {
+          "set_state": "world.region.ashvale.gate_status",
+          "value": "unmanned"
+        },
+        {
+          "spawn_event": "guards_desert_posts"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 20,
+      "effects": [
+        {
+          "set_state": "flag.only_diehards_remain",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.population",
+          "value": 12
+        },
+        {
+          "set_state": "world.region.ashvale.morale",
+          "value": "grim_resolve"
+        },
+        {
+          "spawn_event": "skeleton_village"
+        }
+      ]
+    }
+  ]
+}

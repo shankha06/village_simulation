@@ -1,0 +1,61 @@
+{
+  "regions": {
+    "ashvale": {
+      "base_prices": {
+        "bread": 5,
+        "ale": 8,
+        "herb_poultice": 15,
+        "iron_dagger": 40,
+        "leather_vest": 30,
+        "rope": 10,
+        "torch": 3,
+        "lockpick": 25,
+        "nightcap_antidote": 50
+      },
+      "supply_factors": {
+        "bread": {
+          "base_supply": 1.0,
+          "affected_by": "ecology.ashvale.crops.pop",
+          "multiplier": 1.0
+        },
+        "ale": {
+          "base_supply": 0.8,
+          "affected_by": "ecology.ashvale.crops.pop",
+          "multiplier": 0.5
+        },
+        "herb_poultice": {
+          "base_supply": 1.0,
+          "affected_by": "npc.elara.alive",
+          "multiplier": 1.0
+        }
+      },
+      "demand_factors": {
+        "bread": {
+          "base_demand": 1.0,
+          "famine_multiplier": 3.0,
+          "war_multiplier": 1.5
+        },
+        "herb_poultice": {
+          "base_demand": 1.0,
+          "plague_multiplier": 4.0,
+          "war_multiplier": 2.0
+        },
+        "iron_dagger": {
+          "base_demand": 0.5,
+          "war_multiplier": 3.0
+        }
+      },
+      "trade_routes": [
+        {
+          "destination": "eastern_road",
+          "goods": [
+            "iron_dagger",
+            "ale"
+          ],
+          "active_condition": "flag.eastern_road_safe == true"
+        }
+      ]
+    }
+  },
+  "price_formula_notes": "current_price = base_price * (demand / supply) * regional_price_mod. Supply drops when relevant NPCs die or ecology falters. Demand spikes during crises."
+}

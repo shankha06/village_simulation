@@ -1,0 +1,176 @@
+{
+  "id": "greta_rat_quest",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "angry",
+      "text": "That's it. That's the LAST barrel they've gotten into. I'm going to burn this whole cellar down and start over.",
+      "next": "greta_explains"
+    },
+    "greta_explains": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "Rats. Hundreds of them. They showed up right after the granary trouble — like they knew the grain was vulnerable. My entire cellar stock is being devoured. If I lose the ale stores too, the inn is finished.",
+      "next": "choice_respond"
+    },
+    "choice_respond": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "offer_help",
+          "text": "I'll clear your cellar. How bad is it down there?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_rat_quest",
+              "value": true
+            },
+            {
+              "set_state": "npc.greta.disposition",
+              "delta": 20
+            }
+          ],
+          "next": "greta_relief"
+        },
+        {
+          "id": "ask_payment",
+          "text": "Rat clearing isn't free. What's it worth to you?",
+          "conditions": [],
+          "triggers": [],
+          "next": "greta_offers"
+        },
+        {
+          "id": "ask_about_rats",
+          "text": "Hundreds? That's not normal. Has anything else changed recently?",
+          "conditions": [],
+          "triggers": [],
+          "next": "greta_observes"
+        },
+        {
+          "id": "suggest_old_maren",
+          "text": "Old Maren might know an herbal solution. Druids know about vermin.",
+          "conditions": [
+            {
+              "check": "npc.old_maren.met",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "greta_skeptical_herbs"
+        },
+        {
+          "id": "refuse",
+          "text": "Rats aren't really my area of expertise. Good luck.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.greta.disposition",
+              "delta": -10
+            }
+          ],
+          "next": "greta_dismissive"
+        }
+      ]
+    },
+    "greta_relief": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "happy",
+      "text": "Oh, thank the Light — or whatever's listening these days. Here's the key to the lower stores. Fair warning: bring a light source. And something sharp. The big ones bite.",
+      "triggers": [
+        {
+          "set_state": "player.has_item.cellar_key",
+          "value": true
+        }
+      ],
+      "next": "greta_details"
+    },
+    "greta_details": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "The main nest seems to be in the back corner, near the old grain sacks I bought from the manor's surplus last month. Clear the nest, and the rest should scatter.",
+      "triggers": [
+        {
+          "set_state": "npc.greta.memory.mentioned_manor_grain",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "greta_offers": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "Forty gold and free room and board for a week. Best offer you'll get in a village where nobody has coin. And I'll tell you something I overheard last night — something worth knowing.",
+      "next": "choice_payment_response"
+    },
+    "choice_payment_response": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept_offer",
+          "text": "The information interests me more than the gold. Deal.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_rat_quest",
+              "value": true
+            },
+            {
+              "set_state": "npc.greta.disposition",
+              "delta": 15
+            }
+          ],
+          "next": "greta_relief"
+        },
+        {
+          "id": "just_gold",
+          "text": "Keep your gossip. Make it fifty gold.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_rat_quest",
+              "value": true
+            }
+          ],
+          "next": "greta_relief"
+        }
+      ]
+    },
+    "greta_observes": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "Now that you mention it — the rats aren't eating everything. They ignore the fresh supplies entirely. They're only going after the grain sacks I got from the manor surplus. Almost like they're... drawn to those specific ones.",
+      "triggers": [
+        {
+          "set_state": "npc.greta.memory.noticed_rat_pattern",
+          "value": true
+        }
+      ],
+      "next": "choice_respond"
+    },
+    "greta_skeptical_herbs": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "That blind old woman? She'd probably tell me the rats are a 'gift from the forest' or some such druid nonsense. But... she does know her herbs. If she has something that drives vermin out without burning the inn down, I'll try it.",
+      "next": "choice_respond"
+    },
+    "greta_dismissive": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "angry",
+      "text": "Fine. I'll handle it myself. With fire, probably. Hope you enjoy the smell of burning rat with your breakfast.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

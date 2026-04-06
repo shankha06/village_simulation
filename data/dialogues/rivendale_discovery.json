@@ -1,0 +1,228 @@
+{
+  "id": "rivendale_discovery",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The path ends at a clearing. Rivendale — or what remains of it. Stone foundations rise from the weeds like broken teeth. The mill wheel lies on its side, half-buried. But there is smoke. Thin and white, rising from somewhere among the ruins.",
+      "next": "approach_choice"
+    },
+    "approach_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "call_out",
+          "text": "[Show banner] I carry the banner of the Silver Wolves! Is anyone here?",
+          "conditions": [
+            {
+              "check": "player.has_item.silver_wolves_banner",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "survivor_response"
+        },
+        {
+          "id": "sneak_in",
+          "text": "Approach quietly and observe before revealing yourself.",
+          "conditions": [],
+          "triggers": [],
+          "next": "observe_ruins"
+        },
+        {
+          "id": "search_graves",
+          "text": "Check the edges of the village for graves first.",
+          "conditions": [],
+          "triggers": [],
+          "next": "find_graves"
+        }
+      ]
+    },
+    "survivor_response": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Silence. Then a stone scrapes. A trapdoor opens in the foundation of what was once the schoolhouse. An old woman peers out, eyes wide.",
+      "next": "old_woman_speaks"
+    },
+    "old_woman_speaks": {
+      "type": "text",
+      "speaker": "rivendale_elder",
+      "portrait": "fearful",
+      "text": "The Silver Wolves. After seven years. Is this a trick? Did the Ironmarch send you?",
+      "next": "reassure_choice"
+    },
+    "reassure_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "from_voss",
+          "text": "Commander Voss sent me. She wants to know if anyone survived.",
+          "conditions": [],
+          "triggers": [],
+          "next": "elder_reacts_voss"
+        },
+        {
+          "id": "just_traveler",
+          "text": "I'm a traveler. I found this banner and followed the smoke.",
+          "conditions": [],
+          "triggers": [],
+          "next": "elder_cautious"
+        }
+      ]
+    },
+    "elder_reacts_voss": {
+      "type": "text",
+      "speaker": "rivendale_elder",
+      "portrait": "sad",
+      "text": "Voss. The young lieutenant who wept when they ordered the retreat. I saw her face through the flames. She didn't want to leave us. I've always known that.",
+      "next": "survivors_emerge"
+    },
+    "survivors_emerge": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "More faces appear. Six others — gaunt, weathered, but alive. Seven survivors of Rivendale, living in the root cellars beneath the ruins for seven years. Growing mushrooms. Catching rainwater. Hiding from every patrol that passes.",
+      "triggers": [
+        {
+          "set_state": "flag.rivendale_survivors_found",
+          "value": true
+        },
+        {
+          "set_state": "flag.rivendale_found",
+          "value": true
+        }
+      ],
+      "next": "elder_message"
+    },
+    "elder_message": {
+      "type": "text",
+      "speaker": "rivendale_elder",
+      "portrait": "neutral",
+      "text": "Tell Voss we don't blame her. We never did. The captain gave the order. She followed it. That's what soldiers do. But tell her this — we're still here. And we'd very much like to stop hiding.",
+      "next": "end"
+    },
+    "elder_cautious": {
+      "type": "text",
+      "speaker": "rivendale_elder",
+      "portrait": "neutral",
+      "text": "A traveler with a military banner. Forgive my suspicion — the last strangers who came here wore Ironmarch steel.",
+      "next": "survivors_emerge"
+    },
+    "observe_ruins": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "From cover, you watch. The smoke rises from a hidden chimney — an underground dwelling built into the old foundations. No soldiers. No Ironmarch flags. Just... silence and survival.",
+      "next": "observe_detail"
+    },
+    "observe_detail": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "approach_now",
+          "text": "Approach the hidden dwelling.",
+          "conditions": [],
+          "triggers": [],
+          "next": "survivor_response"
+        },
+        {
+          "id": "check_surroundings",
+          "text": "Check the wider area first — is Ironmarch nearby?",
+          "conditions": [],
+          "triggers": [],
+          "next": "ironmarch_check"
+        }
+      ]
+    },
+    "ironmarch_check": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "To the east, fresh boot prints in the mud. Ironmarch patrol tracks, less than a day old. They've been circling the ruins. They know someone is here.",
+      "triggers": [
+        {
+          "set_state": "flag.ironmarch_near_rivendale",
+          "value": true
+        }
+      ],
+      "next": "approach_now_urgent"
+    },
+    "approach_now_urgent": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "There isn't much time. The Ironmarch will return. Whatever you find here, you need to find it quickly.",
+      "next": "survivor_response"
+    },
+    "find_graves": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "At the edge of the village, beneath a stand of birch trees: thirty-two cairns. Each marked with a river stone, each stone carved with a name. Families. Children. A whole community reduced to neat rows of rock.",
+      "triggers": [
+        {
+          "set_state": "flag.rivendale_found",
+          "value": true
+        }
+      ],
+      "next": "graves_detail"
+    },
+    "graves_detail": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "read_names",
+          "text": "Read the names carved into the stones.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.commander_voss.memory.names_read",
+              "value": true
+            }
+          ],
+          "next": "names_read"
+        },
+        {
+          "id": "search_further",
+          "text": "The smoke is still rising. Someone is alive here despite the graves.",
+          "conditions": [],
+          "triggers": [],
+          "next": "survivor_response"
+        },
+        {
+          "id": "leave_with_graves",
+          "text": "Thirty-two graves. That's the answer Voss needs.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.rivendale_only_graves",
+              "value": true
+            }
+          ],
+          "next": "leave_graves"
+        }
+      ]
+    },
+    "names_read": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Aldrin Thatcher. Mira Thatcher. Young Aldrin. Bessa the Baker. Tomlin Greaves and his three daughters. Name after name. But the count stops at thirty-two. The village had thirty-nine residents. Seven are unaccounted for.",
+      "next": "survivor_response"
+    },
+    "leave_graves": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You take one of the smaller stones as proof. Voss will need something to hold. Something real. The walk back feels longer than the walk there.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

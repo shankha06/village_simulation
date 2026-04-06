@@ -1,0 +1,73 @@
+{
+  "id": "heartwood",
+  "name": "The Heartwood",
+  "description": "The forest consciousness itself. Not a tree but a network \u2014 miles of interconnected roots that think, remember, and hunger. It speaks through vibrations in the earth, translated by the druid talisman into something like language. Ancient beyond reckoning, patient beyond measure, and very, very angry.",
+  "faction": "thornwood_druids",
+  "personality": {
+    "courage": 1.0,
+    "greed": 0.0,
+    "loyalty": 1.0,
+    "cruelty": 0.4,
+    "curiosity": 0.6,
+    "honesty": 0.9
+  },
+  "schedule": [
+    {
+      "hour": 0,
+      "location": "heartwood_clearing",
+      "activity": "existing"
+    }
+  ],
+  "home_location": "heartwood_clearing",
+  "dialogue_pools": {
+    "greeting": "heartwood_communion",
+    "sacrifice_path": "sacrifice_choice",
+    "severance_path": "severance_ritual",
+    "renegotiation_path": "renegotiation"
+  },
+  "default_greeting": "heartwood_communion",
+  "barks": [
+    "(the ground trembles with each step you take)",
+    "(roots coil and uncoil beneath the earth like slow breathing)",
+    "(sap bleeds from ancient bark in patterns that almost form words)",
+    "(the air tastes of iron and green growing things)",
+    "(every tree in the clearing turns its branches toward you)",
+    "(the talisman vibrates against your chest, warm as a heartbeat)"
+  ],
+  "is_combatant": true,
+  "max_health": 9999.0,
+  "attack_damage": 50.0,
+  "can_surrender": false,
+  "personality_modifiers": [
+    {
+      "condition": "flag.burned_forest_trees == true",
+      "personality_override": {
+        "cruelty": 0.9,
+        "honesty": 0.5
+      },
+      "description": "The Heartwood is hostile \u2014 the player has harmed the forest"
+    },
+    {
+      "condition": "flag.honored_forest_offerings == true",
+      "personality_override": {
+        "cruelty": 0.1,
+        "curiosity": 0.9
+      },
+      "description": "The Heartwood is curious \u2014 the player has shown respect"
+    },
+    {
+      "condition": "flag.killed_warden == true",
+      "personality_override": {
+        "cruelty": 1.0,
+        "honesty": 0.3
+      },
+      "description": "The Heartwood is wrathful \u2014 the player killed its emissary"
+    }
+  ],
+  "npc_relationships": {
+    "old_maren": 80,
+    "lord_ashworth": -90,
+    "thornwood_spirit": 100,
+    "elara": 10
+  }
+}

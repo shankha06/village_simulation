@@ -1,0 +1,186 @@
+{
+  "interactables": [
+    {
+      "id": "notice_board",
+      "type": "read",
+      "name": "Village Notice Board",
+      "position": [
+        168,
+        185
+      ],
+      "text": "NOTICE: Crops failing across all fields. Lord Ashworth seeks able-bodied workers.\nWARNING: Do not drink from the eastern well after dark.\nMISSING: Three goats from the Miller farm. Last seen near Thornwood edge.",
+      "state_condition": "world.region.ashvale.status == famine",
+      "state_alt_text": "URGENT: Famine declared. All grain rationed by order of the Guard.\nRIOTS: Market closed until further notice.\nDEATH TOLL: Seven this week. May the Light preserve us."
+    },
+    {
+      "id": "dead_birds",
+      "type": "examine",
+      "name": "Dead Songbirds",
+      "position": [
+        320,
+        240
+      ],
+      "text": "A cluster of dead songbirds lies near the well. Their beaks are stained black, as if they drank something foul. The water did this.",
+      "sets_flag": "flag.dead_birds_found",
+      "one_shot": false
+    },
+    {
+      "id": "village_well",
+      "type": "examine",
+      "name": "Village Well",
+      "position": [
+        320,
+        232
+      ],
+      "text": "The well water looks clear enough, but there's a faint chemical smell. Something isn't right.",
+      "state_condition": "flag.evidence_nightcap_root == true",
+      "state_alt_text": "You know now \u2014 nightcap root is poisoning the water supply. The source must be upstream, in Thornwood."
+    },
+    {
+      "id": "herb_garden",
+      "type": "search",
+      "name": "Herb Garden",
+      "position": [
+        192,
+        140
+      ],
+      "text": "Wild herbs grow in careful rows \u2014 someone tends this garden with love. You recognize feverfew and comfrey.",
+      "state_condition": "npc.elara.memory.player_is_ally == true",
+      "state_alt_text": "Elara taught you which herbs to pick. You gather a handful of healing plants.",
+      "gives_item": "herb_poultice"
+    },
+    {
+      "id": "chapel_door",
+      "type": "door",
+      "name": "Chapel Door",
+      "position": [
+        128,
+        72
+      ],
+      "text": "The chapel door creaks open. Inside, rows of rough-hewn pews face a simple altar draped in gray cloth.",
+      "state_condition": "time.hour >= 22",
+      "state_alt_text": "The chapel is locked for the night. But you hear something from below \u2014 a low chanting...",
+      "sets_flag": "flag.heard_chanting_chapel"
+    },
+    {
+      "id": "inn_sign",
+      "type": "read",
+      "name": "Inn Sign",
+      "position": [
+        350,
+        50
+      ],
+      "text": "THE ROTTING HARVEST\n~ Established by Greta's grandmother ~\n'We didn't choose the name. The name chose us.'"
+    },
+    {
+      "id": "old_graves",
+      "type": "examine",
+      "name": "Weathered Graves",
+      "position": [
+        108,
+        68
+      ],
+      "text": "Ashworth family graves, dating back three centuries. Every thirty years, one grave is marked with a strange root-like symbol. The most recent is Lord Ashworth's father.",
+      "sets_flag": "flag.noticed_thirty_year_graves"
+    },
+    {
+      "id": "silo_normal",
+      "type": "examine",
+      "name": "Grain Silo",
+      "position": [
+        350,
+        60
+      ],
+      "text": "Lord Ashworth's grain stores. The silo is heavily guarded \u2014 the last food reserve in Ashvale. A guard eyes you suspiciously.",
+      "state_condition": "flag.silo_destroyed == true",
+      "state_alt_text": "Charred ruins. The acrid smell of burnt grain hangs in the air. This was once Ashvale's last hope."
+    },
+    {
+      "id": "barrel_inn",
+      "type": "search",
+      "name": "Old Barrel",
+      "position": [
+        345,
+        65
+      ],
+      "text": "An old barrel behind the inn. Inside you find some stale bread and a half-empty flask.",
+      "gives_item": "bread",
+      "one_shot": true
+    },
+    {
+      "id": "market_crate",
+      "type": "search",
+      "name": "Abandoned Crate",
+      "position": [
+        88,
+        330
+      ],
+      "text": "A crate left behind when the market closed. Some rope and a rusty knife remain.",
+      "gives_item": "rope",
+      "one_shot": true
+    },
+    {
+      "id": "bloodstain",
+      "type": "examine",
+      "name": "Dark Stain",
+      "position": [
+        75,
+        55
+      ],
+      "text": "Something dark stains the cobblestones near the manor road. It's been scrubbed, but not well enough. Someone was dragged from here.",
+      "state_condition": "time.day >= 3",
+      "sets_flag": "flag.found_bloodstain"
+    },
+    {
+      "id": "forest_runes",
+      "type": "examine",
+      "name": "Carved Tree",
+      "position": [
+        500,
+        120
+      ],
+      "text": "Deep carvings in the bark of an ancient oak. The symbols seem to writhe when you look at them directly. You can't read them.",
+      "state_condition": "flag.has_druid_talisman == true",
+      "state_alt_text": "The talisman pulses warm against your chest. The carvings resolve into words: 'WHAT THE ROOTS TAKE, THE ROOTS KEEP. WHAT IS FREELY GIVEN, FREELY GROWS.' A covenant. A price.",
+      "sets_flag": "flag.found_carved_trees"
+    },
+    {
+      "id": "campfire_remains",
+      "type": "examine",
+      "name": "Cold Campfire",
+      "position": [
+        488,
+        175
+      ],
+      "text": "The remains of a military campfire. Boot prints from at least twenty soldiers. Voss's company was here \u2014 professional, organized, and watching the village.",
+      "sets_flag": "flag.found_voss_camp"
+    },
+    {
+      "id": "lord_letter",
+      "type": "read",
+      "name": "Sealed Decree",
+      "position": [
+        68,
+        48
+      ],
+      "text": "A decree nailed to the manor gate in Lord Ashworth's shaking hand:\n'By order of Lord Ashworth, no citizen shall enter the manor grounds until further notice. The lord is... indisposed. May the harvest endure.'",
+      "state_condition": "flag.has_manor_access == true",
+      "state_alt_text": "The decree has been torn down. The manor gate stands open."
+    },
+    {
+      "id": "well_bucket",
+      "type": "search",
+      "name": "Well Bucket",
+      "position": [
+        325,
+        238
+      ],
+      "text": "You draw water from the well and examine it closely. It looks clear, but...",
+      "state_condition": "flag.agreed_to_help_elara == true",
+      "state_alt_text": "You collect a water sample as Elara instructed. Under close inspection, you notice a faint purple tinge \u2014 nightcap root contamination.",
+      "gives_item": "nightcap_sample",
+      "sets_flag": "flag.evidence_nightcap_root",
+      "one_shot": true
+    }
+  ]
+}

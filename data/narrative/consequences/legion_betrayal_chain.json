@@ -1,0 +1,124 @@
+{
+  "id": "legion_betrayal_chain",
+  "trigger_condition": "flag.player_is_legion_agent == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "flag.player_is_legion_agent",
+          "value": true
+        },
+        {
+          "set_state": "player.moral_vector",
+          "delta": -40
+        },
+        {
+          "set_state": "npc.ironmarch_emissary.disposition",
+          "delta": 30
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 2,
+      "effects": [
+        {
+          "set_state": "flag.draven_gives_first_mission",
+          "value": true
+        },
+        {
+          "spawn_event": "sabotage_mission_from_draven"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "effects": [
+        {
+          "set_state": "flag.draven_requests_intel",
+          "value": true
+        },
+        {
+          "spawn_event": "draven_wants_guard_patrol_routes"
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 7,
+      "condition": "flag.sabotaged_defense_for_legion == true",
+      "effects": [
+        {
+          "set_state": "world.region.ashvale.defense_score",
+          "delta": -30
+        },
+        {
+          "set_state": "flag.defenses_weakened_by_player",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 10,
+      "effects": [
+        {
+          "set_state": "flag.legion_invasion_easy",
+          "value": true
+        },
+        {
+          "spawn_event": "legion_moves_in_quietly"
+        },
+        {
+          "set_state": "flag.ashvale_under_legion_control",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 14,
+      "effects": [
+        {
+          "set_state": "flag.player_rewarded_by_legion",
+          "value": true
+        },
+        {
+          "spawn_event": "player_appointed_legion_overseer"
+        },
+        {
+          "set_state": "npc.elara.memory.player_betrayed_village",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": -80
+        },
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": -60
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 30,
+      "condition": "flag.player_rewarded_by_legion == true",
+      "effects": [
+        {
+          "set_state": "flag.hollow_victory",
+          "value": true
+        },
+        {
+          "spawn_event": "ashvale_under_iron_rule"
+        },
+        {
+          "set_state": "npc.greta.memory.player_sold_us_out",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

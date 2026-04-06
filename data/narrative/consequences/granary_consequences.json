@@ -1,0 +1,119 @@
+{
+  "id": "granary_sabotage_chain",
+  "trigger_condition": "flag.silo_destroyed == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "player.reputation.city_guard",
+          "delta": -40
+        },
+        {
+          "set_state": "flag.bounty_ashvale",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.silo_visual",
+          "value": "destroyed"
+        },
+        {
+          "set_state": "world.region.ashvale.smoke_visible",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {
+          "set_state": "world.region.ashvale.food_supply",
+          "delta": -30.0
+        },
+        {
+          "set_state": "economy.ashvale.price_mod",
+          "value": 1.5
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 14,
+      "effects": [
+        {
+          "set_state": "world.region.ashvale.status",
+          "value": "famine"
+        },
+        {
+          "set_state": "economy.ashvale.price_mod",
+          "value": 3.0
+        },
+        {
+          "set_state": "world.region.ashvale.food_supply",
+          "value": 15.0
+        },
+        {
+          "spawn_event": "famine_begins_ashvale"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 21,
+      "effects": [
+        {
+          "set_state": "npc.greta.memory.blames_outsiders",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.memory.village_starving",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 30,
+      "effects": [
+        {
+          "set_state": "world.region.ashvale.unrest",
+          "value": true
+        },
+        {
+          "set_state": "faction.ashvale_nobility.power",
+          "delta": -25.0
+        },
+        {
+          "set_state": "faction.city_guard.power",
+          "delta": -15.0
+        },
+        {
+          "spawn_event": "peasant_revolt_ashvale"
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 45,
+      "condition": "faction.ashvale_nobility.power < 20",
+      "effects": [
+        {
+          "set_state": "world.region.ashvale.ruler",
+          "value": "ironmarch"
+        },
+        {
+          "swap_visuals": "ashvale_castle_flags",
+          "variant": "ironmarch"
+        },
+        {
+          "spawn_event": "ironmarch_invasion"
+        },
+        {
+          "set_state": "faction.ironmarch_legion.power",
+          "delta": 15.0
+        }
+      ]
+    }
+  ]
+}

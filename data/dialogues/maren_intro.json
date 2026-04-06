@@ -1,0 +1,400 @@
+{
+  "id": "maren_intro",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "Ah, a traveler. The Ashen Light guides all who wander to where they are needed. Perhaps it has guided you here for a reason.",
+      "triggers": [
+        {
+          "set_state": "npc.brother_maren.met",
+          "value": true
+        }
+      ],
+      "next": "choice_opening"
+    },
+    "choice_opening": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "polite",
+          "text": "What is the Ashen Light? I'm not familiar with your faith.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "faith_explanation"
+        },
+        {
+          "id": "direct",
+          "text": "People say the crops dying is divine punishment. Do you really believe that?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.brother_maren.memory.player_challenged_belief",
+              "value": true
+            }
+          ],
+          "next": "punishment_speech"
+        },
+        {
+          "id": "accusatory",
+          "text": "You arrived two months ago. The crops started dying a week later. Convenient.",
+          "conditions": [
+            {
+              "check": "flag.greta_suspects_maren_timing",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": -25
+            },
+            {
+              "set_state": "npc.brother_maren.memory.player_accused_timing",
+              "value": true
+            }
+          ],
+          "next": "defensive_response"
+        },
+        {
+          "id": "evidence",
+          "text": "[If evidence found] I found nightcap root in the water. The crops aren't cursed \u2014 they're poisoned.",
+          "conditions": [
+            {
+              "check": "flag.evidence_nightcap_root",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.brother_maren.memory.player_knows_about_poison",
+              "value": true
+            }
+          ],
+          "next": "confronted_with_evidence"
+        }
+      ]
+    },
+    "faith_explanation": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "The Ashen Light teaches that the world was born in fire and shall return to fire. All suffering is purification. All joy is fleeting illusion. Only through embracing the ash can we find the light within.",
+      "next": "faith_explanation_2"
+    },
+    "faith_explanation_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "This village has grown complacent. Fat on stolen harvests, blind to the darkness creeping in from the forest. The Ashen Light has come to cleanse, not to destroy. There is a difference.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_preached_to_player",
+          "value": true
+        }
+      ],
+      "next": "choice_deeper"
+    },
+    "punishment_speech": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "I believe what I see. A village that turned away from truth. A lord who broke a sacred covenant. Crops that wither because the soil itself rejects what grows above it. You may call it punishment. I call it consequence.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_mentioned_covenant",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_lord_broke_covenant",
+          "value": true
+        }
+      ],
+      "next": "choice_deeper"
+    },
+    "defensive_response": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "angry",
+      "text": "You come to my chapel and accuse me? I arrived because the Ashen Light SENT me. I was told this village needed saving \u2014 and look at it. Look at the rot. This started long before I set foot here.",
+      "next": "defensive_response_2"
+    },
+    "defensive_response_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "But I wonder... who told you to suspect me? The herbalist, perhaps? Or the lord's people? Ask yourself who benefits from pointing fingers at a humble priest.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_deflected_blame",
+          "value": true
+        }
+      ],
+      "next": "choice_deeper"
+    },
+    "confronted_with_evidence": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "fearful",
+      "text": "...Nightcap root? That's... that's a very specific accusation. Where did you find this?",
+      "next": "confronted_2"
+    },
+    "confronted_2": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "tell_truth",
+          "text": "In the water supply upstream. Someone is poisoning Ashvale deliberately.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.brother_maren.memory.player_told_about_upstream",
+              "value": true
+            }
+          ],
+          "next": "maren_reacts_to_evidence"
+        },
+        {
+          "id": "bluff_accusation",
+          "text": "I found it in your chapel cellar. Care to explain?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.brother_maren.memory.player_bluffed_cellar",
+              "value": true
+            },
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": -30
+            }
+          ],
+          "next": "maren_panics"
+        },
+        {
+          "id": "watch_reaction",
+          "text": "[Say nothing more. Watch his face carefully.]",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.watched_maren_reaction",
+              "value": true
+            }
+          ],
+          "next": "maren_silence_reaction"
+        }
+      ]
+    },
+    "maren_reacts_to_evidence": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "Then someone with knowledge of alchemy \u2014 and access to the caves \u2014 is destroying this village from within. This is worse than I feared. The rot is not divine... it is mortal. And that makes it far more dangerous.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_acknowledged_poison",
+          "value": true
+        }
+      ],
+      "next": "maren_offer"
+    },
+    "maren_offer": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "I have my own suspicions about who is behind this. But I cannot speak them aloud \u2014 not yet. Come to the chapel at midnight. Alone. I will show you something that will change everything you think you know about Ashvale.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_midnight_meeting",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.memory.invited_player_midnight",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "maren_panics": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "angry",
+      "text": "You LIE. There is nothing in my cellar but candles and scripture! If you've been breaking into the chapel, that is a crime against the Ashen Light \u2014 and this village's people will hear of it!",
+      "triggers": [
+        {
+          "set_state": "flag.maren_hostile_to_player",
+          "value": true
+        },
+        {
+          "modify_reputation": {
+            "church_ashen_light": -15
+          }
+        }
+      ],
+      "next": "end"
+    },
+    "maren_silence_reaction": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "fearful",
+      "text": "...His eyes flicker. For just a moment \u2014 barely a breath \u2014 you see something behind the pious mask. Not guilt. Not surprise. Recognition. He knows what nightcap root is. And he did not learn it from any scripture.",
+      "triggers": [
+        {
+          "set_state": "flag.noticed_maren_recognition",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_maren_knows_alchemy",
+          "value": true
+        }
+      ],
+      "next": "maren_recovers"
+    },
+    "maren_recovers": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "...I see. This is troubling news indeed. I shall pray on this matter. You should speak to the lord. If anyone in this village has secrets worth killing for, it is House Ashworth.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_redirected_to_lord",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "choice_deeper": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "ask_covenant",
+          "text": "You mentioned a 'sacred covenant.' What covenant did the lord break?",
+          "conditions": [
+            {
+              "check": "flag.maren_mentioned_covenant",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "covenant_hint"
+        },
+        {
+          "id": "ask_forest",
+          "text": "What do you know about Thornwood? The druids?",
+          "conditions": [],
+          "triggers": [],
+          "next": "forest_knowledge"
+        },
+        {
+          "id": "leave",
+          "text": "I've heard enough sermons for one day.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": -5
+            }
+          ],
+          "next": "end"
+        },
+        {
+          "id": "ask_why_ashvale",
+          "text": "Why did the Church send YOU specifically to Ashvale?",
+          "conditions": [
+            {
+              "check": "flag.maren_preached_to_player",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.brother_maren.memory.player_asked_why_him",
+              "value": true
+            }
+          ],
+          "next": "why_ashvale"
+        }
+      ]
+    },
+    "covenant_hint": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "Every great house has its pacts. Some are written in ink. Some in blood. The Ashworths have tended this land for three hundred years. Ask yourself: at what price? The forest remembers, even if the people have forgotten.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_hinted_at_pact",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_ashworth_pact_with_forest",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "forest_knowledge": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "The Thornwood is older than any kingdom of men. The druids \u2014 what remains of them \u2014 are its voice. But the forest itself has a will. It demands balance. When that balance is broken, it takes what it is owed.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_spoke_of_forest_will",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "why_ashvale": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "He pauses. The mask slips, just for a moment. Something raw and unguarded passes across his face -- not the practiced composure of a priest, but the expression of a man standing at the edge of a hole he has spent his whole life trying not to look into.",
+      "next": "why_ashvale_2"
+    },
+    "why_ashvale_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "vulnerable",
+      "text": "Because I was born here. Before the Church, before the robes and the doctrine and the name they gave me. My father died in this village when I was four years old. I remember very little. The smell of earth. A woman crying. Men carrying something into the trees that did not come back.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_admitted_ashvale_birth",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_maren_father_died_here",
+          "value": true
+        }
+      ],
+      "next": "why_ashvale_3"
+    },
+    "why_ashvale_3": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "I volunteered for this mission. The other priests thought I was zealous. I let them think that. The truth is simpler. I needed to see what killed my father. I needed to stand in the place where they fed him to the dark and ask it why.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_volunteered_for_ashvale",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "id": "ending_scorched_earth",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The pact shatters. The forest dies. The village, already starving, collapses inward like a rotted house. And you \u2014 you who severed the ancient covenant, you who could not unite the factions, you who stood alone when it mattered most \u2014 you watch it all burn.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_scorched_earth_started",
+          "value": true
+        }
+      ],
+      "next": "the_burning"
+    },
+    "the_burning": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The Ironmarch Legion doesn't even need to attack. They simply wait. The Thornwood catches fire from the inside out \u2014 the Heartwood's death throes ignite sap that has been building pressure for centuries. The sky turns orange. Ash falls like snow. The villagers scatter into the hills with nothing but the clothes on their backs and the sound of the world ending behind them.",
+      "next": "alone"
+    },
+    "alone": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You don't follow them. There's no point. You've become the thing every village fears \u2014 the stranger who came and made everything worse. The one whose help was more destructive than the disease. You walk east, away from the smoke, away from the screaming, away from every face that trusted you.",
+      "next": "on_the_road"
+    },
+    "on_the_road": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The road is empty. Behind you, Ashvale burns \u2014 or rather, the place where Ashvale used to be burns. The distinction matters to no one but you. In your pack: a waterskin, half a loaf of bread, and the weight of every choice that led to this moment. In your heart: a silence that will never fully lift.",
+      "next": "final_choice"
+    },
+    "final_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "keep_walking",
+          "text": "Keep walking. Don't look back.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.walked_away_forever",
+              "value": true
+            }
+          ],
+          "next": "walked_away"
+        },
+        {
+          "id": "look_back",
+          "text": "Stop. Turn around. Look at what you've done.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.looked_back",
+              "value": true
+            }
+          ],
+          "next": "looked_back"
+        }
+      ]
+    },
+    "walked_away": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Nothing remains. Not the village, not the forest, not the pact. Just ash and silence and a road stretching into the unknown. You survived. That has to be enough. You tell yourself that with every step, and with every step, it sounds less convincing. But you keep walking. Because that's all that's left to do.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_scorched_earth_complete",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "looked_back": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You stop. You turn. The horizon glows orange and black. Somewhere in that inferno is the Heartwood \u2014 the oldest living thing you have ever known, dying alone and screaming in a language only roots understand. Somewhere in there are the bones of a village that trusted you. You watch until the fire fades to embers. Then you turn back to the road. You don't look back again. There's nothing left to see.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_scorched_earth_complete",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

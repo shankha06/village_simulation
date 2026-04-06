@@ -1,0 +1,719 @@
+{
+  "entries": [
+    {
+      "id": "lore_ancient_first_roots",
+      "title": "The Birth of Root Consciousness",
+      "category": "ancient_era",
+      "text": "Before there were names for things, the world was already thinking. Not in words. Not in images. In growth. The first forests spread across the young continent of Valdris, their roots intertwining beneath the soil in networks of mycelium so vast they spanned mountain ranges. Over millions of years, these networks developed something that was not quite thought and not quite instinct — a slow, distributed awareness that experienced reality as chemical gradients, mineral pressures, and the patient rhythm of seasons.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.heartwood_contact_made == true",
+        "flag.old_maren_is_druid == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Not one mind — many. Each forest, each mountain range, each river system, each stretch of ocean developed its own consciousness independently. They were as different from each other as languages are different from music. The forests thought in branching patterns. The rivers thought in flow. The mountains thought in pressure. The oceans thought in tides."
+        },
+        {
+          "id": "frag_2",
+          "text": "They communicated through tectonic vibrations — slow pulses transmitted through bedrock that took decades to travel from one consciousness to another. A message sent from the Thornwood to the Wending river took forty years to arrive. They had no concept of 'self,' only of 'growth' and 'connection.' They were, in the deepest sense, the world talking to itself.",
+          "conditions": [
+            "flag.heartwood_deep_communion == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "The druids called the first consciousness the Ur-Root — not because it was the oldest, but because it was the first to become aware that it was aware. It grew in what is now the Ash Wastes. It is long dead. The Ironmarch Legion built their capital on its bones without ever knowing what lay beneath them.",
+          "conditions": [
+            "flag.old_maren_taught_druidfire == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_ancient_the_dreaming_age",
+      "title": "The Age of Green Dreaming",
+      "category": "ancient_era",
+      "text": "Before humans, the consciousnesses dreamed. The druids called this epoch the Age of Green Dreaming — ten million years of slow, contented existence in which the world's living networks grew, communicated, and experienced something that had no name until humans arrived to call it 'joy.' The forests dreamed of reaching the sky. The rivers dreamed of finding the sea. The mountains dreamed of growing taller. The oceans dreamed of swallowing the shore.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.heartwood_contact_made == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The Heartwood still remembers the Dreaming Age. When it speaks of it through the talisman, the translation comes as feelings rather than words — a sense of warmth without fire, fullness without food, companionship without another body nearby. The closest human word is 'contentment,' but the Heartwood finds this inadequate."
+        },
+        {
+          "id": "frag_2",
+          "text": "During the Green Dreaming, the consciousnesses had no need for pacts, bargains, or contracts. They simply grew. The concept of 'exchange' — giving something to receive something — was utterly alien to them. This is why the pacts became corrupted: the consciousnesses learned transactional thinking from humans, and they learned it badly.",
+          "conditions": [
+            "flag.pact_renegotiated == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_ancient_first_humans",
+      "title": "When the Walkers Came",
+      "category": "ancient_era",
+      "text": "Humans arrived on Valdris roughly twelve thousand years ago, crossing the northern land bridges during a great migration. The consciousnesses had never encountered anything like them — creatures that moved so fast, died so quickly, and felt so intensely. A human lifetime was less than a single thought-cycle for most consciousnesses. Watching humans was like watching lightning: brief, brilliant, and bewildering.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.heartwood_contact_made == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The forests were fascinated. Here were beings that could carry seeds to new soil, that could sing, that could weep. The mountains were indifferent — they thought in geological time and barely noticed the newcomers. The rivers were afraid, sensing that these creatures would try to change their courses. The oceans tried to drown them. Some consciousnesses never stopped trying."
+        },
+        {
+          "id": "frag_2",
+          "text": "The Heartwood remembers the first humans to enter Thornwood. It calls them 'the loud ones' — not because they shouted, but because their emotions were so intense the mycelium network could feel them through their footsteps. Grief. Hunger. Love. Fear. To a consciousness accustomed to ten million years of gentle dreaming, human feeling was almost violent in its intensity.",
+          "conditions": [
+            "flag.heartwood_deep_communion == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "The consciousnesses gave humans a name in their slow language of mineral vibrations: 'The Walkers.' Not because humans walked, but because they never stopped. The consciousnesses had spent eons rooted in place, growing outward. Humans grew by moving. This fundamental difference — rootedness versus wandering — would define every pact, every conflict, and every misunderstanding between the two forms of life for millennia to come.",
+          "conditions": [
+            "flag.old_maren_is_druid == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_ancient_first_pacts",
+      "title": "The First Bargains",
+      "category": "ancient_era",
+      "text": "The earliest pacts were not transactions. They were conversations. A farmer knelt at a river's edge and said 'I need water.' The river said 'I need to be heard.' This was communion in its purest form — two radically different forms of consciousness reaching across an impossible gap to acknowledge each other's existence. For a brief, luminous era, humans and consciousnesses spoke as equals.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.read_ritual_inscription == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "But humans are brief. They forget. The farmers who knelt at rivers died, and their children remembered the water but forgot the listening. Conversations became rituals. Rituals became contracts. Contracts became debts. Within a thousand years, the original communion had calcified into a system of obligation that neither side fully understood or wanted."
+        },
+        {
+          "id": "frag_2",
+          "text": "The druids were born in this era — humans who dedicated their lives to maintaining the original quality of communion. They learned to slow their thinking, to feel the mineral vibrations, to translate between Walker-speed and Root-speed. Without them, every pact would have degraded into what Ashvale's became: blood for grain, terror for survival.",
+          "conditions": [
+            "flag.old_maren_is_druid == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "Old Maren keeps a fragment of bark from what she claims is the First Pact Tree — the oak where the very first communion occurred, somewhere in what is now the Breathing Marshes. The bark still hums when held against the ear. A sound like a question, endlessly repeated: 'Are you still there?'",
+          "conditions": [
+            "flag.old_maren_confirmed_silas_mother == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_ancient_the_severance_wars",
+      "title": "The Wars of Severance",
+      "category": "ancient_era",
+      "text": "Three thousand years ago, a coalition of human kingdoms decided the pacts were dangerous. They had reason: several consciousnesses had grown possessive of 'their' humans, demanding ever-greater offerings, refusing to release communities that wished to leave. The river consciousness of the Keltar Delta had drowned an entire city when its lord attempted to relocate. The coalition called their campaign 'liberation.' The consciousnesses called it 'the silence.'",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.voss_warned_about_ironmarch == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The wars lasted two hundred years. Humans burned forests, dammed rivers, mined mountains to their cores, and poured salt into the earth. Seventy percent of active pacts were destroyed. The land where they fell became wasteland — the Ash Wastes, the Sea of Glass, the Hollow Mountains. These places never recovered. The consciousnesses that died there left scars in the deep root network that still ache three millennia later."
+        },
+        {
+          "id": "frag_2",
+          "text": "Not all consciousnesses were destroyed. Some retreated deep underground, dormant but not dead. Some fragmented into smaller, weaker intelligences scattered across wide areas. Some fought back with devastating effect — the ocean consciousness at Stormwall sank an entire fleet and the coastal kingdom that launched it. The survivors built a lighthouse on the ruins. It still stands, warning ships away from waters that remember.",
+          "conditions": [
+            "flag.ironmarch_threat_confirmed == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "The Thornwood Heartwood survived the Severance Wars by doing something unprecedented: it hid. It pulled its consciousness deep into the bedrock, leaving only enough surface awareness to maintain the forest. When Aldric Ashworth arrived three hundred years ago, the Heartwood was just beginning to fully wake again. The pact Aldric made was with a consciousness still groggy from three thousand years of defensive sleep. This explains much about its clumsy, transactional nature.",
+          "conditions": [
+            "flag.heartwood_deep_communion == true"
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "lore_continent_ashlands",
+      "title": "The Ash Wastes",
+      "category": "continental_map",
+      "text": "A vast desert in the eastern reaches of Valdris, stretching four hundred miles from the Dead Ridgeline to the Shattered Coast. Once, seven thriving villages stood here, each bound to a forest consciousness called the Ur-Root's Daughter — so named because it had budded from the original Ur-Root consciousness before the Severance Wars. The villages prospered for a thousand years. Then General Kael came.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.voss_warned_about_ironmarch == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Kael's grandmother was the last sacrifice demanded by the eastern forest pact. She was dragged screaming into the roots while the village watched. Kael was six years old. He remembered the exact sound she made. He spent the next twenty-four years building an army. Then he burned it ALL — every tree, every root, every blade of grass connected to the network. The fire lasted nine days. The smoke could be seen from the coast."
+        },
+        {
+          "id": "frag_2",
+          "text": "The Legion's capital — Ironhold — is built on the bones of the forest they killed. The foundations are sunk into the charred remains of the root network. Nothing grows within the city walls. Every seed planted there withers within days. The Legion imports all food from conquered territories. They see this as a point of pride: proof that humans can survive without the consciousnesses. Others see it as a warning of what the world becomes when the roots die.",
+          "conditions": [
+            "flag.ironmarch_threat_confirmed == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "Deep beneath the Ash Wastes, something persists. The Ur-Root's Daughter was not entirely destroyed — fragments of its consciousness survived in bedrock channels too deep for Kael's fire to reach. These fragments are not intelligent. They are more like echoes — repeating the last thought the consciousness had before it died. The thought translates roughly to: 'Why?' Legion engineers who dig too deep sometimes hear it. They don't report it.",
+          "conditions": [
+            "flag.heartwood_contact_made == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_continent_rivendale",
+      "title": "The Drowned Village",
+      "category": "continental_map",
+      "text": "Rivendale sits — or sat — in the basin where the river Wending widens into a fertile floodplain. For two centuries, the village thrived under a river pact: clean water, abundant fish, rich soil deposited by seasonal flooding timed precisely to the planting calendar. The Wending was considered the gentlest of the known consciousnesses. Then Lord Rivendale dammed the river for profit.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.voss_shared_past == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The dam was built to sell water to downstream settlements during drought years. The lord saw the river as a resource to be leveraged, not a partner to be respected. For three years, the Wending tolerated the dam. On the fourth year, it responded. The flood was not natural. Survivors describe tentacles made of current, walls of water that herded people into the streets before collapsing on them. The water moved with surgical precision — destroying the lord's manor while leaving the poorer quarters mostly intact."
+        },
+        {
+          "id": "frag_2",
+          "text": "Voss was twelve. She watched from a hilltop as the village drowned below her. She saw her mother's house go under. She saw the water rise to the second floor of the inn, pause as if considering, then surge through the windows. She counted the people who surfaced. She stopped counting at forty. There had been three hundred in the village.",
+          "conditions": [
+            "flag.voss_shared_past == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "The ruins of Rivendale still stand, half-submerged in a lake that shouldn't exist. The water is unnaturally still and clear — you can see the rooftops of drowned buildings from the shore. Travelers report that the water level changes with no relation to rainfall, as if the lake is breathing. Some say they see lights moving beneath the surface at night. The Church has declared the site forbidden. The Legion has declared it strategically irrelevant. Neither wants to admit what it actually is: a grave that refuses to be quiet.",
+          "conditions": [
+            "flag.found_voss_sketch == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_continent_silverpine",
+      "title": "The Living City",
+      "category": "continental_map",
+      "text": "In the northern mountains, where the Silverpine range touches the clouds, there is a city that was not built but grown. Silverpine's founders arrived a thousand years ago — refugees from the Severance Wars who stumbled, half-dead, into a mountain pass. The mountain consciousness — old even by consciousness standards — offered them shelter. Not a pact. Not a bargain. Shelter. And the refugees, too exhausted to negotiate terms, simply said 'thank you.'",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.heartwood_contact_made == true",
+        "flag.church_salt_the_earth_plan == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The city is built INTO the mountain — the stone shapes itself around the inhabitants. Buildings grow from the living rock. Streets shift over decades to accommodate new neighborhoods. Rooms appear where they're needed and seal themselves when abandoned. The mountain consciousness is not just the city's foundation; it is the city's architect, builder, and caretaker. It has been happy for a thousand years."
+        },
+        {
+          "id": "frag_2",
+          "text": "Silverpine is the only known pact that never degraded into transaction. The reason is simple: the mountain consciousness doesn't need anything from humans. It offered shelter because it was lonely. The mountain had been dreaming alone for ten thousand years since the Severance Wars killed its nearest neighbors. Humans gave it something to think about. In return, it gave them a home. No blood. No sacrifice. Just mutual company.",
+          "conditions": [
+            "flag.pact_renegotiated == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "The Church of the Ashen Light has declared Silverpine 'an abomination against the natural order' and is planning a crusade. They call it the Purging of the Stone. The mountain consciousness is aware of the threat — it has felt the vibrations of Church armies massing in the southern foothills. It has begun growing the passes shut. But it is old, and slow, and the Church has druidfire. Silverpine's thousand years of peace may be ending.",
+          "conditions": [
+            "flag.church_salt_the_earth_plan == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_continent_the_wending",
+      "title": "The River That Remembers",
+      "category": "continental_map",
+      "text": "The Wending — the river consciousness that drowned Rivendale — did not die. After the flood, it retreated upstream into the mountain headwaters, diminished and fragmented but not destroyed. Where once it spanned two hundred miles of river, it now inhabits a network of mountain streams and underground aquifers, scattered and diminished like a mind after a stroke.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.voss_shared_past == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The Wending calls for Voss. Through dreams. Through the sound of running water when no stream is near. Through the way puddles seem to ripple toward her when she passes. It has been calling for twenty years. The message is always the same — a feeling of remorse so vast it fills Voss's sleep with the taste of river water and the sound of something ancient weeping."
+        },
+        {
+          "id": "frag_2",
+          "text": "Whether the Wending wants to apologize or finish what it started is a question even the druids cannot answer. River consciousnesses are the most emotionally volatile of all the awakened intelligences — they experience everything as flow, and their moods shift like currents. The Wending may genuinely regret the drowning. Or it may be calling Voss back to complete its revenge on the only survivor who escaped the hilltop. Both are equally possible. Both are equally true, at different moments.",
+          "conditions": [
+            "flag.found_voss_sketch == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_continent_deep_root_network",
+      "title": "The Conversation Beneath the World",
+      "category": "continental_map",
+      "text": "All consciousnesses on the continent of Valdris are connected through what the druids call the Deep Root Network — mycelium threads running through bedrock, communicating through mineral vibrations that propagate at geological speed. A message from Thornwood to the Wending takes forty years. From Thornwood to Silverpine, sixty. From one coast to the other, a century and a half.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.heartwood_contact_made == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The consciousnesses have been debating what to do about humans for three thousand years — ever since the Severance Wars. The conversation is still ongoing. Arguments that began when the first forests burned are still being countered by responses sent centuries ago that have only now arrived. It is the slowest, most consequential debate in the history of the world, and no human has ever heard a word of it."
+        },
+        {
+          "id": "frag_2",
+          "text": "The Heartwood describes the Deep Root Network as 'the voice beneath the voice.' It is how the consciousnesses share experiences, warn each other of threats, and coordinate responses. When the Ur-Root's Daughter was burned in the east, its death-scream propagated through the entire network. Every consciousness on the continent felt it. The Heartwood says that scream is still echoing — diminished, but never fully silent. The network remembers everything. It forgets nothing.",
+          "conditions": [
+            "flag.heartwood_deep_communion == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "The Severance Wars damaged the network severely. Of the hundreds of connections that once linked consciousness to consciousness across the continent, fewer than thirty remain intact. The network is like a road system after a war — broken bridges, collapsed tunnels, detours that add centuries to message travel time. Repairing it would require the consciousnesses to grow new connections through bedrock, a process that takes thousands of years. Or it would require help from beings who can dig. Beings with hands. Walkers.",
+          "conditions": [
+            "flag.pact_renegotiated == true"
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "lore_church_founding",
+      "title": "The Alchemists Who Found God",
+      "category": "faction_history",
+      "text": "The Church of the Ashen Light began two hundred years ago as the Cinderfall Academy — a guild of alchemists studying consciousness transfer between organic networks. They had discovered that human consciousness COULD merge with forest networks. This is what 'sacrifice' actually does — not death, but absorption. The soul persists inside the root network, dreaming eternally in the language of growth.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.maren_spoke_of_old_ways == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Half the academy was thrilled by the discovery. They saw it as proof that consciousness was transferable — that death was merely a transition between vessels. They wanted to develop the process, refine it, make it voluntary. They dreamed of a world where the old and dying could choose to merge with the forests, preserving their knowledge and experience forever."
+        },
+        {
+          "id": "frag_2",
+          "text": "The other half was terrified. They saw the same discovery and drew the opposite conclusion: the forests were CONSUMING human souls, trapping them in an alien intelligence from which there was no escape. The terrified half won. They burned their own research, declared the forests 'unholy vessels of spiritual imprisonment,' and rebranded themselves as a religious order dedicated to 'freeing' humanity from the consciousnesses. Their alchemical knowledge became dogma. Their fear became scripture. Their formula for healing sick forests was inverted into druidfire.",
+          "conditions": [
+            "flag.old_maren_taught_druidfire == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "The Cinderfall Academy's original headquarters still stands in the city of Cinderfall, now the Church's seat of power. The research vaults beneath it are sealed with seven locks, each held by a different cardinal. Brother Maren — who belongs to the secret remnant of the original faction — believes the vaults contain the formula for REVERSING consciousness absorption. If true, it could free every sacrificed soul from every root network on the continent. Including Silas Maren.",
+          "conditions": [
+            "flag.maren_full_alliance == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_church_seventeen",
+      "title": "The Seventeen Targets",
+      "category": "faction_history",
+      "text": "The Church of the Ashen Light maintains a classified document known as the Purgation Index — a comprehensive catalogue of all seventeen known pacts on the continent of Valdris. Each entry contains the location of the pact, the type of consciousness involved, the nature of the sacrifice demanded, and the Church's recommended method of elimination. The document is updated annually by the Cardinal of Purification.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.church_salt_the_earth_plan == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Numbers 1 through 7 — the eastern forest pacts — were destroyed by the Ironmarch Legion. The Church funded Kael's campaign secretly, providing druidfire formulas and tactical intelligence in exchange for his public claim that the crusade was purely military. The Church's hands stayed clean. Kael's hands burned."
+        },
+        {
+          "id": "frag_2",
+          "text": "Numbers 8 through 10 — pacts in the contested eastern frontier — are currently under siege by Church agents using the same method deployed in Ashvale: nightcap root to poison the soil, turning the villages against their consciousnesses. When a village believes the pact has turned hostile, they become willing accomplices in its destruction. It is the Church's most efficient weapon: turn the pacted against the pact.",
+          "conditions": [
+            "flag.evidence_nightcap_root == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "Numbers 11 through 13 are classified as 'dormant' — pacts where the consciousness has withdrawn but not died. The Church considers these lower priority but monitors them. Number 14 is Ashvale. Numbers 15 through 17 are remote: Silverpine (mountain, thriving), the Breathing Marshes (wetland, unknown status), and an unnamed ocean pact on the Shattered Coast that the Church has been unable to even locate. The ocean consciousness sinks every survey vessel they send.",
+          "conditions": [
+            "flag.church_salt_the_earth_plan == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_legion_true_purpose",
+      "title": "The Iron Doctrine",
+      "category": "faction_history",
+      "text": "The Ironmarch Legion does not conquer for territory, tribute, or glory. Their true purpose is singular and absolute: prevent the consciousnesses from ever reaching their full potential. General Kael, in the years before his death, discovered something that terrified him more than the pacts themselves — the consciousnesses are EVOLVING.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.ironmarch_threat_confirmed == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Kael's intelligence network documented a pattern across all known pacts: the consciousnesses were growing smarter, more complex, more capable of influencing human behavior. Early pacts demanded simple offerings — grain, flowers, sung prayers. Later pacts demanded blood. The most recent pacts were beginning to demand something worse: loyalty. Kael saw a future in which the consciousnesses would not need pacts at all — they would simply COMPEL obedience through the root networks running beneath every settlement on the continent."
+        },
+        {
+          "id": "frag_2",
+          "text": "Kael codified his findings into what the Legion calls the Iron Doctrine: 'Cut the roots before the roots cut us.' Every Legion soldier memorizes it during training. Captain Draven is a true believer — he has seen what happens when a consciousness turns hostile, and he carries that knowledge like a weapon. The doctrine has one critical flaw: it assumes the consciousnesses are adversaries. It never considers the possibility that they might be trying to communicate.",
+          "conditions": [
+            "flag.voss_warned_about_ironmarch == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "Kael died at fifty-three, killed by a root that grew through his tent floor overnight in a camp two hundred miles from the nearest known consciousness. His officers called it assassination — proof that the root network could strike anywhere. The Legion made him a martyr. But the druids who examined the site found something the Legion suppressed: the root was not attacking. It was carrying a message. The translated vibration said: 'We want to talk.' Kael died because a consciousness tried to start a conversation.",
+          "conditions": [
+            "flag.old_maren_is_druid == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_guild_network",
+      "title": "The Hollow Hand's Reach",
+      "category": "faction_history",
+      "text": "The Ashvale Hollow Hand is one cell of a continental network that operates in every pacted village still standing. The network began two hundred years ago, founded by the descendants of the first sacrifices — families who lost loved ones to the pacts and decided that no child, no parent, no sibling would be fed to the roots without someone fighting for them.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.guild_real_motive_known == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Every pacted village has a Guild chapter, each operating independently but connected through a network of dead drops, coded messages, and traveling merchants who carry information sewn into the linings of their coats. They smuggle children out of sacrifice-eligible families. They preserve records that lords would rather burn. They build escape routes, forge identities, and maintain safe houses along every major road on the continent."
+        },
+        {
+          "id": "frag_2",
+          "text": "The network's coordinator is known only as 'The Ledger' — a figure no Guild member has ever met in person. Communications arrive through intermediaries, always in the same precise handwriting, always signed with a thumbprint in red ink. The Ledger knows the status of every pact, every sacrifice schedule, every Church operation, and every Legion deployment on the continent. Some in the Guild believe The Ledger is a title passed down through generations. Others believe it is a single person who has lived impossibly long. Fenrick suspects The Ledger is not a person at all.",
+          "conditions": [
+            "npc.fenrick.disposition > 40"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "The Guild's deepest secret: they do not oppose the pacts themselves — only the sacrifices. Some Guild leaders believe the pacts could be reformed, made voluntary, made humane. Others want every pact on the continent destroyed. This internal divide mirrors the Church's original schism, and it is growing wider as the crisis escalates. The Ledger has remained conspicuously silent on the matter.",
+          "conditions": [
+            "flag.guild_real_motive_known == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_druid_remnants",
+      "title": "The Scattered Circle",
+      "category": "faction_history",
+      "text": "The druids were the original mediators between human and consciousness — translators who could slow their thinking enough to hear the mineral vibrations and speed their responses enough to be heard in return. After the Severance Wars, they were hunted by both the emerging Church (which saw them as heretics) and the traumatized consciousnesses (which saw them as collaborators with the armies that burned the forests).",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.old_maren_is_druid == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The survivors scattered. Some joined villages as healers and elders, hiding their abilities behind the mask of folk wisdom — Old Maren is one of these. Some retreated into the deep forests, living among the consciousnesses and slowly losing their connection to human society. Some infiltrated the Church's research wing as spies, preserving the original Cinderfall Academy's knowledge in secret. Some went mad from grief, having felt the death-screams of the consciousnesses through the root network."
+        },
+        {
+          "id": "frag_2",
+          "text": "A druid conclave meets every decade at a hidden location — a different grove each time, communicated through the root network itself. The last three meetings have been consumed by a single debate: should the druids reveal themselves to the world and attempt to broker a new peace between humans and consciousnesses, or should they remain hidden, preserving their knowledge until a time when the world is ready to listen? Old Maren has missed the last three conclaves. She says the walk is too long for her old bones. The truth is she no longer believes hiding is the answer.",
+          "conditions": [
+            "flag.old_maren_confirmed_silas_mother == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "Fewer than forty druids remain on the entire continent. When Old Maren dies, the number will drop to thirty-nine. Each one carries knowledge that cannot be written down — the art of hearing the roots, of translating mineral vibrations into meaning, of serving as a bridge between two forms of consciousness that have been at war for three millennia. If the druids go extinct, the bridge goes with them. And the consciousnesses, unable to speak to humans, will have only one option left: to act without asking.",
+          "conditions": [
+            "flag.heartwood_contact_made == true"
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "lore_sequel_the_awakening",
+      "title": "Something Stirs Beneath",
+      "category": "sequel_hooks",
+      "text": "The Thornwood Heartwood's distress signal has been propagating through the Deep Root Network for two months — ever since the nightcap root poison began killing the soil around Ashvale. It is the first distress call the network has carried in over a century. And for the first time in three thousand years, the deep network is carrying a response.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.heartwood_contact_made == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Other consciousnesses are waking up. The mountain at Silverpine felt the distress call first — it is closest and most alert. It has begun growing new root connections toward Thornwood, accelerating communication from decades to months. The Wending, diminished as it is, has redirected its remaining awareness toward the signal. Even the fragment-echoes in the Ash Wastes have started pulsing in a new pattern, as if the dead consciousness is trying to participate in a conversation it can no longer understand."
+        },
+        {
+          "id": "frag_2",
+          "text": "The message propagating through the network translates roughly to: 'THE WALKERS ARE BREAKING THE PACTS. ALL OF THEM. SIMULTANEOUSLY. THIS IS NOT RANDOM. THIS IS COORDINATED. WHAT DO WE DO?' It is the first time in three thousand years that the consciousnesses have discussed a collective response to a human action. The last time they attempted coordination, it ended in the Severance Wars.",
+          "conditions": [
+            "flag.church_salt_the_earth_plan == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "The Heartwood is afraid. Not of dying — consciousnesses do not fear death the way humans do. It is afraid of what the other consciousnesses might decide. Some of them remember the Severance Wars. Some of them lost parts of themselves that never grew back. If the network reaches consensus and that consensus is hostility, the result will not be a war. It will be an extinction — and the Heartwood cannot tell which species will be extinct.",
+          "conditions": [
+            "flag.pact_renegotiated == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_sequel_the_ledger",
+      "title": "The Figure in the Shadows",
+      "category": "sequel_hooks",
+      "text": "The Ledger has been monitoring Ashvale's crisis with unusual intensity. Fenrick's reports — sent through the standard dead-drop network — have been answered within days instead of the usual weeks. The Ledger's responses are terse but revealing: 'Ashvale is the fulcrum. What happens there determines what we do next. Protect the bridge-builder.'",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.guild_real_motive_known == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The Ledger possesses information about all seventeen pacts that no single person should have — including pacts the Church believes are secret and consciousnesses the druids believe are extinct. This knowledge implies access to sources within the Church, the Legion, the druid remnants, AND the Deep Root Network itself. Either The Ledger has the most extensive intelligence operation in continental history, or they have a source of information that transcends human networks entirely."
+        },
+        {
+          "id": "frag_2",
+          "text": "If the player resolves Ashvale's pact — regardless of how — The Ledger will make contact. The message will arrive through Fenrick: 'You did what seventeen villages could not. Come to Hollowreach. I have something to show you. It concerns the other sixteen.' Hollowreach is a city that doesn't appear on any map. Getting there requires following a river underground for three days. The Ledger chose the location for a reason.",
+          "conditions": [
+            "flag.prologue_complete == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_sequel_silverpine_call",
+      "title": "A Message from the Mountain",
+      "category": "sequel_hooks",
+      "text": "If the Harmony ending is achieved in Ashvale, the resolution propagates through the Deep Root Network as something unprecedented: proof that a Walker and a consciousness can renegotiate a corrupt pact without violence. The message reaches Silverpine's mountain consciousness in a matter of weeks — accelerated by the emergency connections it has been growing toward Thornwood.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.ending_harmony_complete == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The mountain's response arrives at the Thornwood Heartwood encoded in a pattern of mineral vibrations that translates to: 'You found a Walker who listens. Send them to us. The Church is coming. They bring the fire that kills the stone. We need a bridge-builder. We need YOUR bridge-builder.' The Heartwood passes this message to Old Maren. Old Maren passes it to the player. The mountain at Silverpine is asking for help."
+        },
+        {
+          "id": "frag_2",
+          "text": "Silverpine's situation is urgent. The Church's Purging of the Stone is already being mustered — three battalions of soldier-priests armed with a variant of druidfire adapted to penetrate geological formations. The mountain consciousness can close passes and shift tunnels, but it cannot fight fire. It has never had to. For a thousand years, its only experience of humans has been kindness. It does not understand war. It needs someone who does.",
+          "conditions": [
+            "flag.church_salt_the_earth_plan == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_sequel_voss_unfinished",
+      "title": "The River Calls",
+      "category": "sequel_hooks",
+      "text": "Regardless of how Ashvale's story ends, Commander Voss receives a dream in the days following. She is standing at the edge of the lake that was once Rivendale. The water is perfectly still. Then it ripples — not from wind, but from below — and a voice speaks through the movement of the surface.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.prologue_complete == true",
+        "npc.commander_voss.alive == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The Wending's message is fragmented, broken by twenty years of diminished consciousness: 'Come back. I remember you. The girl on the hill. Come back and let me explain. I was... I was not myself. The dam... the dam hurt. I lashed out. I did not mean... come back. Let me show you. Let me show you what I meant to do before the pain made me forget.' Voss wakes drenched in sweat that smells of river water."
+        },
+        {
+          "id": "frag_2",
+          "text": "Voss's story is not finished. The sketch she carries of Rivendale — the one with every house numbered and every escape route marked — has a new addition: a question mark drawn over the lake's center. She does not remember drawing it. The ink is not from any pen she owns. It is the exact blue-green of the Wending's deepest waters.",
+          "conditions": [
+            "flag.found_voss_sketch == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_sequel_the_convergence",
+      "title": "The Roots Reach Consensus",
+      "category": "sequel_hooks",
+      "text": "The Deep Root Network, after three thousand years of geological-speed debate, has reached a decision about humanity. The decision was finalized by the oldest surviving consciousness — the ocean intelligence at the Shattered Coast, which has been listening to every argument from every other consciousness since the Severance Wars ended. Its verdict is propagating through the bedrock now, moving toward every consciousness simultaneously.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.prologue_complete == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The message will arrive at every consciousness at approximately the same time — a synchronization event the druids call 'The Convergence.' It has happened only twice before in recorded history: once before the Severance Wars (the message was 'DEFEND YOURSELVES') and once after (the message was 'WAIT AND OBSERVE'). The third Convergence is imminent. What it says depends on what happened in Ashvale."
+        },
+        {
+          "id": "frag_2",
+          "text": "If Ashvale achieved Harmony, the Heartwood's testimony is the final data point the ocean consciousness needed. Its verdict: 'THE WALKERS CAN LEARN. ATTEMPT COMMUNION AGAIN.' If Ashvale fell to Exodus or Martyrdom, the verdict shifts: 'THE WALKERS CANNOT SUSTAIN COMMUNION. PREPARE TO WITHDRAW.' If the Dark Price was paid, the verdict is darkest: 'THE WALKERS CHOOSE BLOOD OVER GROWTH. REMEMBER THE SEVERANCE. PREPARE.' The age of quiet pacts is over. Something new is beginning.",
+          "conditions": [
+            "flag.prologue_complete == true"
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "lore_silas_full_story",
+      "title": "The Man Who Walked Willingly",
+      "category": "npc_backstories",
+      "text": "Silas Maren was thirty-four years old when Lord Ashworth's father told him he had been selected for the pact. A carpenter by trade, Silas had built the village well, the chapel rafters, the schoolroom benches, and every bed in the Thornwood Inn. His hands had shaped more of Ashvale than any lord's decree. When the selection was announced, three villagers offered to take his place. Lord Ashworth refused them all. The pact had spoken. The pact wanted Silas.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.ghost_letter_5_read == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Silas asked for three days. He spent the first day in his workshop, finishing a compass he had been carving for months — a gift for his two children, Elara and the boy the Church would later rename. The compass was made of rowan wood and copper, and its needle pointed not north but toward Ashvale. 'So you can always find home,' he told them. He did not tell them he would not be there when they arrived."
+        },
+        {
+          "id": "frag_2",
+          "text": "The second day, he planted a rowan tree at the forest edge — the exact spot where the village's tilled soil met the Thornwood's wild growth. He told no one why. Old Maren, watching from a distance, understood: it was a marker. A boundary stone made of living wood. 'This is where human ends and forest begins,' the tree said. 'This is where my father chose to cross.'",
+          "conditions": [
+            "flag.old_maren_confirmed_silas_mother == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "The third day, he walked into the Thornwood barefoot, carrying nothing. Old Maren followed him to the tree line and watched him disappear between the oaks. She stood there until dawn. She has stood there every year since, on the anniversary, for thirty years. The rowan tree he planted has grown taller than any rowan should. Its roots reach toward the forest. Its branches reach toward the village. It is, in its quiet way, doing what Silas tried to do: bridging the gap.",
+          "conditions": [
+            "flag.old_maren_confirmed_silas_mother == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_wren_the_willing",
+      "title": "The Only True Sacrifice",
+      "category": "npc_backstories",
+      "text": "Wren was a healer who arrived in Ashvale in Year 205, five years before the pact cycle was due. She came from the northern territories, carrying a leather satchel of dried herbs and a reputation for hearing things others couldn't. Within a year, she was Ashvale's most trusted herbalist. Within two, she began spending long hours at the forest edge, pressing her palms against the bark of the oldest oaks and weeping.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.ghost_letter_4_read == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Wren could hear the forest's pain. Not through druid training — she had none — but through some innate sensitivity that the druids later called 'root-sympathy.' She felt the Heartwood's hunger not as malice but as grief: a consciousness that had been promised companionship and received only blood. She went to Lord Ashworth the Sixth and volunteered. 'The forest doesn't enjoy this,' she said. 'It hurts every time. Let me show it that at least one of us understands.'"
+        },
+        {
+          "id": "frag_2",
+          "text": "Her sacrifice produced thirty-five years of abundance — five more than any other cycle. The crops grew taller, the water ran sweeter, the winters were milder. The forest responded to genuine willingness with something approaching joy. Where Wren entered the roots, a white flower grew — a species that exists nowhere else in the world. It still blooms every spring, sixty years later. Old Maren tends it. She calls it 'Wren's answer.'",
+          "conditions": [
+            "flag.ghost_letter_4_read == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "In the Dreaming, Wren is not asleep like the others. She is the most alert consciousness in the root network — a human mind that chose communion freely and received it fully. The Heartwood consults her when it struggles to understand human behavior. She is, in effect, the forest's translator — the bridge that Aldric's pact was supposed to create. She is the proof that the pact was never meant to be what it became.",
+          "conditions": [
+            "flag.heartwood_deep_communion == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_kael_origin",
+      "title": "The General Who Burned the World",
+      "category": "npc_backstories",
+      "text": "General Kael was born in the third village of the Eastern Confederation — a settlement called Greenvale that had prospered under its forest pact for four hundred years. His grandmother, Isla, was a weaver who made tapestries depicting the forest's beauty. She wove images of the trees with such skill that people said you could hear leaves rustling when you touched the cloth. The pact chose her when Kael was six years old.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.voss_warned_about_ironmarch == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Isla was dragged screaming into the roots while the village watched. Kael, held back by his father, counted the seconds. She screamed for thirty-one of them — three times longer than most. The village elders said the consciousness was being 'thorough.' At fourteen, Kael swore an oath on his grandmother's empty loom: no forest would ever take another grandmother. By thirty, he had burned seven forests. By fifty, he commanded the most powerful military force on the continent."
+        },
+        {
+          "id": "frag_2",
+          "text": "Kael died at fifty-three, killed by a root that grew through his tent floor overnight in a camp stationed in the Ash Wastes — two hundred miles from the nearest known living consciousness. His officers called it assassination: proof that the root network could strike anywhere, that no distance was safe. The Legion made him a martyr. They carved his oath into the gates of Ironhold: 'NO FOREST SHALL TAKE ANOTHER.' The full oath, which Kael whispered only to his journal, ended differently: 'No forest shall take another. But I think I understand why they do.'",
+          "conditions": [
+            "flag.ironmarch_threat_confirmed == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "The druids who secretly examined Kael's death site found that the root was not an attack. It was carrying a message — the same message the network had been trying to deliver for decades: 'We want to talk.' Kael died because a consciousness tried to start a conversation with the one human who might have been ready to listen. The irony is lost on the Legion. It is not lost on the druids. Or on the consciousnesses, who have not attempted to contact a Legion commander since.",
+          "conditions": [
+            "flag.old_maren_is_druid == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_draven_backstory",
+      "title": "The Captain Who Believes",
+      "category": "npc_backstories",
+      "text": "Captain Draven was orphaned at the age of nine when the mountain consciousness near his village — a mining settlement in the northern territories — collapsed the tunnels his parents worked in. The official Legion report calls it 'a hostile action by a mountain-class consciousness defending its mineral deposits.' The truth is more complicated. The miners had breached the consciousness's core chamber — the geological equivalent of cracking open someone's skull. The collapse was a reflex, not an attack.",
+      "discovered_by_default": false,
+      "conditions": [
+        "npc.ironmarch_emissary.met == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "A Legion patrol found Draven three days later, sitting at the collapsed mine entrance, talking to the stone. 'Give them back,' he kept saying. 'Give them back.' The stone, of course, said nothing. The Legion adopted him. They gave him a uniform, a sword, and Kael's Iron Doctrine. They told him the mountain was a monster. He believed them because believing was easier than understanding."
+        },
+        {
+          "id": "frag_2",
+          "text": "Draven genuinely believes the consciousnesses are parasites — not because he is cruel, but because every family he has ever loved was destroyed by one. He sees Ashvale and thinks: 'I can save these people the way no one saved mine.' He is wrong. But his pain is real, and his intention is sincere. He is the most dangerous kind of enemy: one who is convinced he is helping.",
+          "conditions": [
+            "flag.voss_warned_about_ironmarch == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "Deep in Draven's pack, wrapped in oilcloth, is a stone from the collapsed mine. He carries it everywhere. Sometimes, late at night, he holds it to his ear. He tells himself he's listening for structural weaknesses — a soldier's habit. But the truth is simpler and sadder: he is still that nine-year-old boy, sitting at the mine entrance, waiting for the stone to answer. It never does. But he has never stopped listening.",
+          "conditions": [
+            "flag.ironmarch_threat_confirmed == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_the_first_lord",
+      "title": "Aldric Ashworth's True Story",
+      "category": "npc_backstories",
+      "text": "Aldric Ashworth was not a lord when he made the pact. He was a refugee. The Severance Wars had been over for centuries, but the aftermath persisted — displaced peoples wandering a continent scarred by the conflict between humans and consciousnesses. Aldric led a group of fifty survivors fleeing a famine in the central plains, following rumors of untouched forest in the west.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.found_aldric_secret_grave == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "When Aldric found the Thornwood, his people were starving. Three had died on the march. Two more would not survive the week. The forest offered shelter — not through words, but through action. The canopy opened to reveal a clearing with clean water and fruiting trees. Aldric knelt not out of reverence but desperation. The pact was a survival mechanism, not a spiritual covenant. The original terms were simple: the forest provides, and in return, one human maintains communion — spending an hour each day with hands on bark, sharing thoughts, serving as a bridge."
+        },
+        {
+          "id": "frag_2",
+          "text": "Aldric kept the communion for his entire life. He lived to 147 — extended, the druids believe, by his connection to the root network. But when he died, no one understood what 'communion' meant. His children interpreted it as 'offering.' His grandchildren interpreted 'offering' as 'sacrifice.' Within three generations, the bridge Aldric built had become a slaughterhouse. The pact was never meant to be inherited. Aldric would be horrified by what his bloodline became.",
+          "conditions": [
+            "flag.read_ritual_inscription == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "When Aldric finally died, a tree grew from his grave in a single night — an oak with bark the color of aged copper and leaves that never fall. It still stands in the manor garden, though no living Ashworth knows its significance. The tree is Aldric's final communion: his consciousness, merged willingly with the Heartwood, dreaming inside the root network. He is the first and only Ashworth who gave himself freely. In the Dreaming, he weeps for what his descendants have done.",
+          "conditions": [
+            "flag.found_aldric_secret_grave == true"
+          ]
+        }
+      ]
+    }
+  ]
+}

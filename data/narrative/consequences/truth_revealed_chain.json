@@ -1,0 +1,86 @@
+{
+  "id": "truth_revealed_chain",
+  "trigger_condition": "flag.found_true_poisoner == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "flag.village_knows_truth",
+          "value": true
+        },
+        {
+          "set_state": "player.reputation.city_guard",
+          "delta": 30
+        },
+        {
+          "set_state": "player.reputation.ashvale_nobility",
+          "delta": 25
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "set_state": "flag.poisoning_stopped",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": 40
+        },
+        {
+          "set_state": "npc.greta.memory.player_saved_village",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {
+          "set_state": "world.region.ashvale.food_supply",
+          "delta": 5.0
+        },
+        {
+          "spawn_event": "village_celebration"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 7,
+      "effects": [
+        {
+          "set_state": "npc.lord_ashworth.memory.player_earned_trust",
+          "value": true
+        },
+        {
+          "set_state": "flag.lord_ashworth_opens_manor",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 14,
+      "condition": "flag.pact_fully_revealed != true",
+      "effects": [
+        {
+          "set_state": "flag.crops_still_dying_despite_cure",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.memory.poison_stopped_but_crops_still_die",
+          "value": true
+        },
+        {
+          "spawn_event": "deeper_mystery_revealed"
+        }
+      ]
+    }
+  ]
+}

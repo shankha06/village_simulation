@@ -1,0 +1,215 @@
+{
+  "id": "maren_family_revelation",
+  "start_node": "entry_router",
+  "nodes": {
+    "entry_router": {
+      "type": "branch",
+      "conditions": [
+        {
+          "check": "flag.player_told_elara_about_brother",
+          "op": "==",
+          "value": true,
+          "next": "elara_told_first"
+        },
+        {
+          "check": "flag.maren_sent_to_elara",
+          "op": "==",
+          "value": true,
+          "next": "brother_approaches"
+        },
+        {
+          "check": "flag.crypt_wall_names_seen",
+          "op": "==",
+          "value": true,
+          "next": "crypt_discovery"
+        }
+      ],
+      "default_next": "elara_told_first"
+    },
+    "elara_told_first": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Elara sets down the mortar and pestle. The herbs she was grinding sit forgotten, half-crushed, releasing a bitter green smell into the air of the cottage. She has not moved since you told her. She has not blinked.",
+      "next": "elara_processing"
+    },
+    "elara_processing": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "elara_stunned",
+      "text": "Say that again. Slowly. Because I need to be certain I heard you correctly before I decide whether to scream or be sick.",
+      "next": "elara_fury"
+    },
+    "elara_fury": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "elara_angry",
+      "text": "You're telling me the man preaching divine punishment for our village -- the man who looks at my work and calls it blasphemy -- is my brother. The brother I was told died in a plague when he was four. He's ALIVE, and he's been standing in the village square calling down ash on the people I've spent my life trying to heal.",
+      "triggers": [
+        {"set_state": "flag.elara_knows_brother", "value": true}
+      ],
+      "next": "elara_grief"
+    },
+    "elara_grief": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The fury drains from her face. What replaces it is worse -- a grief so precise it looks like calm. She picks up the mortar again, then sets it down. Picks it up. Sets it down. Her hands need something to do because the rest of her has stopped working.",
+      "next": "elara_quiet"
+    },
+    "elara_quiet": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "elara_sad",
+      "text": "I used to dream about him. When I was small. I'd imagine he was out there somewhere, growing up in a house with a garden. I gave him a dog in my head. A brown one. I named it for him because he was too little to name things when they took him. Twenty-six years of imagining, and the real version was worse than any nightmare I could have built.",
+      "next": "elara_choice"
+    },
+    "elara_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "encourage_confrontation",
+          "text": "You should talk to him. He didn't know either.",
+          "conditions": [],
+          "triggers": [
+            {"set_state": "flag.elara_will_confront_brother", "value": true}
+          ],
+          "next": "elara_steels"
+        },
+        {
+          "id": "warn_caution",
+          "text": "Be careful. He's still a priest of the Ashen Light. Knowing changes nothing about what he's done.",
+          "conditions": [],
+          "triggers": [
+            {"set_state": "flag.elara_cautioned_about_brother", "value": true}
+          ],
+          "next": "elara_bitter_truth"
+        },
+        {
+          "id": "mention_grandmother",
+          "text": "Old Maren knew. She recognized him the moment he arrived.",
+          "conditions": [
+            {"check": "flag.old_maren_knew_all_along", "op": "==", "value": true}
+          ],
+          "triggers": [
+            {"set_state": "flag.elara_angry_at_grandmother", "value": true}
+          ],
+          "next": "elara_second_betrayal"
+        }
+      ]
+    },
+    "brother_approaches": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Brother Maren stands at the door of Elara's cottage. He has removed his priestly stole. Without it, he looks younger. Smaller. He knocks twice, then stands with his arms at his sides like a man awaiting sentencing.",
+      "next": "brother_speaks"
+    },
+    "brother_speaks": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "vulnerable",
+      "text": "Elara. I need to tell you something, and I need you to hear all of it before you respond. My name -- my real name -- is not Brother Maren. I am the son of Silas Maren. I am your brother. I did not know until today. I am not asking forgiveness. I am asking you to let me stand here long enough to say this.",
+      "next": "elara_door_reaction"
+    },
+    "elara_door_reaction": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "elara_stunned",
+      "text": "She does not close the door. She does not open it wider. She stands in the gap between inside and outside and looks at the man who shares her father's face, and something behind her eyes rearranges itself into a shape that has no name.",
+      "triggers": [
+        {"set_state": "flag.elara_knows_brother", "value": true},
+        {"set_state": "flag.siblings_met_at_door", "value": true}
+      ],
+      "next": "elara_quiet_from_door"
+    },
+    "elara_quiet_from_door": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "elara_sad",
+      "text": "I spent my childhood grieving a dead brother. And you spent yours burning the faith our father died for. Come inside. We have a great deal to not forgive each other for.",
+      "next": "siblings_together"
+    },
+    "crypt_discovery": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The crypt wall beneath the chapel is old -- older than the Church's claim on this building. Names are carved into the stone in the druidic tradition: family lines, branching like roots. And there, cut deep into limestone that has not seen sunlight in decades, is the Maren line. Silas at the center. Two branches below him. Two children. The names are worn but legible.",
+      "next": "crypt_realization"
+    },
+    "crypt_realization": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Elara traces one name with her finger. Brother Maren traces the other. They look up at the same moment and see the same face looking back -- the same cheekbones, the same dark eyes that belong to neither of them but to the man carved into the wall above.",
+      "triggers": [
+        {"set_state": "flag.elara_knows_brother", "value": true},
+        {"set_state": "flag.siblings_discovered_at_crypt", "value": true}
+      ],
+      "next": "crypt_silence"
+    },
+    "crypt_silence": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "elara_sad",
+      "text": "All this time. You were alive all this time.",
+      "next": "crypt_brother_responds"
+    },
+    "crypt_brother_responds": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "vulnerable",
+      "text": "I did not know I had a sister. They told me my family was dead. All of them. They said the forest took everyone.",
+      "next": "siblings_together"
+    },
+    "elara_steels": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "elara_neutral",
+      "text": "He didn't know. Fine. But the poison in the water knew exactly what it was doing, and he put it there. I'll talk to him. But I will not pretend that sharing blood makes what he's done smaller. If anything, it makes it larger.",
+      "triggers": [
+        {"set_state": "flag.siblings_reunited", "value": true},
+        {"set_state": "flag.maren_family_fully_revealed", "value": true}
+      ],
+      "next": "end"
+    },
+    "elara_bitter_truth": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "elara_neutral",
+      "text": "You're right. Blood is not absolution. He is my brother and he has been killing this village with full intent. I will carry both of those facts at the same time. I have practice carrying impossible things.",
+      "triggers": [
+        {"set_state": "flag.siblings_reunited", "value": true},
+        {"set_state": "flag.maren_family_fully_revealed", "value": true}
+      ],
+      "next": "end"
+    },
+    "elara_second_betrayal": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "elara_angry",
+      "text": "Grandmother knew. Of course she did. The woman who hears the heartbeat of every root in Thornwood could not hear her own grandson's heart ten paces away? She heard it. She chose silence. Everyone in this family chooses silence and calls it wisdom, and the rest of us choke on what they didn't say.",
+      "triggers": [
+        {"set_state": "flag.siblings_reunited", "value": true},
+        {"set_state": "flag.maren_family_fully_revealed", "value": true},
+        {"set_state": "npc.elara.disposition", "delta": -15},
+        {"set_state": "npc.old_maren.disposition", "delta": -10}
+      ],
+      "next": "end"
+    },
+    "siblings_together": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "They do not embrace. They do not weep. They stand on opposite sides of a silence that is thirty years deep, and they look at each other, and what passes between them is not forgiveness or accusation but something older and more terrible: recognition.",
+      "triggers": [
+        {"set_state": "flag.siblings_reunited", "value": true},
+        {"set_state": "flag.maren_family_fully_revealed", "value": true}
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

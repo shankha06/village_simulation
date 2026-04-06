@@ -1,0 +1,106 @@
+{
+  "id": "legion_defiance_chain",
+  "trigger_condition": "flag.defied_legion == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "flag.legion_preparing_invasion",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.tension",
+          "delta": 25
+        },
+        {
+          "set_state": "npc.commander_voss.memory.player_chose_to_fight",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": 15
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "spawn_event": "draven_departs_cold"
+        },
+        {
+          "set_state": "npc.ironmarch_emissary.memory.village_refused",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {
+          "set_state": "flag.legion_scouts_increase",
+          "value": true
+        },
+        {
+          "spawn_event": "more_scouts_spotted"
+        },
+        {
+          "set_state": "npc.greta.memory.soldiers_on_the_road",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 7,
+      "effects": [
+        {
+          "set_state": "flag.legion_supply_lines_moving",
+          "value": true
+        },
+        {
+          "spawn_event": "supply_wagons_spotted_east"
+        },
+        {
+          "set_state": "world.region.ashvale.tension",
+          "delta": 20
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 10,
+      "condition": "flag.ashvale_fully_united == true",
+      "effects": [
+        {
+          "set_state": "flag.strong_defense_ready",
+          "value": true
+        },
+        {
+          "spawn_event": "ashvale_fortifies"
+        },
+        {
+          "set_state": "world.region.ashvale.defense_score",
+          "delta": 20
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 14,
+      "condition": "flag.ashvale_fully_united != true",
+      "effects": [
+        {
+          "set_state": "flag.weak_defense",
+          "value": true
+        },
+        {
+          "spawn_event": "ashvale_scrambles_to_prepare"
+        }
+      ]
+    }
+  ]
+}

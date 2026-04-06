@@ -1,0 +1,115 @@
+{
+  "regions": {
+    "ashvale": {
+      "crops": {
+        "pop": 1.0,
+        "growth_rate": -0.02,
+        "carrying_capacity": 3.0,
+        "predators": [],
+        "prey": [],
+        "notes": "Negative growth due to poisoned water + broken pact. Stabilizes at 0.0 if both are resolved."
+      },
+      "rats": {
+        "pop": 0.5,
+        "growth_rate": 0.04,
+        "carrying_capacity": 4.0,
+        "predators": [],
+        "prey": [
+          "crops"
+        ],
+        "notes": "Rats increase as crops die and granaries are left unattended."
+      }
+    },
+    "thornwood": {
+      "wolves": {
+        "pop": 1.5,
+        "growth_rate": 0.01,
+        "carrying_capacity": 3.0,
+        "predators": [],
+        "prey": [
+          "deer"
+        ],
+        "notes": "Apex predators. Clearing their den triggers ecological cascade."
+      },
+      "deer": {
+        "pop": 2.0,
+        "growth_rate": 0.03,
+        "carrying_capacity": 5.0,
+        "predators": [
+          "wolves"
+        ],
+        "prey": [],
+        "notes": "Primary herbivore. Overpopulation without wolves causes deforestation."
+      },
+      "forest_spirits": {
+        "pop": 1.0,
+        "growth_rate": 0.0,
+        "carrying_capacity": 1.0,
+        "predators": [],
+        "prey": [],
+        "notes": "Manifestation of the Heartwood's will. Pop increases when pact is broken. Hostile to intruders."
+      }
+    }
+  },
+  "thresholds": [
+    {
+      "watch": "ecology.ashvale.crops.pop",
+      "condition": "< 0.2",
+      "event": "total_crop_failure",
+      "effects": [
+        {
+          "set_state": "world.region.ashvale.status",
+          "value": "famine"
+        },
+        {
+          "set_state": "flag.crops_completely_dead",
+          "value": true
+        }
+      ]
+    },
+    {
+      "watch": "ecology.thornwood.deer.pop",
+      "condition": "> 3.5",
+      "event": "deer_overpopulation",
+      "effects": [
+        {
+          "swap_visuals": "thornwood_forest_floor",
+          "variant": "barren"
+        },
+        {
+          "set_state": "world.region.thornwood.status",
+          "value": "ecological_collapse"
+        }
+      ]
+    },
+    {
+      "watch": "ecology.ashvale.rats.pop",
+      "condition": "> 2.0",
+      "event": "rat_plague",
+      "effects": [
+        {
+          "set_state": "world.region.ashvale.status",
+          "value": "plague"
+        },
+        {
+          "set_state": "flag.rat_plague_ashvale",
+          "value": true
+        }
+      ]
+    },
+    {
+      "watch": "ecology.thornwood.forest_spirits.pop",
+      "condition": "> 0.5",
+      "event": "forest_awakening",
+      "effects": [
+        {
+          "set_state": "flag.thornwood_hostile",
+          "value": true
+        },
+        {
+          "spawn_event": "forest_attacks_village_edge"
+        }
+      ]
+    }
+  ]
+}

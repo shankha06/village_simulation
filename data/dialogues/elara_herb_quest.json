@@ -1,0 +1,235 @@
+{
+  "id": "elara_herb_quest",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "worried",
+      "text": "I've been thinking. The nightcap poisoning — I know a way to counteract it. There's a flower called moonpetal that grows deep in Thornwood. My grandmother taught me a recipe.",
+      "next": "explain_recipe"
+    },
+    "explain_recipe": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "Five sprigs of moonpetal, crushed and steeped in boiled rainwater for three hours. It binds to the nightcap toxin and neutralizes it. But moonpetal only grows in one place — a grove past the wolf territory.",
+      "next": "choice_respond"
+    },
+    "choice_respond": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept_immediately",
+          "text": "Tell me where the grove is. I'll get the moonpetal.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_herb_quest",
+              "value": true
+            },
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 20
+            }
+          ],
+          "next": "grateful_directions"
+        },
+        {
+          "id": "ask_about_wolves",
+          "text": "Wolves? How dangerous are we talking?",
+          "conditions": [],
+          "triggers": [],
+          "next": "wolf_warning"
+        },
+        {
+          "id": "ask_about_sick",
+          "text": "How many are sick? Is this really worth the risk?",
+          "conditions": [],
+          "triggers": [],
+          "next": "sick_count"
+        },
+        {
+          "id": "suggest_buying",
+          "text": "Can't we just buy the herbs from a trader?",
+          "conditions": [],
+          "triggers": [],
+          "next": "no_traders"
+        },
+        {
+          "id": "refuse",
+          "text": "I'm not risking my neck for herbs. Find someone else.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": -15
+            }
+          ],
+          "next": "disappointed"
+        }
+      ]
+    },
+    "wolf_warning": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "fearful",
+      "text": "A pack of eight or nine. They've been territorial since the forest started dying — protecting what little prey remains. They won't attack unless you enter their den area. The moonpetal grows right in the middle of it.",
+      "next": "wolf_advice"
+    },
+    "wolf_advice": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "You could try to sneak past them at dawn when they sleep, or... well, I have a mixture that masks human scent. It's not perfect, but it might give you an edge.",
+      "next": "choice_after_wolves"
+    },
+    "choice_after_wolves": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept_with_mixture",
+          "text": "Give me the scent mask. I'll be careful.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_herb_quest",
+              "value": true
+            },
+            {
+              "set_state": "player.has_item.scent_mask",
+              "value": true
+            },
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 15
+            }
+          ],
+          "next": "grateful_directions"
+        },
+        {
+          "id": "accept_fight",
+          "text": "I can handle wolves. Just point me to the grove.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_herb_quest",
+              "value": true
+            },
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "grateful_directions"
+        },
+        {
+          "id": "still_refuse",
+          "text": "Nine wolves is nine too many. Sorry, Elara.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": -10
+            }
+          ],
+          "next": "disappointed"
+        }
+      ]
+    },
+    "sick_count": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "Three are critical. Old Thomas hasn't opened his eyes in two days. Young Bess can barely breathe. And Aldwin — he's only seven years old. Without the antidote, they'll be dead within the week.",
+      "triggers": [
+        {
+          "set_state": "npc.elara.memory.told_player_about_sick",
+          "value": true
+        }
+      ],
+      "next": "choice_after_sick"
+    },
+    "choice_after_sick": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "moved_to_help",
+          "text": "A seven-year-old boy. I'll get your herbs, Elara.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_herb_quest",
+              "value": true
+            },
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 25
+            },
+            {
+              "set_state": "npc.elara.memory.player_moved_by_children",
+              "value": true
+            }
+          ],
+          "next": "grateful_directions"
+        },
+        {
+          "id": "pragmatic",
+          "text": "Three lives for a trip into wolf territory. What's the pay?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": -5
+            }
+          ],
+          "next": "payment_offer"
+        }
+      ]
+    },
+    "payment_offer": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "I don't have gold. But I can brew you healing salves that no apothecary can match. And... I know things about this village. Secrets that have value to someone like you.",
+      "next": "choice_respond"
+    },
+    "no_traders": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "The Eastern Road is patrolled by Ironmarch. No traders have come through in weeks. And moonpetal doesn't keep — it has to be fresh, used within a day of picking. Thornwood is the only option.",
+      "next": "choice_respond"
+    },
+    "grateful_directions": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "happy",
+      "text": "Thank you. The grove is about two hours into Thornwood, past the split oak. Look for a clearing where the canopy opens — moonpetal needs starlight to bloom. You'll know it by the silver petals.",
+      "next": "final_warning"
+    },
+    "final_warning": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "worried",
+      "text": "One more thing. Fenrick has been asking about rare Thornwood herbs. If he approaches you about the moonpetal... please. Don't sell it to him. People's lives depend on this.",
+      "triggers": [
+        {
+          "set_state": "npc.elara.memory.warned_about_fenrick",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "disappointed": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "I understand. It's a lot to ask of a stranger. But if you change your mind... the sick can't wait much longer.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

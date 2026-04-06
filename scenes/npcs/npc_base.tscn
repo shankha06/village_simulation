@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://npc_base001"]
+
+[ext_resource type="Script" path="res://scenes/npcs/npc_base.gd" id="1_npc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(10, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dialogue"]
+radius = 20.0
+
+[node name="NPCBase" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_npc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_body")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="DialogueZone" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 1
+
+[node name="DialogueShape" type="CollisionShape2D" parent="DialogueZone"]
+shape = SubResource("CircleShape2D_dialogue")
+
+[node name="NameLabel" type="Label" parent="."]
+offset_left = -30
+offset_top = -24
+offset_right = 30
+offset_bottom = -12
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 8
+
+[connection signal="body_entered" from="DialogueZone" to="." method="_on_dialogue_zone_body_entered"]
+[connection signal="body_exited" from="DialogueZone" to="." method="_on_dialogue_zone_body_exited"]

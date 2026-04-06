@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://church_outpost001"]
+
+[ext_resource type="Script" path="res://scenes/world/region_base.gd" id="1_region"]
+[ext_resource type="Script" path="res://scenes/effects/weather_system.gd" id="2_weather"]
+[ext_resource type="Script" path="res://scenes/world/transition_zone.gd" id="3_transition"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_transition_thornwood"]
+size = Vector2(48, 16)
+
+[node name="ChurchOutpost" type="Node2D"]
+script = ExtResource("1_region")
+region_id = "church_outpost"
+region_name = "Church Outpost"
+adjacent_regions = PackedStringArray("thornwood")
+tilemap_json = "res://data/world/church_outpost_tilemap.json"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="DefaultSpawn" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(192, 296)
+
+[node name="FromThornwood" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(192, 304)
+
+[node name="FromChurchOutpost" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(192, 304)
+
+[node name="NPCSpawnPoints" type="Node2D" parent="."]
+
+[node name="WeatherSystem" type="Node2D" parent="."]
+script = ExtResource("2_weather")
+
+[node name="TransitionToThornwood" type="Area2D" parent="."]
+position = Vector2(192, 312)
+script = ExtResource("3_transition")
+target_scene = "res://scenes/world/thornwood_forest.tscn"
+spawn_point = "FromChurchOutpost"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionToThornwood"]
+shape = SubResource("RectangleShape2D_transition_thornwood")

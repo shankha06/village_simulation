@@ -1,0 +1,127 @@
+[gd_scene load_steps=5 format=3 uid="uid://inventory001"]
+
+[ext_resource type="Script" path="res://scenes/ui/inventory_ui.gd" id="1_inv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.06, 0.055, 0.07, 0.95)
+border_color = Color(0.35, 0.28, 0.18, 0.8)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+content_margin_left = 12.0
+content_margin_top = 10.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_content_bg"]
+bg_color = Color(0.04, 0.038, 0.05, 0.7)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tooltip"]
+bg_color = Color(0.05, 0.04, 0.06, 0.95)
+border_color = Color(0.4, 0.35, 0.22, 0.7)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+
+[node name="InventoryUI" type="CanvasLayer"]
+layer = 16
+process_mode = 3
+script = ExtResource("1_inv")
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -120.0
+offset_right = 160.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="TitleBar" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="Panel/VBox/TitleBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Inventory"
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.9, 0.75, 0.4, 1)
+
+[node name="CloseButton" type="Button" parent="Panel/VBox/TitleBar"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(0.6, 0.4, 0.4, 1)
+text = "X"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ItemGrid" type="GridContainer" parent="Panel/VBox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+columns = 4
+
+[node name="GoldBar" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="GoldIcon" type="Label" parent="Panel/VBox/GoldBar"]
+layout_mode = 2
+text = "Coin:"
+theme_override_font_sizes/font_size = 10
+theme_override_colors/font_color = Color(0.83, 0.66, 0.14, 1)
+
+[node name="GoldLabel" type="Label" parent="Panel/VBox/GoldBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0 gold"
+theme_override_font_sizes/font_size = 10
+theme_override_colors/font_color = Color(0.83, 0.66, 0.14, 1)
+
+[node name="TooltipPanel" type="PanelContainer" parent="."]
+visible = false
+offset_right = 180.0
+offset_bottom = 60.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tooltip")
+
+[node name="TooltipLabel" type="RichTextLabel" parent="TooltipPanel"]
+layout_mode = 2
+custom_minimum_size = Vector2(160, 0)
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+theme_override_font_sizes/normal_font_size = 9
+theme_override_colors/default_color = Color(0.8, 0.77, 0.7, 1)

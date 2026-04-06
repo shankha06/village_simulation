@@ -1,0 +1,50 @@
+{
+  "id": "gate_guard",
+  "name": "Harlan",
+  "description": "A tired village guard posted at the southern gate. His gambeson is patched, his eyes are bloodshot, and his spear leans against the wall more than he holds it. He's been on shift too long and is paid too little.",
+  "faction": "ashvale_nobility",
+  "personality": {
+    "courage": 0.4,
+    "greed": 0.3,
+    "loyalty": 0.5,
+    "cruelty": 0.1,
+    "curiosity": 0.2,
+    "honesty": 0.6
+  },
+  "schedule": [
+    {
+      "hour": 6,
+      "location": "south_gate",
+      "activity": "guarding"
+    },
+    {
+      "hour": 14,
+      "location": "inn_common",
+      "activity": "eating"
+    },
+    {
+      "hour": 16,
+      "location": "south_gate",
+      "activity": "guarding"
+    },
+    {
+      "hour": 22,
+      "location": "guard_barracks",
+      "activity": "sleeping"
+    }
+  ],
+  "home_location": "guard_barracks",
+  "dialogue_pools": {
+    "greeting": "gate_guard_intro"
+  },
+  "default_greeting": "gate_guard_intro",
+  "is_combatant": true,
+  "max_health": 50.0,
+  "attack_damage": 6.0,
+  "can_surrender": true,
+  "npc_relationships": {
+    "commander_voss": 20,
+    "lord_ashworth": -10,
+    "greta": 15
+  }
+}

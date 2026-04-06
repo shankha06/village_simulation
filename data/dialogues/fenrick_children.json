@@ -1,0 +1,236 @@
+{
+  "id": "fenrick_children",
+  "start_node": "start",
+  "conditions": [
+    {
+      "check": "flag.fenrick_hinted_at_children",
+      "op": "==",
+      "value": true
+    },
+    {
+      "check": "npc.fenrick.disposition",
+      "op": ">=",
+      "value": 20
+    }
+  ],
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "He glances over both shoulders, then pulls you into the shadow of the tannery wall. His voice drops to something you've never heard from him before -- sincerity.",
+      "next": "check_clear"
+    },
+    "check_clear": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "You asked about the cargo. I shouldn't tell you this. But if you're going to judge me, at least judge the real me.",
+      "triggers": [
+        {
+          "set_state": "npc.fenrick.memory.revealing_children_secret",
+          "value": true
+        }
+      ],
+      "next": "the_truth"
+    },
+    "the_truth": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Every thirty years, when the Cycle comes, children die first. Always. The weak, the small, the ones nobody protects. The Guild has been smuggling orphans and at-risk children out of Ashvale through our trade routes for three generations. Not for profit. For survival.",
+      "triggers": [
+        {
+          "set_state": "flag.fenrick_revealed_children_smuggling",
+          "value": true
+        },
+        {
+          "set_state": "flag.guild_smuggles_children_to_safety",
+          "value": true
+        }
+      ],
+      "next": "the_cost"
+    },
+    "the_cost": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Do you know how much it costs to feed and house forty children in a town that doesn't want them? The Guild's 'greed' pays for beds, bread, and passage east. Every coin I squeeze from a drunk merchant or a fat lord goes to keeping some kid alive in a village that forgot their name.",
+      "triggers": [
+        {
+          "set_state": "flag.guild_greed_explained",
+          "value": true
+        }
+      ],
+      "next": "the_weight"
+    },
+    "the_weight": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "He leans against the wall, and for a moment the mask drops entirely. He looks tired. Not the performative exhaustion of a man who wants sympathy -- the bone-deep fatigue of someone carrying a weight they never asked for.",
+      "next": "the_weight_2"
+    },
+    "the_weight_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "My predecessor started it. Old Harlan. Found three kids starving in a root cellar during the last Cycle. Couldn't save their parents, but he got the children out. Hid them in a grain shipment heading east. After that... it became tradition. The one good thing the Hand does that nobody knows about.",
+      "triggers": [
+        {
+          "set_state": "flag.guild_children_tradition",
+          "value": true
+        }
+      ],
+      "next": "player_response"
+    },
+    "player_response": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "offer_help",
+          "text": "I'll help. What do you need?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_helping_children",
+              "value": true
+            },
+            {
+              "set_state": "flag.fenrick_full_trust",
+              "value": true
+            },
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": 30
+            }
+          ],
+          "next": "alliance_path"
+        },
+        {
+          "id": "still_criminal",
+          "text": "This changes nothing. You're still a criminal.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.fenrick_judged_despite_truth",
+              "value": true
+            },
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": -20
+            }
+          ],
+          "next": "judged_path"
+        },
+        {
+          "id": "vault_connection",
+          "text": "The Guild's vault heist from the manor -- that was about the children too?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.fenrick.memory.player_connected_vault_to_children",
+              "value": true
+            }
+          ],
+          "next": "vault_reveal"
+        },
+        {
+          "id": "how_many",
+          "text": "How many children?",
+          "conditions": [],
+          "triggers": [],
+          "next": "children_count"
+        }
+      ]
+    },
+    "alliance_path": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "He stares at you. Searching for the lie. For the angle. Finding neither, something shifts behind his eyes -- a door opening that he'd bricked shut years ago.",
+      "next": "alliance_path_2"
+    },
+    "alliance_path_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "The eastern route is compromised. Ironmarch patrols have been pushing west, and our usual contacts in Millhaven have gone quiet. I need a new safe house, or fourteen children are trapped in Ashvale when the Cycle peaks. If you can find us a way east -- any way -- I'll owe you more than gold can repay.",
+      "triggers": [
+        {
+          "set_state": "flag.fenrick_alliance_children",
+          "value": true
+        },
+        {
+          "set_state": "quest.children_evacuation.stage",
+          "value": "find_eastern_route"
+        }
+      ],
+      "next": "end"
+    },
+    "judged_path": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "The mask slides back into place. Smooth. Practiced. But you saw what was underneath, and you both know it.",
+      "next": "judged_path_2"
+    },
+    "judged_path_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Fine. I'm a criminal. And those fourteen 'crimes' are sleeping in a cellar right now, warm and fed, because a criminal gave a damn when nobody else did. Get out of my sight.",
+      "triggers": [
+        {
+          "set_state": "npc.fenrick.memory.player_rejected_truth",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "vault_reveal": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "His eyes widen. You can see him recalculating you -- not as a mark, not as a threat, but as someone who actually pays attention.",
+      "next": "vault_reveal_2"
+    },
+    "vault_reveal_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "The vault doesn't hold gold. It holds records. Every family consumed by the pact over three hundred years -- names, bloodlines, last known relatives. If we can get those records, we can find the children's surviving kin. Give them a real home, not just a hiding place. That's what the heist was always about.",
+      "triggers": [
+        {
+          "set_state": "flag.guild_vault_for_family_records",
+          "value": true
+        },
+        {
+          "set_state": "flag.guild_real_motive_known",
+          "value": true
+        },
+        {
+          "set_state": "npc.fenrick.disposition",
+          "delta": 15
+        }
+      ],
+      "next": "end"
+    },
+    "children_count": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "This generation? Fourteen. The youngest is three. She still calls for her mother at night. Her mother was the first to fall when the wells went bad.",
+      "triggers": [
+        {
+          "set_state": "flag.knows_children_count",
+          "value": true
+        }
+      ],
+      "next": "player_response"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

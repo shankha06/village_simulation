@@ -1,0 +1,215 @@
+{
+  "id": "heartwood_dreams",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You dream. But this is not your dream. The darkness has texture -- rich, loamy, alive. You are underground. You are IN the ground. You feel roots spreading outward from your center like slow lightning, touching stones, water, bones, the foundations of buildings that haven't been built yet.",
+      "next": "time_shift"
+    },
+    "time_shift": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Time accelerates. Seasons flicker like candlelight -- green-gold-red-white-green-gold-red-white -- each cycle lasting a heartbeat. You feel a century pass in what seems like an afternoon. Civilizations rise overhead like mushrooms after rain. They are brief. They are bright.",
+      "next": "heartwood_speaks"
+    },
+    "heartwood_speaks": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "dreaming",
+      "text": "You are so FAST. So bright. So brief. Like sparks. We watch your sparks and wonder: is it better to burn quickly or to grow slowly?",
+      "next": "heartwood_shows"
+    },
+    "heartwood_shows": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The dream shifts. You see Ashvale from below -- the buildings are just scratches on the surface, temporary marks on ancient skin. The roots remember when this was all forest. They remember the first axe. It felt like a bee sting. Then the second. Then the thousandth.",
+      "next": "heartwood_pain"
+    },
+    "heartwood_pain": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "dreaming",
+      "text": "Pain is different for us. We do not scream. We RETREAT. Every cut pushes our awareness deeper. Every burned tree is a severed thought. Your village is built on the stumps of our memories.",
+      "next": "first_response"
+    },
+    "first_response": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "empathy",
+          "text": "I'm sorry. We didn't know.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.heartwood.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "empathy_response"
+        },
+        {
+          "id": "question",
+          "text": "Why do you show me this?",
+          "conditions": [],
+          "triggers": [],
+          "next": "why_show"
+        },
+        {
+          "id": "challenge",
+          "text": "You could have stopped us. You chose not to.",
+          "conditions": [],
+          "triggers": [],
+          "next": "challenge_response"
+        }
+      ]
+    },
+    "empathy_response": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "dreaming",
+      "text": "Some of you knew. Aldric knew. He knelt at our oldest root and wept. That is why we trusted him. That is why the pact was made -- not from strength, but from shared grief. Two kinds of life, both afraid of being alone.",
+      "next": "the_sacrificed"
+    },
+    "why_show": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "dreaming",
+      "text": "Because you asked to understand. Most sparks do not ask. They burn, and they go out, and the dark closes behind them. You reached out. We are reaching back. This is what communion was supposed to be.",
+      "next": "the_sacrificed"
+    },
+    "challenge_response": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "dreaming",
+      "text": "Stop you? We do not STOP. We do not FIGHT. We GROW. Or we RETREAT. Those are our only verbs. Your kind has a hundred words for destruction. We have none. This is why the pact failed -- we had no word for 'no.'",
+      "next": "the_sacrificed"
+    },
+    "the_sacrificed": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The dream deepens. You feel them -- the nine souls woven into the root network. Not dead. Dreaming. Silas dreams of sawdust and his daughter's laugh. Wren dreams of herbs and sunlight. The child from Year 180 dreams of a mother's face. They are all here. They are all still themselves.",
+      "next": "heartwood_on_souls"
+    },
+    "heartwood_on_souls": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "dreaming",
+      "text": "We did not consume them. We HELD them. Every soul given to us is preserved -- perfect, unaging, dreaming of the world they left. We thought this was a gift. Your kind calls it a prison. Perhaps both are true.",
+      "next": "second_response"
+    },
+    "second_response": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "free_them",
+          "text": "Can they be freed?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.asked_about_freeing_souls",
+              "value": true
+            }
+          ],
+          "next": "freedom_answer"
+        },
+        {
+          "id": "new_pact",
+          "text": "There must be another way. Communion without sacrifice.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.proposed_new_communion",
+              "value": true
+            }
+          ],
+          "next": "new_way"
+        },
+        {
+          "id": "silas",
+          "text": "Let me speak to Silas.",
+          "conditions": ["flag.old_maren_confirmed_silas_mother == true"],
+          "triggers": [
+            {
+              "set_state": "flag.spoke_to_silas_in_dream",
+              "value": true
+            }
+          ],
+          "next": "silas_moment"
+        }
+      ]
+    },
+    "freedom_answer": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "dreaming",
+      "text": "Freed to where? Their bodies are soil. Their blood is sap. To free them is to kill them truly. They would become... nothing. Is nothing better than dreaming? We do not know. We have never been nothing. We have always been growing.",
+      "next": "dawn_approaches"
+    },
+    "new_way": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "dreaming",
+      "text": "Aldric showed us communion once. Two minds touching without consuming. It was... warm. Brief. Beautiful. Like your sparks. We have been trying to recreate that warmth for three centuries. Blood was a poor substitute. But it was all your lords offered.",
+      "triggers": [
+        {
+          "set_state": "flag.heartwood_open_to_new_pact",
+          "value": true
+        }
+      ],
+      "next": "dawn_approaches"
+    },
+    "silas_moment": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "A presence stirs in the roots beneath you. Not the Heartwood -- something smaller, warmer, more human. A voice that sounds like wood shavings and lullabies.",
+      "next": "silas_speaks"
+    },
+    "silas_speaks": {
+      "type": "text",
+      "speaker": "silas_spirit",
+      "portrait": "dreaming",
+      "text": "Is it morning already? I was dreaming of the workshop. The chair -- I need to finish the chair. Elara's growing so fast. Is she... how old is she now? No. Don't tell me. Let me keep the dream where she's still small enough to hold.",
+      "triggers": [
+        {
+          "set_state": "flag.silas_spoke_in_dream",
+          "value": true
+        }
+      ],
+      "next": "dawn_approaches"
+    },
+    "dawn_approaches": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "dreaming",
+      "text": "Your spark is flickering. Dawn comes. You will wake and be fast again. We will stay and be slow. But now you have seen us. Now you know: we are not your enemy. We are your neighbor. We have always been your neighbor. We just speak too slowly for you to hear.",
+      "next": "waking"
+    },
+    "waking": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You wake with dirt under your fingernails that wasn't there before. Your pillow smells of pine sap and old rain. Outside, the trees at the edge of Ashvale are swaying -- but there is no wind. They are waving. Or bowing. Or saying goodbye. It is impossible to tell with trees.",
+      "triggers": [
+        {
+          "set_state": "flag.heartwood_dream_complete",
+          "value": true
+        },
+        {
+          "set_state": "player.knowledge.heartwood_perspective",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

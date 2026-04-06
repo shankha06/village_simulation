@@ -1,0 +1,226 @@
+{
+  "id": "harlan_deep",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "gate_guard",
+      "portrait": "sad",
+      "text": "You want to know about Silas's last day. I've been waiting thirty years for someone to ask. Dreading it, too.",
+      "next": "morning"
+    },
+    "morning": {
+      "type": "text",
+      "speaker": "gate_guard",
+      "portrait": "sad",
+      "text": "We went fishing that morning. Same spot we'd gone since we were boys -- the bend in the Thornwood stream where the water pools around the old stones. Silas caught three trout. I caught nothing. He laughed at me. He always laughed at me.",
+      "next": "morning_2"
+    },
+    "morning_2": {
+      "type": "text",
+      "speaker": "gate_guard",
+      "portrait": "sad",
+      "text": "He gutted the fish right there on the bank. His hands were so steady. Carpenter's hands. I remember thinking: those hands built half the furniture in this village. Those hands held his daughter just last week.",
+      "next": "compass_moment"
+    },
+    "compass_moment": {
+      "type": "text",
+      "speaker": "gate_guard",
+      "portrait": "sad",
+      "text": "Then he reached into his pocket and pulled out the compass. Held it in the sunlight. Said: 'Harlan, I need you to hold onto this. Give it to whoever comes looking for answers. Someday, someone will.'",
+      "next": "compass_response"
+    },
+    "compass_response": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "knew_already",
+          "text": "He already knew what was going to happen.",
+          "conditions": [],
+          "triggers": [],
+          "next": "he_knew"
+        },
+        {
+          "id": "why_you",
+          "text": "Why did he give it to you?",
+          "conditions": [],
+          "triggers": [],
+          "next": "why_harlan"
+        },
+        {
+          "id": "silent_listen",
+          "text": "[Say nothing. Let him talk.]",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.gate_guard.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "he_knew"
+        },
+        {
+          "id": "angry",
+          "text": "And you just took it? You didn't ask questions?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.gate_guard.disposition",
+              "delta": -10
+            }
+          ],
+          "next": "harlan_shame"
+        }
+      ]
+    },
+    "he_knew": {
+      "type": "text",
+      "speaker": "gate_guard",
+      "portrait": "sad",
+      "text": "The lord's men came at dusk. Two of them, in clean coats. They didn't drag him. They didn't threaten. They just stood at his door and waited. Silas kissed Elara on the forehead. She was four. She was eating porridge. She didn't even look up.",
+      "next": "the_walk"
+    },
+    "why_harlan": {
+      "type": "text",
+      "speaker": "gate_guard",
+      "portrait": "sad",
+      "text": "Because I was the only one who'd still be here. Everyone else would leave, or die, or forget. Silas knew me. Knew I'd plant myself at this gate and grow roots of my own. The bastard was right.",
+      "next": "he_knew"
+    },
+    "harlan_shame": {
+      "type": "text",
+      "speaker": "gate_guard",
+      "portrait": "sad",
+      "text": "You think I don't know that? You think I haven't asked myself that question every single day for thirty years? I took the compass. I said 'See you tomorrow, Silas.' And he smiled. He SMILED. Because he knew there was no tomorrow, and he was kind enough not to burden me with that knowledge.",
+      "next": "he_knew"
+    },
+    "the_walk": {
+      "type": "text",
+      "speaker": "gate_guard",
+      "portrait": "sad",
+      "text": "He walked toward the forest. I watched from the gate. The sun was setting and his shadow stretched all the way back to the village, like he was trying to hold on. The trees opened for him. I've never seen trees move like that -- they PARTED, like curtains.",
+      "next": "the_walk_2"
+    },
+    "the_walk_2": {
+      "type": "text",
+      "speaker": "gate_guard",
+      "portrait": "sad",
+      "text": "He turned around once. Just once. He looked at the village. Not at me. At all of it. The inn. The chapel. His workshop. The smoke from Greta's chimney. Then he turned back and the trees closed behind him.",
+      "next": "aftermath"
+    },
+    "aftermath": {
+      "type": "text",
+      "speaker": "gate_guard",
+      "portrait": "sad",
+      "text": "The next morning the wheat was already growing back. Green shoots pushing through dead soil. The whole village celebrated. They opened wine. They sang. I stood at the gate and held the compass so hard it cut my palm.",
+      "next": "aftermath_response"
+    },
+    "aftermath_response": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "comfort",
+          "text": "You couldn't have stopped it, Harlan.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.gate_guard.disposition",
+              "delta": 15
+            },
+            {
+              "set_state": "npc.gate_guard.memory.player_comforted_him",
+              "value": true
+            }
+          ],
+          "next": "comfort_response"
+        },
+        {
+          "id": "truth",
+          "text": "You could have warned him. You chose not to.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.gate_guard.memory.player_spoke_hard_truth",
+              "value": true
+            }
+          ],
+          "next": "truth_response"
+        },
+        {
+          "id": "ask_old_maren",
+          "text": "Did Old Maren know? His own mother?",
+          "conditions": ["flag.old_maren_confirmed_silas_mother == true"],
+          "triggers": [],
+          "next": "old_maren_knew"
+        },
+        {
+          "id": "what_now",
+          "text": "What do you want to do about it now?",
+          "conditions": [],
+          "triggers": [],
+          "next": "what_now_response"
+        }
+      ]
+    },
+    "comfort_response": {
+      "type": "text",
+      "speaker": "gate_guard",
+      "portrait": "sad",
+      "text": "Maybe not. But I could have tried. That's the thing about cowardice -- it's not about what you couldn't do. It's about what you didn't. Thank you, though. For listening. I haven't told anyone that story. Not once in thirty years.",
+      "next": "final"
+    },
+    "truth_response": {
+      "type": "text",
+      "speaker": "gate_guard",
+      "portrait": "sad",
+      "text": "Yes. I did. Every night I lie in my bunk and I choose it again. I watch myself standing there, holding a compass, saying nothing. And every night I try to open my mouth. And every night I don't. You're right. I chose. I chose wrong.",
+      "next": "final"
+    },
+    "old_maren_knew": {
+      "type": "text",
+      "speaker": "gate_guard",
+      "portrait": "sad",
+      "text": "She came to the gate that night. Stood where you're standing now. Didn't say a word. Just looked at the forest for an hour. Then she walked to the edge of the treeline, knelt down, and pressed her hands into the dirt. I think she was trying to reach him. Through the roots. I think she's still trying.",
+      "triggers": [
+        {
+          "set_state": "flag.harlan_described_maren_vigil",
+          "value": true
+        }
+      ],
+      "next": "final"
+    },
+    "what_now_response": {
+      "type": "text",
+      "speaker": "gate_guard",
+      "portrait": "neutral",
+      "text": "I want to be the man Silas thought I was when he handed me that compass. He gave it to me because he trusted me. For thirty years I've been holding it for 'whoever comes looking for answers.' Well. You came. So tell me what you need, and this time I won't just stand at the gate and watch.",
+      "triggers": [
+        {
+          "set_state": "flag.harlan_ready_to_act",
+          "value": true
+        },
+        {
+          "set_state": "npc.gate_guard.disposition",
+          "delta": 20
+        }
+      ],
+      "next": "final"
+    },
+    "final": {
+      "type": "text",
+      "speaker": "gate_guard",
+      "portrait": "neutral",
+      "text": "The fish we caught that morning? I cleaned them and brought them to his door that evening. Old Maren was sitting in the dark, holding the baby -- his son. She looked at me and said: 'He left you the compass, didn't he.' I nodded. She said: 'Then you'll know when it's time.' I think it's time.",
+      "triggers": [
+        {
+          "set_state": "flag.harlan_full_story_told",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

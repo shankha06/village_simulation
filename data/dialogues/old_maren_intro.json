@@ -1,0 +1,459 @@
+{
+  "id": "old_maren_intro",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "An old woman sits on a stone bench at the village edge, her clouded eyes staring at nothing and everything. Dried herbs hang from her belt. Her fingers trace patterns in the dirt \u2014 patterns that look disturbingly like roots.",
+      "next": "start_2"
+    },
+    "start_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_neutral",
+      "text": "I know you're there, young one. The earth told me. It tells me many things these days \u2014 most of them sad. Sit, if you like. My name is Maren. The original one, before the priest stole it.",
+      "triggers": [
+        {
+          "set_state": "npc.old_maren.met",
+          "value": true
+        },
+        {
+          "set_state": "flag.visited_old_maren",
+          "value": true
+        }
+      ],
+      "next": "choice_opening"
+    },
+    "choice_opening": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "gentle",
+          "text": "The earth told you? Are you one of the Thornwood druids?",
+          "conditions": [],
+          "triggers": [],
+          "next": "druid_identity"
+        },
+        {
+          "id": "direct",
+          "text": "I need to know about the Ashworth pact with the forest. People say you remember.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.old_maren.memory.player_asked_about_pact_directly",
+              "value": true
+            }
+          ],
+          "next": "direct_about_pact"
+        },
+        {
+          "id": "ask_about_priest",
+          "text": "The priest 'stole' your name? You don't seem fond of Brother Maren.",
+          "conditions": [],
+          "triggers": [],
+          "next": "about_priest"
+        },
+        {
+          "id": "ask_about_village",
+          "text": "What can you tell me about what's happening to Ashvale?",
+          "conditions": [],
+          "triggers": [],
+          "next": "village_dying"
+        },
+        {
+          "id": "ask_about_silas",
+          "text": "[Show Silver Compass] This belonged to Silas Maren. Your son.",
+          "conditions": [
+            {"check": "player.has_item.marens_heirloom", "op": "==", "value": true}
+          ],
+          "triggers": [
+            {"set_state": "npc.old_maren.disposition", "delta": 30},
+            {"set_state": "flag.old_maren_sees_compass", "value": true}
+          ],
+          "next": "silas_grief"
+        }
+      ]
+    },
+    "druid_identity": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_neutral",
+      "text": "I was. The last of the Thornwood Circle who chose to stay among people. The rest retreated deeper into the forest decades ago when they felt the pact weakening. They knew what was coming. I stayed because someone had to remember.",
+      "triggers": [
+        {
+          "set_state": "flag.old_maren_is_druid",
+          "value": true
+        }
+      ],
+      "next": "druid_identity_2"
+    },
+    "druid_identity_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_neutral",
+      "text": "I lost my sight twenty years ago. The forest took it as interest on the debt. But in exchange, it gave me something else \u2014 I can feel the roots beneath us. Every tree, every vine, every fungal thread. The forest is a single organism, child. And it is very, very angry.",
+      "triggers": [
+        {
+          "set_state": "flag.old_maren_root_sense",
+          "value": true
+        }
+      ],
+      "next": "choice_deeper"
+    },
+    "direct_about_pact": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_neutral",
+      "text": "Hmm. You come straight to the wound. Good. Most people in this village dance around it like children avoiding a puddle, not realizing the puddle is an ocean.",
+      "next": "pact_explanation"
+    },
+    "pact_explanation": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_neutral",
+      "text": "Aldric Ashworth knelt before the Heartwood three centuries ago and cut his palm on a root. His blood mixed with the sap. A covenant was born: the forest would make this land a paradise. In return, the lord would feed the Heartwood. One soul. Every thirty years. Given willingly.",
+      "triggers": [
+        {
+          "set_state": "flag.pact_fully_revealed",
+          "value": true
+        }
+      ],
+      "next": "pact_explanation_2"
+    },
+    "pact_explanation_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_sad",
+      "text": "The key word is 'willingly.' The sacrifice must walk into the Heartwood's embrace knowing what awaits. The soul is absorbed into the forest \u2014 not destroyed, but... transformed. They become part of the root network. Some druids considered it an honor.",
+      "triggers": [
+        {
+          "set_state": "flag.sacrifice_must_be_willing",
+          "value": true
+        }
+      ],
+      "next": "pact_explanation_3"
+    },
+    "pact_explanation_3": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_neutral",
+      "text": "But the Ashworths stopped seeing it as honor generations ago. They began choosing outcasts, criminals, people who wouldn't be missed. And the forest noticed. Each sacrifice was less willing than the last. The pact weakened. And now Lord Ashworth has refused entirely.",
+      "next": "choice_deeper"
+    },
+    "about_priest": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_angry",
+      "text": "That man is no priest. He arrived with a purpose that has nothing to do with faith. The Ashen Light has been trying to expand into these lands for decades \u2014 and a village in crisis is a village ripe for conversion.",
+      "next": "about_priest_2"
+    },
+    "about_priest_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_neutral",
+      "text": "But he knows things he shouldn't. About the pact. About the forest. About nightcap root. The Ashen Light has archives \u2014 old ones, from before they became a church. They used to be alchemists. Poisoners. 'Brother Maren' is not his real name, and the Ashen Light did not send him to save this village.",
+      "triggers": [
+        {
+          "set_state": "flag.old_maren_suspects_maren_deeply",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_ashen_light_were_alchemists",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_maren_knows_alchemy",
+          "value": true
+        }
+      ],
+      "next": "choice_deeper"
+    },
+    "village_dying": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_sad",
+      "text": "The soil is screaming. Can you hear it? No, of course not. You need roots for that. The earth beneath Ashvale is being poisoned from two directions \u2014 from above, by someone with alchemical knowledge, and from below, by a forest withdrawing its blessing.",
+      "triggers": [
+        {
+          "set_state": "flag.two_sources_of_poison",
+          "value": true
+        }
+      ],
+      "next": "village_dying_2"
+    },
+    "village_dying_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_neutral",
+      "text": "Even if you stop the poisoner, the crops will not recover until the pact is honored \u2014 or broken. And breaking a three-hundred-year covenant with an ancient forest is not a thing done lightly. The Heartwood will fight it.",
+      "next": "choice_deeper"
+    },
+    "choice_deeper": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "break_pact",
+          "text": "Is there a way to break the pact without another sacrifice?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.old_maren.memory.player_asked_about_breaking_pact",
+              "value": true
+            }
+          ],
+          "next": "breaking_the_pact"
+        },
+        {
+          "id": "ask_heartwood",
+          "text": "What IS the Heartwood? Can I talk to it? Negotiate?",
+          "conditions": [],
+          "triggers": [],
+          "next": "heartwood_explanation"
+        },
+        {
+          "id": "ask_talisman",
+          "text": "Can you help me? Give me something to protect myself in the forest.",
+          "conditions": [],
+          "triggers": [],
+          "next": "talisman_offer"
+        },
+        {
+          "id": "ask_poisoner",
+          "text": "Who do you think is poisoning the water?",
+          "conditions": [
+            {
+              "check": "flag.evidence_nightcap_root",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "poisoner_theory"
+        }
+      ]
+    },
+    "breaking_the_pact": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_neutral",
+      "text": "There are three ways. None are easy. None are safe.",
+      "next": "breaking_options"
+    },
+    "breaking_options": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_neutral",
+      "text": "First: fulfill the pact as intended. A willing soul enters the Heartwood. The cycle continues for another thirty years.\n\nSecond: find the original blood-root where Aldric made the covenant and burn it with druidfire. This severs the pact entirely \u2014 but the land loses ALL the forest's blessings. Ashvale becomes barren wasteland. Permanently.\n\nThird: offer the Heartwood something it values more than a soul. But I do not know what that would be. The forest is alien to human logic.",
+      "triggers": [
+        {
+          "set_state": "flag.knows_three_options",
+          "value": true
+        },
+        {
+          "set_state": "flag.option_fulfill_pact",
+          "value": true
+        },
+        {
+          "set_state": "flag.option_burn_bloodroot",
+          "value": true
+        },
+        {
+          "set_state": "flag.option_alternative_offering",
+          "value": true
+        }
+      ],
+      "next": "breaking_options_2"
+    },
+    "breaking_options_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_neutral",
+      "text": "The Heartwood is deep in Thornwood, past the Hollow. You'll need my talisman to find the path \u2014 the forest hides it from outsiders. And you'll need to survive whatever guardians the forest has set along the way. It does not want to be found.",
+      "next": "talisman_offer"
+    },
+    "heartwood_explanation": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_neutral",
+      "text": "The Heartwood is not a tree. It is the consciousness of the forest \u2014 a vast network of roots and mycelium that has been thinking, slowly, for ten thousand years. You cannot 'talk' to it as you talk to me. But you can... commune. If you bring the right offering and the right intent.",
+      "triggers": [
+        {
+          "set_state": "flag.heartwood_is_consciousness",
+          "value": true
+        }
+      ],
+      "next": "choice_deeper"
+    },
+    "talisman_offer": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_neutral",
+      "text": "She reaches into her pouch and draws out a wooden pendant, carved with symbols that seem to shift when you're not looking directly at them.",
+      "next": "talisman_offer_2"
+    },
+    "talisman_offer_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_neutral",
+      "text": "Take this. It will show you what the forest wants you to see \u2014 which is not always what you want to see. Follow the path it reveals, and the Thornwood will not bar your way. But be warned: the talisman also shows the forest what is in your heart. Go with clean intent, or do not go at all.",
+      "triggers": [
+        {
+          "set_state": "player.has_item.old_maren_talisman",
+          "value": true
+        },
+        {
+          "set_state": "flag.has_druid_talisman",
+          "value": true
+        },
+        {
+          "set_state": "npc.old_maren.disposition",
+          "delta": 20
+        }
+      ],
+      "next": "end"
+    },
+    "poisoner_theory": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_neutral",
+      "text": "I feel the nightcap root in the water through the earth's veins. It was planted deliberately \u2014 by someone who wants Ashvale to fall, but wants it to look like the pact's doing. Someone who benefits from both the village's destruction AND the forest's weakening.",
+      "next": "poisoner_theory_2"
+    },
+    "poisoner_theory_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_neutral",
+      "text": "Ask yourself: who arrived just before the poisoning began? Who has knowledge of alchemy? Who preaches that this is divine punishment \u2014 because if people believe it's god's will, they stop looking for the real culprit?",
+      "triggers": [
+        {
+          "set_state": "flag.old_maren_points_to_priest",
+          "value": true
+        },
+        {
+          "set_state": "flag.strongest_evidence_against_maren",
+          "value": true
+        }
+      ],
+      "next": "poisoner_theory_3"
+    },
+    "poisoner_theory_3": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_neutral",
+      "text": "But be careful with certainty. I am old and blind and I have my own grudges. The priest and I... we represent old enemies. The Church of the Ashen Light burned druid groves for centuries. My testimony is not impartial. Find the truth yourself. That is the only kind that matters.",
+      "triggers": [
+        {
+          "set_state": "flag.old_maren_admitted_bias",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    },
+    "silas_grief": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "She goes very still. Her blind eyes fix on a point beyond you, beyond the village, beyond anything the living can see. Her hand reaches out -- not for the compass, but toward the air where your voice was, as though she could touch the name you just spoke.",
+      "next": "silas_grief_2"
+    },
+    "silas_grief_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_sad",
+      "text": "Silas. My boy. He carved that compass for his children before they took him to the Heartwood. Said he wanted them to always find their way home. The needle stopped pointing north the moment the roots closed over him.",
+      "triggers": [
+        {
+          "set_state": "flag.old_maren_confirmed_silas_mother",
+          "value": true
+        }
+      ],
+      "next": "silas_children_reveal"
+    },
+    "silas_children_reveal": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_sad",
+      "text": "Silas had two children. A daughter who stayed with me -- Elara. She has his hands, his way with growing things. And a son. A boy of four, with dark eyes that watched everything. The Church took him a week after the sacrifice. Said a druid's grandchild had no place in a proper village.",
+      "triggers": [
+        {
+          "set_state": "flag.old_maren_revealed_two_children",
+          "value": true
+        }
+      ],
+      "next": "the_grandson_reveal"
+    },
+    "the_grandson_reveal": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "connect_brother_maren",
+          "text": "Brother Maren. The priest is your grandson.",
+          "conditions": [
+            {"check": "npc.brother_maren.met", "op": "==", "value": true}
+          ],
+          "triggers": [
+            {"set_state": "flag.maren_family_truth_revealed", "value": true},
+            {"set_state": "flag.player_connected_maren_family", "value": true}
+          ],
+          "next": "grandmother_breaks"
+        },
+        {
+          "id": "ask_about_boy",
+          "text": "What happened to the boy?",
+          "conditions": [],
+          "triggers": [],
+          "next": "son_fate_unknown"
+        }
+      ]
+    },
+    "grandmother_breaks": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "She is silent for a very long time. The wind moves through the dried herbs at her belt. Somewhere in the village, a door creaks shut. She does not weep. She is past weeping. She arrived at the other side of grief years ago and built a house there.",
+      "next": "grandmother_breaks_2"
+    },
+    "grandmother_breaks_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_sad",
+      "text": "I knew. The moment he arrived, I felt it through the roots. The same heartbeat as Silas, quickened with anger instead of love. My grandson came back to Ashvale, and he came back with poison in his hands and scripture on his tongue.",
+      "triggers": [
+        {
+          "set_state": "flag.old_maren_knew_all_along",
+          "value": true
+        },
+        {
+          "set_state": "flag.elara_doesnt_know_brother",
+          "value": true
+        }
+      ],
+      "next": "grandmother_breaks_3"
+    },
+    "grandmother_breaks_3": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_sad",
+      "text": "I lost my son to the forest. I lost my grandson to the Church. One swallowed by roots, the other by doctrine. And now they face each other across this dying village like two halves of the same wound. Tell me, what god designs a family like this?",
+      "next": "choice_deeper"
+    },
+    "son_fate_unknown": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_sad",
+      "text": "The Church took him east. I searched for years -- sent letters, bribed couriers, walked roads I had no business walking at my age. They told me he was placed with a monastery. They told me he was well. They told me to stop asking. After a while, I did. Not because I stopped caring. Because the forest needed me here, and the living must tend to the living.",
+      "triggers": [
+        {
+          "set_state": "flag.old_maren_lost_grandson",
+          "value": true
+        }
+      ],
+      "next": "choice_deeper"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "interactables": [
+    {
+      "id": "broken_cart",
+      "type": "examine",
+      "name": "Broken Cart",
+      "position": [240, 160],
+      "text": "A merchant's cart, wheels smashed and axle snapped. Goods are scattered across the road \u2014 bolts of cloth, smashed pottery, a child's toy trampled in the mud. This wasn't an accident. Someone wanted this cart stopped."
+    },
+    {
+      "id": "ironmarch_banner",
+      "type": "examine",
+      "name": "Ironmarch Camp Banner",
+      "position": [640, 88],
+      "text": "The iron fist sigil of the Ironmarch Legion, planted in the earth like a territorial marker. The fabric is new \u2014 this camp was established recently. Below the fist, words are stitched: 'ORDER THROUGH STRENGTH.'",
+      "state_condition": "time.day >= 7",
+      "state_alt_text": "Captain Draven's personal standard flies beside the Legion banner now. The camp has grown. More tents, more soldiers. The ultimatum is coming.",
+      "sets_flag": "flag.seen_ironmarch_camp"
+    },
+    {
+      "id": "crossroads_sign",
+      "type": "read",
+      "name": "Crossroads Sign",
+      "position": [400, 112],
+      "text": "A weathered signpost, arms pointing in four directions:\n\u2190 ASHVALE VILLAGE (2 leagues)\n\u2192 THE WIDER WORLD (road blocked)\n\u2191 THORNWOOD EDGE\n\u2193 SOUTHERN MARSHES (impassable)"
+    },
+    {
+      "id": "abandoned_campfire",
+      "type": "search",
+      "name": "Abandoned Campfire",
+      "position": [144, 224],
+      "text": "Cold ashes and charred stones. Someone camped here recently \u2014 a trader, perhaps, who never made it to Ashvale.",
+      "gives_item": "bread",
+      "one_shot": true
+    },
+    {
+      "id": "torn_map",
+      "type": "examine",
+      "name": "Torn Map",
+      "position": [560, 128],
+      "text": "A scrap of military parchment, half-buried in mud. It shows Legion troop movements \u2014 arrows converging on Ashvale from three directions. Someone has written in red ink: 'Phase 2: Secure trade route. Phase 3: Present terms.'",
+      "sets_flag": "flag.found_ironmarch_plans",
+      "one_shot": true
+    }
+  ]
+}

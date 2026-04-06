@@ -1,0 +1,97 @@
+{
+  "id": "ending_martyr",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The roots close around you gently \u2014 not with violence, but with something almost like gratitude. The pain you expected never comes. Instead, there is warmth. The smell of rain on soil. The taste of sunlight filtered through ten thousand leaves.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_martyr_started",
+          "value": true
+        }
+      ],
+      "next": "elara_farewell"
+    },
+    "elara_farewell": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "crying",
+      "text": "No \u2014 no, you can't. There has to be another way. I didn't drag you into this so you could... so you could just...",
+      "conditions": [
+        {
+          "check": "npc.elara.alive",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "next": "elara_farewell_2"
+    },
+    "elara_farewell_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "crying",
+      "text": "You were the first person who actually listened. Who actually cared. I won't forget. I swear to you \u2014 I won't let them forget either.",
+      "next": "companions_farewell"
+    },
+    "companions_farewell": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "One by one, they come to the edge of the roots. Those who traveled with you. Those who fought beside you. Those you saved, and those you simply chose not to abandon. They don't speak much. They don't need to.",
+      "next": "final_vision"
+    },
+    "final_vision": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "As consciousness fades, you see something: Ashvale as it could be. Green fields. Clear water. Children running through sunlight. Not a memory \u2014 a promise. The Heartwood shows you what your sacrifice will buy.",
+      "next": "the_fading"
+    },
+    "the_fading": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You close your eyes. The earth is warm. The roots hum a song older than language. You are not dying. You are becoming part of something that will endure long after the last stone of Ashvale crumbles. You are becoming the pact itself.",
+      "next": "epilogue_narration"
+    },
+    "epilogue_narration": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Ten years later, the village of Ashvale stands. Children play in fields that were once dead. The well water runs clear. In the center of the village, a great tree has grown where no tree stood before \u2014 its bark pale, its leaves the color of embers. They know the name of the stranger who saved them. They speak it in prayers.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_martyr_complete",
+          "value": true
+        }
+      ],
+      "next": "epilogue_final"
+    },
+    "epilogue_final": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "And on quiet nights, when the wind moves through the great tree's branches, the oldest villagers swear they can hear a voice in the rustling. Not words, exactly. But something like peace. Something like home.",
+      "next": "sequel_hook_martyr"
+    },
+    "sequel_hook_martyr": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "In the Dreaming, you are not alone. You expected silence, or perhaps the slow thoughts of the Heartwood. Instead you hear voices — hundreds of them, thousands, whispering from every direction through the root network. Not just Ashvale's sacrificed. ALL the sacrificed, from every pact across the continent. Silas. Wren. Eben. And countless others whose names you do not know, dreaming in forests and rivers and mountains from coast to coast. They are all singing the same song. You do not recognize the melody. But you know, with the certainty of roots in deep earth, that it is a song about waking up.",
+      "triggers": [
+        {
+          "set_state": "flag.sequel_hook_dreaming_network",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

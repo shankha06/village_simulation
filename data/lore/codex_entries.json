@@ -1,0 +1,743 @@
+{
+  "entries": [
+    {
+      "id": "lore_ashvale_founding",
+      "title": "The Founding of Ashvale",
+      "category": "history",
+      "text": "Ashvale was founded three centuries ago by Lord Aldric Ashworth, who carved a settlement from the edge of Thornwood. The forest, the druids warned, did not appreciate the intrusion. The first winter, half the settlers vanished.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.visited_old_maren == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The vanished settlers were never found. But the forest grew thicker that spring."
+        },
+        {
+          "id": "frag_2",
+          "text": "Aldric made a pact with something in the forest. The terms were [???]."
+        },
+        {
+          "id": "frag_3",
+          "text": "The pact required a tithe of blood every generation. The Ashworths have kept the secret for 300 years.",
+          "conditions": [
+            "flag.manor_secret_room_found == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_ashen_light",
+      "title": "The Church of the Ashen Light",
+      "category": "factions",
+      "text": "The Ashen Light teaches that the world was born from fire and will return to fire. Suffering purifies. Joy corrupts. Their priests walk barefoot on coals as initiation.",
+      "discovered_by_default": false,
+      "conditions": [
+        "npc.brother_maren.met == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The Church has been expanding rapidly in the eastern provinces. Ashvale is their newest target."
+        },
+        {
+          "id": "frag_2",
+          "text": "Some whisper that the Church doesn't just preach suffering \u2014 they manufacture it.",
+          "conditions": [
+            "flag.evidence_nightcap_root == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "Brother Maren's real name is [???]. He was expelled from the central order for [???].",
+          "conditions": [
+            "flag.maren_past_discovered == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_hollow_hand",
+      "title": "The Hollow Hand",
+      "category": "factions",
+      "text": "A thieves' guild that operates through intimidation, information, and strategic chaos. They don't steal from the poor \u2014 they make the rich poor first, then steal from them.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.knows_about_guild == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The Hand has been in Ashvale for decades, but they've never been this bold. Something changed."
+        },
+        {
+          "id": "frag_2",
+          "text": "Fenrick answers to someone called 'The Ledger.' No one has ever seen them.",
+          "conditions": [
+            "npc.fenrick.disposition > 40"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_nightcap_root",
+      "title": "Nightcap Root",
+      "category": "alchemy",
+      "text": "A rare fungal root that grows only in deep caves. When dissolved in water, it slowly poisons the soil, killing crops from the roots up. Colorless and tasteless.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.evidence_nightcap_root == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Nightcap root was used in the Siege of Hollowkeep to starve out defenders without ever breaching the walls."
+        },
+        {
+          "id": "frag_2",
+          "text": "The only known source of nightcap root in this region is the caves beneath [???].",
+          "conditions": [
+            "flag.found_cave_entrance == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_thornwood_pact",
+      "title": "The Old Pact",
+      "category": "mystery",
+      "text": "The oldest trees in Thornwood bear carvings that no living person can read. Old Maren says they're a contract, written in blood-sap. The druids refuse to discuss it.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.found_carved_trees == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Every thirty years, something dark happens in Ashvale. The pattern goes back centuries."
+        },
+        {
+          "id": "frag_2",
+          "text": "Lord Ashworth's grandfather disappeared on the same night. His father went mad. Now it's Lord Ashworth's turn.",
+          "conditions": [
+            "flag.lord_ashworth_reclusive == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "The pact demands a sacrifice. The Ashworths have been feeding [???] to the forest. This generation, the lord refused.",
+          "conditions": [
+            "flag.ashworth_confession_heard == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_maren_family",
+      "title": "The Maren Bloodline",
+      "category": "personal",
+      "text": "The Maren name runs through Ashvale's history like a vein of dark ore. Old Maren, the last druid. Her son Silas, the sacrifice. And Silas's children -- separated by grief and the Church's long reach.",
+      "discovered_by_default": false,
+      "conditions": ["flag.old_maren_confirmed_silas_mother == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Silas Maren had two children: a daughter (Elara) and a son (Brother Maren). The Church took the boy after the sacrifice."
+        },
+        {
+          "id": "frag_2",
+          "text": "Brother Maren and Elara are siblings. Neither knows this.",
+          "conditions": ["flag.maren_family_truth_revealed == true"]
+        },
+        {
+          "id": "frag_3",
+          "text": "Old Maren recognized her grandson the moment he arrived. She said nothing.",
+          "conditions": ["flag.old_maren_knew_all_along == true"]
+        }
+      ]
+    },
+
+    {
+      "id": "lore_first_winter",
+      "title": "The First Winter of Ashvale",
+      "category": "history",
+      "text": "Half the settlers vanished the first winter. Search parties found no bodies — only footprints leading into Thornwood that simply... stopped. The snow was undisturbed beyond them, as if the walkers had been lifted into the air. Or pulled beneath the earth.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.visited_old_maren == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Aldric Ashworth found them. Not dead — transformed. Their bodies had become part of the root network, faces frozen in expressions that might have been agony or ecstasy.",
+          "conditions": [
+            "flag.ashworth_confession_heard == true"
+          ]
+        },
+        {
+          "id": "frag_2",
+          "text": "The First Winter was not an accident. It was an audition. The forest was testing whether humans could become part of it.",
+          "conditions": [
+            "flag.heartwood_contact_made == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_aldric_pact",
+      "title": "Aldric's Bargain",
+      "category": "history",
+      "text": "Lord Aldric knelt at the base of an oak so ancient it had no rings — it predated the concept of years. He cut his palm. The tree cut its bark. Their blood mingled in the soil, and the world changed.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.found_carved_trees == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The original pact was not for sacrifice. It was for COMMUNION. Aldric offered himself as a bridge between human and forest consciousness. The sacrifice demand came later, when the bridge deteriorated.",
+          "conditions": [
+            "flag.read_ritual_inscription == true"
+          ]
+        },
+        {
+          "id": "frag_2",
+          "text": "Aldric lived to 147 years old. When he finally died, a tree grew from his grave in a single night. It still stands in the manor garden — though no one alive knows why it never loses its leaves.",
+          "conditions": [
+            "flag.found_aldric_secret_grave == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_cycle_history",
+      "title": "The Thirty-Year Ledger",
+      "category": "history",
+      "text": "Nine sacrifices across three centuries. Each one changed the village in ways no one documented until now.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.found_ghost_letters_cache == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Year 30: Unnamed servant. Year 60: A thief. Year 90: Eben the woodcutter. Year 120: A widow. Year 150: A deserter. Year 180: A child (records do not name them). Year 210: Wren the healer. Year 240: A prisoner. Year 270: Silas Maren.",
+          "conditions": [
+            "flag.ghost_letters_collected_all == true"
+          ]
+        },
+        {
+          "id": "frag_2",
+          "text": "Only Wren went willingly. The crops flourished for 35 years after her sacrifice — five years longer than any other. The forest rewarded sincerity.",
+          "conditions": [
+            "flag.ghost_letter_4_read == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "The child sacrifice in Year 180 nearly broke the pact. The forest recoiled. The crops that year grew wrong — twisted, bitter, poisonous. Some debts should not be paid.",
+          "conditions": [
+            "flag.ashworth_full_guilt_awakened == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_ironmarch_origin",
+      "title": "The Rise of the Iron Legion",
+      "category": "history",
+      "text": "The Ironmarch Legion was born from the ashes of the Eastern Confederation — seven villages that fell to a blight suspiciously similar to Ashvale's. Their founder, General Kael, believed the blights were connected. He was right.",
+      "discovered_by_default": false,
+      "conditions": [
+        "npc.ironmarch_emissary.met == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The Confederation's blight was caused by a DIFFERENT forest consciousness — a cousin of the Thornwood Heartwood. General Kael burned it to the ground. The land became desert. The refugees became soldiers.",
+          "conditions": [
+            "flag.voss_warned_about_ironmarch == true"
+          ]
+        },
+        {
+          "id": "frag_2",
+          "text": "The Legion doesn't conquer for territory. They conquer to PREVENT pacts. In their eyes, every forest is a potential parasite. Every village with an ancient covenant is a host waiting to be consumed.",
+          "conditions": [
+            "flag.ironmarch_threat_confirmed == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_plague_of_silence",
+      "title": "The Plague of Silence (Year 180)",
+      "category": "history",
+      "text": "After the child was sacrificed, a plague struck Ashvale. Not of disease — of silence. For one full year, no one in the village could speak above a whisper. The forest was mourning.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.old_maren_confirmed_silas_mother == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The lord at the time — Ashworth the Third — went mad during the silent year. He believed the trees were screaming in a pitch only he could hear.",
+          "conditions": [
+            "flag.saw_broken_mirror == true"
+          ]
+        },
+        {
+          "id": "frag_2",
+          "text": "Old Maren's mother lived through it. She said the silence was the forest's way of saying: 'We heard the child cry. We will never stop hearing it.'",
+          "conditions": [
+            "flag.old_maren_confirmed_silas_mother == true"
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "lore_hollow_hand_origin",
+      "title": "The Hand That Takes",
+      "category": "factions",
+      "text": "The Hollow Hand predates Lord Ashworth's rule. It was founded by the families of the first sacrifices — people who lost loved ones to the pact and received nothing in return. They began as a mutual aid society. They became thieves because no one helped them first.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.knows_about_guild == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The Guild's symbol — an open hand with a hollow palm — represents what was taken from them. Not gold. Family.",
+          "conditions": [
+            "flag.fenrick_children_revealed == true"
+          ]
+        },
+        {
+          "id": "frag_2",
+          "text": "Fenrick is the seventh generation of Guild leadership. Every leader has been descended from a sacrifice victim. The Guild IS the families of the dead.",
+          "conditions": [
+            "flag.guild_real_motive_known == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_ashen_light_schism",
+      "title": "The Schism of Flame",
+      "category": "factions",
+      "text": "The Church of the Ashen Light was not always a religion. It began as an alchemists' guild studying the boundary between life and death. They discovered the forest consciousnesses — and they were terrified.",
+      "discovered_by_default": false,
+      "conditions": [
+        "npc.brother_maren.met == true",
+        "flag.maren_spoke_of_old_ways == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The schism happened 200 years ago. One faction wanted to UNDERSTAND the forests. The other wanted to DESTROY them. The destroyers won. The students became priests. The research became dogma. 'Burn what you cannot comprehend' became 'Suffering purifies.'",
+          "conditions": [
+            "flag.maren_spoke_of_old_ways == true"
+          ]
+        },
+        {
+          "id": "frag_2",
+          "text": "Brother Maren belongs to a secret remnant of the original faction — the ones who wanted to understand. His 'priesthood' is a cover for his research. The Church hierarchy doesn't know he still follows the old ways of inquiry.",
+          "conditions": [
+            "flag.maren_full_alliance == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "The Church's alchemical fire — 'druidfire inverted' — was originally a druid invention for HEALING sick forests. The Church reversed the formula to create a weapon.",
+          "conditions": [
+            "flag.old_maren_taught_druidfire == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_thornwood_circle",
+      "title": "The Last Druids",
+      "category": "factions",
+      "text": "The Thornwood Circle once numbered forty. They tended the forest, mediated between human and root, and maintained the pact with ritual precision. Then the Church came.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.old_maren_is_druid == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The Burning of the Groves happened 150 years ago. Church soldiers set fire to the druid sacred sites. Twenty druids died defending them. The survivors retreated deeper into the forest.",
+          "conditions": [
+            "flag.old_maren_is_druid == true"
+          ]
+        },
+        {
+          "id": "frag_2",
+          "text": "Old Maren is the last Circle member to live among humans. She chose to stay because 'someone has to remember what we were. If the last druid hides in the trees, the trees win and the humans forget.'",
+          "conditions": [
+            "flag.visited_old_maren == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "The druids didn't just tend the forest. They TRANSLATED for it. Without druids as intermediaries, the pact became a crude transaction — blood for grain — instead of the living dialogue Aldric intended.",
+          "conditions": [
+            "flag.heartwood_contact_made == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_ashworth_dynasty",
+      "title": "The Lords Who Served",
+      "category": "factions",
+      "text": "Ten generations of Ashworths. Each one diminished. The first was a visionary. The last is a prisoner.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.entered_ashworth_manor == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The Ashworth family crest is a tree growing from a crown. The crown is the lord's authority. The tree is the pact. Over centuries, the tree grew larger and the crown smaller. The current Lord Ashworth doesn't even wear it.",
+          "conditions": [
+            "flag.entered_ashworth_manor == true"
+          ]
+        },
+        {
+          "id": "frag_2",
+          "text": "Lord Ashworth's father — the one who chose Silas — kept a private journal. In it, he wrote: 'I am not a lord. I am a farmer who feeds a god with human flesh and calls it governance.'",
+          "conditions": [
+            "flag.found_ghost_letters_cache == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "The Ashworth bloodline is literally bound to the land. When the crops sicken, the lord sickens. When the soil heals, the lord heals. Lord Ashworth has aged ten years in two months.",
+          "conditions": [
+            "flag.ashworth_bound_to_land == true"
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "lore_elara_childhood",
+      "title": "The Girl Who Stayed",
+      "category": "personal",
+      "text": "Elara was four when her father walked into the forest and didn't come back. She remembers his hands — callused, always warm, smelling of sawdust and thyme. She doesn't remember his face.",
+      "discovered_by_default": false,
+      "conditions": [
+        "npc.elara.met == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "She took up herbalism because it was the closest thing to what her father did — working with living things, coaxing growth from reluctant soil. She didn't know she was continuing his legacy.",
+          "conditions": [
+            "flag.elara_trust_bond == true"
+          ]
+        },
+        {
+          "id": "frag_2",
+          "text": "Elara dropped the Maren surname when she was twelve. 'The village wanted to forget,' she told herself. But the truth is simpler: the name hurt too much to carry.",
+          "conditions": [
+            "flag.maren_family_truth_revealed == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "She hums a lullaby she doesn't remember learning. It's a druid song — Old Maren's song — passed from grandmother to grandchild before the Church took her brother away.",
+          "conditions": [
+            "flag.heard_elara_lullaby == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_fenrick_truth",
+      "title": "The Seventh Son",
+      "category": "personal",
+      "text": "Fenrick's great-great-grandmother was the widow sacrificed in Year 120. His family has spent four generations building the Hollow Hand into a power that could protect the next generation from the pact.",
+      "discovered_by_default": false,
+      "conditions": [
+        "npc.fenrick.disposition > 30"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Fenrick's greed is calculated. Every coin goes toward one goal: getting children out of Ashvale before the next Cycle. The vault heist, the smuggling routes, the political manipulation — all of it serves the children.",
+          "conditions": [
+            "flag.fenrick_children_revealed == true"
+          ]
+        },
+        {
+          "id": "frag_2",
+          "text": "He carries a list. Fourteen names. The children currently under Guild protection. He reads it every night before sleep, the way some people read prayers.",
+          "conditions": [
+            "flag.found_fenrick_tally == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_voss_rivendale",
+      "title": "A Soldier's Wound",
+      "category": "personal",
+      "text": "Commander Voss was born in Rivendale, a village on the eastern frontier. She left at twelve when the village fell to what the official records call 'a border dispute.' She knows it was something else.",
+      "discovered_by_default": false,
+      "conditions": [
+        "npc.commander_voss.met == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Rivendale had its own pact — with a river spirit, not a forest. When the lord defaulted, the river flooded. Not with water. With something that looked like water but moved with intention.",
+          "conditions": [
+            "flag.voss_shared_past == true"
+          ]
+        },
+        {
+          "id": "frag_2",
+          "text": "Voss's mercenary company isn't just for profit. She's building an army to go BACK to Rivendale. Every contract, every campaign — she's training for the day she's strong enough to face what destroyed her home.",
+          "conditions": [
+            "flag.found_voss_sketch == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "The sketch she carries of Rivendale isn't a memory. It's a battle plan. Every house is numbered. Every escape route marked. She's been planning the liberation for twenty years.",
+          "conditions": [
+            "flag.voss_past_resolved == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_harlan_guard",
+      "title": "The Gatekeeper's Guilt",
+      "category": "personal",
+      "text": "Harlan has guarded Ashvale's gate for thirty-one years. He was posted here the day after Silas Maren was sacrificed. He considers it his penance.",
+      "discovered_by_default": false,
+      "conditions": [
+        "npc.gate_guard.met == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Harlan was Silas's best friend. They grew up together, fished in the Thornwood streams, planned to leave Ashvale for the coast. Then the lord's men came for Silas, and Harlan stood aside.",
+          "conditions": [
+            "flag.harlan_recognized_compass == true"
+          ]
+        },
+        {
+          "id": "frag_2",
+          "text": "He could have warned Silas. He could have fought. Instead he watched his friend walk into the forest, and then he asked for the gate posting — the job no one wanted — because it meant he'd never have to look at the trees where Silas disappeared.",
+          "conditions": [
+            "flag.harlan_honest_with_player == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_greta_survivor",
+      "title": "The Woman Who Listens",
+      "category": "personal",
+      "text": "Greta's grandmother built the inn. Her mother ran it. Greta inherited it along with a single piece of advice: 'In Ashvale, information is the only currency that doesn't rot.'",
+      "discovered_by_default": false,
+      "conditions": [
+        "npc.greta.met == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Greta knows more than she lets on. She keeps a ledger behind the bar — not of drinks served, but of conversations overheard. Thirty years of village secrets, cross-referenced by date and topic.",
+          "conditions": [
+            "flag.greta_hinted_granary_plot == true"
+          ]
+        },
+        {
+          "id": "frag_2",
+          "text": "She's been skimming from the Guild's smuggling operation for years. Not because she's greedy — because she's building a nest egg for the village's children. She and Fenrick are working the same angle from different directions, and neither knows it.",
+          "conditions": [
+            "flag.greta_revealed_skimming == true"
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "lore_heartwood_nature",
+      "title": "What the Forest Thinks",
+      "category": "mystery",
+      "text": "The Thornwood Heartwood is not a god. It is not a demon. It is a consciousness that evolved from ten thousand years of interconnected root growth — a neural network made of cellulose and mycelium.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.heartwood_contact_made == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The Heartwood does not think in words. It thinks in growth patterns, chemical signals, and the slow passage of seasons. When it 'speaks' through the talisman, it is translating concepts that have no human equivalent.",
+          "conditions": [
+            "flag.heartwood_contact_made == true"
+          ]
+        },
+        {
+          "id": "frag_2",
+          "text": "It does not want sacrifice. It wants CONNECTION. The original pact was about bridging two forms of consciousness. But humans simplified it to a transaction — and the Heartwood, not understanding human corruption, accepted the simplified version.",
+          "conditions": [
+            "flag.pact_renegotiated == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "The Heartwood remembers every soul that was given to it. They are not dead — they are dreaming inside the root network. Silas, Wren, Eben, all of them. Dreaming of sunlight and the smell of bread.",
+          "conditions": [
+            "flag.ghost_letters_collected_all == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_cinder_root",
+      "title": "The Herb That Heals",
+      "category": "mystery",
+      "text": "Cinder-Root grows only in the margin between tilled soil and wild forest — the exact boundary of the pact. It is, in a sense, the pact made botanical.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.elara_taught_alchemy == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Its healing properties come from compounds produced by the symbiosis between human agriculture and forest mycelium. Without both, it cannot exist. It is proof that the pact was meant to benefit everyone.",
+          "conditions": [
+            "flag.elara_taught_alchemy == true"
+          ]
+        },
+        {
+          "id": "frag_2",
+          "text": "If the Harmony ending is achieved and the fields are surrendered to the forest, Cinder-Root will grow for one more generation — then vanish forever. The margin disappears when the boundary does.",
+          "conditions": [
+            "flag.cinder_root_lost == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_the_unnamed",
+      "title": "The Sacrifice No One Speaks Of",
+      "category": "mystery",
+      "text": "In Year 180, the Ashworths sacrificed a child. No records give the child's name. No grave marker exists. The village's collective amnesia about this event is absolute and deliberate.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.ghost_letter_3_read == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Old Maren knows the name. She has never spoken it aloud. She says the name belongs to the forest now, and speaking it would 'call them back to a world that failed them.'",
+          "conditions": [
+            "flag.old_maren_confirmed_silas_mother == true"
+          ]
+        },
+        {
+          "id": "frag_2",
+          "text": "The child's sacrifice produced the only year the pact PUNISHED the village instead of rewarding it. Crops grew poisonous. Wells turned bitter. The forest does not want children. It never did.",
+          "conditions": [
+            "flag.ghost_letter_3_read == true"
+          ]
+        },
+        {
+          "id": "frag_3",
+          "text": "Brother Maren found the child's name in the Church archives. It was his great-aunt. Another Maren. The family has been feeding this pact for generations.",
+          "conditions": [
+            "flag.maren_family_truth_revealed == true"
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "lore_other_pacts",
+      "title": "The Web Beneath the World",
+      "category": "world",
+      "text": "Ashvale is not unique. Across the continent, ancient pacts bind human settlements to natural consciousnesses — forest, river, mountain, sea. Most have been forgotten. Some have been broken. The ones that broke... those settlements are now ruins.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.heartwood_contact_made == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Commander Voss's village, Rivendale, had a river pact. The Ironmarch Legion destroyed a forest pact in the east. The Church has catalogued seventeen known pacts and has a systematic plan to eliminate all of them.",
+          "conditions": [
+            "flag.church_salt_the_earth_plan == true"
+          ]
+        },
+        {
+          "id": "frag_2",
+          "text": "The Heartwood is aware of the other consciousnesses. It calls them 'roots of a larger root.' They communicate through deep geological networks — conversations that take centuries.",
+          "conditions": [
+            "flag.heartwood_contact_made == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_the_dreaming",
+      "title": "Where the Sacrificed Go",
+      "category": "world",
+      "text": "The souls given to the forest do not die. They enter what the druids called 'The Dreaming' — a state of consciousness within the root network where they experience reality as the forest does.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.saw_silas_apparition == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Time moves differently in The Dreaming. A day feels like a season. A year feels like a breath. Silas Maren has been dreaming for thirty years. To him, it has been an afternoon.",
+          "conditions": [
+            "flag.saw_silas_apparition == true"
+          ]
+        },
+        {
+          "id": "frag_2",
+          "text": "The Dreaming is not paradise. It is not punishment. It is simply... different. The sacrificed retain their personalities, their memories, their capacity for love. But they can no longer touch, speak, or weep. They can only grow.",
+          "conditions": [
+            "flag.heard_crypt_whispers == true"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lore_what_comes_after",
+      "title": "The Shape of Tomorrow",
+      "category": "world",
+      "text": "Every ending in Ashvale is a beginning somewhere else. The choices made here will ripple outward — to the Ironmarch Legion, to the Church's next target, to the other pacted villages across the continent.",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.prologue_complete == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "If Ashvale falls, the Church will use it as proof that pacts are inherently destructive. If Ashvale survives, the Legion will see it as a threat. There is no quiet ending to this story.",
+          "conditions": [
+            "flag.prologue_complete == true"
+          ]
+        },
+        {
+          "id": "frag_2",
+          "text": "Old Maren says: 'We are not the main characters. We are the first chapter. What happens after us — that is the story.'",
+          "conditions": [
+            "flag.knows_three_options == true"
+          ]
+        }
+      ]
+    }
+  ]
+}

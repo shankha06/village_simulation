@@ -1,0 +1,31 @@
+# Godot 4 specific
+.godot/
+*.import
+export_presets.cfg
+override.cfg
+
+# Python venv (legacy)
+.venv/
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Build exports
+build/
+export/
+
+# repowise API keys (local)
+.repowise/.env
+
+# Godot binary
+*.zip

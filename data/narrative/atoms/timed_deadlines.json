@@ -1,0 +1,109 @@
+[
+  {
+    "id": "deadline_ironmarch_ultimatum",
+    "category": "deadline",
+    "priority": 95,
+    "once_only": true,
+    "conditions": [
+      "flag.ironmarch_rider_arrived == true",
+      "time.day >= 14"
+    ],
+    "effects": [
+      {"set_state": "flag.ironmarch_deadline_passed", "value": true},
+      {"set_state": "flag.defied_legion", "value": true}
+    ],
+    "notification_text": "The Ironmarch ultimatum has expired. You chose defiance through inaction. Captain Draven's patience is at an end. War is coming."
+  },
+  {
+    "id": "deadline_new_moon",
+    "category": "deadline",
+    "priority": 100,
+    "once_only": true,
+    "conditions": [
+      "time.day >= 30",
+      "flag.pact_resolved != true"
+    ],
+    "effects": [
+      {"set_state": "flag.new_moon_passed", "value": true},
+      {"set_state": "flag.forest_claims_ashvale", "value": true}
+    ],
+    "notification_text": "The new moon rises. The pact's deadline has passed. The forest begins to claim Ashvale — roots erupt through foundations, wells turn black, the ground itself heaves. Time has run out."
+  },
+  {
+    "id": "deadline_church_army",
+    "category": "deadline",
+    "priority": 90,
+    "once_only": true,
+    "conditions": [
+      "flag.church_salt_the_earth_plan == true",
+      "time.day >= 25"
+    ],
+    "effects": [
+      {"set_state": "flag.church_army_arrived", "value": true}
+    ],
+    "notification_text": "Smoke on the horizon. The Church of the Ashen Light's army has arrived — a column of soldiers and alchemists carrying enough fire to burn the world. 'Salt the Root' begins."
+  },
+  {
+    "id": "deadline_famine_deaths",
+    "category": "consequence",
+    "priority": 80,
+    "once_only": true,
+    "conditions": [
+      "world.region.ashvale.status == famine",
+      "time.day >= 20"
+    ],
+    "effects": [
+      {"set_state": "flag.famine_deaths_begun", "value": true},
+      {"set_state": "npc.greta.memory.first_death", "value": true}
+    ],
+    "notification_text": "The first famine death. An elderly woman, found in her cottage. Greta closes the inn early today. The village bell rings — not for prayer, but for mourning."
+  },
+  {
+    "id": "deadline_elara_recovery",
+    "category": "consequence",
+    "priority": 70,
+    "once_only": true,
+    "conditions": [
+      "flag.elara_attacked == true",
+      "time.day >= 6",
+      "flag.elara_trust_bond == true"
+    ],
+    "effects": [
+      {"set_state": "flag.elara_recovered", "value": true},
+      {"set_state": "npc.elara.health", "delta": 20}
+    ],
+    "notification_text": "Elara emerges from her cottage, bandaged but standing. The Trust Bond held — she fought through the worst of it. Her eyes are harder now. More determined."
+  },
+  {
+    "id": "deadline_elara_dies_without_trust",
+    "category": "consequence",
+    "priority": 75,
+    "once_only": true,
+    "conditions": [
+      "flag.elara_attacked == true",
+      "time.day >= 6",
+      "flag.elara_trust_bond != true"
+    ],
+    "effects": [
+      {"set_state": "npc.elara.alive", "value": false},
+      {"set_state": "flag.elara_died_from_attack", "value": true}
+    ],
+    "notification_text": "Elara is found in her cottage. She didn't survive the attack. Without the bond of trust to anchor her, she simply... stopped fighting. The herb garden grows wild. No one tends it anymore."
+  },
+  {
+    "id": "event_voss_leaves",
+    "category": "consequence",
+    "priority": 65,
+    "once_only": true,
+    "conditions": [
+      "time.day >= 12",
+      "flag.voss_conditional_alliance != true",
+      "flag.discussed_voss_alliance != true"
+    ],
+    "effects": [
+      {"set_state": "flag.voss_left_ashvale", "value": true},
+      {"set_state": "npc.commander_voss.alive", "value": false}
+    ],
+    "notification_text": "Commander Voss's camp is empty. The mercenaries packed up in the night. She waited twelve days for a reason to stay. You never gave her one."
+  }
+]

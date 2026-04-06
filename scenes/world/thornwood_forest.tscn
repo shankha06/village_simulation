@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://thornwood001"]
+
+[ext_resource type="Script" path="res://scenes/world/region_base.gd" id="1_region"]
+[ext_resource type="Script" path="res://scenes/effects/weather_system.gd" id="2_weather"]
+[ext_resource type="Script" path="res://scenes/world/transition_zone.gd" id="3_transition"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_transition_ashvale"]
+size = Vector2(16, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_transition_heartwood"]
+size = Vector2(16, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_transition_church"]
+size = Vector2(48, 16)
+
+[node name="ThornwoodForest" type="Node2D"]
+script = ExtResource("1_region")
+region_id = "thornwood"
+region_name = "Thornwood Forest"
+adjacent_regions = PackedStringArray("ashvale", "heartwood_clearing", "church_outpost")
+tilemap_json = "res://data/world/thornwood_tilemap.json"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="DefaultSpawn" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(16, 232)
+
+[node name="FromAshvale" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(24, 240)
+
+[node name="FromHeartwood" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(552, 240)
+
+[node name="FromChurchOutpost" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(520, 48)
+
+[node name="NPCSpawnPoints" type="Node2D" parent="."]
+
+[node name="WeatherSystem" type="Node2D" parent="."]
+script = ExtResource("2_weather")
+
+[node name="TransitionToAshvale" type="Area2D" parent="."]
+position = Vector2(0, 240)
+script = ExtResource("3_transition")
+target_scene = "res://scenes/world/ashvale_village.tscn"
+spawn_point = "FromThornwood"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionToAshvale"]
+shape = SubResource("RectangleShape2D_transition_ashvale")
+
+[node name="TransitionToHeartwood" type="Area2D" parent="."]
+position = Vector2(568, 240)
+script = ExtResource("3_transition")
+target_scene = "res://scenes/world/heartwood_clearing.tscn"
+spawn_point = "FromThornwood"
+locked = true
+lock_condition = "flag.has_druid_talisman == true"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionToHeartwood"]
+shape = SubResource("RectangleShape2D_transition_heartwood")
+
+[node name="TransitionToChurchOutpost" type="Area2D" parent="."]
+position = Vector2(528, 32)
+script = ExtResource("3_transition")
+target_scene = "res://scenes/world/church_outpost.tscn"
+spawn_point = "FromThornwood"
+locked = true
+lock_condition = "flag.church_salt_the_earth_plan == true"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionToChurchOutpost"]
+shape = SubResource("RectangleShape2D_transition_church")

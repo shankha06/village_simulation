@@ -1,0 +1,172 @@
+{
+  "id": "renegotiation_complete_chain",
+  "trigger_condition": "flag.renegotiation_completed == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "flag.pact_renegotiated",
+          "value": true
+        },
+        {
+          "set_state": "flag.new_pact_formed",
+          "value": true
+        },
+        {
+          "set_state": "flag.forest_expanding",
+          "value": true
+        },
+        {
+          "set_state": "world.region.thornwood.hostility",
+          "value": 0
+        },
+        {
+          "set_state": "npc.thornwood_spirit.disposition",
+          "delta": 50
+        },
+        {
+          "set_state": "npc.heartwood.disposition",
+          "delta": 60
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "set_state": "flag.blood_root_receding",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.food_supply",
+          "delta": 15
+        },
+        {
+          "spawn_event": "roots_retreat_from_village"
+        },
+        {
+          "set_state": "npc.elara.memory.roots_retreating",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {
+          "set_state": "flag.new_forest_growth_south",
+          "value": true
+        },
+        {
+          "spawn_event": "saplings_in_dead_fields"
+        },
+        {
+          "set_state": "npc.old_maren.memory.new_forest_growing",
+          "value": true
+        },
+        {
+          "set_state": "npc.old_maren.disposition",
+          "delta": 40
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 7,
+      "effects": [
+        {
+          "set_state": "world.region.ashvale.food_supply",
+          "delta": 15
+        },
+        {
+          "set_state": "flag.wells_clean",
+          "value": true
+        },
+        {
+          "spawn_event": "clean_water_celebration"
+        },
+        {
+          "set_state": "npc.greta.memory.water_clean_again",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 14,
+      "effects": [
+        {
+          "set_state": "world.region.ashvale.status",
+          "value": "recovering"
+        },
+        {
+          "set_state": "flag.first_new_crops",
+          "value": true
+        },
+        {
+          "spawn_event": "first_healthy_harvest"
+        },
+        {
+          "set_state": "npc.elara.memory.soil_healing",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 30,
+      "effects": [
+        {
+          "set_state": "world.region.ashvale.status",
+          "value": "thriving"
+        },
+        {
+          "set_state": "world.region.ashvale.food_supply",
+          "delta": 20
+        },
+        {
+          "set_state": "flag.forest_village_symbiosis",
+          "value": true
+        },
+        {
+          "spawn_event": "ashvale_renewed"
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 14,
+      "condition": "flag.legion_preparing_invasion == true",
+      "effects": [
+        {
+          "set_state": "flag.forest_defends_village",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.defense_score",
+          "delta": 30
+        },
+        {
+          "spawn_event": "forest_allies_against_legion"
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 7,
+      "condition": "flag.ashvale_fully_united == true",
+      "effects": [
+        {
+          "set_state": "flag.golden_ending",
+          "value": true
+        },
+        {
+          "spawn_event": "ashvale_golden_age_begins"
+        }
+      ]
+    }
+  ]
+}

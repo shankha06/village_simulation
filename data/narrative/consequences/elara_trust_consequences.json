@@ -1,0 +1,78 @@
+{
+  "id": "elara_trust_chain",
+  "trigger_condition": "flag.elara_trust_bond == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": 25
+        },
+        {
+          "set_state": "flag.elara_shares_personal_info",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.memory.trusts_player",
+          "value": true
+        },
+        {
+          "spawn_event": "elara_personal_revelation"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {
+          "set_state": "flag.elara_taught_alchemy",
+          "value": true
+        },
+        {
+          "set_state": "player.skills.alchemy_basic",
+          "value": true
+        },
+        {
+          "spawn_event": "elara_alchemy_lesson"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 7,
+      "effects": [
+        {
+          "set_state": "flag.elara_reveals_family_pact_connection",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.memory.shared_deepest_secret",
+          "value": true
+        },
+        {
+          "spawn_event": "elara_family_pact_reveal"
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 14,
+      "condition": "flag.elara_attacked == true",
+      "effects": [
+        {
+          "set_state": "flag.elara_survives_attack",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.status",
+          "value": "injured_but_alive"
+        },
+        {
+          "spawn_event": "elara_narrowly_survives"
+        }
+      ]
+    }
+  ]
+}

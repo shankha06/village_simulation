@@ -1,0 +1,44 @@
+{
+  "entries": [
+    {
+      "id": "lore_letter_silas",
+      "title": "A Letter from Silas",
+      "category": "personal",
+      "text": "Found in a hidden alcove of the manor crypts. The parchment is yellowed, but the hand is steady. 'Father was chosen. Now I am chosen. They say the forest needs the blood of a Maren to keep the grain gold and the wells sweet. But I look at my son, little Maren, sleeping by the hearth, and I wonder why the price of bread must be his father's soul.'",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.manor_secret_room_found == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Silas Maren was the sacrifice thirty years ago. He went willingly to spare his son."
+        },
+        {
+          "id": "frag_2",
+          "text": "Lord Ashworth's father was the one who 'asked' for Silas. The Ashworths and Marens have been bound in blood for generations."
+        }
+      ]
+    },
+    {
+      "id": "lore_note_aldric",
+      "title": "Aldric's Remorse",
+      "category": "history",
+      "text": "A scrap of paper found under a loose floorboard in the Lord's study. 'I carved a village from a monster's rib. Now the monster wants its rib back. I promised them safety, but I gave them a cage. May my children forgive me for what I have done to Ashvale.'",
+      "discovered_by_default": false,
+      "conditions": [
+        "flag.entered_ashworth_manor == true"
+      ],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Aldric Ashworth knew the pact would eventually consume the village."
+        },
+        {
+          "id": "frag_2",
+          "text": "The Heartwood isn't a protector; it's a landlord collecting rent."
+        }
+      ]
+    }
+  ]
+}

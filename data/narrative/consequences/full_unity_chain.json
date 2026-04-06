@@ -1,0 +1,100 @@
+{
+  "id": "full_unity_chain",
+  "trigger_condition": "flag.ashvale_fully_united == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "flag.ashvale_fully_united",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.defense_score",
+          "value": 100
+        },
+        {
+          "set_state": "world.region.ashvale.tension",
+          "delta": -15
+        },
+        {
+          "set_state": "player.moral_vector",
+          "delta": 20
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "spawn_event": "united_front_ceremony"
+        },
+        {
+          "set_state": "npc.lord_ashworth.memory.village_united_under_player",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.memory.impressed_by_unity",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": 20
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {
+          "set_state": "flag.fortifications_built",
+          "value": true
+        },
+        {
+          "spawn_event": "ashvale_prepares_defenses"
+        },
+        {
+          "set_state": "npc.fenrick.memory.guild_traps_set",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "effects": [
+        {
+          "set_state": "flag.militia_trained",
+          "value": true
+        },
+        {
+          "set_state": "npc.greta.memory.even_farmers_are_arming",
+          "value": true
+        },
+        {
+          "spawn_event": "militia_training_montage"
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 7,
+      "condition": "flag.defense_strength_druids == true",
+      "effects": [
+        {
+          "set_state": "flag.forest_allies_in_defense",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.defense_score",
+          "delta": 15
+        },
+        {
+          "spawn_event": "thornwood_spirits_patrol_border"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "id": "ending_atonement",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Brother Maren walked into the roots with his hands clasped and his eyes closed. He was praying \u2014 though to whom, in that moment, even he wasn't certain. The Ashen Light? The Heartwood? The villagers who watched in stunned silence? Perhaps all of them. Perhaps none.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_atonement_started",
+          "value": true
+        }
+      ],
+      "next": "the_taking"
+    },
+    "the_taking": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The forest took him gently. The roots parted like arms opening for an embrace. His prayer continued \u2014 muffled, then distant, then gone. Where he stood, a small white flower bloomed. It smelled of incense and clean linen. The pact was renewed.",
+      "next": "return_to_village"
+    },
+    "return_to_village": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You return to Ashvale carrying Maren's prayer beads and nothing else. The crops are already recovering. The water clears. The blight recedes. But the Church of the Ashen Light has lost its shepherd, and the flock stands in the square with nowhere to turn.",
+      "next": "faithful_react"
+    },
+    "faithful_react": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Some of the faithful weep openly. Others stand rigid, faces carved from denial. A few simply leave \u2014 walk out the gate with their belongings and never look back, as though the village had become unholy ground. The Church's hold on Ashvale fractures in a single afternoon.",
+      "next": "old_maren_speaks"
+    },
+    "old_maren_speaks": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "thoughtful",
+      "text": "I've lived long enough to see three priests come and go from this village. They all brought their gods with them, and they all left something behind when they went. Brother Maren left his courage. That's worth more than any sermon.",
+      "conditions": [
+        {
+          "check": "npc.old_maren.alive",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "next": "faith_choice"
+    },
+    "faith_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "honor_sacrifice",
+          "text": "Maren's sacrifice was an act of faith. The Church should honor him as a saint.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.maren_declared_saint",
+              "value": true
+            },
+            {
+              "set_state": "faction.church_ashen_light.power",
+              "delta": 15
+            }
+          ],
+          "next": "saint_path"
+        },
+        {
+          "id": "new_faith",
+          "text": "The old faith couldn't save us. Maybe it's time for something new.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.new_faith_movement",
+              "value": true
+            }
+          ],
+          "next": "new_faith_path"
+        },
+        {
+          "id": "no_faith",
+          "text": "We don't need priests or gods. We need each other.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.secular_ashvale",
+              "value": true
+            },
+            {
+              "set_state": "faction.church_ashen_light.power",
+              "delta": -30
+            }
+          ],
+          "next": "secular_path"
+        }
+      ]
+    },
+    "saint_path": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The Church declares Maren a saint \u2014 Saint Maren of the Roots, they call him. Pilgrims come from distant parishes to see the white flower that blooms where he fell. The Church endures, transformed by his example. It becomes gentler. Humbler. More willing to listen. Whether Maren would have approved is a question no one can answer. The dead keep their opinions to themselves.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_atonement_complete",
+          "value": true
+        }
+      ],
+      "next": "epilogue"
+    },
+    "new_faith_path": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "A new faith emerges from the ashes of the old \u2014 one that honors the forest alongside the Light, that sees the divine not in doctrine but in the turning of seasons and the growth of living things. It has no name yet. It has no scriptures. But it has the white flower, and the memory of a man who gave everything. Sometimes that's enough to build a religion on.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_atonement_complete",
+          "value": true
+        }
+      ],
+      "next": "epilogue"
+    },
+    "secular_path": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The chapel empties. The prayer bells fall silent. Ashvale becomes a village of pragmatists \u2014 people who trust what they can see, touch, and grow. They honor Maren not with worship but with work: the fields he saved, the water he purified, the lives his death made possible. It's not faith. But it's something.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_atonement_complete",
+          "value": true
+        }
+      ],
+      "next": "epilogue"
+    },
+    "epilogue": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Years pass. The white flower at the edge of the Thornwood never wilts, never spreads, never dies. It simply blooms \u2014 a single point of impossible beauty in a world that often forgets such things exist. Villagers leave offerings there. Not prayers. Just... acknowledgments. A loaf of bread. A handful of grain. A child's drawing. The flower accepts them all with the same quiet grace. Some debts are paid in silence.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

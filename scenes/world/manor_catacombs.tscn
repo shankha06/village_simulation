@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://catacombs001"]
+
+[ext_resource type="Script" path="res://scenes/world/region_base.gd" id="1_region"]
+[ext_resource type="Script" path="res://scenes/effects/weather_system.gd" id="2_weather"]
+[ext_resource type="Script" path="res://scenes/world/transition_zone.gd" id="3_transition"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_transition_manor"]
+size = Vector2(48, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_transition_ritual"]
+size = Vector2(48, 16)
+
+[node name="ManorCatacombs" type="Node2D"]
+script = ExtResource("1_region")
+region_id = "manor_catacombs"
+region_name = "Manor Catacombs"
+adjacent_regions = PackedStringArray("ashworth_manor", "ritual_chamber")
+tilemap_json = "res://data/world/manor_catacombs_tilemap.json"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="DefaultSpawn" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(192, 24)
+
+[node name="FromManor" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(192, 24)
+
+[node name="FromCatacombs" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(192, 24)
+
+[node name="FromRitualChamber" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(192, 344)
+
+[node name="NPCSpawnPoints" type="Node2D" parent="."]
+
+[node name="WeatherSystem" type="Node2D" parent="."]
+script = ExtResource("2_weather")
+
+[node name="TransitionToManor" type="Area2D" parent="."]
+position = Vector2(192, 0)
+script = ExtResource("3_transition")
+target_scene = "res://scenes/world/ashworth_manor.tscn"
+spawn_point = "FromCatacombs"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionToManor"]
+shape = SubResource("RectangleShape2D_transition_manor")
+
+[node name="TransitionToRitualChamber" type="Area2D" parent="."]
+position = Vector2(192, 360)
+script = ExtResource("3_transition")
+target_scene = "res://scenes/world/ritual_chamber.tscn"
+spawn_point = "FromCatacombs"
+locked = true
+lock_condition = "flag.crypt_unlocked == true"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionToRitualChamber"]
+shape = SubResource("RectangleShape2D_transition_ritual")

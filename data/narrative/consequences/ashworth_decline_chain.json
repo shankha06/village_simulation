@@ -1,0 +1,96 @@
+{
+  "id": "ashworth_decline_chain",
+  "trigger_condition": "time.day >= 5",
+  "consequences": [
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "effects": [
+        {
+          "set_state": "flag.ashworth_coughing",
+          "value": true
+        },
+        {
+          "set_state": "npc.lord_ashworth.health",
+          "value": "declining"
+        },
+        {
+          "set_state": "npc.lord_ashworth.portrait_variant",
+          "value": "haggard"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 10,
+      "effects": [
+        {
+          "set_state": "flag.ashworth_bedridden",
+          "value": true
+        },
+        {
+          "set_state": "npc.lord_ashworth.health",
+          "value": "bedridden_half_day"
+        },
+        {
+          "set_state": "npc.lord_ashworth.availability",
+          "value": "morning_only"
+        },
+        {
+          "spawn_event": "ashworth_health_declining"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 15,
+      "effects": [
+        {
+          "set_state": "flag.ashworth_barely_standing",
+          "value": true
+        },
+        {
+          "set_state": "npc.lord_ashworth.health",
+          "value": "critical"
+        },
+        {
+          "set_state": "npc.lord_ashworth.portrait_variant",
+          "value": "dying"
+        },
+        {
+          "spawn_event": "ashworth_collapse"
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 20,
+      "condition": "flag.pact_renegotiated == false AND flag.sacrifice_completed == false AND flag.severance_completed == false",
+      "effects": [
+        {
+          "set_state": "flag.ashworth_dead",
+          "value": true
+        },
+        {
+          "set_state": "npc.lord_ashworth.status",
+          "value": "dead"
+        },
+        {
+          "set_state": "flag.bloodline_ended",
+          "value": true
+        },
+        {
+          "set_state": "flag.pact_has_no_keeper",
+          "value": true
+        },
+        {
+          "set_state": "faction.ashvale_nobility.power",
+          "value": 0
+        },
+        {
+          "spawn_event": "ashworth_death_event"
+        }
+      ]
+    }
+  ]
+}

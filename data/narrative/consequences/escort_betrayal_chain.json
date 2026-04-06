@@ -1,0 +1,50 @@
+{
+  "id": "escort_betrayal_chain",
+  "trigger_condition": "flag.reported_escort_to_ironmarch == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "npc.fenrick.disposition",
+          "delta": -80
+        },
+        {
+          "set_state": "npc.fenrick.memory.betrayed_by_player",
+          "value": true
+        },
+        {
+          "set_state": "flag.guild_marks_player",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {
+          "set_state": "flag.guild_assassination_attempt",
+          "value": true
+        },
+        {
+          "spawn_event": "guild_sends_assassin"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 7,
+      "effects": [
+        {
+          "set_state": "faction.ironmarch_legion.power",
+          "delta": 10.0
+        },
+        {
+          "set_state": "faction.thieves_guild.power",
+          "delta": -25.0
+        }
+      ]
+    }
+  ]
+}

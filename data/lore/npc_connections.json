@@ -1,0 +1,74 @@
+{
+  "connections": [
+    {
+      "npcs": ["old_maren", "brother_maren", "elara"],
+      "type": "family",
+      "description": "Grandmother, grandson, granddaughter. Separated by the pact that killed Silas.",
+      "discovery_flag": "flag.maren_family_truth_revealed",
+      "narrative_weight": "critical"
+    },
+    {
+      "npcs": ["gate_guard", "old_maren"],
+      "type": "shared_grief",
+      "description": "Harlan was Silas's best friend. Old Maren was Silas's mother. They share the weight of his sacrifice.",
+      "discovery_flag": "flag.harlan_recognized_compass",
+      "narrative_weight": "major"
+    },
+    {
+      "npcs": ["fenrick", "elara"],
+      "type": "parallel_mission",
+      "description": "Both are protecting Ashvale's future — Fenrick through the children, Elara through the land. Neither knows the other's true purpose.",
+      "discovery_flag": "flag.fenrick_children_revealed",
+      "narrative_weight": "moderate"
+    },
+    {
+      "npcs": ["commander_voss", "lord_ashworth"],
+      "type": "mirror",
+      "description": "Both failed to save their people. Voss lost Rivendale to a river pact. Ashworth is losing Ashvale to a forest pact. They are the same wound from different wars.",
+      "discovery_flag": "flag.voss_shared_past",
+      "narrative_weight": "major"
+    },
+    {
+      "npcs": ["brother_maren", "lord_ashworth"],
+      "type": "enemy_with_shared_guilt",
+      "description": "Maren blames the Ashworths for killing his father. Ashworth carries the guilt of choosing Silas. They hate each other for the same reason.",
+      "discovery_flag": "flag.ashworth_confession_heard",
+      "narrative_weight": "critical"
+    },
+    {
+      "npcs": ["greta", "fenrick"],
+      "type": "unwitting_allies",
+      "description": "Both skim from the Guild's operations to protect children. Neither knows the other does it. If they discovered each other, they'd be the village's most effective team.",
+      "discovery_flag": "flag.greta_revealed_skimming",
+      "narrative_weight": "moderate"
+    },
+    {
+      "npcs": ["old_maren", "heartwood"],
+      "type": "last_bridge",
+      "description": "Old Maren is the last human who can communicate with the forest through the roots. When she dies, the bridge between species dies with her — unless a new one is built.",
+      "discovery_flag": "flag.heartwood_contact_made",
+      "narrative_weight": "critical"
+    },
+    {
+      "npcs": ["ironmarch_emissary", "commander_voss"],
+      "type": "old_enemies",
+      "description": "Draven's Legion destroyed Voss's village. He doesn't recognize her. She recognizes him. This is personal.",
+      "discovery_flag": "flag.voss_warned_about_ironmarch",
+      "narrative_weight": "major"
+    },
+    {
+      "npcs": ["brother_maren", "fenrick"],
+      "type": "strange_parallel",
+      "description": "Both came to Ashvale with hidden agendas. Both are more complex than they appear. Both carry the weight of dead family members. Neither would ever admit they have anything in common.",
+      "discovery_flag": "flag.maren_full_alliance",
+      "narrative_weight": "minor"
+    },
+    {
+      "npcs": ["elara", "lord_ashworth"],
+      "type": "unknowing_debt",
+      "description": "Ashworth's father chose Elara's father as the sacrifice. The Ashworth family owes the Maren family a debt that can never be repaid. Elara doesn't know this yet.",
+      "discovery_flag": "flag.maren_family_truth_revealed",
+      "narrative_weight": "critical"
+    }
+  ]
+}

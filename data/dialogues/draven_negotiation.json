@@ -1,0 +1,332 @@
+{
+  "id": "draven_negotiation",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Draven is seated at the inn table, a map of the region spread before him. He's marked Ashvale with a black circle. Red arrows converge on it from three directions.",
+      "next": "start_2"
+    },
+    "start_2": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "You've come to talk terms. Good. I'd rather sign a treaty than write a casualty report. Sit. Let's be civilized about the end of your independence.",
+      "next": "negotiate_opening"
+    },
+    "negotiate_opening": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "discuss_trade",
+          "text": "Trade routes. That's what the Legion really wants \u2014 the Thornwood road. Let's start there.",
+          "conditions": [
+            {
+              "check": "flag.draven_revealed_spy",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "trade_discussion"
+        },
+        {
+          "id": "discuss_military",
+          "text": "No garrison. Ashvale keeps its own guard. We'll permit Legion patrols on the road but not in the village.",
+          "conditions": [],
+          "triggers": [],
+          "next": "military_discussion"
+        },
+        {
+          "id": "ask_about_spy",
+          "text": "Before we negotiate \u2014 the spy you mentioned. I want to know more.",
+          "conditions": [
+            {
+              "check": "flag.draven_revealed_spy",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "spy_discussion"
+        }
+      ]
+    },
+    "trade_discussion": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "The Thornwood road saves our supply lines three weeks per circuit. That's worth more than this village, frankly. You're sharp to see it.",
+      "next": "trade_discussion_2"
+    },
+    "trade_discussion_2": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Here's what I can offer: guaranteed trade access, protected by Legion outriders. Ashvale becomes a waystation \u2014 inn, stables, resupply point. Your merchants get first access to eastern goods. In exchange: a percentage of all goods passing through. Say... fifteen percent.",
+      "next": "trade_counter"
+    },
+    "trade_counter": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept_fifteen",
+          "text": "Fifteen percent is steep, but manageable. What about the conscription quotas?",
+          "conditions": [],
+          "triggers": [],
+          "next": "conscription_discussion"
+        },
+        {
+          "id": "counter_ten",
+          "text": "Ten percent. And Ashvale sets the tariffs on goods sold within village limits.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.ironmarch_emissary.memory.player_negotiates_hard",
+              "value": true
+            }
+          ],
+          "next": "counter_response"
+        }
+      ]
+    },
+    "counter_response": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Draven taps the map twice. He's calculating.",
+      "next": "counter_response_2"
+    },
+    "counter_response_2": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Twelve percent. Local tariff authority. But the Legion reserves the right to audit your books once per season. Non-negotiable \u2014 the General doesn't trust anyone's arithmetic but his own.",
+      "next": "conscription_discussion"
+    },
+    "conscription_discussion": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Now \u2014 conscription. The standard quota is one in ten fighting-age adults per year. For a village this size, that's... perhaps eight to twelve souls. They serve for three years, then return home.",
+      "next": "conscription_choice"
+    },
+    "conscription_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "refuse_conscription",
+          "text": "No conscription. Ashvale's people are farmers, not soldiers. You want troops, recruit volunteers and pay them.",
+          "conditions": [],
+          "triggers": [],
+          "next": "conscription_refused"
+        },
+        {
+          "id": "accept_conscription",
+          "text": "One in ten is harsh, but... if it keeps the peace, it keeps the peace.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_conscription",
+              "value": true
+            }
+          ],
+          "next": "deal_summary"
+        },
+        {
+          "id": "counter_conscription",
+          "text": "Volunteer-only. The Legion pays a fair wage. Anyone who wants to serve can serve \u2014 but no one is forced.",
+          "conditions": [],
+          "triggers": [],
+          "next": "conscription_counter"
+        }
+      ]
+    },
+    "conscription_refused": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "cold",
+      "text": "Draven's jaw tightens. This is where the mask gets thin.",
+      "next": "conscription_refused_2"
+    },
+    "conscription_refused_2": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "cold",
+      "text": "The General will not accept a deal without manpower provisions. Period. I can reduce the quota \u2014 one in twenty, perhaps. But zero is a number that ends this negotiation.",
+      "next": "conscription_choice"
+    },
+    "conscription_counter": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "He considers this for a long moment, rolling a coin across his knuckles.",
+      "next": "conscription_counter_2"
+    },
+    "conscription_counter_2": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Volunteer recruitment with a signing bonus paid by the Legion. Minimum of five volunteers per year or Ashvale covers the shortfall in gold. That... I can sell to the General. Barely.",
+      "triggers": [
+        {
+          "set_state": "flag.volunteer_conscription_deal",
+          "value": true
+        }
+      ],
+      "next": "deal_summary"
+    },
+    "deal_summary": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Draven pulls a blank parchment from his satchel and begins writing in precise, small letters.",
+      "next": "deal_summary_2"
+    },
+    "deal_summary_2": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Trade access, tribute in goods, local governance retained under Legion oversight. Your lord keeps his seat. I'll present this to the General. If he agrees \u2014 and I believe he will \u2014 Ashvale becomes a tributary partner, not a conquered province.",
+      "next": "deal_summary_3"
+    },
+    "deal_summary_3": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "He sets down the quill and looks at you directly.",
+      "next": "deal_summary_4"
+    },
+    "deal_summary_4": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "You negotiated well. Better than most. But let me be clear about one thing: the Legion keeps its word, and it expects the same. Default on these terms and there won't be a second conversation. There will only be the sound of boots on your road.",
+      "triggers": [
+        {
+          "set_state": "flag.negotiated_with_legion",
+          "value": true
+        },
+        {
+          "set_state": "flag.ashvale_tributary_state",
+          "value": true
+        },
+        {
+          "set_state": "npc.ironmarch_emissary.disposition",
+          "delta": 15
+        }
+      ],
+      "next": "end"
+    },
+    "spy_discussion": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Draven folds his arms.",
+      "next": "spy_discussion_2"
+    },
+    "spy_discussion_2": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "I told you what I told you because it serves the negotiation. A frightened partner is a compliant partner. But I won't burn my sources.",
+      "next": "spy_discussion_3"
+    },
+    "spy_discussion_3": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "What I will say: the reports started three months ago. Shortly after a certain priest arrived in your village. Make of that what you will.",
+      "triggers": [
+        {
+          "set_state": "flag.spy_hint_timing_matches_maren",
+          "value": true
+        },
+        {
+          "set_state": "flag.spy_suspicion_brother_maren",
+          "value": true
+        }
+      ],
+      "next": "spy_discussion_4"
+    },
+    "spy_discussion_4": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Now. Can we return to the matter of your village's future? Or would you prefer to chase shadows while the clock ticks?",
+      "next": "negotiate_opening"
+    },
+    "military_discussion": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "No garrison. That's your opening position. Here's mine: a garrison is the only thing that makes this deal work for the General. Without soldiers on the ground, this is just a piece of paper.",
+      "next": "military_discussion_2"
+    },
+    "military_discussion_2": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Compromise: a waystation barracks on the road outside the village, not within it. Twenty soldiers, rotated quarterly. They patrol the road, not the village. Your guard handles internal matters. The Legion handles external threats.",
+      "next": "military_choice"
+    },
+    "military_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept_waystation",
+          "text": "A barracks outside the village. That... could work. But the village guard answers to Lord Ashworth, not the Legion.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_waystation_compromise",
+              "value": true
+            }
+          ],
+          "next": "trade_discussion"
+        },
+        {
+          "id": "reject_all_military",
+          "text": "No soldiers. Not in the village, not outside it. The road is open to merchants and travelers. That should be enough.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.ironmarch_emissary.disposition",
+              "delta": -15
+            }
+          ],
+          "next": "military_hardline"
+        }
+      ]
+    },
+    "military_hardline": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "cold",
+      "text": "Draven stands abruptly, rolling up the map.",
+      "next": "military_hardline_2"
+    },
+    "military_hardline_2": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "cold",
+      "text": "Then we have nothing to discuss. The Legion doesn't invest in unprotected assets. You have your seven days. Use them to prepare for what comes next, because what comes next won't be sitting at a table with maps.",
+      "triggers": [
+        {
+          "set_state": "flag.negotiation_collapsed",
+          "value": true
+        },
+        {
+          "set_state": "flag.defied_legion",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

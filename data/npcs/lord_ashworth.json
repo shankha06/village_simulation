@@ -1,0 +1,62 @@
+{
+  "id": "lord_ashworth",
+  "name": "Lord Ashworth",
+  "description": "The reclusive lord of Ashvale. Once a fair ruler, now a haunted man locked behind the walls of his manor. He knows the truth about the poison \u2014 and it terrifies him.",
+  "faction": "ashvale_nobility",
+  "personality": {
+    "courage": 0.2,
+    "greed": 0.5,
+    "loyalty": 0.6,
+    "cruelty": 0.3,
+    "curiosity": 0.1,
+    "honesty": 0.3
+  },
+  "schedule": [
+    {
+      "hour": 0,
+      "location": "manor_study",
+      "activity": "pacing"
+    },
+    {
+      "hour": 6,
+      "location": "manor_bedroom",
+      "activity": "sleeping"
+    },
+    {
+      "hour": 12,
+      "location": "manor_study",
+      "activity": "writing_letters"
+    },
+    {
+      "hour": 18,
+      "location": "manor_dining",
+      "activity": "eating_alone"
+    },
+    {
+      "hour": 21,
+      "location": "manor_study",
+      "activity": "drinking"
+    }
+  ],
+  "home_location": "ashworth_manor",
+  "dialogue_pools": {
+    "greeting": "ashworth_intro",
+    "about_poison": "ashworth_confession",
+    "confronted": "ashworth_breakdown",
+    "friendly": "ashworth_desperate_plea",
+    "hostile": "ashworth_cornered",
+    "ledger_quest": "ashworth_ledger_quest",
+    "ledger_discovery": "ledger_discovery"
+  },
+  "default_greeting": "ashworth_intro",
+  "is_combatant": false,
+  "max_health": 35.0,
+  "can_surrender": true,
+  "npc_relationships": {
+    "elara": -20,
+    "fenrick": -60,
+    "brother_maren": -40,
+    "greta": -10,
+    "commander_voss": -30
+  }
+}

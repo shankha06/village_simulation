@@ -1,0 +1,147 @@
+{
+  "interactables": [
+    {
+      "id": "lords_desk",
+      "type": "search",
+      "name": "Lord's Desk",
+      "position": [
+        72,
+        48
+      ],
+      "text": "A heavy oak desk covered in papers. Most are mundane \u2014 tax records, grain inventories. But the ink is shaking, the handwriting deteriorating across recent entries.",
+      "state_condition": "flag.quest_investigate_manor == true",
+      "state_alt_text": "Beneath the ledgers you find a leather-bound journal. The last entry reads: 'The covenant must be renewed. Father knew. His father knew. I thought it superstition until the crops began to fail. The forest remembers what we owe. God help me, I think it wants blood.'",
+      "gives_item": "ritual_journal",
+      "sets_flag": "flag.found_ritual_journal",
+      "one_shot": true
+    },
+    {
+      "id": "family_portraits",
+      "type": "examine",
+      "name": "Family Portraits",
+      "position": [
+        192,
+        128
+      ],
+      "text": "Generations of Ashworths stare down from gilded frames. Every third portrait shows a lord who looks... hollowed out. Gaunt cheeks, sunken eyes, hands clenched as if in pain. The dates on these portraits are exactly thirty years apart.",
+      "sets_flag": "flag.noticed_portrait_pattern"
+    },
+    {
+      "id": "manor_bookshelf",
+      "type": "examine",
+      "name": "Library Bookshelf",
+      "position": [
+        336,
+        64
+      ],
+      "text": "Hundreds of volumes, many in languages you don't recognize. One shelf is dedicated to 'Forest Covenants and Binding Agreements' \u2014 the spines are well-worn. A gap suggests a book has been recently removed.",
+      "state_condition": "flag.found_ritual_journal == true",
+      "state_alt_text": "With the journal's context, the titles make terrible sense. 'Blood Tithes of the Old Wood,' 'The Thirty-Year Cycle,' 'Pacts Between Root and Crown.' The Ashworths have known about the covenant for generations."
+    },
+    {
+      "id": "wine_cellar",
+      "type": "search",
+      "name": "Wine Cellar",
+      "position": [
+        368,
+        256
+      ],
+      "text": "Rows of dusty bottles. Most are empty. The lord has been drinking heavily \u2014 labels from expensive vintages discarded like common water skins. Despair has a taste, and Lord Ashworth has been drowning in it.",
+      "gives_item": "fine_wine",
+      "one_shot": true
+    },
+    {
+      "id": "crypt_entrance",
+      "type": "door",
+      "name": "Crypt Entrance",
+      "position": [
+        232,
+        256
+      ],
+      "text": "Stone stairs descend into darkness. The air rising from below is cold and carries the scent of damp earth and something metallic. A heavy iron lock bars the way.",
+      "required_item": "crypt_key",
+      "locked_text": "The iron gate is locked with a heavy padlock. You'll need a key to descend into the crypt.",
+      "state_condition": "flag.crypt_unlocked == true",
+      "state_alt_text": "The gate hangs open. Cold air rushes past you as you peer into the darkness below. The ritual chamber awaits.",
+      "sets_flag": "flag.entered_crypt"
+    },
+    {
+      "id": "bloodstain_carpet",
+      "type": "examine",
+      "name": "Stained Carpet",
+      "position": [
+        240,
+        176
+      ],
+      "text": "Someone scrubbed this. Recently. The carpet fibers are still damp, and a faint copper smell lingers. Whatever happened here, someone wanted it hidden.",
+      "sets_flag": "flag.found_manor_bloodstain"
+    },
+    {
+      "id": "manor_fireplace",
+      "type": "examine",
+      "name": "Grand Fireplace",
+      "position": [
+        240,
+        144
+      ],
+      "text": "A massive stone fireplace, cold and dark. Ash from burned papers fills the grate \u2014 someone has been destroying documents. A scrap that survived reads: '...cannot let the Church discover the true nature of...'"
+    },
+    {
+      "id": "guard_roster",
+      "type": "read",
+      "name": "Guard Duty Roster",
+      "position": [
+        160,
+        336
+      ],
+      "text": "Commander Voss's patrol schedule. Guards rotate every four hours. The crypt is checked once per night \u2014 at midnight. There's a gap in coverage between shifts.",
+      "sets_flag": "flag.know_guard_schedule"
+    },
+    {
+      "id": "secret_passage",
+      "type": "door",
+      "name": "Bookshelf Panel",
+      "position": [
+        432,
+        80
+      ],
+      "text": "This section of bookshelf seems slightly recessed compared to the others. The dust pattern on the floor suggests it has been moved recently.",
+      "required_item": "manor_secret_key",
+      "locked_text": "The panel doesn't budge. There must be a hidden mechanism somewhere.",
+      "state_condition": "flag.found_secret_mechanism == true",
+      "state_alt_text": "The panel swings open silently, revealing a narrow passage. Cold air and the sound of distant dripping water emanate from within.",
+      "sets_flag": "flag.opened_secret_passage"
+    },
+    {
+      "id": "dining_table",
+      "type": "examine",
+      "name": "Dining Table",
+      "position": [
+        240,
+        168
+      ],
+      "text": "A long oak table set for one. The meal is untouched \u2014 roast meat gone cold, bread hardening. Lord Ashworth hasn't been eating. A half-written letter sits beside the plate, addressed to no one."
+    },
+    {
+      "id": "crypt_alcove_letters",
+      "type": "search",
+      "name": "Hidden Alcove in Crypt Wall",
+      "position": [248, 280],
+      "text": "A loose stone. Behind it, tightly rolled parchments preserved by cold dry air. Each tied with a different color thread.",
+      "state_condition": "flag.entered_crypt == true",
+      "state_alt_text": "Five letters spanning three centuries. The oldest ink has faded to brown. The newest -- Silas Maren's -- is still dark. They all say the same thing in different words: goodbye.",
+      "sets_flag": "flag.found_ghost_letters_cache",
+      "one_shot": true
+    },
+    {
+      "id": "crypt_wall_names",
+      "type": "examine",
+      "name": "Scratched Names on Crypt Wall",
+      "position": [264, 288],
+      "text": "Names scratched into stone. Ten names. Ten sacrifices across three hundred years.",
+      "state_condition": "flag.maren_family_truth_revealed == true",
+      "state_alt_text": "Silas Maren. Brother Maren's father. Elara's father. Old Maren's son. One name, three lives shattered.",
+      "sets_flag": "flag.read_sacrifice_names"
+    }
+  ]
+}

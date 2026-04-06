@@ -1,0 +1,87 @@
+{
+  "id": "old_maren",
+  "name": "Old Maren",
+  "description": "The last druid of the Thornwood Circle. Blind but sees through the roots. Speaks in riddles and painful truths.",
+  "faction": "thornwood_druids",
+  "personality": {
+    "courage": 0.8,
+    "greed": 0.0,
+    "loyalty": 0.9,
+    "cruelty": 0.0,
+    "curiosity": 0.7,
+    "honesty": 0.9
+  },
+  "schedule": [
+    {
+      "hour": 5,
+      "location": "village_edge_bench",
+      "activity": "meditating"
+    },
+    {
+      "hour": 10,
+      "location": "village_edge_bench",
+      "activity": "listening_to_roots"
+    },
+    {
+      "hour": 14,
+      "location": "herb_garden",
+      "activity": "tending_herbs"
+    },
+    {
+      "hour": 18,
+      "location": "village_edge_bench",
+      "activity": "telling_stories"
+    },
+    {
+      "hour": 22,
+      "location": "village_edge_bench",
+      "activity": "sleeping"
+    }
+  ],
+  "home_location": "village_edge",
+  "dialogue_pools": {
+    "greeting": "old_maren_intro",
+    "follow_up": "old_maren_follow_up",
+    "prophecy": "old_maren_prophecy",
+    "whispers_quest": "spirit_encounter",
+    "silas_spirit": "silas_spirit"
+  },
+  "default_greeting": "old_maren_intro",
+  "barks": [
+    "The roots are restless today...",
+    "I can feel you standing there, young one.",
+    "The forest whispers your name.",
+    "Patience. The earth speaks slowly.",
+    "Something stirs beneath us.",
+    "The old ways remember, even if you do not."
+  ],
+  "family": {
+    "son_deceased": "silas_maren",
+    "grandson": "brother_maren",
+    "granddaughter": "elara"
+  },
+  "conditional_barks": [
+    {
+      "text": "He has his father's eyes, that priest. Silas's eyes.",
+      "conditions": [
+        {"check": "flag.maren_family_truth_revealed", "op": "==", "value": true}
+      ]
+    },
+    {
+      "text": "Elara tends roots. The boy burns them. Silas's children, torn in half.",
+      "conditions": [
+        {"check": "flag.maren_family_truth_revealed", "op": "==", "value": true},
+        {"check": "npc.elara.met", "op": "==", "value": true}
+      ]
+    }
+  ],
+  "is_combatant": false,
+  "max_health": 20.0,
+  "can_surrender": false,
+  "npc_relationships": {
+    "elara": 40,
+    "brother_maren": -50,
+    "greta": 10,
+    "lord_ashworth": -20
+  }
+}

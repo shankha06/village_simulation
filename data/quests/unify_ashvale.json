@@ -1,0 +1,286 @@
+{
+  "id": "unify_ashvale",
+  "name": "A United Front",
+  "description": "To resist the Ironmarch Legion, Ashvale must unite. Every faction distrusts every other, and each has demands before they will stand together. The player must broker impossible alliances \u2014 or accept a weaker defense.",
+  "giver": "lord_ashworth",
+  "region": "ashvale",
+  "tags": [
+    "main_quest",
+    "act_2",
+    "political",
+    "alliance",
+    "multi_objective"
+  ],
+  "priority": 14,
+  "states": {
+    "INACTIVE": {
+      "transitions": [
+        {
+          "on": "flag.defied_legion == true",
+          "to": "ACTIVE"
+        },
+        {
+          "on": "flag.draven_killed == true",
+          "to": "ACTIVE"
+        },
+        {
+          "on": "flag.negotiated_with_legion == true && flag.planning_resistance == true",
+          "to": "ACTIVE"
+        }
+      ]
+    },
+    "ACTIVE": {
+      "journal_entry": "If Ashvale is going to survive what's coming, the factions need to stand together. The Guild, the Guard, the mercenaries, the Church, and the druids \u2014 each has their price. I need to bring them to the table.",
+      "objectives": [
+        "Secure the Hollow Hand's support (speak with Fenrick)",
+        "Secure the Guard's loyalty (resolve the poison investigation)",
+        "Secure Voss's mercenaries (prove the threat + payment or alliance)",
+        "Secure the Church's support (ally with or expose Brother Maren)",
+        "(Optional) Secure the Druids' aid (speak with Old Maren about the forest)"
+      ],
+      "transitions": [
+        {
+          "on": "flag.guild_joined_defense == true",
+          "to": "GUILD_SECURED"
+        },
+        {
+          "on": "flag.guard_joined_defense == true",
+          "to": "GUARD_SECURED"
+        },
+        {
+          "on": "flag.voss_joined_defense == true",
+          "to": "MERCS_SECURED"
+        },
+        {
+          "on": "flag.church_joined_defense == true",
+          "to": "CHURCH_SECURED"
+        },
+        {
+          "on": "flag.druids_joined_defense == true",
+          "to": "DRUIDS_SECURED"
+        },
+        {
+          "on": "flag.all_factions_united == true",
+          "to": "FULLY_UNITED"
+        },
+        {
+          "on": "flag.defense_day_arrived == true",
+          "to": "PARTIAL_DEFENSE"
+        }
+      ]
+    },
+    "GUILD_SECURED": {
+      "journal_entry": "Fenrick and the Hollow Hand will fight for Ashvale \u2014 or at least fight for Ashvale's wealth. The Guild brings sabotage expertise and a network of spies. Not noble allies, but effective ones.",
+      "objectives_completed": [
+        "Secure the Hollow Hand's support"
+      ],
+      "conditions_met": [
+        {
+          "any_of": [
+            "flag.sabotage_completed == true",
+            "flag.sabotage_abandoned_peacefully == true",
+            "flag.fenrick_owes_player == true",
+            "flag.blackmailed_fenrick == true"
+          ]
+        }
+      ],
+      "effects": [
+        {
+          "set_state": "flag.defense_strength_guild",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.defense_score",
+          "delta": 15
+        }
+      ],
+      "transitions": [
+        {
+          "on": "flag.all_factions_united == true",
+          "to": "FULLY_UNITED"
+        },
+        {
+          "on": "flag.defense_day_arrived == true",
+          "to": "PARTIAL_DEFENSE"
+        }
+      ]
+    },
+    "GUARD_SECURED": {
+      "journal_entry": "The Ashvale Guard stands ready. With the poisoner exposed \u2014 or at least the poisoning stopped \u2014 the guards trust that we're fighting for something worth protecting.",
+      "objectives_completed": [
+        "Secure the Guard's loyalty"
+      ],
+      "conditions_met": [
+        {
+          "any_of": [
+            "flag.found_true_poisoner == true",
+            "flag.accused_maren == true",
+            "flag.accused_fenrick == true",
+            "flag.poisoning_stopped == true"
+          ]
+        }
+      ],
+      "effects": [
+        {
+          "set_state": "flag.defense_strength_guard",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.defense_score",
+          "delta": 20
+        }
+      ],
+      "transitions": [
+        {
+          "on": "flag.all_factions_united == true",
+          "to": "FULLY_UNITED"
+        },
+        {
+          "on": "flag.defense_day_arrived == true",
+          "to": "PARTIAL_DEFENSE"
+        }
+      ]
+    },
+    "MERCS_SECURED": {
+      "journal_entry": "Commander Voss and the Free Company of the Iron Road will defend Ashvale. Professional soldiers, battle-tested and loyal \u2014 as long as the coin holds out.",
+      "objectives_completed": [
+        "Secure Voss's mercenaries"
+      ],
+      "conditions_met": [
+        {
+          "all_of": [
+            "flag.voss_shown_legion_proof == true",
+            {
+              "any_of": [
+                "flag.voss_paid_in_gold == true",
+                "flag.voss_offered_land == true",
+                "flag.voss_personal_alliance == true"
+              ]
+            }
+          ]
+        }
+      ],
+      "effects": [
+        {
+          "set_state": "flag.defense_strength_mercs",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.defense_score",
+          "delta": 25
+        }
+      ],
+      "transitions": [
+        {
+          "on": "flag.all_factions_united == true",
+          "to": "FULLY_UNITED"
+        },
+        {
+          "on": "flag.defense_day_arrived == true",
+          "to": "PARTIAL_DEFENSE"
+        }
+      ]
+    },
+    "CHURCH_SECURED": {
+      "journal_entry": "The Church of the Ashen Light lends its support. Whether through Brother Maren's genuine conversion to the cause or through his removal and the congregation's gratitude, the faithful stand with Ashvale.",
+      "objectives_completed": [
+        "Secure the Church's support"
+      ],
+      "conditions_met": [
+        {
+          "any_of": [
+            "flag.maren_allied_with_player == true",
+            "flag.maren_exposed_and_removed == true",
+            "flag.church_congregation_loyal == true"
+          ]
+        }
+      ],
+      "effects": [
+        {
+          "set_state": "flag.defense_strength_church",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.defense_score",
+          "delta": 10
+        }
+      ],
+      "transitions": [
+        {
+          "on": "flag.all_factions_united == true",
+          "to": "FULLY_UNITED"
+        },
+        {
+          "on": "flag.defense_day_arrived == true",
+          "to": "PARTIAL_DEFENSE"
+        }
+      ]
+    },
+    "DRUIDS_SECURED": {
+      "journal_entry": "Old Maren has agreed to call upon the forest's aid \u2014 or at least its tolerance. The druids' knowledge of the Thornwood may be our greatest weapon, if the forest doesn't turn against us first.",
+      "objectives_completed": [
+        "Secure the Druids' aid"
+      ],
+      "conditions_met": [
+        {
+          "all_of": [
+            "flag.old_maren_trusts_player == true",
+            "flag.forest_investigation_started == true"
+          ]
+        }
+      ],
+      "effects": [
+        {
+          "set_state": "flag.defense_strength_druids",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.defense_score",
+          "delta": 15
+        },
+        {
+          "set_state": "flag.forest_path_opened",
+          "value": true
+        }
+      ],
+      "transitions": [
+        {
+          "on": "flag.all_factions_united == true",
+          "to": "FULLY_UNITED"
+        },
+        {
+          "on": "flag.defense_day_arrived == true",
+          "to": "PARTIAL_DEFENSE"
+        }
+      ]
+    },
+    "FULLY_UNITED": {
+      "journal_entry": "Against all odds, Ashvale stands united. Every faction, every grudge, every old wound \u2014 set aside in the face of annihilation. For now. Whether this fragile alliance holds when the real test comes... that remains to be seen.",
+      "consequence_chain": "full_unity_chain",
+      "effects": [
+        {
+          "set_state": "flag.ashvale_fully_united",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.defense_score",
+          "value": 100
+        },
+        {
+          "set_state": "player.moral_vector",
+          "delta": 20
+        }
+      ]
+    },
+    "PARTIAL_DEFENSE": {
+      "journal_entry": "The deadline has come. Ashvale's defense is incomplete \u2014 some factions refused, others I never reached. We fight with what we have. It may not be enough.",
+      "consequence_chain": "partial_defense_chain",
+      "effects": [
+        {
+          "set_state": "flag.ashvale_partial_defense",
+          "value": true
+        }
+      ]
+    }
+  }
+}

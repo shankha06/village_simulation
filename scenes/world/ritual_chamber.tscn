@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://ritual001"]
+
+[ext_resource type="Script" path="res://scenes/world/region_base.gd" id="1_region"]
+[ext_resource type="Script" path="res://scenes/effects/weather_system.gd" id="2_weather"]
+[ext_resource type="Script" path="res://scenes/world/transition_zone.gd" id="3_transition"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_transition_catacombs"]
+size = Vector2(48, 16)
+
+[node name="RitualChamber" type="Node2D"]
+script = ExtResource("1_region")
+region_id = "ritual_chamber"
+region_name = "Ritual Chamber"
+adjacent_regions = PackedStringArray("manor_catacombs")
+tilemap_json = "res://data/world/ritual_chamber_tilemap.json"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="DefaultSpawn" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(160, 24)
+
+[node name="FromCatacombs" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(160, 24)
+
+[node name="FromRitualChamber" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(160, 24)
+
+[node name="NPCSpawnPoints" type="Node2D" parent="."]
+
+[node name="WeatherSystem" type="Node2D" parent="."]
+script = ExtResource("2_weather")
+
+[node name="TransitionToCatacombs" type="Area2D" parent="."]
+position = Vector2(160, 0)
+script = ExtResource("3_transition")
+target_scene = "res://scenes/world/manor_catacombs.tscn"
+spawn_point = "FromRitualChamber"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionToCatacombs"]
+shape = SubResource("RectangleShape2D_transition_catacombs")

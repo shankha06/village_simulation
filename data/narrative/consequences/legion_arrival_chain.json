@@ -1,0 +1,190 @@
+{
+  "id": "legion_arrival_chain",
+  "trigger_condition": "flag.ironmarch_rider_arrived == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "flag.act_2_begun",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.tension",
+          "delta": 20
+        },
+        {
+          "set_state": "npc.lord_ashworth.memory.legion_coming",
+          "value": true
+        },
+        {
+          "spawn_event": "village_panic_rider"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "set_state": "flag.draven_arrived",
+          "value": true
+        },
+        {
+          "spawn_npc": "ironmarch_emissary",
+          "location": "inn_bar"
+        },
+        {
+          "set_state": "world.region.ashvale.tension",
+          "delta": 15
+        },
+        {
+          "spawn_event": "draven_arrival_scene"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {
+          "set_state": "flag.legion_scouts_spotted",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.tension",
+          "delta": 10
+        },
+        {
+          "set_state": "npc.commander_voss.memory.legion_scouts_near_camp",
+          "value": true
+        },
+        {
+          "spawn_event": "legion_scouts_sighted"
+        },
+        {
+          "set_state": "npc.greta.memory.scared_of_legion",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "effects": [
+        {
+          "set_state": "flag.villagers_want_surrender",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.tension",
+          "delta": 15
+        },
+        {
+          "spawn_event": "surrender_faction_forms"
+        },
+        {
+          "set_state": "npc.greta.memory.some_villagers_want_to_surrender",
+          "value": true
+        },
+        {
+          "set_state": "faction.ashvale_nobility.power",
+          "delta": -10
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 6,
+      "condition": "flag.stalling_draven == true",
+      "effects": [
+        {
+          "set_state": "npc.ironmarch_emissary.memory.patience_running_out",
+          "value": true
+        },
+        {
+          "spawn_event": "draven_final_warning"
+        },
+        {
+          "set_state": "world.region.ashvale.tension",
+          "delta": 10
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 7,
+      "effects": [
+        {
+          "set_state": "flag.ultimatum_expired",
+          "value": true
+        },
+        {
+          "spawn_event": "ultimatum_deadline"
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 7,
+      "condition": "flag.accepted_legion_terms != true && flag.negotiated_with_legion != true && flag.defied_legion != true && npc.ironmarch_emissary.alive == true",
+      "effects": [
+        {
+          "set_state": "flag.no_response_given",
+          "value": true
+        },
+        {
+          "set_state": "flag.defied_legion",
+          "value": true
+        },
+        {
+          "spawn_event": "draven_departs_angry"
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 14,
+      "condition": "flag.defied_legion == true || flag.draven_killed == true",
+      "effects": [
+        {
+          "set_state": "flag.legion_army_spotted",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.tension",
+          "value": 100
+        },
+        {
+          "spawn_event": "legion_army_on_horizon"
+        },
+        {
+          "set_state": "flag.defense_day_arrived",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 10,
+      "condition": "flag.draven_killed == true",
+      "effects": [
+        {
+          "set_state": "flag.legion_retaliatory_force",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.tension",
+          "value": 100
+        },
+        {
+          "spawn_event": "legion_retaliatory_scouts"
+        },
+        {
+          "set_state": "flag.defense_day_arrived",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

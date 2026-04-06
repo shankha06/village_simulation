@@ -1,0 +1,50 @@
+{
+  "id": "voss_redemption_chain",
+  "trigger_condition": "flag.rivendale_survivors_found == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": 40
+        },
+        {
+          "set_state": "npc.commander_voss.memory.rivendale_survivors_live",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_past_resolved",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {
+          "set_state": "npc.commander_voss.memory.renewed_purpose",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_loyalty_locked",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 7,
+      "effects": [
+        {
+          "set_state": "flag.voss_offers_full_company",
+          "value": true
+        },
+        {
+          "spawn_event": "voss_pledges_soldiers_to_ashvale"
+        }
+      ]
+    }
+  ]
+}

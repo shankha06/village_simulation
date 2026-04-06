@@ -1,0 +1,721 @@
+{
+  "id": "voss_alliance_deep",
+  "start_node": "start",
+  "conditions": [
+    {
+      "check": "flag.voss_conditional_alliance",
+      "op": "==",
+      "value": true
+    }
+  ],
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "You came back. And that look on your face tells me you found something. Sit. Talk. What did you learn about Ashvale's rot?",
+      "next": "player_report"
+    },
+    "player_report": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "...Nightcap root in the water. A lord locked in his manor. A priest who arrived right before the dying started. A thieves' guild positioning for a takeover. This village isn't dying of neglect \u2014 it's being murdered by committee.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_briefed_on_ashvale",
+          "value": true
+        }
+      ],
+      "next": "voss_assessment"
+    },
+    "voss_assessment": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "I've seen this pattern before. Too many hands pulling the strings, each thinking they're the puppeteer. Whoever is behind the poisoning \u2014 priest, lord, guild, or someone else entirely \u2014 they're the head of the snake. Cut it and the rest unravels.",
+      "next": "voss_assessment_2"
+    },
+    "voss_assessment_2": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "The question is: what kind of alliance are you proposing? My soldiers aren't charity, and my reputation isn't cheap. What exactly do you want from me?",
+      "next": "alliance_choice"
+    },
+    "alliance_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "full_military",
+          "text": "A full military alliance. Your soldiers under my direction to restore order in Ashvale.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.alliance_type",
+              "value": "military"
+            },
+            {
+              "set_state": "npc.commander_voss.memory.player_wants_military_control",
+              "value": true
+            }
+          ],
+          "next": "military_alliance"
+        },
+        {
+          "id": "intel_only",
+          "text": "Information exchange only. Your scouts report to me, I share what I learn. No blood spilled.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.alliance_type",
+              "value": "intelligence"
+            },
+            {
+              "set_state": "npc.commander_voss.memory.player_wants_intel",
+              "value": true
+            }
+          ],
+          "next": "intel_alliance"
+        },
+        {
+          "id": "protect_npcs",
+          "text": "I don't need an army. I need you to protect specific people \u2014 the ones who matter.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.alliance_type",
+              "value": "protection"
+            },
+            {
+              "set_state": "npc.commander_voss.memory.player_wants_protection",
+              "value": true
+            }
+          ],
+          "next": "protection_alliance"
+        },
+        {
+          "id": "new_lord",
+          "text": "Forget restoring order. Ashworth is done. You should be the new lord of Ashvale.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.alliance_type",
+              "value": "coup"
+            },
+            {
+              "set_state": "npc.commander_voss.memory.player_proposed_coup",
+              "value": true
+            }
+          ],
+          "next": "new_lord_proposal"
+        }
+      ]
+    },
+    "military_alliance": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Under your direction. Bold. Most people who ask for an army don't know what to do with one. What makes you different?",
+      "next": "military_choice"
+    },
+    "military_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "military_evidence",
+          "text": "I know who the players are. I know their weaknesses. You have the soldiers. Together, we can clean house systematically.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": 15
+            }
+          ],
+          "next": "military_impressed"
+        },
+        {
+          "id": "military_desperate",
+          "text": "Honestly? Nothing. But this village is out of options and I'm out of time.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": 10
+            },
+            {
+              "set_state": "npc.commander_voss.memory.player_was_honest",
+              "value": true
+            }
+          ],
+          "next": "military_respect"
+        }
+      ]
+    },
+    "military_impressed": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Systematic. I like that word. Too many would-be heroes charge in swinging. You think. That's rare.",
+      "next": "military_terms"
+    },
+    "military_respect": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Honesty under pressure. That's the one thing I can't teach my soldiers. Most people lie when they're desperate. You told the truth. That buys you a lot of credit with me.",
+      "next": "military_terms"
+    },
+    "military_terms": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Here are my terms. My soldiers follow your lead on targets and timing. But I retain command authority \u2014 if I say pull back, we pull back. No suicide charges, no civilian massacres, no burning the village to save it.",
+      "next": "military_terms_2"
+    },
+    "military_terms_2": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "And when this is over, the Free Company of the Iron Road gets first pick of the lord's armory and a permanent garrison contract. My soldiers need a home. Ashvale could be that home.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_full_military_alliance",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_alliance_confirmed",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": 25
+        },
+        {
+          "modify_reputation": {
+            "iron_road_company": 40
+          }
+        }
+      ],
+      "next": "military_oath"
+    },
+    "military_oath": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "I swear by the Iron Road: my sword is yours until Ashvale stands or falls. Now \u2014 who do we hit first?",
+      "triggers": [
+        {
+          "set_state": "flag.act2_military_path",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "intel_alliance": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Information exchange. The spy's game. Quieter than swords, often more effective. I respect that.",
+      "next": "intel_alliance_2"
+    },
+    "intel_alliance_2": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "My scouts have already mapped every entry point to the village, the guild's smuggling routes, the chapel's nightly activities, and the lord's guard rotations. I'll share all of it \u2014 in exchange for everything you learn about the poisoner and the forest pact.",
+      "next": "intel_choice"
+    },
+    "intel_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "intel_full_share",
+          "text": "Deal. Full transparency, both sides. Here's what I know so far...",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.voss_intel_alliance",
+              "value": true
+            },
+            {
+              "set_state": "flag.voss_alliance_confirmed",
+              "value": true
+            },
+            {
+              "set_state": "flag.player_shared_all_intel",
+              "value": true
+            },
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": 20
+            }
+          ],
+          "next": "intel_deal"
+        },
+        {
+          "id": "intel_hold_back",
+          "text": "I'll share what's relevant. Some things I keep to myself.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.voss_intel_alliance",
+              "value": true
+            },
+            {
+              "set_state": "flag.voss_alliance_confirmed",
+              "value": true
+            },
+            {
+              "set_state": "flag.player_withheld_intel",
+              "value": true
+            },
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": 5
+            }
+          ],
+          "next": "intel_partial"
+        }
+      ]
+    },
+    "intel_deal": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Good. I'll assign one of my scouts \u2014 a woman named Thorn \u2014 as your contact. She'll check the dead drop at the old mill bridge twice daily. Leave reports there. She'll leave mine.",
+      "next": "intel_outcome"
+    },
+    "intel_partial": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "I expected nothing less. Trust is earned, not negotiated. Same arrangement \u2014 dead drops at the old mill bridge. My scout Thorn handles the exchange. But know this: I'll figure out what you're holding back. I always do.",
+      "next": "intel_outcome"
+    },
+    "intel_outcome": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "One gift to start: the Guild's main storehouse is beneath the old tannery on Crow Street. And Brother Maren receives a sealed letter every third day via carrier crow from the east. From someone in the Church hierarchy. Whatever he's doing here... it's sanctioned.",
+      "triggers": [
+        {
+          "set_state": "flag.clue_guild_tannery_storehouse",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_maren_receiving_orders",
+          "value": true
+        },
+        {
+          "set_state": "flag.act2_intelligence_path",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "protection_alliance": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Bodyguard work. Less glory, more precision. Who are we protecting, and from whom?",
+      "next": "protection_choice"
+    },
+    "protection_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "protect_elara",
+          "text": "Elara, the herbalist. She's investigating the poison and someone will try to silence her.",
+          "conditions": [
+            {
+              "check": "npc.elara.met",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.voss_protecting_elara",
+              "value": true
+            }
+          ],
+          "next": "protect_elara"
+        },
+        {
+          "id": "protect_greta",
+          "text": "Greta, the innkeeper. She knows too much about the Guild and they'll come for her eventually.",
+          "conditions": [
+            {
+              "check": "npc.greta.met",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.voss_protecting_greta",
+              "value": true
+            }
+          ],
+          "next": "protect_greta"
+        },
+        {
+          "id": "protect_multiple",
+          "text": "Everyone who's been helping me. Elara, Greta, anyone who spoke against the power players.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.voss_protecting_allies",
+              "value": true
+            }
+          ],
+          "next": "protect_multiple"
+        }
+      ]
+    },
+    "protect_elara": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "The herbalist. She's clever \u2014 I've been watching her test the water. She's close to finding the source, which means she's close to becoming a target. I'll assign two soldiers. Discreet. She won't even know they're there unless someone makes a move.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_alliance_confirmed",
+          "value": true
+        },
+        {
+          "set_state": "flag.elara_has_bodyguards",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": 15
+        }
+      ],
+      "next": "protection_terms"
+    },
+    "protect_greta": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "The innkeeper? She plays every side and always has. But you're right \u2014 eventually the Guild will decide she knows too much. I'll have soldiers drinking at the inn in rotation. Natural enough cover, and my people could use a warm bed.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_alliance_confirmed",
+          "value": true
+        },
+        {
+          "set_state": "flag.greta_has_bodyguards",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": 10
+        }
+      ],
+      "next": "protection_terms"
+    },
+    "protect_multiple": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "That stretches my forces thin. Twenty soldiers covering multiple assets in a hostile village... it can be done, but it means I can't commit to any offensive operations. Protection or action \u2014 I can't do both well.",
+      "next": "protect_multiple_2"
+    },
+    "protect_multiple_2": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "protection_priority",
+          "text": "Protection is the priority. I'll handle the offensive side myself.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.voss_alliance_confirmed",
+              "value": true
+            },
+            {
+              "set_state": "flag.voss_full_protection_mode",
+              "value": true
+            },
+            {
+              "set_state": "flag.elara_has_bodyguards",
+              "value": true
+            },
+            {
+              "set_state": "flag.greta_has_bodyguards",
+              "value": true
+            },
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": 20
+            }
+          ],
+          "next": "protect_all_confirmed"
+        },
+        {
+          "id": "split_difference",
+          "text": "Protect Elara only. She's the highest priority. Everyone else can manage.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.voss_alliance_confirmed",
+              "value": true
+            },
+            {
+              "set_state": "flag.elara_has_bodyguards",
+              "value": true
+            },
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "protection_terms"
+        }
+      ]
+    },
+    "protect_all_confirmed": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "You'd rather carry the danger yourself than let others take the hit. I've only met a handful of people like that. Most of them are dead. The rest are legends. I hope you're the latter.",
+      "triggers": [
+        {
+          "set_state": "npc.commander_voss.memory.deep_respect_for_player",
+          "value": true
+        },
+        {
+          "set_state": "flag.act2_protection_path",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "protection_terms": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "My soldiers will hold position until the crisis resolves \u2014 or until someone forces my hand. If things escalate to open conflict, I'll need you to choose: keep guarding, or let my people fight. Can't do both. For now, your people are safe.",
+      "triggers": [
+        {
+          "set_state": "flag.act2_protection_path",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "new_lord_proposal": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "...",
+      "next": "new_lord_2"
+    },
+    "new_lord_2": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "You're serious. You want a mercenary captain \u2014 a woman with no title, no bloodline, and a trail of war behind her \u2014 to rule a farming village in the middle of nowhere.",
+      "next": "new_lord_3"
+    },
+    "new_lord_3": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "sad",
+      "text": "I lost my home when I was twelve. I've spent twenty years fighting other people's wars, living in camps, watching soldiers die for lords who couldn't spell 'sacrifice.' And now you're telling me I could... stop running?",
+      "next": "new_lord_choice"
+    },
+    "new_lord_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "encourage_voss",
+          "text": "This village needs someone who understands loss. Who fights for something real, not a bloodline.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": 30
+            },
+            {
+              "set_state": "npc.commander_voss.memory.player_believes_in_her",
+              "value": true
+            }
+          ],
+          "next": "voss_considers"
+        },
+        {
+          "id": "pragmatic_argument",
+          "text": "Ashworth is finished. The Guild wants a puppet, the Church wants a zealot. You're the only option who might actually care.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": 20
+            }
+          ],
+          "next": "voss_considers"
+        },
+        {
+          "id": "political_argument",
+          "text": "Your soldiers become the garrison. Your authority becomes law. The Ironmarch Legion sees a fortified village and moves on. Everyone wins.",
+          "conditions": [
+            {
+              "check": "flag.ironmarch_interest_confirmed",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": 15
+            },
+            {
+              "set_state": "npc.commander_voss.memory.player_thinks_strategically",
+              "value": true
+            }
+          ],
+          "next": "voss_considers"
+        }
+      ]
+    },
+    "voss_considers": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "I won't lie \u2014 I've thought about it. Every time I see a village like this, I think: what if I stayed? What if I built something instead of burning everything down?",
+      "next": "voss_considers_2"
+    },
+    "voss_considers_2": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "But taking a lordship by force \u2014 even from a failed lord \u2014 that's revolution. The neighboring holds will respond. The crown will hear of it. And I'll need more than twenty soldiers and a stranger's faith to hold this ground.",
+      "next": "voss_conditions"
+    },
+    "voss_conditions": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Here's what it would take. First: Ashworth must be removed legally or proved unfit. A coup will be resisted; a justified removal will be supported. Second: the village elders must accept me. I won't rule people who hate me.",
+      "next": "voss_conditions_2"
+    },
+    "voss_conditions_2": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Third: the poisoning stops. I won't inherit a graveyard. And fourth... you stay. As my advisor. The one person in this village who sees the whole board. I can't do this alone.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_considering_lordship",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_needs_proof_against_ashworth",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_needs_elder_support",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_needs_poison_stopped",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_wants_player_as_advisor",
+          "value": true
+        }
+      ],
+      "next": "voss_final_choice"
+    },
+    "voss_final_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept_advisor",
+          "text": "I'll stay. Let's build something worth defending.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_is_voss_advisor",
+              "value": true
+            },
+            {
+              "set_state": "flag.voss_coup_path_active",
+              "value": true
+            },
+            {
+              "set_state": "flag.voss_alliance_confirmed",
+              "value": true
+            },
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": 30
+            },
+            {
+              "set_state": "flag.act2_coup_path",
+              "value": true
+            },
+            {
+              "modify_reputation": {
+                "iron_road_company": 50
+              }
+            }
+          ],
+          "next": "voss_oath"
+        },
+        {
+          "id": "no_promises",
+          "text": "I can't promise to stay. But I'll help you get there. After that... we'll see.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.voss_coup_path_active",
+              "value": true
+            },
+            {
+              "set_state": "flag.voss_alliance_confirmed",
+              "value": true
+            },
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": 15
+            },
+            {
+              "set_state": "flag.act2_coup_path",
+              "value": true
+            }
+          ],
+          "next": "voss_accepts_terms"
+        }
+      ]
+    },
+    "voss_oath": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "happy",
+      "text": "Then we have a pact. Not written in blood or sealed by gods \u2014 those are for people who don't trust each other. This one is sealed by what we're going to build. From the ashes of Ashvale, something new. Something worth the fight.",
+      "triggers": [
+        {
+          "set_state": "npc.commander_voss.memory.oath_of_partnership",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "voss_accepts_terms": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Fair enough. I've learned not to trust oaths made in the heat of the moment. Actions speak louder. Help me meet those four conditions and we'll talk about the future when it's here.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

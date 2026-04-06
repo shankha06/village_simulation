@@ -1,0 +1,29 @@
+{
+  "id": "warden_bypassed_chain",
+  "trigger_condition": "flag.refused_warden_test == true && flag.hidden_path_found == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "npc.thornwood_spirit.disposition",
+          "delta": -25
+        },
+        {
+          "set_state": "flag.forest_distrusts_player",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {
+          "set_state": "world.region.thornwood.behavior",
+          "value": "suspicious"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+[
+  {
+    "id": "monologue_arrival",
+    "conditions": ["time.day == 1"],
+    "text": "Another dying village. Another road that leads nowhere good. But the compass led me here, and compasses don't lie. Even broken ones."
+  },
+  {
+    "id": "monologue_elara_trust",
+    "conditions": ["flag.elara_trust_bond == true"],
+    "text": "She lost her father to this place. Now she's trying to save it. There's either courage in that, or madness. Maybe both."
+  },
+  {
+    "id": "monologue_silo_burned",
+    "conditions": ["flag.silo_destroyed == true"],
+    "text": "The smell of burning grain. It hangs in the air like a verdict. I did this. Whatever comes next, I did this."
+  },
+  {
+    "id": "monologue_family_revealed",
+    "conditions": ["flag.maren_family_truth_revealed == true"],
+    "text": "Grandmother. Grandson. Sister. Brother. A family scattered by a covenant no one asked for. And I'm the one who pulled the thread."
+  },
+  {
+    "id": "monologue_ghost_letters",
+    "conditions": ["flag.ghost_letters_collected_all == true"],
+    "text": "Five letters. Five goodbyes. Three hundred years of sacrifice, and not one of them was truly willing except the healer. What does that say about this pact? What does it say about us?"
+  },
+  {
+    "id": "monologue_midnight_scream",
+    "conditions": ["flag.midnight_scream_heard == true"],
+    "text": "That scream. It came from below, not from the manor. From the earth. As if the ground itself is in pain. Or hungry."
+  },
+  {
+    "id": "monologue_church_truth",
+    "conditions": ["flag.church_salt_the_earth_plan == true"],
+    "text": "The Church doesn't want to save Ashvale. They want to burn it clean. 'Salt the Root,' they call it. As if destruction is purification. As if fire solves anything except the question of what was here before."
+  },
+  {
+    "id": "monologue_children",
+    "conditions": ["flag.guild_smuggles_children_to_safety == true"],
+    "text": "Fenrick's a thief, a liar, and a manipulator. He's also smuggling children to safety while the rest of us argue about theology. I'm not sure what that makes him. I'm not sure I'm in a position to judge."
+  },
+  {
+    "id": "monologue_harmony_cost",
+    "conditions": ["flag.cinder_root_lost == true"],
+    "text": "We saved the village. We saved the forest. And in the space between, something irreplaceable was lost. The Cinder-Root is gone. Elara will never say it was too high a price. But her eyes say it every morning."
+  },
+  {
+    "id": "monologue_before_heartwood",
+    "conditions": ["flag.knows_three_options == true"],
+    "text": "Three paths. A sacrifice. A severance. A renegotiation. Each one costs something that can't be recovered. The forest doesn't deal in refunds."
+  }
+]

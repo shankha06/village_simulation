@@ -1,0 +1,152 @@
+{
+  "id": "ironmarch_ultimatum",
+  "name": "The Iron Price",
+  "description": "Captain Draven of the Ironmarch Legion has given Ashvale seven days to accept the Legion's protection \u2014 or face the consequences. The clock is ticking.",
+  "giver": "ironmarch_emissary",
+  "region": "ashvale",
+  "tags": [
+    "main_quest",
+    "act_2",
+    "political",
+    "timed",
+    "moral_choice"
+  ],
+  "priority": 15,
+  "states": {
+    "DISCOVERED": {
+      "journal_entry": "A rider warned that the Ironmarch Legion is coming. The village is in a panic. I should prepare for their arrival.",
+      "transitions": [
+        {
+          "on": "flag.draven_arrived == true",
+          "to": "ACTIVE"
+        }
+      ]
+    },
+    "ACTIVE": {
+      "journal_entry": "Captain Draven has arrived in Ashvale. He speaks of protection, but his eyes say conquest. Seven days to decide the village's fate.",
+      "objectives": [
+        "Speak with Captain Draven at the inn",
+        "Decide Ashvale's response before the deadline (Day 7)"
+      ],
+      "transitions": [
+        {
+          "on": "flag.accepted_legion_terms == true",
+          "to": "SUBMITTED"
+        },
+        {
+          "on": "flag.defied_legion == true",
+          "to": "DEFIED"
+        },
+        {
+          "on": "flag.negotiated_with_legion == true",
+          "to": "NEGOTIATED"
+        },
+        {
+          "on": "npc.ironmarch_emissary.alive == false",
+          "to": "ELIMINATED"
+        },
+        {
+          "on": "flag.betrayed_ashvale_for_legion == true",
+          "to": "ALLIED_WITH_LEGION"
+        },
+        {
+          "on": "flag.ultimatum_expired == true && flag.no_response_given == true",
+          "to": "DEFIED"
+        }
+      ]
+    },
+    "SUBMITTED": {
+      "journal_entry": "I accepted the Legion's terms. Ashvale will fly the Ironmarch banner. The people are safe \u2014 but they are no longer free. Lord Ashworth has been stripped of power. Draven smiles like a man who's won a game he's played a thousand times.",
+      "consequence_chain": "legion_submission_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "ironmarch_legion": 40,
+            "ashvale_nobility": -60,
+            "city_guard": -30
+          }
+        },
+        {
+          "set_state": "flag.ashvale_under_legion_control",
+          "value": true
+        }
+      ]
+    },
+    "DEFIED": {
+      "journal_entry": "I refused the Legion's terms. Draven left with cold promises of what comes next. War is coming to Ashvale \u2014 and we may not survive it. But at least we chose to fight.",
+      "consequence_chain": "legion_defiance_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "ashvale_nobility": 30,
+            "city_guard": 20,
+            "ironmarch_legion": -50
+          }
+        },
+        {
+          "set_state": "flag.legion_preparing_invasion",
+          "value": true
+        }
+      ]
+    },
+    "NEGOTIATED": {
+      "journal_entry": "I brokered a deal: Ashvale pays tribute and grants trade access, but keeps its lord and laws. Draven accepted \u2014 barely. It's a leash, not a collar. But leashes can be slipped.",
+      "consequence_chain": "legion_negotiation_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "ironmarch_legion": 10,
+            "ashvale_nobility": 10,
+            "city_guard": 10
+          }
+        },
+        {
+          "set_state": "flag.ashvale_tributary_state",
+          "value": true
+        }
+      ]
+    },
+    "ELIMINATED": {
+      "journal_entry": "Captain Draven is dead. The Legion will send more \u2014 and they will not send a diplomat next time. I've bought Ashvale weeks, maybe months. But the price will be paid in blood.",
+      "consequence_chain": "legion_emissary_killed_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "ashvale_nobility": 20,
+            "ironmarch_legion": -80
+          }
+        },
+        {
+          "set_state": "flag.legion_enraged",
+          "value": true
+        },
+        {
+          "set_state": "flag.draven_killed",
+          "value": true
+        }
+      ]
+    },
+    "ALLIED_WITH_LEGION": {
+      "journal_entry": "I offered Draven something better than Ashvale's submission \u2014 I offered him an insider. In exchange for power and position in the new order, I will deliver the village from within. The people who trusted me will never see it coming.",
+      "consequence_chain": "legion_betrayal_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "ironmarch_legion": 60,
+            "ashvale_nobility": -80,
+            "city_guard": -80,
+            "thieves_guild": -40
+          }
+        },
+        {
+          "set_state": "flag.player_is_legion_agent",
+          "value": true
+        },
+        {
+          "set_state": "player.moral_vector",
+          "delta": -40
+        }
+      ]
+    }
+  }
+}

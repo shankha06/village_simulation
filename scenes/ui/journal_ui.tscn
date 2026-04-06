@@ -1,0 +1,163 @@
+[gd_scene load_steps=7 format=3 uid="uid://journal001"]
+
+[ext_resource type="Script" path="res://scenes/ui/journal_ui.gd" id="1_journal"]
+[ext_resource type="Script" path="res://scenes/ui/codex_manager.gd" id="2_codex"]
+[ext_resource type="Script" path="res://scenes/ui/notification_popup.gd" id="3_notif"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.06, 0.055, 0.07, 0.95)
+border_color = Color(0.35, 0.28, 0.18, 0.8)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+content_margin_left = 12.0
+content_margin_top = 10.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tab_btn"]
+bg_color = Color(0.1, 0.09, 0.11, 0.9)
+border_color = Color(0.3, 0.25, 0.18, 0.6)
+border_width_bottom = 1
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_content_bg"]
+bg_color = Color(0.04, 0.038, 0.05, 0.7)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+
+[node name="JournalUI" type="CanvasLayer"]
+layer = 15
+process_mode = 3
+layer = 15
+script = ExtResource("1_journal")
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 16.0
+offset_right = -32.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="TabBar" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="QuestsTab" type="Button" parent="Panel/VBox/TabBar"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_tab_btn")
+theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(0.9, 0.75, 0.4, 1)
+text = "Quests"
+
+[node name="CodexTab" type="Button" parent="Panel/VBox/TabBar"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_tab_btn")
+theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+text = "Codex"
+
+[node name="RelationshipsTab" type="Button" parent="Panel/VBox/TabBar"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_tab_btn")
+theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+text = "Relationships"
+
+[node name="MapTab" type="Button" parent="Panel/VBox/TabBar"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_tab_btn")
+theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(0.5, 0.5, 0.5, 1)
+text = "Map"
+
+[node name="Spacer" type="Control" parent="Panel/VBox/TabBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CloseButton" type="Button" parent="Panel/VBox/TabBar"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(0.6, 0.4, 0.4, 1)
+text = "X"
+
+[node name="Content" type="PanelContainer" parent="Panel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_content_bg")
+
+[node name="QuestsPanel" type="ScrollContainer" parent="Panel/VBox/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="QuestList" type="VBoxContainer" parent="Panel/VBox/Content/QuestsPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="CodexPanel" type="ScrollContainer" parent="Panel/VBox/Content"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CodexList" type="VBoxContainer" parent="Panel/VBox/Content/CodexPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="RelationshipsPanel" type="ScrollContainer" parent="Panel/VBox/Content"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RelationshipList" type="VBoxContainer" parent="Panel/VBox/Content/RelationshipsPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="MapPanel" type="PanelContainer" parent="Panel/VBox/Content"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MapLabel" type="Label" parent="Panel/VBox/Content/MapPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.55, 0.5, 0.4, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "Ashvale and surroundings
+
+A detailed map will be drawn as you explore."
+
+[node name="CodexManager" type="Node" parent="."]
+script = ExtResource("2_codex")
+
+[node name="NotificationPopup" type="CanvasLayer" parent="."]
+layer = 50
+script = ExtResource("3_notif")

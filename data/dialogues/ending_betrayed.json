@@ -1,0 +1,91 @@
+{
+  "id": "ending_betrayed",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The Heartwood knows. Perhaps it tasted the lie in your blood when you sealed the accord. Perhaps it read it in the soil where you stood \u2014 the way your heartbeat quickened, the way your sweat turned sour with deception. Ancient things are not wise the way humans are wise. They are wise the way stone is wise, the way rivers are wise. They know what is true by how it feels against them.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_betrayed_started",
+          "value": true
+        }
+      ],
+      "next": "the_warning"
+    },
+    "the_warning": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "ancient",
+      "text": "Liar. Liar. LIAR. You speak with a split tongue and a hollow heart. I gave you trust \u2014 the first trust I have given in ten thousand years \u2014 and you filled it with poison. Worse than the old pact. Worse than blood. You gave me HOPE and it was EMPTY.",
+      "next": "the_roots_come"
+    },
+    "the_roots_come": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The roots came at midnight. Not slowly \u2014 not creeping, not the gentle pressure of growth over centuries. They came like a flood. Like a fist. The ground beneath Ashvale split open and the forest poured through, roots thick as houses surging upward with a sound like a thousand bones breaking at once.",
+      "next": "the_swallowing"
+    },
+    "the_swallowing": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Houses folded inward. The well shaft filled with writhing tendrils. The village square \u2014 where children had played that very afternoon \u2014 became a crater of churning earth and wood. You heard screaming. You heard the church bell ring once, wildly, as the tower was pulled under. Then silence. Then the sound of growing \u2014 relentless, impossible, unstoppable growing.",
+      "next": "escape"
+    },
+    "escape": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You ran. Not heroically \u2014 desperately. Scrambling over roots that reached for your ankles, ducking under branches that swung like clubs. Behind you, the village was swallowed in a single night. Brick and mortar and three hundred years of human habitation consumed in hours. The forest didn't just reclaim the land. It erased it.",
+      "next": "survivors_check"
+    },
+    "survivors_check": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "A few others escaped. You find them on the eastern road, hollow-eyed and shaking. They don't look at you. They know. Somehow, they all know. The forest told them \u2014 whispered it through the roots as it swallowed their homes. It whispered your name, and what you did, and why.",
+      "next": "elara_final"
+    },
+    "elara_final": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "You lied to it. You looked at the oldest living thing in the world and you LIED to it. Did you think something that old wouldn't know? Did you think you were clever enough to fool something that has been reading human hearts since before we had language?",
+      "conditions": [
+        {
+          "check": "npc.elara.alive",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "next": "aftermath"
+    },
+    "aftermath": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You barely escaped. Behind you, where Ashvale stood, a forest grows impossibly fast \u2014 dark, dense, and seething with fury. Trees a hundred years old in the space of a night. Canopy so thick that no light reaches the ground. And somewhere in its depths, the Heartwood whispers your name. Not in anger anymore. In something worse. In patient, eternal remembrance.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_betrayed_complete",
+          "value": true
+        }
+      ],
+      "next": "epilogue"
+    },
+    "epilogue": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Years later, travelers will tell stories of the dark forest that appeared overnight where a village once stood. They'll say that if you stand at its edge and listen, you can hear a name being whispered \u2014 over and over, by every leaf and every root and every branch. Your name. The forest will never forget. The forest will never forgive. And somewhere in the deepest part of you, in the place where truth lives regardless of what your mouth says, you know: you deserve it.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

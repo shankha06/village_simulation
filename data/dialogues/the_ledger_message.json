@@ -1,0 +1,192 @@
+{
+  "id": "the_ledger_message",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "A sealed envelope rests on your pillow at the inn. It wasn't there an hour ago. The seal is black wax, pressed with a symbol you don't recognize -- an open hand with a hollow palm, but inverted, fingers pointing downward. Inside is a single sheet of paper, the handwriting precise and unhurried.",
+      "triggers": [
+        {
+          "set_state": "flag.ledger_note_found",
+          "value": true
+        }
+      ],
+      "next": "letter_text"
+    },
+    "letter_text": {
+      "type": "text",
+      "speaker": "the_ledger",
+      "portrait": "none",
+      "text": "I know what you did in Ashvale. I know what you chose. I know who lived and who didn't. I am not judging. I am COUNTING.",
+      "next": "letter_text_2"
+    },
+    "letter_text_2": {
+      "type": "text",
+      "speaker": "the_ledger",
+      "portrait": "none",
+      "text": "There are sixteen more villages like yours. Some are already dying. The mountain consciousness near Silverpine is growing a nursery for orphans the Church wants to burn. The river at Rivendale is spelling words in the current, begging someone to come home. The sand in the Ash Wastes still remembers the forests that General Kael murdered.",
+      "next": "letter_text_3"
+    },
+    "letter_text_3": {
+      "type": "text",
+      "speaker": "the_ledger",
+      "portrait": "none",
+      "text": "The Church counts seventeen pacts. They plan to sever all of them. The Legion counts seven they've already burned. The druids count fourteen of themselves left alive. I count everything. That is my purpose. That is my burden.",
+      "next": "player_reaction"
+    },
+    "player_reaction": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "who_are_you",
+          "text": "[Think: Who sent this? How do they know what I did?]",
+          "conditions": [],
+          "triggers": [],
+          "next": "who_answer"
+        },
+        {
+          "id": "what_want",
+          "text": "[Think: What do they want from me?]",
+          "conditions": [],
+          "triggers": [],
+          "next": "want_answer"
+        },
+        {
+          "id": "burn_it",
+          "text": "[Burn the letter.]",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.burned_ledger_note",
+              "value": true
+            }
+          ],
+          "next": "burn_response"
+        }
+      ]
+    },
+    "who_answer": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You turn the letter over. On the back, in smaller script: 'Fenrick works for me. So does the fisherman downstream. So does the merchant in the Ash Wastes. So does someone in Greta's inn whose name you would not expect. I am not one person. I am a ledger. I record. I connect. I wait.'",
+      "next": "final_page"
+    },
+    "want_answer": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You find a second page stuck to the first. The handwriting is the same, but the ink is fresher -- written more recently, perhaps even today: 'I want you to stop being a spark and start being a fire. Sparks are beautiful. Fires change things. The world is running out of bridges between what grows and what builds. You walked into a forest and walked out again. That makes you rarer than you know.'",
+      "next": "final_page"
+    },
+    "burn_response": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The paper catches quickly. As it burns, the ash arranges itself on the table in a pattern that might be coincidence but looks very much like a map. Seventeen points, scattered across a continent. One of them is Ashvale. The ash holds its shape for exactly three seconds, then a draft from the window scatters it. But you've already memorized it.",
+      "triggers": [
+        {
+          "set_state": "player.knowledge.pact_locations_glimpsed",
+          "value": true
+        }
+      ],
+      "next": "final_page"
+    },
+    "final_page": {
+      "type": "text",
+      "speaker": "the_ledger",
+      "portrait": "none",
+      "text": "Come find me when you're ready. I will be in every village that's dying. I will be in every archive the Church wants to burn. I will be in the margins of every ledger and the footnotes of every treaty. I am the record of what was lost. And I am very, very patient.",
+      "next": "closing_choice"
+    },
+    "closing_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept_call",
+          "text": "[Keep the letter. This isn't over.]",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_ledger_call",
+              "value": true
+            },
+            {
+              "set_state": "flag.sequel_hook_accepted",
+              "value": true
+            }
+          ],
+          "next": "acceptance"
+        },
+        {
+          "id": "ignore",
+          "text": "[Set the letter aside. One village was enough.]",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.rejected_ledger_call",
+              "value": true
+            }
+          ],
+          "next": "rejection"
+        },
+        {
+          "id": "ask_fenrick",
+          "text": "[Go find Fenrick. He has questions to answer.]",
+          "conditions": ["npc.fenrick.met == true"],
+          "triggers": [
+            {
+              "set_state": "flag.confronting_fenrick_about_ledger",
+              "value": true
+            }
+          ],
+          "next": "fenrick_route"
+        }
+      ]
+    },
+    "acceptance": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You fold the letter and place it in your jacket, next to the compass. Two objects from two different hands, both pointing toward the same truth: Ashvale was the beginning. Not the end.",
+      "triggers": [
+        {
+          "set_state": "flag.ledger_message_complete",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "rejection": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You set the letter on the nightstand and lie down. Sleep comes slowly. In the distance, the wheat fields whisper their rhythmic hush. Somewhere out there, sixteen villages are counting their last days. But tonight, you have done enough. Tonight, you rest.",
+      "triggers": [
+        {
+          "set_state": "flag.ledger_message_complete",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "fenrick_route": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You pocket the letter and head for the door. Fenrick has been carrying more secrets than a bladeless knife handle. Time to find out how deep the Hollow Hand's roots really go.",
+      "triggers": [
+        {
+          "set_state": "flag.ledger_message_complete",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

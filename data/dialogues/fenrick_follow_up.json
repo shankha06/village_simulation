@@ -1,0 +1,468 @@
+{
+  "id": "fenrick_follow_up",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Well, well. The wanderer returns. I was starting to think you'd forgotten about me.",
+      "next": "branch_check"
+    },
+    "branch_check": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accepted_status",
+          "text": "About the job \u2014 I'm working on it.",
+          "conditions": [
+            {
+              "check": "flag.accepted_sabotage",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "status_update"
+        },
+        {
+          "id": "accepted_done",
+          "text": "The granary. It's done.",
+          "conditions": [
+            {
+              "check": "flag.silo_destroyed",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "job_complete"
+        },
+        {
+          "id": "refused_return",
+          "text": "I'm not here about your job.",
+          "conditions": [
+            {
+              "check": "npc.fenrick.memory.player_refused_job",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "refused_warning"
+        },
+        {
+          "id": "bluffer_return",
+          "text": "I've been thinking about your offer.",
+          "conditions": [
+            {
+              "check": "npc.fenrick.memory.player_will_think",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "bluff_followup"
+        },
+        {
+          "id": "general",
+          "text": "What's new in the shadows, Fenrick?",
+          "conditions": [],
+          "triggers": [],
+          "next": "general_info"
+        }
+      ]
+    },
+    "status_update": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Working on it. Right. And here I thought 'burn a building' was fairly straightforward. The guard shift change happens between second and third watch. That gap doesn't stay open forever.",
+      "next": "status_pressure"
+    },
+    "status_pressure": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "My employers are getting restless. They've got plans that depend on this \u2014 plans bigger than you or me or this rotting village. Time is running out. If you can't do it, say so, and I'll find someone who can.",
+      "triggers": [
+        {
+          "set_state": "flag.fenrick_pressuring_player",
+          "value": true
+        }
+      ],
+      "next": "status_choice"
+    },
+    "status_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "tonight",
+          "text": "I'll do it tonight. No more delays.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.sabotage_tonight",
+              "value": true
+            }
+          ],
+          "next": "tonight_response"
+        },
+        {
+          "id": "more_info",
+          "text": "These 'plans' of your employers \u2014 what exactly happens after the granary burns?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.fenrick.memory.player_asked_about_plans",
+              "value": true
+            }
+          ],
+          "next": "bigger_picture"
+        },
+        {
+          "id": "back_out",
+          "text": "I've changed my mind. I'm out.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_sabotage",
+              "value": false
+            },
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": -25
+            }
+          ],
+          "next": "back_out_response"
+        }
+      ]
+    },
+    "tonight_response": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Good. Remember \u2014 the firebomb needs to be placed inside, near the grain stores. The flames need to spread before anyone can put them out. And for both our sakes, don't get caught.",
+      "next": "end"
+    },
+    "bigger_picture": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Let's just say the Hand has been waiting for the right moment to step out of the shadows. When the lord's last source of power goes up in smoke, the people will need someone to turn to. Someone who can actually feed them.",
+      "next": "bigger_picture_2"
+    },
+    "bigger_picture_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "We've been stockpiling supplies through... alternative channels. When the granary burns, we distribute food. Suddenly the Hand isn't a gang of thieves \u2014 we're saviors. The lord falls, and we rise. Elegant, no?",
+      "triggers": [
+        {
+          "set_state": "flag.knows_guild_power_play",
+          "value": true
+        },
+        {
+          "set_state": "flag.guild_has_food_stockpile",
+          "value": true
+        }
+      ],
+      "next": "bigger_picture_choice"
+    },
+    "bigger_picture_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "pragmatic",
+          "text": "Trading one master for another. At least yours feeds people.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "pragmatic_response"
+        },
+        {
+          "id": "horrified",
+          "text": "You're engineering a famine to seize power. That's monstrous.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": -15
+            }
+          ],
+          "next": "monster_response"
+        },
+        {
+          "id": "what_about_children",
+          "text": "You said the Hand has supply routes. What ELSE moves through them?",
+          "conditions": [
+            {
+              "check": "flag.knows_guild_power_play",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.fenrick.memory.player_asked_about_routes",
+              "value": true
+            }
+          ],
+          "next": "children_hint"
+        }
+      ]
+    },
+    "pragmatic_response": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Now you're thinking like us. Finish the job, and there'll be a place for you in the new Ashvale. A profitable place.",
+      "next": "end"
+    },
+    "monster_response": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Monstrous? The lord hoards grain while children starve. The priest preaches doom while buying alchemical supplies. I'm the honest one here \u2014 at least I admit what I want. Now... are you in or out?",
+      "next": "status_choice"
+    },
+    "job_complete": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "I saw the smoke from across the village. Beautiful work. Clean, fast \u2014 the Hand is impressed. Here's your gold, as promised.",
+      "triggers": [
+        {
+          "set_state": "flag.fenrick_paid_player",
+          "value": true
+        },
+        {
+          "set_state": "player.gold",
+          "delta": 200
+        }
+      ],
+      "next": "job_complete_2"
+    },
+    "job_complete_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Phase two begins tonight. If you want more work \u2014 and more gold \u2014 come find me at the hideout behind the tannery after dark. Things are about to get very interesting in Ashvale.",
+      "triggers": [
+        {
+          "set_state": "flag.guild_phase_two",
+          "value": true
+        },
+        {
+          "set_state": "npc.fenrick.disposition",
+          "delta": 20
+        }
+      ],
+      "next": "end"
+    },
+    "refused_warning": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Then why ARE you here? Social call? I don't do those.",
+      "next": "refused_warning_2"
+    },
+    "refused_warning_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "A word of friendly advice: don't interfere with our business. The Hand has a long reach and a longer memory. You turned down the job \u2014 fine. But if I find out you've been talking to guards or that herbalist about our plans...",
+      "next": "refused_warning_3"
+    },
+    "refused_warning_3": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Let's just say Ashvale is about to change. Dramatically. You can be on the winning side, or you can be in the way. Your choice. But time is running out to decide.",
+      "triggers": [
+        {
+          "set_state": "flag.fenrick_warned_player",
+          "value": true
+        },
+        {
+          "set_state": "npc.fenrick.memory.threatened_player",
+          "value": true
+        }
+      ],
+      "next": "refused_last_chance"
+    },
+    "refused_last_chance": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "reconsider",
+          "text": "Maybe I was hasty. Tell me about the job again.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "second_chance_offer"
+        },
+        {
+          "id": "stand_firm",
+          "text": "Threaten me again, Fenrick. See what happens.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.fenrick.disposition",
+              "delta": -15
+            }
+          ],
+          "next": "stand_firm_response"
+        },
+        {
+          "id": "leave_quietly",
+          "text": "I hear you. I'll stay out of it.",
+          "conditions": [],
+          "triggers": [],
+          "next": "end"
+        }
+      ]
+    },
+    "second_chance_offer": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Smart. The offer still stands \u2014 burn the granary, get paid. Firebomb, guard shift gap, don't get caught. Same deal as before. Two hundred gold. Take it or leave it.",
+      "next": "second_chance_choice"
+    },
+    "second_chance_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept_now",
+          "text": "I'll do it. Give me the firebomb.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_sabotage",
+              "value": true
+            },
+            {
+              "start_quest": "granary_sabotage"
+            },
+            {
+              "set_state": "player.has_item.firebomb",
+              "value": true
+            },
+            {
+              "modify_reputation": {
+                "thieves_guild": 20
+              }
+            }
+          ],
+          "next": "tonight_response"
+        },
+        {
+          "id": "leave_again",
+          "text": "I need more time.",
+          "conditions": [],
+          "triggers": [],
+          "next": "end"
+        }
+      ]
+    },
+    "stand_firm_response": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Brave. Stupid, but brave. We'll see how long that courage lasts when the real darkness comes to Ashvale. And it's coming. Sooner than you think.",
+      "triggers": [
+        {
+          "set_state": "npc.fenrick.memory.player_is_enemy",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "bluff_followup": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Thinking. Right. You've been 'thinking' for a while now. In my experience, people who think this long are either planning to say yes... or planning something else entirely.",
+      "next": "bluff_followup_2"
+    },
+    "bluff_followup_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "I hope for your sake it's the former. The Hand doesn't take kindly to people who waste our time. Or worse \u2014 people who plan to use our secrets against us.",
+      "triggers": [
+        {
+          "set_state": "npc.fenrick.memory.fenrick_suspects_bluff",
+          "value": true
+        }
+      ],
+      "next": "refused_last_chance"
+    },
+    "general_info": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Things are moving. Commander Voss has been poking around the guild's territory \u2014 asking about shipments, supply routes. She's not just here for the crops. She's after something specific.",
+      "triggers": [
+        {
+          "set_state": "flag.fenrick_mentioned_voss_investigating",
+          "value": true
+        }
+      ],
+      "next": "general_info_2"
+    },
+    "general_info_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "And that priest \u2014 Brother Maren? He's been buying things. Candles and incense from the traders, sure. But also quicksilver and bone ash. That's not for prayer. That's for alchemy. Or something worse.",
+      "triggers": [
+        {
+          "set_state": "flag.fenrick_knows_maren_buys_supplies",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_maren_buys_alchemy_supplies",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "children_hint": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "He hesitates. For the first time since you met him, the smirk falters.",
+      "next": "children_hint_2"
+    },
+    "children_hint_2": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Supplies. Mostly supplies. And... cargo that doesn't show up on any manifest. Small cargo. Cargo that cries at night if you don't keep it warm enough. Don't ask me more. Not here.",
+      "triggers": [
+        {
+          "set_state": "flag.fenrick_hinted_at_children",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_guild_smuggling_something_alive",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

@@ -1,0 +1,492 @@
+{
+  "id": "act4_endings",
+  "description": "Master consequence chain that evaluates all accumulated flags and determines which ending fires. Checked in priority order \u2014 first match wins.",
+  "trigger_condition": "flag.act3_complete == true",
+  "ending_evaluation": [
+    {
+      "ending_id": "ending_martyr",
+      "priority": 100,
+      "conditions": [
+        {
+          "check": "flag.player_self_sacrifice",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "dialogue": "ending_martyr",
+      "effects": [
+        {
+          "set_state": "flag.ending_resolved",
+          "value": "ending_martyr"
+        },
+        {
+          "set_state": "world.region.ashvale.status",
+          "value": "thriving"
+        },
+        {
+          "set_state": "world.region.ashvale.pact_status",
+          "value": "renewed_with_player"
+        }
+      ]
+    },
+    {
+      "ending_id": "ending_betrayed",
+      "priority": 95,
+      "conditions": [
+        {
+          "check": "flag.pact_renegotiated",
+          "op": "==",
+          "value": true
+        },
+        {
+          "check": "flag.player_lied_to_heartwood",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "dialogue": "ending_betrayed",
+      "effects": [
+        {
+          "set_state": "flag.ending_resolved",
+          "value": "ending_betrayed"
+        },
+        {
+          "set_state": "world.region.ashvale.status",
+          "value": "consumed"
+        },
+        {
+          "set_state": "world.region.thornwood.status",
+          "value": "enraged_expansion"
+        }
+      ]
+    },
+    {
+      "ending_id": "ending_harmony",
+      "priority": 90,
+      "conditions": [
+        {
+          "check": "flag.pact_renegotiated",
+          "op": "==",
+          "value": true
+        },
+        {
+          "check": "flag.factions_united",
+          "op": "==",
+          "value": true
+        },
+        {
+          "check": "flag.player_lied_to_heartwood",
+          "op": "!=",
+          "value": true
+        }
+      ],
+      "dialogue": "ending_harmony",
+      "effects": [
+        {
+          "set_state": "flag.ending_resolved",
+          "value": "ending_harmony"
+        },
+        {
+          "set_state": "world.region.ashvale.status",
+          "value": "transformed"
+        },
+        {
+          "set_state": "world.region.ashvale.pact_status",
+          "value": "accord_of_equals"
+        }
+      ]
+    },
+    {
+      "ending_id": "ending_uneasy_peace",
+      "priority": 85,
+      "conditions": [
+        {
+          "check": "flag.pact_renegotiated",
+          "op": "==",
+          "value": true
+        },
+        {
+          "check": "flag.factions_united",
+          "op": "!=",
+          "value": true
+        },
+        {
+          "check": "flag.player_lied_to_heartwood",
+          "op": "!=",
+          "value": true
+        }
+      ],
+      "dialogue": "ending_uneasy_peace",
+      "effects": [
+        {
+          "set_state": "flag.ending_resolved",
+          "value": "ending_uneasy_peace"
+        },
+        {
+          "set_state": "world.region.ashvale.status",
+          "value": "tense_coexistence"
+        },
+        {
+          "set_state": "world.region.ashvale.pact_status",
+          "value": "fragile_accord"
+        }
+      ]
+    },
+    {
+      "ending_id": "ending_new_order",
+      "priority": 80,
+      "conditions": [
+        {
+          "check": "flag.pact_fulfilled_with_lord",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "dialogue": "ending_new_order",
+      "effects": [
+        {
+          "set_state": "flag.ending_resolved",
+          "value": "ending_new_order"
+        },
+        {
+          "set_state": "world.region.ashvale.status",
+          "value": "recovering"
+        },
+        {
+          "set_state": "world.region.ashvale.pact_status",
+          "value": "renewed_with_lord"
+        },
+        {
+          "set_state": "npc.lord_ashworth.alive",
+          "value": false
+        }
+      ]
+    },
+    {
+      "ending_id": "ending_atonement",
+      "priority": 75,
+      "conditions": [
+        {
+          "check": "flag.pact_fulfilled_with_maren",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "dialogue": "ending_atonement",
+      "effects": [
+        {
+          "set_state": "flag.ending_resolved",
+          "value": "ending_atonement"
+        },
+        {
+          "set_state": "world.region.ashvale.status",
+          "value": "recovering"
+        },
+        {
+          "set_state": "world.region.ashvale.pact_status",
+          "value": "renewed_with_maren"
+        },
+        {
+          "set_state": "npc.maren.alive",
+          "value": false
+        },
+        {
+          "set_state": "faction.church_ashen_light.power",
+          "delta": -50.0
+        }
+      ]
+    },
+    {
+      "ending_id": "ending_dark_price",
+      "priority": 70,
+      "conditions": [
+        {
+          "check": "flag.pact_fulfilled_with_villager",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "dialogue": "ending_dark_price",
+      "effects": [
+        {
+          "set_state": "flag.ending_resolved",
+          "value": "ending_dark_price"
+        },
+        {
+          "set_state": "world.region.ashvale.status",
+          "value": "recovering_bitter"
+        },
+        {
+          "set_state": "world.region.ashvale.pact_status",
+          "value": "renewed_with_blood"
+        },
+        {
+          "set_state": "player.reputation.ashvale_nobility",
+          "delta": -40
+        },
+        {
+          "set_state": "player.reputation.city_guard",
+          "delta": -30
+        }
+      ]
+    },
+    {
+      "ending_id": "ending_exodus",
+      "priority": 60,
+      "conditions": [
+        {
+          "check": "flag.pact_severed",
+          "op": "==",
+          "value": true
+        },
+        {
+          "check": "flag.factions_united",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "dialogue": "ending_exodus",
+      "effects": [
+        {
+          "set_state": "flag.ending_resolved",
+          "value": "ending_exodus"
+        },
+        {
+          "set_state": "world.region.ashvale.status",
+          "value": "abandoned"
+        },
+        {
+          "set_state": "world.region.ashvale.pact_status",
+          "value": "severed"
+        },
+        {
+          "set_state": "world.region.thornwood.status",
+          "value": "dying"
+        }
+      ]
+    },
+    {
+      "ending_id": "ending_last_stand",
+      "priority": 55,
+      "conditions": [
+        {
+          "check": "flag.pact_severed",
+          "op": "==",
+          "value": true
+        },
+        {
+          "check": "flag.chose_last_stand",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "dialogue": "ending_last_stand",
+      "effects": [
+        {
+          "set_state": "flag.ending_resolved",
+          "value": "ending_last_stand"
+        },
+        {
+          "set_state": "world.region.ashvale.status",
+          "value": "ruined_but_held"
+        },
+        {
+          "set_state": "world.region.ashvale.pact_status",
+          "value": "severed"
+        }
+      ]
+    },
+    {
+      "ending_id": "ending_scorched_earth",
+      "priority": 50,
+      "conditions": [
+        {
+          "check": "flag.pact_severed",
+          "op": "==",
+          "value": true
+        },
+        {
+          "check": "flag.factions_united",
+          "op": "!=",
+          "value": true
+        }
+      ],
+      "dialogue": "ending_scorched_earth",
+      "effects": [
+        {
+          "set_state": "flag.ending_resolved",
+          "value": "ending_scorched_earth"
+        },
+        {
+          "set_state": "world.region.ashvale.status",
+          "value": "destroyed"
+        },
+        {
+          "set_state": "world.region.ashvale.pact_status",
+          "value": "severed"
+        },
+        {
+          "set_state": "world.region.thornwood.status",
+          "value": "burned"
+        }
+      ]
+    },
+    {
+      "ending_id": "ending_exodus_default",
+      "priority": 1,
+      "conditions": [],
+      "dialogue": "ending_exodus",
+      "effects": [
+        {
+          "set_state": "flag.ending_resolved",
+          "value": "ending_exodus"
+        },
+        {
+          "set_state": "world.region.ashvale.status",
+          "value": "abandoned"
+        }
+      ]
+    }
+  ],
+  "ending_modifiers": [
+    {
+      "id": "famine_modifier",
+      "condition": "flag.silo_destroyed == true",
+      "applies_to": [
+        "ending_exodus",
+        "ending_last_stand",
+        "ending_scorched_earth"
+      ],
+      "effects": [
+        {
+          "set_state": "flag.famine_affected_ending",
+          "value": true
+        },
+        {
+          "set_state": "world.ending.survivor_count_modifier",
+          "delta": -0.3
+        }
+      ],
+      "narrative_note": "Fewer survivors due to destroyed grain stores. Exodus is harder. Last stand is weaker."
+    },
+    {
+      "id": "truth_known_modifier",
+      "condition": "flag.ashworth_confession_heard == true",
+      "applies_to": [
+        "ending_new_order",
+        "ending_dark_price",
+        "ending_harmony"
+      ],
+      "effects": [
+        {
+          "set_state": "flag.village_knows_full_truth",
+          "value": true
+        }
+      ],
+      "narrative_note": "The village knows the full history of the pact. Changes NPC reactions in epilogue."
+    },
+    {
+      "id": "voss_ally_modifier",
+      "condition": "flag.voss_spared_in_duel == true AND npc.commander_voss.alive == true",
+      "applies_to": [
+        "ending_exodus",
+        "ending_last_stand",
+        "ending_new_order"
+      ],
+      "effects": [
+        {
+          "set_state": "flag.voss_is_ending_ally",
+          "value": true
+        },
+        {
+          "set_state": "world.ending.military_strength_modifier",
+          "delta": 0.4
+        }
+      ],
+      "narrative_note": "Voss provides military support. Exodus has escort. Last stand is stronger. New Order has a leadership candidate."
+    },
+    {
+      "id": "ironmarch_submitted_modifier",
+      "condition": "flag.ironmarch_ultimatum_result == 'submitted'",
+      "applies_to": [
+        "ending_exodus",
+        "ending_last_stand"
+      ],
+      "effects": [
+        {
+          "set_state": "flag.ironmarch_controls_remnants",
+          "value": true
+        }
+      ],
+      "narrative_note": "The Legion claims jurisdiction over Ashvale's refugees. Exodus is under Legion escort \u2014 protective but controlling."
+    },
+    {
+      "id": "ironmarch_defied_modifier",
+      "condition": "flag.ironmarch_ultimatum_result == 'defied'",
+      "applies_to": [
+        "ending_last_stand",
+        "ending_scorched_earth"
+      ],
+      "effects": [
+        {
+          "set_state": "flag.ironmarch_hostile_in_ending",
+          "value": true
+        },
+        {
+          "set_state": "world.ending.military_strength_modifier",
+          "delta": -0.3
+        }
+      ],
+      "narrative_note": "The Legion attacks during the last stand. Scorched earth is partly their doing."
+    },
+    {
+      "id": "mercy_path_modifier",
+      "condition": "player.moral_vector.mercy >= 60",
+      "applies_to": [
+        "ending_harmony",
+        "ending_exodus",
+        "ending_martyr"
+      ],
+      "effects": [
+        {
+          "set_state": "flag.mercy_recognized_in_ending",
+          "value": true
+        }
+      ],
+      "narrative_note": "NPCs speak of the player's compassion in epilogue. More survivors in exodus. Heartwood is more receptive in harmony."
+    },
+    {
+      "id": "justice_path_modifier",
+      "condition": "player.moral_vector.justice >= 60",
+      "applies_to": [
+        "ending_new_order",
+        "ending_dark_price",
+        "ending_last_stand"
+      ],
+      "effects": [
+        {
+          "set_state": "flag.justice_recognized_in_ending",
+          "value": true
+        }
+      ],
+      "narrative_note": "NPCs respect the player's resolve. New Order is more stable. Dark Price is viewed as necessary evil. Last stand is more disciplined."
+    },
+    {
+      "id": "family_truth_modifier",
+      "condition": "flag.maren_family_truth_revealed == true",
+      "applies_to": [
+        "ending_atonement",
+        "ending_harmony",
+        "ending_dark_price",
+        "ending_new_order"
+      ],
+      "effects": [
+        {
+          "set_state": "flag.family_truth_affects_ending",
+          "value": true
+        }
+      ],
+      "narrative_note": "The family truth between Brother Maren, Old Maren, and Elara has been revealed. Fundamentally alters emotional tone of endings involving sacrifice or reconciliation."
+    }
+  ]
+}

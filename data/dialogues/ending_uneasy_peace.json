@@ -1,0 +1,118 @@
+{
+  "id": "ending_uneasy_peace",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The accord holds \u2014 technically. The Heartwood honored its word. The forest retreated from the fields, the water cleared, and the blight receded like a tide pulling back from shore. But not everyone in Ashvale was willing to accept the new arrangement. Not everyone believes you can trust something that old, that alien, that hungry.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_uneasy_peace_started",
+          "value": true
+        }
+      ],
+      "next": "the_holdouts"
+    },
+    "the_holdouts": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The holdouts gather at the edges of the village \u2014 those who refused to bend. Farmers who won't plant in soil touched by roots. Guards who patrol the tree line with torches and iron. The faithful who see the accord as blasphemy. They watch the forest with the eyes of people who have been hurt before and are waiting to be hurt again.",
+      "next": "tension_scene"
+    },
+    "tension_scene": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "A tree grows too close to the miller's house. He cuts it down. The next morning, two more have grown in its place. The miller cuts those down too. The next morning, four. It isn't malice \u2014 the forest is simply doing what forests do. But the miller sees intention in it, and intention is the seed of conflict.",
+      "next": "player_mediation"
+    },
+    "player_mediation": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "mediate_patience",
+          "text": "We need patience. The forest is learning to live with us as much as we're learning to live with it.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.counseled_patience",
+              "value": true
+            }
+          ],
+          "next": "patience_response"
+        },
+        {
+          "id": "mediate_boundaries",
+          "text": "We'll establish clear boundaries. The forest stays on its side, the village on ours.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.established_boundaries",
+              "value": true
+            }
+          ],
+          "next": "boundaries_response"
+        },
+        {
+          "id": "mediate_threat",
+          "text": "Anyone who breaks the accord answers to me. That goes for humans and roots alike.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.enforced_accord",
+              "value": true
+            }
+          ],
+          "next": "threat_response"
+        }
+      ]
+    },
+    "patience_response": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Patience. It's not the answer they want \u2014 they want certainty, walls, control. But some of them hear the wisdom in it. Change this profound takes time. The forest spent ten thousand years as humanity's adversary. It won't become a neighbor in a season. But every day without bloodshed is a day closer to something that might, eventually, be called trust.",
+      "next": "seasons_pass"
+    },
+    "boundaries_response": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "You drive iron stakes into the ground at the border of forest and field. A clear line. This far and no further. The forest respects it \u2014 mostly. The village respects it \u2014 mostly. On the rare occasions a root crosses the line or a farmer clears a tree too far, you're there to mediate. It's exhausting, thankless work. But it holds. Barely.",
+      "next": "seasons_pass"
+    },
+    "threat_response": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Your threat carries weight \u2014 you've earned that much. The holdouts grumble but comply. The forest, sensing the iron in your voice, pulls back its most aggressive tendrils. Peace enforced by fear is still peace, you tell yourself. You're not sure you believe it. But the alternative is war, and you've seen enough of that.",
+      "next": "seasons_pass"
+    },
+    "seasons_pass": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "A year passes. Then two. The accord doesn't strengthen, but it doesn't break. The holdouts don't embrace the forest, but they stop cutting down the new growth. Children born after the accord know nothing else \u2014 to them, the trees at the edge of the village are simply part of the landscape, as natural as the sky. Perhaps that's how trust begins. Not with the old. With the young.",
+      "triggers": [
+        {
+          "set_state": "flag.ending_uneasy_peace_complete",
+          "value": true
+        }
+      ],
+      "next": "epilogue"
+    },
+    "epilogue": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Ashvale persists. Not thrives \u2014 persists. The tension between forest and field hums like a wire stretched too tight, and some days you can almost hear it singing. It's not harmony. Not yet. But it's not war. And in a world that offers so few choices between those two extremes, 'not war' is worth more than it sounds.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

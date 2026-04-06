@@ -1,0 +1,107 @@
+{
+  "id": "maren_follow_up",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "You return. Good. The Light does not abandon those who seek it \u2014 even if what they find is... uncomfortable.",
+      "next": "choice_topics"
+    },
+    "choice_topics": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "evening_prayer",
+          "text": "You mentioned evening prayers. May I attend?",
+          "conditions": [
+            {
+              "check": "flag.maren_preached_to_player",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "prayer_invitation"
+        },
+        {
+          "id": "ask_old_ways",
+          "text": "Tell me about 'the old ways' that came before the Church.",
+          "conditions": [],
+          "triggers": [],
+          "next": "old_ways"
+        },
+        {
+          "id": "midnight",
+          "text": "About that midnight meeting...",
+          "conditions": [
+            {
+              "check": "flag.maren_midnight_meeting",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "midnight_reminder"
+        },
+        {
+          "id": "leave",
+          "text": "I have other matters to attend to.",
+          "conditions": [],
+          "triggers": [],
+          "next": "end"
+        }
+      ]
+    },
+    "prayer_invitation": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "You are welcome at vespers. Come at dusk \u2014 I lead the faithful in meditation. You will see the chapel as it was meant to be used. And perhaps... you will see something the faithless cannot.",
+      "triggers": [
+        {
+          "set_state": "flag.invited_to_vespers",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "old_ways": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "Before the Ashen Light, these lands worshipped the forest. Blood and sap, root and bone. The druids served as intermediaries between men and the green will beneath the soil.",
+      "next": "old_ways_2"
+    },
+    "old_ways_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "The Church burned their groves and scattered their circles. We brought civilization. But the forest... the forest has a long memory. And old covenants do not die simply because new faiths decree it.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_spoke_of_old_ways",
+          "value": true
+        }
+      ],
+      "next": "choice_topics"
+    },
+    "midnight_reminder": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "Come to the chapel when the village sleeps. The cellar door will be unlocked. What I have to show you cannot be spoken of in daylight \u2014 there are too many ears in Ashvale.",
+      "triggers": [
+        {
+          "set_state": "flag.midnight_meeting_confirmed",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

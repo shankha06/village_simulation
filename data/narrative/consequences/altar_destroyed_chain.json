@@ -1,0 +1,60 @@
+{
+  "id": "altar_destroyed_chain",
+  "trigger_condition": "flag.ritual_altar_destroyed == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "flag.pact_anchor_severed",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.pact_strength",
+          "delta": -40.0
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "set_state": "world.region.thornwood.behavior",
+          "value": "agitated"
+        },
+        {
+          "set_state": "npc.thornwood_spirit.disposition",
+          "delta": -20
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "effects": [
+        {
+          "set_state": "flag.forest_retaliates",
+          "value": true
+        },
+        {
+          "spawn_event": "forest_encroachment_ashvale"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 10,
+      "effects": [
+        {
+          "set_state": "npc.lord_ashworth.memory.altar_destroyed_panic",
+          "value": true
+        },
+        {
+          "set_state": "faction.ashvale_nobility.power",
+          "delta": -15.0
+        }
+      ]
+    }
+  ]
+}

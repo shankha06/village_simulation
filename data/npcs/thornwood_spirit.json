@@ -1,0 +1,71 @@
+{
+  "id": "thornwood_spirit",
+  "name": "The Warden",
+  "description": "A manifestation of the forest's collective will. Appears as a shifting silhouette of bark, moss, and pale light between the trees. Its voice is many voices layered \u2014 roots grinding, leaves whispering, sap hissing.",
+  "faction": "thornwood_druids",
+  "personality": {
+    "courage": 1.0,
+    "greed": 0.0,
+    "loyalty": 1.0,
+    "cruelty": 0.3,
+    "curiosity": 0.5,
+    "honesty": 0.8
+  },
+  "schedule": [
+    {
+      "hour": 0,
+      "location": "forest_edge",
+      "activity": "watching"
+    },
+    {
+      "hour": 6,
+      "location": "forest_edge",
+      "activity": "dormant"
+    },
+    {
+      "hour": 18,
+      "location": "forest_edge",
+      "activity": "manifesting"
+    },
+    {
+      "hour": 22,
+      "location": "forest_edge",
+      "activity": "watching"
+    }
+  ],
+  "home_location": "thornwood_edge",
+  "dialogue_pools": {
+    "greeting": "warden_first_contact",
+    "with_talisman": "warden_talisman_communion",
+    "hostile": "warden_hostile",
+    "after_communion": "warden_post_communion",
+    "warden_test": "warden_test",
+    "warden_riddles": "warden_riddles"
+  },
+  "default_greeting": "warden_first_contact",
+  "barks": [
+    "(the branches creak though there is no wind)",
+    "(whispers from the trees, just below hearing)",
+    "(the earth hums beneath your feet)",
+    "(roots shift in the soil, reaching toward you)",
+    "(a sound like breathing, slow and vast)",
+    "(the leaves turn to face you as you pass)"
+  ],
+  "is_combatant": true,
+  "max_health": 500.0,
+  "attack_damage": 30.0,
+  "can_surrender": false,
+  "spawn_conditions": [
+    {
+      "check": "world.day",
+      "op": ">=",
+      "value": 10
+    }
+  ],
+  "npc_relationships": {
+    "old_maren": 60,
+    "elara": 20,
+    "lord_ashworth": -80,
+    "brother_maren": -60
+  }
+}

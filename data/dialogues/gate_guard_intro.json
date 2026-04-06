@@ -1,0 +1,133 @@
+{
+  "id": "gate_guard_intro",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "gate_guard",
+      "portrait": "neutral",
+      "text": "Another traveler. Either you're brave or you haven't heard. Ashvale isn't exactly a destination these days.",
+      "triggers": [
+        {
+          "set_state": "npc.gate_guard.met",
+          "value": true
+        }
+      ],
+      "next": "choice_opening"
+    },
+    "choice_opening": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "ask_whats_wrong",
+          "text": "Heard what? What's happening here?",
+          "conditions": [],
+          "triggers": [],
+          "next": "explain_situation"
+        },
+        {
+          "id": "show_heirloom",
+          "text": "[Show Silver Compass] Do you recognize the name on this? Silas Maren?",
+          "conditions": [
+            {
+              "check": "player.has_item.marens_heirloom",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.gate_guard.disposition",
+              "delta": -20
+            },
+            {
+              "set_state": "flag.harlan_recognized_compass",
+              "value": true
+            }
+          ],
+          "next": "harlan_regret"
+        },
+        {
+          "id": "ask_inn",
+          "text": "I need a place to sleep. Is there an inn?",
+          "conditions": [],
+          "triggers": [],
+          "next": "directions_inn"
+        },
+        {
+          "id": "just_passing",
+          "text": "Just passing through. Let me in.",
+          "conditions": [],
+          "triggers": [],
+          "next": "warning"
+        }
+      ]
+    },
+    "harlan_regret": {
+      "type": "text",
+      "speaker": "gate_guard",
+      "portrait": "sad",
+      "text": "Where did you\u2014 No. Give that here. ...Silas. I haven't seen this in thirty years. We were friends, once. Before the Lord called in the debt. Before we all stood by and watched the roots take him.",
+      "next": "harlan_regret_2"
+    },
+    "harlan_regret_2": {
+      "type": "text",
+      "speaker": "gate_guard",
+      "portrait": "neutral",
+      "text": "The well water isn't just poisoned, stranger. It's bitter with the memory of what we allowed to happen. If you're here to settle Silas's score... just be careful. Ashvale doesn't like being reminded of its sins.",
+      "triggers": [
+        {
+          "set_state": "flag.harlan_debt_mentioned",
+          "value": true
+        },
+        {
+          "set_state": "flag.harlan_honest_with_player",
+          "value": true
+        }
+      ],
+      "next": "directions_inn"
+    },
+    "explain_situation": {
+      "type": "text",
+      "speaker": "gate_guard",
+      "portrait": "neutral",
+      "text": "Crops are rotting in the fields. Livestock dying. Half the village thinks it's a curse, the other half blames the lord. Me? I think something's wrong with the water. Don't drink from the well \u2014 I mean it.",
+      "triggers": [
+        {
+          "set_state": "flag.warned_about_water",
+          "value": true
+        }
+      ],
+      "next": "directions_inn"
+    },
+    "directions_inn": {
+      "type": "text",
+      "speaker": "gate_guard",
+      "portrait": "neutral",
+      "text": "Greta runs the Pig and Whistle \u2014 up the main road, can't miss it. She'll have a room if you've got coin. Tell her Harlan sent you, might save you a copper.",
+      "triggers": [
+        {
+          "set_state": "flag.knows_inn_location",
+          "value": true
+        }
+      ],
+      "next": "warning"
+    },
+    "warning": {
+      "type": "text",
+      "speaker": "gate_guard",
+      "portrait": "neutral",
+      "text": "One more thing, stranger. Don't drink the well water. And don't go near Thornwood after dark. Whatever's killing the crops... I've heard things moving in those trees at night. Things that don't sound like animals.",
+      "triggers": [
+        {
+          "set_state": "flag.warned_about_thornwood",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

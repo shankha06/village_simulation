@@ -1,0 +1,704 @@
+{
+  "id": "maren_midnight",
+  "start_node": "start",
+  "conditions": [
+    {
+      "check": "flag.maren_midnight_meeting",
+      "op": "==",
+      "value": true
+    },
+    {
+      "check": "world.time_period",
+      "op": "==",
+      "value": "night"
+    }
+  ],
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "You came. Good. Close the cellar door behind you. What I'm about to show you... the Church would burn me alive if they knew.",
+      "triggers": [
+        {
+          "set_state": "flag.attended_midnight_meeting",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.memory.player_attended_midnight",
+          "value": true
+        }
+      ],
+      "next": "descent"
+    },
+    "descent": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "He leads you down narrow stone steps into the chapel cellar. It's not what you expected \u2014 no candles or scripture. The walls are covered in diagrams, pressed plant samples, and handwritten notes in a cramped, obsessive script.",
+      "next": "the_research"
+    },
+    "the_research": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "The Ashen Light didn't send me here to preach. They sent me to investigate the Ashworth Pact \u2014 a three-hundred-year-old bargain between the founding lord and the Thornwood entity. Every thirty years, the pact demands renewal. A sacrifice. A life.",
+      "triggers": [
+        {
+          "set_state": "flag.pact_details_revealed",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_thirty_year_sacrifice",
+          "value": true
+        }
+      ],
+      "next": "the_research_2"
+    },
+    "the_research_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "Lord Ashworth's grandfather made the last renewal. His father... refused. And now the current lord hides in his manor while the forest takes back what it's owed. The dying crops aren't punishment \u2014 they're collection.",
+      "next": "the_research_3"
+    },
+    "the_research_3": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "But here's what the Church doesn't know I found...",
+      "next": "the_twist"
+    },
+    "the_twist": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "fearful",
+      "text": "He pulls a leather journal from behind a loose stone. Inside: detailed formulas for nightcap root extraction. Dosage calculations. A schedule matching the contamination timeline exactly.",
+      "next": "the_twist_2"
+    },
+    "the_twist_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "Before you ask \u2014 yes, I know what this looks like. A priest with poison formulas in his cellar. The perfect suspect. But I didn't create these. I found them. Hidden in the lord's own library, in a sealed chest with the Ashworth crest.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_has_poison_formulas",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_formulas_from_ashworth_library",
+          "value": true
+        }
+      ],
+      "next": "the_dilemma"
+    },
+    "the_dilemma": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "Either Lord Ashworth is poisoning his own village to simulate the pact's curse \u2014 buying time while he finds a way to break it without the sacrifice. Or... someone planted these in his library to frame him. And the real poisoner is still out there.",
+      "next": "the_dilemma_2"
+    },
+    "the_dilemma_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "I've been studying the formulas trying to determine which scenario is true. The extraction method is sophisticated \u2014 trained alchemist level. Ashworth is many things, but he's no scholar. Someone helped him. Or someone framed him perfectly.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_shared_full_research",
+          "value": true
+        }
+      ],
+      "next": "player_reaction"
+    },
+    "player_reaction": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "confront_maren",
+          "text": "How do I know YOU didn't create those formulas and plant them in the library yourself?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.brother_maren.memory.player_accused_directly",
+              "value": true
+            }
+          ],
+          "next": "confront_path"
+        },
+        {
+          "id": "play_along",
+          "text": "This is incredible work, Brother. What do you think we should do next?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": 15
+            },
+            {
+              "set_state": "npc.brother_maren.memory.player_trusts_him",
+              "value": true
+            }
+          ],
+          "next": "alliance_path"
+        },
+        {
+          "id": "steal_research",
+          "text": "[While he talks, you memorize the layout. The journal. The loose stone. You could come back later...]",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.memorized_cellar_layout",
+              "value": true
+            },
+            {
+              "set_state": "flag.can_steal_maren_research",
+              "value": true
+            }
+          ],
+          "next": "steal_path"
+        },
+        {
+          "id": "form_alliance",
+          "text": "If you're telling the truth, then we're investigating the same thing. Let's work together.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.maren_alliance_offered",
+              "value": true
+            }
+          ],
+          "next": "alliance_offer_path"
+        }
+      ]
+    },
+    "confront_path": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "angry",
+      "text": "You think I... of course. Of course you'd think that. The suspicious priest with the convenient timing. I've heard it from every corner of this cursed village.",
+      "next": "confront_2"
+    },
+    "confront_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "Then ask yourself this: if I were the poisoner, why would I show you the evidence? Why would I invite the one person in Ashvale who's actually investigating into my cellar and hand them the weapon to destroy me?",
+      "next": "confront_choice"
+    },
+    "confront_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "confront_trap",
+          "text": "Because this IS a trap. You're testing whether I can be controlled \u2014 or whether I need to be silenced.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_thinks_maren_trap",
+              "value": true
+            },
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": -20
+            }
+          ],
+          "next": "confront_trap_response"
+        },
+        {
+          "id": "confront_believe",
+          "text": "...Because you're desperate. You've been alone with this and you needed someone to believe you.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": 20
+            },
+            {
+              "set_state": "npc.brother_maren.memory.player_understood_desperation",
+              "value": true
+            }
+          ],
+          "next": "confront_believed"
+        },
+        {
+          "id": "confront_test",
+          "text": "Prove you're innocent. Let me take the journal to someone who can verify the handwriting isn't yours.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.demanded_journal_verification",
+              "value": true
+            }
+          ],
+          "next": "confront_test_response"
+        }
+      ]
+    },
+    "confront_trap_response": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "If I wanted you silenced, we wouldn't be having this conversation. I'm a priest \u2014 I know seventeen ways to kill with common herbs and make it look like plague. Do you think I needed to lure you to a cellar?",
+      "next": "confront_trap_2"
+    },
+    "confront_trap_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "sad",
+      "text": "But I see your point. Trust is earned, not confessed. Take this \u2014 a sample of the nightcap root I confiscated from the well three days ago. Have your herbalist friend compare it to the formula in the journal. If they match Lord Ashworth's supply chain, I'm innocent. If they match mine... then I'm a better liar than even I thought.",
+      "triggers": [
+        {
+          "set_state": "flag.has_maren_nightcap_sample",
+          "value": true
+        },
+        {
+          "set_state": "flag.can_verify_poison_source",
+          "value": true
+        }
+      ],
+      "next": "confront_standoff"
+    },
+    "confront_standoff": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "Go. Test it. Come back with the truth. But hurry \u2014 the next new moon is in five days, and if the pact isn't addressed by then... the forest won't settle for poisoned crops. It will come for lives.",
+      "triggers": [
+        {
+          "set_state": "flag.pact_deadline_5_days",
+          "value": true
+        },
+        {
+          "set_state": "flag.maren_let_player_leave_with_evidence",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "confront_believed": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "sad",
+      "text": "...Yes. The Church sent me to investigate, not to solve it alone. But the deeper I dug, the more dangerous it became to report back. My superiors want the pact broken at any cost \u2014 including sacrificing this entire village to prove the old gods are real.",
+      "triggers": [
+        {
+          "set_state": "flag.church_willing_to_sacrifice_village",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_church_hidden_agenda",
+          "value": true
+        }
+      ],
+      "next": "salt_the_earth_detail"
+    },
+    "salt_the_earth_detail": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "fearful",
+      "text": "The nightcap root was phase one -- weaken the village, make them desperate, make them believe the forest is the enemy. Phase two: a Church army arrives to 'cleanse' the Thornwood with alchemical fire. Not to save Ashvale. To salt the earth so deeply that nothing -- human or root -- ever grows here again.",
+      "triggers": [
+        {
+          "set_state": "flag.church_salt_the_earth_plan",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_church_army_coming",
+          "value": true
+        }
+      ],
+      "next": "church_eldritch_belief"
+    },
+    "church_eldritch_belief": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "The Ashen Light doesn't see a forest. They see a parasite. A consciousness that feeds on human souls and calls it 'covenant.' They're not entirely wrong -- the Heartwood IS alien, IS ancient, DOES consume the willing. But the Church's solution isn't salvation. It's annihilation. And they'll destroy Ashvale to get to the roots beneath it.",
+      "triggers": [
+        {
+          "set_state": "flag.church_sees_forest_as_parasite",
+          "value": true
+        }
+      ],
+      "next": "confront_believed_2"
+    },
+    "confront_believed_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "I stopped reporting three weeks ago. As far as the Ashen Light knows, I'm still their obedient instrument. But I chose these people over my faith. Whatever that costs me.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_defected_from_church",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.memory.shared_true_allegiance",
+          "value": true
+        }
+      ],
+      "next": "alliance_offer_path"
+    },
+    "confront_test_response": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "Fair. The journal is written in Lord Ashworth's hand \u2014 or a very convincing forgery. Take it. Have the innkeeper verify it; she's handled enough of the lord's correspondence to know his writing.",
+      "triggers": [
+        {
+          "set_state": "flag.has_ashworth_journal",
+          "value": true
+        },
+        {
+          "set_state": "flag.can_verify_handwriting",
+          "value": true
+        }
+      ],
+      "next": "confront_test_2"
+    },
+    "confront_test_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "But be careful who else sees it. If the lord IS the poisoner, showing him the journal warns him we're onto him. And if someone framed him, showing the frame to the wrong person tells the real poisoner how much we know.",
+      "triggers": [
+        {
+          "set_state": "quest.water_investigation.stage",
+          "value": "verify_journal"
+        }
+      ],
+      "next": "end"
+    },
+    "steal_path": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "...Are you listening? The formulae show a very specific extraction method \u2014 one that requires equipment you'd only find in an alchemist's laboratory or a well-funded church research cell.",
+      "next": "steal_2"
+    },
+    "steal_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "You nod along, but your eyes have been cataloging the room. The journal behind the loose stone \u2014 third row, second from the left. The sample vials on the shelf. The exit route. You note it all.",
+      "next": "steal_choice"
+    },
+    "steal_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "steal_later",
+          "text": "[Keep listening. You can come back when he's at morning prayers.]",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.plan_to_steal_maren_research",
+              "value": true
+            },
+            {
+              "set_state": "flag.knows_cellar_layout",
+              "value": true
+            }
+          ],
+          "next": "steal_continue"
+        },
+        {
+          "id": "steal_now",
+          "text": "[Wait for him to turn his back, then grab the journal and run.]",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.stole_journal_directly",
+              "value": true
+            },
+            {
+              "set_state": "flag.has_ashworth_journal",
+              "value": true
+            },
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": -50
+            },
+            {
+              "set_state": "npc.brother_maren.memory.player_is_thief",
+              "value": true
+            }
+          ],
+          "next": "steal_now_response"
+        },
+        {
+          "id": "stop_scheming",
+          "text": "[No. Listen to what he's saying. This matters more than stolen journals.]",
+          "conditions": [],
+          "triggers": [],
+          "next": "alliance_offer_path"
+        }
+      ]
+    },
+    "steal_continue": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "He continues explaining the pact's history, unaware of your mental inventory. You smile and nod. Morning prayers begin at five. The cellar will be empty for at least an hour.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_morning_prayers_5am",
+          "value": true
+        }
+      ],
+      "next": "alliance_offer_path"
+    },
+    "steal_now_response": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "angry",
+      "text": "What are you \u2014 STOP! That's the only copy! If you destroy that evidence, no one will ever know the truth about Ashvale!",
+      "next": "steal_now_2"
+    },
+    "steal_now_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "angry",
+      "text": "You push past him and run for the stairs. Behind you, his voice shifts from anger to something colder. More controlled.",
+      "next": "steal_now_3"
+    },
+    "steal_now_3": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "So be it. You have the journal, but you don't have the key to reading it. Half the entries are in cipher. Without me, it's just a book full of nonsense. When you're ready to cooperate... you know where to find me. If I'm still alive.",
+      "triggers": [
+        {
+          "set_state": "flag.journal_is_partially_ciphered",
+          "value": true
+        },
+        {
+          "set_state": "flag.maren_hostile_but_needed",
+          "value": true
+        },
+        {
+          "modify_reputation": {
+            "church_ashen_light": -20
+          }
+        }
+      ],
+      "next": "end"
+    },
+    "alliance_offer_path": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "An alliance. Between a wandering stranger and a defector priest investigating ancient forest pacts in a dying village. The Ashen Light has a word for this \u2014 'convergence.' When the fire guides separate souls to the same crucible.",
+      "next": "alliance_offer_2"
+    },
+    "alliance_offer_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "I know the pact's history and the Church's involvement. You have access to the village \u2014 the herbalist, the innkeeper, maybe even the Guild. Together, we can find the poisoner and address the pact before the new moon.",
+      "next": "alliance_terms"
+    },
+    "alliance_terms": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "full_trust",
+          "text": "Full partnership. We share everything \u2014 no secrets, no hidden agendas.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.maren_full_alliance",
+              "value": true
+            },
+            {
+              "set_state": "flag.maren_is_ally",
+              "value": true
+            },
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": 25
+            },
+            {
+              "set_state": "npc.brother_maren.memory.full_partnership",
+              "value": true
+            }
+          ],
+          "next": "full_alliance"
+        },
+        {
+          "id": "limited_trust",
+          "text": "We work together on the pact. But I keep my other sources separate. You don't need to know everyone I talk to.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.maren_limited_alliance",
+              "value": true
+            },
+            {
+              "set_state": "flag.maren_is_ally",
+              "value": true
+            },
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "limited_alliance"
+        },
+        {
+          "id": "reject_alliance",
+          "text": "I'll think about it. I'm not ready to trust a man who keeps poison formulas in his cellar.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.maren_alliance_rejected",
+              "value": true
+            },
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": -10
+            }
+          ],
+          "next": "rejection"
+        }
+      ]
+    },
+    "full_alliance": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "Full partnership. Then here is my last secret: the pact can be broken. Not renewed \u2014 broken. Permanently. There's a ritual site deep in Thornwood where the original bargain was struck. If we can reach it before the new moon and perform the counter-rite, Ashvale is free. Forever.",
+      "triggers": [
+        {
+          "set_state": "flag.pact_can_be_broken",
+          "value": true
+        },
+        {
+          "set_state": "flag.ritual_site_in_thornwood",
+          "value": true
+        },
+        {
+          "set_state": "flag.counter_rite_exists",
+          "value": true
+        }
+      ],
+      "next": "full_alliance_2"
+    },
+    "full_alliance_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "fearful",
+      "text": "But the counter-rite has a cost. It doesn't require a life \u2014 it requires truth. Every secret this village has buried must be spoken aloud at the site. The pact feeds on lies and hidden debts. To break it, everything must come to light.",
+      "triggers": [
+        {
+          "set_state": "flag.counter_rite_requires_truth",
+          "value": true
+        },
+        {
+          "set_state": "flag.pact_fully_revealed",
+          "value": true
+        }
+      ],
+      "next": "full_alliance_3"
+    },
+    "full_alliance_3": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "That means Ashworth's sins, the Guild's schemes, the Church's manipulation, the poisoner's identity \u2014 all of it. Spoken in the forest, under the old trees. The question is: do you know enough truths to fuel the rite? Because I don't. Not yet.",
+      "triggers": [
+        {
+          "set_state": "flag.need_to_gather_all_truths",
+          "value": true
+        },
+        {
+          "set_state": "quest.water_investigation.stage",
+          "value": "gather_truths"
+        }
+      ],
+      "next": "end"
+    },
+    "limited_alliance": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "Compartmentalization. Wise, if paranoid. Very well \u2014 I'll share what I learn about the pact and the Church's agenda. You pursue the poisoner through your own channels. We meet here every midnight to compare notes.",
+      "next": "limited_alliance_2"
+    },
+    "limited_alliance_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "One thing I'll share now: there is a way to break the pact permanently. I'm still piecing together the details, but it involves a ritual site in Thornwood. We'll need to move before the new moon. Five days.",
+      "triggers": [
+        {
+          "set_state": "flag.pact_can_be_broken",
+          "value": true
+        },
+        {
+          "set_state": "flag.ritual_site_in_thornwood",
+          "value": true
+        },
+        {
+          "set_state": "flag.pact_deadline_5_days",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "rejection": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "sad",
+      "text": "I understand. Trust must be earned, not demanded. But time is not on our side. The new moon comes in five days, and the forest grows hungrier with each passing night. When you've made your decision, you know where to find me.",
+      "next": "rejection_2"
+    },
+    "rejection_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "One parting gift \u2014 free of obligation. The poisoner doses the well every three days, always between midnight and two in the morning. The next dosing is tomorrow night. Whether you trust me or not... that information could save lives.",
+      "triggers": [
+        {
+          "set_state": "flag.clue_poison_schedule",
+          "value": true
+        },
+        {
+          "set_state": "flag.next_dosing_tomorrow",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "alliance_path": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "Next? We need to determine if Lord Ashworth is the poisoner \u2014 or the patsy. The journal is our best lead. I've decoded most of the cipher, but there are references to locations I can't identify. Places in the forest that aren't on any map.",
+      "next": "alliance_path_2"
+    },
+    "alliance_path_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "I need someone who knows Thornwood \u2014 the druid paths, the old landmarks. The herbalist might know. Or the old woman on the hill \u2014 Old Maren. She's lived here longer than anyone.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_needs_forest_guide",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_old_maren_knows_forest",
+          "value": true
+        }
+      ],
+      "next": "alliance_offer_path"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

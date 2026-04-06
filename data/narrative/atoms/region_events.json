@@ -1,0 +1,426 @@
+[
+  {
+    "id": "village_argument",
+    "category": "world_event",
+    "region": "ashvale",
+    "priority": 45,
+    "once_only": true,
+    "conditions": [
+      "time.day >= 3",
+      "player.current_region == ashvale"
+    ],
+    "effects": [
+      {"set_state": "flag.village_morale_cracking", "value": true}
+    ],
+    "notification_text": "Two villagers stand toe-to-toe in the square, red-faced and shaking. 'We should leave while we still can!' one shouts. 'And go WHERE?' the other fires back. 'The road belongs to bandits and the forest belongs to itself. At least here we die with walls around us.' The crowd watches in silence. No one argues with either of them."
+  },
+  {
+    "id": "market_closure",
+    "category": "world_event",
+    "region": "ashvale",
+    "priority": 50,
+    "once_only": true,
+    "conditions": [
+      "world.region.ashvale.status == famine",
+      "player.current_region == ashvale"
+    ],
+    "effects": [
+      {"set_state": "flag.market_closed", "value": true},
+      {"set_state": "world.region.ashvale.trade_active", "value": false}
+    ],
+    "notification_text": "The market square stands empty. Stalls shuttered, awnings torn down. The baker's table still has flour dust on it — he left in a hurry. Someone has nailed a board across the last open stall with a single word scratched into it: GONE. The economy of Ashvale has collapsed."
+  },
+  {
+    "id": "guard_desertion",
+    "category": "world_event",
+    "region": "ashvale",
+    "priority": 55,
+    "once_only": true,
+    "conditions": [
+      "time.day >= 7",
+      "faction.ashvale_nobility.power < 30",
+      "player.current_region == ashvale"
+    ],
+    "effects": [
+      {"set_state": "flag.guard_deserted", "value": true},
+      {"set_state": "world.region.ashvale.defense", "delta": -10}
+    ],
+    "notification_text": "The guard post at the eastern gate stands empty. A spear leans against the wall, still warm from the hand that held it. Boot prints lead down the road — eastward, away from Ashvale. Away from duty. Away from a lord too weak to command loyalty. You can't blame him. But you notice the gate swinging open, and you wonder who else noticed."
+  },
+  {
+    "id": "child_crying",
+    "category": "atmosphere",
+    "region": "ashvale",
+    "priority": 60,
+    "once_only": true,
+    "conditions": [
+      "world.region.ashvale.status == famine",
+      "player.current_region == ashvale"
+    ],
+    "effects": [
+      {"set_state": "flag.witnessed_child_suffering", "value": true}
+    ],
+    "notification_text": "A child sits by the well, knees drawn to her chest, crying without sound. Her lips move but nothing comes out — she's past the kind of crying that makes noise. Her stomach is a hollow drum. When she sees you, she doesn't ask for food. She's learned that asking doesn't work. She just looks at you with eyes that have already given up, and that silence is louder than any scream."
+  },
+  {
+    "id": "merchant_ambush",
+    "category": "encounter",
+    "region": "eastern_road",
+    "priority": 50,
+    "once_only": true,
+    "conditions": [
+      "time.day >= 2",
+      "player.current_region == eastern_road"
+    ],
+    "effects": [
+      {"set_state": "flag.witnessed_merchant_ambush", "value": true}
+    ],
+    "notification_text": "Ahead on the road — a merchant's cart overturned, goods scattered. Three figures in rags circle a man on his knees. 'Just the coin,' one says, almost bored. The merchant clutches a lockbox to his chest. Blood runs from his nose. They haven't seen you yet. You have seconds to decide: intervene, or let the road take what the road takes."
+  },
+  {
+    "id": "ironmarch_patrol",
+    "category": "world_event",
+    "region": "eastern_road",
+    "priority": 65,
+    "once_only": true,
+    "conditions": [
+      "time.day >= 5",
+      "player.current_region == eastern_road"
+    ],
+    "effects": [
+      {"set_state": "flag.ironmarch_patrol_seen", "value": true}
+    ],
+    "notification_text": "The rhythmic crunch of boots on gravel. Six soldiers in Ironmarch black, moving in formation down the eastern road. Their eyes scan the treeline. Their hands rest on sword hilts — not drawn, but ready. A patrol this deep into Ashvale territory means the border is no longer a line on a map. It's a suggestion. And they've stopped suggesting."
+  },
+  {
+    "id": "refugee_caravan",
+    "category": "world_event",
+    "region": "eastern_road",
+    "priority": 55,
+    "once_only": true,
+    "conditions": [
+      "world.region.ashvale.status == famine",
+      "player.current_region == eastern_road"
+    ],
+    "effects": [
+      {"set_state": "flag.refugees_fleeing", "value": true}
+    ],
+    "notification_text": "A slow procession of families shuffles down the eastern road, carrying everything they own on their backs. Children cling to parents. An old man pushes a wheelbarrow containing a sleeping infant and a sack of turnips. They are Ashvale's people — the ones who chose flight over famine. They don't look back. There's nothing to look back at."
+  },
+  {
+    "id": "dead_messenger",
+    "category": "discovery",
+    "region": "eastern_road",
+    "priority": 70,
+    "once_only": true,
+    "conditions": [
+      "time.day >= 8",
+      "player.current_region == eastern_road"
+    ],
+    "effects": [
+      {"set_state": "flag.found_dead_messenger", "value": true},
+      {"set_state": "flag.has_undelivered_letter", "value": true}
+    ],
+    "notification_text": "A body in the ditch. A young man in riding leathers, face-down in the mud. Dead perhaps two days — the crows have been at him. His satchel is torn open but one letter remains, tucked inside his boot. The seal is unbroken: the Ashworth crest pressed in black wax. Someone didn't want this message delivered. Someone with a blade and a reason."
+  },
+  {
+    "id": "wolf_howl",
+    "category": "atmosphere",
+    "region": "thornwood",
+    "priority": 30,
+    "once_only": false,
+    "cooldown_days": 3,
+    "conditions": [
+      "time.hour >= 20",
+      "player.current_region == thornwood"
+    ],
+    "effects": [],
+    "notification_text": "Wolves. Close — too close. The howl starts as a single voice, mournful and thin, then others join until the sound surrounds you, rising from every direction at once. The forest amplifies it, bounces it between trunks until you can't tell where they are. You only know where they aren't: they aren't far enough away."
+  },
+  {
+    "id": "druid_marker",
+    "category": "discovery",
+    "region": "thornwood",
+    "priority": 45,
+    "once_only": true,
+    "conditions": [
+      "player.has_item.old_maren_talisman == true",
+      "player.current_region == thornwood"
+    ],
+    "effects": [
+      {"set_state": "flag.druid_trail_revealed", "value": true}
+    ],
+    "notification_text": "The talisman grows warm against your chest. You look down and when you look up again, the forest has changed. Symbols glow faintly on the bark of certain trees — spirals, crescents, patterns that pulse like breathing. A hidden trail, invisible to anyone without the talisman. Old Maren's people walked this path. The forest remembers their feet."
+  },
+  {
+    "id": "poisoned_stream",
+    "category": "discovery",
+    "region": "thornwood",
+    "priority": 50,
+    "once_only": true,
+    "conditions": [
+      "flag.evidence_nightcap_root == true",
+      "player.current_region == thornwood"
+    ],
+    "effects": [
+      {"set_state": "flag.found_poisoned_stream", "value": true}
+    ],
+    "notification_text": "The stream runs dark here. Not muddy — dark, like ink dropped in clear water. You recognize the discoloration now: nightcap residue. The same poison killing Ashvale's well. But this stream flows FROM the forest, not toward it. Someone has been poisoning the water upstream. The forest itself is a victim."
+  },
+  {
+    "id": "ancient_tree_falls",
+    "category": "world_event",
+    "region": "thornwood",
+    "priority": 75,
+    "once_only": true,
+    "conditions": [
+      "time.day >= 10",
+      "flag.pact_resolved != true",
+      "player.current_region == thornwood"
+    ],
+    "effects": [
+      {"set_state": "flag.ancient_tree_fallen", "value": true},
+      {"swap_visuals": "thornwood_clearing_path", "variant": "blocked_by_fallen_tree"}
+    ],
+    "notification_text": "A crack like thunder splits the air. You feel it in your teeth before you hear it — the death-groan of something ancient. A massive oak, wider than three men abreast, topples in slow, terrible majesty. It falls for what feels like a full minute, and when it strikes the earth, the impact shakes leaves from every tree in sight. The forest is dying. The pact demands its due, and without resolution, even the oldest guardians fall."
+  },
+  {
+    "id": "ashworth_pacing",
+    "category": "mystery",
+    "region": "ashworth_manor",
+    "priority": 45,
+    "once_only": true,
+    "conditions": [
+      "time.hour >= 22",
+      "npc.lord_ashworth.met == true",
+      "player.current_region == ashworth_manor"
+    ],
+    "effects": [
+      {"set_state": "flag.heard_ashworth_pacing", "value": true}
+    ],
+    "notification_text": "Footsteps above. Lord Ashworth pacing — back and forth, back and forth, the floorboards groaning under his weight. And muttering. You catch fragments: '...the terms were clear...' and '...she won't forgive...' and, barely a whisper, '...not again. Not another one.' The pacing stops. A long silence. Then it starts again, faster now."
+  },
+  {
+    "id": "servant_fleeing",
+    "category": "discovery",
+    "region": "ashworth_manor",
+    "priority": 50,
+    "once_only": true,
+    "conditions": [
+      "time.day >= 5",
+      "player.current_region == ashworth_manor"
+    ],
+    "effects": [
+      {"set_state": "flag.caught_servant_fleeing", "value": true}
+    ],
+    "notification_text": "A servant — you recognize her from the kitchens — creeps down the hallway with a bulging sack. Silver candlesticks poke through the cloth. She freezes when she sees you. 'Please,' she whispers. 'There's nothing left here but ghosts and debts. I served this family for twenty years. Let me take something for those years. Let me go.' Her eyes are wet. Her hands are shaking."
+  },
+  {
+    "id": "portrait_eyes",
+    "category": "horror",
+    "region": "ashworth_manor",
+    "priority": 40,
+    "once_only": true,
+    "conditions": [
+      "time.hour >= 23",
+      "player.current_region == ashworth_manor"
+    ],
+    "effects": [
+      {"set_state": "flag.portrait_eyes_moved", "value": true}
+    ],
+    "notification_text": "You pass the gallery of Ashworth portraits — generations of lords staring from oil and canvas. You've walked this hall before. But tonight, as your lantern swings, you catch it: the eyes in the oldest portrait — Lord Aldric Ashworth, the one who made the pact — have moved. They watch you. Not the room. You. And in the lamplight, his painted mouth seems to curve, just slightly, into something that might be a smile."
+  },
+  {
+    "id": "dripping_blood",
+    "category": "horror",
+    "region": "catacombs",
+    "priority": 60,
+    "once_only": true,
+    "conditions": [
+      "flag.entered_crypt == true",
+      "player.current_region == catacombs"
+    ],
+    "effects": [
+      {"set_state": "flag.fresh_blood_in_crypt", "value": true}
+    ],
+    "notification_text": "Drip. Drip. Drip. Blood, from the ceiling, bright and fresh. Not old blood — this is warm. You press your fingers to it and they come away red and slick. The ceiling is solid stone. There is no room above this one. There is no wound to bleed. And yet the blood falls, steady as a heartbeat, pooling in the grooves between the flagstones like the catacombs themselves are bleeding."
+  },
+  {
+    "id": "name_whispered",
+    "category": "horror",
+    "region": "catacombs",
+    "priority": 65,
+    "once_only": true,
+    "conditions": [
+      "flag.ghost_letters_found == true",
+      "player.current_region == catacombs"
+    ],
+    "effects": [
+      {"set_state": "flag.name_whispered_in_dark", "value": true}
+    ],
+    "notification_text": "Your name. Spoken in the dark, from everywhere and nowhere, in a voice like dry leaves scraping stone. Not shouted — whispered, intimately, the way someone says a name they've known for a very long time. The way the dead say the names of those they're waiting for."
+  },
+  {
+    "id": "root_pulse",
+    "category": "mystery",
+    "region": "catacombs",
+    "priority": 70,
+    "once_only": true,
+    "conditions": [
+      "player.current_region == catacombs",
+      "flag.near_ritual_gate == true"
+    ],
+    "effects": [
+      {"set_state": "flag.roots_pulsing", "value": true}
+    ],
+    "notification_text": "The roots that thread through the catacomb walls begin to pulse. Slowly at first, then faster — a rhythm that matches your heartbeat. No. Your heartbeat is matching theirs. The closer you get to the gate, the faster the pulse, until you can feel the vibration in your bones. The forest's roots reach even here, even this deep. And they know you're coming."
+  },
+  {
+    "id": "altar_glow",
+    "category": "mystery",
+    "region": "ritual_chamber",
+    "priority": 75,
+    "once_only": true,
+    "conditions": [
+      "player.current_region == ritual_chamber"
+    ],
+    "effects": [
+      {"set_state": "flag.altar_responded", "value": true}
+    ],
+    "notification_text": "The altar glows. A cold, green luminescence that rises from the stone as you approach — not fire, not magic as you understand it, but something older. The light gathers in the carved channels of the altar's surface, tracing a pattern: a tree, roots spreading downward, branches reaching up, and at the center where trunk meets crown, a hollow. A space shaped like a heart. Waiting to be filled."
+  },
+  {
+    "id": "silas_presence",
+    "category": "climax",
+    "region": "ritual_chamber",
+    "priority": 90,
+    "once_only": true,
+    "conditions": [
+      "player.has_item.marens_heirloom == true",
+      "player.current_region == ritual_chamber"
+    ],
+    "effects": [
+      {"set_state": "flag.silas_manifested", "value": true}
+    ],
+    "notification_text": "The compass screams. Not metaphorically — it vibrates so violently it hums, a sound like a tuning fork struck against bone. The needle spins wildly, then stops. Points directly at a spot in the air three feet in front of you where the shadows are too thick, where the darkness has weight, where something stands that isn't there and IS there. Silas. You can't see him. But the compass can. And you can feel him watching you with the patience of someone who has waited a very, very long time."
+  },
+  {
+    "id": "pact_words_echo",
+    "category": "climax",
+    "region": "ritual_chamber",
+    "priority": 80,
+    "once_only": true,
+    "conditions": [
+      "flag.read_pact_inscription == true",
+      "player.current_region == ritual_chamber"
+    ],
+    "effects": [
+      {"set_state": "flag.pact_words_resonated", "value": true}
+    ],
+    "notification_text": "You speak the words. Or perhaps the words speak you — they rise from your throat unbidden, in a language you don't know but your tongue remembers. The walls vibrate. Dust falls. The ancient syllables bounce between stone surfaces, growing louder with each echo instead of softer, layering upon themselves until the chamber fills with a sound like a choir of the dead singing in perfect unison. The pact remembers its own name. And now it knows yours."
+  },
+  {
+    "id": "forest_welcome",
+    "category": "wonder",
+    "region": "heartwood_clearing",
+    "priority": 50,
+    "once_only": true,
+    "conditions": [
+      "player.has_item.old_maren_talisman == true",
+      "player.current_region == heartwood_clearing"
+    ],
+    "effects": [
+      {"set_state": "flag.forest_welcomed_player", "value": true}
+    ],
+    "notification_text": "As you step into the clearing, the canopy shifts. Not wind — there is no wind. The branches part deliberately, like curtains drawn back, and a shaft of golden light falls directly on the path ahead. The talisman pulses warm against your chest. The forest is welcoming you. Not as a stranger, not as an intruder, but as something it has been expecting. The light feels like approval."
+  },
+  {
+    "id": "memory_vision",
+    "category": "mystery",
+    "region": "heartwood_clearing",
+    "priority": 55,
+    "once_only": true,
+    "conditions": [
+      "player.current_region == heartwood_clearing",
+      "flag.near_memory_pool == true"
+    ],
+    "effects": [
+      {"set_state": "flag.saw_memory_vision", "value": true}
+    ],
+    "notification_text": "A flash — not in your eyes but behind them. A figure walks the path you're standing on: a woman in white, her hands bound in front of her with vines. Not dragged — walking willingly. Her face is calm. Peaceful, even. She walks toward the Heartwood and does not come back. The vision dissolves like morning mist, but the feeling lingers. She was not the first. She was not the last. The path remembers every sacrifice."
+  },
+  {
+    "id": "heartwood_pulse",
+    "category": "mystery",
+    "region": "heartwood_clearing",
+    "priority": 60,
+    "once_only": true,
+    "conditions": [
+      "player.current_region == heartwood_clearing",
+      "flag.near_heartwood_tree == true"
+    ],
+    "effects": [
+      {"set_state": "flag.felt_heartwood_pulse", "value": true}
+    ],
+    "notification_text": "The ground pulses beneath your feet. A slow, deep rhythm — thud... thud... thud — like the heartbeat of something vast sleeping beneath the earth. The Heartwood tree's bark ripples with each pulse. You press your palm to the trunk and feel it: warm, alive, ancient beyond reckoning. This tree has a heartbeat. The clearing has a heartbeat. The entire forest has a heartbeat. And right now, it's beating faster because you're here."
+  },
+  {
+    "id": "moonpetal_bloom",
+    "category": "wonder",
+    "region": "heartwood_clearing",
+    "priority": 40,
+    "once_only": true,
+    "conditions": [
+      "time.hour >= 21",
+      "player.current_region == heartwood_clearing"
+    ],
+    "effects": [
+      {"set_state": "flag.moonpetal_bloom_witnessed", "value": true}
+    ],
+    "notification_text": "Silver light erupts from the earth. Flowers — moonpetals, Old Maren called them — burst into bloom all around you, their petals unfolding like tiny hands opening to catch the moonlight. Each one glows with its own soft luminescence, silver-white, until the clearing shimmers like a field of fallen stars. They bloom only at night. They bloom only here. And tonight, they bloom for you."
+  },
+  {
+    "id": "ash_circle_activates",
+    "category": "mystery",
+    "region": "church_outpost",
+    "priority": 55,
+    "once_only": true,
+    "conditions": [
+      "player.current_region == church_outpost"
+    ],
+    "effects": [
+      {"set_state": "flag.ash_circle_activated", "value": true}
+    ],
+    "notification_text": "The sigil circle on the floor flares white-hot as your foot crosses its edge. For a heartbeat, every symbol in the ring blazes with cold fire, and you feel something pass through you — an inspection, a judgment, a question asked in a language of light. Then it fades, leaving afterimages burned into your vision. The Church of the Ashen Light built this as a ward. Whatever it was guarding against, it just decided you might be it."
+  },
+  {
+    "id": "journal_page_wind",
+    "category": "discovery",
+    "region": "church_outpost",
+    "priority": 45,
+    "once_only": true,
+    "conditions": [
+      "player.current_region == church_outpost",
+      "flag.searching_outpost == true"
+    ],
+    "effects": [
+      {"set_state": "flag.found_journal_page", "value": true}
+    ],
+    "notification_text": "A gust of wind from nowhere — the outpost is enclosed, there should be no wind — sends a yellowed page tumbling past your face. You snatch it from the air. Cramped handwriting, half-faded: '...Phase 1 proceeds. The root takes hold. By month's end the village will be too weak to resist Phase 2. Brother M reports the healer suspects nothing. Praise the Ashen Light, praise the—' The rest is torn away. But you have enough."
+  },
+  {
+    "id": "cage_memory",
+    "category": "horror",
+    "region": "church_outpost",
+    "priority": 60,
+    "once_only": true,
+    "conditions": [
+      "player.current_region == church_outpost",
+      "flag.examining_cage == true"
+    ],
+    "effects": [
+      {"set_state": "flag.cage_memory_heard", "value": true}
+    ],
+    "notification_text": "You run your hand along the rusted iron bars and a voice rises from the metal itself — thin, high, a child's voice preserved in the rust like a fossil in amber. 'When can I go home?' it asks. 'You said I could go home when the light came.' A pause. Then, quieter: 'The light never comes down here.' The voice fades. The cage is cold. Whatever happened here, the Church didn't just burn heretics. They kept them first."
+  }
+]

@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://heartwood001"]
+
+[ext_resource type="Script" path="res://scenes/world/region_base.gd" id="1_region"]
+[ext_resource type="Script" path="res://scenes/effects/weather_system.gd" id="2_weather"]
+[ext_resource type="Script" path="res://scenes/world/transition_zone.gd" id="3_transition"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_transition_thornwood"]
+size = Vector2(16, 48)
+
+[node name="HeartwoodClearing" type="Node2D"]
+script = ExtResource("1_region")
+region_id = "heartwood_clearing"
+region_name = "Heartwood Clearing"
+adjacent_regions = PackedStringArray("thornwood")
+tilemap_json = "res://data/world/heartwood_clearing_tilemap.json"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="DefaultSpawn" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(32, 240)
+
+[node name="FromThornwood" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(40, 240)
+
+[node name="FromHeartwood" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(40, 240)
+
+[node name="NPCSpawnPoints" type="Node2D" parent="."]
+
+[node name="HeartwoodSpawn" type="Marker2D" parent="NPCSpawnPoints"]
+position = Vector2(240, 240)
+
+[node name="ThornwoodSpiritSpawn" type="Marker2D" parent="NPCSpawnPoints"]
+position = Vector2(80, 240)
+
+[node name="WeatherSystem" type="Node2D" parent="."]
+script = ExtResource("2_weather")
+
+[node name="TransitionToThornwood" type="Area2D" parent="."]
+position = Vector2(0, 240)
+script = ExtResource("3_transition")
+target_scene = "res://scenes/world/thornwood_forest.tscn"
+spawn_point = "FromHeartwood"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionToThornwood"]
+shape = SubResource("RectangleShape2D_transition_thornwood")

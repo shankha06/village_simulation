@@ -1,0 +1,107 @@
+{
+  "id": "maren_family_chain",
+  "trigger": {"check": "flag.maren_family_truth_revealed", "op": "==", "value": true},
+  "consequences": [
+    {
+      "id": "immediate_family_exposed",
+      "timing": "immediate",
+      "effects": [
+        {"set_state": "npc.brother_maren.memory.family_exposed", "value": true},
+        {"set_state": "flag.sacrifice_choice_weight_increased", "value": true},
+        {"set_state": "npc.brother_maren.disposition", "delta": 5}
+      ]
+    },
+    {
+      "id": "day1_old_maren_grief",
+      "timing": {"delay_days": 1},
+      "effects": [
+        {
+          "type": "event",
+          "event_id": "old_maren_weeps_at_night",
+          "description": "Old Maren is heard weeping by the village edge late at night. Villagers who pass report she is speaking to someone who is not there -- calling a name no one recognizes. Silas.",
+          "location": "village_edge_bench"
+        },
+        {"set_state": "flag.old_maren_grief_witnessed", "value": true}
+      ]
+    },
+    {
+      "id": "day2_brother_questioning",
+      "timing": {"delay_days": 2},
+      "conditions": [
+        {"check": "flag.siblings_reunited", "op": "==", "value": true}
+      ],
+      "effects": [
+        {"set_state": "npc.brother_maren.disposition", "delta": 20},
+        {"set_state": "flag.maren_questioning_mission", "value": true},
+        {
+          "type": "bark_override",
+          "npc": "brother_maren",
+          "barks": [
+            "The Light teaches certainty. I have none left.",
+            "I looked at Elara today. I saw my father's hands."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "day3_family_fallout",
+      "timing": {"delay_days": 3},
+      "conditions": [
+        {"check": "flag.maren_family_fully_revealed", "op": "==", "value": true}
+      ],
+      "effects": [
+        {"set_state": "npc.elara.disposition", "delta": -30},
+        {"set_state": "npc.brother_maren.personality.honesty", "value": 0.5},
+        {
+          "type": "bark_override",
+          "npc": "elara",
+          "barks": [
+            "My brother poisons the village. My grandmother watches. I tend the sick alone.",
+            "Blood means nothing. Work means everything."
+          ]
+        },
+        {
+          "type": "event",
+          "event_id": "maren_visits_elara_garden",
+          "description": "Brother Maren is seen standing outside Elara's herb garden at dawn. He does not enter. He watches the plants she tends -- the same species their father cultivated -- and then he leaves without a word.",
+          "location": "herb_garden"
+        }
+      ]
+    },
+    {
+      "id": "sacrifice_and_family",
+      "timing": "on_trigger",
+      "trigger": {"check": "flag.maren_sacrificed", "op": "==", "value": true},
+      "conditions": [
+        {"check": "flag.maren_family_truth_revealed", "op": "==", "value": true}
+      ],
+      "effects": [
+        {"set_state": "flag.old_maren_lost_grandson_like_son", "value": true},
+        {"set_state": "flag.elara_lost_brother_to_roots", "value": true},
+        {"set_state": "flag.family_tragedy_complete", "value": true},
+        {
+          "type": "bark_override",
+          "npc": "old_maren",
+          "barks": [
+            "The forest took my son. Now it has taken his son. The roots grow fat on Maren blood.",
+            "I have outlived them all. That is not a blessing."
+          ]
+        },
+        {
+          "type": "bark_override",
+          "npc": "elara",
+          "barks": [
+            "I had a brother for three days. The forest was hungrier than I was.",
+            "Father. Brother. Both fed to the roots. I am the last Maren standing. I intend to remain standing."
+          ]
+        },
+        {
+          "type": "event",
+          "event_id": "old_maren_at_heartwood_edge",
+          "description": "Old Maren walks to the edge of Thornwood and presses her palm against the nearest tree. She stands there for hours, feeling the roots that now hold both her son and her grandson. She does not speak. She does not weep. She simply listens to what remains of her family, humming through the dark beneath the earth.",
+          "location": "village_edge"
+        }
+      ]
+    }
+  ]
+}

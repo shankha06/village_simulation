@@ -1,0 +1,124 @@
+{
+  "id": "water_investigation",
+  "name": "The Poisoned Well",
+  "description": "Elara believes the water supply is being poisoned. Someone is killing Ashvale slowly, and they don't want to be found.",
+  "giver": "elara",
+  "region": "ashvale",
+  "tags": [
+    "main_quest",
+    "investigation",
+    "mystery",
+    "moral_choice"
+  ],
+  "priority": 10,
+  "states": {
+    "UNKNOWN": {
+      "transitions": [
+        {
+          "on": "flag.agreed_to_help_elara == true",
+          "to": "ACTIVE"
+        }
+      ]
+    },
+    "ACTIVE": {
+      "journal_entry": "Elara found nightcap root in the well water \u2014 a deliberate poison. I agreed to investigate the upstream water source in Thornwood with her.",
+      "objectives": [
+        "Meet Elara at the eastern edge of the village at dawn",
+        "Travel to the water source in Thornwood",
+        "Search for evidence of tampering"
+      ],
+      "transitions": [
+        {
+          "on": "flag.found_poison_cache == true",
+          "to": "EVIDENCE_FOUND"
+        },
+        {
+          "on": "npc.elara.alive == false",
+          "to": "FAILED_ELARA_DEAD"
+        },
+        {
+          "on": "flag.thornwood_source_clear == true",
+          "to": "DEAD_END"
+        }
+      ]
+    },
+    "EVIDENCE_FOUND": {
+      "journal_entry": "We found a hidden cache of nightcap root near the water source, along with a torn cloth bearing a symbol. Three suspects emerge.",
+      "objectives": [
+        "Investigate Brother Maren (Church of Ashen Light symbol?)",
+        "Investigate Fenrick (Guild involvement?)",
+        "Investigate Lord Ashworth (covering something up?)"
+      ],
+      "transitions": [
+        {
+          "on": "flag.accused_maren == true",
+          "to": "ACCUSED_MAREN"
+        },
+        {
+          "on": "flag.accused_fenrick == true",
+          "to": "ACCUSED_FENRICK"
+        },
+        {
+          "on": "flag.accused_lord == true",
+          "to": "ACCUSED_LORD"
+        },
+        {
+          "on": "flag.found_true_poisoner == true",
+          "to": "TRUTH_REVEALED"
+        }
+      ]
+    },
+    "ACCUSED_MAREN": {
+      "journal_entry": "I accused Brother Maren of poisoning the water. He denies everything, but the evidence is circumstantial at best. Was I right?",
+      "consequence_chain": "maren_accused_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "church_ashen_light": -50,
+            "ashvale_nobility": 10
+          }
+        }
+      ]
+    },
+    "ACCUSED_FENRICK": {
+      "journal_entry": "I accused the Guild of poisoning Ashvale as part of their power play. Fenrick's reaction was... complicated.",
+      "consequence_chain": "fenrick_accused_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "thieves_guild": -40,
+            "city_guard": 20
+          }
+        }
+      ]
+    },
+    "ACCUSED_LORD": {
+      "journal_entry": "I accused Lord Ashworth himself of poisoning his own people. The lord's secret is darker than anyone imagined.",
+      "consequence_chain": "lord_accused_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "ashvale_nobility": -60,
+            "thieves_guild": 10
+          }
+        }
+      ]
+    },
+    "TRUTH_REVEALED": {
+      "journal_entry": "The truth behind the poisoning is revealed. Nothing in Ashvale is what it seems.",
+      "consequence_chain": "truth_revealed_chain"
+    },
+    "DEAD_END": {
+      "journal_entry": "The water source seems clean. The poison must be introduced closer to the village. More investigation needed.",
+      "transitions": [
+        {
+          "on": "flag.found_village_well_tampering == true",
+          "to": "EVIDENCE_FOUND"
+        }
+      ]
+    },
+    "FAILED_ELARA_DEAD": {
+      "journal_entry": "Elara is dead. The investigation dies with her \u2014 unless I continue alone. But who killed her, and why?"
+    }
+  }
+}

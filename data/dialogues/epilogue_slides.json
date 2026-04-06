@@ -1,0 +1,482 @@
+{
+  "id": "epilogue_slides",
+  "description": "Post-ending epilogue slides showing the fate of each major NPC. Selected based on GameState flags.",
+  "slide_order": [
+    "elara",
+    "fenrick",
+    "commander_voss",
+    "lord_ashworth",
+    "maren",
+    "old_maren"
+  ],
+  "slides": {
+    "elara": {
+      "npc_id": "elara",
+      "display_name": "Elara, the Herbalist",
+      "variants": [
+        {
+          "id": "elara_dead",
+          "conditions": [
+            {
+              "check": "npc.elara.alive",
+              "op": "==",
+              "value": false
+            }
+          ],
+          "portrait": "memorial",
+          "text": "Elara did not live to see the end of Ashvale's story. The herbalist who first discovered the poison in the water was buried beneath a rowan tree at the edge of the village. In spring, the tree blooms with white flowers that smell of the healing salves she used to make. The villagers who remember her say she saved more lives with her knowledge than any sword ever could."
+        },
+        {
+          "id": "elara_melancholy_warden",
+          "conditions": [
+            {
+              "check": "npc.elara.alive",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.cinder_root_lost",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "portrait": "melancholy",
+          "text": "Elara became Ashvale's first Forest Warden. She filled journal after journal with new species. But the journal she returned to most often was the smallest -- a catalogue of what was lost. Cinder-Root. Sun-sage. Three varieties of meadow thyme. Root-lung returned in the third year. She treated it with substitutes, but the substitutes were never as good. On quiet nights, she whispered to the canopy: 'Was it worth it?' The forest never answered. Perhaps that was the answer."
+        },
+        {
+          "id": "elara_harmony",
+          "conditions": [
+            {
+              "check": "npc.elara.alive",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.ending_resolved",
+              "op": "==",
+              "value": "ending_harmony"
+            }
+          ],
+          "portrait": "happy",
+          "text": "Elara became Ashvale's first Forest Warden \u2014 a title she invented herself. She spent years cataloguing the new species that emerged from the accord, filling journal after journal with careful illustrations of plants that had never existed before. She discovered that the Heartwood's gift was not just land, but knowledge: each new plant carried properties that could heal wounds, cure blights, and purify water. She published her findings. Herbalists traveled from across the realm to study with her. She never stopped being amazed."
+        },
+        {
+          "id": "elara_exodus",
+          "conditions": [
+            {
+              "check": "npc.elara.alive",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.ending_resolved",
+              "op": "==",
+              "value": "ending_exodus"
+            }
+          ],
+          "portrait": "determined",
+          "text": "Elara led the scouting parties during the exodus, her knowledge of plants and terrain saving dozens of lives. In the new settlement, she established a garden \u2014 not for medicine, but for memory. Every plant she could salvage from the old Ashvale grows there. She tends it every morning at dawn, and every morning she whispers the same thing: 'We survived.' It's not a prayer. It's a promise."
+        },
+        {
+          "id": "elara_dark_price",
+          "conditions": [
+            {
+              "check": "npc.elara.alive",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.ending_resolved",
+              "op": "==",
+              "value": "ending_dark_price"
+            }
+          ],
+          "portrait": "sad",
+          "text": "Elara never forgave you. She stayed in Ashvale \u2014 someone had to tend the sick and the grieving \u2014 but she never spoke to you again except in professional necessity. Her healing salves were always left at your door without a word. Even her anger was an act of care. Years later, when you fell ill, she was the one who nursed you back to health. She still didn't speak. But she stayed until the fever broke."
+        },
+        {
+          "id": "elara_default",
+          "conditions": [
+            {
+              "check": "npc.elara.alive",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "portrait": "neutral",
+          "text": "Elara continued her work as Ashvale's herbalist, tending to the sick and studying the land. She never forgot the stranger who helped her investigate the poisoned water. On quiet evenings, she would sit at the edge of the village and look toward the Thornwood, wondering if things could have been different. She never found an answer. But she never stopped asking."
+        }
+      ]
+    },
+    "fenrick": {
+      "npc_id": "fenrick",
+      "display_name": "Fenrick, the Guild Master",
+      "variants": [
+        {
+          "id": "fenrick_dead",
+          "conditions": [
+            {
+              "check": "npc.fenrick.alive",
+              "op": "==",
+              "value": false
+            }
+          ],
+          "portrait": "memorial",
+          "text": "Fenrick's death left the Guild in disarray. Without his cunning hand on the tiller, the network of traders and smugglers fractured into petty gangs. Some say he died as he lived \u2014 with a secret on his lips and a deal half-finished. His ledgers were never found. The Guild's hidden vaults remain sealed to this day, their contents a mystery that grows more legendary with every telling."
+        },
+        {
+          "id": "fenrick_rules",
+          "conditions": [
+            {
+              "check": "npc.fenrick.alive",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.new_leader_fenrick",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "portrait": "smirking",
+          "text": "Fenrick never took a title. He didn't need one. Under his guidance, Ashvale became a crossroads of trade \u2014 prosperous, connected, and absolutely riddled with the Guild's influence. Every transaction carried an invisible markup. Every secret had a market price. He was, by any honest accounting, the most successful ruler Ashvale ever had. He was also, by the same accounting, the most corrupt. He would have been proud of both distinctions."
+        },
+        {
+          "id": "fenrick_exodus",
+          "conditions": [
+            {
+              "check": "npc.fenrick.alive",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.ending_resolved",
+              "op": "==",
+              "value": "ending_exodus"
+            }
+          ],
+          "portrait": "neutral",
+          "text": "Fenrick was the last person to leave Ashvale. He lingered at the gates, not from sentiment, but to ensure nothing of value was left behind. In the new settlement, he established a trading post before anyone had built a proper house. 'Priorities,' he said, when questioned. Within a year, he had trade routes stretching to three neighboring towns. The man was a cockroach, in the most admirable sense of the word."
+        },
+        {
+          "id": "fenrick_default",
+          "conditions": [
+            {
+              "check": "npc.fenrick.alive",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "portrait": "neutral",
+          "text": "Fenrick adapted, as he always did. Whatever Ashvale became, the Guild found a way to profit from it. He grew older, richer, and no less dangerous. On his deathbed \u2014 many years later, in a bed more comfortable than any honest person could afford \u2014 his last words were: 'Check the third ledger.' No one ever found a third ledger. Several people spent years looking."
+        }
+      ]
+    },
+    "commander_voss": {
+      "npc_id": "commander_voss",
+      "display_name": "Commander Voss, of the Ironmarch Legion",
+      "variants": [
+        {
+          "id": "voss_dead",
+          "conditions": [
+            {
+              "check": "npc.commander_voss.alive",
+              "op": "==",
+              "value": false
+            }
+          ],
+          "portrait": "memorial",
+          "text": "Commander Voss fell in service to the Ironmarch Legion \u2014 or in opposition to it, depending on who tells the story. The Legion marked their fallen commander with a stone cairn at the edge of Ashvale's territory. Soldiers who pass it still salute. Whether they salute the officer or the person who defied orders to do what was right depends on which regiment they serve."
+        },
+        {
+          "id": "voss_rules",
+          "conditions": [
+            {
+              "check": "npc.commander_voss.alive",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.new_leader_voss",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "portrait": "commanding",
+          "text": "Commander Voss became Governor Voss. She ruled Ashvale with military precision and surprising gentleness. The walls were rebuilt. The guard was trained. The village became the safest settlement in the region. But Voss never forgot that she came as a conqueror and stayed as a guardian. Every year, on the anniversary of her appointment, she stood at the village gate and asked the assembled people: 'Do you still want me?' Every year, they said yes. She never took it for granted."
+        },
+        {
+          "id": "voss_ally",
+          "conditions": [
+            {
+              "check": "npc.commander_voss.alive",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.voss_spared_in_duel",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "portrait": "respectful",
+          "text": "Voss resigned her commission with the Ironmarch Legion. The letter she sent to her superiors was three words long: 'I found something better.' She stayed in the region, serving as a freelance protector for settlements that couldn't afford a standing guard. When asked why she abandoned a promising military career, she would say: 'I met someone who showed me that strength isn't about taking. It's about choosing not to.' She never named who taught her that."
+        },
+        {
+          "id": "voss_hostile",
+          "conditions": [
+            {
+              "check": "npc.commander_voss.alive",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.ironmarch_ultimatum_result",
+              "op": "==",
+              "value": "defied"
+            }
+          ],
+          "portrait": "stern",
+          "text": "Commander Voss returned to the Ironmarch Legion and reported Ashvale as 'strategically irrelevant.' It was the kindest lie she ever told. The Legion turned its attention elsewhere. Voss rose through the ranks, became a general, and never spoke of Ashvale again \u2014 except once, late at night, deep in her cups, when she told a young officer: 'Sometimes the bravest thing an army can do is walk away.' The officer didn't understand. Voss didn't explain."
+        },
+        {
+          "id": "voss_default",
+          "conditions": [
+            {
+              "check": "npc.commander_voss.alive",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "portrait": "neutral",
+          "text": "Commander Voss and the Ironmarch Legion withdrew from Ashvale's territory. Official reports listed the campaign as 'concluded without incident.' Veterans who served there knew better. They spoke in hushed tones about the forest that moved, the village that chose, and the stranger who changed everything."
+        }
+      ]
+    },
+    "lord_ashworth": {
+      "npc_id": "lord_ashworth",
+      "display_name": "Lord Ashworth, Lord of Ashvale",
+      "variants": [
+        {
+          "id": "ashworth_sacrificed",
+          "conditions": [
+            {
+              "check": "flag.pact_fulfilled_with_lord",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "portrait": "memorial",
+          "text": "Lord Ashworth's sacrifice ended the Ashworth line that had ruled Ashvale for three hundred years. His portrait was removed from the manor hall \u2014 not in anger, but because no one could bear to look at it. In its place, someone hung a simple plaque: 'He paid the debt his ancestors incurred.' It was the most honest epitaph any Ashworth had ever received."
+        },
+        {
+          "id": "ashworth_confession",
+          "conditions": [
+            {
+              "check": "flag.ashworth_confession_heard",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "npc.lord_ashworth.alive",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "portrait": "haggard",
+          "text": "Lord Ashworth lived, but the confession broke him. The man who emerged from the truth was not the man who had hidden from it. He opened the manor to the village, gave away his wealth, and spent his remaining years tending a garden at the edge of the Thornwood. When asked why, he would say: 'I'm learning to grow things honestly.' He died in his sleep, in a chair beneath an oak tree, with dirt under his fingernails. It was the most peaceful death Ashvale had seen in a generation."
+        },
+        {
+          "id": "ashworth_default",
+          "conditions": [
+            {
+              "check": "npc.lord_ashworth.alive",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "portrait": "neutral",
+          "text": "Lord Ashworth retreated further into the manor. The secret of the pact \u2014 whether revealed or still hidden \u2014 ate at him from the inside. The Ashworth line continued, diminished, its authority a shadow of what it once was. The lord's descendants would rule in name only, figureheads for whatever power truly held Ashvale together. Some secrets, even when they don't destroy you, hollow you out."
+        }
+      ]
+    },
+    "maren": {
+      "npc_id": "maren",
+      "display_name": "Brother Maren, Priest of the Ashen Light",
+      "variants": [
+        {
+          "id": "maren_sacrificed_family_known",
+          "conditions": [
+            {
+              "check": "flag.pact_fulfilled_with_maren",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.maren_family_truth_revealed",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "text": "Brother Maren walked into the roots praying, as his father Silas had thirty years before. Old Maren felt it through the earth -- grandson joining son in the deep dream. She did not weep. She had used up all her tears decades ago. Elara, who learned that day the priest was her brother, screamed until her voice broke. The shrine bears two names: SILAS MAREN, FATHER. MAREN, SON. The Church called it martyrdom. Old Maren called it theft."
+        },
+        {
+          "id": "maren_sacrificed",
+          "conditions": [
+            {
+              "check": "flag.pact_fulfilled_with_maren",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "portrait": "memorial",
+          "text": "Brother Maren walked into the roots praying. Those who were there swear the prayer didn't stop \u2014 that even as the forest took him, his lips moved and his voice carried through the soil. The Church of the Ashen Light declared him a martyr. A shrine was built where he fell. Pilgrims come from far away to kneel there. Whether the faith he preached was true or not, the sacrifice he made was real. That has to count for something."
+        },
+        {
+          "id": "maren_rules",
+          "conditions": [
+            {
+              "check": "npc.maren.alive",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.new_leader_church",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "portrait": "serene",
+          "text": "Brother Maren became Father Maren, and the Church of the Ashen Light became the soul of Ashvale. His sermons evolved over the years \u2014 less fire, more warmth. The rigid doctrine that first brought him to the village softened into something gentler, something that acknowledged doubt as a form of faith. He never stopped believing. But he learned that belief, like soil, needs to be turned occasionally to stay fertile."
+        },
+        {
+          "id": "maren_harmony",
+          "conditions": [
+            {
+              "check": "npc.maren.alive",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.ending_resolved",
+              "op": "==",
+              "value": "ending_harmony"
+            }
+          ],
+          "portrait": "peaceful",
+          "text": "Brother Maren rewrote the Church's doctrine to include the forest. 'The Ashen Light burns in all living things,' he declared. 'In the candle and in the root. In the prayer and in the growing.' His superiors called it heresy. His congregation called it truth. The schism it caused would reshape the Church for generations. Maren didn't care about the politics. He cared about the old woman who told him, with tears in her eyes, that his words made her feel like the world made sense again."
+        },
+        {
+          "id": "maren_default",
+          "conditions": [
+            {
+              "check": "npc.maren.alive",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "portrait": "neutral",
+          "text": "Brother Maren continued his ministry in Ashvale, his faith tested but unbroken. The events he witnessed changed his sermons \u2014 they became less about divine punishment and more about divine mystery. 'I have seen things,' he would tell his flock, 'that no scripture prepared me for. And I am grateful. Because a faith that cannot be surprised is a faith that has stopped growing.' He died old, surrounded by people who loved him, which is more than most priests can claim."
+        }
+      ]
+    },
+    "old_maren": {
+      "npc_id": "old_maren",
+      "display_name": "Old Maren, the Village Elder",
+      "variants": [
+        {
+          "id": "old_maren_dead",
+          "conditions": [
+            {
+              "check": "npc.old_maren.alive",
+              "op": "==",
+              "value": false
+            }
+          ],
+          "portrait": "memorial",
+          "text": "Old Maren did not live to see the end of Ashvale's story. She was the last person alive who remembered the village before the blight, before the fear, before the stranger came. She took those memories with her. Her chair at the hearth of the inn sat empty for years afterward. No one had the heart to move it. It became a kind of shrine \u2014 a place where people sat to remember what Ashvale had been, and to wonder what it might become."
+        },
+        {
+          "id": "old_maren_family_known",
+          "conditions": [
+            {
+              "check": "npc.old_maren.alive",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.maren_family_truth_revealed",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "text": "Old Maren lived to see both grandchildren speak for the first time in thirty years. The conversation was not easy. Elara wept. The priest stood rigid. But Old Maren sat between them, blind eyes wet, and held both their hands. 'Your father is in the roots now,' she said. 'Be kind to each other. He paid enough for this family.' She died the following winter, with a new leaf growing through the sill beside her. Both grandchildren were at her side."
+        },
+        {
+          "id": "old_maren_harmony",
+          "conditions": [
+            {
+              "check": "npc.old_maren.alive",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.ending_resolved",
+              "op": "==",
+              "value": "ending_harmony"
+            }
+          ],
+          "portrait": "smiling",
+          "text": "Old Maren lived to see the transformation. She sat in her chair by the window and watched the village grow into the forest, or the forest grow into the village \u2014 she could never decide which. 'I've been alive long enough to see the impossible,' she told anyone who would listen. 'And the impossible looks a lot like an old village learning new tricks.' She died in her sleep the following winter, with a smile on her face and a new leaf growing through the windowsill beside her."
+        },
+        {
+          "id": "old_maren_exodus",
+          "conditions": [
+            {
+              "check": "npc.old_maren.alive",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.ending_resolved",
+              "op": "==",
+              "value": "ending_exodus"
+            }
+          ],
+          "portrait": "sad",
+          "text": "Old Maren insisted on walking the entire march, refusing every offer of a cart or a shoulder to lean on. 'I walked into Ashvale on my own two feet,' she said. 'I'll walk out the same way.' She made it to the new settlement. She sat in her new chair by a new window and stared at unfamiliar hills. 'It's not home,' she said. Then, after a long pause: 'But it could be.' She died three months later. They buried her facing east, toward the new dawn."
+        },
+        {
+          "id": "old_maren_default",
+          "conditions": [
+            {
+              "check": "npc.old_maren.alive",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "portrait": "neutral",
+          "text": "Old Maren outlived the crisis, as she had outlived everything else. She continued to hold court at the inn, dispensing wisdom and complaints in equal measure. Her stories of old Ashvale became the village's unofficial history \u2014 embellished, perhaps, but true in the ways that matter. When she finally passed, the entire village mourned. Not because she was important. Because she was theirs."
+        }
+      ]
+    }
+  },
+  "final_slide": {
+    "text": "And so the story of Ashvale ends \u2014 not with a single truth, but with the truth you chose. Every village has a story. Every story has a price. You paid yours. Whether it was worth it... that's a question only the silence can answer.",
+    "triggers": [
+      {
+        "set_state": "flag.game_complete",
+        "value": true
+      }
+    ]
+  },
+  "sequel_slide": {
+    "text": "Somewhere, deep beneath the world, a message reaches its destination. Every consciousness receives it simultaneously. The forests. The rivers. The mountains. The ocean. After three thousand years of debate carried through bedrock at the speed of geology, the roots have decided. What they decided depends on what happened in Ashvale. But one thing is certain: the age of quiet pacts is over. The age of silent bargains, of blood traded for grain in the dark, of villages bound by contracts they never understood \u2014 that age is ending. Something new is beginning. Something that will shake the continent from coast to coast. And it started here. It started with you.",
+    "triggers": [
+      {
+        "set_state": "flag.sequel_hook_convergence",
+        "value": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "id": "guild_betrayal_chain",
+  "trigger_condition": "flag.reported_guild_to_guards == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "player.reputation.city_guard",
+          "delta": 40
+        },
+        {
+          "set_state": "player.reputation.ashvale_nobility",
+          "delta": 20
+        },
+        {
+          "set_state": "player.reputation.thieves_guild",
+          "delta": -60
+        },
+        {
+          "set_state": "flag.guild_knows_betrayal",
+          "value": true
+        },
+        {
+          "set_state": "npc.fenrick.disposition",
+          "delta": -80
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 2,
+      "effects": [
+        {
+          "set_state": "flag.guild_assassin_sent",
+          "value": true
+        },
+        {
+          "spawn_event": "guild_assassination_attempt"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "effects": [
+        {
+          "set_state": "faction.thieves_guild.power",
+          "delta": -15.0
+        },
+        {
+          "set_state": "npc.fenrick.memory.went_underground",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 14,
+      "effects": [
+        {
+          "set_state": "flag.guild_reorganized",
+          "value": true
+        },
+        {
+          "set_state": "faction.thieves_guild.power",
+          "delta": 10.0
+        },
+        {
+          "spawn_event": "guild_revenge_plot"
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 30,
+      "condition": "npc.fenrick.alive == true",
+      "effects": [
+        {
+          "set_state": "flag.fenrick_returns_with_allies",
+          "value": true
+        },
+        {
+          "spawn_event": "fenrick_ambush"
+        }
+      ]
+    }
+  ]
+}

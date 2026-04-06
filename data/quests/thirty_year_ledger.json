@@ -1,0 +1,143 @@
+{
+  "id": "thirty_year_ledger",
+  "name": "The Thirty-Year Ledger",
+  "description": "Lord Ashworth mentioned a hidden ledger in the manor catacombs that records every sacrifice and every deal with the forest. The full truth of Ashvale lies within.",
+  "giver": "lord_ashworth",
+  "region": "manor_catacombs",
+  "tags": [
+    "side_quest",
+    "investigation",
+    "critical_path",
+    "lore",
+    "moral_choice"
+  ],
+  "priority": 9,
+  "states": {
+    "UNKNOWN": {
+      "transitions": [
+        {
+          "on": "npc.lord_ashworth.met == true && npc.lord_ashworth.disposition >= 0",
+          "to": "DISCOVERED"
+        }
+      ]
+    },
+    "DISCOVERED": {
+      "journal_entry": "Lord Ashworth, in a moment of drunken despair, mentioned a ledger — hidden in the catacombs beneath the manor. It records every sacrifice Ashvale has made to the forest for thirty years. Every name. Every deal.",
+      "transitions": [
+        {
+          "on": "flag.accepted_ledger_quest == true",
+          "to": "ACTIVE"
+        }
+      ]
+    },
+    "ACTIVE": {
+      "journal_entry": "I'm searching the manor catacombs for the ledger. Ashworth warned me the catacombs are trapped — his ancestors were paranoid about their secrets.",
+      "objectives": [
+        "Enter the manor catacombs",
+        "Navigate the trapped corridors",
+        "Find the hidden vault",
+        "Retrieve the ledger"
+      ],
+      "transitions": [
+        {
+          "on": "flag.ledger_found == true",
+          "to": "LEDGER_FOUND"
+        }
+      ]
+    },
+    "LEDGER_FOUND": {
+      "journal_entry": "The ledger is in my hands. Thirty years of names, dates, and desperate bargains written in increasingly unsteady handwriting. Three generations of Ashworths, each one sacrificing more than the last. The final entry is dated two weeks ago.",
+      "objectives": [
+        "Decide what to do with the ledger"
+      ],
+      "transitions": [
+        {
+          "on": "flag.ledger_shared_publicly == true",
+          "to": "COMPLETED_PUBLIC"
+        },
+        {
+          "on": "flag.ledger_given_to_fenrick == true",
+          "to": "COMPLETED_GUILD"
+        },
+        {
+          "on": "flag.ledger_given_to_voss == true",
+          "to": "COMPLETED_MILITARY"
+        },
+        {
+          "on": "flag.ledger_burned == true",
+          "to": "COMPLETED_BURNED"
+        },
+        {
+          "on": "flag.ledger_given_to_old_maren == true",
+          "to": "COMPLETED_COUNTER_RITE"
+        }
+      ]
+    },
+    "COMPLETED_PUBLIC": {
+      "journal_entry": "I read the ledger aloud in the village square. The names. The dates. The children given to the roots. Ashvale erupted. Lord Ashworth's power is destroyed. The people are free — and furious.",
+      "consequence_chain": "ledger_public_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "ashvale_nobility": -80,
+            "city_guard": -30,
+            "thieves_guild": 20
+          }
+        }
+      ]
+    },
+    "COMPLETED_GUILD": {
+      "journal_entry": "I gave the ledger to Fenrick. The Guild now has leverage over every noble family in the region. Fenrick's eyes gleamed as he read the names. 'This is worth more than gold,' he said. He's right. And that terrifies me.",
+      "consequence_chain": "ledger_guild_chain",
+      "rewards": [
+        {
+          "gold": 250
+        },
+        {
+          "reputation": {
+            "thieves_guild": 40,
+            "ashvale_nobility": -30
+          }
+        }
+      ]
+    },
+    "COMPLETED_MILITARY": {
+      "journal_entry": "Voss has the ledger. She'll use it to force Ashworth into granting her company permanent garrison rights — or she'll release it herself. Either way, the military gains a foothold.",
+      "consequence_chain": "ledger_military_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "ashvale_nobility": -20
+          }
+        },
+        {
+          "item": "voss_military_writ"
+        }
+      ]
+    },
+    "COMPLETED_BURNED": {
+      "journal_entry": "I burned the ledger. The names, the history, the proof — all ash now. Nothing changes. The pact continues as it always has. Lord Ashworth wept with relief.",
+      "rewards": [
+        {
+          "reputation": {
+            "ashvale_nobility": 30
+          }
+        }
+      ]
+    },
+    "COMPLETED_COUNTER_RITE": {
+      "journal_entry": "Old Maren holds the ledger. Her blind eyes seem to read it through touch alone. 'The names,' she whispers. 'I need to speak them all. Every one.' She says this is the key to the counter-rite — speaking the names of the sacrificed aloud breaks the silence that feeds the pact.",
+      "consequence_chain": "counter_rite_begins_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "thornwood_druids": 40
+          }
+        },
+        {
+          "item": "counter_rite_scroll"
+        }
+      ]
+    }
+  }
+}

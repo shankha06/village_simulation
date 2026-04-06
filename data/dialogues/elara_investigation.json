@@ -1,0 +1,643 @@
+{
+  "id": "elara_investigation",
+  "start_node": "start",
+  "conditions": [
+    {
+      "check": "flag.agreed_to_help_elara",
+      "op": "==",
+      "value": true
+    },
+    {
+      "check": "quest.water_investigation.state",
+      "op": "==",
+      "value": "active"
+    }
+  ],
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "Good, you came. I've been thinking about how to approach this. The well is the most obvious place to start, but whoever is doing this isn't stupid. They'll have contingencies.",
+      "next": "start_2"
+    },
+    "start_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "I've mapped where the contamination is strongest. It's not just the well \u2014 the entire upstream channel from Thornwood is tainted. We need a plan.",
+      "next": "approach_choice"
+    },
+    "approach_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "test_well",
+          "text": "Let's test the well directly. Take samples, analyze them publicly.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.investigation_approach",
+              "value": "direct"
+            },
+            {
+              "set_state": "npc.elara.memory.chose_direct_approach",
+              "value": true
+            }
+          ],
+          "next": "direct_approach"
+        },
+        {
+          "id": "upstream",
+          "text": "We should follow the water upstream secretly. No one needs to know.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.investigation_approach",
+              "value": "covert"
+            },
+            {
+              "set_state": "npc.elara.memory.chose_covert_approach",
+              "value": true
+            }
+          ],
+          "next": "covert_approach"
+        },
+        {
+          "id": "solo",
+          "text": "I'll investigate alone \u2014 you're too recognizable as the village herbalist.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.investigation_approach",
+              "value": "solo"
+            },
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": -15
+            },
+            {
+              "set_state": "npc.elara.memory.player_cut_her_out",
+              "value": true
+            }
+          ],
+          "next": "solo_approach"
+        },
+        {
+          "id": "trap",
+          "text": "What if we set a trap for the poisoner at the well at night?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.investigation_approach",
+              "value": "ambush"
+            },
+            {
+              "set_state": "npc.elara.memory.chose_ambush_plan",
+              "value": true
+            }
+          ],
+          "next": "trap_approach"
+        }
+      ]
+    },
+    "direct_approach": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "fearful",
+      "text": "Publicly? That's bold. If the poisoner is watching \u2014 and they almost certainly are \u2014 they'll know we're onto them the moment we start collecting samples.",
+      "next": "direct_approach_2"
+    },
+    "direct_approach_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "On the other hand, it forces their hand. They'll either stop poisoning \u2014 which saves lives immediately \u2014 or they'll try to destroy the evidence. Either way, they reveal themselves.",
+      "next": "direct_choice"
+    },
+    "direct_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "direct_proceed",
+          "text": "Exactly. Flush them out. We'll be ready.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.investigation_direct_confirmed",
+              "value": true
+            },
+            {
+              "set_state": "flag.poisoner_alerted",
+              "value": true
+            },
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "direct_plan"
+        },
+        {
+          "id": "direct_reconsider",
+          "text": "You're right, that's too risky. Let me think of something else.",
+          "conditions": [],
+          "triggers": [],
+          "next": "approach_choice"
+        }
+      ]
+    },
+    "direct_plan": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "All right. I'll gather my testing kit and meet you at the well at midday. Bring something to fight with \u2014 if they come for the evidence, I want us both breathing at the end of it.",
+      "next": "direct_plan_2"
+    },
+    "direct_plan_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "One more thing. When we find the poison traces, I'll need an hour to confirm the compound. During that hour, you'll need to keep watch. If anyone tries to approach who isn't a villager drawing water... be ready.",
+      "triggers": [
+        {
+          "set_state": "flag.well_stakeout_planned",
+          "value": true
+        },
+        {
+          "set_state": "quest.water_investigation.stage",
+          "value": "well_test"
+        }
+      ],
+      "next": "direct_outcome_hint"
+    },
+    "direct_outcome_hint": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "I should warn you \u2014 the evidence we gather will be public. Everyone will know the crops were poisoned deliberately. That knowledge could cause a panic. Or a witch hunt. Be prepared for the fallout.",
+      "triggers": [
+        {
+          "set_state": "flag.public_evidence_risk",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "covert_approach": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "Smart. The stream feeds from Thornwood through the old mill channel before reaching the village well. If we follow it at night, we can check each junction without being seen.",
+      "next": "covert_approach_2"
+    },
+    "covert_approach_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "fearful",
+      "text": "But the forest at night... it's not just dark. The trees move, I swear it. And there are sounds \u2014 not animals. Something older. The druid wards haven't been maintained in years.",
+      "next": "covert_choice"
+    },
+    "covert_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "covert_tonight",
+          "text": "We go tonight. The longer we wait, the more people get sick.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.covert_investigation_tonight",
+              "value": true
+            },
+            {
+              "set_state": "quest.water_investigation.stage",
+              "value": "upstream_night"
+            }
+          ],
+          "next": "covert_tonight"
+        },
+        {
+          "id": "covert_dawn",
+          "text": "Dawn. We follow the stream at first light when the forest is quieter.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.covert_investigation_dawn",
+              "value": true
+            },
+            {
+              "set_state": "quest.water_investigation.stage",
+              "value": "upstream_dawn"
+            }
+          ],
+          "next": "covert_dawn"
+        },
+        {
+          "id": "covert_ask_maren",
+          "text": "Does Brother Maren know anything about the old druid wards?",
+          "conditions": [
+            {
+              "check": "npc.brother_maren.met",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.asked_elara_about_maren_wards",
+              "value": true
+            }
+          ],
+          "next": "covert_maren_connection"
+        }
+      ]
+    },
+    "covert_tonight": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "Then meet me at the eastern gate an hour after sunset. Wear dark clothing. And bring a weapon \u2014 not for the poisoner. For whatever is in those woods.",
+      "triggers": [
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": 15
+        },
+        {
+          "set_state": "npc.elara.memory.player_is_brave",
+          "value": true
+        }
+      ],
+      "next": "covert_warning"
+    },
+    "covert_dawn": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "Cautious. I appreciate that. Meet me at the eastern gate before sunrise. We can cover the whole channel before anyone in the village stirs. Just... don't oversleep. Lives depend on this.",
+      "triggers": [
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": 5
+        }
+      ],
+      "next": "covert_warning"
+    },
+    "covert_maren_connection": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "Maren? That man studies everything he can get his hands on \u2014 scripture, alchemy, the old ways. He claims it's all for his faith, but I've seen him near the stream at odd hours. Drawing water. Testing it. Just like me.",
+      "next": "covert_maren_connection_2"
+    },
+    "covert_maren_connection_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "fearful",
+      "text": "Either he's investigating the same thing we are... or he's checking his own handiwork. I don't know which scares me more.",
+      "triggers": [
+        {
+          "set_state": "flag.elara_suspects_maren_more",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_maren_near_stream",
+          "value": true
+        }
+      ],
+      "next": "covert_choice"
+    },
+    "covert_warning": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "If we find the contamination source, we'll have proof someone is doing this deliberately. That's ammunition \u2014 against whoever is behind it. But it also means we'll know too much. Once you see the truth, you can't unsee it.",
+      "triggers": [
+        {
+          "set_state": "flag.covert_investigation_confirmed",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "solo_approach": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "Too recognizable? I've been studying this water for weeks while the rest of the village prayed and panicked. I KNOW this poison. I know what to look for. You don't.",
+      "next": "solo_approach_2"
+    },
+    "solo_approach_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "But fine. If you think your pride is worth more than my expertise, go ahead. I'll give you my testing kit and my notes. Try not to contaminate the samples.",
+      "next": "solo_choice"
+    },
+    "solo_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "solo_apologize",
+          "text": "You're right. I'm sorry. We should do this together.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.investigation_approach",
+              "value": "covert"
+            },
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 10
+            },
+            {
+              "set_state": "npc.elara.memory.player_apologized",
+              "value": true
+            }
+          ],
+          "next": "covert_approach"
+        },
+        {
+          "id": "solo_insist",
+          "text": "I mean it. If the poisoner sees you poking around, you become a target.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.solo_investigation_confirmed",
+              "value": true
+            },
+            {
+              "set_state": "flag.player_has_testing_kit",
+              "value": true
+            },
+            {
+              "set_state": "quest.water_investigation.stage",
+              "value": "solo_upstream"
+            }
+          ],
+          "next": "solo_reluctant"
+        },
+        {
+          "id": "solo_reveal_danger",
+          "text": "[If Fenrick met] Someone already threatened me for asking questions. I won't put you in that crossfire.",
+          "conditions": [
+            {
+              "check": "npc.fenrick.met",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 5
+            },
+            {
+              "set_state": "npc.elara.memory.player_protecting_her",
+              "value": true
+            },
+            {
+              "set_state": "flag.elara_knows_about_threats",
+              "value": true
+            }
+          ],
+          "next": "solo_concerned"
+        }
+      ]
+    },
+    "solo_reluctant": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "Here. The kit, and my notes on the nightcap root concentrations at each well draw point. The contamination is heaviest at the northwest junction \u2014 start there.",
+      "next": "solo_reluctant_2"
+    },
+    "solo_reluctant_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "And... if you find anything dangerous, don't try to handle it alone. Come back. I'll be here. I'll be waiting.",
+      "triggers": [
+        {
+          "set_state": "flag.elara_gave_kit",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "solo_concerned": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "fearful",
+      "text": "Threatened? By whom? ...No, don't tell me. If I don't know, I can't be made to tell. Take the kit. But promise me \u2014 if you find the source, you come back alive. This village can't lose anyone else.",
+      "triggers": [
+        {
+          "set_state": "flag.solo_investigation_confirmed",
+          "value": true
+        },
+        {
+          "set_state": "flag.player_has_testing_kit",
+          "value": true
+        },
+        {
+          "set_state": "quest.water_investigation.stage",
+          "value": "solo_upstream"
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": 10
+        }
+      ],
+      "next": "end"
+    },
+    "trap_approach": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "A trap. That's... actually brilliant. If the poisoner has to dose the well regularly, they'll come back. We just need to be there when they do.",
+      "next": "trap_approach_2"
+    },
+    "trap_approach_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "I can create a marker \u2014 a chemical trace in the well water that's harmless but visible under certain light. If someone adds the nightcap root, the reaction will create a faint glow. We'd see it from a hiding spot nearby.",
+      "next": "trap_plan_choice"
+    },
+    "trap_plan_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "trap_tonight",
+          "text": "Set it tonight. I'll hide near the well and wait.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.well_trap_tonight",
+              "value": true
+            },
+            {
+              "set_state": "quest.water_investigation.stage",
+              "value": "well_ambush"
+            }
+          ],
+          "next": "trap_tonight"
+        },
+        {
+          "id": "trap_with_voss",
+          "text": "[If Voss met] We should get Commander Voss's soldiers to help surround the area.",
+          "conditions": [
+            {
+              "check": "npc.commander_voss.met",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.trap_involves_voss",
+              "value": true
+            }
+          ],
+          "next": "trap_voss"
+        },
+        {
+          "id": "trap_bait",
+          "text": "Can we make the poisoner think the well has been purified? Force them to come sooner?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.trap_with_bait",
+              "value": true
+            }
+          ],
+          "next": "trap_bait"
+        }
+      ]
+    },
+    "trap_tonight": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "I'll prepare the tracer compound. Meet me at the well an hour before midnight. Bring a dark cloak and patience. These things always take longer than you think.",
+      "next": "trap_tonight_2"
+    },
+    "trap_tonight_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "fearful",
+      "text": "And be prepared for what we might find. If the poisoner is someone we know \u2014 someone this village trusts \u2014 catching them in the act will shatter everything. Are you ready for that?",
+      "triggers": [
+        {
+          "set_state": "flag.well_ambush_confirmed",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": 15
+        },
+        {
+          "set_state": "npc.elara.memory.trusts_player_judgment",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "trap_voss": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "fearful",
+      "text": "Mercenaries? Around the village well at night? That'll cause a panic. But... if the poisoner is armed, we might need backup. Talk to Voss, see if she'll commit two or three soldiers. Quietly.",
+      "triggers": [
+        {
+          "set_state": "flag.need_voss_soldiers_for_trap",
+          "value": true
+        },
+        {
+          "set_state": "quest.water_investigation.stage",
+          "value": "recruit_voss_for_trap"
+        }
+      ],
+      "next": "end"
+    },
+    "trap_bait": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "Yes! If I spread word that I've purified the well with a new herb treatment, the poisoner will need to re-dose it immediately or their whole scheme falls apart. They'll come that very night.",
+      "next": "trap_bait_2"
+    },
+    "trap_bait_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "But there's a risk \u2014 if word reaches the wrong person that I'm involved in purifying the water, I become a target. Not just the investigation. Me, personally.",
+      "next": "trap_bait_choice"
+    },
+    "trap_bait_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "bait_accept_risk",
+          "text": "We'll protect you. The faster we catch them, the safer everyone is.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.elara_is_bait",
+              "value": true
+            },
+            {
+              "set_state": "flag.well_trap_tonight",
+              "value": true
+            },
+            {
+              "set_state": "flag.trap_accelerated",
+              "value": true
+            },
+            {
+              "set_state": "quest.water_investigation.stage",
+              "value": "well_ambush_baited"
+            },
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "bait_confirmed"
+        },
+        {
+          "id": "bait_too_dangerous",
+          "text": "No. I won't use you as bait. We'll do this the patient way.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 15
+            },
+            {
+              "set_state": "npc.elara.memory.player_protected_her_from_risk",
+              "value": true
+            }
+          ],
+          "next": "trap_tonight"
+        }
+      ]
+    },
+    "bait_confirmed": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "Then I'll start spreading the word at the market this afternoon. By nightfall, everyone will know the well is 'clean.' Including whoever needs it to stay poisoned. Be at the well before sunset. This ends tonight.",
+      "triggers": [
+        {
+          "set_state": "flag.elara_spreading_purification_rumor",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

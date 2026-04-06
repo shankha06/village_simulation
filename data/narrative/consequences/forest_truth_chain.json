@@ -1,0 +1,43 @@
+{
+  "id": "forest_truth_chain",
+  "trigger_condition": "flag.spirits_showed_vision == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "flag.forest_truth_known",
+          "value": true
+        },
+        {
+          "set_state": "flag.renegotiation_insight",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "set_state": "npc.thornwood_spirit.disposition",
+          "delta": 20
+        },
+        {
+          "set_state": "world.region.thornwood.behavior",
+          "value": "hopeful"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "effects": [
+        {
+          "set_state": "flag.heartwood_communion_enhanced",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "id": "voss_draven_confrontation",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "The air between them turns to ice. Commander Voss stops mid-stride. Her hand finds her sword hilt with the precision of twenty years of muscle memory. Draven stands ten paces away, his Legion insignia catching the light.",
+      "next": "voss_recognizes"
+    },
+    "voss_recognizes": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "rage",
+      "text": "You. You destroyed Rivendale.",
+      "next": "draven_response"
+    },
+    "draven_response": {
+      "type": "text",
+      "speaker": "draven",
+      "portrait": "neutral",
+      "text": "We destroy a lot of places. You'll have to be more specific.",
+      "next": "voss_describes"
+    },
+    "voss_describes": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "rage",
+      "text": "Eastern frontier. River village. Your Legion burned the bridges first so no one could escape, then poisoned the river spirit's shrine. The water turned black. Forty-three people drowned in water that was trying to save them. I was twelve. I watched from the hills.",
+      "next": "draven_remembers"
+    },
+    "draven_remembers": {
+      "type": "text",
+      "speaker": "draven",
+      "portrait": "neutral",
+      "text": "Rivendale. The river pact. Yes. I remember now. That was General Kael's direct order. I was a lieutenant. I burned the eastern bridge myself.",
+      "next": "draven_remembers_2"
+    },
+    "draven_remembers_2": {
+      "type": "text",
+      "speaker": "draven",
+      "portrait": "neutral",
+      "text": "The river spirit killed fourteen of my soldiers when the shrine fell. Pulled them under and held them there. I could hear them screaming through the water. We called it a victory. It didn't feel like one.",
+      "next": "tension_peak"
+    },
+    "tension_peak": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Voss's knuckles are white on her sword. Draven's hand rests on his knife. The space between them hums with thirty years of unresolved violence.",
+      "next": "player_intervene"
+    },
+    "player_intervene": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "let_duel",
+          "text": "This is between you two. Settle it.",
+          "conditions": [],
+          "triggers": [],
+          "next": "duel_path"
+        },
+        {
+          "id": "propose_alliance",
+          "text": "The real enemy is the Church and their 'salt the earth' plan. You need each other.",
+          "conditions": ["flag.church_salt_the_earth_plan == true"],
+          "triggers": [],
+          "next": "alliance_path"
+        },
+        {
+          "id": "bitter_truce",
+          "text": "Kill each other after the pact is resolved. Right now, this village needs both of you alive.",
+          "conditions": [],
+          "triggers": [],
+          "next": "truce_path"
+        },
+        {
+          "id": "walk_away",
+          "text": "Voss. Walk away. He's not worth it.",
+          "conditions": [],
+          "triggers": [],
+          "next": "walk_away_path"
+        }
+      ]
+    },
+    "duel_path": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Steel rings against steel. They fight with the economy of professionals -- no wasted motion, no theatrical flourishes. Voss is faster. Draven is stronger. The duel lasts ninety seconds.",
+      "next": "duel_result"
+    },
+    "duel_result": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "none",
+      "text": "Voss draws first blood -- a cut across Draven's forearm. He drops his knife. She puts her blade to his throat. Then she holds. 'Killing you doesn't rebuild Rivendale,' she says. 'But it would feel extraordinary.' She sheathes her sword and walks away. Draven watches her go, pressing his sleeve to the wound.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_draven_dueled",
+          "value": true
+        },
+        {
+          "set_state": "npc.draven.memory.voss_spared_him",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": -10
+        }
+      ],
+      "next": "end"
+    },
+    "alliance_path": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "cold",
+      "text": "An alliance. With the man who burned my home. You ask a lot, stranger.",
+      "next": "alliance_draven"
+    },
+    "alliance_draven": {
+      "type": "text",
+      "speaker": "draven",
+      "portrait": "neutral",
+      "text": "The Church wants to burn ALL the pacts. Every village like yours, like hers. The Legion's methods were crude. The Church's will be thorough. At least when we burned Rivendale, the people could flee. The Church doesn't leave survivors.",
+      "next": "alliance_voss_considers"
+    },
+    "alliance_voss_considers": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "cold",
+      "text": "If I work with you -- and that's a monumental IF -- you will never give me an order. You will never stand behind me. And when this is over, we have unfinished business. Those are my terms.",
+      "next": "alliance_draven_accepts"
+    },
+    "alliance_draven_accepts": {
+      "type": "text",
+      "speaker": "draven",
+      "portrait": "neutral",
+      "text": "Agreed. I've been carrying a river stone from your village for twenty years. I think some part of me knew I'd have to answer for it eventually.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_draven_alliance",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.memory.working_with_enemy",
+          "value": true
+        },
+        {
+          "set_state": "npc.draven.memory.acknowledged_rivendale",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "truce_path": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "cold",
+      "text": "A truce. Fine. But I'm counting the days until the pact is settled. And then we finish this conversation with steel instead of words.",
+      "next": "truce_draven"
+    },
+    "truce_draven": {
+      "type": "text",
+      "speaker": "draven",
+      "portrait": "neutral",
+      "text": "I'll be here. I've run from enough things in my life. Rivendale won't be one of them. Not anymore.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_draven_bitter_truce",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.memory.truce_with_draven",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "walk_away_path": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "cold",
+      "text": "You're right. He's not worth the steel. But he's worth remembering. I remember every face from Rivendale. I'll remember his too. Right next to the forty-three who drowned.",
+      "next": "walk_away_draven"
+    },
+    "walk_away_draven": {
+      "type": "text",
+      "speaker": "draven",
+      "portrait": "neutral",
+      "text": "She should have killed me. Would have been simpler for both of us. The stone in my tent -- it's from the riverbank where we... where I... Mercy is heavier than a blade. She knows that. That's why she chose it.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_walked_away_from_draven",
+          "value": true
+        },
+        {
+          "set_state": "npc.draven.memory.voss_showed_mercy",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

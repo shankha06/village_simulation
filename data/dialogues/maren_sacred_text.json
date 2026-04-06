@@ -1,0 +1,229 @@
+{
+  "id": "maren_sacred_text",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "fearful",
+      "text": "I need to speak with you. Privately. Not here — too many ears in the chapel.",
+      "next": "move_private"
+    },
+    "move_private": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "They think I poisoned the water. Elara. The lord. Half the village. I can see it in their eyes when I preach.",
+      "next": "maren_plea"
+    },
+    "maren_plea": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "fearful",
+      "text": "There is a book — the Tome of Directives — kept in the reliquary beneath the Church Outpost. It records every order the inner circle has ever given. My assignment to Ashvale is in there. The truth of why I was sent.",
+      "next": "choice_respond"
+    },
+    "choice_respond": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "ask_why_not_go",
+          "text": "Why don't you retrieve it yourself?",
+          "conditions": [],
+          "triggers": [],
+          "next": "why_not_him"
+        },
+        {
+          "id": "ask_what_truth",
+          "text": "And what will the Tome show? That you're innocent — or guilty?",
+          "conditions": [],
+          "triggers": [],
+          "next": "truth_question"
+        },
+        {
+          "id": "accept",
+          "text": "If the truth is in that book, I'll find it.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_maren_text_quest",
+              "value": true
+            },
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": 25
+            }
+          ],
+          "next": "maren_grateful"
+        },
+        {
+          "id": "demand_payment",
+          "text": "Breaking into a Church vault sounds expensive. What's in it for me?",
+          "conditions": [],
+          "triggers": [],
+          "next": "maren_offers"
+        },
+        {
+          "id": "refuse",
+          "text": "Retrieve your own proof. I'm not your errand runner.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": -15
+            }
+          ],
+          "next": "maren_desperate_refuse"
+        }
+      ]
+    },
+    "why_not_him": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "sad",
+      "text": "Because I've been excommunicated in all but name. The moment I set foot in the Outpost, they'll arrest me. Or worse. The inner circle doesn't tolerate loose ends.",
+      "next": "choice_respond"
+    },
+    "truth_question": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "fearful",
+      "text": "I... I believe it will show I was ordered here. That the inner circle sent me to Ashvale as part of their expansion. But I won't lie to you — there are parts of my assignment I don't fully remember. The ritual preparations... they blur the mind.",
+      "triggers": [
+        {
+          "set_state": "npc.brother_maren.memory.admitted_uncertainty",
+          "value": true
+        }
+      ],
+      "next": "truth_continued"
+    },
+    "truth_continued": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "Whatever the Tome says, I'll accept it. I need to know. Even if it condemns me.",
+      "next": "choice_respond"
+    },
+    "maren_offers": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "I have the Church's cipher. Every coded message they send, I can read. That information is worth more than gold to the right people. Bring me the Tome, and the cipher is yours.",
+      "triggers": [
+        {
+          "set_state": "npc.brother_maren.memory.offered_cipher",
+          "value": true
+        }
+      ],
+      "next": "cipher_choice"
+    },
+    "cipher_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept_cipher",
+          "text": "A Church cipher. Now you're speaking my language. I'll get your book.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_maren_text_quest",
+              "value": true
+            },
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "maren_grateful"
+        },
+        {
+          "id": "refuse_still",
+          "text": "Not worth the risk. Even with a cipher.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": -10
+            }
+          ],
+          "next": "maren_desperate_refuse"
+        }
+      ]
+    },
+    "maren_grateful": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "The Outpost is half a day's travel south. The reliquary entrance is behind the altar — look for a stone with the Ashen Light symbol. Press it and the floor opens.",
+      "next": "maren_warning"
+    },
+    "maren_warning": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "fearful",
+      "text": "Be warned: the Outpost keeps two sentinels. They are not ordinary guards — they are Ashen Wraiths, men who've undergone the purification ritual. They feel no pain and show no mercy. Avoid them if you can.",
+      "next": "maren_final"
+    },
+    "maren_final": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "One more thing. If you find the Tome and the truth is... bad. If it shows I volunteered. Bring it to me anyway. I deserve to face what I've done.",
+      "triggers": [
+        {
+          "set_state": "npc.brother_maren.memory.asked_for_truth_regardless",
+          "value": true
+        }
+      ],
+      "next": "choice_promise"
+    },
+    "choice_promise": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "promise_truth",
+          "text": "Whatever the Tome says, you'll see it. I promise.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": 15
+            }
+          ],
+          "next": "maren_relief"
+        },
+        {
+          "id": "no_promise",
+          "text": "I'll decide what to do with it when I read it.",
+          "conditions": [],
+          "triggers": [],
+          "next": "maren_uneasy"
+        }
+      ]
+    },
+    "maren_relief": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "Thank you. Whatever I am — pawn or monster — at least I'll know. Go with the Light. What's left of it.",
+      "next": "end"
+    },
+    "maren_uneasy": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "Fair enough. The truth belongs to whoever holds it. I can't argue with that — it's what the Church taught me.",
+      "next": "end"
+    },
+    "maren_desperate_refuse": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "sad",
+      "text": "Then I remain accused. And eventually, accused becomes condemned. I suppose that's justice of a kind. Leave me.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "id": "commanders_ghost",
+  "name": "The Commander's Ghost",
+  "description": "Voss is haunted by a village she failed to save years ago. Remnants of Rivendale may still exist on the Eastern Road.",
+  "giver": "commander_voss",
+  "region": "eastern_road",
+  "tags": [
+    "side_quest",
+    "personal",
+    "exploration",
+    "emotional",
+    "moral_choice"
+  ],
+  "priority": 7,
+  "states": {
+    "UNKNOWN": {
+      "transitions": [
+        {
+          "on": "npc.commander_voss.disposition >= 30",
+          "to": "DISCOVERED"
+        }
+      ]
+    },
+    "DISCOVERED": {
+      "journal_entry": "Voss mentioned a village called Rivendale — a place she was supposed to defend but arrived too late. She's heard rumors that someone survived and lives on the Eastern Road.",
+      "transitions": [
+        {
+          "on": "flag.accepted_voss_ghost_quest == true",
+          "to": "ACTIVE"
+        }
+      ]
+    },
+    "ACTIVE": {
+      "journal_entry": "I'm heading to the Eastern Road to search for the ruins of Rivendale. Voss couldn't bring herself to come — she gave me her old company banner to show any survivors.",
+      "objectives": [
+        "Travel to the Eastern Road",
+        "Search for the ruins of Rivendale",
+        "Look for signs of survivors"
+      ],
+      "transitions": [
+        {
+          "on": "flag.rivendale_found == true",
+          "to": "RIVENDALE_FOUND"
+        }
+      ]
+    },
+    "RIVENDALE_FOUND": {
+      "journal_entry": "I found what remains of Rivendale. The ruins are overgrown, but there are signs of recent habitation.",
+      "objectives": [
+        "Investigate the ruins thoroughly",
+        "Determine the fate of the villagers"
+      ],
+      "transitions": [
+        {
+          "on": "flag.rivendale_survivors_found == true",
+          "to": "COMPLETED_SURVIVORS"
+        },
+        {
+          "on": "flag.rivendale_only_graves == true",
+          "to": "COMPLETED_GRAVES"
+        },
+        {
+          "on": "flag.rivendale_ironmarch_occupied == true",
+          "to": "COMPLETED_IRONMARCH"
+        },
+        {
+          "on": "flag.rivendale_commanders_letter == true",
+          "to": "COMPLETED_LETTER"
+        }
+      ]
+    },
+    "COMPLETED_SURVIVORS": {
+      "journal_entry": "Against all odds, seven villagers survived — hiding in the root cellars beneath the ruins for years. When I showed them Voss's banner, an old woman wept. 'She remembered us,' she said.",
+      "consequence_chain": "voss_redemption_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "ashvale_nobility": 10
+          }
+        }
+      ]
+    },
+    "COMPLETED_GRAVES": {
+      "journal_entry": "Only graves. Thirty-two cairns in neat rows, each marked with a river stone. Someone buried them properly. Voss will want to know. I'm not sure I want to tell her.",
+      "rewards": [
+        {
+          "reputation": {}
+        }
+      ]
+    },
+    "COMPLETED_IRONMARCH": {
+      "journal_entry": "Ironmarch has occupied Rivendale. They're using the ruins as a forward camp. Voss was right to worry — and now she has a reason to fight.",
+      "consequence_chain": "voss_rage_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "ironmarch_legion": -20
+          }
+        }
+      ]
+    },
+    "COMPLETED_LETTER": {
+      "journal_entry": "I found a letter in the ruins, sealed with a military stamp. It's from Voss's old commander, Captain Aldric. He ordered the retreat from Rivendale — not Voss. She was following orders. The guilt she carries was never hers.",
+      "rewards": [
+        {
+          "item": "aldrics_letter"
+        }
+      ]
+    }
+  }
+}

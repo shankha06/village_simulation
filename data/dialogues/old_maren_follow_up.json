@@ -1,0 +1,140 @@
+{
+  "id": "old_maren_follow_up",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "neutral",
+      "text": "I felt you coming. The roots told me \u2014 your footsteps are heavier today. Something weighs on you.",
+      "next": "choice_topics"
+    },
+    "choice_topics": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "parable",
+          "text": "Tell me a story, Old Maren. About the forest.",
+          "conditions": [],
+          "triggers": [],
+          "next": "parable_sea_king"
+        },
+        {
+          "id": "moonpetal",
+          "text": "Is there anything I can bring you from the forest?",
+          "conditions": [
+            {
+              "check": "flag.has_druid_talisman",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "moonpetal_quest"
+        },
+        {
+          "id": "ask_about_priest",
+          "text": "The priest who shares your name \u2014 what do you really think of him?",
+          "conditions": [
+            {
+              "check": "npc.brother_maren.met",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "priest_opinion"
+        },
+        {
+          "id": "leave",
+          "text": "I should go. Thank you, Old Maren.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.old_maren.disposition",
+              "delta": 5
+            }
+          ],
+          "next": "end"
+        }
+      ]
+    },
+    "parable_sea_king": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "neutral",
+      "text": "There was once a king who lived by the sea. The sea gave him fish, calm waters, and safe passage for his ships. In return, the king promised one pearl from every catch.",
+      "next": "parable_2"
+    },
+    "parable_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "neutral",
+      "text": "One year, the king grew greedy. He kept the pearls. The sea said nothing. Two years. Three. On the fourth year, the sea took his harbor. On the fifth, his ships. On the sixth... his son.",
+      "next": "parable_3"
+    },
+    "parable_3": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "sad",
+      "text": "The king offered ten thousand pearls to get his son back. The sea refused. 'I did not ask for pearls,' it said. 'I asked for one. Freely given. You chose to make it a debt. Debts are paid differently.'",
+      "triggers": [
+        {
+          "set_state": "flag.heard_sea_king_parable",
+          "value": true
+        }
+      ],
+      "next": "parable_lesson"
+    },
+    "parable_lesson": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "neutral",
+      "text": "The forest is patient, child. But patience has limits. And when the patient lose patience... nothing can stand against the tide.",
+      "next": "choice_topics"
+    },
+    "moonpetal_quest": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "neutral",
+      "text": "There is a flower that grows at the forest's edge \u2014 the moonpetal. It only blooms at night, and only where the roots run deepest. If you bring me one, I can brew a tea that will let you hear the forest's voice. Briefly.",
+      "triggers": [
+        {
+          "set_state": "flag.moonpetal_quest_given",
+          "value": true
+        }
+      ],
+      "next": "moonpetal_2"
+    },
+    "moonpetal_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "neutral",
+      "text": "But be warned \u2014 the forest knows when you're taking from it. Go gently. Ask permission. And whatever you do... do not step off the path the talisman shows you.",
+      "next": "end"
+    },
+    "priest_opinion": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "angry",
+      "text": "That man is no more a priest than I am a songbird. He carries the Church's banner, but his hands smell of nightshade and his prayers smell of ambition. The Ashen Light burned our groves \u2014 and now they send this fox to gnaw at the roots we still tend.",
+      "triggers": [
+        {
+          "set_state": "flag.old_maren_despises_priest",
+          "value": true
+        }
+      ],
+      "next": "priest_opinion_2"
+    },
+    "priest_opinion_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "neutral",
+      "text": "But I am biased \u2014 I admit it freely. The old wounds between druids and the Church run deep. Perhaps he is sincere. Perhaps. But I have lived long enough to know the difference between piety and performance.",
+      "next": "choice_topics"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

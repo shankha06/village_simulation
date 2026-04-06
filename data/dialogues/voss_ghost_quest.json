@@ -1,0 +1,208 @@
+{
+  "id": "voss_ghost_quest",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Sit down. Have a drink with me.",
+      "next": "voss_drinking"
+    },
+    "voss_drinking": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "I've been thinking about ghosts. Not the kind in your forest — real ones. The kind that live in your head and replay the same moment every night.",
+      "next": "voss_opens_up"
+    },
+    "voss_opens_up": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "sad",
+      "text": "Seven years ago, I was a lieutenant in a free company. We were contracted to protect a village called Rivendale on the Eastern Road. Thirty families. A mill. A schoolhouse. They paid us everything they had.",
+      "next": "voss_confession"
+    },
+    "voss_confession": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "sad",
+      "text": "The Ironmarch came with three times our number. My captain ordered retreat. I obeyed. We marched away and left Rivendale to burn. I never went back. I never looked back.",
+      "triggers": [
+        {
+          "set_state": "npc.commander_voss.memory.told_rivendale_story",
+          "value": true
+        }
+      ],
+      "next": "voss_request"
+    },
+    "voss_request": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "But lately I've heard rumors. Travelers on the Eastern Road say there are lights in the ruins. Smoke from a chimney. Someone might still be there.",
+      "next": "choice_respond"
+    },
+    "choice_respond": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "volunteer",
+          "text": "I'll go to Rivendale and find out what's there.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_voss_ghost_quest",
+              "value": true
+            },
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": 25
+            }
+          ],
+          "next": "voss_grateful"
+        },
+        {
+          "id": "ask_why_not_go",
+          "text": "Why don't you go yourself? You have soldiers.",
+          "conditions": [],
+          "triggers": [],
+          "next": "voss_cant"
+        },
+        {
+          "id": "ask_what_expecting",
+          "text": "What do you expect me to find? Honestly.",
+          "conditions": [],
+          "triggers": [],
+          "next": "voss_honest"
+        },
+        {
+          "id": "harsh_truth",
+          "text": "Seven years. If anyone survived, they've moved on. Or they're dead.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": -10
+            }
+          ],
+          "next": "voss_flinches"
+        },
+        {
+          "id": "refuse",
+          "text": "Your guilt isn't my problem, Commander.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": -20
+            }
+          ],
+          "next": "voss_cold"
+        }
+      ]
+    },
+    "voss_cant": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "sad",
+      "text": "Because I'm a coward. I can face a line of Ironmarch soldiers without flinching. But the thought of standing in those ruins and seeing what I left behind... I can't. I physically cannot make my legs carry me there.",
+      "triggers": [
+        {
+          "set_state": "npc.commander_voss.memory.admitted_cowardice",
+          "value": true
+        }
+      ],
+      "next": "choice_respond"
+    },
+    "voss_honest": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Graves. I expect graves. But if there's even a chance that one person survived — one child, one old farmer — then I need to know. I need to know that not everyone died because of me.",
+      "next": "choice_respond"
+    },
+    "voss_flinches": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "angry",
+      "text": "You think I don't know that? I've told myself every possible version of this story. But the rumors are recent. Something is happening at Rivendale. Will you look, or won't you?",
+      "next": "choice_respond"
+    },
+    "voss_grateful": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Take this. My old company banner — the Silver Wolves. If anyone from Rivendale survived, they'll recognize it. They might even trust you.",
+      "triggers": [
+        {
+          "set_state": "player.has_item.silver_wolves_banner",
+          "value": true
+        }
+      ],
+      "next": "voss_directions"
+    },
+    "voss_directions": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Rivendale is on the Eastern Road, about six miles past the stone bridge. Look for a fork where a dead oak marks the turnoff. The village — what's left of it — should be a quarter mile down that path.",
+      "next": "voss_warning"
+    },
+    "voss_warning": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "serious",
+      "text": "The Eastern Road is Ironmarch territory now. Travel carefully. And whatever you find... bring me the truth. Even if it's the kind that hurts.",
+      "next": "choice_promise"
+    },
+    "choice_promise": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "promise_honesty",
+          "text": "You'll get the truth, Commander. All of it.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "voss_nods"
+        },
+        {
+          "id": "promise_gentle",
+          "text": "I'll tell you what you need to hear.",
+          "conditions": [],
+          "triggers": [],
+          "next": "voss_sharp"
+        }
+      ]
+    },
+    "voss_nods": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Good. I've had enough comfortable lies for one lifetime. Go. And be careful out there.",
+      "next": "end"
+    },
+    "voss_sharp": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "angry",
+      "text": "Don't coddle me. I'm not some fragile noble lady. I need facts, not comfort. Bring me what you find — unfiltered.",
+      "next": "end"
+    },
+    "voss_cold": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "No. I suppose it isn't. Forget I said anything. Another round, barkeep.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

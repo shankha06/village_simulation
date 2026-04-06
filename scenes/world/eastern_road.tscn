@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://eastern_road001"]
+
+[ext_resource type="Script" path="res://scenes/world/region_base.gd" id="1_region"]
+[ext_resource type="Script" path="res://scenes/effects/weather_system.gd" id="2_weather"]
+[ext_resource type="Script" path="res://scenes/world/transition_zone.gd" id="3_transition"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_transition_ashvale"]
+size = Vector2(16, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_transition_east"]
+size = Vector2(16, 64)
+
+[node name="EasternRoad" type="Node2D"]
+script = ExtResource("1_region")
+region_id = "eastern_road"
+region_name = "Eastern Road"
+adjacent_regions = PackedStringArray("ashvale")
+tilemap_json = "res://data/world/eastern_road_tilemap.json"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="DefaultSpawn" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(32, 160)
+
+[node name="FromAshvale" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(24, 160)
+
+[node name="FromEasternRoad" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(24, 160)
+
+[node name="NPCSpawnPoints" type="Node2D" parent="."]
+
+[node name="IronmarchEmissarySpawn" type="Marker2D" parent="NPCSpawnPoints"]
+position = Vector2(640, 96)
+
+[node name="WeatherSystem" type="Node2D" parent="."]
+script = ExtResource("2_weather")
+
+[node name="TransitionToAshvale" type="Area2D" parent="."]
+position = Vector2(0, 160)
+script = ExtResource("3_transition")
+target_scene = "res://scenes/world/ashvale_village.tscn"
+spawn_point = "FromEasternRoad"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionToAshvale"]
+shape = SubResource("RectangleShape2D_transition_ashvale")
+
+[node name="TransitionEastBlocked" type="Area2D" parent="."]
+position = Vector2(784, 160)
+script = ExtResource("3_transition")
+target_scene = ""
+spawn_point = ""
+locked = true
+lock_condition = ""
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionEastBlocked"]
+shape = SubResource("RectangleShape2D_transition_east")

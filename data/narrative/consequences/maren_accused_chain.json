@@ -1,0 +1,88 @@
+{
+  "id": "maren_accused_chain",
+  "trigger_condition": "flag.accused_maren == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "npc.brother_maren.disposition",
+          "delta": -60
+        },
+        {
+          "set_state": "player.reputation.church_ashen_light",
+          "delta": -50
+        },
+        {
+          "set_state": "flag.maren_under_suspicion",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.memory.publicly_accused",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "set_state": "flag.maren_followers_angry",
+          "value": true
+        },
+        {
+          "set_state": "npc.greta.memory.village_divided",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 3,
+      "condition": "flag.found_true_poisoner != true",
+      "effects": [
+        {
+          "set_state": "flag.maren_expelled_from_village",
+          "value": true
+        },
+        {
+          "spawn_event": "maren_exile"
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 7,
+      "condition": "flag.maren_expelled_from_village == true",
+      "effects": [
+        {
+          "set_state": "flag.maren_returns_with_church_soldiers",
+          "value": true
+        },
+        {
+          "set_state": "faction.church_ashen_light.power",
+          "delta": 20.0
+        },
+        {
+          "spawn_event": "church_retaliation"
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 10,
+      "condition": "flag.accused_maren == true",
+      "effects": [
+        {
+          "set_state": "flag.poisoning_continues_despite_accusation",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.memory.realized_wrong_person",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

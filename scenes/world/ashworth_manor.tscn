@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://manor001"]
+
+[ext_resource type="Script" path="res://scenes/world/region_base.gd" id="1_region"]
+[ext_resource type="Script" path="res://scenes/effects/weather_system.gd" id="2_weather"]
+[ext_resource type="Script" path="res://scenes/world/transition_zone.gd" id="3_transition"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_transition_ashvale"]
+size = Vector2(96, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_transition_catacombs"]
+size = Vector2(48, 16)
+
+[node name="AshworthManor" type="Node2D"]
+script = ExtResource("1_region")
+region_id = "ashworth_manor"
+region_name = "Ashworth Manor"
+adjacent_regions = PackedStringArray("ashvale", "manor_catacombs")
+tilemap_json = "res://data/world/manor_tilemap.json"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="DefaultSpawn" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(232, 384)
+
+[node name="FromAshvale" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(232, 376)
+
+[node name="FromCatacombs" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(232, 248)
+
+[node name="NPCSpawnPoints" type="Node2D" parent="."]
+
+[node name="CommanderVossSpawn" type="Marker2D" parent="NPCSpawnPoints"]
+position = Vector2(168, 320)
+
+[node name="LordAshworthSpawn" type="Marker2D" parent="NPCSpawnPoints"]
+position = Vector2(96, 64)
+
+[node name="WeatherSystem" type="Node2D" parent="."]
+script = ExtResource("2_weather")
+
+[node name="TransitionToAshvale" type="Area2D" parent="."]
+position = Vector2(240, 392)
+script = ExtResource("3_transition")
+target_scene = "res://scenes/world/ashvale_village.tscn"
+spawn_point = "FromManor"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionToAshvale"]
+shape = SubResource("RectangleShape2D_transition_ashvale")
+
+[node name="TransitionToCatacombs" type="Area2D" parent="."]
+position = Vector2(232, 264)
+script = ExtResource("3_transition")
+target_scene = "res://scenes/world/manor_catacombs.tscn"
+spawn_point = "FromManor"
+locked = true
+lock_condition = "flag.entered_crypt == true"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionToCatacombs"]
+shape = SubResource("RectangleShape2D_transition_catacombs")

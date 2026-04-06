@@ -1,0 +1,68 @@
+{
+  "id": "ledger_public_chain",
+  "trigger_condition": "flag.ledger_shared_publicly == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "faction.ashvale_nobility.power",
+          "delta": -50.0
+        },
+        {
+          "set_state": "npc.lord_ashworth.disposition",
+          "delta": -60
+        },
+        {
+          "set_state": "flag.ashworth_power_destroyed",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.unrest",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "spawn_event": "village_mob_at_manor"
+        },
+        {
+          "set_state": "flag.manor_under_siege",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "effects": [
+        {
+          "set_state": "flag.power_vacuum_ashvale",
+          "value": true
+        },
+        {
+          "set_state": "faction.thieves_guild.power",
+          "delta": 15.0
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 10,
+      "condition": "faction.ashvale_nobility.power < 10",
+      "effects": [
+        {
+          "spawn_event": "ironmarch_exploits_chaos"
+        },
+        {
+          "set_state": "faction.ironmarch_legion.power",
+          "delta": 20.0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "id": "granary_sabotage",
+  "name": "Ashes and Grain",
+  "description": "The Hollow Hand wants Lord Ashworth's grain silo destroyed. The price is right, but the cost may be higher than gold.",
+  "giver": "fenrick",
+  "region": "ashvale",
+  "tags": [
+    "main_quest",
+    "guild",
+    "destruction",
+    "moral_choice"
+  ],
+  "priority": 10,
+  "states": {
+    "UNKNOWN": {
+      "transitions": [
+        {
+          "on": "npc.fenrick.met == true",
+          "to": "AVAILABLE"
+        }
+      ]
+    },
+    "AVAILABLE": {
+      "journal_entry": "A man named Fenrick approached me with an offer from the Hollow Hand.",
+      "transitions": [
+        {
+          "on": "flag.accepted_sabotage == true",
+          "to": "ACTIVE"
+        },
+        {
+          "on": "flag.plans_to_report_guild == true",
+          "to": "REPORT_PATH"
+        }
+      ]
+    },
+    "ACTIVE": {
+      "journal_entry": "I've agreed to burn Lord Ashworth's granary for the Hollow Hand. Fenrick gave me a firebomb. I need to plant it during the guard shift change at night.",
+      "objectives": [
+        "Reach the granary at night (after 22:00)",
+        "Plant the firebomb during the guard shift change",
+        "Escape unseen"
+      ],
+      "transitions": [
+        {
+          "on": "flag.silo_destroyed == true",
+          "to": "COMPLETED_ARSON"
+        },
+        {
+          "on": "flag.player_caught_at_silo == true",
+          "to": "FAILED_CAUGHT"
+        },
+        {
+          "on": "npc.fenrick.alive == false",
+          "to": "FAILED_CONTACT_DEAD"
+        },
+        {
+          "on": "flag.player_confessed_to_guards == true",
+          "to": "BETRAYED_GUILD"
+        }
+      ]
+    },
+    "REPORT_PATH": {
+      "journal_entry": "I know the Guild's plan to burn the granary. I could report this to the guards... or use this knowledge to my advantage.",
+      "transitions": [
+        {
+          "on": "flag.reported_guild_to_guards == true",
+          "to": "BETRAYED_GUILD"
+        },
+        {
+          "on": "flag.blackmailed_fenrick == true",
+          "to": "COMPLETED_BLACKMAIL"
+        },
+        {
+          "on": "flag.accepted_sabotage == true",
+          "to": "ACTIVE"
+        }
+      ]
+    },
+    "COMPLETED_ARSON": {
+      "journal_entry": "The silo burns. The Guild is pleased. Ashvale's last grain reserve is ash. What have I done?",
+      "consequence_chain": "granary_sabotage_chain",
+      "rewards": [
+        {
+          "gold": 200
+        },
+        {
+          "reputation": {
+            "thieves_guild": 30,
+            "city_guard": -40,
+            "ashvale_nobility": -50
+          }
+        }
+      ]
+    },
+    "BETRAYED_GUILD": {
+      "journal_entry": "I reported the Guild's plan to the Ashvale Guard. The granary is safe, but I've made dangerous enemies.",
+      "consequence_chain": "guild_betrayal_chain",
+      "rewards": [
+        {
+          "gold": 50
+        },
+        {
+          "reputation": {
+            "city_guard": 40,
+            "ashvale_nobility": 20,
+            "thieves_guild": -60
+          }
+        }
+      ]
+    },
+    "COMPLETED_BLACKMAIL": {
+      "journal_entry": "I used the Guild's plan as leverage against Fenrick. He'll think twice before crossing me again. But both sides now distrust me.",
+      "rewards": [
+        {
+          "gold": 150
+        },
+        {
+          "reputation": {
+            "thieves_guild": -20
+          }
+        }
+      ]
+    },
+    "FAILED_CAUGHT": {
+      "journal_entry": "The guards caught me at the granary. My reputation is ruined, and the Guild won't protect me.",
+      "rewards": [
+        {
+          "reputation": {
+            "city_guard": -60,
+            "ashvale_nobility": -40,
+            "thieves_guild": -20
+          }
+        }
+      ]
+    },
+    "FAILED_CONTACT_DEAD": {
+      "journal_entry": "Fenrick is dead. The Guild's sabotage plan dies with him \u2014 unless someone else picks it up."
+    }
+  }
+}

@@ -1,0 +1,451 @@
+{
+  "id": "voss_intro",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "You walk like someone who's been in a fight. Not a soldier \u2014 too loose. An adventurer, maybe. Or someone running from something.",
+      "triggers": [
+        {
+          "set_state": "npc.commander_voss.met",
+          "value": true
+        }
+      ],
+      "next": "start_2"
+    },
+    "start_2": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Commander Voss. Free Company of the Iron Road. We're camped east of town while I decide if this village is worth saving \u2014 or worth stripping for parts.",
+      "next": "choice_opening"
+    },
+    "choice_opening": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "respectful",
+          "text": "Commander. What brings a mercenary company to a dying farming village?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": 5
+            }
+          ],
+          "next": "her_purpose"
+        },
+        {
+          "id": "challenge",
+          "text": "These people are starving and you're sizing them up like cattle? That's cold.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.commander_voss.memory.player_challenged_morals",
+              "value": true
+            }
+          ],
+          "next": "challenge_response"
+        },
+        {
+          "id": "mercenary_hire",
+          "text": "Are you for hire? I might have work.",
+          "conditions": [],
+          "triggers": [],
+          "next": "hire_discussion"
+        },
+        {
+          "id": "fight",
+          "text": "I don't much like mercenaries. You prey on the desperate.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": -20
+            },
+            {
+              "set_state": "npc.commander_voss.memory.player_insulted_profession",
+              "value": true
+            }
+          ],
+          "next": "fight_response"
+        }
+      ]
+    },
+    "her_purpose": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Opportunity. A weakened lord, factional strife, a power vacuum forming. I've seen a dozen villages like this. The question is always the same: who fills the void when the old order crumbles?",
+      "next": "her_purpose_2"
+    },
+    "her_purpose_2": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Could be bandits. Could be the Ironmarch Legion \u2014 they've been eyeing this stretch of road for years. Could be someone with the spine to hold it together. I'm here to figure out which way the wind blows.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_explained_purpose",
+          "value": true
+        },
+        {
+          "set_state": "flag.ironmarch_interest_confirmed",
+          "value": true
+        }
+      ],
+      "next": "choice_deeper"
+    },
+    "challenge_response": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Cold? Maybe. But I've kept twenty soldiers alive through three campaigns by being realistic. Sentiment is a luxury for people who've never watched their company die because someone made a decision with their heart instead of their head.",
+      "next": "challenge_response_2"
+    },
+    "challenge_response_2": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "That said... you're not wrong that these people need help, not another predator. Ask me again when I know more about what's killing this place. Maybe we can find something that looks like justice and still pays the bills.",
+      "triggers": [
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": 10
+        },
+        {
+          "set_state": "npc.commander_voss.memory.player_has_conscience",
+          "value": true
+        }
+      ],
+      "next": "choice_deeper"
+    },
+    "hire_discussion": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "I'm always for hire. But I don't come cheap, and I don't work blind. Tell me what you need and I'll tell you what it costs. And before you ask \u2014 no, I don't kill civilians. Bad for business.",
+      "next": "choice_hire"
+    },
+    "choice_hire": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "hire_protection",
+          "text": "I might need backup for something dangerous. Can I count on you?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.discussed_voss_alliance",
+              "value": true
+            }
+          ],
+          "next": "hire_maybe"
+        },
+        {
+          "id": "hire_against_lord",
+          "text": "The lord of this village is hiding something. Help me get into the manor.",
+          "conditions": [
+            {
+              "check": "flag.lord_ashworth_reclusive",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.asked_voss_for_manor_help",
+              "value": true
+            }
+          ],
+          "next": "hire_manor"
+        },
+        {
+          "id": "hire_against_guild",
+          "text": "There's a thieves' guild planning sabotage. I need muscle to stop them.",
+          "conditions": [
+            {
+              "check": "flag.knows_sabotage_plan",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "hire_guild"
+        }
+      ]
+    },
+    "hire_maybe": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Depends on the danger and the pay. But I'll be honest \u2014 I like your nerve. Not many walk up to an armed camp and start negotiating. You've got credit with me. Use it wisely.",
+      "triggers": [
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": 15
+        },
+        {
+          "set_state": "flag.voss_owes_favor",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "hire_manor": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Storming a lord's manor is an act of war, not a burglary. That's expensive \u2014 and it burns bridges. But if you can prove the lord is a threat to his own people? That's a liberation, not an invasion. Different price entirely.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_will_help_if_proof",
+          "value": true
+        }
+      ],
+      "next": "hire_manor_2"
+    },
+    "hire_manor_2": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Bring me proof the lord has broken faith with his people \u2014 solid proof, not tavern gossip \u2014 and my company will back you. No charge. Consider it an investment in whoever rules Ashvale next.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_wants_proof_against_lord",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "hire_guild": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "A thieves' guild? Those rats scatter when real soldiers show up. But rooting them out completely... that's a longer job. What's the target? If it's the granary, that's worth protecting. Food is power in times like these.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_offered_granary_protection",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "fight_response": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "angry",
+      "text": "And you'd know all about desperation, wandering into a mercenary camp to throw insults? Either you're brave or you're stupid. I haven't decided which.",
+      "next": "fight_response_2"
+    },
+    "fight_response_2": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "back_down",
+          "text": "...Fair point. I spoke out of turn.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": 5
+            }
+          ],
+          "next": "back_down_response"
+        },
+        {
+          "id": "double_down",
+          "text": "I've been called both. Want to find out which?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.challenged_voss_to_fight",
+              "value": true
+            }
+          ],
+          "next": "duel_offer"
+        }
+      ]
+    },
+    "back_down_response": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "At least you know when to yield. That's survival instinct. Come back when you want to talk business instead of morality.",
+      "next": "end"
+    },
+    "duel_offer": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Ha! Brave, then. Tell you what \u2014 I respect that. Let's settle this properly. First blood, no killing. If you impress me, maybe I'll listen to what you have to say. If not... well, you'll have an interesting scar.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_duel_available",
+          "value": true
+        }
+      ],
+      "next": "duel_choice"
+    },
+    "duel_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept_duel",
+          "text": "First blood it is. Let's go.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_voss_duel",
+              "value": true
+            },
+            {
+              "start_combat": true,
+              "enemies": [
+                "commander_voss"
+              ]
+            }
+          ],
+          "next": "end"
+        },
+        {
+          "id": "decline_wisely",
+          "text": "Another time. I have bigger problems than my pride.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": 5
+            },
+            {
+              "set_state": "npc.commander_voss.memory.player_showed_wisdom",
+              "value": true
+            }
+          ],
+          "next": "decline_response"
+        }
+      ]
+    },
+    "decline_response": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Wisdom. Even rarer than courage. The offer stands whenever you want it. I could use a good fight \u2014 this village is making my soldiers soft.",
+      "next": "end"
+    },
+    "choice_deeper": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "ask_ironmarch",
+          "text": "The Ironmarch Legion \u2014 how much of a threat are they?",
+          "conditions": [
+            {
+              "check": "flag.ironmarch_interest_confirmed",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "ironmarch_warning"
+        },
+        {
+          "id": "ask_her_past",
+          "text": "Three campaigns. What's your story, Commander?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.commander_voss.memory.player_asked_about_past",
+              "value": true
+            }
+          ],
+          "next": "her_past"
+        },
+        {
+          "id": "alliance",
+          "text": "This village needs someone strong on its side. Are you that person?",
+          "conditions": [],
+          "triggers": [],
+          "next": "alliance_question"
+        }
+      ]
+    },
+    "ironmarch_warning": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "The Legion doesn't invade. They absorb. They find a weak lord, offer 'protection,' then quietly replace every position of power with their own people. By the time anyone notices, the flag's already changed.",
+      "next": "ironmarch_warning_2"
+    },
+    "ironmarch_warning_2": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "If Ashworth falls \u2014 and he's teetering \u2014 the Legion will be here within a month. My company can't stop them alone. But a united village, with the right leader? That's a different fight entirely.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_warned_about_ironmarch",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "her_past": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "sad",
+      "text": "I had a village once. Different name, same slow death. I couldn't save it \u2014 I was twelve and all I could do was run. I've been fighting ever since, trying to get strong enough that the next time... maybe I can.",
+      "triggers": [
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": 10
+        },
+        {
+          "set_state": "flag.voss_shared_past",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.memory.shared_personal_story",
+          "value": true
+        }
+      ],
+      "next": "her_past_2"
+    },
+    "her_past_2": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Don't look at me like that. I'm not looking for pity. I'm looking for a reason to stay. Give me one.",
+      "next": "end"
+    },
+    "alliance_question": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "I could be. But strength alone doesn't save villages \u2014 it just delays the inevitable. What this place needs is someone who can see the whole board. The lord, the guild, the church, the forest... it's all connected.",
+      "next": "alliance_2"
+    },
+    "alliance_2": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Figure out the truth behind the dying crops and I'll stand with you. My sword, my soldiers, my reputation \u2014 all of it. But I won't fight for a lie or a half-truth. I've done that before and the cost was... too high.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_conditional_alliance",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": 15
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "interactables": [
+    {
+      "id": "ghost_letter_alcove",
+      "type": "search",
+      "name": "Hidden Alcove",
+      "position": [336, 176],
+      "text": "A loose stone in the east wall. Behind it, tightly rolled parchments preserved by cold dry air. Each tied with a different color thread \u2014 five letters spanning three centuries.",
+      "state_condition": "flag.found_ghost_letters_cache == true",
+      "state_alt_text": "The alcove is empty now. You carry their final words with you.",
+      "gives_item": "ghost_letters",
+      "sets_flag": "flag.found_ghost_letters",
+      "one_shot": true
+    },
+    {
+      "id": "sacrifice_names_wall",
+      "type": "examine",
+      "name": "Scratched Names",
+      "position": [224, 272],
+      "text": "Names scratched into the stone with desperate fingers. Ten names. Ten sacrifices across three hundred years. The oldest are barely legible. The newest \u2014 Silas Maren \u2014 is still sharp.",
+      "state_condition": "flag.maren_family_truth_revealed == true",
+      "state_alt_text": "Silas Maren. You know who he was now. Brother Maren's father. Elara's father. Old Maren's son. One name, three lives shattered. And Lord Ashworth watched it happen.",
+      "sets_flag": "flag.read_sacrifice_names"
+    },
+    {
+      "id": "locked_ritual_gate",
+      "type": "door",
+      "name": "Ritual Gate",
+      "position": [192, 352],
+      "text": "A heavy iron gate, ancient and cold. The metal is stained with something dark that has seeped into its grain over centuries. Beyond it, stairs descend further into darkness.",
+      "required_item": "crypt_key",
+      "locked_text": "The gate is locked with a mechanism older than the manor itself. The keyhole is shaped like a root.",
+      "state_condition": "flag.crypt_unlocked == true",
+      "state_alt_text": "The gate stands open. Cold air rises from below, carrying the scent of old blood and living wood.",
+      "sets_flag": "flag.ritual_gate_opened"
+    },
+    {
+      "id": "ashworth_sarcophagus",
+      "type": "examine",
+      "name": "Ancient Ashworth Sarcophagus",
+      "position": [192, 176],
+      "text": "The first lord. Aldric Ashworth. His stone effigy lies atop the sarcophagus, hands clasped around a carved root that winds from his chest into the stone floor. The root looks almost alive \u2014 the stone has been polished smooth by... something.",
+      "sets_flag": "flag.examined_first_lord"
+    },
+    {
+      "id": "dried_blood_channel",
+      "type": "examine",
+      "name": "Dried Blood Channel",
+      "position": [192, 304],
+      "text": "A groove carved into the floor, shallow but precise. Something flowed here \u2014 toward the gate. The channel is stained dark, and the stone on either side has been worn smooth. This was used regularly. For centuries.",
+      "sets_flag": "flag.noticed_blood_channels"
+    },
+    {
+      "id": "broken_shackles",
+      "type": "examine",
+      "name": "Broken Shackles",
+      "position": [160, 288],
+      "text": "Iron shackles bolted to the wall, one cuff wrenched open with desperate force. Deep scratches in the stone around them. Not all sacrifices walked willingly to the altar. Some had to be dragged.",
+      "sets_flag": "flag.found_shackles"
+    }
+  ]
+}

@@ -1,0 +1,320 @@
+{
+  "id": "elara_antidote_result",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "You're back. Let me see the moonpetal — quickly, it starts losing potency the moment it's cut.",
+      "next": "brewing_choice"
+    },
+    "brewing_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "give_herbs",
+          "text": "[Give moonpetal sprigs] Here. Five sprigs, just as you asked.",
+          "conditions": [
+            {
+              "check": "flag.moonpetal_gathered",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "examine_herbs"
+        },
+        {
+          "id": "mention_church",
+          "text": "I found something else. The Church Outpost has moonpetal growing in their gardens.",
+          "conditions": [
+            {
+              "check": "flag.found_church_moonpetal",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "church_revelation"
+        },
+        {
+          "id": "sold_them",
+          "text": "I... don't have the herbs. Fenrick made me an offer I couldn't refuse.",
+          "conditions": [
+            {
+              "check": "flag.sold_herbs_to_fenrick",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": -50
+            }
+          ],
+          "next": "betrayal_reaction"
+        }
+      ]
+    },
+    "examine_herbs": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "happy",
+      "text": "These are perfect. Still silver at the edges — you picked them at the right time. Now comes the hard part. I need to brew this precisely. Will you help me measure?",
+      "next": "brewing_help"
+    },
+    "brewing_help": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "help_carefully",
+          "text": "Tell me exactly what to do. I'll follow your instructions to the letter.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.antidote_brewed_correctly",
+              "value": true
+            }
+          ],
+          "next": "brewing_success"
+        },
+        {
+          "id": "help_rush",
+          "text": "People are dying. Let's move fast — approximate the measurements.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.antidote_failed",
+              "value": true
+            }
+          ],
+          "next": "brewing_rushed"
+        },
+        {
+          "id": "let_her_work",
+          "text": "You know herbs better than I do. I'll just watch.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.antidote_brewed_correctly",
+              "value": true
+            }
+          ],
+          "next": "brewing_success"
+        }
+      ]
+    },
+    "brewing_success": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "happy",
+      "text": "It's done. The color is right — pale silver with a blue shimmer. This is it. This is the cure.",
+      "next": "administer_choice"
+    },
+    "administer_choice": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "worried",
+      "text": "Old Thomas first. He's the weakest. Then Bess. Then little Aldwin. Stay with me — I may need help holding them still.",
+      "next": "administer_result"
+    },
+    "administer_result": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "happy",
+      "text": "Thomas is breathing easier already. Bess opened her eyes. And Aldwin... he asked for his mother. They're going to live.",
+      "triggers": [
+        {
+          "set_state": "flag.antidote_administered",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": 30
+        },
+        {
+          "set_state": "npc.elara.memory.saved_villagers_together",
+          "value": true
+        }
+      ],
+      "next": "elara_gratitude"
+    },
+    "elara_gratitude": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "My father couldn't save this village. But maybe... maybe we can. Thank you. I won't forget this.",
+      "next": "end"
+    },
+    "brewing_rushed": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "fearful",
+      "text": "The color's wrong. It should be silver, not grey. But we don't have time to redo it — the moonpetal is spent. We have to try.",
+      "next": "rushed_result"
+    },
+    "rushed_result": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "Thomas... Thomas is convulsing. No. No no no — hold him down! Hold him —",
+      "next": "thomas_dies"
+    },
+    "thomas_dies": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "He's gone. The mixture was too concentrated. I killed him. I... I was trying to save him and I killed him.",
+      "triggers": [
+        {
+          "set_state": "flag.thomas_died",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.memory.thomas_death_guilt",
+          "value": true
+        }
+      ],
+      "next": "aftermath_failure"
+    },
+    "aftermath_failure": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "comfort",
+          "text": "It wasn't your fault. You tried. That's more than anyone else did.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "elara_grieving"
+        },
+        {
+          "id": "blame",
+          "text": "I told you we should have been more careful.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": -20
+            }
+          ],
+          "next": "elara_crushed"
+        }
+      ]
+    },
+    "elara_grieving": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "I need to be alone. Please. Just... go.",
+      "next": "end"
+    },
+    "elara_crushed": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "You're right. I know you're right. Just leave me. Please.",
+      "next": "end"
+    },
+    "church_revelation": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "What? They had moonpetal this whole time? While people were dying, the Church was sitting on the cure?",
+      "next": "church_anger"
+    },
+    "church_anger": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "Maren. That sanctimonious — he watched Thomas suffer. He watched Bess turn grey. He knew. HE KNEW.",
+      "triggers": [
+        {
+          "set_state": "flag.church_cure_exposed",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.npc_relationships.brother_maren",
+          "value": -80
+        }
+      ],
+      "next": "church_next_steps"
+    },
+    "church_next_steps": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "confront_maren",
+          "text": "Let's confront him together. The village deserves to know.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.will_confront_maren_about_cure",
+              "value": true
+            }
+          ],
+          "next": "confront_agree"
+        },
+        {
+          "id": "use_quietly",
+          "text": "Forget Maren for now. Let's get the moonpetal from the Outpost and save the sick first.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "pragmatic_response"
+        }
+      ]
+    },
+    "confront_agree": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "Yes. Everyone needs to see what the Church really is. But first — we get that moonpetal. No one else dies while we argue about blame.",
+      "next": "end"
+    },
+    "pragmatic_response": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "You're right. Lives first, justice later. But I won't forget this. And neither will the village.",
+      "next": "end"
+    },
+    "betrayal_reaction": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "You sold them. You sold the cure. People are going to die because you wanted coin.",
+      "next": "betrayal_continued"
+    },
+    "betrayal_continued": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "Get out of my sight. Don't come back. Don't speak to me. Don't even look at me.",
+      "triggers": [
+        {
+          "set_state": "npc.elara.memory.hates_player",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.memory.herb_betrayal",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}
