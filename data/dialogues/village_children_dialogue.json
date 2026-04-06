@@ -1,0 +1,242 @@
+{
+  "id": "village_children_dialogue",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "tam",
+      "portrait": "curious",
+      "text": "Are you the stranger? Willa says you came through the gate with a bag and a sword and a face like someone who's lost something. I didn't see the sword. Did you lose something? I lose things all the time. Mama says I'd lose my head if it wasn't attached. But heads ARE attached so that's a silly thing to say.",
+      "triggers": [
+        {
+          "set_state": "npc.tam.met",
+          "value": true
+        }
+      ],
+      "next": "choice_opening"
+    },
+    "choice_opening": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "play_along",
+          "text": "I did lose something. A compass. It points the wrong way now.",
+          "conditions": [
+            {
+              "check": "player.has_item.marens_heirloom",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.tam.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "tam_about_compass"
+        },
+        {
+          "id": "ask_about_game",
+          "text": "I saw you playing that game — Roots and Runners. Who taught you?",
+          "triggers": [],
+          "next": "tam_about_game"
+        },
+        {
+          "id": "ask_about_tree",
+          "text": "I heard you told someone a tree talked to you. Is that true?",
+          "conditions": [
+            {
+              "check": "flag.child_heard_tree",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "tam_about_tree"
+        },
+        {
+          "id": "ask_about_parents",
+          "text": "Where's your mother? Shouldn't you be inside?",
+          "triggers": [],
+          "next": "tam_about_mama"
+        }
+      ]
+    },
+    "tam_about_compass": {
+      "type": "text",
+      "speaker": "tam",
+      "portrait": "fascinated",
+      "text": "A compass that points wrong? That's not lost — that's just pointing at something ELSE. My papa said compasses point north because there's a big magnet under the ground at the top of the world. But if YOUR compass points the wrong way, maybe there's a bigger magnet somewhere closer. Like... like the forest? The forest feels like a magnet sometimes. When I stand near the wall, I feel a pull. Like it wants me to come closer. Not scary-pull. More like... the way your blanket pulls you in the morning when you don't want to get up. Warm-pull.",
+      "next": "choice_middle"
+    },
+    "tam_about_game": {
+      "type": "text",
+      "speaker": "tam",
+      "portrait": "animated",
+      "text": "Nobody taught us. It just... happened. Willa was it first because she's the oldest and she said 'I'm the forest' and spread her arms and then we ran and that was the game. The hum was my idea. I said the forest should hum because when I put my ear on the ground near the wall, the ground hums. Willa tried it and she couldn't hear anything. Neither could Joss or Pell or little Fen. Just me. Mama says I have 'sensitive ears.' The blind lady — Old Maren — she says I have 'the old hearing.' I don't know what that means. My ears look normal.",
+      "next": "choice_middle"
+    },
+    "tam_about_tree": {
+      "type": "text",
+      "speaker": "tam",
+      "portrait": "earnest",
+      "text": "The tree told me a secret. It said 'don't be afraid.' Is that weird? Mama says trees don't talk. But this one did. It sounded like singing. Like the song the blind lady hums — the one with no words, just notes that go up and down like hills. I put my ear on the bark and I heard... not WORDS words. More like feelings that had shapes. The tree feels old. Really, really old. And tired. And lonely. Like it's been standing there for a hundred years waiting for someone to listen and I'm the first person who put their ear on it. That made me sad. Being lonely for a hundred years. Even being lonely for ONE year would be terrible.",
+      "next": "tam_tree_detail"
+    },
+    "tam_tree_detail": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "ask_what_tree_said",
+          "text": "What else did the tree say? Can you hear it now?",
+          "triggers": [],
+          "next": "tam_more_tree"
+        },
+        {
+          "id": "warn_about_tree",
+          "text": "Tam, be careful with the trees. They're not always friendly.",
+          "triggers": [
+            {
+              "set_state": "flag.tam_warned",
+              "value": true
+            }
+          ],
+          "next": "tam_disagrees"
+        },
+        {
+          "id": "encourage_listening",
+          "text": "That's a gift, Tam. Not everyone can hear what you hear.",
+          "triggers": [
+            {
+              "set_state": "npc.tam.disposition",
+              "delta": 15
+            },
+            {
+              "set_state": "flag.tam_encouraged",
+              "value": true
+            }
+          ],
+          "next": "tam_brightens"
+        }
+      ]
+    },
+    "tam_about_mama": {
+      "type": "text",
+      "speaker": "tam",
+      "portrait": "sad",
+      "text": "Mama's inside. She's always inside now. She watches from the window. She thinks I don't see her but I do — I see her face in the glass, just her eyes and her forehead, like she's sinking into the house. Papa left last month. Went east, like the baker. Mama cried for three days and then stopped and now she just... watches. I play outside because inside is too quiet. The quiet in our house is the kind that presses on your ears. Outside, the wind makes noise. The trees make noise. Even the dirt makes noise if you listen. I'd rather listen to dirt than to Mama not-talking.",
+      "next": "choice_middle"
+    },
+    "choice_middle": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "ask_about_drawings",
+          "text": "I heard you've been drawing. Can I see?",
+          "conditions": [
+            {
+              "check": "flag.tam_drawing_roots",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "tam_shows_drawings"
+        },
+        {
+          "id": "ask_about_mushrooms",
+          "text": "What about the mushrooms you found? The white ones behind the inn?",
+          "conditions": [
+            {
+              "check": "flag.children_found_mushrooms",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "tam_about_mushrooms"
+        },
+        {
+          "id": "ask_about_other_children",
+          "text": "The other kids — Willa, the rest — can they hear the trees too?",
+          "triggers": [],
+          "next": "tam_about_others"
+        },
+        {
+          "id": "leave_tam",
+          "text": "Stay safe, Tam. Don't wander too close to the forest.",
+          "triggers": [],
+          "next": "tam_farewell"
+        }
+      ]
+    },
+    "tam_more_tree": {
+      "type": "text",
+      "speaker": "tam",
+      "portrait": "concentrated",
+      "text": "Right now? Let me try. [presses hand to the ground, closes eyes] ...Yes. It's faint. Like... like someone talking in the next room through a wall. It's saying... it's counting. Down, I think. Numbers getting smaller. And there's a name. Not a word-name — a feeling-name. Like the feeling you get when you smell sawdust and thyme at the same time. That's someone's name in tree-language. Someone the trees miss. Someone who's IN the trees now but used to be outside, like us. The trees call him... I don't know the word. But the feeling is 'the one who built things with his hands.'",
+      "triggers": [
+        {
+          "set_state": "flag.tam_sensed_silas",
+          "value": true
+        }
+      ],
+      "next": "choice_middle"
+    },
+    "tam_disagrees": {
+      "type": "text",
+      "speaker": "tam",
+      "portrait": "stubborn",
+      "text": "Not friendly? The tree said 'don't be afraid.' That's what friendly people say. Mean people say 'be afraid.' My papa used to say that when he was angry — 'you should be afraid, boy.' The tree is nicer than my papa. It doesn't shout. It doesn't leave. It just stands there and hums and waits for someone to listen. I think the tree is the loneliest thing in Ashvale. Lonelier than Mama. Lonelier than the baker's wife. At least they have doors and windows and people who sometimes knock. The tree has bark and roots and a hundred years of no one putting their ear on it.",
+      "next": "choice_middle"
+    },
+    "tam_brightens": {
+      "type": "text",
+      "speaker": "tam",
+      "portrait": "happy",
+      "text": "A gift? You think so? Old Maren said the same thing. She said I have 'roots in my ears' which sounds gross but she meant it nice. She said a long time ago, there were people whose job was to listen to trees. They were called... druids? And they helped the trees talk to the people and the people talk to the trees. And when they went away, everything got confused. Like when Teacher Hallam left and no one could read the lesson board because only she knew what the symbols meant. Old Maren said I might be like those people. I said 'Does the job come with meals?' She laughed. She doesn't laugh much. I think I made her day.",
+      "next": "choice_middle"
+    },
+    "tam_shows_drawings": {
+      "type": "text",
+      "speaker": "tam",
+      "portrait": "proud",
+      "text": "[unfolds a creased parchment] See? This is what I see when I close my eyes and listen. The lines are roots. They go everywhere — under the houses, under the square, under the well. The big one in the middle is the main root — it comes from the forest and goes all the way to... I think it goes to the manor? Or under it? The lines get thick there. And these dots — see, here and here — these are where the roots are LOUD. Like knots in the network where lots of voices meet. There's one under the well. One under the old tree with the armor. And one... here. [points at a spot on the drawing that corresponds to the chapel cellar] This one is strange. It's loud but it's also... angry? Not the tree kind of angry. The people kind. Like someone put something wrong in the roots and the roots are trying to spit it out.",
+      "triggers": [
+        {
+          "set_state": "flag.tam_drew_nightcap_location",
+          "value": true
+        }
+      ],
+      "next": "tam_farewell"
+    },
+    "tam_about_mushrooms": {
+      "type": "text",
+      "speaker": "tam",
+      "portrait": "serious",
+      "text": "The white ones? The tree told me not to eat them. It said they're 'ears.' The mushrooms are the tree's ears, reaching up out of the ground to hear better. Willa licked one and the tree got very quiet for a moment, like it was surprised. Then it said something I didn't understand — a fast feeling, like a heartbeat speeding up. I think it was worried. About Willa? About us? I told Willa not to eat any more. She said 'You're not the boss of mushrooms, Tam.' She's right. I'm not the boss of mushrooms. But the tree is. And the tree said no.",
+      "next": "choice_middle"
+    },
+    "tam_about_others": {
+      "type": "text",
+      "speaker": "tam",
+      "portrait": "thoughtful",
+      "text": "No. Just me. I've tried to teach them but they can't hear it. Willa says I'm making it up. Joss says I'm weird. Little Fen held his ear to the tree for ten minutes and said 'I heard a bird.' That was just a bird. The tree is deeper than bird-sound. It's under everything. Like how the ground is under everything but you don't notice because you're always standing on it. The tree-sound is like that — always there, under all the other sounds. I can hear it right now. I can always hear it. Even indoors. Even with my hands over my ears. It's like breathing. Once you notice your own breathing, you can't un-notice it. I noticed the trees. I can't un-notice them.",
+      "next": "tam_farewell"
+    },
+    "tam_farewell": {
+      "type": "text",
+      "speaker": "tam",
+      "portrait": "cheerful",
+      "text": "Okay. I should go before Mama worries. She worries about everything now — about the trees, about the food, about me playing too close to the wall. She doesn't know about the listening. I haven't told her. She has enough to be scared of. If she knew the trees were talking to her son... she'd board up the windows. And then I couldn't hear them at all. And they'd be lonely again. I don't want the trees to be lonely. Nobody should be lonely. Not even trees.",
+      "triggers": [
+        {
+          "set_state": "flag.tam_dialogue_complete",
+          "value": true
+        }
+      ],
+      "next": null
+    }
+  }
+}

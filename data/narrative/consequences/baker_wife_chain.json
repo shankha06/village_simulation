@@ -1,0 +1,175 @@
+{
+  "id": "baker_wife_chain",
+  "trigger_condition": "time.day >= 2",
+  "consequences": [
+    {
+      "type": "delayed",
+      "delay_days": 2,
+      "effects": [
+        {
+          "spawn_event": "dagna_first_bread"
+        },
+        {
+          "set_state": "flag.dagna_baking_attempt",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "dagna_first_bread",
+        "description": "Smoke pours from the bakery chimney for the first time in three weeks. Inside, Dagna Greer stands at the counter, flour in her hair, tears on her cheeks, staring at a loaf of bread that looks like a charred brick. The crust is black. The inside is raw dough. The kitchen smells of burning and desperation. She's used the wrong flour — rye instead of wheat — and the oven was too hot because she doesn't know the damper settings her husband adjusted by instinct. She says to no one: 'Six generations of bakers and I married the last one and I can't even make a bloody loaf. Tomlen, you selfish bastard, you took the starter and you took the knowledge and you left me with flour and an oven I can't read.'",
+        "location": "bakery",
+        "time": "morning",
+        "choices": [
+          {
+            "id": "encourage_dagna",
+            "text": "That's bread. Terrible bread, but bread. Try again. Lower the heat. Longer time.",
+            "triggers": [
+              {
+                "set_state": "npc.dagna.disposition",
+                "delta": 15
+              },
+              {
+                "set_state": "flag.dagna_encouraged",
+                "value": true
+              }
+            ]
+          },
+          {
+            "id": "offer_help",
+            "text": "Show me the oven. I've worked a hearth before. We'll figure out the damper together.",
+            "triggers": [
+              {
+                "set_state": "npc.dagna.disposition",
+                "delta": 20
+              },
+              {
+                "set_state": "flag.player_helped_dagna",
+                "value": true
+              }
+            ]
+          },
+          {
+            "id": "ignore_dagna",
+            "text": "[Leave without speaking]",
+            "triggers": [
+              {
+                "set_state": "flag.dagna_ignored",
+                "value": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "conditions": ["flag.dagna_baking_attempt == true"],
+      "effects": [
+        {
+          "spawn_event": "elara_teaches_dagna"
+        }
+      ],
+      "event_data": {
+        "id": "elara_teaches_dagna",
+        "branches": [
+          {
+            "condition": "npc.elara.met == true",
+            "description": "Elara visits the bakery carrying a basket of dried herbs: rosemary from her garden, thyme she's been hoarding, and a small jar of wild honey from Old Maren's hives. She says: 'I can't teach you to bake. But I can teach you to make bread that doesn't taste like sadness. Herb bread. Rosemary and thyme. The herbs mask the bad flour and the honey feeds whatever wild yeast is in the air. Your husband took the starter, but yeast is everywhere — in the flour dust, on the windowsill, in the air above the ovens. You just have to catch it.' She shows Dagna how to make a new starter from scratch: flour, water, and patience. 'Three days,' Elara says. 'Feed it morning and night. Talk to it if you want — I talk to my plants. It won't answer. But you'll feel less alone.'",
+            "triggers": [
+              {
+                "set_state": "flag.elara_taught_dagna",
+                "value": true
+              },
+              {
+                "set_state": "npc.dagna.disposition",
+                "delta": 15
+              },
+              {
+                "set_state": "npc.elara.disposition",
+                "delta": 5
+              }
+            ]
+          },
+          {
+            "condition": "npc.elara.met == false",
+            "description": "Dagna is alone in the bakery, trying her fourth loaf. The results are improving — less charred, more dense — but still inedible. She's working from memory, trying to reconstruct what she watched Tomlen do for eighteen years. She has flour on every surface, three ruined loaves cooling on the counter, and a notebook where she's recording temperatures and times in handwriting that shakes. The fourth loaf comes out heavy as a stone but cooked through. She holds it like a child. She doesn't cry. She's past crying. She just holds it and breathes.",
+            "triggers": [
+              {
+                "set_state": "flag.dagna_self_taught",
+                "value": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 8,
+      "conditions": ["flag.dagna_baking_attempt == true"],
+      "effects": [
+        {
+          "spawn_event": "dagnas_bread"
+        },
+        {
+          "set_state": "flag.bakery_reopened",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "dagnas_bread",
+        "description": "The smell hits you before you see the source — warm bread, rosemary, a hint of honey. The bakery door is open for the first time since Tomlen left. Dagna stands behind the counter with four loaves cooling on a rack. They're not pretty — uneven, cracked on top, slightly lopsided — but they're bread. Real bread. The wild yeast starter is alive in a clay crock on the shelf, bubbling gently. Dagna has named it 'Daughter' — because 'Mother left with Tomlen, so we start a new line.' She's selling loaves for half-price. The first customer is Harlan, who buys two and eats one standing at the counter without speaking. His eyes are wet. Greta buys three and puts one aside for Pip. Old Maren sends a child with a coin and a note: 'Welcome back to the living.'",
+        "triggers": [
+          {
+            "set_state": "world.region.ashvale.morale",
+            "delta": 10
+          },
+          {
+            "set_state": "world.region.ashvale.food_supply",
+            "delta": 5
+          },
+          {
+            "spawn_event": "bakery_open_reactions"
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 12,
+      "conditions": ["flag.bakery_reopened == true"],
+      "effects": [
+        {
+          "spawn_event": "dagna_rally_point"
+        },
+        {
+          "set_state": "flag.dagna_stay_and_fight",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "dagna_rally_point",
+        "description": "The bakery has become a gathering place. Not for bread — for resolve. Dagna's loaves are on the counter, but so is a sign she painted in flour-paste on a board: 'WE STAY. WE BAKE. WE DON'T RUN.' Three families who were packing wagons have unpacked. Farmer Tomas's wife Brin comes every morning for bread and stays to sew. Harlan stops by after his gate shift. Even Pip, when he's off duty, sits in the corner and eats bread with honey and says nothing, which is its own kind of belonging. Dagna tells the player: 'My husband ran because the ovens went cold. I stayed and I lit them again. That's not courage — that's stubbornness. But stubbornness is what this village needs. The forest is coming, the Church is scheming, and the lord is dying in his study. Fine. We'll face all of it. But we'll face it fed. No one fights on an empty stomach. No one gives up with fresh bread in their hand.'",
+        "triggers": [
+          {
+            "set_state": "faction.stay_and_fight.power",
+            "delta": 15
+          },
+          {
+            "set_state": "world.region.ashvale.morale",
+            "delta": 10
+          },
+          {
+            "set_state": "npc.dagna.role",
+            "value": "community_leader"
+          },
+          {
+            "set_state": "flag.dagna_faction_leader",
+            "value": true
+          }
+        ]
+      }
+    }
+  ]
+}

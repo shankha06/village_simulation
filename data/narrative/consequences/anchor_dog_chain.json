@@ -1,0 +1,194 @@
+{
+  "id": "anchor_dog_chain",
+  "trigger_condition": "time.day >= 1",
+  "consequences": [
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "spawn_event": "anchor_follows_player"
+        },
+        {
+          "set_state": "flag.anchor_following",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "anchor_follows_player",
+        "description": "The blacksmith's dog — a twelve-year-old wolfhound mix with a gray muzzle, torn left ear, and ribs showing through dull fur — stands up from the forge doorstep when the player passes. He doesn't bark. He wags his tail once, twice, then falls into step behind the player. His nails click on the cobblestones. He smells of cold iron and old hay. Greta watches from the inn window and says to no one: 'First time he's moved from that spot in two months. Whoever you are, stranger, the dog thinks you're worth following. In Ashvale, that's the highest endorsement you'll get.'",
+        "location": "village_square",
+        "time": "morning",
+        "triggers": [
+          {
+            "set_state": "companion.anchor",
+            "value": true
+          },
+          {
+            "set_state": "npc.anchor.disposition",
+            "value": 60
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "conditions": ["flag.anchor_following == true"],
+      "effects": [
+        {
+          "spawn_event": "anchor_hidden_cache"
+        },
+        {
+          "set_state": "flag.blacksmith_cache_found",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "anchor_hidden_cache",
+        "description": "Anchor leads the player behind the forge, through a gap in the stone wall, to a rain barrel that hasn't held water in months. He paws at the barrel's base, whimpering — a sound like a rusty hinge. Beneath the barrel, under a flat stone: a waxed leather bundle. Inside: a hand-forged hunting knife with a thornwood handle (the blade is still sharp — the blacksmith was good), a pouch of iron nails (thirty-seven, hand-cut, each one perfect), a rolled leather apron with 'FOR BARK — GOOD BOY' stitched inside the collar, and a sealed letter. The letter reads: 'To whoever finds this — I couldn't stay but I couldn't take everything. The knife is for protection. The nails are for building. The apron is for the dog because he always sat on mine. Take care of Ashvale. I tried. — Garrett Reed, Smith.'",
+        "items_granted": [
+          {
+            "id": "garretts_knife",
+            "name": "Garrett's Hunting Knife",
+            "description": "A hand-forged knife with a thornwood handle, still sharp. The blacksmith's farewell gift to a village he couldn't save.",
+            "type": "weapon",
+            "damage": 8
+          },
+          {
+            "id": "iron_nails_cache",
+            "name": "Hand-Cut Iron Nails (37)",
+            "description": "Thirty-seven perfect nails. Each one hammered by hand. Useful for repairs, barriers, or trade.",
+            "type": "crafting_material",
+            "quantity": 37
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "conditions": ["flag.anchor_following == true"],
+      "effects": [
+        {
+          "spawn_event": "anchor_forest_edge"
+        },
+        {
+          "set_state": "flag.anchor_sensed_forest",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "anchor_forest_edge",
+        "description": "Anchor sits at the forest edge, thirty feet from Old Maren's boundary stones, and whimpers. Not the soft whimper of hunger — a deep, chest-vibrating sound that makes the player's teeth itch. His ears are flat. His hackles are raised. He's staring at a specific point between two thornwood oaks where the undergrowth is darker than it should be. Old Maren, from her bench, watches him. 'He can feel it,' she says. 'Dogs always could. Their paws read the ground the way my hands do. Something's moving down there. Not roots — roots are slow. This is fast. Intentional. The forest is sending something toward us. Not an attack. A message. But the dog doesn't know the difference between a messenger and a threat. Neither do I, anymore.'",
+        "triggers": [
+          {
+            "set_state": "flag.forest_sending_message",
+            "value": true
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 8,
+      "conditions": ["flag.anchor_sensed_forest == true"],
+      "effects": [
+        {
+          "spawn_event": "anchor_runs_into_forest"
+        },
+        {
+          "set_state": "flag.anchor_in_thornwood",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "anchor_runs_into_forest",
+        "description": "At dawn, Anchor bolts. No warning — no bark, no whimper. He launches from his sleeping spot at the forge door and runs full-speed toward Thornwood. He crosses Old Maren's boundary stones without hesitation, passes the point where animals stop, and disappears into the undergrowth. The last thing the player sees is his gray tail vanishing between the two thornwood oaks he'd been watching for three days. Old Maren stands. Her knuckles are white on her walking stick. 'He crossed the line,' she says. 'No animal has crossed that line in thirty years. Not since Silas.' She turns to the player. 'Are you going after him? Because I'm too old and too afraid. But that dog just did something I've wanted to do for three decades. He went to find someone who isn't coming back.'",
+        "choices": [
+          {
+            "id": "follow_anchor",
+            "text": "I'm going after him.",
+            "triggers": [
+              {
+                "set_state": "flag.player_entered_thornwood_for_anchor",
+                "value": true
+              },
+              {
+                "spawn_event": "thornwood_anchor_search"
+              }
+            ]
+          },
+          {
+            "id": "wait_for_anchor",
+            "text": "He'll come back. Dogs always come back.",
+            "triggers": [
+              {
+                "set_state": "flag.waited_for_anchor",
+                "value": true
+              }
+            ]
+          },
+          {
+            "id": "ask_maren_about_line",
+            "text": "What do you mean, no animal has crossed? What's different about that dog?",
+            "triggers": [
+              {
+                "set_state": "flag.asked_about_boundary",
+                "value": true
+              },
+              {
+                "spawn_event": "maren_explains_boundary"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 12,
+      "conditions": ["flag.anchor_in_thornwood == true"],
+      "effects": [
+        {
+          "spawn_event": "anchor_returns"
+        },
+        {
+          "set_state": "flag.anchor_returned",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "anchor_returns",
+        "description": "Four days after he vanished, Anchor walks out of Thornwood at dawn. He's thinner. His fur is matted with sap and burrs. His paws are stained dark brown — the same tannin color as Old Maren's hands. In his mouth, held gently as a mother carries a pup, is an object: a piece of root, six inches long, shaped like a human hand. Five fingers, each one perfectly articulated, the wood grain running through them like veins. The 'palm' is warm to the touch. The 'fingers' curl slightly when held, as if trying to grip. Old Maren takes one look at it and sits down hard on her bench. Her hands are shaking. 'That's thornwood heartroot,' she says. 'It doesn't grow in shapes. It doesn't form fingers. Unless someone in the root network SHAPED it. Someone who used to work with their hands. Someone who was a carpenter.' She looks at the player. 'My son made this. Silas. He's in there. He's awake. And he's reaching out.'",
+        "items_granted": [
+          {
+            "id": "silas_root_hand",
+            "name": "The Carpenter's Reach",
+            "description": "A piece of thornwood heartroot shaped like a human hand. Warm. Slightly responsive to touch. Crafted by a consciousness that remembers being a man who worked with wood.",
+            "type": "quest_item",
+            "properties": {
+              "warm": true,
+              "responsive": true,
+              "origin": "silas_maren_dreaming"
+            }
+          }
+        ],
+        "triggers": [
+          {
+            "set_state": "flag.silas_reaching_out",
+            "value": true
+          },
+          {
+            "set_state": "flag.heartwood_contact_possible",
+            "value": true
+          },
+          {
+            "set_state": "companion.anchor",
+            "value": true
+          }
+        ]
+      }
+    }
+  ]
+}

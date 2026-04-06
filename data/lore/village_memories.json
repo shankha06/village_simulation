@@ -1,0 +1,581 @@
+{
+  "entries": [
+    {
+      "id": "mem_year30_aftermath",
+      "title": "The First Harvest",
+      "category": "memories",
+      "text": "After the first sacrifice, the wheat grew so tall children hid in it during summer games. Maelis, the sacrifice's widow, refused to eat the bread. She said she could taste her husband in it. She starved herself by autumn. No one talks about Maelis.",
+      "discovered_by_default": false,
+      "conditions": ["flag.ghost_letter_1_read == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Maelis's grave is unmarked. The villagers buried her at the forest edge — not in the churchyard — because the priest at the time refused to sanctify a 'self-chosen death.' Old Maren's mother planted a hawthorn over the grave. It still grows there, stunted and thorny, bearing fruit that tastes of salt."
+        }
+      ]
+    },
+    {
+      "id": "mem_year60_aftermath",
+      "title": "The Forest's Apology",
+      "category": "memories",
+      "text": "The thief who was sacrificed in Year 60 had stolen to feed his mother. After he entered the roots, his mother received a basket of fruit every morning on her doorstep for twelve years. No one left it. It grew from the ground overnight. The forest was trying to apologize.",
+      "discovered_by_default": false,
+      "conditions": ["flag.ghost_letters_collected_all == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The fruit was unlike anything in the region — dark-skinned, sweet, with a pit shaped like a human molar. The mother ate every piece. She said it tasted like her son's cooking. When she died at eighty-three, the baskets stopped. The spot on her doorstep where they grew is still bare earth. Nothing has grown there since."
+        }
+      ]
+    },
+    {
+      "id": "mem_year90_aftermath",
+      "title": "The Woodcutter's Daughters",
+      "category": "memories",
+      "text": "Eben's twin daughters were raised by the Church. They never returned to Ashvale. One became a nun. The other became a soldier. Neither knew about the pact. Neither learned what really happened to their father. The nun's name was Wren. She volunteered 120 years later, not knowing she was walking the same path as her father.",
+      "discovered_by_default": false,
+      "conditions": ["flag.ghost_letter_4_read == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The soldier-daughter — her name was Bryn — died at the Siege of Hollowkeep. Her armor was returned to the Church with a note: 'She fought like someone who had lost everything before she ever held a sword.' The Church sold the armor. The note was filed. No one read it for sixty years.",
+          "conditions": ["flag.ghost_letters_collected_all == true"]
+        }
+      ]
+    },
+    {
+      "id": "mem_year120_aftermath",
+      "title": "Grief-Roses",
+      "category": "memories",
+      "text": "The widow sacrificed in Year 120 left behind a garden that bloomed for forty years without tending. Red flowers, always red. The villagers called them 'grief-roses.' Fenrick's grandmother dried the last one and kept it in a locket. Fenrick wears the locket under his shirt. He's never told anyone why.",
+      "discovered_by_default": false,
+      "conditions": ["flag.fenrick_children_revealed == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The grief-roses smelled of lavender and copper — like perfume mixed with blood. Bees avoided them. Butterflies were drawn to them. In the fortieth year, every flower died on the same night: the anniversary of the widow's sacrifice, to the hour. The soil where they grew is still red. Fenrick visits the patch once a year, kneels, and presses the locket to the earth. He stays exactly eleven minutes — the same number of minutes the lord's council took to choose his great-great-grandmother.",
+          "conditions": ["flag.found_fenrick_tally == true"]
+        }
+      ]
+    },
+    {
+      "id": "mem_year150_aftermath",
+      "title": "The Armor in the Oak",
+      "category": "memories",
+      "text": "The deserter walked into the roots still wearing his armor. The next spring, a suit of armor was found embedded in a tree trunk near the village, metal fused with bark. Children dared each other to touch it. Old Maren says the tree grew around it in a single night. The armor is still there, half-swallowed by oak.",
+      "discovered_by_default": false,
+      "conditions": ["flag.found_carved_trees == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The deserter's name was Corvin. He had fled the Northern Campaign after watching his company burn a village. He came to Ashvale hoping for peace. He found the pact instead. The armor still bears the insignia of the 4th Northern Regiment — a wolf rampant over crossed swords. Rain collects in the helmet's visor. Birds nest in the gauntlets. The forest turned a soldier into a garden.",
+          "conditions": ["flag.old_maren_is_druid == true"]
+        }
+      ]
+    },
+    {
+      "id": "mem_year180_aftermath",
+      "title": "The Year of Silence",
+      "category": "memories",
+      "text": "After the child, the village went silent. Not metaphor — literal silence. For one year, voices wouldn't carry above a whisper. Dogs stopped barking. The chapel bell made no sound. The lord went mad. He scratched equations into his study walls trying to calculate the weight of what he'd done. Those equations are still visible under the wallpaper in Ashworth Manor.",
+      "discovered_by_default": false,
+      "conditions": ["flag.ghost_letter_3_read == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The equations are not mathematics. They're a kind of moral arithmetic — attempts to quantify suffering. 'One child = X years of prosperity. Solve for X.' The numbers get wilder as they descend the wall. Near the baseboard, the writing degenerates into a single phrase repeated hundreds of times: 'It was not worth it. It was not worth it. It was not worth it.' Lord Ashworth found the wall when he stripped the paper last year. He hasn't entered that room since.",
+          "conditions": ["flag.saw_broken_mirror == true"]
+        }
+      ]
+    },
+    {
+      "id": "mem_year210_aftermath",
+      "title": "Seven Petals",
+      "category": "memories",
+      "text": "Wren walked into the roots singing. Not a hymn. Not a prayer. A counting song, the kind mothers sing to children learning numbers. She counted to seven — one for each of her patients she'd saved that year. The number is carved into the white flower that grew where she entered. Seven petals. Always seven.",
+      "discovered_by_default": false,
+      "conditions": ["flag.ghost_letter_4_read == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The seven patients were: a boy with a broken femur, a woman hemorrhaging after childbirth, twin infants with croup, a farmer bitten by a viper, an old man whose heart had stopped (she restarted it with her fists), and a girl who had eaten deathcap mushrooms. All seven were alive when Wren walked into the forest. Three of their grandchildren still live in Ashvale. They leave wildflowers at the white flower every spring. They don't know why their grandparents insisted on the tradition. They just know it matters."
+        }
+      ]
+    },
+    {
+      "id": "mem_year240_aftermath",
+      "title": "The Bitter Harvest",
+      "category": "memories",
+      "text": "The prisoner in Year 240 fought. He didn't go willingly. The guards held him. The lord spoke the words. The roots took him screaming. The next harvest was bitter. The bread made people sick. The well water tasted of iron and rage. The forest does not want the unwilling. It never did. It punishes the village for forcing what should be given.",
+      "discovered_by_default": false,
+      "conditions": ["flag.ghost_letters_collected_all == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The prisoner's name was Edric Vane. He had been convicted of arson — he burned a tax collector's office in protest of the tithe. The lord chose him because 'a criminal's life costs the village nothing.' The forest disagreed. For three years after, every fire lit in Ashvale burned with an acrid, chemical stink. Candles smoked black. Hearths needed constant cleaning. The forest was returning the prisoner's anger, one flame at a time.",
+          "conditions": ["flag.ashworth_confession_heard == true"]
+        }
+      ]
+    },
+    {
+      "id": "mem_year270_aftermath",
+      "title": "The Feast That Followed",
+      "category": "memories",
+      "text": "After Silas walked in, the village held a feast. To celebrate the 'renewal.' Greta's mother served ale and pork pies. Old Maren sat at the edge of the square holding a compass that had stopped working and watched her neighbors eat the food her son's death had bought. She didn't eat. She hasn't attended a village feast since.",
+      "discovered_by_default": false,
+      "conditions": ["flag.old_maren_confirmed_silas_mother == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Harlan attended the feast. He drank seven ales — one for each year he and Silas had fished the Thornwood streams together. He vomited behind the inn at midnight and carved 'H + S — FISHING FOREVER' into the main beam while Greta's mother pretended not to see. He hasn't touched pork pie since. The smell makes his hands shake."
+        }
+      ]
+    },
+    {
+      "id": "mem_elara_morning_routine",
+      "title": "Dawn at the Herb Garden",
+      "category": "memories",
+      "text": "Elara wakes at dawn. First she checks the herb garden: counting leaves, testing soil moisture with her thumb, whispering to the plants. Not druid magic — habit. She talks to her plants the way lonely people talk to cats. Then she checks the well water. She's checked it every morning since the crops started dying. The day the water tasted different was the day everything changed.",
+      "discovered_by_default": false,
+      "conditions": ["npc.elara.met == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Her thumbnail is permanently stained green from testing soil pH by crushing leaves against it — a technique she invented at thirteen. She keeps a notebook with daily readings: soil moisture, leaf count, water taste rated on a scale of one to five. Five means normal. One means nightcap. The last thirty entries are all ones and twos. The notebook is running out of pages."
+        }
+      ]
+    },
+    {
+      "id": "mem_greta_closing_time",
+      "title": "Twenty-Three Strokes",
+      "category": "memories",
+      "text": "Every night at closing, Greta does three things. She sweeps the floor (twenty-three strokes, always twenty-three — her grandmother's number). She checks the cellar hatch. She adds a tally mark to the wall. Then she pours herself exactly one glass of Thornwood Red and drinks it standing at the window, watching the forest edge. She's done this for fifteen years. She doesn't know why she watches the trees. She just does.",
+      "discovered_by_default": false,
+      "conditions": ["npc.greta.met == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The twenty-three strokes correspond to the twenty-three families who lived in Ashvale when Greta's grandmother built the inn. Eleven of those families are gone now — moved, died, or disappeared. Greta still sweeps twenty-three. She says reducing the number would be 'giving up on them.' The broom is her grandmother's. The handle has been replaced four times. The bristles, never — she re-ties them herself with hemp cord every spring."
+        }
+      ]
+    },
+    {
+      "id": "mem_harlan_gate_ritual",
+      "title": "The Gatekeeper's Hands",
+      "category": "memories",
+      "text": "Harlan checks the gate mechanism every four hours. Not because it needs it — the gate hasn't fully closed in years, the hinges are rusted. He checks it because checking gives him something to do with his hands. His hands shake when they're idle. They've shaken since the day Silas walked past him and Harlan didn't say the word that would have stopped everything: 'Run.'",
+      "discovered_by_default": false,
+      "conditions": ["npc.gate_guard.met == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The gate mechanism is a counterweight system designed for two men to operate. Harlan works it alone. His left shoulder is permanently lower than his right from years of single-handed cranking. The village physic — before the physic left — told him the joint was deteriorating. Harlan said 'Good. It should hurt.' He oils the hinges with rendered pig fat every Tuesday. The gate will never close again. He oils it anyway."
+        }
+      ]
+    },
+    {
+      "id": "mem_maren_prayers",
+      "title": "Four Prayers, Two Languages",
+      "category": "memories",
+      "text": "Brother Maren prays at specific hours: dawn, midday, dusk, midnight. His dawn prayer is Church liturgy. His midday prayer is a personal petition. His dusk prayer is for the village. His midnight prayer is in a language he doesn't remember learning — the druid tongue, inherited from a grandmother he never met. He doesn't know it's druid language. Old Maren does. She heard him through the chapel wall once and wept.",
+      "discovered_by_default": false,
+      "conditions": ["npc.brother_maren.met == true", "flag.visited_old_maren == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The midnight prayer translates roughly to: 'Let the roots remember what the branches forget. Let the soil hold what the wind carries away. I am a seed that does not know its tree.' It's a druid child's bedtime prayer — Silas used to sing it to both his children before the Church took the boy. The melody survived in Brother Maren's bones even when the memory didn't. Old Maren recognized it instantly. She hasn't slept through a midnight since.",
+          "conditions": ["flag.maren_family_truth_revealed == true"]
+        }
+      ]
+    },
+    {
+      "id": "mem_ashworth_routine",
+      "title": "Fourteen Steps",
+      "category": "memories",
+      "text": "Lord Ashworth paces his study from the desk to the window. Fourteen steps. He's worn a track in the carpet. On the desk: an untouched meal, a half-written letter (always the same letter, always unfinished, always burned), and a portrait of his father turned face-down. At the window: a view of dead fields and a forest that's getting closer. He counts the new roots every morning. The number has not gone down once.",
+      "discovered_by_default": false,
+      "conditions": ["flag.entered_ashworth_manor == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The letter begins the same way every time: 'To Whom It May Concern After I Am Gone.' He has burned forty-seven drafts. The fireplace is stained with ink residue. His servant — the only one who hasn't left — collects the ashes every morning without comment. She has read one of the drafts. It described the pact, the sacrifices, and the location of the ritual chamber. She put it back on the desk and said nothing. She is the most dangerous person in the manor and no one knows it.",
+          "conditions": ["flag.ashworth_confession_heard == true"]
+        }
+      ]
+    },
+    {
+      "id": "mem_voss_morning",
+      "title": "The Commander's Knuckles",
+      "category": "memories",
+      "text": "Commander Voss runs drills at dawn. Not because her soldiers need them — they're professionals. She does it because standing still makes her think about Rivendale. So she runs. She lifts. She strikes training dummies until her knuckles bleed. Her lieutenant has learned to wrap her hands without being asked. He doesn't know about Rivendale. He just knows the commander breaks things when she's quiet.",
+      "discovered_by_default": false,
+      "conditions": ["npc.commander_voss.met == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The lieutenant's name is Callum. He's twenty-six, from a fishing village on the southern coast, and he joined Voss's company because she was the only commander who didn't ask about his limp. He wraps her hands with linen strips torn from his own spare shirt — he's down to his last one. He does it the way his mother wrapped fish: tight, efficient, without sentiment. Voss has never thanked him. He's never expected it. This is the closest thing either of them has to family."
+        }
+      ]
+    },
+    {
+      "id": "mem_old_maren_bench",
+      "title": "Where the Village Ends",
+      "category": "memories",
+      "text": "Old Maren's bench at the village edge is worn smooth from seventy years of sitting. The wood is stained with tannin from her soil-buried hands. If you look closely, there are grooves in the armrest — finger-worn channels where her hands grip when the roots beneath pulse too hard. She says the bench is the most important place in the village: 'It's where the village ends and the truth begins.'",
+      "discovered_by_default": false,
+      "conditions": ["flag.visited_old_maren == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The bench was built by Silas. His last commission before the sacrifice — a gift for his mother. He used thornwood oak for the seat and ash for the legs. The joinery is flawless: no nails, no glue, just interlocking cuts so precise you can't see the seams. Old Maren has never had it repaired. It doesn't need it. Silas built it to last a century. It's only been thirty years. The bench will outlive her. She finds this comforting.",
+          "conditions": ["flag.old_maren_confirmed_silas_mother == true"]
+        }
+      ]
+    },
+    {
+      "id": "mem_fenrick_accounting",
+      "title": "Fourteen Names",
+      "category": "memories",
+      "text": "Every third night, Fenrick sits in his hideout and does accounts. Not Guild accounts — personal ones. A ledger with fourteen names, each followed by a city, an age, and a monthly cost. Meal allowances. Clothing. School fees for the older ones. He writes with a stub of pencil and double-checks every number. This is what his greed buys: forty meals a day for children who don't know his name.",
+      "discovered_by_default": false,
+      "conditions": ["flag.fenrick_children_revealed == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The oldest child on the list is seventeen — a girl named Lira in Thornhaven, apprenticed to a weaver. The youngest is four — a boy named Ash in Millbrook, fostered by a baker's family. Fenrick has met none of them. He chose the foster families through intermediaries, vetted by Greta's contacts. Each family receives a monthly stipend delivered by courier. The courier thinks it's a Church charity. The Church thinks it's a Guild front. The children think they're orphans of the border wars. Everyone is wrong. Everyone is safe.",
+          "conditions": ["flag.found_fenrick_tally == true"]
+        }
+      ]
+    },
+    {
+      "id": "mem_baker_left",
+      "title": "The Sourdough Inheritance",
+      "category": "memories",
+      "text": "The baker left three weeks ago. Took his sourdough starter — a culture that had been alive for six generations — and walked east without a word. His wife stayed. She can't bake. She sits in the empty bakery all day, surrounded by cold ovens and the ghost-smell of bread. Yesterday she swept the floor and found a coin her husband missed. She put it in the tip jar. Old habits.",
+      "discovered_by_default": false,
+      "conditions": ["time.day >= 1"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The baker's name was Tomlen Greer. He was the sixth generation to keep the starter alive — a wild yeast culture his great-great-great-grandmother captured from the air above Thornwood springs in Year 47. The starter was called 'Mother' by every baker who tended it. Tomlen took Mother with him. His wife, Dagna, found the empty clay crock on the kitchen shelf with a note inside: 'I'm sorry. She wouldn't survive without me.' He meant the starter. Dagna thinks he meant her."
+        }
+      ]
+    },
+    {
+      "id": "mem_well_coin",
+      "title": "Poisoned Wishes",
+      "category": "memories",
+      "text": "There's a tradition: throw a coin in the well, make a wish. The well is full of coins — hundreds of them, spanning decades. Since the poisoning, the coins at the bottom have turned black. Elara fished one out. The copper was coated in nightcap residue. The village's wishes have been soaking in poison for months.",
+      "discovered_by_default": false,
+      "conditions": ["flag.evidence_nightcap_root == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The oldest coin in the well dates to Year 30 — the year of the first sacrifice. It bears the face of Lord Aldric I. If cleaned, the inscription reads: 'GROWTH THROUGH COVENANT.' The newest coin was thrown in yesterday by a child named Pip — the teenage guard — who wished for 'enough food to stop being hungry.' The coin is already darkening. Even his modest wish is drowning in nightcap."
+        }
+      ]
+    },
+    {
+      "id": "mem_dog_stays",
+      "title": "Anchor",
+      "category": "memories",
+      "text": "The blacksmith's dog didn't leave with the blacksmith. It sits at the forge door every morning waiting. Greta feeds it scraps. Elara checks its health. Harlan named it 'Anchor' because 'it's the only thing in this village that still believes someone's coming back.' The dog's real name was Bark. The blacksmith called him Bark.",
+      "discovered_by_default": false,
+      "conditions": ["time.day >= 1"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Bark is a twelve-year-old wolfhound mix with a gray muzzle and a torn left ear from a fight with a badger six years ago. He weighs less than he should — Greta's scraps aren't enough, but she gives what she can. He sleeps on the anvil, which still holds warmth from the afternoon sun. When strangers approach the forge, he doesn't bark. He wags his tail. Every stranger might be the blacksmith. None of them are."
+        }
+      ]
+    },
+    {
+      "id": "mem_children_game",
+      "title": "Roots and Runners",
+      "category": "memories",
+      "text": "The village children play a game called 'Roots and Runners.' One child is the forest. The others run. If the forest touches you, you have to stand still and become a tree. The last runner wins. Adults don't like the game. They say it's disrespectful. The children don't understand why. They just know the adults look away when they play it.",
+      "discovered_by_default": false,
+      "conditions": ["time.day >= 1"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The game has been played in Ashvale for at least four generations. The rules have evolved: originally, the 'forest' child wore a crown of sticks. Now they spread their arms like branches and make a low humming sound — a sound no adult taught them, a sound that Old Maren says is disturbingly close to the actual frequency of the Heartwood's root-pulse. Children invent what adults suppress. The forest is listening through the game. It always has been."
+        }
+      ]
+    },
+    {
+      "id": "mem_inn_carved_names",
+      "title": "Proof of Existence",
+      "category": "memories",
+      "text": "The inn's main beam is covered in carved initials. Couples, mostly — people who drank together and wanted proof they existed. Silas and his wife are there: 'S.M. + A.M.' Harlan and Silas are there too: 'H + S — FISHING FOREVER.' The newest carving is from last week. Someone carved a single word in shaking letters: 'HELP.'",
+      "discovered_by_default": false,
+      "conditions": ["npc.greta.met == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Greta knows who carved 'HELP.' It was Pip, the teenage guard, at two in the morning after his first solo night watch. He used a belt knife and his hands were trembling so badly the letters are uneven. The 'H' is twice the size of the 'P.' Greta didn't say anything. She poured him a cider — non-alcoholic, he's seventeen — and sat with him until dawn. She added a tally mark to her wall that morning. Not for a conversation overheard. For a conversation she chose to have."
+        }
+      ]
+    },
+    {
+      "id": "mem_fence_repairs",
+      "title": "The Perfect Fence",
+      "category": "memories",
+      "text": "Farmer Tomas has been repairing the same fence for six months. It's not broken. He just needs something to do with his hands while his crops die. He straightens posts that are already straight. He replaces boards that don't need replacing. His wife watches from the window and doesn't tell him to stop. The fence is the most well-maintained thing in Ashvale. Everything else is falling apart.",
+      "discovered_by_default": false,
+      "conditions": ["time.day >= 2"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Tomas's wife is named Brin. She was a seamstress before the famine made cloth a luxury. Now she unpicks old garments and resews them smaller as people lose weight. She's taken in Tomas's trousers three times in two months. She doesn't mention it. He doesn't notice. They eat dinner in silence, staring at a field that used to feed twelve families. The fence between their property and the dead field is immaculate. The crops on the other side of it are dust."
+        }
+      ]
+    },
+    {
+      "id": "mem_night_watch",
+      "title": "Pip's Patrol",
+      "category": "memories",
+      "text": "The guard night shift used to be two men. Now it's one — the other deserted last week. The remaining guard is a seventeen-year-old named Pip who joined because the uniform came with meals. He walks the walls with a spear he can barely lift and a lantern that leaks oil. He's terrified. Not of bandits or the forest. Of being the last one standing when everyone else leaves.",
+      "discovered_by_default": false,
+      "conditions": ["time.day >= 1"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Pip's full name is Pippen Cray. His mother died of fever two winters ago. His father is a drunk who sleeps in the ruins of the old mill. Pip sends him food when he can — which is less and less often, because the guard rations are dwindling. His spear is a hand-me-down from the deserter, who scratched 'GOOD LUCK' into the shaft before leaving. Pip read it by lantern-light and almost cried. Almost. Guards don't cry. He's been told this. He doesn't fully believe it."
+        }
+      ]
+    },
+    {
+      "id": "mem_thornwood_boundary",
+      "title": "The Moving Line",
+      "category": "memories",
+      "text": "There's an invisible line at the forest edge that animals won't cross. Deer stop. Dogs stop. Rats stop. The line has moved twelve feet toward the village since last month. Old Maren marks it with stones. She has a line of stones now, each one dated. The dates get closer together. The forest is accelerating.",
+      "discovered_by_default": false,
+      "conditions": ["flag.forest_encroaching == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The stones are river-smooth, collected from the Thornwood stream over decades. Each one is scratched with a date and a distance measurement in druid notation — not inches or feet, but 'root-lengths,' a unit Old Maren says corresponds to the average growth of a thornwood oak root in one lunar cycle. The first stone, dated thirty years ago, is at the forest's original edge. The most recent, dated yesterday, is eleven root-lengths closer. At the current rate, the boundary will reach the well in forty-three days. Old Maren hasn't told anyone the number. She just keeps placing stones."
+        }
+      ]
+    },
+    {
+      "id": "mem_aldric_last_words",
+      "title": "The Foundation Stone",
+      "category": "memories",
+      "text": "Aldric Ashworth's last words are carved into the foundation stone of the manor: 'I did not make a deal with the devil. I made a deal with something that was here before the concept of devils existed. It is older than sin. It is older than mercy. It is simply, terribly, ALIVE. Forgive me.' He died at 147. The words were covered by plaster three generations later. They're still there, beneath the wall.",
+      "discovered_by_default": false,
+      "conditions": ["flag.entered_ashworth_manor == true", "flag.ashworth_confession_heard == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Lord Ashworth discovered the inscription when damp cracked the plaster last winter. He spent three hours on his knees with a candle, tracing each letter with his finger. The carving is deep — Aldric used a mason's chisel and hit hard. The word 'ALIVE' is carved deepest of all, as if Aldric was trying to drive the truth into the stone itself. Ashworth had the plaster repaired the next morning. He told the mason it was 'structural damage.' The mason saw the letters. He hasn't spoken of them. He left Ashvale two weeks later."
+        }
+      ]
+    },
+    {
+      "id": "mem_burning_of_groves",
+      "title": "Green Smoke",
+      "category": "memories",
+      "text": "When the Church burned the druid groves 150 years ago, the smoke was green. Not the green of burning wood — a bright, emerald green that hung in the air for days. The druids said the trees were bleeding chlorophyll. The Church said it was 'purifying flame.' Twenty druids died defending the groves. Their names are carved into a stone in Thornwood that only the talisman reveals.",
+      "discovered_by_default": false,
+      "conditions": ["flag.old_maren_is_druid == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The stone is called the Grief Marker. It stands in a clearing that has never regrown — a patch of bare earth the size of a cottage, surrounded by the densest part of Thornwood. The twenty names are carved in the old druid script: spiraling letters that read from the center outward, like tree rings. Old Maren's teacher — a woman called Autumn Moss — is the seventh name. She was forty-three. She held a sapling to her chest as the fire took her, trying to shield it. The sapling survived. It grew into the tallest tree in the clearing's edge. Old Maren calls it 'the teacher's last lesson: even in burning, something can be saved.'",
+          "conditions": ["flag.has_druid_talisman == true"]
+        }
+      ]
+    },
+    {
+      "id": "mem_kaels_oath",
+      "title": "The Oath Written at Fourteen",
+      "category": "memories",
+      "text": "General Kael's founding oath is still recited at every Ironmarch Legion assembly: 'I swear by the ash of my grandmother's grave: no root shall claim another grandmother. No covenant shall bind another child. We will burn every forest, drain every river, level every mountain that demands human flesh. We are the fire. They are the fuel.' He wrote it at fourteen. He died at fifty. The oath has not changed.",
+      "discovered_by_default": false,
+      "conditions": ["flag.ironmarch_threat_confirmed == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Kael's grandmother was the last person consumed by the Ur-Root — the consciousness beneath what is now the Ash Wastes. She was eighty-one. She went willingly, believing it was a holy transition. Kael watched from behind a gooseberry bush, too small to be seen, too young to understand. He understood later. The oath was written on the back of her funeral card, in charcoal, in a boy's unsteady handwriting. The original card is preserved in the Legion's Archive of Purpose. The charcoal has been sealed under glass. Draven has seen it. He says the handwriting looks like his own.",
+          "conditions": ["flag.ironmarch_scout_spotted == true"]
+        }
+      ]
+    },
+    {
+      "id": "mem_first_guild_meeting",
+      "title": "Four Women in a Cellar",
+      "category": "memories",
+      "text": "The Hollow Hand's first meeting took place in Greta's grandmother's cellar, Year 35 — five years after the first sacrifice. Four women. Maelis the widow. Two mothers whose children had nightmares about roots. And Greta's grandmother, who said: 'If the lord won't protect our families, we'll protect them ourselves. Starting tonight.' They stole grain from the lord's personal stores and distributed it to sacrifice families. The Guild has been stealing from lords and giving to families ever since.",
+      "discovered_by_default": false,
+      "conditions": ["flag.knows_about_guild == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The first theft was twelve pounds of barley, carried in flour sacks through the manor's servant entrance by Maelis, who had worked in the kitchens. She left her apron on the hook when she finished — an act so ordinary that no one noticed the missing grain for a week. Greta's grandmother recorded the theft in a ledger that became the Guild's founding document. The entry reads: '12 lbs barley. Source: Lord's pantry. Destination: Maelis, Widow Holt, Widow Prenn. Cost: one apron, one conscience. Worth it.' That ledger is now in Fenrick's possession. The ink is faded. The conviction isn't."
+        }
+      ]
+    },
+    {
+      "id": "mem_wren_journal",
+      "title": "The Last Entry",
+      "category": "memories",
+      "text": "Wren kept a journal during her final year. The last entry, dated the day before her sacrifice, reads: 'I can hear the oak outside my window. Not its leaves — its roots. They're humming. Not a sad sound. A welcoming sound. Like a host preparing a room for a guest. I am not afraid. I am not brave. I am simply ready. The forest does not enjoy what we give it. It grieves every time. Let me show it that at least one of us can walk in with open hands.' The journal is in Old Maren's possession. She has never shown it to anyone.",
+      "discovered_by_default": false,
+      "conditions": ["flag.ghost_letter_4_read == true", "flag.old_maren_confirmed_silas_mother == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The journal has 347 entries spanning three years. Most are clinical — patient notes, herb dosages, weather observations. But the last month changes. The handwriting gets slower, more deliberate. She begins addressing entries to 'the one who reads this after,' as if she knew someone would find it. Entry 340 reads: 'I met a woman today whose son has the same eyes as my father — Eben's eyes. I didn't tell her. Some inheritances are too heavy to name.' She never knew Eben was her father. She felt it. The forest confirmed it when she entered. Old Maren keeps the journal wrapped in the same cloth Silas used to wrap his carpentry tools. She reads it on the solstice. Every page smells of pine resin and old tears.",
+          "conditions": ["flag.old_maren_confirmed_silas_mother == true"]
+        }
+      ]
+    },
+    {
+      "id": "mem_ashworth_father_choice",
+      "title": "Eleven Minutes",
+      "category": "memories",
+      "text": "Lord Ashworth's father — the Ninth Lord — chose Silas Maren as the sacrifice in a meeting that lasted eleven minutes. The minutes are recorded in the Thirty-Year Ledger: 'Proposed: Silas Maren, carpenter, age 34. Justification: unmarried since wife's death, children young enough to forget, skills replaceable. Vote: unanimous. Note: subject was not consulted. To be informed this evening.' Eleven minutes to end a man's life. The word 'replaceable' appears twice. Silas's name is misspelled.",
+      "discovered_by_default": false,
+      "conditions": ["flag.found_ghost_letters_cache == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The misspelling is 'Sylas.' The Ninth Lord wrote it himself. He had known Silas for nine years — had commissioned a bookshelf, a cradle, and a coffin for his own wife from Silas's workshop — and still couldn't spell the man's name. The Ledger entry also contains a line that was crossed out but remains legible: 'Alternative candidate: Harlan Voss, gate guard. Rejected: essential to village security.' Harlan has never seen the Ledger. He doesn't know how close he came. He doesn't know the village chose his friend's life over his because Harlan was better at standing in one place and doing nothing.",
+          "conditions": ["flag.ashworth_confession_heard == true"]
+        }
+      ]
+    },
+    {
+      "id": "mem_old_maren_youth",
+      "title": "White Flowers in Her Hair",
+      "category": "memories",
+      "text": "Old Maren was beautiful once. Village boys lined up to court her. She chose none of them — she chose the forest instead, apprenticing with the Thornwood Circle at sixteen. Her mother called it 'a waste of good hips.' Her father said nothing. He'd heard the trees sing and understood. She danced at the summer festival in Year 240 — the last festival before Silas's sacrifice. She wore white flowers in her hair. No one in Ashvale has seen her smile since Year 270.",
+      "discovered_by_default": false,
+      "conditions": ["flag.visited_old_maren == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The white flowers were thornwood blossoms — they bloom once every seven years, for a single night, and smell of honey and cold stone. She picked them at midnight, barefoot in the grove, with Autumn Moss holding a lantern beside her. She was nineteen. Her apprenticeship was complete. The flowers were her graduation crown. She kept one — pressed between the pages of a druid almanac — until the day Silas died. Then she burned it. She said: 'Beauty is for people who still believe the world is kind.' She was forty-nine. She is now seventy-nine. She has not worn flowers since."
+        }
+      ]
+    },
+    {
+      "id": "mem_compass_creation",
+      "title": "Three Nights by Candlelight",
+      "category": "memories",
+      "text": "Silas made the compass in his workshop over three nights. The case is silver — melted down from his wife's wedding ring (she died two years before the sacrifice). The needle is iron from his own carpentry nails. The glass is from a broken window in the chapel. He assembled it by candlelight, crying quietly so the children wouldn't wake. When he scratched their initials on the back — E and M — his hand was so steady that the letters are perfect. His last act of craftsmanship. His finest work. It hasn't pointed north since the day he walked into the roots.",
+      "discovered_by_default": false,
+      "conditions": ["player.has_item.marens_heirloom == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The compass needle points toward Thornwood. Always. In any room, at any angle, the needle swings to face the forest. Silas is in there, dreaming, and the iron that was once his nails — the nails he hammered into chairs and cradles and doors — still knows where he is. Old Maren discovered this the morning after the sacrifice. She held the compass and walked in circles, watching the needle follow the trees. She walked for an hour. Then she sat on the bench Silas had built her and held the compass to her chest and said: 'He's still pointing us home.' She gave the compass to the player's family through intermediaries. She kept the grief."
+        }
+      ]
+    },
+    {
+      "id": "mem_silverpine_child_story",
+      "title": "Pebbles",
+      "category": "memories",
+      "text": "A trader from the north tells this story: In Silverpine, a child asked the mountain for a pet. The next morning, a stone rabbit sat at the child's door — carved by the mountain overnight from living rock. It doesn't move. It doesn't eat. But it's warm to the touch, and the child swears it purrs when she holds it. The Church calls this 'corruption of the innocent.' The child calls it 'Pebbles.'",
+      "discovered_by_default": false,
+      "conditions": ["flag.heartwood_contact_made == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The child's name is Mira. She's eight. Her parents are terrified — not of Pebbles, but of the Church finding out. They've told Mira to keep the rabbit hidden. She does, mostly. But sometimes she takes it to the village well and lets other children hold it. They say it vibrates gently, like a cat. The stone is warm granite, smooth as soap, with two tiny quartz crystals for eyes. The mountain carved it with geological precision: every whisker, every toe-pad, every fold of ear. The Church has sent an inquisitor to Silverpine. He arrives next month. Mira doesn't know."
+        }
+      ]
+    },
+    {
+      "id": "mem_wending_bridge",
+      "title": "The Bridge to Nowhere",
+      "category": "memories",
+      "text": "There was a bridge over the Wending River at Rivendale. After the flood, the bridge survived — the only structure standing. But it goes nowhere now. Both banks are underwater. The bridge stands in the middle of a shallow lake, perfectly intact, connecting nothing to nothing. Fishermen use it as a landmark. Voss uses it as a destination. She dreams of crossing it.",
+      "discovered_by_default": false,
+      "conditions": ["flag.voss_shared_past == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The bridge was built by Voss's grandfather — a stonemason who laid every block himself over three summers. He carved his family name into the keystone: 'VOSS.' The flood that destroyed Rivendale came from below, not above — the river consciousness rising through the foundations of every building, dissolving mortar, softening stone. But the bridge held because the grandfather had used a technique called 'dry-stack' — no mortar, just perfectly shaped stones supporting each other through gravity alone. The river couldn't dissolve what wasn't bonded. Voss's grandfather built something the river couldn't undo. She's been trying to do the same with her life ever since.",
+          "conditions": ["flag.found_voss_sketch == true"]
+        }
+      ]
+    },
+    {
+      "id": "mem_ash_wastes_glass",
+      "title": "Walking on Stars",
+      "category": "memories",
+      "text": "Where General Kael's fire burned hottest, the sand fused into glass. Great sheets of it, smooth as mirrors, stretching for miles. The Legion uses them as roads. At night, you can see stars reflected in the glass below your feet, as if you're walking on the sky. Old soldiers say that if you kneel and press your ear to the glass, you can hear roots trying to grow beneath it. Trying and failing. For two hundred years.",
+      "discovered_by_default": false,
+      "conditions": ["flag.ironmarch_threat_confirmed == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The glass roads are called the Kael Mirrors by the Legion and the Scream Fields by everyone else. The sound beneath them isn't roots growing — it's the Ur-Root's death rattle, still echoing two centuries later. The consciousness didn't die cleanly. It fragmented. Pieces of its awareness are trapped in pockets beneath the glass, too damaged to think but too alive to stop trying. Draven marched the Mirrors during basic training. He says the sound beneath his feet was the loneliest thing he's ever heard. He didn't sleep for three nights afterward. His stone — the one that helps him sleep — vibrates at the same frequency."
+        }
+      ]
+    },
+    {
+      "id": "mem_druid_names",
+      "title": "Midwinter Lichen",
+      "category": "memories",
+      "text": "Druids don't use birth names after initiation. They choose a name from the forest: a tree, a flower, a fungus, a season. Old Maren's druid name is 'Midwinter Lichen.' She chose it because lichen survives everything — fire, frost, neglect. It grows so slowly you can't see it move. But it's always growing. She hasn't used the name in forty years. She says it aloud once a year, alone, on the longest night.",
+      "discovered_by_default": false,
+      "conditions": ["flag.old_maren_is_druid == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "Her teacher Autumn Moss chose her name for the opposite reason — because autumn moss is the first thing to die when winter comes. 'I want to be the canary,' she told the Circle. 'If the forest sickens, I'll feel it first.' She was right. She felt the Burning of the Groves three days before the Church soldiers arrived — a pain in her joints, a taste of ash in her mouth. She warned the Circle. Half escaped. She didn't. Old Maren's name and Autumn Moss's name are the only two that appear together on the Grief Marker. Teacher and student. The one who stayed and the one who was taken.",
+          "conditions": ["flag.has_druid_talisman == true"]
+        }
+      ]
+    },
+    {
+      "id": "mem_church_initiation",
+      "title": "Scars Like Root-Patterns",
+      "category": "memories",
+      "text": "Church of the Ashen Light initiation requires walking barefoot across hot coals. It's meant to symbolize spiritual purification. But the coals are made from specific woods — woods that came from pacted forests. The Church burns the consciousness's body to fuel their faith. Brother Maren's feet bear the scars. He didn't know what he was walking on until he read the Cinderfall Archives. Now he takes his boots off and looks at the scars every night. They're shaped like root-patterns.",
+      "discovered_by_default": false,
+      "conditions": ["npc.brother_maren.met == true", "flag.maren_spoke_of_old_ways == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The scars on Brother Maren's left foot form a pattern that matches the root structure of thornwood oak — a branching, fractal design that no burn should produce naturally. The Archive explains why: the coals retain a 'memory imprint' of the consciousness that once inhabited the wood. When flesh touches them, the consciousness's last thought is seared into skin. Brother Maren's scars are, in a very literal sense, a dead forest's final message. He's had the scars translated by Old Maren, who read them with her fingers, eyes closed. She went white. She said: 'It says: remember us. It says: we were here. It says: the fire is not the end.' She refused to say more.",
+          "conditions": ["flag.old_maren_is_druid == true"]
+        }
+      ]
+    },
+    {
+      "id": "mem_ironmarch_stone",
+      "title": "The Stone That Hums",
+      "category": "memories",
+      "text": "Every Ironmarch soldier carries a smooth stone. It's from their destroyed homeland — the Ash Wastes. They're told it represents 'what we lost.' Draven's stone is different. His is from the mountain that collapsed. If you hold it to your ear, it vibrates faintly — a frequency too low to hear but not too low to feel. The mountain consciousness is in that stone. Diminished. Trapped. Alive. Draven doesn't know. He just knows the stone helps him sleep.",
+      "discovered_by_default": false,
+      "conditions": ["flag.ironmarch_scout_spotted == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The stone is basalt — dark, dense, with a single vein of white quartz running through its center like a frozen lightning bolt. Draven found it in the rubble of his parents' house, three days after the mountain collapsed. He was nine. The rescue teams had given up. He climbed into the wreckage alone and found the stone resting on his mother's pillow, placed there by a force that wasn't gravity. The mountain killed his parents and then left their son a lullaby. This is the paradox Draven cannot resolve. This is why the Ironmarch oath sits uneasy in his mouth. This is why he sleeps with the stone pressed to his chest and wakes each morning uncertain whether the thing that killed his family also loves him."
+        }
+      ]
+    },
+    {
+      "id": "mem_the_ledger_identity",
+      "title": "Seven Hands, One Purpose",
+      "category": "memories",
+      "text": "No one has seen The Ledger. Guild members describe receiving instructions via dead drops — sealed envelopes in specific locations, written in a cipher that changes monthly. The handwriting is always different. Analysis by Greta (who has seen thousands of handwriting samples) suggests at least seven different writers. The Ledger is not one person. It's a committee. A council of sacrifice families spanning the continent, coordinating in silence, protecting children for two hundred years. They have never met in person. They communicate entirely through letters, dead drops, and the occasional desperate prayer.",
+      "discovered_by_default": false,
+      "conditions": ["flag.guild_real_motive_known == true"],
+      "fragments": [
+        {
+          "id": "frag_1",
+          "text": "The cipher is based on a system invented by the second Guild leader — Maelis's daughter, who was a weaver. The key is a thread pattern: different colored threads knotted in a specific sequence, each knot representing a letter substitution. The pattern changes monthly because the key is based on lunar phases. Every Guild member receives a spool of colored thread at initiation. They're told it's 'ceremonial.' It's not. It's the most sophisticated cryptographic tool on the continent, invented by a grieving woman who learned to hide meaning in knots because the lord's men could read letters but couldn't read loom-work. Two hundred years later, the cipher has never been broken. The Church has tried. The Legion has tried. A weaver's grief defeated them all.",
+          "conditions": ["flag.knows_about_guild == true"]
+        }
+      ]
+    }
+  ]
+}

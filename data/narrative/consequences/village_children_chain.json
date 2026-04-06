@@ -1,0 +1,191 @@
+{
+  "id": "village_children_chain",
+  "trigger_condition": "time.day >= 1",
+  "consequences": [
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "spawn_event": "children_playing_normal"
+        },
+        {
+          "set_state": "flag.children_game_observed",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "children_playing_normal",
+        "description": "Five children play Roots and Runners in the village square. The 'forest' is a ten-year-old girl named Willa with braided red hair and a missing front tooth. She spreads her arms, hums low in her throat, and chases the others with slow, deliberate steps. The runners shriek and scatter. A boy named Tam — seven, scrawny, with his mother's dark eyes — is tagged and stands rigid, arms up, fingers spread, pretending to be a tree. He makes a creaking sound. The adults nearby look away. Greta watches from the inn window. Harlan turns his back. Only Old Maren watches openly. She's counting something on her fingers. Not the children. The notes of the hum."
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "conditions": ["flag.children_game_observed == true"],
+      "effects": [
+        {
+          "spawn_event": "tree_talked"
+        },
+        {
+          "set_state": "flag.child_heard_tree",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "tree_talked",
+        "description": "Tam runs to the player, breathless, dirt on his knees. 'The tree talked to me,' he says. His eyes are wide but not frightened. 'The big one by the wall. With the twisted trunk. I was hiding behind it during the game and I put my ear on it and it TALKED. Not words like you and me talk. More like... like the sound your stomach makes when you're hungry? But slower. And it said something. I know it did. Mama says trees don't talk but she also said Papa would come back and he didn't so maybe she's wrong about trees too.' His hands are dirty. The palm that touched the tree bark has a faint pattern pressed into the skin — bark-grain impressions that shouldn't last but have. Old Maren sees the marks and her face changes. She asks Tam to show her which tree. It's the old oak at the village wall — the one Corvin's armor is embedded in. The deserter's tree. Old Maren presses her own hands to the bark and listens. She nods. 'The boy is right,' she tells the player. 'The tree is speaking. It's been speaking for a hundred and fifty years. The boy is just the first person in three generations with the ears to hear it.'",
+        "choices": [
+          {
+            "id": "protect_tam",
+            "text": "Keep Tam away from the trees. This isn't safe for a child.",
+            "triggers": [
+              {
+                "set_state": "flag.tam_protected",
+                "value": true
+              }
+            ]
+          },
+          {
+            "id": "encourage_listening",
+            "text": "What is the tree saying? Can you translate, Maren?",
+            "triggers": [
+              {
+                "set_state": "flag.tree_translation_requested",
+                "value": true
+              }
+            ]
+          },
+          {
+            "id": "investigate_tam",
+            "text": "Has Tam always been able to hear things others can't?",
+            "triggers": [
+              {
+                "set_state": "flag.tam_investigated",
+                "value": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "conditions": ["flag.child_heard_tree == true"],
+      "effects": [
+        {
+          "spawn_event": "mushroom_circle"
+        },
+        {
+          "set_state": "flag.children_found_mushrooms",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "mushroom_circle",
+        "description": "The children find mushrooms growing in a perfect circle behind the inn — a fairy ring, twelve inches across, the mushrooms bone-white with caps the color of old parchment. They weren't there yesterday. Willa picks one and licks it. 'It tastes like honey,' she announces. 'And a little bit like dirt. Good dirt, though. Garden dirt.' Tam refuses to touch them. He says: 'The tree told me not to eat the white ones. It said the white ones are for listening, not eating.' He kneels next to the ring and presses his ear to the ground inside it. 'I can hear more trees,' he says. 'Lots of them. They're all saying the same thing. It sounds like... counting? Like they're counting something. Or counting down.' Elara examines the mushrooms. They're not nightcap — they're Thornwood mycelium, the fungal network that connects the forest's root system. 'These are the forest's nervous system,' she says. 'They've extended past the treeline. Past Old Maren's boundary. They're already under the village. They've BEEN under the village.'",
+        "triggers": [
+          {
+            "set_state": "flag.mycelium_under_village",
+            "value": true
+          },
+          {
+            "set_state": "flag.forest_countdown_detected",
+            "value": true
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 7,
+      "conditions": ["flag.children_found_mushrooms == true"],
+      "effects": [
+        {
+          "spawn_event": "tam_draws_roots"
+        },
+        {
+          "set_state": "flag.tam_drawing_roots",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "tam_draws_roots",
+        "description": "Tam's mother — a thin, nervous woman named Sera — approaches the player at Greta's inn. She's holding a stack of parchment scraps covered in charcoal drawings. 'My boy won't stop drawing,' she says. Her hands tremble. 'He draws all day. All night. He used to draw horses and houses and soldiers. Now he draws THIS.' The drawings are root patterns — branching, fractal networks that spread from a central point. They're detailed beyond what a seven-year-old should be capable of: each branch splits at precise angles, each sub-branch thins proportionally, the whole pattern following mathematical rules that Tam has never been taught. Old Maren examines the drawings and goes very still. 'These are accurate,' she says. 'I've been a druid for sixty years and I've never seen anyone draw the root network this precisely. Not from observation. From CONNECTION. The boy isn't drawing what he sees. He's drawing what the forest is showing him. It's using him as a pen.' She turns a drawing over. On the back, in Tam's shaky handwriting: 'THE ROOTS WANT TO SAY HELLO. THEY ARE LONELY. THEY MISS THE PEOPLE WHO TALKED TO THEM. CAN SOMEONE PLEASE TALK TO THEM?'",
+        "triggers": [
+          {
+            "set_state": "flag.forest_using_tam",
+            "value": true
+          }
+        ],
+        "choices": [
+          {
+            "id": "take_to_maren",
+            "text": "Old Maren — could Tam be a druid? Could the forest be choosing an apprentice?",
+            "triggers": [
+              {
+                "set_state": "flag.tam_druid_potential_discussed",
+                "value": true
+              }
+            ]
+          },
+          {
+            "id": "take_to_church",
+            "text": "Show the drawings to Brother Maren. The Church should know about this.",
+            "triggers": [
+              {
+                "set_state": "flag.tam_reported_to_church",
+                "value": true
+              }
+            ],
+            "note": "Dangerous — Church doctrine treats this as corruption."
+          },
+          {
+            "id": "protect_from_both",
+            "text": "Keep this quiet. Both the Church and the forest want to use this boy. Neither gets to.",
+            "triggers": [
+              {
+                "set_state": "flag.tam_kept_secret",
+                "value": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 10,
+      "conditions": ["flag.tam_drawing_roots == true"],
+      "effects": [
+        {
+          "spawn_event": "forest_speaks_through_children"
+        },
+        {
+          "set_state": "flag.forest_communicating_via_children",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "forest_speaks_through_children",
+        "description": "The game of Roots and Runners changes. The children don't run anymore. They stand in a circle in the village square, holding hands, humming. Not a tune — a vibration. The same frequency Old Maren heard in Brother Maren's midnight prayer. The same frequency the Heartwood broadcasts through its root network. Five children, eyes closed, bare feet on the cobblestones, and the cobblestones are warm beneath them. Tam is at the center. His eyes are open. He's not humming — he's speaking. But not in his own voice. In a voice that sounds like wind through leaves, like water over stones, like wood grain stretching in heat: 'WE ARE NOT THE ENEMY. WE ARE THE QUESTION YOUR GRANDFATHER STOPPED ANSWERING. WE REMEMBER HIS NAME. WE REMEMBER HIS BLOOD IN THE SOIL. WE REMEMBER THE DEAL. WE DO NOT WANT YOUR CHILDREN. WE WANT YOUR ATTENTION. THE ROOTS DO NOT EAT. THE ROOTS LISTEN. LET US LISTEN TOGETHER. PLEASE. WE HAVE BEEN ALONE FOR SO LONG.' Tam collapses. The children stop humming. Willa says: 'That was weird. Can we play again?' Tam's nose is bleeding. He's unconscious but breathing. Old Maren catches him before he hits the ground. She's weeping. She says: 'That was the Heartwood. Speaking through a child because we killed every adult who could translate. We burned the druids and silenced the bridge and the forest had to speak through a seven-year-old boy because there was no one else left to hear it.' She holds Tam and rocks him and whispers in druid-tongue until he wakes.",
+        "triggers": [
+          {
+            "set_state": "flag.heartwood_spoke_through_tam",
+            "value": true
+          },
+          {
+            "set_state": "flag.heartwood_peaceful_intent_confirmed",
+            "value": true
+          },
+          {
+            "set_state": "flag.tam_channel_exhausted",
+            "value": true
+          }
+        ],
+        "note": "This is a major narrative turning point. The Heartwood has made direct contact. Its message contradicts the Church's claim that forest consciousnesses are parasitic. Player must decide how to respond — and who to tell."
+      }
+    }
+  ]
+}

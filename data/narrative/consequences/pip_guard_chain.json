@@ -1,0 +1,224 @@
+{
+  "id": "pip_guard_chain",
+  "trigger_condition": "npc.gate_guard.met == true",
+  "consequences": [
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {
+          "spawn_event": "pip_asks_advice"
+        },
+        {
+          "set_state": "flag.pip_approached_player",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "pip_asks_advice",
+        "description": "Pip approaches the player near the gate at dusk. He's been awake for thirty-six hours. His hands are shaking and there's lamp oil on his sleeve from the leaking lantern. He asks: 'You've seen things, right? Out there? How do you... how do you not be scared? Because I'm scared all the time and I can't stop and I think if I stop being scared I'll just be nothing.'",
+        "location": "village_gate",
+        "time": "dusk",
+        "choices": [
+          {
+            "id": "mentor_pip",
+            "text": "Fear means you're paying attention. Use it. Check corners twice. Listen before you look. Fear is your best weapon if you point it the right direction.",
+            "triggers": [
+              {
+                "set_state": "flag.pip_mentored",
+                "value": true
+              },
+              {
+                "set_state": "npc.pip.disposition",
+                "delta": 25
+              },
+              {
+                "set_state": "npc.pip.courage",
+                "delta": 15
+              }
+            ]
+          },
+          {
+            "id": "dismiss_pip",
+            "text": "You're a guard. Act like one or find another job.",
+            "triggers": [
+              {
+                "set_state": "flag.pip_dismissed",
+                "value": true
+              },
+              {
+                "set_state": "npc.pip.disposition",
+                "delta": -20
+              },
+              {
+                "set_state": "npc.pip.courage",
+                "delta": -10
+              }
+            ]
+          },
+          {
+            "id": "recruit_pip",
+            "text": "I could use a second pair of eyes. Walk with me tonight. I'll show you what to watch for.",
+            "triggers": [
+              {
+                "set_state": "flag.pip_recruited",
+                "value": true
+              },
+              {
+                "set_state": "npc.pip.disposition",
+                "delta": 30
+              },
+              {
+                "set_state": "npc.pip.courage",
+                "delta": 20
+              }
+            ]
+          },
+          {
+            "id": "terrify_pip",
+            "text": "You should be scared. The things in that forest? They ate a man whole thirty years ago. You're guarding a gate that won't close against something that doesn't use doors.",
+            "triggers": [
+              {
+                "set_state": "flag.pip_terrified",
+                "value": true
+              },
+              {
+                "set_state": "npc.pip.disposition",
+                "delta": -15
+              },
+              {
+                "set_state": "npc.pip.courage",
+                "delta": -25
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "effects": [
+        {
+          "spawn_event": "pip_catches_sneaker"
+        },
+        {
+          "set_state": "flag.pip_gate_incident",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "pip_catches_sneaker",
+        "description": "Pip intercepts someone trying to slip past the gate after midnight.",
+        "branches": [
+          {
+            "condition": "flag.fenrick_pressure_applied == true",
+            "sneaker": "fenrick_courier",
+            "description": "It's one of Fenrick's couriers — a wiry woman named Sal carrying a satchel of sealed letters. Pip has her at spear-point, hands trembling, lamp oil dripping on his boots. Sal is calm. Too calm. She says: 'Boy, put that down before you hurt yourself. I'm carrying messages that keep children alive. You can be a hero or you can be smart. Pick one.'"
+          },
+          {
+            "condition": "flag.ironmarch_scout_spotted == true",
+            "sneaker": "ironmarch_deserter",
+            "description": "It's an Ironmarch deserter — a young man Pip's age named Callum, bleeding from a cut on his arm, wearing a torn Legion tunic. He says: 'Please. They'll execute me if they find me. I refused an order. I wouldn't burn the eastern farmstead. I just... I couldn't do it again.' He's carrying a Legion supply map showing planned troop movements."
+          },
+          {
+            "condition": "flag.maren_spoke_of_old_ways == true",
+            "sneaker": "hooded_figure",
+            "description": "It's a hooded figure Pip can't identify — moving low and fast, smelling of incense and damp earth. When Pip challenges them, they turn. It's Brother Maren, returning from the forest with soil-stained hands and a leather pouch that pulses faintly with green light. He says: 'You didn't see me, boy. For your sake and mine.' His eyes are wild. His midnight prayer was not just words tonight."
+          }
+        ],
+        "default_sneaker": {
+          "sneaker": "unknown_villager",
+          "description": "It's the baker's wife, Dagna, trying to leave Ashvale with a pack on her back. She's crying silently. She says: 'I can't stay in that bakery anymore. Every morning I wake up and the ovens are cold and the flour is gone and I'm alone. I'm just... alone. Let me go. Please. There's nothing left for me here.'"
+        }
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 8,
+      "conditions": ["flag.pip_approached_player == true"],
+      "effects": [
+        {
+          "spawn_event": "pip_decision_point"
+        }
+      ],
+      "event_data": {
+        "id": "pip_decision_point",
+        "branches": [
+          {
+            "condition": "npc.pip.courage >= 10",
+            "description": "Pip is standing taller. He's fashioned a proper lantern mount from scrap metal — no more leaking oil. He's memorized the night sounds: the wind-hush of dying wheat at the second hour, the fox that crosses the south path at the third, the silence that falls at the fourth when even insects stop near the forest. He tells the player: 'I'm staying. Not because I'm brave. Because if I leave, who watches the gate? Harlan can't do nights anymore. His hands shake too bad after dark. Someone has to be here. Might as well be the kid who can't sleep anyway.'",
+            "triggers": [
+              {
+                "set_state": "flag.pip_stays",
+                "value": true
+              },
+              {
+                "set_state": "world.region.ashvale.defense_score",
+                "delta": 5
+              },
+              {
+                "set_state": "npc.pip.role",
+                "value": "night_watch_captain"
+              }
+            ]
+          },
+          {
+            "condition": "npc.pip.courage < 10",
+            "description": "Pip's post is empty. His spear leans against the gate, the 'GOOD LUCK' scratch catching the morning light. His uniform — the one that came with meals — is folded neatly on the guard stool. On top: a note written in shaky charcoal. 'I'm sorry. I tried. The meals weren't worth dying for. Tell Harlan I fed Anchor before I left. Tell Greta I'm sorry about the beam. — Pip.' He took nothing. Not even the lantern. He walked east at the third hour, when the fox crosses the south path and there's no one watching.",
+            "triggers": [
+              {
+                "set_state": "flag.pip_deserted",
+                "value": true
+              },
+              {
+                "set_state": "world.region.ashvale.defense_score",
+                "delta": -10
+              },
+              {
+                "set_state": "flag.gate_unguarded_at_night",
+                "value": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 12,
+      "conditions": ["flag.pip_stays == true"],
+      "effects": [
+        {
+          "spawn_event": "pip_night_discovery"
+        },
+        {
+          "set_state": "flag.pip_found_evidence",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "pip_night_discovery",
+        "description": "Pip bursts into the inn at dawn, breathless, lamp oil on his hands, a wild look in his eyes. 'I found something. On the night watch. Near the well — there's a loose stone in the well wall, about three feet down. Someone's been using it as a dead drop. I found a vial inside — glass, sealed with black wax, half-full of something that smells like bitter almonds and wet earth. And a note. The note says: \"Increase dosage. Phase two begins at the new moon. The healer suspects — deal with her.\" It's addressed to no one. The handwriting is small, precise, and the ink is the same red that Brother Maren uses for his annotations.'",
+        "triggers": [
+          {
+            "set_state": "flag.well_dead_drop_found",
+            "value": true
+          },
+          {
+            "set_state": "flag.elara_in_danger",
+            "value": true
+          },
+          {
+            "set_state": "flag.maren_evidence_found",
+            "value": true
+          },
+          {
+            "spawn_event": "investigate_dead_drop"
+          }
+        ],
+        "note": "This evidence is critical — it confirms the nightcap poisoning source and reveals that Elara has been identified as a threat by the poisoner. Player must now choose: confront Brother Maren, warn Elara, or investigate further."
+      }
+    }
+  ]
+}

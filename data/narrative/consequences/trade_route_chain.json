@@ -1,0 +1,250 @@
+{
+  "id": "trade_route_chain",
+  "trigger_condition": "time.day >= 1",
+  "consequences": [
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "spawn_event": "merchant_caravan_arrives"
+        },
+        {
+          "set_state": "flag.caravan_arrived",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "merchant_caravan_arrives",
+        "description": "Three wagons roll through the eastern gate at midday, pulled by mules that look as tired as their drivers. The lead wagon belongs to a merchant named Orin Blackwell — a broad-shouldered man with a salt-and-pepper beard, one glass eye (the left, poorly fitted, it doesn't quite track), and hands that have unloaded a thousand crates. He sets up in the square with practiced efficiency: awning deployed in four minutes, goods displayed on oilcloth, prices chalked on a slate board. His stock: salt (half-price, he's overstocked), dried fish from the coastal towns, lamp oil (premium — the eastern refineries are running low), a crate of iron tools from Thornhaven, three bolts of undyed wool, and — tucked beneath his seat in a locked box — a sealed letter addressed to 'The Keeper of the Ashvale Well' in handwriting Greta will recognize as Ledger cipher. Prices drop 15% across the board. The village exhales for the first time in weeks.",
+        "location": "village_square",
+        "time": "midday",
+        "triggers": [
+          {
+            "set_state": "world.region.ashvale.market_status",
+            "value": "trader_present"
+          },
+          {
+            "set_state": "world.region.ashvale.supply_prices",
+            "delta": -15
+          },
+          {
+            "set_state": "world.region.ashvale.food_supply",
+            "delta": 10
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 4,
+      "effects": [
+        {
+          "spawn_event": "caravan_attacked"
+        },
+        {
+          "set_state": "flag.caravan_attacked",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "caravan_attacked",
+        "description": "Orin's second wagon limps back to Ashvale at dusk, one wheel shattered, the canvas slashed. The driver — a young woman named Pell with a crossbow bolt lodged in the meat of her left arm — collapses at the gate. Harlan carries her to Elara. The story: bandits on the eastern road, three miles out. Four men, armed, organized, wearing no insignia but moving with military discipline. They took the supply wagon — the one with the iron tools and the wool — and left the food wagon, which suggests they weren't hungry. They wanted materials. Building materials. Orin is furious. His glass eye rolls wildly when he shouts. 'Twenty years on this road and never been hit. Not once. Someone told them my route. Someone told them what I was carrying.' He looks at the village. 'You have a rat, Ashvale. Someone in this village sold my cargo before I even unpacked it.' Prices spike 40%. The salt runs out by evening. People start hoarding lamp oil.",
+        "triggers": [
+          {
+            "set_state": "world.region.ashvale.supply_prices",
+            "delta": 40
+          },
+          {
+            "set_state": "world.region.ashvale.food_supply",
+            "delta": -5
+          },
+          {
+            "set_state": "flag.trade_route_compromised",
+            "value": true
+          },
+          {
+            "set_state": "flag.bandit_info_leak",
+            "value": true
+          }
+        ],
+        "choices": [
+          {
+            "id": "hunt_bandits",
+            "text": "Three miles east? I'll find them. Show me where.",
+            "triggers": [
+              {
+                "set_state": "flag.bandit_hunt_initiated",
+                "value": true
+              },
+              {
+                "spawn_event": "eastern_road_bandits"
+              }
+            ]
+          },
+          {
+            "id": "investigate_leak",
+            "text": "Who knew your cargo manifest? Start there.",
+            "triggers": [
+              {
+                "set_state": "flag.leak_investigation_started",
+                "value": true
+              }
+            ]
+          },
+          {
+            "id": "tend_pell",
+            "text": "Your driver needs help. Elara can remove that bolt. Let's start there.",
+            "triggers": [
+              {
+                "set_state": "npc.orin.disposition",
+                "delta": 15
+              },
+              {
+                "set_state": "flag.pell_treated",
+                "value": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 7,
+      "effects": [
+        {
+          "spawn_event": "trade_route_closed"
+        },
+        {
+          "set_state": "flag.trade_route_closed",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "trade_route_closed",
+        "description": "An Ironmarch patrol — eight soldiers in gray mail, led by a lieutenant with a jaw like a shovel blade — sets up a checkpoint on the eastern road. They're turning back all traffic within five miles of Ashvale. The official reason: 'Regional security concerns.' The real reason, which the lieutenant doesn't hide well: the Legion is establishing a perimeter. They're treating Ashvale like a quarantine zone. No goods in, no people out. Orin is trapped. His remaining wagon sits in the square, goods unsold, mules unfed. He says: 'I've seen this before. In the eastern provinces. The Legion sets a perimeter, waits for the village to starve, then marches in as liberators. They'll burn the forest, salt the earth, and call it mercy. Three villages in the Confederation died this way. Starved first. Burned second. Forgotten third.' He spits. 'I need to get word out. My guild-brothers need to know the eastern road is closed. If someone can get past the checkpoint — someone fast, someone who knows the back trails — I can pay. Gold. Real gold. Not the tin coins this village uses.'",
+        "triggers": [
+          {
+            "set_state": "world.region.ashvale.market_status",
+            "value": "blockaded"
+          },
+          {
+            "set_state": "world.region.ashvale.supply_prices",
+            "delta": 30
+          },
+          {
+            "set_state": "flag.ironmarch_blockade",
+            "value": true
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 10,
+      "conditions": ["flag.trade_route_closed == true"],
+      "effects": [
+        {
+          "spawn_event": "black_market_emerges"
+        },
+        {
+          "set_state": "flag.black_market_active",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "black_market_emerges",
+        "description": "Fenrick adapts. Within two days of the blockade, a whisper network materializes: goods available at Greta's cellar hatch, midnight only, knock twice then once. The prices are extortionate — salt at five times normal, lamp oil at eight — but the goods are real. Fenrick has activated smuggling routes that predate the Legion by decades: forest paths through Thornwood that even the boundary can't fully block, a root-cellar tunnel that connects three buildings, and a teenager (not Pip — a girl named Dart, fourteen, mute since birth, who communicates in hand-signs and can run a mile in under six minutes) who serves as courier between Ashvale and the free road beyond the Legion's perimeter. Orin is impressed despite himself. 'Your thief runs a tighter operation than my guild,' he tells the player. Fenrick takes 30% of every transaction. He calls it 'overhead.' Greta calls it 'robbery.' Fenrick says: 'Greta, I'm keeping this village fed. If that costs thirty percent, then thirty percent is the price of survival. You want cheaper? Negotiate with the Legion. See how that goes.'",
+        "triggers": [
+          {
+            "set_state": "world.region.ashvale.food_supply",
+            "delta": 5
+          },
+          {
+            "set_state": "faction.hollow_hand.power",
+            "delta": 20
+          },
+          {
+            "set_state": "npc.fenrick.wealth",
+            "delta": 50
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 14,
+      "conditions": ["flag.black_market_active == true"],
+      "effects": [
+        {
+          "spawn_event": "reopen_route_opportunity"
+        },
+        {
+          "set_state": "flag.route_reopening_possible",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "reopen_route_opportunity",
+        "description": "Orin approaches the player with a proposition. He's been talking to Fenrick, Greta, and Commander Voss. Between them, they've identified three ways to reopen the eastern road.",
+        "choices": [
+          {
+            "id": "negotiate_with_legion",
+            "text": "Negotiate. The Legion lieutenant is young. Ambitious. Offer him something he wants more than a perimeter — information about the forest consciousness. Trade knowledge for access.",
+            "conditions": [{"check": "flag.heartwood_contact_made", "op": "==", "value": true}],
+            "triggers": [
+              {
+                "set_state": "flag.legion_negotiation_for_trade",
+                "value": true
+              },
+              {
+                "spawn_event": "trade_negotiation_with_legion"
+              }
+            ],
+            "note": "Risky — giving the Legion information about the Heartwood could lead to an accelerated military response."
+          },
+          {
+            "id": "force_checkpoint",
+            "text": "Force. Voss's mercenaries can take the checkpoint. Eight Legion soldiers against her veterans. She says the odds are 'acceptable.' Orin will fund the operation with caravan gold.",
+            "conditions": [{"check": "npc.commander_voss.met", "op": "==", "value": true}],
+            "triggers": [
+              {
+                "set_state": "flag.checkpoint_assault_planned",
+                "value": true
+              },
+              {
+                "spawn_event": "plan_checkpoint_assault"
+              }
+            ],
+            "note": "Opens the road immediately but guarantees a larger Legion response within days."
+          },
+          {
+            "id": "bribe_checkpoint",
+            "text": "Bribe. Fenrick knows the lieutenant's supply officer. The man has gambling debts. Fifty gold opens the road for civilian traffic. Another fifty keeps it open.",
+            "conditions": [{"check": "flag.knows_about_guild", "op": "==", "value": true}],
+            "triggers": [
+              {
+                "set_state": "flag.checkpoint_bribed",
+                "value": true
+              },
+              {
+                "set_state": "player.gold",
+                "delta": -50
+              },
+              {
+                "set_state": "world.region.ashvale.market_status",
+                "value": "restricted_trade"
+              },
+              {
+                "set_state": "world.region.ashvale.supply_prices",
+                "delta": -20
+              }
+            ],
+            "note": "Quiet solution but creates a dependency — the supply officer will demand more gold, and Fenrick now has leverage over Legion operations."
+          }
+        ]
+      }
+    }
+  ]
+}

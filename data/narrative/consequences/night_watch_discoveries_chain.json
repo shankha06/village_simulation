@@ -1,0 +1,253 @@
+{
+  "id": "night_watch_discoveries_chain",
+  "trigger_condition": "time.day >= 2",
+  "consequences": [
+    {
+      "type": "delayed",
+      "delay_days": 2,
+      "effects": [
+        {
+          "spawn_event": "well_visitor_2am"
+        },
+        {
+          "set_state": "flag.well_visitor_spotted",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "well_visitor_2am",
+        "description": "The player (or Pip, if pip_stays is true and player is asleep) spots a figure at the well at two in the morning. The figure is hunched over the well wall, arm extended down into the shaft. They're wearing a dark cloak — not Church robes, not guard uniform, something heavy and civilian. The sound: a quiet glass-on-stone clink, like a vial being placed on a ledge. The figure's hand comes back up empty. They stand, look left and right (not up — they don't check the walls), and walk briskly toward the chapel district. The walk is distinctive: measured, precise steps, the gait of someone who counts their paces. The cloak catches on a nail by the well and tears — leaving a scrap of fabric. The fabric is wool, dyed dark blue, with a faint chemical smell: lye soap and something metallic. It's the same soap Brother Maren uses. The same soap the Church supplies to all its clergy.",
+        "location": "village_well",
+        "time": "2am",
+        "evidence_items": [
+          {
+            "id": "well_cloak_scrap",
+            "name": "Torn Cloak Fragment",
+            "description": "Dark blue wool, chemically cleaned. Smells of lye and metal. Caught on the well nail at 2 AM.",
+            "type": "evidence"
+          }
+        ],
+        "choices": [
+          {
+            "id": "follow_figure",
+            "text": "Follow the figure. Quietly.",
+            "triggers": [
+              {
+                "set_state": "flag.followed_well_visitor",
+                "value": true
+              },
+              {
+                "spawn_event": "follow_well_visitor"
+              }
+            ]
+          },
+          {
+            "id": "check_well",
+            "text": "Check the well first. What did they leave down there?",
+            "triggers": [
+              {
+                "set_state": "flag.checked_well_after_visitor",
+                "value": true
+              },
+              {
+                "spawn_event": "well_ledge_discovery"
+              }
+            ]
+          },
+          {
+            "id": "collect_fabric",
+            "text": "Collect the torn fabric. Evidence.",
+            "triggers": [
+              {
+                "set_state": "flag.cloak_scrap_collected",
+                "value": true
+              },
+              {
+                "grant_item": "well_cloak_scrap"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 4,
+      "effects": [
+        {
+          "spawn_event": "manor_shadow"
+        },
+        {
+          "set_state": "flag.manor_shadow_spotted",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "manor_shadow",
+        "description": "At the third hour — the dead hour, when even the wind stops — a shadow moves along the north wall of Ashworth Manor. Not a person walking. A shadow. It slides along the wall at waist height, independent of any visible source. No moonlight to cast it. No lantern to create it. It moves from the manor's east wing (Lord Ashworth's study) to the west wing (the locked family quarters) and pauses at a window. The window is the one Lord Ashworth never opens — the one overlooking the dead garden where Aldric's grave-tree grows. The shadow presses against the glass. The glass fogs from the inside, as if something warm is breathing on it. Then the shadow drops — straight down, into the ground — and the glass clears. On the window, visible in the dawn light: a handprint. Not human. The fingers are too long, the palm too narrow, and the print is made of condensation mixed with fine green pollen that hasn't been seen in Ashvale since the crops died.",
+        "location": "ashworth_manor_exterior",
+        "time": "3am",
+        "choices": [
+          {
+            "id": "investigate_handprint",
+            "text": "Examine the handprint before dawn dries it.",
+            "triggers": [
+              {
+                "set_state": "flag.manor_handprint_examined",
+                "value": true
+              }
+            ]
+          },
+          {
+            "id": "wake_ashworth",
+            "text": "Wake Lord Ashworth. He needs to know something visited his house.",
+            "triggers": [
+              {
+                "set_state": "flag.ashworth_warned_about_shadow",
+                "value": true
+              }
+            ]
+          },
+          {
+            "id": "tell_old_maren",
+            "text": "This is forest-work. Tell Old Maren at dawn.",
+            "triggers": [
+              {
+                "set_state": "flag.maren_told_about_shadow",
+                "value": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 6,
+      "effects": [
+        {
+          "spawn_event": "chapel_cellar_figure"
+        },
+        {
+          "set_state": "flag.chapel_cellar_figure_spotted",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "chapel_cellar_figure",
+        "description": "A hooded figure emerges from the chapel's side door — the one that leads to the cellar. It's half past midnight. The figure carries a leather satchel that clinks softly with the sound of glass vials. They move with purpose, crossing the square toward the eastern path. As they pass under the inn's eave-lamp, the hood shifts and the player catches a profile: sharp jaw, thin lips, a scar above the left eyebrow. It's not Brother Maren. The face is unfamiliar — a stranger, in a village where strangers are noticed. They're wearing Church-cut robes under the cloak, but the stitching is different: silver thread where Ashvale Church uses gray. This is someone from the central diocese. A Church operative who's been living in Brother Maren's cellar. The figure turns the corner and disappears toward the forest path. They didn't use a lantern. They walked in the dark as if they knew every stone.",
+        "location": "chapel_exterior",
+        "time": "midnight",
+        "choices": [
+          {
+            "id": "follow_operative",
+            "text": "Follow them toward the forest. Where are they going?",
+            "triggers": [
+              {
+                "set_state": "flag.followed_church_operative",
+                "value": true
+              },
+              {
+                "spawn_event": "operative_forest_meeting"
+              }
+            ]
+          },
+          {
+            "id": "search_cellar",
+            "text": "They left the cellar door open. Search it now.",
+            "triggers": [
+              {
+                "set_state": "flag.searched_chapel_cellar_covertly",
+                "value": true
+              },
+              {
+                "spawn_event": "cellar_covert_search"
+              }
+            ]
+          },
+          {
+            "id": "confront_maren_about_guest",
+            "text": "Tomorrow, ask Brother Maren who's been sleeping in his cellar.",
+            "triggers": [
+              {
+                "set_state": "flag.will_confront_maren_about_guest",
+                "value": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 8,
+      "effects": [
+        {
+          "spawn_event": "forest_footprints"
+        },
+        {
+          "set_state": "flag.forest_footprints_found",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "forest_footprints",
+        "description": "Footprints. In the mud near the eastern gate. Leading FROM the forest INTO the village. Not boot-prints — bare feet, human-shaped but wrong. The toes are too long. The arch is too deep. The heel impression shows a texture like bark grain rather than skin. There are seven prints, spaced at a walking stride, starting at the treeline and ending at the cobblestones where stone holds no impression. Whatever made them walked out of Thornwood, crossed the dead field, passed Old Maren's boundary stones without triggering her wards, and entered Ashvale. The prints are fresh — made since midnight, based on the dew pattern — and the soil inside each impression is warm. Not sun-warm. Body-warm. Elara examines them, pale-faced. 'These aren't human,' she says. 'The proportions are wrong. But they're BASED on human. Like something trying to remember what feet look like.' Old Maren touches a print and jerks her hand back. 'I know these feet,' she whispers. 'I washed these feet when they were small enough to fit in my palm. These are Silas's feet. Shaped by the forest, walking in the forest's way, but his. My son visited last night. And I slept through it.'",
+        "location": "eastern_gate",
+        "time": "dawn",
+        "triggers": [
+          {
+            "set_state": "flag.silas_visited_village",
+            "value": true
+          },
+          {
+            "set_state": "flag.forest_entity_in_village",
+            "value": true
+          }
+        ],
+        "choices": [
+          {
+            "id": "track_prints",
+            "text": "Where do the prints go? Follow them into the village.",
+            "triggers": [
+              {
+                "set_state": "flag.tracked_forest_prints",
+                "value": true
+              },
+              {
+                "spawn_event": "follow_silas_trail"
+              }
+            ],
+            "note": "Prints lead to three locations: Silas's old workshop, Old Maren's cottage window, and the bakery where Dagna now sleeps — the building where Elara's unfinished highchair sits."
+          },
+          {
+            "id": "set_watch",
+            "text": "Tonight we watch. Set a vigil at the eastern gate. I want to see who — or what — comes walking.",
+            "triggers": [
+              {
+                "set_state": "flag.vigil_set_for_silas",
+                "value": true
+              },
+              {
+                "spawn_event": "night_vigil_preparation"
+              }
+            ]
+          },
+          {
+            "id": "tell_elara",
+            "text": "Elara needs to know. Her father might be walking again.",
+            "triggers": [
+              {
+                "set_state": "flag.elara_told_about_prints",
+                "value": true
+              },
+              {
+                "spawn_event": "elara_hears_about_father"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

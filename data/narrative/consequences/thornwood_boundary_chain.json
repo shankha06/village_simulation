@@ -1,0 +1,169 @@
+{
+  "id": "thornwood_boundary_chain",
+  "trigger_condition": "flag.forest_encroaching == true",
+  "consequences": [
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "spawn_event": "maren_new_stone"
+        },
+        {
+          "set_state": "flag.boundary_tracking_active",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "maren_new_stone",
+        "description": "Old Maren kneels at the forest edge, placing a smooth river stone into the earth. She scratches the date with a nail — 'D1' in druid shorthand — and measures the distance from the previous stone with a knotted cord. 'Four feet since last week,' she says, not looking up. 'The cord doesn't lie. My eyes might. My hope definitely does. But the cord measures what's real.' She ties a new knot. The cord has forty-seven knots now. Each one represents a measurement. The knots are getting closer together. She runs her thumb along them the way a nun counts rosary beads. 'The forest isn't angry,' she says. 'It's hungry. There's a difference. You can reason with anger. You can't reason with hunger. You can only feed it or outrun it. And we're not fast enough.'",
+        "location": "village_edge_east",
+        "time": "dawn"
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "conditions": ["flag.boundary_tracking_active == true"],
+      "effects": [
+        {
+          "spawn_event": "boundary_accelerates"
+        },
+        {
+          "set_state": "world.region.ashvale.boundary_distance",
+          "delta": -4
+        }
+      ],
+      "event_data": {
+        "id": "boundary_accelerates",
+        "description": "The line has moved four feet overnight. Old Maren's newest stone is already behind the boundary — the invisible line where animals refuse to cross has passed it. A dead rat lies at the new edge, as if it tried to flee and couldn't outrun the advance. Maren picks up the rat by its tail and examines it. 'No marks. No poison. Its heart just stopped. The boundary doesn't kill — it overwhelms. The consciousness's presence is too much for small minds. Rats don't have the architecture to process what the forest is broadcasting.' She sets the rat down gently. 'Dogs can handle it — they're bigger. Humans can handle it, mostly. But tonight, check the chickens. If the boundary reaches the Prenn coop, we'll lose every bird by morning.'",
+        "triggers": [
+          {
+            "set_state": "flag.boundary_accelerating",
+            "value": true
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "conditions": ["flag.boundary_accelerating == true"],
+      "effects": [
+        {
+          "spawn_event": "boundary_eight_feet"
+        },
+        {
+          "set_state": "world.region.ashvale.boundary_distance",
+          "delta": -8
+        }
+      ],
+      "event_data": {
+        "id": "boundary_eight_feet",
+        "description": "Eight feet in two days. The Prenn chicken coop is inside the boundary now. Twelve chickens dead — all of them on their sides, eyes open, no visible cause. The Prenn family is in Greta's inn, arguing. The husband wants to leave. The wife says they can't afford the road. Their son — nine years old, quiet, with his mother's dark eyes — is drawing patterns on the inn floor with a stick. The patterns look like root systems. Old Maren places her stone and doesn't speak. Her knotted cord is running out of rope. She ties the new knot so close to the last one that they almost overlap. When the player approaches, she holds up the cord. 'Do you see this? The distance between knots is getting smaller. The time between measurements is the same. That means the forest is moving faster. Mathematics doesn't comfort. But it doesn't lie, either. At this rate, the well is twenty-nine days away. The village square is thirty-four. We have just over a month before the boundary reaches the center of Ashvale.'",
+        "triggers": [
+          {
+            "set_state": "flag.prenn_chickens_dead",
+            "value": true
+          },
+          {
+            "set_state": "world.region.ashvale.food_supply",
+            "delta": -5
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 7,
+      "conditions": ["flag.boundary_accelerating == true"],
+      "effects": [
+        {
+          "spawn_event": "saplings_inside_boundary"
+        },
+        {
+          "set_state": "flag.forest_saplings_in_village",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "saplings_inside_boundary",
+        "description": "Three thornwood saplings have appeared inside the boundary — not at the forest edge, but fifteen feet past Old Maren's latest stone, in what was Tomas's dead wheat field. They weren't there yesterday. Each one is knee-height, bark already dark and ridged, leaves the deep green of old forest. They're growing in a line that points directly at the village well. Old Maren examines them with her soil-stained hands, pressing her palms to the bark. 'They're connected,' she says. 'To the main root network. They're not seedlings — they're extensions. The forest isn't spreading by seed. It's spreading by root. These saplings are fingers, reaching up from a hand that's been crawling underground for months.' She looks at the player. 'The boundary stones track what's above ground. The real advance is below. It's been below us for weeks. We just couldn't see it.' Elara arrives, pulls a sapling from the soil. The roots go down two feet and the base is warm. Where the sapling was removed, the soil is dark and smells of mycelium — the sharp, green, alive smell of Thornwood.",
+        "triggers": [
+          {
+            "set_state": "flag.underground_advance_confirmed",
+            "value": true
+          },
+          {
+            "set_state": "world.region.ashvale.threat_level",
+            "delta": 15
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 10,
+      "conditions": ["flag.forest_saplings_in_village == true"],
+      "effects": [
+        {
+          "spawn_event": "root_breaks_near_well"
+        },
+        {
+          "set_state": "flag.root_at_well",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "root_breaks_near_well",
+        "description": "A root — thick as a man's thigh, bark-covered, pulsing with a faint warmth visible in the dawn mist — has broken through the cobblestones eight feet from the village well. The cobblestones are shattered outward, as if something pushed up from below with enormous patience and irresistible force. The root surface is smooth, wet with sap that smells of pine and iron. Elara is already there, kneeling, her hands on the root. 'It's not poisoned,' she says. 'The well water is nightcap. This root is clean. The forest isn't poisoning us — someone else is. The forest is just... arriving.' Old Maren stands at the root, trembling. She places her hand on it and closes her eyes. When she opens them, she's crying. 'I can feel him,' she says. 'Silas. He's in the network. He's close. The root isn't an attack. It's a search party. The forest is looking for something. For someone.' She looks at the player, then at the chapel where Brother Maren prays at dawn. 'It's looking for his children.'",
+        "triggers": [
+          {
+            "set_state": "flag.forest_searching_for_marens",
+            "value": true
+          },
+          {
+            "set_state": "world.region.ashvale.threat_level",
+            "delta": 10
+          },
+          {
+            "set_state": "flag.nightcap_not_forest",
+            "value": true
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 14,
+      "conditions": ["flag.root_at_well == true", "flag.pact_renegotiated == false"],
+      "effects": [
+        {
+          "spawn_event": "boundary_reaches_square"
+        },
+        {
+          "set_state": "flag.forest_in_village_square",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "boundary_reaches_square",
+        "description": "The village square is no longer the village square. Seven roots have broken through the cobblestones, each one radiating from a central point near the well like the spokes of a wheel. Thornwood saplings — twenty of them now — grow from the cracks, waist-height, their leaves casting green shadows on the stone. The invisible boundary has reached the inn's front door. Greta's cats won't go outside. Anchor sits on the threshold, whimpering. The air smells of deep forest — wet earth, pine resin, the sharp green scent of growth. The cobblestones between the roots have split and dark soil is visible, rich and alive, in stark contrast to the dead fields beyond the village. Birds — absent for weeks — have returned, sitting in the saplings, singing songs no one in Ashvale has heard before. Old Maren sits on the biggest root as if it were a bench. She's not afraid anymore. She's tired. 'The forest is here,' she says. 'Not coming. Here. We can fight it, feed it, negotiate with it, or flee from it. But we can't ignore it anymore. It's sitting in our living room. And it's waiting for an answer to a question it asked three hundred years ago: will you be our bridge, or our meal?'",
+        "triggers": [
+          {
+            "set_state": "world.region.ashvale.status",
+            "value": "forest_encroached"
+          },
+          {
+            "set_state": "flag.final_pact_deadline_imminent",
+            "value": true
+          },
+          {
+            "set_state": "world.region.ashvale.threat_level",
+            "value": "critical"
+          }
+        ]
+      }
+    }
+  ]
+}

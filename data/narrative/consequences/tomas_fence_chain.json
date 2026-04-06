@@ -1,0 +1,244 @@
+{
+  "id": "tomas_fence_chain",
+  "trigger_condition": "time.day >= 2",
+  "consequences": [
+    {
+      "type": "delayed",
+      "delay_days": 2,
+      "effects": [
+        {
+          "spawn_event": "tomas_asks_help"
+        },
+        {
+          "set_state": "flag.tomas_met",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "tomas_asks_help",
+        "description": "Farmer Tomas is at his fence when the player passes. He's a thick-armed man in his fifties with soil under his nails and a hammer that's seen better decades. The fence post he's working on is already perfect — plumb-straight, sunk deep, braced with cross-members. He doesn't look up when he speaks. 'You. Traveler. Hold this post while I nail the brace. My wife used to hold them but she can't watch me do this anymore. Says it makes her sad. I told her it's just a fence. She said: \"Tomas, you've replaced every board twice. It's not a fence. It's a prayer.\" She might be right.'",
+        "location": "tomas_farm",
+        "time": "afternoon",
+        "choices": [
+          {
+            "id": "help_tomas",
+            "text": "[Hold the post] Steady hands. Tell me when.",
+            "triggers": [
+              {
+                "set_state": "flag.helped_tomas_fence",
+                "value": true
+              },
+              {
+                "set_state": "npc.tomas.disposition",
+                "delta": 20
+              }
+            ]
+          },
+          {
+            "id": "ask_about_fence",
+            "text": "That fence looks solid enough. What are you really building?",
+            "triggers": [
+              {
+                "set_state": "flag.tomas_questioned",
+                "value": true
+              },
+              {
+                "set_state": "npc.tomas.disposition",
+                "delta": 10
+              }
+            ]
+          },
+          {
+            "id": "decline_tomas",
+            "text": "I've got other things to do. Sorry.",
+            "triggers": [
+              {
+                "set_state": "flag.tomas_declined",
+                "value": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "conditions": ["flag.tomas_met == true"],
+      "effects": [
+        {
+          "spawn_event": "tomas_confession"
+        },
+        {
+          "set_state": "flag.tomas_truth_revealed",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "tomas_confession",
+        "description": "Tomas is working at night now. Lantern hung on a post, hammer strikes ringing in the dark. The fence has changed. It's taller — seven feet instead of four. The boards are closer together. He's driven iron nails through the bottom rail into the soil. When the player approaches, Tomas stops mid-swing. His face is gaunt in the lantern light. 'I'm not fixing a fence,' he says. 'I haven't been fixing a fence for months. I'm building a wall. Against THEM.' He points at the ground. 'The roots. I've seen them. At night, when it's quiet. They move. Not like plants grow — like fingers. Like something reaching for the house. Two weeks ago, a root broke the surface six feet from my bedroom window. It was thick as my wrist and it was warm. Warm like skin. I pulled it up. The next night, two more came. Closer. I've been driving iron into the soil because Old Maren told me once that iron slows them. I don't know if she's right. I don't know if anything can stop what's coming. But I can build. So I build.'",
+        "triggers": [
+          {
+            "set_state": "flag.roots_approaching_farm",
+            "value": true
+          }
+        ],
+        "choices": [
+          {
+            "id": "offer_nails",
+            "text": "[Give iron nails if you have them] Iron slows them? Take these. Build it stronger.",
+            "conditions": [{"check": "player.has_item.iron_nails_cache", "op": "==", "value": true}],
+            "triggers": [
+              {
+                "set_state": "flag.tomas_reinforced",
+                "value": true
+              },
+              {
+                "set_state": "npc.tomas.disposition",
+                "delta": 25
+              },
+              {
+                "remove_item": "iron_nails_cache"
+              }
+            ]
+          },
+          {
+            "id": "help_build_wall",
+            "text": "Show me where they're coming through. I'll help you build.",
+            "triggers": [
+              {
+                "set_state": "flag.player_built_barrier",
+                "value": true
+              },
+              {
+                "set_state": "npc.tomas.disposition",
+                "delta": 20
+              }
+            ]
+          },
+          {
+            "id": "suggest_abandon",
+            "text": "Tomas, you can't fence out a forest. Maybe it's time to leave.",
+            "triggers": [
+              {
+                "set_state": "flag.tomas_told_to_leave",
+                "value": true
+              },
+              {
+                "set_state": "npc.tomas.disposition",
+                "delta": -15
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 8,
+      "conditions": ["flag.tomas_truth_revealed == true"],
+      "effects": [
+        {
+          "spawn_event": "roots_reach_fence"
+        },
+        {
+          "set_state": "flag.fence_tested",
+          "value": true
+        }
+      ],
+      "event_data": {
+        "id": "roots_reach_fence",
+        "description": "At midnight, the ground shakes. Not an earthquake — a slow, grinding vibration that lasts eleven seconds. The player and Tomas stand at the barrier as roots — three of them, each as thick as a man's arm, bark-dark and pulsing with warmth — push through the soil and press against Tomas's fence-wall.",
+        "branches": [
+          {
+            "condition": "flag.tomas_reinforced == true OR flag.player_built_barrier == true",
+            "description": "The iron nails glow faintly orange where roots touch them. The roots recoil — not in pain, but in confusion, the way a hand pulls back from an unexpected texture. The fence holds. The roots press, retreat, press again. The center post groans. A board cracks. But the iron holds. After twenty minutes, the roots withdraw — not defeated, but redirected. They slide along the fence line, probing for gaps, finding none, and eventually sink back into the soil. Tomas stands with his hammer in his hand, breathing hard, sweat freezing on his neck. 'It held,' he whispers. 'Mother of mercy, it held.' He looks at the player. 'We can fight this. Not with swords. With nails and wood and stubbornness. Tell the village. Tell them Tomas Greyfield held the line with a fence.'",
+            "triggers": [
+              {
+                "set_state": "flag.fence_held",
+                "value": true
+              },
+              {
+                "set_state": "world.region.ashvale.defense_score",
+                "delta": 10
+              },
+              {
+                "set_state": "npc.tomas.courage",
+                "value": "resolute"
+              }
+            ]
+          },
+          {
+            "condition": "flag.tomas_reinforced == false AND flag.player_built_barrier == false",
+            "description": "The roots punch through the fence like fingers through wet paper. Boards splinter. Posts snap. Six months of work destroyed in forty seconds. A root wraps around Tomas's boot and he falls, screaming, scrambling backward as the player hauls him free. The root doesn't pursue — it wasn't attacking, just advancing. The fence is matchwood. Tomas sits in the ruins, hammer still in hand, staring at the broken boards. He doesn't speak for a long time. Then, quietly: 'I built it wrong. Not strong enough. Not deep enough. I should have... I should have...' He trails off. He puts the hammer down. He hasn't picked it up since.",
+            "triggers": [
+              {
+                "set_state": "flag.fence_destroyed",
+                "value": true
+              },
+              {
+                "set_state": "npc.tomas.courage",
+                "value": "broken"
+              },
+              {
+                "set_state": "world.region.ashvale.morale",
+                "delta": -5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "delayed",
+      "delay_days": 12,
+      "conditions": ["flag.fence_tested == true"],
+      "effects": [
+        {
+          "spawn_event": "tomas_aftermath"
+        }
+      ],
+      "event_data": {
+        "id": "tomas_aftermath",
+        "branches": [
+          {
+            "condition": "flag.fence_held == true",
+            "description": "Tomas has organized a work crew. Four villagers — Harlan on his off-hours, the baker's wife Dagna, Pip when he's not on watch, and a quiet woman named Sela whose husband left last week. They're building iron-reinforced barriers around the village's eastern edge, following Tomas's design. He's drawn plans on the back of his wife Brin's sewing patterns: measurements, nail placement, depth specifications. He tells the player: 'I was a farmer. Crops are dead. So I'm a builder now. We can't stop the forest. But we can slow it. We can buy time. Every day we hold, that's a day for someone smarter than me to find a real answer. I'm not the solution. I'm the fence. And fences are what I know.'",
+            "triggers": [
+              {
+                "set_state": "npc.tomas.role",
+                "value": "village_defender"
+              },
+              {
+                "set_state": "flag.eastern_barrier_construction",
+                "value": true
+              },
+              {
+                "set_state": "world.region.ashvale.defense_score",
+                "delta": 15
+              }
+            ]
+          },
+          {
+            "condition": "flag.fence_destroyed == true",
+            "description": "Tomas's farm is empty. The door is open. The tools are on the table. Brin's sewing basket sits by the window, needle still threaded. They left in the night — no wagon, no announcement. Just gone. On the kitchen table: a note weighted with the hammer. 'To whoever reads this: the roots are at the bedroom wall. We could hear them at night, humming through the floorboards. Brin said it sounded like breathing. I said it sounded like counting. We disagree on the sound. We agree on the meaning. Goodbye, Ashvale. You were a good village once. — Tomas and Brin Greyfield.' The fence outside is rubble. The roots have already grown past it. One has reached the front door.",
+            "triggers": [
+              {
+                "set_state": "flag.tomas_left",
+                "value": true
+              },
+              {
+                "set_state": "world.region.ashvale.population",
+                "delta": -2
+              },
+              {
+                "set_state": "world.region.ashvale.morale",
+                "delta": -10
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

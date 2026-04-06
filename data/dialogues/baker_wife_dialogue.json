@@ -1,0 +1,213 @@
+{
+  "id": "baker_wife_dialogue",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "dagna",
+      "portrait": "hollow",
+      "text": "If you're looking for bread, we're closed. If you're looking for the baker, he's gone. If you're looking for something else... I don't know what else there is. The bakery is all I have and it's useless without him.",
+      "triggers": [
+        {
+          "set_state": "npc.dagna.met",
+          "value": true
+        }
+      ],
+      "next": "choice_opening"
+    },
+    "choice_opening": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "ask_about_husband",
+          "text": "Where did the baker go?",
+          "triggers": [],
+          "next": "about_tomlen"
+        },
+        {
+          "id": "ask_about_bakery",
+          "text": "This is a good oven. Solid construction. How old?",
+          "triggers": [],
+          "next": "about_bakery"
+        },
+        {
+          "id": "offer_condolences",
+          "text": "I'm sorry. That must be hard.",
+          "triggers": [],
+          "next": "dagna_bristles"
+        },
+        {
+          "id": "ask_to_buy",
+          "text": "Anything at all to eat? Even stale?",
+          "triggers": [],
+          "next": "dagna_searches"
+        }
+      ]
+    },
+    "about_tomlen": {
+      "type": "text",
+      "speaker": "dagna",
+      "portrait": "bitter",
+      "text": "East. He walked east three weeks ago with Mother in a clay crock under his arm. Mother — that's what he called the sourdough starter. Six generations alive in that jar. His great-great-great-grandmother caught the wild yeast from the air above Thornwood springs in Year 47. He talked about Mother more than he talked about me. Fed her more regularly, too. When the crops died, he said: 'Dagna, there's nothing left to bake.' I said: 'Then we'll find something.' He said: 'You don't understand. The bread IS the village. If the bread dies, we die.' And then he took the starter and he left. Not the flour — the STARTER. He left me the ingredients and took the life.",
+      "next": "about_tomlen_2"
+    },
+    "about_tomlen_2": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "angry_for_her",
+          "text": "He had no right. The starter belonged to the bakery, not to him.",
+          "triggers": [
+            {
+              "set_state": "npc.dagna.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "dagna_agrees"
+        },
+        {
+          "id": "understand_him",
+          "text": "He was trying to save something. People do strange things when they're scared.",
+          "triggers": [],
+          "next": "dagna_considers"
+        },
+        {
+          "id": "practical_suggestion",
+          "text": "You can make a new starter. Flour, water, time. The yeast is in the air.",
+          "triggers": [
+            {
+              "set_state": "flag.dagna_heard_starter_idea",
+              "value": true
+            }
+          ],
+          "next": "dagna_skeptical"
+        }
+      ]
+    },
+    "about_bakery": {
+      "type": "text",
+      "speaker": "dagna",
+      "portrait": "wistful",
+      "text": "The oven's a hundred and forty years old. Brick and clay, built into the wall. Tomlen's family designed it with a double-flue system — heat rises through two channels so the temperature's even across the whole bake surface. I watched him use it every day for eighteen years. He'd adjust the damper by feel — quarter-turn left for wheat, half-turn for rye, full open for festival bread. I know the motions. I can mimic the gestures. But knowing what a hand does and knowing what a hand FEELS — those are different things. He felt the oven. I just... see it.",
+      "next": "choice_middle"
+    },
+    "dagna_bristles": {
+      "type": "text",
+      "speaker": "dagna",
+      "portrait": "sharp",
+      "text": "Hard. Is that the word? Let me tell you what hard is. Hard is waking up at four in the morning out of habit because that's when the baker rises, and then remembering there's no baker, and then lying in bed for two hours staring at a ceiling that smells like bread because eighteen years of baking soaked into the plaster, and then getting up and sweeping a floor that doesn't need sweeping because sweeping is the only thing I know how to do in this building. Hard is finding a coin he missed and putting it in the tip jar because my hands don't know he's gone. Hard isn't a word. It's a condition.",
+      "next": "choice_middle"
+    },
+    "dagna_searches": {
+      "type": "text",
+      "speaker": "dagna",
+      "portrait": "embarrassed",
+      "text": "Stale... let me check. There might be — yes. Here. A heel of rye from the last batch he baked. It's three weeks old. It's a rock. You could kill a man with this bread. But it's bread. It's the last bread my husband made in this oven and I've been keeping it because throwing it away felt like... like agreeing he's gone. Take it. I need to stop hoarding ghosts.",
+      "triggers": [
+        {
+          "grant_item": "last_rye_heel",
+          "item_data": {
+            "name": "Tomlen's Last Loaf",
+            "description": "A three-week-old heel of rye bread. Hard as stone. The last thing baked in the Greer bakery before the baker left.",
+            "type": "food",
+            "healing": 2
+          }
+        }
+      ],
+      "next": "choice_middle"
+    },
+    "choice_middle": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "encourage_baking",
+          "text": "You've watched him for eighteen years. You know more than you think. Try.",
+          "triggers": [
+            {
+              "set_state": "npc.dagna.disposition",
+              "delta": 15
+            },
+            {
+              "set_state": "flag.dagna_encouraged_to_bake",
+              "value": true
+            }
+          ],
+          "next": "dagna_considers_trying"
+        },
+        {
+          "id": "ask_about_starter",
+          "text": "Tell me about the sourdough starter. Six generations — that's remarkable.",
+          "triggers": [],
+          "next": "about_mother"
+        },
+        {
+          "id": "ask_about_village",
+          "text": "Without a bakery, what does Ashvale eat?",
+          "triggers": [],
+          "next": "dagna_village_state"
+        },
+        {
+          "id": "leave_bakery",
+          "text": "Take care of yourself, Dagna.",
+          "triggers": [],
+          "next": "dagna_farewell"
+        }
+      ]
+    },
+    "dagna_agrees": {
+      "type": "text",
+      "speaker": "dagna",
+      "portrait": "fierce",
+      "text": "Damn right he had no right. That starter fed this village. Every wedding cake, every funeral bread, every first-day-of-harvest loaf — all from Mother. She wasn't HIS. She was Ashvale's. And he took her because he was scared. Because running was easier than staying. He left me the flour sacks, the salt cellar, the oven that I can't calibrate, and a note that said 'I'm sorry, she wouldn't survive without me.' He meant the starter. But the sentence works for me too, doesn't it? I survived. Without him. I'm not thriving. But I'm here. The starter wouldn't have managed even that.",
+      "next": "choice_middle"
+    },
+    "dagna_considers": {
+      "type": "text",
+      "speaker": "dagna",
+      "portrait": "thoughtful",
+      "text": "Maybe. I suppose I understand saving something alive. Keeping it going. But he could have divided it. You can split a starter — feed half, take half. He could have left me a piece of Mother and we'd both have her. He didn't. He took ALL of her. That's not preservation. That's possession. And I'm not angry about the starter, not really. I'm angry because he didn't even ask if I wanted to come with him.",
+      "next": "choice_middle"
+    },
+    "dagna_skeptical": {
+      "type": "text",
+      "speaker": "dagna",
+      "portrait": "skeptical",
+      "text": "A new starter. From nothing. You make it sound simple. Flour and water and — time. Like time is cheap. Like patience is free. Like I can just stand here mixing flour and water while the village starves and wait for yeast to colonize my jar through sheer optimism. That's... actually, that's exactly what Tomlen would say. 'Trust the process, Dagna. The yeast knows what to do. You just have to give it a home.' Damn it. Maybe you're right. Maybe I don't need Mother. Maybe I just need flour and water and the stubbornness to wait.",
+      "next": "choice_middle"
+    },
+    "about_mother": {
+      "type": "text",
+      "speaker": "dagna",
+      "portrait": "reverent",
+      "text": "Six generations. A hundred and seventy years. Tomlen's great-great-great-grandmother — her name was Elda Greer — she held an empty jar up to the air above Thornwood springs on a summer night when the yeast was blooming. The wild yeast settled in. She fed it flour and water and it grew. Every baker in the Greer line fed Mother twice a day. Morning and night. Even during famine, even during war. When the Year 180 silence fell, they fed her in whispers. She survived the silence. She survived the Burning of the Groves. She survived seven lords and nine sacrifices. And then one scared man put her in a crock and walked away. A hundred and seventy years of daily care, ended by one bad week.",
+      "next": "choice_middle"
+    },
+    "dagna_village_state": {
+      "type": "text",
+      "speaker": "dagna",
+      "portrait": "grim",
+      "text": "Greta's inn has dried fish and stale oats. The remaining farms produce enough for maybe thirty people — there are sixty-three. The gap is filled by Fenrick's smuggling, which costs twice what anyone can afford, and the caravan when it comes, which is less and less often. Without bread... bread isn't just food, you know. It's structure. It's ritual. You break bread with neighbors. You share a loaf at meetings. You bring bread to a grieving house. When the bakery closed, it wasn't just calories that disappeared. It was the excuse people used to sit together. Now they eat alone. In their houses. With the shutters closed. A village that eats alone is a village that's already dead. It just hasn't stopped breathing.",
+      "next": "choice_middle"
+    },
+    "dagna_considers_trying": {
+      "type": "text",
+      "speaker": "dagna",
+      "portrait": "uncertain",
+      "text": "Try. You say that like it's one syllable and not a whole mountain of failure. I've tried. Twice. The first loaf was a brick — I could've used it to build Tomas's fence. The second was worse: raw inside, burnt outside, tasted of chalk and self-pity. But... eighteen years. I did watch for eighteen years. I know the smell of properly proofed dough — yeasty, slightly sour, alive. I know the sound the oven makes when it's at temperature — a low tick, like a clock made of brick. I know the color of a finished crust — not brown, not gold, but the color of late afternoon sunlight on oak. I know these things. I just haven't trusted myself to use them. Maybe... maybe I'll try again. Tomorrow. One more loaf. If it fails, I stop. If it works... I don't know what 'works' looks like without Tomlen. But I'll know the bread.",
+      "next": "dagna_farewell"
+    },
+    "dagna_farewell": {
+      "type": "text",
+      "speaker": "dagna",
+      "portrait": "neutral",
+      "text": "Thank you for coming in. Most people walk past now. The bakery's dark and the ovens are cold and people don't visit dead things. But you came in. You stood in my empty bakery and talked to me like I'm still a person and not just the baker's wife. Maybe that's enough to start with. Being a person. The baking can come later.",
+      "triggers": [
+        {
+          "set_state": "flag.dagna_dialogue_complete",
+          "value": true
+        }
+      ],
+      "next": null
+    }
+  }
+}

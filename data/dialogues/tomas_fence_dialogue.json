@@ -1,0 +1,175 @@
+{
+  "id": "tomas_fence_dialogue",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "tomas",
+      "portrait": "focused",
+      "text": "Nail's going in crooked. Always does on the third board from the post — the grain runs wrong. Tomlen — the baker — he used to say 'work with the grain, not against it.' But the grain runs toward the forest and I'm building against the forest, so. Crooked nails.",
+      "triggers": [
+        {
+          "set_state": "npc.tomas.met",
+          "value": true
+        }
+      ],
+      "next": "choice_opening"
+    },
+    "choice_opening": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "ask_about_fence",
+          "text": "That's a solid fence. What are you keeping out?",
+          "triggers": [],
+          "next": "tomas_deflects"
+        },
+        {
+          "id": "ask_about_crops",
+          "text": "Your fields — what happened to the crops?",
+          "triggers": [],
+          "next": "tomas_crops"
+        },
+        {
+          "id": "offer_to_help",
+          "text": "Need a hand? I can hold boards.",
+          "triggers": [
+            {
+              "set_state": "npc.tomas.disposition",
+              "delta": 15
+            }
+          ],
+          "next": "tomas_accepts_help"
+        }
+      ]
+    },
+    "tomas_deflects": {
+      "type": "text",
+      "speaker": "tomas",
+      "portrait": "evasive",
+      "text": "Rabbits. Foxes. The usual. You know how it is with farms — everything wants what you've grown. Or what you USED to grow. Nothing grows now. But the fence still needs maintaining. A man maintains his property. That's what separates us from... from the things that don't build fences.",
+      "next": "tomas_deflects_2"
+    },
+    "tomas_deflects_2": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "push_further",
+          "text": "Rabbits don't need a seven-foot fence, Tomas.",
+          "triggers": [],
+          "next": "tomas_cracks"
+        },
+        {
+          "id": "accept_answer",
+          "text": "Fair enough. Good fence against rabbits.",
+          "triggers": [],
+          "next": "tomas_nods"
+        }
+      ]
+    },
+    "tomas_crops": {
+      "type": "text",
+      "speaker": "tomas",
+      "portrait": "grief",
+      "text": "Died from the roots up. That's the thing people don't understand — it wasn't drought, it wasn't blight, it wasn't insects. The plants just... stopped. One morning the wheat was green. Next morning, yellow. Week later, brown. I pulled a stalk and the roots were black. Not rotted — burned. Like something underground had scorched them. Elara says it's the well water — nightcap root poison seeping through the soil. Maybe. But I've been farming this land for thirty years and I know what poison looks like. This wasn't poison. This was... withdrawal. The land stopped wanting to grow. Like it was grieving.",
+      "next": "choice_middle"
+    },
+    "tomas_accepts_help": {
+      "type": "text",
+      "speaker": "tomas",
+      "portrait": "surprised",
+      "text": "You'd... yes. Actually. Hold this post — right here, straight, both hands. My wife Brin used to hold them but she won't come outside anymore. Says watching me build makes her sad. I said 'It's just a fence, woman.' She said 'Tomas, you've replaced every board twice and the fence was never broken.' Smart woman, my Brin. Sees things I don't want her to see.",
+      "triggers": [
+        {
+          "set_state": "flag.held_tomas_post",
+          "value": true
+        }
+      ],
+      "next": "choice_middle"
+    },
+    "choice_middle": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "ask_about_night",
+          "text": "You said the roots — do they move at night?",
+          "conditions": [
+            {
+              "check": "npc.tomas.disposition",
+              "op": ">=",
+              "value": 15
+            }
+          ],
+          "triggers": [],
+          "next": "tomas_night_truth"
+        },
+        {
+          "id": "ask_about_brin",
+          "text": "How's your wife handling all this?",
+          "triggers": [],
+          "next": "tomas_about_brin"
+        },
+        {
+          "id": "ask_about_iron",
+          "text": "Why iron nails? Regular nails would hold the boards just as well.",
+          "triggers": [],
+          "next": "tomas_about_iron"
+        },
+        {
+          "id": "leave_tomas",
+          "text": "Good luck with the fence, Tomas.",
+          "triggers": [],
+          "next": "tomas_farewell"
+        }
+      ]
+    },
+    "tomas_cracks": {
+      "type": "text",
+      "speaker": "tomas",
+      "portrait": "desperate",
+      "text": "People think I'm crazy. Maybe I am. But I've seen the roots move at night. They're not growing — they're REACHING. Like fingers. Like something underground is feeling for the surface, testing the soil, mapping what's above. I put my hand on the ground last Tuesday at midnight and I could feel them moving under my palm. Warm. Alive. Deliberate. I'm not fixing a fence. I'm building a wall. And it won't be enough. I know it won't be enough. But what else do I do? I'm a farmer. I can't farm. I can't fight. I can't run — Brin's knees won't take the road. So I build. I hammer nails into wood and pretend it matters.",
+      "next": "choice_middle"
+    },
+    "tomas_nods": {
+      "type": "text",
+      "speaker": "tomas",
+      "portrait": "guarded",
+      "text": "Mmm. Good fence. Best fence in Ashvale. Possibly the best fence in the eastern provinces. Certainly the most... maintained. I'll be here tomorrow if you need anything. And the day after that. And the day after that. I'll be here until the fence isn't.",
+      "next": "tomas_farewell"
+    },
+    "tomas_night_truth": {
+      "type": "text",
+      "speaker": "tomas",
+      "portrait": "haunted",
+      "text": "They move. I hear them. At two in the morning — always two, always that hour — a sound like... like knuckles cracking under the soil. Slow. Rhythmic. Getting closer. Two weeks ago, I dug where I heard the sound and found a root — fresh, new, warm — six inches under the topsoil. It wasn't there the day before. I pulled it up. It fought. Not like a plant resists being pulled — like a hand resists being let go. I got it out. The next night, three more. Closer. I started driving iron into the soil because Old Maren told me once — years ago, over cider at Greta's — that 'iron confuses the roots. They can't think through iron.' I don't know if she meant it literally. I hope she did.",
+      "next": "tomas_farewell"
+    },
+    "tomas_about_brin": {
+      "type": "text",
+      "speaker": "tomas",
+      "portrait": "tender",
+      "text": "Brin is... Brin is sewing. That's how she copes. She was a seamstress before the famine made cloth a luxury. Now she unpicks old garments and makes them smaller. Because people are losing weight. She's taken in my trousers three times. Doesn't mention it. Just leaves them on the chair, smaller, and I put them on and pretend I haven't noticed. We eat dinner in silence. We look at the dead field. We don't talk about leaving because talking about leaving means admitting the fence won't hold. So we eat. We sleep. I build. She sews. We pretend tomorrow will be different from today.",
+      "next": "tomas_farewell"
+    },
+    "tomas_about_iron": {
+      "type": "text",
+      "speaker": "tomas",
+      "portrait": "conspiratorial",
+      "text": "Old Maren told me. Years back, before the crisis, she said it like advice about gardening: 'If the thornwood roots ever reach your field, drive iron into the boundary. Iron disrupts the mycelium network — the roots can't communicate through it. It's like putting a wall in a river. The water goes around.' I thought she was talking about weeds. Now I think she was warning me. She's been warning all of us for decades and we thought she was a crazy old woman talking about plants. She wasn't crazy. She was just... early.",
+      "next": "tomas_farewell"
+    },
+    "tomas_farewell": {
+      "type": "text",
+      "speaker": "tomas",
+      "portrait": "stoic",
+      "text": "Back to it, then. These nails won't drive themselves. You're welcome anytime. Bring your own hammer if you've got one — mine's developing a wobble in the head. Thirty years of use. Like everything else in Ashvale: worn out, holding together, refusing to quit.",
+      "triggers": [
+        {
+          "set_state": "flag.tomas_dialogue_complete",
+          "value": true
+        }
+      ],
+      "next": null
+    }
+  }
+}

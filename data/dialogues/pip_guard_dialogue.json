@@ -1,0 +1,383 @@
+{
+  "id": "pip_guard_dialogue",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "nervous",
+      "text": "Oh — you. Right. The traveler. Sorry, I was just... I wasn't sleeping. I was resting my eyes. That's different. Guards rest their eyes. It's in the manual. I think. I haven't actually read the manual.",
+      "triggers": [
+        {
+          "set_state": "npc.pip.met",
+          "value": true
+        }
+      ],
+      "next": "choice_opening"
+    },
+    "choice_opening": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "ask_about_job",
+          "text": "How long have you been on guard duty?",
+          "conditions": [],
+          "triggers": [],
+          "next": "about_the_job"
+        },
+        {
+          "id": "ask_about_village",
+          "text": "What can you tell me about Ashvale?",
+          "conditions": [],
+          "triggers": [],
+          "next": "about_village"
+        },
+        {
+          "id": "ask_about_nights",
+          "text": "Seen anything strange on the night watch?",
+          "conditions": [
+            {
+              "check": "time.day",
+              "op": ">=",
+              "value": 3
+            }
+          ],
+          "triggers": [],
+          "next": "about_nights"
+        },
+        {
+          "id": "offer_food",
+          "text": "[Give food] You look hungry. Take this.",
+          "conditions": [
+            {
+              "check": "player.has_item.food_ration",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.pip.disposition",
+              "delta": 20
+            },
+            {
+              "remove_item": "food_ration"
+            }
+          ],
+          "next": "grateful_for_food"
+        }
+      ]
+    },
+    "about_the_job": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "sad",
+      "text": "Six weeks. I joined because the uniform comes with meals. Nobody told me the meals would run out before the danger did. The other guard — Rowan, big man, arms like tree trunks — he deserted last Tuesday. Left his spear with 'GOOD LUCK' scratched on it. That's my training. That's my inheritance. A scratched spear and a leaking lantern.",
+      "next": "about_the_job_2"
+    },
+    "about_the_job_2": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "empathize",
+          "text": "That's rough. You're doing more than most would.",
+          "triggers": [
+            {
+              "set_state": "npc.pip.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "pip_opens_up"
+        },
+        {
+          "id": "challenge",
+          "text": "Six weeks? You're practically a veteran.",
+          "triggers": [],
+          "next": "pip_sarcasm"
+        },
+        {
+          "id": "practical",
+          "text": "Can you actually use that spear?",
+          "triggers": [],
+          "next": "pip_admits_weakness"
+        }
+      ]
+    },
+    "pip_opens_up": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "vulnerable",
+      "text": "My mum died two winters back. Fever took her in three days — she was fine on Monday, buried on Thursday. Dad... dad's at the old mill. He drinks. I send him food when I can, which is less and less because the rations are getting thin. I took this job because it was the only one that didn't need references. You don't need references to stand at a gate and be scared. Turns out I'm qualified for that.",
+      "next": "choice_middle"
+    },
+    "pip_sarcasm": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "annoyed",
+      "text": "Ha. Very funny. A veteran of what? Standing in the dark listening to my own heartbeat? Jumping at foxes? I saw a shadow move last week and I threw the lantern at it. Turns out it was a cat. I set a cat on fire. Greta's cat. She hasn't forgiven me. Neither has the cat.",
+      "next": "choice_middle"
+    },
+    "pip_admits_weakness": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "ashamed",
+      "text": "Honestly? No. The spear's too heavy for one-handed and I need the other hand for the lantern. Rowan showed me one stance — 'point the sharp end away from yourself' — and that's it. My arms shake after an hour of holding it up. I practice thrusts against the gatepost when no one's looking. The gatepost is winning.",
+      "next": "choice_middle"
+    },
+    "choice_middle": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "teach_combat",
+          "text": "Here. Hold it like this — lower, more weight on the back foot. I'll show you three things that'll keep you alive.",
+          "triggers": [
+            {
+              "set_state": "flag.pip_combat_trained",
+              "value": true
+            },
+            {
+              "set_state": "npc.pip.courage",
+              "delta": 15
+            },
+            {
+              "set_state": "npc.pip.disposition",
+              "delta": 15
+            }
+          ],
+          "next": "combat_lesson"
+        },
+        {
+          "id": "ask_what_scared_of",
+          "text": "What scares you most? The forest, the famine, or something else?",
+          "triggers": [],
+          "next": "pip_fear"
+        },
+        {
+          "id": "ask_about_carving",
+          "text": "Someone carved 'HELP' into the inn beam. Was that you?",
+          "conditions": [
+            {
+              "check": "npc.greta.met",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "pip_carving"
+        },
+        {
+          "id": "leave_pip",
+          "text": "Stay sharp, Pip. I'll check on you later.",
+          "triggers": [],
+          "next": "pip_farewell"
+        }
+      ]
+    },
+    "about_village": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "thoughtful",
+      "text": "Ashvale? It's dying. I know that sounds dramatic but count the windows with no light at night. Last month: fourteen dark. This month: twenty-two. People are leaving or people are giving up — either way, the lights go out. The baker left. The blacksmith left. Three farm families, gone. Harlan says the village used to have two hundred people. I counted last week. Sixty-three. Sixty-two if the Prenn family leaves like they're threatening.",
+      "next": "choice_opening"
+    },
+    "about_nights": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "frightened",
+      "text": "Strange? Define strange. Because in this village, strange is... relative. The normal sounds — wind, foxes, the gate hinge — I know those. It's the OTHER sounds. The ones that don't fit. Three nights ago, I heard singing. From the forest. Not human singing — more like... if wood could hum? Like a bow being drawn across a cello made of oak. Beautiful and horrible at the same time. And the well — someone visits the well after midnight. Every few nights. I can't see who. Just a shape. A cloak. They do something at the well and leave. I haven't reported it because... who do I report to? Harlan? He'd tell me I'm imagining things. Lord Ashworth? He hasn't left his study in weeks.",
+      "next": "nights_choice"
+    },
+    "nights_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "investigate_well_together",
+          "text": "The well visitor — tonight, we watch together. You and me.",
+          "triggers": [
+            {
+              "set_state": "flag.pip_well_stakeout_planned",
+              "value": true
+            },
+            {
+              "set_state": "npc.pip.courage",
+              "delta": 10
+            }
+          ],
+          "next": "pip_agrees_stakeout"
+        },
+        {
+          "id": "dismiss_singing",
+          "text": "Forest singing? That's just wind through branches.",
+          "triggers": [],
+          "next": "pip_insists"
+        },
+        {
+          "id": "tell_about_forest",
+          "text": "That singing — it's real. The forest is alive. Not like trees are alive. Like a mind is alive.",
+          "conditions": [
+            {
+              "check": "flag.heartwood_contact_made",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.pip.courage",
+              "delta": -5
+            }
+          ],
+          "next": "pip_horrified"
+        }
+      ]
+    },
+    "grateful_for_food": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "grateful",
+      "text": "I — thank you. I haven't... this is the first real food I've had in two days. The rations ran out and I've been eating Greta's scraps and pretending it's fine. You know what the worst part is? I'm a guard. I'm supposed to protect people. And I can't even feed myself. What kind of protector can't survive without charity?",
+      "triggers": [
+        {
+          "set_state": "flag.pip_fed",
+          "value": true
+        }
+      ],
+      "next": "choice_middle"
+    },
+    "pip_fear": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "vulnerable",
+      "text": "Being the last one. That's what scares me. Not the forest, not the famine — being the last person still standing at this gate when everyone else has gone. Waking up one morning and the village is empty and the gate is open and I'm just... here. Alone. With a spear and a lantern and nobody to protect. That's the nightmare. Not monsters. Absence. The thing that gets you isn't teeth — it's silence.",
+      "next": "pip_fear_response"
+    },
+    "pip_fear_response": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "promise_stay",
+          "text": "I'm not leaving. And I don't think you are either. That counts for something.",
+          "triggers": [
+            {
+              "set_state": "npc.pip.disposition",
+              "delta": 20
+            },
+            {
+              "set_state": "npc.pip.courage",
+              "delta": 10
+            }
+          ],
+          "next": "pip_hopeful"
+        },
+        {
+          "id": "harsh_truth",
+          "text": "Then leave first. Before you're the last one. No shame in saving yourself.",
+          "triggers": [
+            {
+              "set_state": "npc.pip.disposition",
+              "delta": -10
+            },
+            {
+              "set_state": "npc.pip.courage",
+              "delta": -15
+            }
+          ],
+          "next": "pip_considers_leaving"
+        }
+      ]
+    },
+    "pip_carving": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "ashamed",
+      "text": "...Yeah. That was me. Two in the morning, first week on night watch alone. I used my belt knife. My hands were shaking so bad the 'H' is twice the size of the 'P.' Greta saw me do it. She didn't say anything. She poured me a cider and sat with me until dawn. I don't know why I carved it. I think... I think I just needed proof that I was here. That someone might see it and know that Pip Cray existed, even if everything else fell apart. Is that stupid?",
+      "next": "carving_response"
+    },
+    "carving_response": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "not_stupid",
+          "text": "That's not stupid. That's human. People have been carving 'I was here' into things since the first cave wall.",
+          "triggers": [
+            {
+              "set_state": "npc.pip.disposition",
+              "delta": 15
+            }
+          ],
+          "next": "pip_hopeful"
+        },
+        {
+          "id": "carve_together",
+          "text": "Next time you feel like that, come find me. We'll carve something together. Something that isn't a cry for help.",
+          "triggers": [
+            {
+              "set_state": "npc.pip.disposition",
+              "delta": 25
+            },
+            {
+              "set_state": "flag.pip_bonded_with_player",
+              "value": true
+            }
+          ],
+          "next": "pip_hopeful"
+        }
+      ]
+    },
+    "combat_lesson": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "determined",
+      "text": "Lower... like this? Oh. Oh, that's — that's actually manageable. The weight's on my legs instead of my arms. And the thrust — from the hip, not the shoulder? That makes sense. Rowan was doing it wrong the whole time, wasn't he? Or maybe he just didn't care enough to teach properly. You care. Why do you care? Nobody cares about the gate guard. We're furniture. We're the thing people walk past. But you stopped. You showed me where to put my feet. That's... that's more than anyone's done since Mum died.",
+      "next": "pip_farewell"
+    },
+    "pip_agrees_stakeout": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "nervous",
+      "text": "Together? As in — both of us? Watching? That's... actually, that's the best idea anyone's had. I've been going mad watching alone. Two sets of eyes, two sets of ears. I know the good spots — there's a shadow by the herb garden where the eave blocks the moonlight. You can see the whole well from there. Tonight. Midnight. I'll bring the lantern. Actually — no lantern. Dark is better for watching. I'll bring the lantern anyway. For after. In case we need to run.",
+      "next": "pip_farewell"
+    },
+    "pip_insists": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "frustrated",
+      "text": "I know wind. I've stood on this wall for six weeks in every weather. I know what wind through branches sounds like — it's random, chaotic, different every time. This was STRUCTURED. It had a pattern. A rhythm. Like a heartbeat slowed down and turned into music. Wind doesn't have a heartbeat. Wind doesn't repeat the same melody three times and then stop, like it's waiting for an answer. I'm not crazy. I'm seventeen, I'm scared, and I can't spell 'reconnaissance.' But I'm not crazy.",
+      "next": "pip_farewell"
+    },
+    "pip_horrified": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "frightened",
+      "text": "A mind. The forest is a MIND. And I've been standing on a wall sixty feet from a thinking forest for six weeks. Listening to it SING. Do you know what that — I don't get paid enough for this. I don't get paid AT ALL anymore. The coin stopped three weeks ago. I'm guarding a village against a thinking forest with a spear and a leaking lantern and no pay and the forest can SING. What does it sing about? Does it sing about US? Are we the subject of a song being performed by a million trees? Because that's either the most beautiful thing I've ever heard or the most terrifying and I genuinely cannot tell which.",
+      "next": "pip_farewell"
+    },
+    "pip_hopeful": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "hopeful",
+      "text": "You know what? Maybe this village isn't done yet. Maybe none of us are. The baker left but his wife is baking. The blacksmith left but his dog is still here. The guard deserted but I'm still standing. Maybe that's enough. Maybe 'still here' is a kind of victory. Not a big one. Not the kind they write songs about. But the kind that matters at three in the morning when the lantern's leaking and the forest is singing and you're the only one awake. Still here. Still standing. Still scared. But still here.",
+      "next": "pip_farewell"
+    },
+    "pip_considers_leaving": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "conflicted",
+      "text": "Leave. Just... leave. Walk east like the baker. Walk south like the Prenn family is planning. Walk anywhere that isn't here. I've thought about it. Every night. I pack my bag in my head — boots, the spear, Rowan's scratched message, Greta's spare blanket she doesn't know I borrowed. I plan the route. I pick the hour. And then dawn comes and Harlan nods at me from the gate and Greta puts a cider on the wall where I can reach it and Anchor wags his tail and I... I can't. I can't leave the people who can't leave. Is that courage or is that just being stuck? I genuinely don't know.",
+      "next": "pip_farewell"
+    },
+    "pip_farewell": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "neutral",
+      "text": "I should get back to the wall. The third hour's coming — that's when the fox crosses the south path. I've named it. The fox. I call it 'Schedule' because it's the most reliable thing in my life. Thanks for talking. Most people walk past the gate guard. You stopped. That matters. More than you know.",
+      "triggers": [
+        {
+          "set_state": "flag.pip_dialogue_complete",
+          "value": true
+        }
+      ],
+      "next": null
+    }
+  }
+}
