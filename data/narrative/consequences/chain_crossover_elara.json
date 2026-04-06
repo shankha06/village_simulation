@@ -1,0 +1,623 @@
+{
+  "id": "chain_crossover_elara",
+  "description": "Cross-chain connections between Elara's fate chain and other narrative threads. These fire when flags from multiple chains align, creating emergent consequences.",
+  "crossovers": [
+    {
+      "id": "elara_demands_maren_head",
+      "name": "The Herbalist's Demand",
+      "description": "Elara wants Maren destroyed. If the player previously cut a private deal with Maren, that deal explodes.",
+      "conditions": [
+        "flag.elara_wants_maren_destroyed == true",
+        "flag.maren_private_confession == true"
+      ],
+      "effects": [
+        {
+          "set_state": "flag.maren_deal_exposed",
+          "value": true
+        },
+        {
+          "set_state": "flag.elara_discovers_player_maren_deal",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": -25
+        }
+      ],
+      "dialogue": {
+        "id": "elara_maren_deal_explosion",
+        "nodes": {
+          "start": {
+            "type": "text",
+            "speaker": "elara",
+            "portrait": "intense",
+            "text": "You made a DEAL with him? The man who poisoned me — the man who WATCHED me die on a chapel floor — and you gave him protection? What did he offer you? What could possibly be worth —",
+            "next": "elara_realizes_deal"
+          },
+          "elara_realizes_deal": {
+            "type": "text",
+            "speaker": "elara",
+            "portrait": "angry",
+            "text": "His confession. He told you things in confidence and you used that to leverage silence. So when I asked you to help me hold him accountable, you were already bound to protect him. You chose his secrets over my justice.",
+            "next": "deal_choice"
+          },
+          "deal_choice": {
+            "type": "choice",
+            "options": [
+              {
+                "id": "break_deal",
+                "text": "You're right. The deal is off. Maren answers for what he did.",
+                "conditions": [],
+                "triggers": [
+                  {
+                    "set_state": "flag.maren_deal_broken",
+                    "value": true
+                  },
+                  {
+                    "set_state": "flag.maren_private_confession",
+                    "value": false
+                  },
+                  {
+                    "set_state": "npc.brother_maren.disposition",
+                    "delta": -40
+                  },
+                  {
+                    "set_state": "npc.elara.disposition",
+                    "delta": 15
+                  }
+                ],
+                "next": "elara_grim_satisfaction"
+              },
+              {
+                "id": "defend_deal",
+                "text": "That deal keeps the Church's influence in check. Without it, the diocese sends someone worse.",
+                "conditions": [],
+                "triggers": [
+                  {
+                    "set_state": "npc.elara.disposition",
+                    "delta": -15
+                  },
+                  {
+                    "set_state": "flag.elara_feels_sacrificed_for_politics",
+                    "value": true
+                  }
+                ],
+                "next": "elara_political_disgust"
+              },
+              {
+                "id": "reveal_maren_brother",
+                "text": "He's your BROTHER, Elara. He panicked. He's terrified. Destroying him destroys your family.",
+                "conditions": [],
+                "triggers": [],
+                "next": "elara_family_conflict"
+              }
+            ]
+          },
+          "elara_grim_satisfaction": {
+            "type": "text",
+            "speaker": "elara",
+            "portrait": "neutral",
+            "text": "Good. Then we do this properly. He faces the village. He faces grandmother. He faces ME. No more shadows. No more deals.",
+            "next": "end"
+          },
+          "elara_political_disgust": {
+            "type": "text",
+            "speaker": "elara",
+            "portrait": "angry",
+            "text": "So I'm a sacrifice. My poisoning, my nearly DYING — that's just a card you play in whatever political game you're running. I thought you were different from Lord Ashworth. I was wrong.",
+            "next": "end"
+          },
+          "elara_family_conflict": {
+            "type": "text",
+            "speaker": "elara",
+            "portrait": "anguished",
+            "text": "Don't you DARE use family against me. He destroyed our family thirty years ago when the Church took him. He destroyed it again when he poisoned me in a chapel. If there's anything left to destroy, let him do it to HIMSELF for once.",
+            "next": "family_softens"
+          },
+          "family_softens": {
+            "type": "text",
+            "speaker": "elara",
+            "portrait": "sad",
+            "text": "But... grandmother. She can't lose both of us. Not after losing father. I'll confront him. Publicly. But I won't demand his head. For her sake. ONLY for her sake.",
+            "triggers": [
+              {
+                "set_state": "flag.elara_tempered_by_family",
+                "value": true
+              }
+            ],
+            "next": "end"
+          },
+          "end": {
+            "type": "end"
+          }
+        }
+      }
+    },
+    {
+      "id": "elara_torn_by_brother_savior",
+      "name": "The Poisoner Who Healed",
+      "description": "Elara was saved by Maren's formula, but Maren has also been publicly exposed. She's caught between gratitude and the village's demand for justice.",
+      "conditions": [
+        "flag.elara_saved_by_brother == true",
+        "flag.maren_publicly_exposed == true"
+      ],
+      "effects": [
+        {
+          "set_state": "flag.elara_torn_on_maren",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.memory.brother_paradox",
+          "value": true
+        }
+      ],
+      "dialogue": {
+        "id": "elara_brother_paradox",
+        "nodes": {
+          "start": {
+            "type": "text",
+            "speaker": "elara",
+            "portrait": "sad",
+            "text": "They want his head. The village — they know what he did. Greta's already organizing a petition to Lord Ashworth. Tomas won't look at the chapel. And I'm standing here with blood that should be cold in my veins, blood that's only warm because HE gave you the formula.",
+            "next": "torn_2"
+          },
+          "torn_2": {
+            "type": "text",
+            "speaker": "elara",
+            "portrait": "anguished",
+            "text": "He poisoned me and he saved me in the same day. What am I supposed to DO with that? Forgive him? Condemn him? He's my BROTHER — and I didn't even know I had one until a week ago.",
+            "next": "torn_choice"
+          },
+          "torn_choice": {
+            "type": "choice",
+            "options": [
+              {
+                "id": "advocate_mercy",
+                "text": "He saved your life. That has to count for something.",
+                "conditions": [],
+                "triggers": [
+                  {
+                    "set_state": "npc.elara.disposition",
+                    "delta": 5
+                  }
+                ],
+                "next": "elara_considers_mercy"
+              },
+              {
+                "id": "advocate_justice",
+                "text": "The village deserves to know what he did. Your survival doesn't erase the poisoning.",
+                "conditions": [],
+                "triggers": [],
+                "next": "elara_considers_justice"
+              },
+              {
+                "id": "suggest_exile",
+                "text": "Send him away. Not punishment — just distance. Let the wound close without reopening it every Sunday.",
+                "conditions": [],
+                "triggers": [],
+                "next": "elara_considers_exile"
+              },
+              {
+                "id": "let_elara_decide",
+                "text": "This is your family. Your choice. I'll support whatever you decide.",
+                "conditions": [],
+                "triggers": [
+                  {
+                    "set_state": "npc.elara.disposition",
+                    "delta": 10
+                  }
+                ],
+                "next": "elara_decides_herself"
+              }
+            ]
+          },
+          "elara_considers_mercy": {
+            "type": "text",
+            "speaker": "elara",
+            "portrait": "neutral",
+            "text": "It counts. I know it counts. But the village won't see a repentant brother. They'll see a priest who poisoned a woman and got away with it because she was too weak to demand justice. And they won't be entirely wrong.",
+            "triggers": [
+              {
+                "set_state": "flag.elara_leans_mercy",
+                "value": true
+              }
+            ],
+            "next": "end"
+          },
+          "elara_considers_justice": {
+            "type": "text",
+            "speaker": "elara",
+            "portrait": "angry",
+            "text": "No. It doesn't. But condemning the man who saved my life feels like... like pulling myself out of the well trance all over again. Like cutting off a part of myself I just found.",
+            "triggers": [
+              {
+                "set_state": "flag.elara_leans_justice",
+                "value": true
+              }
+            ],
+            "next": "end"
+          },
+          "elara_considers_exile": {
+            "type": "text",
+            "speaker": "elara",
+            "portrait": "sad",
+            "text": "Exile. A clean break. He goes back to the seminary, grandmother and I stay here, and we pretend the last month never happened. Except... except then he's gone again. Another Maren child given to the Church. Haven't we had enough of that?",
+            "triggers": [
+              {
+                "set_state": "flag.elara_considers_exile",
+                "value": true
+              }
+            ],
+            "next": "end"
+          },
+          "elara_decides_herself": {
+            "type": "text",
+            "speaker": "elara",
+            "portrait": "neutral",
+            "text": "My choice. Right. Ask me tomorrow. Tonight I'm going to sit with grandmother and drink bad tea and not think about any of this. Tomorrow I'll have an answer. Maybe.",
+            "triggers": [
+              {
+                "set_state": "flag.elara_deciding_maren_fate",
+                "value": true
+              }
+            ],
+            "next": "end"
+          },
+          "end": {
+            "type": "end"
+          }
+        }
+      }
+    },
+    {
+      "id": "talisman_sacrifice_warden_conflict",
+      "name": "The Price of Compassion",
+      "description": "Player sacrificed the druid talisman to save Elara. Now the Warden's test requires it. Player must find another way or face the Warden unarmed.",
+      "conditions": [
+        "flag.talisman_sacrificed_for_elara == true",
+        "flag.warden_test_active == true"
+      ],
+      "effects": [
+        {
+          "set_state": "flag.warden_test_no_talisman",
+          "value": true
+        },
+        {
+          "set_state": "flag.must_find_alternate_warden_path",
+          "value": true
+        }
+      ],
+      "dialogue": {
+        "id": "warden_talisman_missing",
+        "nodes": {
+          "start": {
+            "type": "text",
+            "speaker": "warden",
+            "portrait": "neutral",
+            "text": "You bear the forest's mark but not its token. The talisman that should speak for you is... gone. Spent. I can taste the ash of it on you — used in healing. A life was saved.",
+            "next": "warden_considers"
+          },
+          "warden_considers": {
+            "type": "text",
+            "speaker": "warden",
+            "portrait": "neutral",
+            "text": "The test requires proof that you can carry the forest's trust. The talisman was that proof. Without it, you must find another way to demonstrate your bond with the Heartwood. Or face the test on faith alone.",
+            "next": "warden_alternatives"
+          },
+          "warden_alternatives": {
+            "type": "choice",
+            "options": [
+              {
+                "id": "invoke_silas",
+                "text": "[If player carries Silas fragment] Silas Maren walks in my blood. His memories are my proof.",
+                "conditions": [
+                  {
+                    "check": "flag.player_carries_silas_fragment",
+                    "op": "==",
+                    "value": true
+                  }
+                ],
+                "triggers": [
+                  {
+                    "set_state": "flag.warden_accepts_silas_proof",
+                    "value": true
+                  }
+                ],
+                "next": "warden_silas_response"
+              },
+              {
+                "id": "bring_elara",
+                "text": "[If Elara alive and willing] Elara bears the Maren bloodline. She IS the talisman.",
+                "conditions": [
+                  {
+                    "check": "npc.elara.alive",
+                    "op": "==",
+                    "value": true
+                  },
+                  {
+                    "check": "npc.elara.disposition",
+                    "op": ">",
+                    "value": 20
+                  }
+                ],
+                "triggers": [
+                  {
+                    "set_state": "flag.elara_presented_to_warden",
+                    "value": true
+                  }
+                ],
+                "next": "warden_elara_response"
+              },
+              {
+                "id": "face_test_raw",
+                "text": "I have nothing but my word and what I've done. Test me as I am.",
+                "conditions": [],
+                "triggers": [
+                  {
+                    "set_state": "flag.warden_test_hardmode",
+                    "value": true
+                  }
+                ],
+                "next": "warden_respects_courage"
+              }
+            ]
+          },
+          "warden_silas_response": {
+            "type": "text",
+            "speaker": "warden",
+            "portrait": "neutral",
+            "text": "Silas... yes. The dreamer in the deep roots. His echo stirs in you. This is not the proof I asked for, but it is proof the Heartwood cannot deny. The test changes shape. Proceed.",
+            "next": "end"
+          },
+          "warden_elara_response": {
+            "type": "text",
+            "speaker": "warden",
+            "portrait": "neutral",
+            "text": "A Maren, living and whole, standing at the threshold. The bloodline that gave itself to the Heartwood, returned. This is unprecedented. The test... adapts. Both of you will be tested. Both must pass.",
+            "next": "end"
+          },
+          "warden_respects_courage": {
+            "type": "text",
+            "speaker": "warden",
+            "portrait": "neutral",
+            "text": "Courage without proof. Faith without token. The forest has seen this before — in Silas, when he walked barefoot into the roots. Very well. The test will be harder. The forest will be less forgiving. But you may proceed.",
+            "next": "end"
+          },
+          "end": {
+            "type": "end"
+          }
+        }
+      }
+    },
+    {
+      "id": "elara_maren_endgame_alignment",
+      "name": "Siblings at the Heartwood",
+      "description": "If both Elara and Maren are alive and present at the Heartwood communion, their family bond affects the ritual.",
+      "conditions": [
+        "npc.elara.alive == true",
+        "npc.brother_maren.alive == true",
+        "flag.heartwood_communion_active == true"
+      ],
+      "effects": [
+        {
+          "set_state": "flag.maren_siblings_present",
+          "value": true
+        }
+      ],
+      "sub_conditions": [
+        {
+          "id": "siblings_reconciled",
+          "conditions": [
+            "flag.elara_saved_by_brother == true",
+            "flag.elara_leans_mercy == true OR flag.elara_tempered_by_family == true"
+          ],
+          "effects": [
+            {
+              "set_state": "flag.maren_bloodline_united",
+              "value": true
+            },
+            {
+              "description": "Both Maren children at the Heartwood, reconciled. The communion is strengthened — Silas's sacrifice echoes through his living descendants."
+            }
+          ]
+        },
+        {
+          "id": "siblings_hostile",
+          "conditions": [
+            "flag.elara_wants_maren_destroyed == true"
+          ],
+          "effects": [
+            {
+              "set_state": "flag.maren_bloodline_fractured",
+              "value": true
+            },
+            {
+              "description": "The Maren bloodline is divided. The Heartwood senses the rift — Silas's dreaming becomes agitated. The communion is unstable."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "elara_sabotage_renegotiation",
+      "name": "Elara Poisons the Well (Metaphorically)",
+      "description": "If Elara feels betrayed by the player, she actively undermines the Heartwood renegotiation by telling it humans cannot be trusted.",
+      "conditions": [
+        "flag.elara_sabotages_renegotiation == true",
+        "flag.heartwood_communion_active == true"
+      ],
+      "effects": [
+        {
+          "set_state": "flag.renegotiation_difficulty_increased",
+          "value": true
+        },
+        {
+          "set_state": "flag.heartwood_distrust_humans",
+          "value": true
+        }
+      ],
+      "dialogue": {
+        "id": "elara_sabotage_communion",
+        "nodes": {
+          "start": {
+            "type": "text",
+            "speaker": "elara",
+            "portrait": "intense",
+            "text": "You want to renegotiate? With what credibility? This one stole memories from your roots. The priest poisons his own family. The lord locked himself away while his people died. These are the HUMANS you'd trust with a new covenant?",
+            "next": "sabotage_2"
+          },
+          "sabotage_2": {
+            "type": "text",
+            "speaker": "",
+            "portrait": "",
+            "text": "The Heartwood stirs. You feel the roots tighten in the soil — not attacking, but LISTENING. Elara's words carry weight here. She is Silas's daughter. She carries root-memory in her blood. When she speaks, the forest hears a voice it trusts.",
+            "next": "sabotage_choice"
+          },
+          "sabotage_choice": {
+            "type": "choice",
+            "options": [
+              {
+                "id": "counter_with_truth",
+                "text": "I drank from the well because I was afraid for her. I kept the secret because I didn't know how to bear it. That's not betrayal — that's being human.",
+                "conditions": [],
+                "triggers": [
+                  {
+                    "set_state": "flag.player_argued_humanity",
+                    "value": true
+                  }
+                ],
+                "next": "heartwood_weighs"
+              },
+              {
+                "id": "invoke_silas",
+                "text": "[If carrying Silas fragment] Silas trusted humans. He trusted them enough to give his children to the world instead of the roots. Ask HIM if humans can be trusted.",
+                "conditions": [
+                  {
+                    "check": "flag.player_carries_silas_fragment",
+                    "op": "==",
+                    "value": true
+                  }
+                ],
+                "triggers": [
+                  {
+                    "set_state": "flag.silas_invoked_at_communion",
+                    "value": true
+                  }
+                ],
+                "next": "silas_echo_responds"
+              },
+              {
+                "id": "accept_judgment",
+                "text": "She's right. I failed her. But the village doesn't deserve to pay for my failure.",
+                "conditions": [],
+                "triggers": [
+                  {
+                    "set_state": "flag.player_accepted_fault_at_communion",
+                    "value": true
+                  }
+                ],
+                "next": "heartwood_considers_humility"
+              }
+            ]
+          },
+          "heartwood_weighs": {
+            "type": "text",
+            "speaker": "",
+            "portrait": "",
+            "text": "The roots shift. The Heartwood processes this — 'being human' as both defense and confession. Elara's jaw tightens. She didn't expect you to use vulnerability as a weapon. The forest's attention oscillates between you, weighing fear against betrayal, intention against outcome.",
+            "next": "end"
+          },
+          "silas_echo_responds": {
+            "type": "text",
+            "speaker": "",
+            "portrait": "",
+            "text": "Something moves in the deep roots. A resonance — not a voice, but a FEELING. Warmth. Recognition. Silas, dreaming for thirty years, stirring at the mention of his children. The Heartwood trembles. Elara's eyes go wide — she feels it too. Her father, still watching. Still hoping.",
+            "next": "elara_shaken"
+          },
+          "elara_shaken": {
+            "type": "text",
+            "speaker": "elara",
+            "portrait": "anguished",
+            "text": "Father? You're still... you're still HERE?",
+            "triggers": [
+              {
+                "set_state": "flag.elara_felt_silas_at_communion",
+                "value": true
+              },
+              {
+                "set_state": "flag.elara_sabotages_renegotiation",
+                "value": false
+              }
+            ],
+            "next": "end"
+          },
+          "heartwood_considers_humility": {
+            "type": "text",
+            "speaker": "",
+            "portrait": "",
+            "text": "The roots ease. Not acceptance — not yet — but the grinding tension lessens. Humility is a language the Heartwood understands. Trees bend. Roots adapt. A human who admits fault is closer to the forest's nature than one who never errs.",
+            "next": "end"
+          },
+          "end": {
+            "type": "end"
+          }
+        }
+      }
+    },
+    {
+      "id": "brin_death_ripple",
+      "name": "Brin's Shadow",
+      "description": "If Brin died from the flawed antidote, her death ripples through multiple chains.",
+      "conditions": [
+        "flag.brin_dead == true"
+      ],
+      "effects": [
+        {
+          "set_state": "npc.tomas.memory.daughter_killed_by_healer",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.trust_in_herbalism",
+          "delta": -30
+        }
+      ],
+      "sub_conditions": [
+        {
+          "id": "tomas_blames_player",
+          "conditions": [
+            "npc.elara.memory.player_supported_decision == true"
+          ],
+          "effects": [
+            {
+              "set_state": "npc.tomas.memory.blames_player_too",
+              "value": true
+            },
+            {
+              "set_state": "npc.tomas.disposition",
+              "delta": -30
+            }
+          ]
+        },
+        {
+          "id": "village_turns_to_church",
+          "conditions": [
+            "flag.village_has_no_healer == true"
+          ],
+          "effects": [
+            {
+              "set_state": "faction.church_ashen_light.local_power",
+              "delta": 20
+            },
+            {
+              "set_state": "flag.church_fills_healer_void",
+              "value": true
+            },
+            {
+              "description": "With Elara withdrawn, the village turns to Brother Maren for healing. The Church's influence grows — built on the corpse of a fourteen-year-old girl."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

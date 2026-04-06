@@ -1,0 +1,178 @@
+{
+  "id": "chain_crossover_voss",
+  "description": "Cross-chain connections between the Iron Price (Voss chain) and other butterfly fate chains. These create compounding consequences when multiple chains resolve in specific ways.",
+  "chains": [
+    {
+      "id": "double_crisis_no_buffer",
+      "trigger_condition": "flag.draven_killed_by_voss == true AND flag.maren_publicly_exposed == true",
+      "description": "Killing the emissary AND exposing Maren removes both the military negotiation buffer and the Church's restraint. Double crisis — Church army and Legion both converge faster.",
+      "consequences": [
+        {
+          "type": "immediate",
+          "effects": [
+            {"set_state": "flag.double_crisis_active", "value": true},
+            {"set_state": "flag.church_army_accelerated", "value": true},
+            {"set_state": "flag.legion_revenge_army", "value": true},
+            {"set_state": "world.region.ashvale.threat_level", "delta": 50},
+            {"set_state": "world.region.ashvale.days_until_crisis", "value": 3}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 1,
+          "effects": [
+            {"set_state": "flag.villagers_fleeing", "value": true},
+            {"set_state": "world.region.ashvale.civilian_morale", "delta": -30},
+            {"set_state": "flag.council_emergency_session", "value": true}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 3,
+          "effects": [
+            {"set_state": "flag.two_armies_approaching", "value": true},
+            {"set_state": "flag.siege_imminent", "value": true},
+            {"set_state": "flag.darkest_timeline_active", "value": true}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strongest_position",
+      "trigger_condition": "flag.voss_best_negotiator == true AND flag.elara_can_be_bridge == true",
+      "description": "Voss negotiating at full capacity AND Elara serving as spiritual bridge opens both military and spiritual paths simultaneously. The strongest possible defensive position.",
+      "consequences": [
+        {
+          "type": "immediate",
+          "effects": [
+            {"set_state": "flag.dual_path_defense", "value": true},
+            {"set_state": "flag.military_path_open", "value": true},
+            {"set_state": "flag.spiritual_path_open", "value": true},
+            {"set_state": "world.region.ashvale.defense_score", "delta": 25},
+            {"set_state": "world.region.ashvale.pact_strength", "delta": 15}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 2,
+          "effects": [
+            {"set_state": "flag.ashvale_united_front", "value": true},
+            {"set_state": "flag.best_possible_endgame_setup", "value": true},
+            {"set_state": "world.region.ashvale.civilian_morale", "delta": 20}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "darkest_setup",
+      "trigger_condition": "flag.voss_killed_by_draven == true AND flag.elara_killed_patient == true",
+      "description": "Village defense AND healing both crippled. The darkest possible foundation for the endgame. Ashvale has lost its sword and its healer.",
+      "consequences": [
+        {
+          "type": "immediate",
+          "effects": [
+            {"set_state": "flag.ashvale_defenseless", "value": true},
+            {"set_state": "flag.ashvale_no_healer", "value": true},
+            {"set_state": "flag.darkest_endgame_setup", "value": true},
+            {"set_state": "world.region.ashvale.defense_score", "delta": -30},
+            {"set_state": "world.region.ashvale.healing_capacity", "delta": -25},
+            {"set_state": "world.region.ashvale.civilian_morale", "delta": -25}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 1,
+          "effects": [
+            {"set_state": "flag.villagers_losing_hope", "value": true},
+            {"set_state": "flag.exodus_pressure_rising", "value": true}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 3,
+          "effects": [
+            {"set_state": "flag.ashvale_on_brink", "value": true},
+            {"set_state": "flag.last_stand_only_option", "value": true}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ceasefire_plus_spiritual",
+      "trigger_condition": "flag.ceasefire_possible == true AND flag.forest_pact_renewed == true",
+      "description": "If Voss earned Draven's respect AND the forest pact is renewed, the ceasefire has spiritual backing. The river and the forest together create a boundary the Legion respects.",
+      "consequences": [
+        {
+          "type": "immediate",
+          "effects": [
+            {"set_state": "flag.spiritually_backed_ceasefire", "value": true},
+            {"set_state": "flag.pact_enforced_border", "value": true},
+            {"set_state": "world.region.ashvale.defense_score", "delta": 20}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 3,
+          "effects": [
+            {"set_state": "flag.lasting_peace_possible", "value": true},
+            {"set_state": "flag.harmony_ending_available", "value": true}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voss_betrayed_maren_exposed",
+      "trigger_condition": "flag.voss_betrayed == true AND flag.maren_publicly_exposed == true",
+      "description": "Voss betrayed by the player AND Maren exposed — trust is shattered everywhere. Nobody believes anyone. The village fragments.",
+      "consequences": [
+        {
+          "type": "immediate",
+          "effects": [
+            {"set_state": "flag.trust_collapse", "value": true},
+            {"set_state": "world.region.ashvale.civilian_morale", "delta": -20},
+            {"set_state": "world.region.ashvale.faction_unity", "delta": -30}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 2,
+          "effects": [
+            {"set_state": "flag.factions_refusing_cooperation", "value": true},
+            {"set_state": "flag.every_alliance_strained", "value": true}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voss_exodus_elara_healing",
+      "trigger_condition": "flag.voss_leads_exodus == true AND flag.elara_can_be_bridge == true",
+      "description": "Voss leads the exodus with military escort AND Elara provides healing/spiritual support. The best possible exodus outcome.",
+      "consequences": [
+        {
+          "type": "endgame",
+          "effects": [
+            {"set_state": "flag.exodus_fully_supported", "value": true},
+            {"set_state": "flag.exodus_has_military_escort", "value": true},
+            {"set_state": "flag.exodus_has_healer", "value": true},
+            {"set_state": "world.region.ashvale.exodus_survival_chance", "delta": 40}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vengeance_and_guilt",
+      "trigger_condition": "flag.draven_killed_by_voss == true AND flag.elara_trust_earned == true",
+      "description": "Voss got her vengeance but Elara's moral presence weighs on her. Creates internal conflict that affects Voss's leadership.",
+      "consequences": [
+        {
+          "type": "delayed",
+          "delay_days": 2,
+          "effects": [
+            {"set_state": "flag.voss_questioning_vengeance", "value": true},
+            {"set_state": "npc.commander_voss.memory.elara_made_her_doubt", "value": true}
+          ]
+        }
+      ]
+    }
+  ]
+}

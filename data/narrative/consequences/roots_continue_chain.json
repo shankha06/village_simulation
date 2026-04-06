@@ -1,0 +1,149 @@
+{
+  "id": "roots_continue_chain",
+  "trigger_condition": "flag.chose_children_over_elderly == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {
+          "set_state": "flag.old_maren_dying_from_roots",
+          "value": true
+        },
+        {
+          "set_state": "npc.old_maren.health",
+          "delta": -30
+        },
+        {
+          "set_state": "flag.root_redistribution_sanctioned",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.children_health",
+          "value": "stable"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 2,
+      "effects": [
+        {
+          "set_state": "flag.old_maren_bedridden",
+          "value": true
+        },
+        {
+          "set_state": "npc.old_maren.health",
+          "delta": -20
+        },
+        {
+          "set_state": "npc.old_maren.location",
+          "value": "maren_house"
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 4,
+      "effects": [
+        {
+          "set_state": "npc.old_maren.alive",
+          "value": false
+        },
+        {
+          "set_state": "flag.old_maren_died_from_choice",
+          "value": true
+        },
+        {
+          "spawn_event": "old_maren_death_scene"
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 4,
+      "condition": "flag.counter_rite_taught != true",
+      "effects": [
+        {
+          "set_state": "flag.counter_rite_knowledge_lost",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 4,
+      "condition": "flag.druidfire_learned != true",
+      "effects": [
+        {
+          "set_state": "flag.druidfire_knowledge_lost",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 4,
+      "condition": "flag.maren_family_truth_revealed == true",
+      "effects": [
+        {
+          "set_state": "flag.family_tragedy_deepened",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 5,
+      "effects": [
+        {
+          "set_state": "flag.tam_inherits_druid_connection",
+          "value": true
+        },
+        {
+          "set_state": "flag.tam_drawing_root_patterns",
+          "value": true
+        },
+        {
+          "set_state": "npc.tam.trait_druid_sensitive",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 7,
+      "effects": [
+        {
+          "set_state": "world.region.ashvale.children_health",
+          "value": "recovering"
+        },
+        {
+          "set_state": "world.region.ashvale.morale_eastern",
+          "delta": 10
+        },
+        {
+          "set_state": "world.region.ashvale.morale_western",
+          "delta": -20
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 10,
+      "effects": [
+        {
+          "set_state": "flag.heartwood_validated_approach",
+          "value": true
+        },
+        {
+          "set_state": "flag.heartwood_more_demanding",
+          "value": true
+        },
+        {
+          "set_state": "npc.heartwood.negotiation_difficulty",
+          "delta": 20
+        }
+      ]
+    }
+  ]
+}

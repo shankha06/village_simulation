@@ -1,0 +1,423 @@
+{
+  "id": "root_and_cradle_choice",
+  "start_node": "elara_presents_facts",
+  "nodes": {
+    "elara_presents_facts": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "I've mapped the full root network. I need to tell you what I found, and I need you to listen to every word before you react.",
+      "next": "elara_the_numbers"
+    },
+    "elara_the_numbers": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "Thirteen children will survive the famine because of the root nutrients. Their bodies have been absorbing enriched groundwater for weeks now. Without it, their already weakened systems will fail. They're alive because the forest is feeding them.",
+      "next": "elara_the_cost"
+    },
+    "elara_the_cost": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "Eight elderly villagers will die within the week because the roots are draining them. Old Maren is the furthest gone. The others — the farmer who remembers the last harvest festival, the woman who's been sewing children's clothes smaller each week as her grandchildren shrink — they're all weakening. The roots are taking their years and giving them to the young.",
+      "next": "elara_the_choice"
+    },
+    "elara_the_choice": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "I can sever the connection. The elderly will recover. The children will begin starving within three days. Three will die within a week.",
+      "next": "elara_the_weight"
+    },
+    "elara_the_weight": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "I can sever the connection. Or I can let it continue. But not both. And either way, people die.",
+      "triggers": [
+        {
+          "set_state": "flag.root_cradle_choice_presented",
+          "value": true
+        }
+      ],
+      "next": "the_choice"
+    },
+    "the_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "let_roots_continue",
+          "text": "Let the roots continue. The children matter more.",
+          "conditions": [],
+          "triggers": [],
+          "next": "elara_accepts_roots_continue"
+        },
+        {
+          "id": "sever_roots",
+          "text": "Sever the connection. We can't let the forest decide who lives.",
+          "conditions": [],
+          "triggers": [],
+          "next": "elara_challenges_severing"
+        },
+        {
+          "id": "refuse_choice",
+          "text": "I can't make this choice.",
+          "conditions": [],
+          "triggers": [],
+          "next": "elara_forces_choice"
+        },
+        {
+          "id": "ask_old_maren",
+          "text": "Ask Old Maren what she wants.",
+          "conditions": [
+            {
+              "check": "npc.old_maren.alive",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.consulted_old_maren",
+              "value": true
+            }
+          ],
+          "next": "go_to_maren"
+        }
+      ]
+    },
+    "elara_accepts_roots_continue": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "I thought you'd say that. I think I agree. But I'll hear their names in my sleep for the rest of my life.",
+      "next": "elara_accepts_roots_continue_2"
+    },
+    "elara_accepts_roots_continue_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "Eight names. Eight people who lived full lives but deserved to finish them on their own terms. The forest didn't ask them. We didn't ask them. We just... let the arithmetic stand.",
+      "triggers": [
+        {
+          "set_state": "flag.chose_children_over_elderly",
+          "value": true
+        },
+        {
+          "set_state": "flag.old_maren_dying_from_roots",
+          "value": true
+        }
+      ],
+      "next": "roots_continue_reactions"
+    },
+    "elara_challenges_severing": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "The forest was SAVING them. We're choosing to stop that. Do you understand what that means? We're choosing to let children die when we could prevent it.",
+      "next": "elara_challenges_severing_2"
+    },
+    "elara_challenges_severing_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "Three children. Within a week. I'll have to watch their mothers carry them to the graves. I'll have to know that I was the one who cut the thread.",
+      "next": "choice_confirm_severing"
+    },
+    "choice_confirm_severing": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "confirm_sever",
+          "text": "The forest can't be allowed to choose who lives and who dies. Sever it.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.chose_elderly_over_children",
+              "value": true
+            },
+            {
+              "set_state": "flag.children_starving",
+              "value": true
+            },
+            {
+              "set_state": "flag.root_connection_cut",
+              "value": true
+            }
+          ],
+          "next": "severing_scene"
+        },
+        {
+          "id": "reconsider",
+          "text": "Wait. Let me think about this.",
+          "conditions": [],
+          "triggers": [],
+          "next": "the_choice"
+        }
+      ]
+    },
+    "elara_forces_choice": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "Someone has to. The roots don't care about your comfort. The math doesn't wait for you to be ready.",
+      "next": "elara_forces_choice_2"
+    },
+    "elara_forces_choice_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "Every hour you don't decide, Old Maren gets weaker. Every hour you don't decide, the children get stronger on stolen time. Indecision IS a decision. It's just the one where you pretend you didn't make it.",
+      "next": "the_choice"
+    },
+    "go_to_maren": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You find Old Maren on her bench. She looks smaller than you remember. Her hands rest in her lap — still, when they should be tracing patterns in the dirt. Elara told her everything. She's had time to think about it.",
+      "next": "maren_response"
+    },
+    "maren_response": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "calm",
+      "text": "Let me go. I've lived long enough. The children haven't lived at all.",
+      "next": "maren_response_2"
+    },
+    "maren_response_2": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "She says it calmly. Like a fact. Like the soil composition or the phases of the moon. Then she reaches for your hand and holds it very tight. Her fingers are cold. They shouldn't be this cold.",
+      "next": "maren_request"
+    },
+    "maren_request": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "sad",
+      "text": "But please... stay with me. When it happens. Don't let me be alone.",
+      "next": "choice_after_maren"
+    },
+    "choice_after_maren": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "honor_maren_wish",
+          "text": "I'll stay with you. And I'll let the roots continue. The children will live.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.chose_children_over_elderly",
+              "value": true
+            },
+            {
+              "set_state": "flag.old_maren_dying_from_roots",
+              "value": true
+            },
+            {
+              "set_state": "flag.honored_maren_wish",
+              "value": true
+            },
+            {
+              "set_state": "flag.promised_to_stay_with_maren",
+              "value": true
+            }
+          ],
+          "next": "maren_grateful_acceptance"
+        },
+        {
+          "id": "save_maren_anyway",
+          "text": "No. I'm severing the roots. You're going to live whether you want to or not.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.chose_elderly_over_children",
+              "value": true
+            },
+            {
+              "set_state": "flag.children_starving",
+              "value": true
+            },
+            {
+              "set_state": "flag.root_connection_cut",
+              "value": true
+            },
+            {
+              "set_state": "flag.ignored_maren_wish",
+              "value": true
+            }
+          ],
+          "next": "maren_furious"
+        },
+        {
+          "id": "back_to_main_choice",
+          "text": "I need more time to think.",
+          "conditions": [],
+          "triggers": [],
+          "next": "the_choice"
+        }
+      ]
+    },
+    "maren_grateful_acceptance": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "calm",
+      "text": "Thank you. The arithmetic is simple, even if the feeling isn't. Thirteen lives for eight. That's more sunrises in the world. More first steps. More names that haven't been spoken yet.",
+      "next": "maren_grateful_acceptance_2"
+    },
+    "maren_grateful_acceptance_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "sad",
+      "text": "I just wish the arithmetic didn't have my name in it.",
+      "next": "roots_continue_reactions"
+    },
+    "maren_furious": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "angry",
+      "text": "You asked what I wanted and then you IGNORED me. Is my agency only worth consulting when it agrees with you?",
+      "next": "maren_furious_2"
+    },
+    "maren_furious_2": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "She's furious. Her hands shake — from anger now, not weakness. She turns away from you. A long silence stretches between you. The kind that fills with all the things people don't say.",
+      "next": "maren_furious_3"
+    },
+    "maren_furious_3": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "sad",
+      "text": "...Thank you. For valuing my life even when I didn't. Even when the math says otherwise.",
+      "triggers": [
+        {
+          "set_state": "npc.old_maren.disposition",
+          "delta": -15
+        },
+        {
+          "set_state": "npc.old_maren.memory.player_overrode_her_wish",
+          "value": true
+        }
+      ],
+      "next": "severing_scene"
+    },
+    "severing_scene": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Elara kneels at the root junction. Her hands press into the soil. The talisman reveals the channels — threads of stolen light, pulsing west to east. She begins to work. Severing each thread is like cutting a living thing. The roots recoil. The ground trembles.",
+      "next": "severing_scene_2"
+    },
+    "severing_scene_2": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "It takes an hour. When it's done, the eastern soil goes dark. The nutrient flow stops. Somewhere on Miller's Row, children are playing their last game on borrowed health. Within three days, the hunger will find them.",
+      "next": "severed_reactions"
+    },
+    "roots_continue_reactions": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The word spreads through the village like smoke. Not everyone understands the details, but everyone understands the shape of it: the forest chose the children over the old. And someone — you — chose to let it.",
+      "next": "fenrick_reaction_continue"
+    },
+    "fenrick_reaction_continue": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "grim",
+      "text": "You chose right. The only right there is.",
+      "next": "greta_reaction_continue"
+    },
+    "greta_reaction_continue": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "sad",
+      "text": "Old Maren's bench will be empty tomorrow. She sat there for seventy years.",
+      "next": "branch_brother_maren_continue"
+    },
+    "branch_brother_maren_continue": {
+      "type": "branch",
+      "conditions": [
+        {
+          "check": "flag.maren_family_truth_revealed",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "if_true": "brother_maren_reaction_continue",
+      "if_false": "end_roots_continue"
+    },
+    "brother_maren_reaction_continue": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "devastated",
+      "text": "The forest killed my grandmother to save children I've been poisoning. This village is a circle of ironies.",
+      "triggers": [
+        {
+          "set_state": "flag.family_tragedy_deepened",
+          "value": true
+        }
+      ],
+      "next": "end_roots_continue"
+    },
+    "end_roots_continue": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The roots beneath Old Maren's bench continue their slow, patient feeding. You can almost feel the pulse through the soles of your boots. East. East. East. Life flowing toward the cradles. Death settling into the roots.",
+      "next": "end"
+    },
+    "severed_reactions": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The word spreads differently this time. Quieter. Heavier. The forest was saving the children and you CUT IT OFF. That's what they'll say. That's what they'll remember.",
+      "next": "fenrick_reaction_severed"
+    },
+    "fenrick_reaction_severed": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "furious",
+      "text": "You let children die. You had the POWER to save them and you chose OLD BONES. Get out of my sight.",
+      "triggers": [
+        {
+          "set_state": "npc.fenrick.disposition",
+          "delta": -30
+        },
+        {
+          "set_state": "flag.fenrick_despises_player",
+          "value": true
+        }
+      ],
+      "next": "greta_reaction_severed"
+    },
+    "greta_reaction_severed": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "sad",
+      "text": "Three small coffins. The carpenter won't charge for them. He says it's the only thing he can still give.",
+      "next": "harlan_reaction_severed"
+    },
+    "harlan_reaction_severed": {
+      "type": "text",
+      "speaker": "harlan",
+      "portrait": "grim",
+      "text": "First Silas. Now the children. How much does this village owe?",
+      "next": "end_roots_severed"
+    },
+    "end_roots_severed": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The root channels beneath the village go dark. The eastern soil is just soil again. The children on Miller's Row are still playing — they don't know yet. They won't know for three days. And then the hunger will come for them the way it came for everyone else.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

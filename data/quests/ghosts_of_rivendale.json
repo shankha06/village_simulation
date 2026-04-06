@@ -1,0 +1,132 @@
+{
+  "id": "ghosts_of_rivendale",
+  "name": "Ghosts of Rivendale",
+  "description": "Voss asks the player to investigate Rivendale ruins on the Eastern Road. What waits there will reshape everything she believes about her past — and the man who destroyed it.",
+  "giver": "commander_voss",
+  "region": "eastern_road",
+  "replaces": "commanders_ghost",
+  "tags": [
+    "main_chain",
+    "personal",
+    "exploration",
+    "emotional",
+    "moral_choice",
+    "iron_price_layer_1",
+    "butterfly_fate"
+  ],
+  "priority": 9,
+  "states": {
+    "UNKNOWN": {
+      "transitions": [
+        {
+          "on": "npc.commander_voss.disposition >= 30",
+          "to": "DISCOVERED"
+        }
+      ]
+    },
+    "DISCOVERED": {
+      "journal_entry": "Voss mentioned a village called Rivendale — a place she grew up in, destroyed when she was twelve. She's heard rumors of something stirring in the ruins on the Eastern Road. The guilt she carries runs deeper than any soldier's regret.",
+      "transitions": [
+        {
+          "on": "flag.accepted_voss_ghost_quest == true",
+          "to": "ACTIVE"
+        }
+      ]
+    },
+    "ACTIVE": {
+      "journal_entry": "I'm heading to the Eastern Road to search for the ruins of Rivendale. Voss couldn't bring herself to come — she gave me her old company banner to show any survivors. She wants the truth. Whatever that turns out to be.",
+      "objectives": [
+        "Travel to the Eastern Road",
+        "Find the ruins of Rivendale",
+        "Search for evidence of what happened twenty years ago"
+      ],
+      "transitions": [
+        {
+          "on": "flag.rivendale_ruins_explored == true",
+          "to": "RUINS_EXPLORED"
+        }
+      ]
+    },
+    "RUINS_EXPLORED": {
+      "journal_entry": "I found the ruins. And the truth. The river pact wasn't destroyed by the Ironmarch army — it was destroyed by a single junior officer named Draven. He placed charges on the communion stone. The river screamed. The flood took the village. Draven took a fragment of the stone he shattered as a keepsake — or a trophy. The same stone he still carries. Voss has spent twenty years hating the wrong enemy. The real one is already in Ashvale.",
+      "objectives": [
+        "Return to Ashvale",
+        "Decide what to tell Voss about Rivendale"
+      ],
+      "transitions": [
+        {
+          "on": "flag.voss_told_draven_truth == true",
+          "to": "TRUTH_REVEALED"
+        },
+        {
+          "on": "flag.voss_told_only_graves == true",
+          "to": "TRUTH_HIDDEN"
+        },
+        {
+          "on": "flag.voss_told_truth_with_restraint == true",
+          "to": "TRUTH_WITH_RESTRAINT"
+        }
+      ]
+    },
+    "TRUTH_REVEALED": {
+      "journal_entry": "I told Voss everything. That Draven destroyed the communion stone. That he carries a fragment of it like a trophy. That the man who murdered her village is already in Ashvale. Her face didn't change when she heard the name. It went empty. The kind of empty that fills with fire.",
+      "consequence_chain": "voss_truth_revealed_chain",
+      "rewards": [
+        {
+          "set_state": "flag.voss_knows_draven_truth",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": 15
+        },
+        {
+          "set_state": "npc.commander_voss.memory.knows_draven_destroyed_rivendale",
+          "value": true
+        },
+        {
+          "item": "dravens_service_medallion"
+        }
+      ]
+    },
+    "TRUTH_HIDDEN": {
+      "journal_entry": "I lied to Voss. Told her I found only graves and names I couldn't read. She believed me. Her knuckles went white on the table's edge, but she thanked me for going. For looking. I watched her turn away and I said nothing about Draven. Nothing about the stone he carries. Nothing about the truth that would shatter her.",
+      "consequence_chain": "voss_truth_hidden_chain",
+      "rewards": [
+        {
+          "set_state": "flag.voss_lied_to_about_rivendale",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": 10
+        },
+        {
+          "set_state": "npc.commander_voss.memory.believes_only_graves",
+          "value": true
+        }
+      ]
+    },
+    "TRUTH_WITH_RESTRAINT": {
+      "journal_entry": "I showed Voss the evidence. Draven's medallion. The matching stone fragment. All of it. But I counseled patience — Draven is the only person who can prevent a Legion invasion right now. Voss was silent for a long time. Then she said she'd waited twenty years. She could wait twenty more days. But not one day longer.",
+      "consequence_chain": "voss_truth_with_restraint_chain",
+      "rewards": [
+        {
+          "set_state": "flag.voss_knows_but_waits",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": 20
+        },
+        {
+          "set_state": "npc.commander_voss.memory.knows_draven_but_exercises_restraint",
+          "value": true
+        },
+        {
+          "item": "dravens_service_medallion"
+        }
+      ]
+    }
+  }
+}

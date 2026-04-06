@@ -1,0 +1,365 @@
+{
+  "id": "rivendale_investigation",
+  "start_node": "arrival",
+  "nodes": {
+    "arrival": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The Eastern Road narrows to a goat track. Then the track dies. Ahead: Rivendale. Not ruins — a wound. The earth remembers what happened here. Trees grow at wrong angles, leaning away from the riverbed as if still flinching from the blast. The river itself is a dry scar cutting through grey stone.",
+      "next": "arrival_2"
+    },
+    "arrival_2": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "At the village center, foundation stones jut from the earth like broken ribs. Twenty years of weather haven't softened this place. The moss won't grow here. Even the weeds look reluctant.",
+      "next": "arrival_3"
+    },
+    "arrival_3": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "But something catches the light near the dry riverbed. A faint blue shimmer, pulsing like a heartbeat. The remnant of something that was once alive — the communion stone, or what's left of it.",
+      "triggers": [
+        {
+          "set_state": "flag.rivendale_found",
+          "value": true
+        }
+      ],
+      "next": "explore_choice"
+    },
+    "explore_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "riverbed",
+          "text": "Go to the riverbed. Follow the blue light.",
+          "conditions": [],
+          "triggers": [],
+          "next": "riverbed_approach"
+        },
+        {
+          "id": "foundations",
+          "text": "Search the village foundations first. Look for records, belongings, anything.",
+          "conditions": [],
+          "triggers": [],
+          "next": "foundations_search"
+        },
+        {
+          "id": "high_ground",
+          "text": "Climb the hill overlooking the village. Get the full picture.",
+          "conditions": [],
+          "triggers": [],
+          "next": "hilltop_view"
+        }
+      ]
+    },
+    "riverbed_approach": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The dry riverbed is wrong. Not the way a river dries when the rain stops — this is a river that was murdered. The stones are scorched black in a perfect circle where the communion stone once stood. Fragments of blue crystal litter the blast radius like frozen tears.",
+      "next": "communion_stone_remnant"
+    },
+    "communion_stone_remnant": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "At the center of the scorched circle, a jagged base of crystal still juts from the bedrock. It pulses weakly — the last heartbeat of a dying pact. When you touch it, the world goes white.",
+      "triggers": [
+        {
+          "set_state": "flag.touched_communion_remnant",
+          "value": true
+        }
+      ],
+      "next": "memory_1"
+    },
+    "memory_1": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "MEMORY: The communion stone stands whole — three feet of living crystal, blue as deep water, humming with a sound that isn't sound. The river sings around it. Not metaphor. The water itself has a voice, and it is singing a lullaby. Children sit on the bank, feet dangling in the current. The water holds them gently. This is Rivendale. This is what it was.",
+      "next": "memory_2"
+    },
+    "memory_2": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "MEMORY: Night. Torchlight. A young officer in Ironmarch black crouches at the base of the communion stone, hands working with mechanical precision. He places charges — three of them, shaped like iron fists — into cracks in the crystal's base. His face catches the torchlight. Young. Clean-shaven. A scar above the left eye. And around his neck, a service medallion stamped with the Ironmarch eagle.",
+      "next": "memory_2b"
+    },
+    "memory_2b": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "MEMORY: The young officer pauses. Looks at the stone. His hand reaches out — not to the charges, but to the crystal itself. He touches it, and for one moment his face changes. Something like wonder. Something like grief. Then he hardens. Lights the fuse. Walks away without looking back.",
+      "next": "memory_2c"
+    },
+    "memory_2c": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The face. You know that face. Twenty years older now, the scar deeper, the jaw heavier. But the eyes are the same. Cold calculation masking something he'll never admit to. Captain Draven. The Ironmarch emissary. Already in Ashvale.",
+      "triggers": [
+        {
+          "set_state": "flag.recognized_draven_in_memory",
+          "value": true
+        }
+      ],
+      "next": "memory_3"
+    },
+    "memory_3": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "MEMORY: The explosion. Not a sound — a SCREAM. The communion stone shatters and the river SCREAMS. The water rises — not as a flood, but as a living thing, reaching upward with liquid fingers, trying to hold the broken pieces together. Trying to heal what cannot be healed.",
+      "next": "memory_3b"
+    },
+    "memory_3b": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "MEMORY: The river fails. The water falls back — but wrong. It falls with PURPOSE. A wall of black water surges down the valley. Houses splinter like kindling. The mill wheel tears free and cartwheels through the schoolhouse wall. Screaming. So much screaming. The river is drowning the village it protected for a hundred years, and it cannot stop itself.",
+      "next": "memory_4"
+    },
+    "memory_4": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "MEMORY: A girl. Twelve years old. Dark hair plastered to her face by rain and river-spray. She runs uphill, bare feet bleeding on the stones. Behind her, the water takes the last house. She doesn't look back. She doesn't stop running. She will never stop running.",
+      "next": "memory_4b"
+    },
+    "memory_4b": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "MEMORY: The girl reaches the hilltop. Turns. Looks down at the valley where Rivendale was. The water settles. The screaming stops. Below her, nothing moves. She stands there until dawn. She doesn't cry. She is twelve years old and she will never cry again.",
+      "triggers": [
+        {
+          "set_state": "flag.saw_young_voss_in_memory",
+          "value": true
+        }
+      ],
+      "next": "memory_fade"
+    },
+    "memory_fade": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The vision releases you. You're kneeling in the dry riverbed, hand still on the broken communion stone. Your cheeks are wet. The stone pulses once more — faintly, gratefully — as if it has been waiting twenty years for someone to witness what happened here.",
+      "next": "post_vision_choice"
+    },
+    "post_vision_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "search_blast_site",
+          "text": "Search the blast site for physical evidence. The memory showed Draven — there might be proof.",
+          "conditions": [],
+          "triggers": [],
+          "next": "find_medallion"
+        },
+        {
+          "id": "take_stone_fragment",
+          "text": "Take a fragment of the communion stone. It matches the one Draven carries.",
+          "conditions": [],
+          "triggers": [],
+          "next": "take_fragment"
+        },
+        {
+          "id": "search_both",
+          "text": "Search everything. Leave no stone unturned.",
+          "conditions": [],
+          "triggers": [],
+          "next": "thorough_search"
+        }
+      ]
+    },
+    "find_medallion": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Beneath a collapsed section of riverbank, half-buried in dried mud: a tarnished service medallion. Ironmarch eagle on one side. On the reverse, stamped letters: DRV-7, EASTERN FRONTIER DIVISION, PACT ELIMINATION UNIT. This wasn't a battle. It was an assignment. Draven's first.",
+      "triggers": [
+        {
+          "set_state": "player.has_item.dravens_service_medallion",
+          "value": true
+        },
+        {
+          "set_state": "flag.found_draven_medallion",
+          "value": true
+        }
+      ],
+      "next": "evidence_complete"
+    },
+    "take_fragment": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You pry a shard of communion crystal from the base. It's warm in your hand, still pulsing faintly. The same blue as the stone Draven wears around his neck — the one you thought was a keepsake. It's a matching fragment. He's been carrying a piece of what he killed for twenty years.",
+      "triggers": [
+        {
+          "set_state": "player.has_item.communion_stone_fragment",
+          "value": true
+        },
+        {
+          "set_state": "flag.found_matching_fragment",
+          "value": true
+        }
+      ],
+      "next": "evidence_complete"
+    },
+    "thorough_search": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You search methodically. In the dried mud: a tarnished Ironmarch service medallion stamped DRV-7, PACT ELIMINATION UNIT. From the communion stone's base: a crystal shard that matches the one Draven carries around his neck. And wedged in a foundation crack: a child's wooden doll, one arm missing, face scorched but still smiling.",
+      "triggers": [
+        {
+          "set_state": "player.has_item.dravens_service_medallion",
+          "value": true
+        },
+        {
+          "set_state": "player.has_item.communion_stone_fragment",
+          "value": true
+        },
+        {
+          "set_state": "player.has_item.rivendale_doll",
+          "value": true
+        },
+        {
+          "set_state": "flag.found_draven_medallion",
+          "value": true
+        },
+        {
+          "set_state": "flag.found_matching_fragment",
+          "value": true
+        }
+      ],
+      "next": "evidence_complete"
+    },
+    "evidence_complete": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The picture is complete. Twenty years ago, a junior Ironmarch officer named Draven was assigned to eliminate the river pact at Rivendale. He destroyed the communion stone. The river went mad with grief and drowned the village. Forty-three people died. A twelve-year-old girl named Voss survived by running uphill. Draven kept a piece of the stone. He's been carrying it ever since — and now he's in Ashvale, negotiating the fate of another village.",
+      "triggers": [
+        {
+          "set_state": "flag.rivendale_ruins_explored",
+          "value": true
+        },
+        {
+          "set_state": "flag.rivendale_truth_discovered",
+          "value": true
+        }
+      ],
+      "next": "departure_choice"
+    },
+    "foundations_search": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The village foundations tell a story of sudden violence. Walls didn't crumble from age — they were shattered by water pressure. Furniture lies in piles against the eastern walls where the flood pushed it. In the schoolhouse foundation, tiny desks are still bolted to the floor, submerged in twenty years of silt.",
+      "next": "foundations_detail"
+    },
+    "foundations_detail": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Scratched into the schoolhouse wall, above the waterline: tally marks. Someone survived long enough to count the days after the flood. Fourteen marks. Then nothing. Beside them, in a child's hand: 'THE WATER WAS SORRY.'",
+      "triggers": [
+        {
+          "set_state": "flag.found_schoolhouse_message",
+          "value": true
+        }
+      ],
+      "next": "riverbed_approach"
+    },
+    "hilltop_view": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "From the hill, Rivendale's shape is clear: a valley village built around a river that no longer exists. The dry riverbed cuts through the center like a surgical scar. To the east, the communion stone's remnant glows faintly blue in the permanent shadow of the valley. And on the hilltop where you stand — scuff marks in the rock. Old. Deep. Made by someone who stood here for a very long time.",
+      "next": "hilltop_detail"
+    },
+    "hilltop_detail": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "This is where she stood. A twelve-year-old girl, watching her world drown. The scuff marks are from bare feet — a child's feet, pacing the same three steps over and over. Back and forth. Back and forth. All night, until dawn. You can feel it in the stone. Twenty years later, the grief is still warm.",
+      "triggers": [
+        {
+          "set_state": "flag.found_voss_hilltop",
+          "value": true
+        }
+      ],
+      "next": "riverbed_approach"
+    },
+    "departure_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "depart_determined",
+          "text": "Voss deserves the truth. All of it. Head back to Ashvale.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.intends_to_tell_voss_truth",
+              "value": true
+            }
+          ],
+          "next": "depart_truth"
+        },
+        {
+          "id": "depart_conflicted",
+          "text": "This truth could destroy Voss. Or it could destroy Ashvale's only chance at negotiation. Think carefully on the walk back.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.conflicted_about_rivendale",
+              "value": true
+            }
+          ],
+          "next": "depart_conflict"
+        },
+        {
+          "id": "depart_protective",
+          "text": "Some truths are better buried. Voss doesn't need this weight.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.intends_to_hide_truth",
+              "value": true
+            }
+          ],
+          "next": "depart_hide"
+        }
+      ]
+    },
+    "depart_truth": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You leave Rivendale with evidence in your pack and a weight on your chest. The communion stone pulses once as you go — a faint, grateful flicker. Someone finally knows. Someone will finally tell her. The walk back to Ashvale has never felt so long.",
+      "next": "end"
+    },
+    "depart_conflict": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The Eastern Road stretches ahead. Every step is a step closer to a decision that will change everything. Tell Voss, and she'll want blood — Draven's blood — at the worst possible time. Hide it, and you carry the lie alongside the evidence. There is no clean path home.",
+      "next": "end"
+    },
+    "depart_hide": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You pocket the evidence and start walking. The communion stone's light fades behind you. It waited twenty years for a witness. Now it has one — and that witness has chosen silence. The stone dims. The river stays dead. Some things, once broken, don't get a second chance at justice.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

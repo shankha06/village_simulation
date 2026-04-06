@@ -1,0 +1,292 @@
+{
+  "id": "root_and_cradle_discovery",
+  "start_node": "elara_anomaly",
+  "nodes": {
+    "elara_anomaly": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "worried",
+      "text": "Something's wrong with the numbers. The children on Miller's Row — they should be malnourished. They're not. Their eyes are bright. Their skin has color. In a famine. HOW?",
+      "triggers": [
+        {
+          "set_state": "flag.elara_notices_health_anomaly",
+          "value": true
+        }
+      ],
+      "next": "elara_anomaly_2"
+    },
+    "elara_anomaly_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "worried",
+      "text": "I've been tracking rations. I know exactly how much food reaches each household. Those children should be skin and bone by now. Instead they're PLAYING. Running. Laughing. Like the famine doesn't exist for them.",
+      "next": "elara_anomaly_3"
+    },
+    "elara_anomaly_3": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "fearful",
+      "text": "And on the other side of the village — the western quarter — the elderly are failing. Faster than hunger explains. Old Maren could barely stand yesterday. Her hands shake. Her color is wrong. I'm an herbalist. I know what starvation looks like. This isn't starvation. This is something else.",
+      "next": "choice_anomaly_response"
+    },
+    "choice_anomaly_response": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "investigate_immediately",
+          "text": "You think something is actively doing this? Feeding the children and draining the elderly?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "elara_suspects_roots"
+        },
+        {
+          "id": "dismiss_coincidence",
+          "text": "Could be coincidence. Different constitutions, different diets.",
+          "conditions": [],
+          "triggers": [],
+          "next": "elara_rejects_coincidence"
+        },
+        {
+          "id": "ask_about_maren",
+          "text": "How bad is Old Maren?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.memory.player_asked_about_maren_health",
+              "value": true
+            }
+          ],
+          "next": "elara_maren_condition"
+        }
+      ]
+    },
+    "elara_rejects_coincidence": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "I'm an herbalist, not an idiot. I've tested the soil. I've tested the water. I've tested the air around those houses. The eastern soil — where the children live — is RICH. Nutrient-dense. In the middle of a blight that killed every crop in Ashvale. The western soil is dead. Worse than dead — it's been DRAINED.",
+      "next": "elara_suspects_roots"
+    },
+    "elara_maren_condition": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "Bad. She won't admit it, but I can see it. Her hands — those hands that have worked soil for seventy years — they tremble now. She's cold all the time. She says the earth tastes different under her bench. 'Bitter,' she said. 'Like something is drinking from it.'",
+      "next": "elara_maren_condition_2"
+    },
+    "elara_maren_condition_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "She doesn't know what's happening to her. I'm not sure I do either. But I have a theory, and I need your help to prove it.",
+      "next": "elara_suspects_roots"
+    },
+    "elara_suspects_roots": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "The root network. The Thornwood's roots run under the entire village — we've always known that. But what if they're not just sitting there? What if they're DOING something? Moving nutrients. Redistributing life force. East to west. Young to old. Or... old to young.",
+      "next": "elara_talisman_request"
+    },
+    "elara_talisman_request": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "The talisman can reveal the root network's activity. Use it at the junction beneath the village well — that's where the main root channels converge. If something is flowing through the network, the talisman will show us what.",
+      "triggers": [
+        {
+          "set_state": "flag.investigating_root_redistribution",
+          "value": true
+        }
+      ],
+      "next": "choice_accept_investigation"
+    },
+    "choice_accept_investigation": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept_root_investigation",
+          "text": "I'll check the root junction. If the forest is doing something, we need to know.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "elara_grateful_investigation"
+        },
+        {
+          "id": "reluctant_investigation",
+          "text": "Even if you're right — what could we do about it?",
+          "conditions": [],
+          "triggers": [],
+          "next": "elara_determined_response"
+        }
+      ]
+    },
+    "elara_grateful_investigation": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "Thank you. And... be prepared. Whatever the talisman shows you, it won't be comfortable. The forest doesn't think like we do. It doesn't have to.",
+      "next": "end"
+    },
+    "elara_determined_response": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "I don't know yet. But I'd rather face an ugly truth than let people die from a comfortable mystery. Wouldn't you?",
+      "next": "end"
+    },
+    "talisman_root_junction": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The talisman pulses warm as you hold it over the well's foundation stones. Light bleeds through the cracks — not firelight, not moonlight. Something green and alive, threading through the soil in channels as intricate as veins.",
+      "next": "talisman_revelation"
+    },
+    "talisman_revelation": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The talisman reveals threads of light running through the soil — root channels, carrying something. Not water. Life. The threads run east toward the children's houses and west toward Old Maren's bench. But the flow is one-directional. West to east. Taking from one side. Giving to the other.",
+      "next": "talisman_revelation_2"
+    },
+    "talisman_revelation_2": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You follow the western channels. They converge beneath Old Maren's bench like a spider's web with her at the center. The roots beneath her aren't resting there. They're FEEDING. Extracting. Something vital flows from this spot toward the eastern houses. You can see it now — a dim pulse of amber light being pulled from the earth where she sits, drawn east through a thousand hairline root-threads.",
+      "triggers": [
+        {
+          "set_state": "flag.root_redistribution_discovered",
+          "value": true
+        }
+      ],
+      "next": "talisman_horror"
+    },
+    "talisman_horror": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The eastern channels bloom with that stolen light. It seeps into the soil around the children's homes, enriching the groundwater, secreting nutrients through the root network. The forest has been feeding the children. Keeping them alive. Keeping their cheeks pink and their eyes bright. And the price is measured in years stolen from old bones on the other side of the village.",
+      "next": "choice_talisman_reaction"
+    },
+    "choice_talisman_reaction": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "confront_heartwood",
+          "text": "The Heartwood did this. I need to hear it explain why.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.going_to_confront_heartwood",
+              "value": true
+            }
+          ],
+          "next": "end"
+        },
+        {
+          "id": "tell_elara_first",
+          "text": "I need to tell Elara what I found before doing anything else.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.reporting_to_elara_first",
+              "value": true
+            }
+          ],
+          "next": "end"
+        }
+      ]
+    },
+    "heartwood_confrontation": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The Heartwood's presence fills the clearing like pressure before a storm. You feel it before you see it — the ancient consciousness turning its attention toward you with the slow, inexorable weight of a glacier.",
+      "next": "heartwood_response"
+    },
+    "heartwood_response": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "ancient",
+      "text": "You found the channels. We expected you would. The talisman-bearer always finds what the talisman wants found.",
+      "next": "heartwood_choice_ask"
+    },
+    "heartwood_choice_ask": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "demand_explanation",
+          "text": "You're draining the elderly to feed the children. WHY?",
+          "conditions": [],
+          "triggers": [],
+          "next": "heartwood_explains"
+        },
+        {
+          "id": "accuse_heartwood",
+          "text": "You're killing them. Old Maren is dying because of you.",
+          "conditions": [],
+          "triggers": [],
+          "next": "heartwood_reframes"
+        }
+      ]
+    },
+    "heartwood_explains": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "ancient",
+      "text": "We preserved the seeds. The old bark falls so new growth can rise. This is how forests work. You call it tragedy. We call it spring.",
+      "next": "heartwood_deliberation"
+    },
+    "heartwood_reframes": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "ancient",
+      "text": "Killing? We are SAVING. Thirteen young ones would have perished in the hunger. We redirected. We nourished. The old ones have lived their seasons. The young ones have not begun theirs. The mathematics are simple.",
+      "next": "heartwood_deliberation"
+    },
+    "heartwood_deliberation": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "ancient",
+      "text": "We debated this for three days. Three days the roots held still while we weighed every thread. We are not callous. We are methodical. A forest does not waste. When an old tree falls, its nutrients return to the soil. The saplings drink from the old one's death. This is not cruelty. This is the oldest law.",
+      "triggers": [
+        {
+          "set_state": "flag.heartwood_confronted_redistribution",
+          "value": true
+        },
+        {
+          "set_state": "flag.heartwood_deliberation_known",
+          "value": true
+        }
+      ],
+      "next": "heartwood_memory"
+    },
+    "heartwood_memory": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The talisman flickers. A memory surfaces — not yours. The Heartwood's. Three days of root-stillness. A vast consciousness turning the question over and over like a stone in a river. The faces of thirteen children held against the faces of eight elders. The weight of years-already-lived measured against years-not-yet-begun. And at the end, a decision made not with malice but with the terrible clarity of something that has watched ten thousand trees die so that ten thousand others could grow.",
+      "next": "heartwood_final"
+    },
+    "heartwood_final": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "ancient",
+      "text": "You may tell the herbalist what you have learned. She will understand the channels. She has the skill to sever them, if that is what you choose. But understand: we will not stop. If you do not sever the connection, we will continue. The children's need does not pause for your discomfort.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

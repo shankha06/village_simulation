@@ -241,8 +241,52 @@
       "name": "Old Maren's Bench",
       "position": [320, 105],
       "text": "Old Maren's stone bench at the village edge. Herb bundles hang from the armrest, drying in the wind.",
-      "state_condition": "flag.old_maren_found_collapsed == true",
-      "state_alt_text": "The bench is empty. Scattered herbs lie on the ground as if dropped suddenly. A villager tells you Old Maren was found collapsed here this morning. She's been taken inside, but she's not well. Not well at all."
+      "state_conditions": [
+        {
+          "condition": "flag.old_maren_found_collapsed == true",
+          "alt_text": "The bench is empty. Scattered herbs lie on the ground as if dropped suddenly. A villager tells you Old Maren was found collapsed here this morning. She's been taken inside, but she's not well. Not well at all."
+        },
+        {
+          "condition": "flag.old_maren_died_from_choice == true",
+          "alt_text": "The bench is empty. A wool blanket — Elara's blanket — is folded neatly on the stone. Someone left a sprig of feverfew where Maren's hands used to rest. The roots beneath the bench are dark and still. They finished feeding."
+        }
+      ]
+    },
+    {
+      "id": "old_maren_bench_roots",
+      "type": "examine",
+      "name": "Roots Beneath the Bench",
+      "position": [320, 108],
+      "text": "Thick roots push through the soil beneath Old Maren's bench. They look ordinary enough.",
+      "state_conditions": [
+        {
+          "condition": "flag.investigating_root_redistribution == true",
+          "alt_text": "The roots beneath the bench are visibly pulsing. Not growing — feeding. Extracting. Something vital flows from this spot toward the eastern houses. Old Maren sits above it, unknowing, growing weaker by the hour."
+        },
+        {
+          "condition": "flag.old_maren_died_from_choice == true",
+          "alt_text": "The roots are dark. Whatever they were drawing from this place, they've taken it all. The soil around the bench is dry and gray — drained of everything, including the woman who sat here for seventy years."
+        }
+      ],
+      "sets_flag": "flag.examined_bench_roots"
+    },
+    {
+      "id": "root_junction_well",
+      "type": "examine",
+      "name": "Root Junction",
+      "position": [322, 235],
+      "text": "The base of the well. Cracks in the stone foundation reveal soil and tangled roots beneath.",
+      "state_conditions": [
+        {
+          "condition": "flag.has_druid_talisman == true",
+          "alt_text": "The talisman reveals threads of light running through the soil — root channels, carrying something. Not water. Life. The threads run east toward the children's houses and west toward Old Maren's bench. The flow is one-directional. West to east. Something is being taken. Something is being given."
+        },
+        {
+          "condition": "flag.root_connection_cut == true",
+          "alt_text": "The root channels are dark. Severed. The threads of light that once carried stolen life from west to east now lie inert in the soil like dead veins. The well's foundation feels colder than it should."
+        }
+      ],
+      "sets_flag": "flag.examined_root_junction"
     },
     {
       "id": "greta_elara_note",

@@ -1,0 +1,177 @@
+{
+  "id": "wells_memory_trance",
+  "start_node": "trance_descent",
+  "nodes": {
+    "trance_descent": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Darkness. Then — not darkness. Something deeper than darkness, a black that has texture and weight and memory. You are sinking through soil, through stone, through time. The roots are everywhere, and they are not dead things. They pulse. They remember.",
+      "next": "memory_1_intro"
+    },
+    "memory_1_intro": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "A room forms around you. Firelight. A cottage — Elara's cottage, but thirty years younger. The herbs on the walls are fresh. The wood isn't cracked. And a man sits in the rocking chair, holding an infant against his chest.",
+      "next": "memory_1_silas"
+    },
+    "memory_1_silas": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Silas Maren. You know him without being told — the roots know him, and now you do too. He's younger than you expected. Thin. Dark circles under his eyes. But his hands are steady as they cradle the baby, and his voice is low and sure as he sings.",
+      "next": "memory_1_lullaby"
+    },
+    "memory_1_lullaby": {
+      "type": "text",
+      "speaker": "silas_memory",
+      "portrait": "gentle",
+      "text": "Sleep now, little root, little branch, little leaf. The soil will hold you. The rain will find you. And when you wake, the world will be green again. Sleep now, Elara. Sleep.",
+      "triggers": [
+        {
+          "set_state": "flag.trance_memory_lullaby_seen",
+          "value": true
+        }
+      ],
+      "next": "memory_1_detail"
+    },
+    "memory_1_detail": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The baby's fist closes around Silas's finger. He smiles — a broken, exhausted, overwhelmed smile. Somewhere in the cottage, a boy of perhaps four is sleeping on a pallet by the fire, his face turned toward the wall. Two children. Silas had two children.",
+      "next": "memory_transition_1"
+    },
+    "memory_transition_1": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The memory dissolves. The roots pull you deeper. Time shifts — days? Weeks? The cottage reshapes around you. Now it's raining. Silas is at the door, and there are men in grey robes on the threshold.",
+      "next": "memory_2_handover"
+    },
+    "memory_2_handover": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Church missionaries. Their robes are soaked. The boy is awake now, standing beside Silas with a small cloth bag clutched in both hands. He doesn't cry. He's too young to understand that this is the last time.",
+      "next": "memory_2_silas_speaks"
+    },
+    "memory_2_silas_speaks": {
+      "type": "text",
+      "speaker": "silas_memory",
+      "portrait": "anguished",
+      "text": "Take care of him. He's clever — too clever for a village this small. He'll do well in the seminary. Just... let him keep his name. His name is —",
+      "next": "memory_2_distortion"
+    },
+    "memory_2_distortion": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The name comes out wrong. The roots twist around it, protect it, obscure it — like a hand covering a mouth. You hear syllables that don't connect. The memory RESISTS this part, as if the name itself is a secret the Heartwood is keeping.",
+      "triggers": [
+        {
+          "set_state": "flag.trance_memory_brother_seen",
+          "value": true
+        }
+      ],
+      "next": "memory_2_boy_leaves"
+    },
+    "memory_2_boy_leaves": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The boy looks back once. His eyes — you've seen those eyes. In the chapel. Behind a lectern. Thirty years older and full of borrowed piety, but the same eyes. Silas watches until the grey robes disappear into the rain. Then he closes the door, sits down, and doesn't move for a very long time.",
+      "next": "memory_transition_2"
+    },
+    "memory_transition_2": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The roots pull again. Deeper. The cottage is gone. You're outside now — the Thornwood at night. Moonlight on wet bark. Silas is walking barefoot through the undergrowth. He's older. Thinner. His eyes are fixed on something ahead that you can't see.",
+      "next": "memory_3_walk"
+    },
+    "memory_3_walk": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "He carries nothing. No bag, no tools, no compass. He left everything behind. This is the walk from which he never returned — the one the village whispers about, the one Old Maren won't speak of. The sacrifice.",
+      "next": "memory_3_treeline"
+    },
+    "memory_3_treeline": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "At the treeline, a figure stands watching. Old Maren — younger then, but already grey, already bent by knowledge she never asked for. She doesn't call out. She doesn't try to stop him. She just watches, and her face is a ruin of grief and understanding.",
+      "next": "memory_3_last_look"
+    },
+    "memory_3_last_look": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Silas turns. He sees her. Something passes between them — not words, not a gesture, just a recognition. He nods. She nods. He walks into the trees. The last thing he sees through human eyes: his mother's face, lit by the moon, refusing to look away.",
+      "triggers": [
+        {
+          "set_state": "flag.trance_memory_sacrifice_seen",
+          "value": true
+        }
+      ],
+      "next": "memory_4_heartwood"
+    },
+    "memory_4_heartwood": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The Heartwood. You see it through Silas's eyes and through the roots' eyes simultaneously. The great tree at the center of the Thornwood, ancient beyond reckoning, its bark carved with patterns that are not writing and not pictures but something in between.",
+      "next": "memory_4_embrace"
+    },
+    "memory_4_embrace": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The roots open for him. Not violently — not the grinding consumption you imagined. They part like arms. Like a parent gathering a child. Silas steps forward and the wood closes around him, warm and slow and impossibly gentle. Not consuming. EMBRACING.",
+      "next": "memory_4_dreaming"
+    },
+    "memory_4_dreaming": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "He's dreaming now. Has been dreaming for thirty years. The Heartwood feeds him root-water and starlight and the slow chemistry of a forest that thinks in centuries. He's at peace. Or something close to peace — the closest thing a man can know who gave away both his children.",
+      "next": "memory_4_last_thought"
+    },
+    "memory_4_last_thought": {
+      "type": "text",
+      "speaker": "silas_memory",
+      "portrait": "gentle",
+      "text": "My children. Watch my children.",
+      "triggers": [
+        {
+          "set_state": "flag.trance_memory_heartwood_seen",
+          "value": true
+        },
+        {
+          "set_state": "flag.trance_complete",
+          "value": true
+        }
+      ],
+      "next": "trance_return"
+    },
+    "trance_return": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The thought echoes — not fading but AMPLIFYING, carried through every root, every tendril, every capillary of the living network. A father's last conscious request, encoded in wood and water and transmitted to anyone who drinks deeply enough to hear. My children. Watch my children.",
+      "next": "trance_surface"
+    },
+    "trance_surface": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The roots release you. You're rising — through memory, through soil, through stone. The well-water floods your mouth. Dawn light stabs your eyes. The world is too loud, too bright, too REAL after the dreaming dark. But the memories remain, clear as scars.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

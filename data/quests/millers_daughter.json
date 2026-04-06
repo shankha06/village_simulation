@@ -1,0 +1,157 @@
+{
+  "id": "millers_daughter",
+  "name": "The Miller's Daughter",
+  "description": "The abandoned mill at the village edge groans at night. Old Maren says the sounds aren't wind. They're guilt, given voice.",
+  "giver": "old_maren",
+  "region": "ashvale",
+  "tags": [
+    "side_quest",
+    "investigation",
+    "ghost",
+    "talisman",
+    "moral_choice",
+    "sacrifice_theme"
+  ],
+  "priority": 8,
+  "states": {
+    "UNKNOWN": {
+      "transitions": [
+        {
+          "on": "flag.old_maren_mentions_mill == true",
+          "to": "AVAILABLE"
+        },
+        {
+          "on": "flag.heard_mill_sounds == true",
+          "to": "DISCOVERED"
+        }
+      ]
+    },
+    "DISCOVERED": {
+      "journal_entry": "I heard strange sounds from the abandoned mill at the village edge. Scratching. Weeping. A child's voice calling for water.",
+      "transitions": [
+        {
+          "on": "flag.asked_old_maren_about_mill == true",
+          "to": "AVAILABLE"
+        }
+      ]
+    },
+    "AVAILABLE": {
+      "journal_entry": "Old Maren asked me to investigate the abandoned mill. She says the sounds have grown louder since the crops began dying — as if the land's pain is waking old grief. She warned me to bring the talisman.",
+      "transitions": [
+        {
+          "on": "flag.entered_corins_mill == true",
+          "to": "INVESTIGATING"
+        }
+      ]
+    },
+    "INVESTIGATING": {
+      "journal_entry": "Inside the mill, the talisman burns against my chest. There are ghosts here — layered memories soaked into the walls. I need to use the talisman to see what happened.",
+      "objectives": [
+        "Use the druid talisman to witness the mill's ghost memories",
+        "Find Corin's workbench and examine the height marks",
+        "Descend to the cellar and examine the scratches on the door",
+        "Locate the noose rope on the mill beam"
+      ],
+      "transitions": [
+        {
+          "on": "flag.witnessed_all_mill_memories == true",
+          "to": "LYSSA_APPEARS"
+        },
+        {
+          "on": "flag.mill_collapse_danger == true",
+          "to": "FAILED_MILL_COLLAPSE"
+        }
+      ]
+    },
+    "LYSSA_APPEARS": {
+      "journal_entry": "Lyssa's ghost appeared after the final memory. She spoke gently — forgivingly. She wants me to burn her father's noose rope at his grave so he can be 'freed' to join her. Something in her eyes doesn't match her words.",
+      "objectives": [
+        "Decide: Burn the rope at Corin's grave (trust Lyssa's request)",
+        "OR use the talisman to bring Corin's ghost to the cellar (force confrontation)"
+      ],
+      "transitions": [
+        {
+          "on": "flag.burned_corins_rope == true",
+          "to": "PATH_A_TRUST_GHOST"
+        },
+        {
+          "on": "flag.brought_corin_to_cellar == true",
+          "to": "CONFRONTATION"
+        }
+      ]
+    },
+    "PATH_A_TRUST_GHOST": {
+      "journal_entry": "I burned the rope at Corin's grave. The flame turned white, then black. And then the screaming started — not Corin's voice. Lyssa's. Not grief. Triumph. I made a terrible mistake.",
+      "consequence_chain": "wraith_maiden_chain",
+      "transitions": [
+        {
+          "on": "flag.wraith_maiden_loose == true",
+          "to": "COMPLETED_WRAITH_FREED"
+        }
+      ]
+    },
+    "COMPLETED_WRAITH_FREED": {
+      "journal_entry": "Lyssa didn't want reunion. She wanted revenge. Burning the rope didn't free Corin — it freed her rage. She's become a Wraith Maiden, and her madness spreads like fever through Ashvale. Parents are locking their children indoors. The cycle of fear Corin started is repeating. What have I done?",
+      "consequence_chain": "wraith_maiden_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "thornwood_druids": -20,
+            "ashvale_villagers": -30
+          }
+        }
+      ]
+    },
+    "CONFRONTATION": {
+      "journal_entry": "I brought Corin's ghost to the cellar where Lyssa died. He saw the scratches on the door. He heard the echo of her screaming. He wept. Then Lyssa appeared — not the gentle ghost from before. This one is furious. Raw. Real.",
+      "objectives": [
+        "Let Lyssa rage until she finds her own forgiveness (this will take time)",
+        "OR intervene and force premature reconciliation"
+      ],
+      "transitions": [
+        {
+          "on": "flag.lyssa_forgave_naturally == true",
+          "to": "COMPLETED_NATURAL_FORGIVENESS"
+        },
+        {
+          "on": "flag.forced_reconciliation == true",
+          "to": "COMPLETED_FORCED_PEACE"
+        }
+      ]
+    },
+    "COMPLETED_NATURAL_FORGIVENESS": {
+      "journal_entry": "Lyssa screamed for what felt like hours. Three days of agony compressed into three minutes of rage. Corin took every word. He didn't flinch. And when she was empty — truly empty — she looked at him and said, 'I know you were afraid.' They passed on together. The mill collapsed as their energy released, but the ground beneath feels clean. Healed.",
+      "consequence_chain": "mill_curse_broken_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "thornwood_druids": 25,
+            "ashvale_villagers": 15
+          }
+        }
+      ]
+    },
+    "COMPLETED_FORCED_PEACE": {
+      "journal_entry": "I couldn't bear to watch Lyssa suffer. I intervened — spoke words of peace, urged forgiveness before she was ready. Corin passed on. Lyssa... didn't. Not fully. Her rage went unspent, and it seeped into the soil like poison from an unhealed wound. The herb garden nearby has already begun to change. Elara will notice soon.",
+      "consequence_chain": "mill_curse_partial_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "thornwood_druids": 5,
+            "ashvale_villagers": 10
+          }
+        }
+      ]
+    },
+    "FAILED_MILL_COLLAPSE": {
+      "journal_entry": "The mill's structure gave way before I could complete the investigation. The ghosts remain trapped in the rubble — their story unfinished, their pain unresolved. Old Maren says the sounds will only grow louder now.",
+      "rewards": [
+        {
+          "reputation": {
+            "thornwood_druids": -10
+          }
+        }
+      ]
+    }
+  }
+}

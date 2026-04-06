@@ -1,0 +1,183 @@
+{
+  "id": "old_maren_final_scene",
+  "start_node": "the_bench",
+  "nodes": {
+    "the_bench": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Old Maren sits on her bench for the last time. The stone is warm from the afternoon sun, but she shivers anyway. Elara brings the blanket — the same blanket, every evening, draped over the same shoulders. Today the gesture carries a different weight.",
+      "next": "the_blanket"
+    },
+    "the_blanket": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Elara tucks the blanket around her without a word. Her hands linger on Maren's shoulders. She doesn't let go. She can't.",
+      "next": "branch_family_truth"
+    },
+    "branch_family_truth": {
+      "type": "branch",
+      "conditions": [
+        {
+          "check": "flag.maren_family_truth_revealed",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "if_true": "maren_knows_family",
+      "if_false": "maren_alone"
+    },
+    "maren_knows_family": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "calm",
+      "text": "Both my grandchildren are alive. Elara tends roots. The boy... the boy stopped poisoning. That's enough. That's enough for one old woman.",
+      "next": "maren_knows_family_2"
+    },
+    "maren_knows_family_2": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Her voice is steady. Her eyes are not. She looks at Elara with the knowledge of blood between them — grandmother and granddaughter, separated by thirty years of silence and a sacrifice that should have been a crime.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_died_knowing_family",
+          "value": true
+        }
+      ],
+      "next": "the_patterns"
+    },
+    "maren_alone": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "sad",
+      "text": "Tell the herbalist... tell Elara... the lullaby. She needs to know the lullaby. It's older than the village. Older than the pact. It's the song the druids sang when the forest was still learning to dream.",
+      "next": "maren_alone_2"
+    },
+    "maren_alone_2": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "She doesn't know why she's telling you this. She doesn't know the lullaby is a family heirloom — that Elara heard it in a crib she doesn't remember, sung by a father who was taken before she could form the memory of his face.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_lullaby_entrusted",
+          "value": true
+        },
+        {
+          "set_state": "flag.maren_died_not_knowing_family",
+          "value": true
+        }
+      ],
+      "next": "the_patterns"
+    },
+    "the_patterns": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Her hands move one last time. Tracing patterns in the dirt beside the bench — not the spiraling druid sigils she's drawn for seventy years. Something else. Letters. Slow, trembling, in the old alphabet that nobody reads anymore.",
+      "next": "the_names"
+    },
+    "the_names": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "E-L-A-R-A. M-A-R-E-N. Her grandchildren's names. Written with hands that can't stop shaking. Written in the dirt where she's spent her whole life listening to roots.",
+      "next": "branch_player_promised"
+    },
+    "branch_player_promised": {
+      "type": "branch",
+      "conditions": [
+        {
+          "check": "flag.promised_to_stay_with_maren",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "if_true": "player_stays",
+      "if_false": "maren_fading"
+    },
+    "player_stays": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You sit beside her. She asked you to stay and you stayed. Her hand finds yours — cold fingers wrapping around warm ones. She doesn't speak. She doesn't need to. The bench holds both of you while the sun moves across the sky.",
+      "next": "maren_fading"
+    },
+    "maren_fading": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Her breathing slows. Not the ragged gasping of illness — something gentler, like a tide going out. The roots beneath the bench pulse with each breath she takes, dimmer each time, as if her heartbeat and the forest's are synchronized for this one final exchange.",
+      "next": "maren_hands_still"
+    },
+    "maren_hands_still": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Her hands, stained brown from decades of soil communion, go still. The fingers that traced ten thousand druid patterns in the dirt relax. The old alphabet fades as the breeze touches the letters she wrote. E-L-A-R-A. M-A-R-E-N. The wind erases them within the hour.",
+      "next": "roots_go_dark"
+    },
+    "roots_go_dark": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The roots beneath her bench pulse once — bright, warm, a final surge of amber light that floods the channels east toward thirteen children who will never know the price of their survival — and then go dark.",
+      "next": "final_narration"
+    },
+    "final_narration": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The last druid of the Thornwood Circle has returned to the roots. She did not have to be given. She was simply... reclaimed.",
+      "triggers": [
+        {
+          "set_state": "npc.old_maren.alive",
+          "value": false
+        },
+        {
+          "set_state": "flag.old_maren_died_from_choice",
+          "value": true
+        },
+        {
+          "set_state": "flag.witnessed_maren_death",
+          "value": true
+        }
+      ],
+      "next": "branch_knowledge_check"
+    },
+    "branch_knowledge_check": {
+      "type": "branch",
+      "conditions": [
+        {
+          "check": "flag.counter_rite_taught",
+          "op": "!=",
+          "value": true
+        }
+      ],
+      "if_true": "knowledge_lost",
+      "if_false": "end"
+    },
+    "knowledge_lost": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "With her passing, knowledge dies. The counter-rite she carried — the only tool that could have unmade the pact from within — is gone. The druidfire ritual, older than the village itself, exists now only in root-memory where no human hand can reach it. What the roots take, the roots keep.",
+      "triggers": [
+        {
+          "set_state": "flag.counter_rite_knowledge_lost",
+          "value": true
+        },
+        {
+          "set_state": "flag.druidfire_knowledge_lost",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

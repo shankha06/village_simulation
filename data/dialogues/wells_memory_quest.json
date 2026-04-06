@@ -1,0 +1,652 @@
+{
+  "id": "wells_memory_quest",
+  "start_node": "elara_at_well_night",
+  "nodes": {
+    "elara_at_well_night": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Elara is crouched beside the well, her hand pressed flat against the stone rim. Her lips move silently. The new moon hangs dark overhead — the sky is nothing but stars and the faint glow of root-light beneath the soil.",
+      "triggers": [
+        {
+          "set_state": "flag.elara_discovered_well_communion",
+          "value": true
+        }
+      ],
+      "next": "elara_explains_1"
+    },
+    "elara_explains_1": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "intense",
+      "text": "Good. You came. Close the lantern — firelight interferes. Listen. Put your hand here, on the stone. Feel that?",
+      "next": "player_feels_vibration"
+    },
+    "player_feels_vibration": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The stone hums beneath your palm. Not warmth, not cold — a vibration, like a voice pitched too low to hear. Something is moving deep beneath the well.",
+      "next": "elara_explains_2"
+    },
+    "elara_explains_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "intense",
+      "text": "The well isn't just water. It's a channel. Aldric built it above a root junction — the place where the Heartwood's deepest tendrils converge. During the new moon, when the forest's attention turns inward, it transmits. I've been hearing whispers for weeks.",
+      "next": "elara_explains_3"
+    },
+    "elara_explains_3": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "Not words, exactly. Impressions. Fragments. Like reaching into a river and catching fish with your bare hands — most of it slips through. But tonight, if I drink deeply and hold on... I think I can see everything the roots remember.",
+      "next": "elara_explains_4"
+    },
+    "elara_explains_4": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "The antidote. My father knew it — he spent years learning the forest's chemistry before he... before they took him. It's still down there, encoded in the root memory. I just need to go deep enough to find it.",
+      "next": "elara_explains_risk"
+    },
+    "elara_explains_risk": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "fearful",
+      "text": "But the trance is total. I won't be able to move or speak or defend myself until dawn. Last time Old Maren tried this, she was under for three days. I need someone to stand watch. Wolves have been circling the village. And... there are other things in the dark now. Things the roots have drawn up.",
+      "next": "choice_main"
+    },
+    "choice_main": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "agree_to_guard",
+          "text": "I'll guard you. Drink when you're ready.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.agreed_to_guard_elara_trance",
+              "value": true
+            },
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 15
+            }
+          ],
+          "next": "elara_grateful_guard"
+        },
+        {
+          "id": "try_to_stop",
+          "text": "This is too dangerous. You don't know what's down there.",
+          "conditions": [],
+          "triggers": [],
+          "next": "elara_pushback_stop"
+        },
+        {
+          "id": "offer_to_drink",
+          "text": "Let me drink instead. If it's this dangerous, better I take the risk.",
+          "conditions": [],
+          "triggers": [],
+          "next": "elara_reaction_player_drink"
+        },
+        {
+          "id": "ask_about_old_maren",
+          "text": "Old Maren tried this? What happened to her?",
+          "conditions": [],
+          "triggers": [],
+          "next": "old_maren_story"
+        }
+      ]
+    },
+    "old_maren_story": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "She went under the summer my father disappeared. Looking for him, I think. She came back changed — gentler and harder at the same time. She won't talk about what she saw. Just says the roots remember everything, and some memories have teeth.",
+      "next": "old_maren_story_2"
+    },
+    "old_maren_story_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "But she survived. And she was alone. With you watching over me, I'll be fine. Probably.",
+      "next": "choice_main"
+    },
+    "elara_grateful_guard": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "happy",
+      "text": "Thank you. I know this sounds mad. An herbalist drinking mystical well water under a dark moon — if anyone from the university heard me, I'd lose my credentials. But this isn't the university. This is Ashvale, and people are dying, and the cure is RIGHT THERE beneath us.",
+      "next": "guard_preparation"
+    },
+    "guard_preparation": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "I need to prepare. Salt circle for the threshold spirits — don't laugh, I've seen what they do to the unwarded. Comfrey compress for when the shaking starts. And this.",
+      "next": "guard_preparation_2"
+    },
+    "guard_preparation_2": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "She pulls a small knife from her belt and offers it handle-first.",
+      "next": "guard_preparation_3"
+    },
+    "guard_preparation_3": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "fearful",
+      "text": "If something goes wrong — if I start bleeding from my eyes or speaking in a voice that isn't mine — cut my hand. The pain should pull me out. Don't let me drown in there.",
+      "next": "night_begins"
+    },
+    "night_begins": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Elara drinks deeply from the well. For a moment nothing happens. Then her eyes roll back, her body goes rigid, and she crumples to the ground beside the stone rim. The night begins.",
+      "triggers": [
+        {
+          "set_state": "quest.wells_memory.night_watch_started",
+          "value": true
+        },
+        {
+          "start_event": "well_night_watch"
+        }
+      ],
+      "next": "night_watch_1"
+    },
+    "night_watch_1": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "First hour. Elara breathes shallow and fast, like a dreaming dog. Wolves howl in the Thornwood — close enough that you can count them. Three. No, four. The root-light beneath the soil pulses in time with her breathing.",
+      "next": "night_watch_2"
+    },
+    "night_watch_2": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Second hour. Shadows pool at the edge of the salt circle. They don't cross it, but they press against it — you can see the salt grains trembling. Elara's lips move. She whispers numbers. Dosages. Latin names for plants that haven't grown here in thirty years.",
+      "next": "night_watch_3"
+    },
+    "night_watch_3": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Third hour. She convulses. Her back arches off the ground and she SCREAMS — a raw, animal sound that sends the wolves silent. Then a name, clear as breaking glass:",
+      "next": "night_watch_scream"
+    },
+    "night_watch_scream": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "anguished",
+      "text": "SILAS! Father — FATHER, I can see you — don't walk into the trees, PLEASE don't walk into the trees —",
+      "next": "night_watch_choice"
+    },
+    "night_watch_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "hold_steady",
+          "text": "[Stay at your post] She said not to interfere unless she's bleeding.",
+          "conditions": [],
+          "triggers": [],
+          "next": "night_watch_4"
+        },
+        {
+          "id": "pull_her_out",
+          "text": "[Cut her hand] This has gone too far. I'm pulling her out.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_stopped_elara_trance",
+              "value": true
+            }
+          ],
+          "next": "stopped_trance"
+        }
+      ]
+    },
+    "night_watch_4": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Fourth hour. The screaming stops. Elara weeps silently, tears streaming down motionless cheeks. The shadows retreat. Something large moves through the Thornwood — you hear branches snapping — but it doesn't come closer. The salt holds. You hold.",
+      "next": "night_watch_dawn"
+    },
+    "night_watch_dawn": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Dawn. The first grey light touches the well stones and Elara gasps — a drowning person breaking the surface. She sits up, shaking, covered in dew and salt. Her eyes are red but clear. She looks at you as if seeing you for the first time.",
+      "next": "elara_emerges"
+    },
+    "elara_emerges": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "I saw him. My father. He was... he was singing to me. To a baby. And there was a boy — a small boy, maybe four years old. He gave the boy to men in grey robes. Church missionaries. He said a name but the memory... it distorted. Like the roots were protecting it.",
+      "next": "elara_revelation"
+    },
+    "elara_revelation": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "intense",
+      "text": "But I saw the boy's face. I KNOW that face. I see it every Sunday at the chapel, older now, wearing vestments and preaching about divine punishment.",
+      "next": "elara_revelation_2"
+    },
+    "elara_revelation_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "anguished",
+      "text": "Brother Maren is my BROTHER. Silas Maren was our father. The priest has been living in this village for two months and he didn't — he MUST know. He must have recognized grandmother. Why didn't he say anything?",
+      "triggers": [
+        {
+          "set_state": "flag.elara_knows_brother_from_well",
+          "value": true
+        },
+        {
+          "set_state": "flag.elara_well_trance_complete",
+          "value": true
+        },
+        {
+          "set_state": "flag.elara_learned_antidote",
+          "value": true
+        }
+      ],
+      "next": "elara_antidote_info"
+    },
+    "elara_antidote_info": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "And the antidote — I have it. Every root, every proportion, every step. My father spent years decoding the Heartwood's chemistry. The cure for nightcap poisoning was his life's work. It's in my head now, all of it, like I studied it myself.",
+      "next": "elara_post_trance_choice"
+    },
+    "elara_post_trance_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "ask_about_brother",
+          "text": "What are you going to do about Brother Maren?",
+          "conditions": [],
+          "triggers": [],
+          "next": "elara_maren_intent"
+        },
+        {
+          "id": "focus_antidote",
+          "text": "The antidote first. People are dying while we talk.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "elara_agrees_antidote_first"
+        }
+      ]
+    },
+    "elara_maren_intent": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "I'm going to look him in the eye and ask him why he abandoned his family. Why he came back wearing the Church's colors. Why he let grandmother suffer alone for thirty years. And then I'm going to show him father's compass and watch his faith crack.",
+      "next": "end_protected"
+    },
+    "elara_agrees_antidote_first": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "You're right. You're right. The living first, the dead later. I need moonpetal, blackroot, and three drops of warden sap. Help me gather them and I can brew it by nightfall.",
+      "triggers": [
+        {
+          "set_state": "flag.antidote_gathering_started",
+          "value": true
+        }
+      ],
+      "next": "end_protected"
+    },
+    "end_protected": {
+      "type": "end",
+      "triggers": [
+        {
+          "set_state": "quest.wells_memory.state",
+          "value": "PROTECTED_TRANCE"
+        }
+      ]
+    },
+    "stopped_trance": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You slash the knife across Elara's palm. She gasps, lurches upright, and for a terrible second her eyes are completely white — no iris, no pupil, just blank milk. Then color floods back and she stares at the blood on her hand.",
+      "next": "stopped_trance_2"
+    },
+    "stopped_trance_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "What did you do. What did you DO.",
+      "next": "stopped_trance_3"
+    },
+    "stopped_trance_3": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "I was THERE. I could see him — my father, in the roots, dreaming. He was trying to tell me something. A name. A formula. And you RIPPED me out of it because, what? I screamed? People scream in their sleep every night. It doesn't mean they're dying.",
+      "next": "stopped_trance_choice"
+    },
+    "stopped_trance_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "defend_action",
+          "text": "You were convulsing. Your eyes were rolling back. I made a call.",
+          "conditions": [],
+          "triggers": [],
+          "next": "elara_cold_response"
+        },
+        {
+          "id": "apologize",
+          "text": "I'm sorry. I panicked. Can you try again?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 5
+            }
+          ],
+          "next": "elara_cant_retry"
+        }
+      ]
+    },
+    "elara_cold_response": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "You think I can't handle the truth about my own father? You think I need protecting from KNOWLEDGE? I've been studying poisons since I was fourteen. I've watched children die from bad water. I don't need a guardian who decides for me when I've had enough.",
+      "next": "stopped_aftermath"
+    },
+    "elara_cant_retry": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "The new moon is over. The channel is closing — I can feel it fading. The next one is a month away, and by then... by then more people will be dead. I got fragments. Pieces of the antidote formula. It might be enough. It has to be enough.",
+      "next": "stopped_aftermath"
+    },
+    "stopped_aftermath": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "I saw enough to know the general structure of the antidote. But the proportions — the exact dosages — those were in the deeper memories. The ones you pulled me from. I'll have to guess. And in herbalism, guessing kills people.",
+      "triggers": [
+        {
+          "set_state": "flag.elara_incomplete_knowledge",
+          "value": true
+        },
+        {
+          "set_state": "flag.elara_furious_at_player",
+          "value": true
+        }
+      ],
+      "next": "end_stopped"
+    },
+    "end_stopped": {
+      "type": "end",
+      "triggers": [
+        {
+          "set_state": "quest.wells_memory.state",
+          "value": "STOPPED_BY_PLAYER"
+        }
+      ]
+    },
+    "elara_reaction_player_drink": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "fearful",
+      "text": "You? You don't have the training. The trance requires an herbalist's discipline — you need to know what you're looking for or the memories will drown you. You'd be swimming blind in thirty years of root-memory.",
+      "next": "player_drink_choice"
+    },
+    "player_drink_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "insist_drink",
+          "text": "[Drink from the well] I'll take my chances. You're too valuable to lose.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_drank_from_well",
+              "value": true
+            }
+          ],
+          "next": "player_drinks"
+        },
+        {
+          "id": "back_down",
+          "text": "You're right. This is your area. I'll stand guard.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.agreed_to_guard_elara_trance",
+              "value": true
+            },
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "elara_grateful_guard"
+        }
+      ]
+    },
+    "player_drinks": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You grab the bucket before Elara can stop you. The water is ice-cold and tastes of iron and earth and something older — something that has no business being in water. Elara shouts your name but it's already fading, along with the stars, the well, and everything else.",
+      "triggers": [
+        {
+          "start_dialogue": "wells_memory_trance"
+        }
+      ],
+      "next": "player_emerges"
+    },
+    "player_emerges": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Dawn. You're lying on wet stone. Every muscle aches. The world looks different — you can see faint luminous threads in the soil, tracing paths between roots. The forest's heartbeat pulses at the edge of hearing. Elara is sitting across from you, arms folded, face unreadable.",
+      "next": "elara_after_player_trance"
+    },
+    "elara_after_player_trance": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "You were under for six hours. You screamed for four of them. I had to fight off a shadow-thing with a salt-stick and a prayer I don't believe in. So. What did you see? What did you steal from me?",
+      "next": "player_report_choice"
+    },
+    "player_report_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "tell_everything",
+          "text": "I saw Silas. Your father. He had two children — you and a boy he gave to the Church.",
+          "conditions": [],
+          "triggers": [],
+          "next": "elara_devastated_told"
+        },
+        {
+          "id": "withhold_info",
+          "text": "Fragments. Root patterns. Nothing useful about the antidote. I'm sorry.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_lied_about_trance",
+              "value": true
+            }
+          ],
+          "next": "elara_suspicious"
+        },
+        {
+          "id": "tell_partial",
+          "text": "I found the antidote formula. But the personal memories... those are yours. I'll tell you when you're ready.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "elara_begrudging_respect"
+        }
+      ]
+    },
+    "elara_devastated_told": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "anguished",
+      "text": "A boy. A brother. The Church... Brother Maren? No. No, that's — that can't be right. The priest is my — he arrived two months ago and he looked at me and there was NOTHING. No recognition. No warmth. My own brother looked at me like a stranger.",
+      "triggers": [
+        {
+          "set_state": "flag.player_has_well_knowledge",
+          "value": true
+        },
+        {
+          "set_state": "flag.elara_resentful",
+          "value": true
+        },
+        {
+          "set_state": "flag.player_carries_silas_fragment",
+          "value": true
+        },
+        {
+          "set_state": "flag.elara_knows_brother_from_player",
+          "value": true
+        }
+      ],
+      "next": "end_player_drank"
+    },
+    "elara_suspicious": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "Nothing useful. You drank from a root junction on the new moon and saw NOTHING USEFUL. You're either lying or you're an idiot. Either way, we've wasted the new moon and I'll have to wait another month while people die.",
+      "triggers": [
+        {
+          "set_state": "flag.player_has_well_knowledge",
+          "value": true
+        },
+        {
+          "set_state": "flag.elara_resentful",
+          "value": true
+        },
+        {
+          "set_state": "flag.player_carries_silas_fragment",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": -15
+        }
+      ],
+      "next": "end_player_drank"
+    },
+    "elara_begrudging_respect": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "The formula. You got the formula? Then it wasn't a complete waste. But there ARE personal memories — I can see it in your face. Something about my father. Something that hurt. Fine. Tell me when you think I've earned the right to know about my own family.",
+      "triggers": [
+        {
+          "set_state": "flag.player_has_well_knowledge",
+          "value": true
+        },
+        {
+          "set_state": "flag.elara_resentful",
+          "value": true
+        },
+        {
+          "set_state": "flag.player_carries_silas_fragment",
+          "value": true
+        }
+      ],
+      "next": "end_player_drank"
+    },
+    "end_player_drank": {
+      "type": "end",
+      "triggers": [
+        {
+          "set_state": "quest.wells_memory.state",
+          "value": "PLAYER_DRANK_INSTEAD"
+        }
+      ]
+    },
+    "elara_pushback_stop": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "Too dangerous? Do you know what's dangerous? Watching a village die one well-bucket at a time. I've buried two patients this week. A CHILD is showing symptoms. Don't lecture me about danger when I can see death from my kitchen window.",
+      "next": "stop_choice_2"
+    },
+    "stop_choice_2": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "relent_guard",
+          "text": "All right. I'll guard you. But if something goes wrong, I'm pulling you out.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.agreed_to_guard_elara_trance",
+              "value": true
+            },
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "elara_grateful_guard"
+        },
+        {
+          "id": "insist_no",
+          "text": "I won't be part of this. Find someone else.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.refused_elara_trance",
+              "value": true
+            },
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": -25
+            }
+          ],
+          "next": "elara_alone_decision"
+        }
+      ]
+    },
+    "elara_alone_decision": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "Then I'll do it alone. I've been alone my whole life — one more night won't kill me. Probably.",
+      "triggers": [
+        {
+          "set_state": "flag.elara_will_attempt_alone",
+          "value": true
+        }
+      ],
+      "next": "end_refused"
+    },
+    "end_refused": {
+      "type": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

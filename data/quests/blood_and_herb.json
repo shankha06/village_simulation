@@ -1,0 +1,262 @@
+{
+  "id": "blood_and_herb",
+  "name": "Blood and Herb",
+  "description": "The consequences of the well's memory unfold. What Elara learned — or failed to learn — determines whether she saves lives or destroys them.",
+  "giver": "elara",
+  "region": "ashvale",
+  "tags": [
+    "main_quest",
+    "moral_choice",
+    "consequence",
+    "elara_chain_layer_2"
+  ],
+  "priority": 14,
+  "prerequisites": [
+    "quest.wells_memory.state != UNKNOWN",
+    "quest.wells_memory.state != DISCOVERED",
+    "quest.wells_memory.state != ACTIVE"
+  ],
+  "states": {
+    "UNKNOWN": {
+      "transitions": [
+        {
+          "on": "flag.elara_knows_brother_from_well == true",
+          "to": "ELARA_CONFRONTS_MAREN"
+        },
+        {
+          "on": "flag.elara_incomplete_knowledge == true",
+          "to": "FLAWED_ANTIDOTE"
+        },
+        {
+          "on": "flag.player_has_well_knowledge == true",
+          "to": "ELARA_RESENTS"
+        }
+      ]
+    },
+    "ELARA_CONFRONTS_MAREN": {
+      "journal_entry": "Elara knows the truth — Brother Maren is her brother. She's gone to the chapel to confront him. I should follow. This won't end well.",
+      "objectives": [
+        "Follow Elara to the Chapel of Ashen Light",
+        "Witness the confrontation"
+      ],
+      "transitions": [
+        {
+          "on": "flag.maren_poisoned_elara == true",
+          "to": "ELARA_POISONED"
+        }
+      ]
+    },
+    "ELARA_POISONED": {
+      "journal_entry": "Maren panicked and poisoned Elara with concentrated nightcap. She's dying. The man who poisoned her is weeping over her body. I need to find a cure — fast.",
+      "objectives": [
+        "Save Elara — find a cure for concentrated nightcap poisoning"
+      ],
+      "transitions": [
+        {
+          "on": "flag.antidote_brewed_correctly == true",
+          "to": "CURED_BY_ANTIDOTE"
+        },
+        {
+          "on": "flag.talisman_used_for_cure == true",
+          "to": "CURED_BY_DRUID"
+        },
+        {
+          "on": "flag.maren_gave_cure_formula == true",
+          "to": "CURED_BY_BROTHER"
+        },
+        {
+          "on": "flag.elara_cure_timer_expired == true",
+          "to": "ELARA_DIES_FROM_POISON"
+        },
+        {
+          "on": "npc.elara.alive == false",
+          "to": "ELARA_DIES_FROM_POISON"
+        }
+      ]
+    },
+    "CURED_BY_ANTIDOTE": {
+      "journal_entry": "I brewed the antidote from Elara's own formula — the one she pulled from the well trance. The irony isn't lost on either of us. She'll live. But she wants Maren to pay for what he did.",
+      "consequence_chain": "elara_wants_revenge_chain",
+      "rewards": [
+        {
+          "set_state": "flag.elara_wants_maren_destroyed",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": 15
+        },
+        {
+          "set_state": "npc.elara.health",
+          "value": 25.0
+        }
+      ]
+    },
+    "CURED_BY_DRUID": {
+      "journal_entry": "The druid's talisman channeled enough of the forest's healing to purge the nightcap from Elara's blood. The talisman crumbled to ash in my hands. Whatever test the Warden had planned for me, I'll have to face it without that edge.",
+      "consequence_chain": "talisman_sacrifice_chain",
+      "rewards": [
+        {
+          "set_state": "flag.talisman_sacrificed_for_elara",
+          "value": true
+        },
+        {
+          "set_state": "player.has_item.druid_talisman",
+          "value": false
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": 30
+        },
+        {
+          "set_state": "npc.elara.health",
+          "value": 20.0
+        }
+      ]
+    },
+    "CURED_BY_BROTHER": {
+      "journal_entry": "Maren gave me the antidote formula — one he learned at the seminary, designed specifically for nightcap poisoning. The Church teaches its priests to poison AND to cure. He saved the sister he nearly killed. In exchange, I promised to protect his secret. The weight of that promise is already crushing.",
+      "consequence_chain": "maren_redemption_chain",
+      "rewards": [
+        {
+          "set_state": "flag.maren_secret_protected",
+          "value": true
+        },
+        {
+          "set_state": "flag.elara_saved_by_brother",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": 10
+        },
+        {
+          "set_state": "npc.brother_maren.disposition",
+          "delta": 25
+        },
+        {
+          "set_state": "npc.elara.health",
+          "value": 28.0
+        }
+      ]
+    },
+    "ELARA_DIES_FROM_POISON": {
+      "journal_entry": "Elara is dead. Poisoned by her own brother in a chapel built on lies. Maren kneels beside her body, repeating her name like a prayer that's come too late. The antidote formula dies with her — unless I carry it from the well.",
+      "consequence_chain": "elara_death_chain",
+      "rewards": [
+        {
+          "set_state": "npc.elara.alive",
+          "value": false
+        },
+        {
+          "set_state": "flag.elara_killed_by_maren",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.disposition",
+          "delta": -50
+        },
+        {
+          "set_state": "npc.brother_maren.memory.killed_sister",
+          "value": true
+        }
+      ]
+    },
+    "FLAWED_ANTIDOTE": {
+      "journal_entry": "Elara is working from incomplete knowledge — fragments pulled from a trance I cut short. She's brewing an antidote with guessed proportions. She says it's the best she can do. Three patients are waiting.",
+      "objectives": [
+        "Help Elara gather ingredients for the incomplete antidote",
+        "Watch as she administers treatment to the three sickest villagers"
+      ],
+      "transitions": [
+        {
+          "on": "flag.flawed_antidote_administered == true",
+          "to": "PATIENT_DIES"
+        }
+      ]
+    },
+    "PATIENT_DIES": {
+      "journal_entry": "Two recovered. The third — a girl named Brin, Tomas's daughter — did not. Elara won't leave her cottage.",
+      "consequence_chain": "brin_death_chain",
+      "rewards": [
+        {
+          "set_state": "flag.elara_killed_patient",
+          "value": true
+        },
+        {
+          "set_state": "flag.brin_dead",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": -20
+        },
+        {
+          "set_state": "npc.tomas.disposition",
+          "delta": -60
+        },
+        {
+          "set_state": "npc.elara.memory.killed_brin",
+          "value": true
+        }
+      ]
+    },
+    "ELARA_RESENTS": {
+      "journal_entry": "Elara is cold. She brews remedies from what little she knows, but she watches me with an expression I can't read. She suspects I saw more than I'm telling.",
+      "objectives": [
+        "Continue the investigation while managing Elara's suspicion"
+      ],
+      "transitions": [
+        {
+          "on": "flag.family_truth_emerges_other_means == true",
+          "to": "TRUTH_EMERGES_LATER"
+        },
+        {
+          "on": "flag.player_confesses_trance_knowledge == true",
+          "to": "PLAYER_CONFESSES"
+        }
+      ]
+    },
+    "TRUTH_EMERGES_LATER": {
+      "journal_entry": "The truth about Silas, about Maren, about the family — it came out through Old Maren, or the compass, or some other crack in thirty years of secrets. And Elara knows I knew. She knows I drank from the well and kept it from her.",
+      "consequence_chain": "elara_betrayal_chain",
+      "rewards": [
+        {
+          "set_state": "flag.elara_betrayed_by_player",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": -40
+        },
+        {
+          "set_state": "npc.elara.memory.player_betrayed_trust",
+          "value": true
+        }
+      ]
+    },
+    "PLAYER_CONFESSES": {
+      "journal_entry": "I told Elara what I saw in the trance — her father, her brother, everything. She didn't take it well. But at least she heard it from me.",
+      "rewards": [
+        {
+          "set_state": "flag.player_confessed_well_knowledge",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": -15
+        },
+        {
+          "set_state": "npc.elara.memory.player_eventually_honest",
+          "value": true
+        }
+      ],
+      "transitions": [
+        {
+          "on": "flag.elara_processes_truth == true",
+          "to": "ELARA_CONFRONTS_MAREN"
+        }
+      ]
+    }
+  }
+}

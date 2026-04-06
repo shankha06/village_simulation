@@ -1,0 +1,140 @@
+{
+  "id": "elara_fate_chain",
+  "description": "Master chain connecting Elara's state across all three layers to endgame outcomes at the Heartwood communion.",
+  "evaluations": [
+    {
+      "id": "elara_can_bridge",
+      "description": "Elara serves as the human bridge to the Heartwood — best possible harmony ending.",
+      "conditions": [
+        "flag.elara_well_trance_complete == true",
+        "npc.elara.alive == true",
+        "npc.elara.disposition > 30"
+      ],
+      "effects": [
+        {
+          "set_state": "flag.elara_can_be_bridge",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "elara_demands_justice",
+      "description": "Elara demands Maren answer for poisoning her. Player must choose sides at the Heartwood.",
+      "conditions": [
+        "flag.elara_wants_maren_destroyed == true",
+        "npc.elara.alive == true"
+      ],
+      "effects": [
+        {
+          "set_state": "flag.elara_demands_choice",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "elara_guilt_withdrawal",
+      "description": "Elara killed Brin through incomplete knowledge. She refuses to participate in the Heartwood communion — too broken to trust herself with another life.",
+      "conditions": [
+        "flag.elara_killed_patient == true",
+        "npc.elara.alive == true"
+      ],
+      "effects": [
+        {
+          "set_state": "flag.elara_refuses_heartwood",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "elara_sabotage",
+      "description": "Elara learned the player stole her father's memories. She tells the Heartwood that humans cannot be trusted — actively undermining the renegotiation.",
+      "conditions": [
+        "flag.elara_betrayed_by_player == true",
+        "npc.elara.alive == true"
+      ],
+      "effects": [
+        {
+          "set_state": "flag.elara_sabotages_renegotiation",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "elara_dead_harmony_lost",
+      "description": "Elara is dead. No human has the root-knowledge or the Maren bloodline connection to serve as bridge. Harmony ending is impossible.",
+      "conditions": [
+        "npc.elara.alive == false"
+      ],
+      "effects": [
+        {
+          "set_state": "flag.harmony_ending_impossible",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "elara_scarred_but_willing",
+      "description": "Elara survived the solo trance scarred but intact. She can participate in the communion but at reduced effectiveness.",
+      "conditions": [
+        "flag.elara_scarred_by_trance == true",
+        "npc.elara.alive == true",
+        "npc.elara.disposition > 10"
+      ],
+      "effects": [
+        {
+          "set_state": "flag.elara_weakened_bridge",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "elara_talisman_bond",
+      "description": "The talisman sacrifice created a deep bond between Elara and the player. She'll follow them into the Heartwood without question.",
+      "conditions": [
+        "flag.talisman_sacrificed_for_elara == true",
+        "npc.elara.alive == true"
+      ],
+      "effects": [
+        {
+          "set_state": "flag.elara_unconditional_ally",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": 20
+        }
+      ]
+    },
+    {
+      "id": "elara_brother_complexity",
+      "description": "Elara was saved by the brother who poisoned her. She's torn between gratitude and rage — her emotional state is volatile at the Heartwood.",
+      "conditions": [
+        "flag.elara_saved_by_brother == true",
+        "npc.elara.alive == true"
+      ],
+      "effects": [
+        {
+          "set_state": "flag.elara_emotionally_volatile",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "player_silas_carrier",
+      "description": "The player carries Silas's fragment from the well. They can serve as a partial bridge themselves — but Elara's role is diminished.",
+      "conditions": [
+        "flag.player_carries_silas_fragment == true"
+      ],
+      "effects": [
+        {
+          "set_state": "flag.player_can_commune_with_heartwood",
+          "value": true
+        },
+        {
+          "set_state": "flag.elara_bridge_role_contested",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

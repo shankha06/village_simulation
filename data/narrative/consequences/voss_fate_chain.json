@@ -1,0 +1,174 @@
+{
+  "id": "voss_fate_chain",
+  "description": "The Iron Price — Layer 3 endgame flags. Every path through Voss's story feeds into the final battle and exodus calculations.",
+  "chains": [
+    {
+      "id": "voss_vengeance_aftermath",
+      "trigger_condition": "flag.voss_knows_draven_truth == true AND npc.commander_voss.alive == true AND flag.draven_killed_by_voss == true",
+      "consequences": [
+        {
+          "type": "immediate",
+          "effects": [
+            {"set_state": "flag.legion_revenge_army", "value": true},
+            {"set_state": "flag.voss_fights_suicidally", "value": true},
+            {"set_state": "world.region.ashvale.legion_threat_level", "delta": 30},
+            {"set_state": "npc.commander_voss.memory.justice_served", "value": true}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 2,
+          "effects": [
+            {"set_state": "flag.legion_mobilizing", "value": true},
+            {"set_state": "world.region.ashvale.defense_score", "delta": -15},
+            {"set_state": "npc.commander_voss.memory.no_regrets", "value": true}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 5,
+          "effects": [
+            {"set_state": "flag.legion_revenge_army_approaching", "value": true},
+            {"set_state": "flag.accelerated_invasion_timeline", "value": true}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voss_best_negotiator_path",
+      "trigger_condition": "flag.voss_lied_to_about_rivendale == true AND npc.commander_voss.alive == true",
+      "consequences": [
+        {
+          "type": "immediate",
+          "effects": [
+            {"set_state": "flag.voss_best_negotiator", "value": true},
+            {"set_state": "world.region.ashvale.ironmarch_terms_favorable", "value": true},
+            {"set_state": "world.region.ashvale.defense_score", "delta": 15}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voss_betrayed_collapse",
+      "trigger_condition": "flag.voss_lied_to_about_rivendale == true AND flag.voss_discovers_player_lied == true AND npc.commander_voss.alive == true",
+      "consequences": [
+        {
+          "type": "immediate",
+          "effects": [
+            {"set_state": "flag.voss_betrayed", "value": true},
+            {"set_state": "flag.voss_unreliable_in_battle", "value": true},
+            {"set_state": "flag.voss_best_negotiator", "value": false},
+            {"set_state": "world.region.ashvale.defense_score", "delta": -20},
+            {"set_state": "npc.commander_voss.memory.trust_destroyed", "value": true}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 1,
+          "effects": [
+            {"set_state": "flag.voss_soldiers_demoralized", "value": true},
+            {"set_state": "flag.iron_road_company_fractured", "value": true}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voss_restraint_ceasefire",
+      "trigger_condition": "flag.voss_knows_but_waits == true AND flag.draven_respects_voss == true",
+      "consequences": [
+        {
+          "type": "immediate",
+          "effects": [
+            {"set_state": "flag.ceasefire_possible", "value": true},
+            {"set_state": "flag.unique_endgame_negotiated_peace", "value": true},
+            {"set_state": "npc.commander_voss.memory.earned_enemy_respect", "value": true},
+            {"set_state": "npc.ironmarch_emissary.memory.respects_restraint", "value": true}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 3,
+          "effects": [
+            {"set_state": "flag.ceasefire_terms_drafted", "value": true},
+            {"set_state": "world.region.ashvale.ironmarch_ceasefire_window", "value": true}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voss_death_consequences",
+      "trigger_condition": "flag.voss_killed_by_draven == true",
+      "consequences": [
+        {
+          "type": "immediate",
+          "effects": [
+            {"set_state": "flag.no_mercenary_defense", "value": true},
+            {"set_state": "world.region.ashvale.defense_score", "delta": -25},
+            {"set_state": "flag.iron_road_company_leaderless", "value": true}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 1,
+          "effects": [
+            {"set_state": "flag.iron_road_soldiers_scatter", "value": true},
+            {"set_state": "world.region.ashvale.available_fighters", "delta": -20}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 3,
+          "effects": [
+            {"set_state": "flag.voss_funeral_event", "value": true}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voss_leads_exodus",
+      "trigger_condition": "npc.commander_voss.alive == true AND npc.commander_voss.disposition > 40",
+      "consequences": [
+        {
+          "type": "endgame",
+          "effects": [
+            {"set_state": "flag.voss_leads_exodus", "value": true},
+            {"set_state": "flag.exodus_has_military_escort", "value": true},
+            {"set_state": "world.region.ashvale.exodus_survival_chance", "delta": 30}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voss_stopped_aftermath",
+      "trigger_condition": "flag.stopped_voss_from_draven == true AND npc.commander_voss.alive == true",
+      "consequences": [
+        {
+          "type": "immediate",
+          "effects": [
+            {"set_state": "flag.voss_may_leave_ashvale", "value": true},
+            {"set_state": "npc.commander_voss.memory.betrayed_by_player", "value": true}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 2,
+          "conditions": ["npc.commander_voss.disposition < -10"],
+          "effects": [
+            {"set_state": "flag.voss_leaves_ashvale", "value": true},
+            {"set_state": "flag.no_mercenary_defense", "value": true},
+            {"set_state": "world.region.ashvale.defense_score", "delta": -20}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 2,
+          "conditions": ["npc.commander_voss.disposition >= -10"],
+          "effects": [
+            {"set_state": "flag.voss_stays_grudgingly", "value": true},
+            {"set_state": "npc.commander_voss.memory.unfinished_business", "value": true}
+          ]
+        }
+      ]
+    }
+  ]
+}

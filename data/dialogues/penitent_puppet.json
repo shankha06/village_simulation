@@ -1,0 +1,255 @@
+{
+  "id": "penitent_puppet",
+  "start_node": "start",
+  "conditions": [
+    {
+      "check": "flag.maren_is_puppet",
+      "op": "==",
+      "value": true
+    },
+    {
+      "check": "flag.church_army_approaching",
+      "op": "==",
+      "value": true
+    }
+  ],
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Brother Maren waits where you told him to wait. The chapel. His desk is clean — no drafts, no crumpled parchment. He writes his reports when you tell him to write them. He eats when you tell him to eat. He is the most obedient man in Ashvale, and the emptiest.",
+      "next": "maren_waits"
+    },
+    "maren_waits": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "hollow",
+      "text": "What do you need me to do now?",
+      "next": "player_orders"
+    },
+    "player_orders": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "write_report",
+          "text": "Write another false report. Delay the army.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.puppet_maren_writing_reports",
+              "value": true
+            }
+          ],
+          "next": "hollow_report"
+        },
+        {
+          "id": "order_sacrifice",
+          "text": "Go to the Heartwood. Offer yourself as sacrifice.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.puppet_maren_ordered_sacrifice",
+              "value": true
+            }
+          ],
+          "next": "ordered_sacrifice"
+        },
+        {
+          "id": "order_rite",
+          "text": "The counter-rite. Speak your truth at the Heartwood.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.puppet_maren_ordered_rite",
+              "value": true
+            }
+          ],
+          "next": "ordered_rite"
+        },
+        {
+          "id": "look_at_him",
+          "text": "[Look at what you've made of him. Really look.]",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_examined_puppet_maren",
+              "value": true
+            }
+          ],
+          "next": "mirror_moment"
+        }
+      ]
+    },
+    "hollow_report": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "hollow",
+      "text": "As you wish.",
+      "next": "hollow_report_2"
+    },
+    "hollow_report_2": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "He writes. The pen moves mechanically across the page. The lies are technically correct — the right details, the right tone — but they lack the careful desperation of a man fighting for something. These are the lies of a clerk, not a double agent. Sister Vesper will read them and sense the difference. A man who cares writes differently than a man who has stopped.",
+      "triggers": [
+        {
+          "set_state": "flag.church_army_delay_uncertain",
+          "value": true
+        },
+        {
+          "set_state": "flag.puppet_reports_weak",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "ordered_sacrifice": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "hollow",
+      "text": "The Heartwood. Yes. I'll go.",
+      "next": "ordered_sacrifice_2"
+    },
+    "ordered_sacrifice_2": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "He stands. No fear. No hesitation. No final look around the chapel that has been his home. A man told to die by the person holding his leash. He walks toward the door with the gait of someone crossing a room, not someone walking toward their death. You watch him go and feel something shift in your chest — something you do not want to name.",
+      "triggers": [
+        {
+          "set_state": "flag.puppet_sacrifice_in_progress",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "ordered_rite": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "hollow",
+      "text": "My truth. You want me to speak my truth. Which truth would you like? The one about the poison? The one about my father? The one about the old woman? Tell me which truth to speak and I'll speak it. I am very good at saying what I am told to say.",
+      "next": "ordered_rite_2"
+    },
+    "ordered_rite_2": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "There it is. The problem you did not foresee. The counter-rite requires freely given truth. And this man has nothing left that is freely given. You took his will when you took his secret. You cannot order someone to be free. You cannot compel someone to volunteer. The rite requires exactly the thing you destroyed when you made him your puppet.",
+      "triggers": [
+        {
+          "set_state": "flag.puppet_rite_paradox_revealed",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "mirror_moment": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You look at Brother Maren. Really look. The hollow eyes. The mechanical posture. The hands — Silas's hands, Old Maren's hands — lying flat on the desk, waiting to be told what to do with themselves. This is what the Church made of Silas: a willing sacrifice, compelled by duty and debt. This is what you have made of his son: a willing instrument, compelled by blackmail and fear.",
+      "next": "mirror_2"
+    },
+    "mirror_2": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The Church used Maren. You used Maren. The forest used Silas. Everyone uses the Maren bloodline. They are, generation after generation, the family that gets spent by other people's plans. And you have become another hand reaching into the same well.",
+      "next": "mirror_3"
+    },
+    "mirror_3": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "release_control",
+          "text": "I'm releasing you. No more orders. What you do next is your choice.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_released_puppet_maren",
+              "value": true
+            },
+            {
+              "set_state": "flag.maren_is_puppet",
+              "value": false
+            },
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": 20
+            },
+            {
+              "set_state": "flag.player_moral_vector_shift",
+              "delta": 15
+            }
+          ],
+          "next": "released"
+        },
+        {
+          "id": "continue_control",
+          "text": "[Turn away. You need him. Guilt is a luxury you can't afford.]",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_doubled_down_on_control",
+              "value": true
+            },
+            {
+              "set_state": "flag.player_moral_vector_shift",
+              "delta": -15
+            }
+          ],
+          "next": "doubled_down"
+        }
+      ]
+    },
+    "released": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Something flickers in his eyes. Not gratitude — it's too early for that. Confusion. The confusion of a dog whose leash has been dropped. He looks at his hands as though seeing them for the first time. Then at you. Then at the chapel door.",
+      "next": "released_2"
+    },
+    "released_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "vulnerable",
+      "text": "...Why?",
+      "next": "released_3"
+    },
+    "released_3": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "vulnerable",
+      "text": "I don't... I've been waiting for orders. I don't know what I am without them. The Church gave me orders. You gave me orders. What am I if no one is telling me what to do?",
+      "triggers": [
+        {
+          "set_state": "npc.brother_maren.memory.experienced_freedom",
+          "value": true
+        },
+        {
+          "set_state": "flag.maren_private_confession",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "doubled_down": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You turn away from the hollow man at the desk. From Silas's hands waiting to be told what to hold. From the eyes that once burned with faith and rage and now burn with nothing at all. You need him useful. Guilt is a luxury. You tell yourself this. You will keep telling yourself this until you believe it or until you can't.",
+      "triggers": [
+        {
+          "set_state": "npc.brother_maren.memory.player_chose_control_over_conscience",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

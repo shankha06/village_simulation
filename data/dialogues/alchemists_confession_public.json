@@ -1,0 +1,265 @@
+{
+  "id": "alchemists_confession_public",
+  "start_node": "start",
+  "conditions": [
+    {
+      "check": "flag.player_has_confession_evidence",
+      "op": "==",
+      "value": true
+    },
+    {
+      "check": "world.location",
+      "op": "==",
+      "value": "village_square"
+    }
+  ],
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You step into the village square with the Church orders in one hand and Maren's journal in the other. The midday crowd is thick — farmers, merchants, children playing near the well. The well he poisoned. You raise your voice.",
+      "next": "reading_orders"
+    },
+    "reading_orders": {
+      "type": "text",
+      "speaker": "player",
+      "portrait": "determined",
+      "text": "People of Ashvale! I hold in my hand orders bearing the seal of the Ashen Light. Orders given to the man you call Brother Maren. Orders to poison your water supply.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_publicly_exposed",
+          "value": true
+        }
+      ],
+      "next": "crowd_reaction_1"
+    },
+    "crowd_reaction_1": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Silence falls like a blade. Then murmuring. Then shouting. Faces turn toward the chapel. Someone is already running to fetch Maren. You see Harlan near the blacksmith — Silas's best friend, the man who carried the coffin — and his face goes white. Not shock. Recognition. The look of a man who always suspected but never wanted to be right.",
+      "next": "maren_dragged"
+    },
+    "maren_dragged": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "They drag Maren from the chapel. Two farmers grip his arms. He does not resist. His eyes find yours across the square and in them you see something you did not expect: relief. The secret is over. One way or another, the secret is over.",
+      "next": "reading_evidence"
+    },
+    "reading_evidence": {
+      "type": "text",
+      "speaker": "player",
+      "portrait": "determined",
+      "text": "Phase 1: Nightcap root in the primary water source. Progressive doses. Phase 2: Await weakening of populace. Phase 3: Signal cleansing force. These are his orders. In his own Church's hand.",
+      "next": "crowd_fury"
+    },
+    "crowd_fury": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The crowd erupts. A thrown stone clips Maren's temple. Blood runs down his cheek. He does not wipe it away. Greta is screaming about her dead chickens. A mother clutches her sick child and points at Maren with a shaking hand. The village's slow death has a face now, and the face is kneeling in the dirt.",
+      "next": "harlan_watches"
+    },
+    "harlan_watches": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Harlan pushes through the crowd. He stares down at Maren — Silas's son, the boy he once bounced on his knee before the Church took him. The boy who grew into the man who poisoned Silas's own village. Harlan's mouth opens. Closes. He turns away. He cannot look at the face that carries so much of his dead friend.",
+      "triggers": [
+        {
+          "set_state": "npc.harlan.memory.watched_maren_exposed",
+          "value": true
+        }
+      ],
+      "next": "maren_kneels"
+    },
+    "maren_kneels": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "broken",
+      "text": "I deserve this.",
+      "next": "maren_plea"
+    },
+    "maren_plea": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "broken",
+      "text": "But I stopped. Three weeks ago. I STOPPED. Look at the journal — the last three weeks of entries. I stopped adding the poison. I've been sending false reports. I chose this village over the Church. I chose —",
+      "next": "crowd_doesnt_listen"
+    },
+    "crowd_doesnt_listen": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "No one listens. Another stone. A fist. The crowd is beyond reason now — months of dying crops, sick children, buried livestock compressed into a single target kneeling in the dust. Maren's lip splits. He tastes his own blood and does not spit it out.",
+      "next": "old_maren_appears"
+    },
+    "old_maren_appears": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "At the edge of the crowd, a hunched figure in a threadbare shawl. Old Maren. She arrived without anyone noticing — the way she always does, quiet as root growth. She stands perfectly still, watching the young priest bleed in the square. Her grandson. She knows. She has always known. You can see it in the way her hands grip the shawl — Silas's hands, the same hands Brother Maren inherited, white-knuckled and trembling.",
+      "triggers": [
+        {
+          "set_state": "flag.old_maren_witnessed_exposure",
+          "value": true
+        },
+        {
+          "set_state": "npc.old_maren.memory.watched_grandson_beaten",
+          "value": true
+        }
+      ],
+      "next": "old_maren_silence"
+    },
+    "old_maren_silence": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Old Maren says nothing. She does not cry out. She does not push through the crowd to shield him. She does not claim him as blood. She watches her grandson beaten in the village square where her son once played as a child, and she turns. Slowly. Carefully. And she walks away. Her back does not bend any more than it already does. But something in her gait has changed — something has been removed from her, load-bearing and invisible, and the structure left behind is not enough to stand on for long.",
+      "triggers": [
+        {
+          "set_state": "flag.old_maren_abandoned_grandson",
+          "value": true
+        },
+        {
+          "set_state": "npc.old_maren.disposition",
+          "delta": -30
+        }
+      ],
+      "next": "player_choice_aftermath"
+    },
+    "player_choice_aftermath": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "stop_beating",
+          "text": "ENOUGH! He'll stand trial. Not this.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_stopped_mob",
+              "value": true
+            },
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "mob_stopped"
+        },
+        {
+          "id": "let_continue",
+          "text": "[Say nothing. Let the village have its justice.]",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_allowed_mob_justice",
+              "value": true
+            },
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": -20
+            },
+            {
+              "set_state": "flag.player_moral_vector_shift",
+              "delta": -10
+            }
+          ],
+          "next": "mob_continues"
+        },
+        {
+          "id": "follow_old_maren",
+          "text": "[Leave Maren to the crowd. Follow Old Maren.]",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.followed_old_maren_after_exposure",
+              "value": true
+            }
+          ],
+          "next": "follow_grandmother"
+        }
+      ]
+    },
+    "mob_stopped": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Your voice cuts through the fury. The crowd hesitates. Harlan steps forward — not to strike, but to pull Maren to his feet. 'The cell,' he says. 'Like we do it proper. Not like animals.' They drag Maren to the village cell. His eyes meet yours one last time. Gratitude. And something else. The knowledge that you chose to destroy him publicly, then chose to limit the destruction. He will remember both choices.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_imprisoned",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.memory.player_stopped_mob",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "mob_continues": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "They beat him until Harlan finally intervenes — not out of mercy but practicality. 'Dead men can't answer questions.' They drag what's left of Brother Maren to the village cell. He is conscious but barely. Through swollen eyes he looks at you and says nothing. There is nothing left to say between the two of you.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_imprisoned",
+          "value": true
+        },
+        {
+          "set_state": "flag.maren_badly_beaten",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.memory.player_watched_beating",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "follow_grandmother": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You find Old Maren on the bench at the village edge, facing the Thornwood. She is not crying. Her hands — Silas's hands, Maren's hands — lie flat on her knees, perfectly still. She speaks without turning around.",
+      "next": "old_maren_speaks"
+    },
+    "old_maren_speaks": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "hollow",
+      "text": "I knew what he was the moment he arrived. The walk. The way he tilts his head when he listens. Silas did that. I said nothing because I wanted to be wrong. I wanted the boy to be a stranger.",
+      "triggers": [
+        {
+          "set_state": "flag.old_maren_confession_after_exposure",
+          "value": true
+        },
+        {
+          "set_state": "npc.old_maren.memory.confessed_about_grandson",
+          "value": true
+        }
+      ],
+      "next": "old_maren_final"
+    },
+    "old_maren_final": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "hollow",
+      "text": "The forest took my son. The Church took my grandson and made him into a weapon aimed at everything his father died protecting. And I sat in my cottage and said nothing. I am the worst of all of us. Now leave me alone. I need to listen to the trees.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_imprisoned",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

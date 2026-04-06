@@ -1,0 +1,312 @@
+{
+  "id": "flawed_antidote_death",
+  "start_node": "elara_treating",
+  "nodes": {
+    "elara_treating": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Elara's cottage has become a field hospital. Three pallets line the walls. The sickest villagers — those too far gone for clean water and rest — lie wrapped in wool blankets. Elara moves between them with a bowl of greenish liquid, her face tight with concentration.",
+      "next": "elara_explains_treatment"
+    },
+    "elara_explains_treatment": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "The formula is close. I can feel it — the structure is right, the base compounds match what the roots showed me. But the proportions... I had to estimate. The deeper memories, the exact dosages — those were in the part of the trance I didn't finish.",
+      "next": "elara_admits_risk"
+    },
+    "elara_admits_risk": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "fearful",
+      "text": "If I had another month — another new moon — I could be certain. But Aldric is coughing blood. Mira can't keep food down. And Brin... Brin is fourteen and she can't lift her own head. I don't have a month. I have NOW.",
+      "next": "player_choice_treatment"
+    },
+    "player_choice_treatment": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "support_elara",
+          "text": "You've done everything you can. Give them the treatment.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.memory.player_supported_decision",
+              "value": true
+            }
+          ],
+          "next": "treatment_begins"
+        },
+        {
+          "id": "urge_caution",
+          "text": "If you're not certain, maybe we should wait. Find another way.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.memory.player_urged_caution",
+              "value": true
+            }
+          ],
+          "next": "elara_refuses_wait"
+        },
+        {
+          "id": "offer_to_test",
+          "text": "Test it on me first. I'm healthy — if something's wrong, you'll see the side effects before they hit someone fragile.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 15
+            },
+            {
+              "set_state": "npc.elara.memory.player_offered_self_test",
+              "value": true
+            }
+          ],
+          "next": "elara_considers_test"
+        }
+      ]
+    },
+    "elara_refuses_wait": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "Wait for WHAT? Another child to stop breathing? I've run the calculations. The formula is eighty percent — maybe eighty-five percent — right. In herbalism, that's usually enough. Usually. I'm giving them the treatment.",
+      "next": "treatment_begins"
+    },
+    "elara_considers_test": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "That's... noble. And stupid. The antidote interacts with the poison already in the bloodstream. Testing it on a healthy person would tell me nothing. I appreciate the gesture. But this has to go to the patients or not at all.",
+      "next": "treatment_begins"
+    },
+    "treatment_begins": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Elara administers the antidote to all three patients. She is meticulous — same dosage, same method, same quiet murmur of encouragement. Then she sits down, pulls her knees to her chest, and waits.",
+      "triggers": [
+        {
+          "set_state": "flag.flawed_antidote_administered",
+          "value": true
+        }
+      ],
+      "next": "first_hours"
+    },
+    "first_hours": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "First four hours. Aldric's color improves. His breathing deepens. He actually asks for water — the first thing he's asked for in days. Mira stops vomiting. She sleeps. Real sleep, not the shallow gasps of the poisoned. Two patients. Two recoveries. Elara allows herself a small, cautious smile.",
+      "next": "brin_doesnt_respond"
+    },
+    "brin_doesnt_respond": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Brin doesn't respond. Her breathing stays shallow. Her skin stays grey. The antidote sits in her stomach like water in dead soil — absorbed but unused. Elara checks her pulse. Checks again. Adjusts the dosage. Waits.",
+      "next": "elara_tries_everything"
+    },
+    "elara_tries_everything": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "fearful",
+      "text": "The dosage. It's the dosage — she's smaller than the others, I should have adjusted for body weight. Let me recalculate. Let me try a secondary compound. Moonpetal extract as a catalyst, maybe, or — or crushed willowbark to boost absorption —",
+      "next": "elara_escalates"
+    },
+    "elara_escalates": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "She works through the night. Every herb in her stores. Every formula she can improvise. Brin's father, Tomas, sits in the doorway — a big man made small by helplessness. He doesn't speak. He holds a half-finished scarf Brin was knitting.",
+      "next": "dawn_arrives"
+    },
+    "dawn_arrives": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Dawn. Aldric is sitting up. Mira is eating broth. Brin's breathing has stopped.",
+      "triggers": [
+        {
+          "set_state": "flag.brin_dead",
+          "value": true
+        },
+        {
+          "set_state": "flag.elara_killed_patient",
+          "value": true
+        }
+      ],
+      "next": "elara_realizes"
+    },
+    "elara_realizes": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Elara's hands are still moving — adjusting a compress, reaching for another bottle — when the stillness registers. She freezes. Her fingers hover over Brin's wrist where a pulse should be. She holds them there for a very long time.",
+      "next": "elara_breaks"
+    },
+    "elara_breaks": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "anguished",
+      "text": "I made the formula from incomplete data. I should have waited. I should have been more careful. But people were DYING and I thought I had enough and I was WRONG.",
+      "next": "elara_breaks_2"
+    },
+    "elara_breaks_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "The proportions were off by less than a tenth. Aldric and Mira were strong enough to compensate. Brin wasn't. A child's liver can't process an imperfect compound the way an adult's can. I KNEW that. Every herbalist knows that. And I gave it to her anyway.",
+      "next": "tomas_enters"
+    },
+    "tomas_enters": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Tomas stands in the doorway. He sees the stillness of the blanket where Brin lies. He sees Elara's face. He doesn't scream. He doesn't shout. He just stands there, holding Brin's unfinished scarf, the needles still threaded with grey yarn.",
+      "next": "tomas_speaks"
+    },
+    "tomas_speaks": {
+      "type": "text",
+      "speaker": "tomas",
+      "portrait": "devastated",
+      "text": "She was getting better. You said she was getting better.",
+      "next": "elara_has_nothing"
+    },
+    "elara_has_nothing": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Elara opens her mouth. Nothing comes out. She looks at the empty bottles, the scattered herbs, the formula scratched onto parchment in her own handwriting — the formula that was close enough to save two people and too far off to save the one who mattered most.",
+      "next": "player_aftermath_choice"
+    },
+    "player_aftermath_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "comfort_elara",
+          "text": "You saved two people tonight. The formula was as close as anyone could have gotten.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 10
+            },
+            {
+              "set_state": "npc.elara.memory.player_comforted_after_brin",
+              "value": true
+            }
+          ],
+          "next": "elara_rejects_comfort"
+        },
+        {
+          "id": "blame_player_self",
+          "text": "This is my fault. I stopped the trance. If I'd let you finish, you would have had the exact formula.",
+          "conditions": [
+            {
+              "check": "flag.player_stopped_elara_trance",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.elara.memory.player_accepted_blame",
+              "value": true
+            }
+          ],
+          "next": "elara_blame_response"
+        },
+        {
+          "id": "say_nothing",
+          "text": "[Say nothing. Stay.]",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.elara.memory.player_stayed_silent",
+              "value": true
+            },
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 5
+            }
+          ],
+          "next": "silence_ending"
+        },
+        {
+          "id": "comfort_tomas",
+          "text": "[Turn to Tomas] I'm sorry. Let me help you bring her home.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.tomas.disposition",
+              "delta": 15
+            },
+            {
+              "set_state": "npc.elara.memory.player_chose_tomas_over_her",
+              "value": true
+            }
+          ],
+          "next": "tomas_response"
+        }
+      ]
+    },
+    "elara_rejects_comfort": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "Don't. Don't make this about survival rates. A girl is DEAD because my formula was wrong. Not because the poison was too strong, not because God willed it — because I guessed at proportions I should have KNOWN. Two out of three isn't a success. Two out of three is a dead child.",
+      "next": "elara_withdraws"
+    },
+    "elara_blame_response": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "Yes. You stopped the trance. And I'm the one who administered an incomplete formula to a fourteen-year-old. We can share the blame — there's enough for both of us.",
+      "next": "elara_withdraws"
+    },
+    "silence_ending": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You stay. Elara doesn't speak. Tomas carries Brin home wrapped in the unfinished scarf. The cottage smells of herbs and failure. Sometime near noon, Elara pulls the formula from the table, folds it carefully, and places it in the fire. She watches it burn completely before she closes her eyes.",
+      "next": "end"
+    },
+    "tomas_response": {
+      "type": "text",
+      "speaker": "tomas",
+      "portrait": "devastated",
+      "text": "Her mother died when she was three. I raised her alone. She wanted to be an herbalist, like Elara. She said... she said Elara was the smartest person she'd ever met.",
+      "next": "tomas_leaves"
+    },
+    "tomas_leaves": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Tomas lifts his daughter. She weighs nothing — the poison took everything first. He walks out into the morning, carrying Brin the way Silas once carried infant Elara. The scarf trails behind them in the mud.",
+      "next": "elara_withdraws"
+    },
+    "elara_withdraws": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "I need to be alone. I need to... I don't know what I need. Please go.",
+      "triggers": [
+        {
+          "set_state": "npc.elara.memory.withdrew_after_brin_death",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.schedule_override",
+          "value": "hermit_grieving"
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

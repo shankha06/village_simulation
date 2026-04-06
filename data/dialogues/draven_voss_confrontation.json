@@ -1,0 +1,557 @@
+{
+  "id": "draven_voss_confrontation",
+  "start_node": "scene_set",
+  "description": "The Voss-Draven confrontation. Fires when Draven enters the ultimatum meeting and Voss knows the truth. The Witcher-level intensity moment of the Iron Price chain.",
+  "nodes": {
+    "scene_set": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The inn's common room. Late afternoon light cuts through the shutters in dusty bars. Greta has cleared the tables. The village council — what passes for one — sits along the walls. Voss is in the corner. She arrived first. She's been sitting there for an hour, drinking water, eating nothing. Her sword is on the table in front of her. Not sheathed. Laid bare.",
+      "next": "draven_enters"
+    },
+    "draven_enters": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The door opens. Captain Draven walks in. Polished black armor. The Ironmarch eagle on his breast. And around his neck, on a leather cord — a blue stone. A fragment of communion crystal. It catches the light and pulses once, faintly, like a heartbeat that never stopped.",
+      "next": "voss_sees_stone"
+    },
+    "voss_sees_stone": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Voss's eyes lock on the stone. Her breathing changes — four counts in, four counts out. The breathing she learned on a hilltop above a drowned village when she was twelve years old. Her hand moves to her sword. Not gripping. Resting. The way a hand rests on the shoulder of an old friend.",
+      "next": "draven_greets"
+    },
+    "draven_greets": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Commander Voss. Your reputation precedes you. The Iron Road Company — thirty engagements, twenty-eight victories. Impressive record for a free company.",
+      "next": "voss_responds"
+    },
+    "voss_responds": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "cold",
+      "text": "And yours, Captain. Tell me — in all those engagements of your own, have you ever been to Rivendale?",
+      "next": "room_reacts"
+    },
+    "room_reacts": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The room goes cold. Not metaphor — the temperature drops. Greta stops polishing the bar. The village council members exchange confused glances. But Draven — Draven goes still. The particular stillness of a man who's been waiting twenty years for this question.",
+      "next": "draven_deflects"
+    },
+    "draven_deflects": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "I've been to many places in service to the Legion. You'll have to be more specific.",
+      "next": "voss_specific"
+    },
+    "voss_specific": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "cold",
+      "text": "Let me help your memory. Eastern frontier. River village. A communion stone — blue crystal, three feet tall, singing with the voice of the water. A young officer with three charges and a service medallion stamped DRV-7.",
+      "next": "voss_specific_2"
+    },
+    "voss_specific_2": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "rage",
+      "text": "Pact Elimination Unit. Your FIRST assignment. You placed the charges yourself. Touched the stone before you killed it. The river screamed when the crystal shattered. Forty-three people drowned in water that was trying to save them.",
+      "next": "draven_mask_cracks"
+    },
+    "draven_mask_cracks": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Draven's composure fractures. Not much — a civilian wouldn't notice. But you see it. The slight widening of the eyes. The involuntary touch to the stone at his throat. His hand drops away from it like it burned him.",
+      "next": "draven_admits"
+    },
+    "draven_admits": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Rivendale. Yes. I remember Rivendale.",
+      "next": "draven_admits_2"
+    },
+    "draven_admits_2": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "I was nineteen. It was my first operation. I was told the communion stone was a weapon — that river pacts allowed villages to resist Legion authority. I was ordered to neutralize it. I didn't know what would happen to the water. I didn't know about the flood.",
+      "next": "voss_erupts"
+    },
+    "voss_erupts": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "rage",
+      "text": "You didn't KNOW? You touched the stone! You FELT it! The crystal was ALIVE and you felt it under your hand and you lit the fuse ANYWAY!",
+      "next": "voss_erupts_2"
+    },
+    "voss_erupts_2": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "rage",
+      "text": "My mother drowned in her kitchen. My father drowned trying to reach my sister's room. My sister was SEVEN. The water took her before she could scream. And you — you walked away with a PIECE of the stone around your neck like a MEDAL OF HONOR.",
+      "next": "voss_draws"
+    },
+    "voss_draws": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Voss stands. The chair crashes behind her. She takes her sword from the table in a motion that is twenty years of practice compressed into one second. The blade catches the light.",
+      "next": "voss_declaration"
+    },
+    "voss_declaration": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "rage",
+      "text": "TWENTY YEARS. I've carried them for twenty years. Every face. Every name. Every single one of the thirty-two graves I couldn't dig because I was TWELVE and I was ALONE and the man who murdered them was getting a PROMOTION.",
+      "next": "draven_hand_on_weapon"
+    },
+    "draven_hand_on_weapon": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Draven's hand moves to his own blade. Not aggressive — reactive. The trained response of a soldier who sees steel drawn. His face is unreadable. But his eyes — his eyes are fixed on the communion stone fragment at his throat. He hasn't let go of it.",
+      "next": "draven_quiet"
+    },
+    "draven_quiet": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "I kept the stone because I couldn't forget. Not as a trophy. As a weight. I've carried it every day since Rivendale. Every day, Commander. It doesn't make anything right. Nothing makes Rivendale right. But I did not walk away proud.",
+      "next": "tension_peak"
+    },
+    "tension_peak": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The room is a held breath. Greta has her hand on the bar's edge. The village council is pressed against the walls. Voss's blade points at Draven's chest. Draven's hand rests on his hilt. Every sound in the room has died except the faint pulse of the communion stone — the dead heart of Rivendale, beating between them.",
+      "next": "player_choice"
+    },
+    "player_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "help_voss",
+          "text": "[Draw weapon] Voss. I'm with you. Let's finish this.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.commander_voss.memory.player_drew_blade_for_her",
+              "value": true
+            }
+          ],
+          "next": "help_voss_path"
+        },
+        {
+          "id": "stop_voss",
+          "text": "[Step between them] Voss, STOP. Kill him and the Legion burns Ashvale to ash. You'll be trading one Rivendale for another.",
+          "conditions": [],
+          "triggers": [],
+          "next": "stop_voss_path"
+        },
+        {
+          "id": "let_fight",
+          "text": "[Step back] This isn't my fight. It's been twenty years in the making.",
+          "conditions": [],
+          "triggers": [],
+          "next": "let_fight_path"
+        },
+        {
+          "id": "demand_answer",
+          "text": "Draven. Before she kills you — tell her WHY. She deserves that much.",
+          "conditions": [],
+          "triggers": [],
+          "next": "demand_answer_path"
+        }
+      ]
+    },
+    "help_voss_path": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You draw your weapon. The sound of steel leaving leather is the loudest thing in the room. Voss glances at you — one look, one heartbeat — and something in her face changes. Not gratitude. Recognition. Someone chose her side. Someone thought she was worth fighting for.",
+      "next": "help_voss_fight"
+    },
+    "help_voss_fight": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Two against one. That's not justice, Commander. That's murder.",
+      "next": "voss_reply_justice"
+    },
+    "voss_reply_justice": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "rage",
+      "text": "Forty-three against one. That's what Rivendale was. Draw your blade or die holding it.",
+      "next": "help_voss_combat"
+    },
+    "help_voss_combat": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Draven draws. He fights well — twenty years of Legion training behind every parry. But Voss fights like something that was forged in a flood and tempered in grief. She doesn't fence. She breaks him. Methodically. Precisely. Every strike is a name she carries. When the last blow falls, Draven drops to his knees. His sword clatters on the floor.",
+      "next": "draven_final_words"
+    },
+    "draven_final_words": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "The stone. Take it. It should have... stayed in Rivendale.",
+      "next": "draven_dies"
+    },
+    "draven_dies": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Voss pulls the communion stone fragment from his neck. Her blade finishes it. Draven falls. The stone in her hand pulses once — bright, aching blue — then goes dark. Twenty years of debt, paid in blood on an inn floor. The room is silent. Greta is the first to move. She puts a cloth over the body. Outside, somewhere in the distance, a Legion horn sounds.",
+      "triggers": [
+        {
+          "set_state": "flag.helped_voss_kill_draven",
+          "value": true
+        },
+        {
+          "set_state": "flag.draven_killed_by_voss",
+          "value": true
+        },
+        {
+          "set_state": "npc.ironmarch_emissary.alive",
+          "value": false
+        },
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": 30
+        },
+        {
+          "set_state": "flag.legion_accelerated_invasion",
+          "value": true
+        },
+        {
+          "set_state": "player.has_item.communion_stone_dravens_half",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "stop_voss_path": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You step between them. Voss's blade stops an inch from your chest. Her eyes — you've never seen eyes like that. Betrayal and rage and something that might be grief, all compressed into a look that will follow you into sleep for the rest of your life.",
+      "next": "stop_voss_dialogue"
+    },
+    "stop_voss_dialogue": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "rage",
+      "text": "Move.",
+      "next": "stop_voss_player"
+    },
+    "stop_voss_player": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "hold_ground",
+          "text": "No. Think, Voss. Think about what happens to this village — to YOUR soldiers — if you kill a Legion emissary.",
+          "conditions": [],
+          "triggers": [],
+          "next": "stop_voss_holds"
+        },
+        {
+          "id": "appeal_rivendale",
+          "text": "If you kill him, Ashvale drowns. Different water. Same result. Is that what Rivendale's dead would want?",
+          "conditions": [],
+          "triggers": [],
+          "next": "stop_voss_rivendale_appeal"
+        }
+      ]
+    },
+    "stop_voss_holds": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "She holds. The blade trembles. Her arm shakes with the effort of not driving it through you to reach him. Ten seconds. Twenty. The longest half-minute of your life.",
+      "next": "stop_voss_sheathes"
+    },
+    "stop_voss_rivendale_appeal": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The words hit her like a physical blow. She flinches. The sword dips. For a moment you see the twelve-year-old on the hilltop — the one who watched and couldn't stop it. Then the Commander returns. Harder. Colder. But the blade drops.",
+      "next": "stop_voss_sheathes"
+    },
+    "stop_voss_sheathes": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Voss sheathes her sword. The motion is violent — metal screaming against leather. She looks at you. Then at Draven. Then back at you.",
+      "next": "stop_voss_final"
+    },
+    "stop_voss_final": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "cold",
+      "text": "You chose him. Remember that. When this is over — when the negotiations and the politics and the careful calculations are done — remember that you looked at the man who murdered my family and decided he was worth more alive than my justice was worth having.",
+      "next": "stop_voss_leaves"
+    },
+    "stop_voss_leaves": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "She walks out. Doesn't slam the door. Closes it carefully, precisely, the way she does everything. Draven exhales. His hand is shaking — the first honest reaction you've seen from him.",
+      "next": "draven_after_stop"
+    },
+    "draven_after_stop": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "She would have killed me. She had every right. You should know — Rivendale was the worst thing I ever did. And I've done many bad things since.",
+      "triggers": [
+        {
+          "set_state": "flag.stopped_voss_from_draven",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": -40
+        },
+        {
+          "set_state": "npc.commander_voss.memory.player_betrayed_her",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_may_leave_ashvale",
+          "value": true
+        },
+        {
+          "set_state": "npc.ironmarch_emissary.memory.player_saved_his_life",
+          "value": true
+        },
+        {
+          "set_state": "npc.ironmarch_emissary.disposition",
+          "delta": 20
+        }
+      ],
+      "next": "end"
+    },
+    "let_fight_path": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You step back. The room clears around them — Greta pulling council members toward the walls. Voss and Draven circle each other. Twenty years of gravity pulling them into this orbit.",
+      "next": "let_fight_begin"
+    },
+    "let_fight_begin": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Voss strikes first. Fast — faster than you expected. Draven parries. Ripostes. Their blades sing the old language of violence. Voss is fury and precision. Draven is calm and relentless. She fights for forty-three ghosts. He fights with the weight of twenty years of knowing he deserved this.",
+      "next": "let_fight_turn"
+    },
+    "let_fight_turn": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Forty seconds in. Voss overextends — driven by rage, reaching for the kill instead of the opening. Draven sees it. A Legion-trained counter, textbook perfect. His blade finds the gap between her arm and her body. She gasps. Steps back. Looks down at the wound.",
+      "next": "let_fight_voss_falls"
+    },
+    "let_fight_voss_falls": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The communion stone fragment falls from her pocket. It hits the floor and pulses — one final, desperate heartbeat of blue light. Voss drops to her knees. She reaches for the stone. Closes her hand around it. Looks up at Draven. There is no hatred in her eyes anymore. Only exhaustion. Twenty years of exhaustion, finally catching up.",
+      "next": "let_fight_voss_last"
+    },
+    "let_fight_voss_last": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "sad",
+      "text": "Tell your Legion... this village... isn't Rivendale. These people have someone better... than a twelve-year-old girl... watching from a hill.",
+      "next": "let_fight_voss_dies"
+    },
+    "let_fight_voss_dies": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "She dies holding the stone. Draven stands over her for a long moment. His blade is clean — Legion officers maintain their weapons even in the act of killing. He reaches down and unfastens the communion stone from his own neck. Places it beside the fragment in her hand. Two halves of a broken thing, together again.",
+      "next": "draven_after_kill"
+    },
+    "draven_after_kill": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "She was the bravest person I've ever killed. And I've killed a great many people.",
+      "next": "draven_leaves"
+    },
+    "draven_leaves": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "He sheathes his blade, nods once to the body, and walks out. The door closes. The room is silent except for the two communion stone fragments, pulsing faintly in a dead woman's hand. They glow brighter together than they did apart. Even in death, the river remembers how to sing.",
+      "triggers": [
+        {
+          "set_state": "flag.let_them_fight",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_killed_by_draven",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.alive",
+          "value": false
+        },
+        {
+          "set_state": "npc.ironmarch_emissary.memory.killed_voss",
+          "value": true
+        },
+        {
+          "set_state": "npc.ironmarch_emissary.memory.left_stone_with_body",
+          "value": true
+        },
+        {
+          "set_state": "flag.no_mercenary_defense",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "demand_answer_path": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Your voice cuts through the tension. Both of them look at you. Voss's blade doesn't lower, but her eyes shift. She wants to hear it too. She needs to.",
+      "next": "draven_confession"
+    },
+    "draven_confession": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "I was nineteen. A farm boy from the northern provinces who joined the Legion because my own village was starving. They gave me a rank, a purpose, and a mission: eliminate river pacts that interfered with Legion expansion. Rivendale was my first assignment.",
+      "next": "draven_confession_2"
+    },
+    "draven_confession_2": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "I touched the communion stone before I placed the charges. I felt it. The singing. The water's voice. For one moment I understood what I was about to destroy. And I lit the fuse anyway. Because I was nineteen and I was scared and my commanding officer was watching and I wanted to prove I was worth the uniform they'd given me.",
+      "next": "draven_confession_3"
+    },
+    "draven_confession_3": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "I've destroyed eleven communion stones since. Rivendale was the first. It's the only one I remember. It's the only one that kept me awake. I took the fragment because... because something that beautiful shouldn't just disappear. Even if I was the one who killed it.",
+      "next": "voss_after_confession"
+    },
+    "voss_after_confession": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Silence. Voss's sword arm trembles. Her face is a war between the girl who watched her family drown and the commander who has spent twenty years learning that the world is not divided into monsters and victims.",
+      "next": "voss_after_confession_choice"
+    },
+    "voss_after_confession_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "urge_mercy",
+          "text": "Voss. He was a boy. Like you were a girl. The Legion made him a weapon the same way Rivendale's destruction made you one.",
+          "conditions": [],
+          "triggers": [],
+          "next": "mercy_path"
+        },
+        {
+          "id": "support_justice",
+          "text": "That explanation doesn't undo forty-three deaths. Voss, it's your call.",
+          "conditions": [],
+          "triggers": [],
+          "next": "justice_call"
+        }
+      ]
+    },
+    "mercy_path": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "sad",
+      "text": "Don't you DARE compare us. He had a CHOICE. I had a hilltop and bare feet and my family dying below me.",
+      "next": "mercy_path_2"
+    },
+    "mercy_path_2": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "But even as she says it, something shifts. The sword lowers — not much, but enough. An inch of mercy measured in steel.",
+      "next": "mercy_path_3"
+    },
+    "mercy_path_3": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "cold",
+      "text": "Eleven stones. You've destroyed eleven. How many villages? How many children on hilltops?",
+      "next": "draven_eleven"
+    },
+    "draven_eleven": {
+      "type": "text",
+      "speaker": "ironmarch_emissary",
+      "portrait": "neutral",
+      "text": "Too many. And every one of them lives behind this stone.",
+      "next": "mercy_resolve"
+    },
+    "mercy_resolve": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "cold",
+      "text": "Then you'll help me save this one. Not for you. Not for me. For the forty-three in Rivendale and every village after. You owe a debt that blood can't pay. So you'll pay it in service. Starting now. Starting HERE.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_demands_service",
+          "value": true
+        },
+        {
+          "set_state": "flag.draven_respects_voss",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": 10
+        },
+        {
+          "set_state": "npc.ironmarch_emissary.memory.debt_acknowledged",
+          "value": true
+        },
+        {
+          "set_state": "flag.ceasefire_path_open",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "justice_call": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Voss looks at you. At Draven. At the sword in her hand. The room waits.",
+      "next": "justice_voss_decides"
+    },
+    "justice_voss_decides": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "rage",
+      "text": "You're right. It doesn't. Draw your blade, Captain. Let's see if you fight better than you apologize.",
+      "next": "help_voss_fight"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

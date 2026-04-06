@@ -1,0 +1,347 @@
+{
+  "id": "elara_chain_events",
+  "description": "Narrative events triggered by Elara's three-layer fate chain.",
+  "events": [
+    {
+      "id": "elara_confrontation_maren",
+      "name": "Elara Confronts Brother Maren",
+      "description": "Elara goes to the chapel to confront her brother with the truth about their father.",
+      "trigger_conditions": [
+        "flag.elara_knows_brother_from_well == true",
+        "quest.wells_memory.state == PROTECTED_TRANCE"
+      ],
+      "delay_days": 1,
+      "delay_after": "quest.wells_memory.completion",
+      "location": "chapel_ashen_light",
+      "time_of_day": "afternoon",
+      "involved_npcs": ["elara", "brother_maren"],
+      "dialogue_trigger": "blood_and_herb_crisis",
+      "effects": [
+        {
+          "set_state": "quest.blood_and_herb.state",
+          "value": "ELARA_CONFRONTS_MAREN"
+        },
+        {
+          "set_state": "flag.chapel_confrontation_active",
+          "value": true
+        }
+      ],
+      "on_player_absent": {
+        "description": "If the player isn't present, the confrontation happens offscreen. Player finds Elara poisoned in the chapel.",
+        "effects": [
+          {
+            "set_state": "flag.maren_poisoned_elara",
+            "value": true
+          },
+          {
+            "set_state": "flag.player_missed_confrontation",
+            "value": true
+          },
+          {
+            "spawn_event": "find_elara_poisoned"
+          }
+        ]
+      }
+    },
+    {
+      "id": "brin_funeral",
+      "name": "Brin's Funeral",
+      "description": "The village buries Tomas's daughter. Elara does not attend.",
+      "trigger_conditions": [
+        "flag.brin_dead == true"
+      ],
+      "delay_days": 1,
+      "delay_after": "flag.brin_dead",
+      "location": "village_cemetery",
+      "time_of_day": "morning",
+      "involved_npcs": ["tomas", "old_maren", "greta", "brother_maren"],
+      "effects": [
+        {
+          "set_state": "flag.brin_funeral_occurred",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.morale",
+          "delta": -15
+        },
+        {
+          "set_state": "npc.tomas.schedule_override",
+          "value": "grieving_father"
+        }
+      ],
+      "ambient_dialogue": [
+        {
+          "speaker": "tomas",
+          "text": "She was fourteen. She wanted to be an herbalist."
+        },
+        {
+          "speaker": "greta",
+          "text": "Where's Elara? She should be here. She owes the girl that much."
+        },
+        {
+          "speaker": "old_maren",
+          "text": "Leave the child alone, Greta. Grief doesn't follow a schedule."
+        },
+        {
+          "speaker": "brother_maren",
+          "text": "The Ashen Light receives all children into its warmth. Brin walks now in fields that never wither..."
+        },
+        {
+          "speaker": "villager",
+          "text": "The herbalist killed her. Everyone knows it. She gave that girl an untested potion."
+        }
+      ],
+      "player_choices": [
+        {
+          "id": "attend_funeral",
+          "text": "[Attend the funeral in silence]",
+          "effects": [
+            {
+              "set_state": "npc.tomas.disposition",
+              "delta": 5
+            }
+          ]
+        },
+        {
+          "id": "defend_elara_at_funeral",
+          "text": "Elara saved two lives that night. The poison killed Brin, not the herbalist.",
+          "effects": [
+            {
+              "set_state": "npc.tomas.disposition",
+              "delta": -10
+            },
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 10
+            },
+            {
+              "set_state": "flag.player_defended_elara_publicly",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "visit_elara_instead",
+          "text": "[Skip the funeral. Go to Elara's cottage.]",
+          "effects": [
+            {
+              "set_state": "npc.tomas.disposition",
+              "delta": -15
+            },
+            {
+              "set_state": "npc.elara.disposition",
+              "delta": 15
+            },
+            {
+              "set_state": "flag.player_chose_elara_over_funeral",
+              "value": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "elara_betrayal_speech",
+      "name": "Elara's Betrayal",
+      "description": "The family truth emerges through other means. Elara realizes the player knew all along from the well trance.",
+      "trigger_conditions": [
+        "flag.player_has_well_knowledge == true",
+        "flag.family_truth_emerges_other_means == true"
+      ],
+      "delay_days": 0,
+      "location": "elara_cottage",
+      "time_of_day": "evening",
+      "involved_npcs": ["elara"],
+      "dialogue_trigger": "elara_betrayal_dialogue",
+      "effects": [
+        {
+          "set_state": "flag.elara_betrayed_by_player",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": -40
+        },
+        {
+          "set_state": "npc.elara.memory.player_betrayed_trust",
+          "value": true
+        }
+      ],
+      "dialogue_content": {
+        "id": "elara_betrayal_dialogue",
+        "nodes": {
+          "start": {
+            "type": "text",
+            "speaker": "elara",
+            "portrait": "angry",
+            "text": "You KNEW. You drank from the well and you KNEW.",
+            "next": "betrayal_2"
+          },
+          "betrayal_2": {
+            "type": "text",
+            "speaker": "elara",
+            "portrait": "angry",
+            "text": "You saw my father holding me as an infant. You saw him give my brother to the Church. You saw him walk into the Heartwood. And you looked me in the eye and said NOTHING.",
+            "next": "betrayal_3"
+          },
+          "betrayal_3": {
+            "type": "text",
+            "speaker": "elara",
+            "portrait": "anguished",
+            "text": "I thought we were allies. I thought — it doesn't matter what I thought. You had MY memories. MY father. MY family. And you kept them like COINS in your pocket.",
+            "next": "betrayal_choice"
+          },
+          "betrayal_choice": {
+            "type": "choice",
+            "options": [
+              {
+                "id": "apologize_betrayal",
+                "text": "I was trying to protect you. I didn't know how to tell you.",
+                "conditions": [],
+                "triggers": [],
+                "next": "elara_rejects_apology"
+              },
+              {
+                "id": "justify_betrayal",
+                "text": "You weren't ready. The truth about Maren, about your father — it would have broken you.",
+                "conditions": [],
+                "triggers": [
+                  {
+                    "set_state": "npc.elara.disposition",
+                    "delta": -10
+                  }
+                ],
+                "next": "elara_furious_justify"
+              },
+              {
+                "id": "accept_blame",
+                "text": "You're right. There's no excuse. I should have told you immediately.",
+                "conditions": [],
+                "triggers": [
+                  {
+                    "set_state": "npc.elara.disposition",
+                    "delta": 5
+                  }
+                ],
+                "next": "elara_bitter_acceptance"
+              }
+            ]
+          },
+          "elara_rejects_apology": {
+            "type": "text",
+            "speaker": "elara",
+            "portrait": "angry",
+            "text": "Protect me? From my own HISTORY? I'm not a child. I'm not a patient. I'm the woman who has been searching for the truth about her father for twenty years, and you had it, and you HOARDED it. Don't speak to me about protection.",
+            "next": "end"
+          },
+          "elara_furious_justify": {
+            "type": "text",
+            "speaker": "elara",
+            "portrait": "intense",
+            "text": "Broken? You think the truth breaks people? Lies break people. SILENCE breaks people. My grandmother carried thirty years of silence and it bent her spine. You would have added to that weight? Get out of my cottage.",
+            "next": "end"
+          },
+          "elara_bitter_acceptance": {
+            "type": "text",
+            "speaker": "elara",
+            "portrait": "sad",
+            "text": "Yes. You should have. But you didn't. And now the question is whether I can trust someone who kept my own father's dying wish from me. 'Watch my children.' That's what Silas asked. And you couldn't even do THAT honestly.",
+            "next": "end"
+          },
+          "end": {
+            "type": "end"
+          }
+        }
+      }
+    },
+    {
+      "id": "elara_hermit_phase",
+      "name": "Elara's Withdrawal",
+      "description": "After Brin's death, Elara isolates herself. Her cottage goes dark. Patients go untreated.",
+      "trigger_conditions": [
+        "flag.elara_killed_patient == true",
+        "flag.brin_funeral_occurred == true"
+      ],
+      "delay_days": 1,
+      "delay_after": "flag.brin_funeral_occurred",
+      "effects": [
+        {
+          "set_state": "npc.elara.schedule_override",
+          "value": "hermit_indefinite"
+        },
+        {
+          "set_state": "flag.village_has_no_healer",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.health_modifier",
+          "delta": -20
+        }
+      ],
+      "resolution_conditions": [
+        {
+          "condition": "flag.player_convinced_elara_return == true",
+          "effects": [
+            {
+              "set_state": "npc.elara.schedule_override",
+              "value": null
+            },
+            {
+              "set_state": "flag.village_has_no_healer",
+              "value": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "maren_guilt_spiral",
+      "name": "Maren's Guilt",
+      "description": "After poisoning Elara, Maren's sermons become erratic. He drinks. His authority crumbles.",
+      "trigger_conditions": [
+        "flag.maren_poisoned_elara == true",
+        "npc.elara.alive == true"
+      ],
+      "delay_days": 3,
+      "delay_after": "flag.maren_poisoned_elara",
+      "effects": [
+        {
+          "set_state": "npc.brother_maren.memory.guilt_consuming",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.schedule_override",
+          "value": "erratic_drinking"
+        },
+        {
+          "set_state": "faction.church_ashen_light.local_power",
+          "delta": -15
+        }
+      ]
+    },
+    {
+      "id": "family_truth_old_maren",
+      "name": "Old Maren Speaks",
+      "description": "If neither Elara nor the player revealed the family connection, Old Maren eventually breaks her silence.",
+      "trigger_conditions": [
+        "flag.elara_knows_brother_from_well != true",
+        "flag.elara_knows_brother_from_player != true",
+        "flag.days_since_wells_memory > 14"
+      ],
+      "delay_days": 14,
+      "delay_after": "quest.wells_memory.completion",
+      "location": "old_maren_cottage",
+      "involved_npcs": ["old_maren", "elara"],
+      "effects": [
+        {
+          "set_state": "flag.family_truth_emerges_other_means",
+          "value": true
+        },
+        {
+          "set_state": "flag.old_maren_revealed_truth",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

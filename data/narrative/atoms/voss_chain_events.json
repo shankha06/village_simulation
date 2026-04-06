@@ -1,0 +1,172 @@
+[
+  {
+    "id": "voss_sharpening_sword_night",
+    "category": "atmosphere",
+    "priority": 70,
+    "once_only": true,
+    "conditions": [
+      "flag.voss_knows_draven_truth == true",
+      "npc.ironmarch_emissary.alive == true",
+      "time.hour >= 22"
+    ],
+    "dialogue_id": "",
+    "description": "After learning the truth about Draven, Voss sits alone at night sharpening her sword. Environmental storytelling — the sound carries across the camp.",
+    "effects": [
+      {
+        "set_state": "flag.witnessed_voss_sharpening",
+        "value": true
+      },
+      {
+        "set_state": "npc.commander_voss.memory.preparing_for_draven",
+        "value": true
+      }
+    ],
+    "notification_text": "The sound of stone on steel cuts through the night. Voss sits alone by the camp's dying fire, running a whetstone along her blade with slow, deliberate strokes. She isn't maintaining her weapon. She's making a promise to it. The firelight catches her face — it is perfectly calm. Perfectly empty. The calm of someone who has finally found the shape of what they've been looking for."
+  },
+  {
+    "id": "greta_mentions_rivendale_evidence",
+    "category": "consequence",
+    "priority": 90,
+    "once_only": true,
+    "conditions": [
+      "flag.voss_lied_to_about_rivendale == true",
+      "time.day >= 10",
+      "npc.commander_voss.alive == true"
+    ],
+    "dialogue_id": "voss_betrayal_discovery",
+    "description": "If the player hid the truth from Voss, Greta accidentally mentions 'the Rivendale evidence' within Voss's earshot. The lie unravels.",
+    "effects": [
+      {
+        "set_state": "flag.greta_leaked_rivendale_truth",
+        "value": true
+      },
+      {
+        "set_state": "flag.voss_betrayal_scene_triggered",
+        "value": true
+      }
+    ],
+    "notification_text": "You hear Greta's voice from across the inn — chatting idly with a council member about 'that Rivendale evidence you brought back.' Your blood goes cold. You turn. Voss is three tables away. She heard everything. Her drink stops halfway to her mouth. Her eyes find yours. The lie is over."
+  },
+  {
+    "id": "voss_soldiers_notice_change",
+    "category": "atmosphere",
+    "priority": 50,
+    "once_only": true,
+    "conditions": [
+      "flag.voss_knows_draven_truth == true",
+      "time.day >= 1"
+    ],
+    "dialogue_id": "",
+    "description": "Voss's soldiers notice their commander has changed since the Rivendale revelation. They don't know why, but they're unsettled.",
+    "effects": [
+      {
+        "set_state": "flag.iron_road_soldiers_uneasy",
+        "value": true
+      }
+    ],
+    "notification_text": "Two of Voss's soldiers stand by the well, speaking in low voices. 'She's been different since yesterday. Sharper. Quieter. She made Hendricks run the sword drill four times.' The other nods. 'And she keeps looking at the inn. At the emissary's window. Like she's counting something.' They don't know what changed. But they can feel the edge their commander is walking on."
+  },
+  {
+    "id": "voss_visits_river",
+    "category": "atmosphere",
+    "priority": 60,
+    "once_only": true,
+    "conditions": [
+      "flag.voss_knows_but_waits == true",
+      "time.hour >= 5",
+      "time.hour <= 7"
+    ],
+    "dialogue_id": "",
+    "description": "If Voss knows but is exercising restraint, she visits Ashvale's river at dawn. She stands in the shallows, listening. Looking for a voice that isn't there.",
+    "effects": [
+      {
+        "set_state": "flag.witnessed_voss_at_river",
+        "value": true
+      }
+    ],
+    "notification_text": "Dawn. Voss stands in the shallows of Ashvale's river, boots in the water, eyes closed. She's listening. You know what she's listening for — the voice of the water, the singing she heard as a child in Rivendale. But this river is silent. Its pact is dying, not dead. She stands there for twenty minutes, then walks back to camp. Her boots leave wet prints on the road. She doesn't dry them."
+  },
+  {
+    "id": "draven_touches_stone_nervously",
+    "category": "atmosphere",
+    "priority": 40,
+    "once_only": true,
+    "conditions": [
+      "flag.voss_knows_draven_truth == true",
+      "npc.ironmarch_emissary.alive == true",
+      "flag.draven_killed_by_voss != true"
+    ],
+    "dialogue_id": "",
+    "description": "After Voss learns the truth, Draven unconsciously touches his communion stone fragment more often. He can feel something has shifted.",
+    "effects": [
+      {
+        "set_state": "flag.draven_senses_danger",
+        "value": true
+      }
+    ],
+    "notification_text": "You notice Draven in the village square, mid-conversation with a council member. His hand keeps drifting to the blue stone at his throat. Touching it. Releasing it. Touching it again. He doesn't seem aware he's doing it. But you are. The stone pulses faintly each time — a communion fragment, responding to the proximity of its other half. The dead river of Rivendale, trying to warn its own killer."
+  },
+  {
+    "id": "voss_restraint_countdown",
+    "category": "tension",
+    "priority": 80,
+    "once_only": false,
+    "conditions": [
+      "flag.voss_knows_but_waits == true",
+      "npc.ironmarch_emissary.alive == true",
+      "time.day >= 15"
+    ],
+    "dialogue_id": "",
+    "description": "As the 20-day deadline approaches, Voss's restraint visibly frays. Recurring event that escalates.",
+    "effects": [
+      {
+        "set_state": "flag.voss_countdown_active",
+        "value": true
+      },
+      {
+        "set_state": "world.region.ashvale.tension_level",
+        "delta": 5
+      }
+    ],
+    "notification_text": "Voss passes Draven in the street. She doesn't look at him. Her hand finds her sword hilt and stays there until he's gone. Her lieutenant watches from the camp. 'Five more days,' Voss mutters, loud enough for you to hear. 'Five more days.' It sounds like a prayer. It sounds like a threat. It sounds like both."
+  },
+  {
+    "id": "voss_after_lie_false_peace",
+    "category": "irony",
+    "priority": 45,
+    "once_only": true,
+    "conditions": [
+      "flag.voss_lied_to_about_rivendale == true",
+      "flag.voss_discovers_player_lied != true",
+      "time.day >= 7"
+    ],
+    "dialogue_id": "",
+    "description": "If Voss was lied to and doesn't know yet, she seems more at peace than ever. The false closure is working. The irony is devastating.",
+    "effects": [
+      {
+        "set_state": "flag.voss_false_peace_observed",
+        "value": true
+      }
+    ],
+    "notification_text": "Voss is laughing. Actually laughing — a full, unguarded sound you've never heard from her before. She's telling her soldiers a story about a horse that threw a general into a river. They're all grinning. She looks lighter. The graves gave her closure. The lie gave her peace. And twenty feet away, Draven adjusts the blue stone at his throat and reviews his ultimatum terms. The man who killed her family. Sleeping under the same roof. And she doesn't know. Because of you."
+  },
+  {
+    "id": "voss_post_kill_quiet",
+    "category": "aftermath",
+    "priority": 75,
+    "once_only": true,
+    "conditions": [
+      "flag.draven_killed_by_voss == true",
+      "time.day >= 1"
+    ],
+    "dialogue_id": "",
+    "description": "The day after killing Draven, Voss is eerily quiet. The vengeance she built her life around is done. What's left?",
+    "effects": [
+      {
+        "set_state": "flag.voss_post_vengeance_void",
+        "value": true
+      }
+    ],
+    "notification_text": "You find Voss sitting on the edge of the well. The communion stone — both halves, reunited — rests in her open palm. She's staring at it the way you stare at a fire that's gone out. 'Twenty years,' she says, without looking up. 'I thought it would feel like victory. It feels like the last page of a book I didn't want to finish.' She closes her hand around the stone. 'The Legion will come now. Good. I could use something to hit.'"
+  }
+]

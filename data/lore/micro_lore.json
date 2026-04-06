@@ -283,6 +283,33 @@
       "fragments": []
     },
     {
+      "id": "micro_root_redistribution",
+      "title": "Spring-Feeding",
+      "category": "forest_knowledge",
+      "text": "The forest has a word for what it did. In root-language, translated loosely by the talisman, it means 'spring-feeding' — the process by which an old tree's nutrients are redirected to saplings after the old tree begins to die. The forest applied tree logic to humans. It does not understand why this is a problem.",
+      "discovered_by_default": false,
+      "conditions": ["flag.heartwood_confronted_redistribution == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_small_coffins",
+      "title": "Pine and Silence",
+      "category": "objects",
+      "text": "The carpenter made the coffins from the same wood Silas used for furniture. Pine. Clean. Light enough for a child to carry, if there were children left to carry them.",
+      "discovered_by_default": false,
+      "conditions": ["flag.three_children_dead == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_old_maren_last_pattern",
+      "title": "The Last Pattern",
+      "category": "memories",
+      "text": "The last pattern Old Maren traced in the dirt before she died was not druidic. It was a name. Two names. Written in the old alphabet that nobody reads anymore. E-L-A-R-A. M-A-R-E-N. Her grandchildren's names. Traced with hands that couldn't stop shaking. The wind erased them within the hour.",
+      "discovered_by_default": false,
+      "conditions": ["flag.old_maren_died_from_choice == true"],
+      "fragments": []
+    },
+    {
       "id": "micro_old_maren_blanket",
       "title": "The Blanket",
       "category": "memories",

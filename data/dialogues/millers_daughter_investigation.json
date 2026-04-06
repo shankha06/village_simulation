@@ -1,0 +1,236 @@
+{
+  "id": "millers_daughter_investigation",
+  "start_node": "approach_mill",
+  "nodes": {
+    "approach_mill": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The mill stands at the village edge like a rotten tooth — listing, dark, its wheel frozen in a stream that dried up years ago. The wood is black with age and something else. Something that stains deeper than weather.",
+      "triggers": [
+        {
+          "set_state": "flag.entered_corins_mill",
+          "value": true
+        }
+      ],
+      "next": "mill_interior"
+    },
+    "mill_interior": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Inside, the air tastes of grain dust and grief. Flour sacks have rotted to nothing. Cobwebs hang like funeral shrouds. And from somewhere below your feet — faint, persistent — the sound of fingernails on wood.",
+      "next": "talisman_pulse"
+    },
+    "talisman_pulse": {
+      "type": "branch",
+      "conditions": [
+        {
+          "check": "flag.has_druid_talisman",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "if_true": "talisman_activates",
+      "if_false": "no_talisman"
+    },
+    "no_talisman": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The sounds intensify — scratching, weeping, a voice you can almost understand. But without the druid talisman, the memories remain locked behind the veil. You'll need Old Maren's help to see what happened here.",
+      "next": "end"
+    },
+    "talisman_activates": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The talisman flares hot against your chest. The air shimmers. The mill's walls bleed light — pale, sickly green — and the present peels away like dead skin. You are seeing through time.",
+      "next": "memory_1_intro"
+    },
+    "memory_1_intro": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "[GHOST MEMORY — YEAR 270, THREE WEEKS BEFORE THE SACRIFICE]\nThe mill is whole. Warm. Flour dust catches lamplight like gold. A man stands at the grinding wheel — broad-shouldered, flour in his beard. CORIN. His wife MARGIT sits mending a dress too small for a woman. A girl's dress.",
+      "triggers": [
+        {
+          "set_state": "flag.witnessed_mill_memory_1",
+          "value": true
+        }
+      ],
+      "next": "memory_1_dialogue"
+    },
+    "memory_1_dialogue": {
+      "type": "text",
+      "speaker": "corin_ghost",
+      "portrait": "memory",
+      "text": "They're choosing someone. Lord Ashworth's father came to the mill today. Looked at my hands. Measured my shoulders. Asked how old Lyssa was. Why would he ask about Lyssa, Margit? WHY WOULD HE ASK ABOUT OUR DAUGHTER?",
+      "next": "memory_1_margit"
+    },
+    "memory_1_margit": {
+      "type": "text",
+      "speaker": "margit_ghost",
+      "portrait": "memory",
+      "text": "You're imagining things, Corin. The lord visits everyone. It's the census, nothing more.",
+      "next": "memory_1_corin_fear"
+    },
+    "memory_1_corin_fear": {
+      "type": "text",
+      "speaker": "corin_ghost",
+      "portrait": "memory",
+      "text": "It's NOT the census. Old Rowan told me — they pick someone every thirty years. Someone who won't be missed. Someone whose death can be explained away. I grind the lord's flour, Margit. I know things. I KNOW TOO MUCH. That makes me the perfect choice.",
+      "next": "memory_1_end"
+    },
+    "memory_1_end": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The memory dissolves. The talisman cools, then flares again — reaching for the next layer of pain.",
+      "next": "examine_workbench_prompt"
+    },
+    "examine_workbench_prompt": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Near the grinding wheel, you notice a carpenter's workbench — out of place in a mill. The surface is scarred with tool marks and something else: small horizontal lines carved into the edge, each with initials. L.M. — Lyssa Miller. Height marks. She was growing. The last mark is at four feet, two inches. She never made it to the next one.",
+      "triggers": [
+        {
+          "set_state": "flag.found_lyssa_height_marks",
+          "value": true
+        }
+      ],
+      "next": "memory_2_intro"
+    },
+    "memory_2_intro": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "[GHOST MEMORY — YEAR 270, FIVE DAYS BEFORE THE SACRIFICE]\nNight. Rain hammering the mill roof. Corin is pacing. His eyes are wild — sleepless, red-rimmed. He's boarding up the windows. Margit is gone. Left three days ago, they said, to her sister's in the lowlands. But the boards are on the INSIDE.",
+      "triggers": [
+        {
+          "set_state": "flag.witnessed_mill_memory_2",
+          "value": true
+        }
+      ],
+      "next": "memory_2_lyssa_scream"
+    },
+    "memory_2_lyssa_scream": {
+      "type": "text",
+      "speaker": "lyssa_ghost",
+      "portrait": "memory",
+      "text": "Papa, PLEASE! I don't want to go down there! It's dark and it smells and I can hear things in the walls! PAPA!",
+      "next": "memory_2_corin_response"
+    },
+    "memory_2_corin_response": {
+      "type": "text",
+      "speaker": "corin_ghost",
+      "portrait": "memory",
+      "text": "The forest takes the ones who are OUT IN THE OPEN, Lyssa. If you're below the earth, below the roots, they can't reach you. I'm PROTECTING you. Don't you understand? I'm keeping you SAFE.",
+      "next": "memory_2_dragging"
+    },
+    "memory_2_dragging": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "He lifts her. She kicks. She screams. He carries her down the cellar stairs like a man carrying the only thing he has left in the world. The cellar door closes. A lock clicks. And through the wood — muffled, desperate — her fists on the other side.",
+      "next": "cellar_door_prompt"
+    },
+    "cellar_door_prompt": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You descend to the cellar. The door is still here — warped, swollen with damp. And on its inner surface, scratches. Deep ones. Fingernail grooves worn into the grain of the wood. They start at chest height and descend, inch by inch, as if the person making them slowly slid to the floor.",
+      "triggers": [
+        {
+          "set_state": "flag.found_cellar_scratches",
+          "value": true
+        }
+      ],
+      "next": "memory_3_intro"
+    },
+    "memory_3_intro": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "[GHOST MEMORY — YEAR 270, TWO DAYS BEFORE THE SACRIFICE]\nThe cellar. Darkness. Lyssa sits against the door, her fingers bleeding. A clay water jug lies on its side — empty. She licks the moisture from the stone floor.",
+      "triggers": [
+        {
+          "set_state": "flag.witnessed_mill_memory_3",
+          "value": true
+        }
+      ],
+      "next": "memory_3_lyssa_thirst"
+    },
+    "memory_3_lyssa_thirst": {
+      "type": "text",
+      "speaker": "lyssa_ghost",
+      "portrait": "memory",
+      "text": "Papa? I'm so thirsty. Please. Just water. I won't try to leave, I promise. I'll be good. I'll be so good. Just... water. Please. Papa, are you there? Is anyone there?",
+      "next": "memory_3_silence"
+    },
+    "memory_3_silence": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Silence. Corin is upstairs, rocking in his chair, hands over his ears, whispering 'safe, she's safe, she's safe' like a prayer to a god that isn't listening. Below him, his daughter dies by inches.",
+      "next": "memory_3_flower"
+    },
+    "memory_3_flower": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "In the corner of the cellar, you notice something the memory didn't show — dried flowers. A small bundle, tied with a hair ribbon, pressed between stones. Lyssa's collection. She brought them with her. Even in the dark, she held onto something beautiful.",
+      "triggers": [
+        {
+          "set_state": "flag.found_lyssa_flowers",
+          "value": true
+        }
+      ],
+      "next": "memory_4_intro"
+    },
+    "memory_4_intro": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "[GHOST MEMORY — YEAR 270, THE DAY OF THE SACRIFICE]\nCorin descends the cellar stairs carrying a tray of bread and cheese. His hands shake. He's talking to her through the door: 'I brought breakfast, sweetheart. Your favorite — the bread with the seeds.' He unlocks the door.",
+      "triggers": [
+        {
+          "set_state": "flag.witnessed_mill_memory_4",
+          "value": true
+        }
+      ],
+      "next": "memory_4_discovery"
+    },
+    "memory_4_discovery": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "She is on the floor. Small. Still. Her fingers are raw to the bone. Her lips are cracked white. The dried flowers are clutched to her chest. She died holding wildflowers in the dark, calling for water that never came.",
+      "next": "memory_4_corin_breaks"
+    },
+    "memory_4_corin_breaks": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The tray hits the floor. The bread rolls into the dark. And the sound that comes from Corin is not a scream. It is the sound of a mind snapping — a single clean break, like a bone. He carries her upstairs. He sits with her body for two days. On the third day, he takes the mill rope, makes a loop, and climbs the beam.",
+      "next": "memory_4_aftermath"
+    },
+    "memory_4_aftermath": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The memory fades. The talisman goes cold. You stand in the cellar of a dead man's guilt, and you understand: the mill isn't haunted by Lyssa. It's haunted by Corin. His guilt is a living thing, feeding on the same walls that swallowed his daughter's last cries.",
+      "triggers": [
+        {
+          "set_state": "flag.witnessed_all_mill_memories",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

@@ -51,7 +51,12 @@
     "investigation": "elara_investigation",
     "follow_up": "elara_follow_up",
     "herb_quest": "elara_herb_quest",
-    "antidote_result": "elara_antidote_result"
+    "antidote_result": "elara_antidote_result",
+    "well_communion": "wells_memory_quest",
+    "well_trance": "wells_memory_trance",
+    "blood_and_herb": "blood_and_herb_crisis",
+    "flawed_antidote": "flawed_antidote_death",
+    "betrayal_confrontation": "elara_betrayal_dialogue"
   },
   "default_greeting": "elara_intro",
   "barks": [

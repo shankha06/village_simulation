@@ -1,0 +1,181 @@
+{
+  "id": "wells_memory",
+  "name": "The Well's Memory",
+  "description": "Elara has discovered that the village well transmits root memories during the new moon. She wants to drink deeply and learn the antidote to the poison — but the trance leaves her vulnerable all night.",
+  "giver": "elara",
+  "region": "ashvale",
+  "tags": [
+    "main_quest",
+    "mystery",
+    "moral_choice",
+    "elara_chain_layer_1"
+  ],
+  "priority": 12,
+  "prerequisites": [
+    "flag.agreed_to_help_elara == true",
+    "npc.elara.disposition > 20"
+  ],
+  "states": {
+    "UNKNOWN": {
+      "transitions": [
+        {
+          "on": "flag.elara_discovered_well_communion == true",
+          "to": "DISCOVERED"
+        }
+      ]
+    },
+    "DISCOVERED": {
+      "journal_entry": "Elara believes the well is more than a water source — it sits atop a root junction that transmits memories during the new moon. She wants to drink and enter a trance to learn the poison cure. She needs someone to guard her.",
+      "objectives": [
+        "Speak with Elara about her plan at the well after nightfall"
+      ],
+      "transitions": [
+        {
+          "on": "flag.agreed_to_guard_elara_trance == true",
+          "to": "ACTIVE"
+        },
+        {
+          "on": "flag.refused_elara_trance == true",
+          "to": "REFUSED"
+        }
+      ]
+    },
+    "ACTIVE": {
+      "journal_entry": "I agreed to protect Elara during the new moon trance. She'll drink from the well at midnight. I need to keep her alive until dawn.",
+      "objectives": [
+        "Meet Elara at the village well at midnight on the new moon",
+        "Guard Elara through the night until dawn"
+      ],
+      "transitions": [
+        {
+          "on": "flag.elara_trance_guard_success == true",
+          "to": "PROTECTED_TRANCE"
+        },
+        {
+          "on": "flag.player_stopped_elara_trance == true",
+          "to": "STOPPED_BY_PLAYER"
+        },
+        {
+          "on": "flag.player_drank_from_well == true",
+          "to": "PLAYER_DRANK_INSTEAD"
+        },
+        {
+          "on": "npc.elara.alive == false",
+          "to": "FAILED_ELARA_DEAD"
+        }
+      ]
+    },
+    "REFUSED": {
+      "journal_entry": "I refused to help Elara with the trance. She'll try it alone, or not at all.",
+      "transitions": [
+        {
+          "on": "flag.elara_attempted_trance_alone == true",
+          "to": "ELARA_TRANCE_ALONE"
+        },
+        {
+          "on": "flag.player_changed_mind_trance == true",
+          "to": "ACTIVE"
+        }
+      ]
+    },
+    "PROTECTED_TRANCE": {
+      "journal_entry": "I guarded Elara through the night. The trance was harrowing — she convulsed, she screamed Silas's name, she wept. But she emerged at dawn with the knowledge she sought. She knows the antidote. And she knows something else: the priest at the chapel is her brother.",
+      "consequence_chain": "elara_protected_trance_chain",
+      "rewards": [
+        {
+          "reputation": {
+            "elara_personal": 40
+          }
+        },
+        {
+          "set_state": "flag.elara_knows_brother_from_well",
+          "value": true
+        },
+        {
+          "set_state": "flag.elara_well_trance_complete",
+          "value": true
+        },
+        {
+          "set_state": "flag.elara_learned_antidote",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": 35
+        }
+      ]
+    },
+    "STOPPED_BY_PLAYER": {
+      "journal_entry": "I pulled Elara from the well before she could finish drinking. She's furious — a cold, quiet fury worse than shouting. She says I robbed her of the truth about her own father. She'll work from what fragments she has, but her knowledge is incomplete.",
+      "consequence_chain": "elara_stopped_chain",
+      "rewards": [
+        {
+          "set_state": "flag.elara_incomplete_knowledge",
+          "value": true
+        },
+        {
+          "set_state": "flag.elara_furious_at_player",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": -30
+        }
+      ]
+    },
+    "PLAYER_DRANK_INSTEAD": {
+      "journal_entry": "I drank from the well myself. Silas's memories flooded through me — his children, his sacrifice, his communion with the Heartwood. I carry a fragment of Silas now. I see root patterns in the soil and hear the forest's heartbeat. Elara will never forgive this.",
+      "consequence_chain": "player_well_drinker_chain",
+      "rewards": [
+        {
+          "set_state": "flag.player_has_well_knowledge",
+          "value": true
+        },
+        {
+          "set_state": "flag.elara_resentful",
+          "value": true
+        },
+        {
+          "set_state": "flag.player_carries_silas_fragment",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": -45
+        },
+        {
+          "set_state": "player.perception.root_sight",
+          "value": true
+        }
+      ]
+    },
+    "ELARA_TRANCE_ALONE": {
+      "journal_entry": "Elara attempted the trance without protection. She survived, barely. Something found her in the dark. She won't say what.",
+      "consequence_chain": "elara_solo_trance_chain",
+      "rewards": [
+        {
+          "set_state": "flag.elara_partial_knowledge",
+          "value": true
+        },
+        {
+          "set_state": "flag.elara_scarred_by_trance",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": -20
+        }
+      ]
+    },
+    "FAILED_ELARA_DEAD": {
+      "journal_entry": "Elara is dead. Whatever the well might have told her is lost. The antidote, the family secret — all of it, gone.",
+      "consequence_chain": "elara_dead_well_chain",
+      "rewards": [
+        {
+          "set_state": "flag.well_knowledge_lost",
+          "value": true
+        }
+      ]
+    }
+  }
+}

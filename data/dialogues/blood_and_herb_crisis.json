@@ -1,0 +1,465 @@
+{
+  "id": "blood_and_herb_crisis",
+  "start_node": "chapel_approach",
+  "nodes": {
+    "chapel_approach": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You hear voices from inside the Chapel of Ashen Light before you reach the door. Elara's — sharp, controlled, the voice of someone holding themselves together through sheer will. And Maren's — low, pleading, already cracking.",
+      "next": "chapel_interior"
+    },
+    "chapel_interior": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The chapel is dim. Candles burn on the altar. Elara stands in the center aisle, holding the silver compass out in front of her like a weapon. Brother Maren has backed against the lectern, his face the color of ash.",
+      "next": "elara_confronts"
+    },
+    "elara_confronts": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "Silas Maren was our FATHER. You were four when he gave you to the missionaries. You had a cloth bag with a wooden horse in it. You cried when it rained. Do you remember ANY of this, or did the Church scour it out of you?",
+      "next": "maren_response"
+    },
+    "maren_response": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "fearful",
+      "text": "How do you — that's not — I was ORPHANED. The Church took me in as an act of charity. There was no father. There was no sister. You're confused, you're ill, the famine has —",
+      "next": "elara_shows_compass"
+    },
+    "elara_shows_compass": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "intense",
+      "text": "THIS. This is his compass. Look at the inscription. 'For my children, that they may find their way home.' CHILDREN. Plural. He meant BOTH of us.",
+      "next": "maren_breaks"
+    },
+    "maren_breaks": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "anguished",
+      "text": "Stop. Please stop. I know. I KNOW, all right? I recognized Mother the first day I arrived. The same face — older, harder, but the same face from the dreams I can't stop having. I couldn't tell anyone. The Church doesn't allow —",
+      "next": "maren_desperate"
+    },
+    "maren_desperate": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "fearful",
+      "text": "If the diocese learns I have family ties to a village under investigation for heretical root-worship, they'll recall me. Defrock me. Everything I've built — the authority, the influence to actually HELP people — gone. I was trying to protect —",
+      "next": "elara_fury"
+    },
+    "elara_fury": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "PROTECT? You watched grandmother carry thirty years of grief alone. You preached at me about divine punishment while our father DREAMED in the roots of the Heartwood. You stood at that lectern and called my herbs 'hedge-witch nonsense' while people DIED because —",
+      "next": "maren_acts"
+    },
+    "maren_acts": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Maren's hand moves. Fast — panicked fast, the reflex of a cornered animal. His fingers dip into the herb pouch at his belt. A pinch of dark powder. He throws it at Elara's face. She inhales, startled, and the reaction is immediate.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_poisoned_elara",
+          "value": true
+        }
+      ],
+      "next": "elara_collapses"
+    },
+    "elara_collapses": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "fearful",
+      "text": "What... what did you give me? My throat — I can't — that's nightcap. Concentrated. You POISONED me with —",
+      "next": "elara_falls"
+    },
+    "elara_falls": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "She crumples. Not dramatically — just her legs stop working and she sits down hard on the chapel floor, her back against a pew. Her breathing goes shallow. Her lips are already turning blue.",
+      "next": "maren_horror"
+    },
+    "maren_horror": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "anguished",
+      "text": "I'm sorry. I'm sorry. I couldn't let you — the Church would — I'M SORRY. I didn't mean — it was supposed to be a sedative, just enough to — the concentration, I got the concentration wrong —",
+      "next": "player_arrives"
+    },
+    "player_arrives": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You push through the chapel door. Maren is kneeling over Elara, weeping. His hands shake. Elara's eyes are open but unfocused. The silver compass lies on the stone floor between them. What do you do?",
+      "next": "crisis_choice"
+    },
+    "crisis_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "attack_maren",
+          "text": "[Grab Maren] Get AWAY from her. What did you do?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": -20
+            }
+          ],
+          "next": "maren_dragged_away"
+        },
+        {
+          "id": "tend_to_elara",
+          "text": "[Kneel beside Elara] Tell me what you gave her. Now. Every second counts.",
+          "conditions": [],
+          "triggers": [],
+          "next": "maren_confesses_poison"
+        },
+        {
+          "id": "demand_cure",
+          "text": "You're a priest who carries poison. That means you carry the cure too. Give it to me.",
+          "conditions": [],
+          "triggers": [],
+          "next": "demand_cure_response"
+        }
+      ]
+    },
+    "maren_dragged_away": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "anguished",
+      "text": "Concentrated nightcap powder. I keep it for — the Church teaches us to — please, you have to understand, I never meant to HURT her. I just needed her to stop TALKING.",
+      "next": "cure_paths_branch"
+    },
+    "maren_confesses_poison": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "fearful",
+      "text": "Nightcap. Concentrated. Three times the sedative dose — my hands were shaking, I measured wrong. She has maybe two hours before her organs start shutting down. The seminary taught us the counter-agent but I don't have the ingredients, I don't —",
+      "next": "cure_paths_branch"
+    },
+    "demand_cure_response": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "fearful",
+      "text": "I — yes. The seminary teaches both. Always both. But the counter-agent requires bonemeal root and white sage in exact proportions. I don't have them HERE. There might be enough time if —",
+      "next": "cure_paths_branch"
+    },
+    "cure_paths_branch": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "use_antidote",
+          "text": "[If antidote brewed] I have the antidote Elara formulated. The one she pulled from the well trance.",
+          "conditions": [
+            {
+              "check": "flag.elara_learned_antidote",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "player.has_item.elara_antidote",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.antidote_brewed_correctly",
+              "value": true
+            }
+          ],
+          "next": "cure_antidote"
+        },
+        {
+          "id": "use_talisman",
+          "text": "[If talisman held] The druid talisman. It channels the forest's healing. It might be enough.",
+          "conditions": [
+            {
+              "check": "player.has_item.druid_talisman",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.talisman_used_for_cure",
+              "value": true
+            }
+          ],
+          "next": "cure_talisman"
+        },
+        {
+          "id": "force_maren",
+          "text": "You did this. You fix it. Tell me the Church's formula — NOW.",
+          "conditions": [],
+          "triggers": [],
+          "next": "maren_formula_path"
+        },
+        {
+          "id": "search_cottage",
+          "text": "Elara's cottage. She has herbs there — maybe enough to improvise.",
+          "conditions": [],
+          "triggers": [],
+          "next": "cottage_search"
+        }
+      ]
+    },
+    "cure_antidote": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You pour the antidote between Elara's lips. She chokes, coughs, and for a terrible moment nothing happens. Then color returns to her face — slowly, like ink spreading through water. Her breathing steadies. The blue fades from her lips.",
+      "next": "elara_wakes_antidote"
+    },
+    "elara_wakes_antidote": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "My own formula. Brewed from my father's knowledge. Used to save me from my own BROTHER. The irony would be beautiful if I wasn't going to vomit.",
+      "next": "elara_antidote_aftermath"
+    },
+    "elara_antidote_aftermath": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "intense",
+      "text": "He poisoned me. In a chapel. In front of GOD, or whatever passes for god in this place. I want him to answer for it. Not to the Church — to ME. To grandmother. To everyone he's lied to since the day he arrived.",
+      "triggers": [
+        {
+          "set_state": "flag.elara_wants_maren_destroyed",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.health",
+          "value": 25.0
+        }
+      ],
+      "next": "end_cured"
+    },
+    "cure_talisman": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You press the talisman against Elara's chest. The carved wood grows warm, then hot, then blinding. Green light floods the chapel — root-light, forest-light. The talisman channels everything it has into Elara's failing body. You feel the forest reach through it, probing, healing, pulling the poison apart molecule by molecule.",
+      "next": "talisman_breaks"
+    },
+    "talisman_breaks": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The talisman cracks. Splinters. Crumbles to ash in your hands. The green light fades. Elara breathes — deeply, freely, like a person surfacing from a long dive. The talisman is gone. Whatever power it held, it gave everything to save her.",
+      "next": "elara_wakes_talisman"
+    },
+    "elara_wakes_talisman": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "You used the talisman. For ME. That was your protection — your edge — and you burned it to save an herbalist who can't even keep herself from getting poisoned in a church.",
+      "triggers": [
+        {
+          "set_state": "flag.talisman_sacrificed_for_elara",
+          "value": true
+        },
+        {
+          "set_state": "player.has_item.druid_talisman",
+          "value": false
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": 30
+        },
+        {
+          "set_state": "npc.elara.health",
+          "value": 20.0
+        }
+      ],
+      "next": "end_cured"
+    },
+    "maren_formula_path": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "fearful",
+      "text": "The formula — yes. Bonemeal root, white sage, powdered limestone in a three-to-one-to-one ratio. Boil, don't steep. It needs to be administered within two hours. But if I give you this — if anyone learns the Church trains its priests in poison-craft — my order will —",
+      "next": "maren_bargain"
+    },
+    "maren_bargain": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "promise_silence",
+          "text": "Give me the formula and I'll protect your secret. Nobody needs to know.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.maren_gave_cure_formula",
+              "value": true
+            },
+            {
+              "set_state": "flag.maren_secret_protected",
+              "value": true
+            },
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": 25
+            }
+          ],
+          "next": "maren_gives_formula"
+        },
+        {
+          "id": "threaten_exposure",
+          "text": "Give me the formula or I tell the village their priest just tried to murder the herbalist.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.maren_gave_cure_formula",
+              "value": true
+            },
+            {
+              "set_state": "flag.maren_coerced",
+              "value": true
+            },
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": -30
+            }
+          ],
+          "next": "maren_gives_formula_forced"
+        }
+      ]
+    },
+    "maren_gives_formula": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "sad",
+      "text": "Thank you. I know I don't deserve — here. Everything you need. I'll pray for her. I know that means nothing to you, but I'll pray.",
+      "next": "brew_and_administer"
+    },
+    "maren_gives_formula_forced": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "anguished",
+      "text": "You're right. You're right. Here — take it. Save her. And then do whatever you want with me. I deserve it.",
+      "next": "brew_and_administer"
+    },
+    "brew_and_administer": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You find the ingredients in Elara's cottage — she had them all, organized with the precision of someone who catalogues poison as a profession. The formula works. Within an hour, color returns to Elara's face. She sleeps — real sleep, not the shallow gasps of the dying.",
+      "next": "elara_wakes_brother_cure"
+    },
+    "elara_wakes_brother_cure": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "Who gave you the formula? It wasn't in my notes — I would have recognized the ratios. This is seminary pharmacology.",
+      "next": "brother_cure_reveal"
+    },
+    "brother_cure_reveal": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "tell_truth_maren",
+          "text": "Your brother. The man who poisoned you also gave me the cure.",
+          "conditions": [],
+          "triggers": [],
+          "next": "elara_processes_brother_cure"
+        },
+        {
+          "id": "lie_about_source",
+          "text": "Old Maren had it. She knew the counter-agent from years ago.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.lied_about_cure_source",
+              "value": true
+            }
+          ],
+          "next": "elara_accepts_lie"
+        }
+      ]
+    },
+    "elara_processes_brother_cure": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "sad",
+      "text": "He poisoned me. And then he saved me. That's... I don't know what that is. Love? Cowardice? Both? He learned to kill and to heal in the same classroom and he used both on his own sister in the same hour.",
+      "triggers": [
+        {
+          "set_state": "flag.elara_saved_by_brother",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.memory.knows_brother_saved_her",
+          "value": true
+        }
+      ],
+      "next": "end_cured"
+    },
+    "elara_accepts_lie": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "Grandmother. Of course. She's survived this village longer than anyone. I should have gone to her first.",
+      "triggers": [
+        {
+          "set_state": "flag.elara_saved_by_brother",
+          "value": true
+        }
+      ],
+      "next": "end_cured"
+    },
+    "cottage_search": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You run to Elara's cottage and tear through her herb stores. Nightcap counter-agents — she has notes, partial formulas, cross-references. But without the exact proportions, you're guessing. The clock is ticking. Elara has two hours.",
+      "next": "cottage_choice"
+    },
+    "cottage_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "go_back_maren",
+          "text": "I need Maren's formula. There's no time to guess.",
+          "conditions": [],
+          "triggers": [],
+          "next": "maren_formula_path"
+        },
+        {
+          "id": "try_talisman_late",
+          "text": "[If talisman held] The talisman. It's my only option.",
+          "conditions": [
+            {
+              "check": "player.has_item.druid_talisman",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.talisman_used_for_cure",
+              "value": true
+            }
+          ],
+          "next": "cure_talisman"
+        }
+      ]
+    },
+    "end_cured": {
+      "type": "end",
+      "triggers": [
+        {
+          "set_state": "quest.blood_and_herb.elara_saved",
+          "value": true
+        }
+      ]
+    }
+  }
+}

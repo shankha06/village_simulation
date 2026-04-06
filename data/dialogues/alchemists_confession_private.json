@@ -1,0 +1,409 @@
+{
+  "id": "alchemists_confession_private",
+  "start_node": "start",
+  "conditions": [
+    {
+      "check": "flag.player_has_confession_evidence",
+      "op": "==",
+      "value": true
+    },
+    {
+      "check": "world.location",
+      "op": "==",
+      "value": "chapel"
+    },
+    {
+      "check": "npc.brother_maren.location",
+      "op": "==",
+      "value": "chapel"
+    }
+  ],
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The chapel is empty. Afternoon light falls through the narrow windows in pale columns, illuminating the dust motes that hang in the air like suspended judgments. Brother Maren is at the altar, arranging candles with meticulous precision. He does not hear you enter. Or perhaps he does, and has simply run out of reasons to be startled.",
+      "next": "approach"
+    },
+    "approach": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You close the door. The latch clicks. He turns. You hold up the journal — his journal, his handwriting, his confession in ink and trembling penmanship. You say nothing. You do not need to.",
+      "next": "maren_sees_journal"
+    },
+    "maren_sees_journal": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The color leaves his face. Not slowly — all at once, as though something behind his eyes has given way. He looks at the journal, then at you, then at the journal again. His hand reaches for the altar behind him. Not for a weapon. For support.",
+      "next": "player_reads"
+    },
+    "player_reads": {
+      "type": "text",
+      "speaker": "player",
+      "portrait": "calm",
+      "text": "This is your handwriting. 'Phase 1 complete. Nightcap root in primary water source. Dosage increased per directive. Crop death accelerating as projected.'",
+      "next": "player_reads_2"
+    },
+    "player_reads_2": {
+      "type": "text",
+      "speaker": "player",
+      "portrait": "calm",
+      "text": "And then, three weeks ago, the entries change. 'Cannot continue. The old woman. Silas's hands. I see Silas's hands when she gestures. I am undone.'",
+      "triggers": [
+        {
+          "set_state": "flag.maren_private_confession",
+          "value": true
+        }
+      ],
+      "next": "maren_collapses"
+    },
+    "maren_collapses": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "He does not deny it. He does not deflect. The mask does not slip — it shatters. Brother Maren slides down the altar and sits on the cold stone floor of his chapel, legs folded beneath him like a child told something too large to stand under. His hands — Silas's hands, Old Maren's hands — cover his face.",
+      "next": "confession_1"
+    },
+    "confession_1": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "broken",
+      "text": "I came here to destroy this village.",
+      "next": "confession_2"
+    },
+    "confession_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "broken",
+      "text": "The Church said the forest was corruption. An ancient parasite feeding on human souls and calling it 'covenant.' They said Ashvale was the infection's heart — that the pact had to be severed, the Heartwood burned, the village cleansed. They said I was chosen because I had no ties to this place. Because the boy who left at four years old would feel nothing for the village that fed his father to the roots.",
+      "next": "confession_3"
+    },
+    "confession_3": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "broken",
+      "text": "I believed them. I WANTED to believe them — because if the forest was evil, then what it did to my father wasn't sacrifice. It was murder. And murder can be avenged. Murder is simple. Murder gives you someone to hate.",
+      "next": "confession_4"
+    },
+    "confession_4": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "vulnerable",
+      "text": "But she has his hands. The old woman. My grandmother. I watched her pick herbs one morning — the way she pinches the stem between thumb and forefinger, the slight twist. My father did that. I remember that. I remember almost nothing from before the Church, but I remember my father's hands picking flowers for my mother, and this old woman does it exactly the same way.",
+      "next": "confession_5"
+    },
+    "confession_5": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "vulnerable",
+      "text": "And the herbalist — Elara — she has his eyes. Dark, steady, always watching. She looked at me one day across the village square and I nearly fell. Because for one second it was him. It was my father looking at me from a stranger's face. And I have been poisoning their water.",
+      "triggers": [
+        {
+          "set_state": "npc.brother_maren.memory.confessed_fully",
+          "value": true
+        },
+        {
+          "set_state": "flag.maren_recognized_family",
+          "value": true
+        }
+      ],
+      "next": "silence_beat"
+    },
+    "silence_beat": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The candles flicker. Somewhere in the village a dog barks. The mundane world continues outside these walls while inside them a man unravels the last knot holding himself together.",
+      "next": "maren_offer"
+    },
+    "maren_offer": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "vulnerable",
+      "text": "I stopped. Three weeks ago I stopped adding the poison. I have been sending false reports to the Church — telling them Phase 1 continues, that the village weakens, that Phase 2 should be delayed for maximum effect. Every lie buys Ashvale another day.",
+      "next": "maren_offer_2"
+    },
+    "maren_offer_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "vulnerable",
+      "text": "I can give you everything. The false reports — I'll keep sending them, delay the Church army as long as possible. The counter-rite — I know the ceremony that can break the pact permanently, a truth-speaking at the Heartwood. My life, if you need it. I have no right to bargain. I am asking for the chance to undo what I've done.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_offered_everything",
+          "value": true
+        }
+      ],
+      "next": "player_response"
+    },
+    "player_response": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "accept_penitent",
+          "text": "You stopped. That matters. Tell me about the counter-rite.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.accepted_maren_penitence",
+              "value": true
+            },
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": 30
+            },
+            {
+              "set_state": "npc.brother_maren.memory.player_showed_mercy",
+              "value": true
+            }
+          ],
+          "next": "counter_rite_info"
+        },
+        {
+          "id": "demand_more",
+          "text": "Stopping isn't enough. People are sick. Children are sick. You owe more than remorse.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.demanded_more_from_maren",
+              "value": true
+            },
+            {
+              "set_state": "npc.brother_maren.memory.player_demanded_more",
+              "value": true
+            }
+          ],
+          "next": "demand_path"
+        },
+        {
+          "id": "refuse_forgiveness",
+          "text": "Three weeks. You poisoned this village for MONTHS and stopped for three weeks. That doesn't earn forgiveness.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.refused_maren_forgiveness",
+              "value": true
+            },
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": -15
+            }
+          ],
+          "next": "refuse_path"
+        },
+        {
+          "id": "ask_about_grandmother",
+          "text": "Does she know? Old Maren. Does your grandmother know who you are?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.asked_about_grandmother_knowledge",
+              "value": true
+            }
+          ],
+          "next": "grandmother_question"
+        }
+      ]
+    },
+    "counter_rite_info": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "The counter-rite is a truth-speaking ceremony. The pact feeds on secrets — on buried debts and unspoken crimes. To break it, truth must be spoken at the Heartwood by those who carry the heaviest lies. Each truth weakens the pact. Enough truths spoken freely — not coerced, not extracted, but offered — and the pact dissolves.",
+      "next": "counter_rite_info_2"
+    },
+    "counter_rite_info_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "I would need to speak. My truth — that I poisoned this village because I was afraid of what killed my father. That is the heaviest truth I carry. And it must be freely given. No one can force it out of me; forced truth has no weight in the ceremony.",
+      "triggers": [
+        {
+          "set_state": "flag.counter_rite_details_known",
+          "value": true
+        },
+        {
+          "set_state": "flag.maren_truth_required_for_rite",
+          "value": true
+        }
+      ],
+      "next": "secret_request"
+    },
+    "demand_path": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "broken",
+      "text": "You're right. Remorse is easy. Remorse costs nothing. What do you need? I know the Church's troop movements, their alchemical weapons, their tactical doctrine. I know the counter-rite that could break the pact. I know how to brew the antidote for nightcap poisoning — I can heal the children I sickened. Name it. Whatever you need, it's yours.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_antidote_offered",
+          "value": true
+        },
+        {
+          "set_state": "flag.maren_intel_offered",
+          "value": true
+        }
+      ],
+      "next": "secret_request"
+    },
+    "refuse_path": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "broken",
+      "text": "No. It doesn't. Nothing earns forgiveness for what I did. But you came here alone. You could have gone to the village square. You chose the chapel. That tells me you're not looking for justice — you're looking for a solution. Let me be the solution. Use me. Point me at the Church that made me into this. I'll be the weapon, aimed in the right direction this time.",
+      "triggers": [
+        {
+          "set_state": "npc.brother_maren.memory.accepted_no_forgiveness",
+          "value": true
+        }
+      ],
+      "next": "secret_request"
+    },
+    "grandmother_question": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "vulnerable",
+      "text": "I don't know. She looks at me sometimes — across the square, during sermons — with an expression I cannot read. Not suspicion. Not warmth. Something older than both. I think... I think she suspects. The way I walk. The gestures I inherited without knowing. But she has never said a word to me about it.",
+      "next": "grandmother_question_2"
+    },
+    "grandmother_question_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "vulnerable",
+      "text": "And I have never said a word to her. Because what would I say? 'Grandmother, I am the boy you lost. I came back to poison your village. Forgive me.' There is no version of that conversation that does not destroy her.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_fears_grandmother_truth",
+          "value": true
+        }
+      ],
+      "next": "secret_request"
+    },
+    "secret_request": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "vulnerable",
+      "text": "I have one request. One thing I ask in return for everything I'm giving you. Don't tell the old woman. Don't tell Old Maren who I am. Let her live without knowing that her grandson came home only to poison her well. She has suffered enough. Let me carry this alone.",
+      "next": "secret_choice"
+    },
+    "secret_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "honor_request",
+          "text": "I'll keep your secret. She doesn't need to know.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.maren_secret_protected",
+              "value": true
+            },
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": 20
+            },
+            {
+              "set_state": "npc.brother_maren.memory.player_honored_request",
+              "value": true
+            }
+          ],
+          "next": "secret_honored"
+        },
+        {
+          "id": "refuse_secret",
+          "text": "I can't promise that. If the truth is what breaks the pact, then every truth may be needed. Including this one.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.maren_secret_not_guaranteed",
+              "value": true
+            },
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": -10
+            }
+          ],
+          "next": "secret_refused"
+        },
+        {
+          "id": "already_knows",
+          "text": "Maren... I think she already knows. I think she's known since the day you arrived.",
+          "conditions": [
+            {
+              "check": "npc.old_maren.disposition",
+              "op": ">=",
+              "value": 40
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.player_suspects_old_maren_knows",
+              "value": true
+            }
+          ],
+          "next": "already_knows_path"
+        }
+      ]
+    },
+    "secret_honored": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "sad",
+      "text": "Thank you. That is more mercy than I deserve. I will be your double agent. I will send the false reports. I will help you with the counter-rite. And when this is over — if we survive — I will leave Ashvale and never return. She will remember the visiting priest who prayed too loudly. Nothing more.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_is_double_agent",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "secret_refused": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "fearful",
+      "text": "Then I am in your hands. Entirely. You hold the truth and the timing. I can only ask that when the moment comes — if the moment comes — you let me be the one to tell her. Not a stranger. Not a crowd. Let me look my grandmother in the eye and speak my own damnation.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_requests_to_tell_grandmother",
+          "value": true
+        },
+        {
+          "set_state": "flag.maren_is_double_agent",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "already_knows_path": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "vulnerable",
+      "text": "...You think so? Then she has been watching me poison her village and saying nothing. Because — because it was easier than hope? Because claiming me meant claiming what I've done? Or because she was waiting to see if Silas's son would find his way back on his own, the way Silas found his way into the roots?",
+      "next": "already_knows_2"
+    },
+    "already_knows_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "broken",
+      "text": "God. If she knows... if she's known this whole time... then every cup of water she drank from that well was an act of faith in me. She drank the poison her grandson put there and waited for him to stop. That is either the bravest thing or the most broken thing I have ever heard.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_realizes_grandmother_may_know",
+          "value": true
+        },
+        {
+          "set_state": "flag.maren_is_double_agent",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

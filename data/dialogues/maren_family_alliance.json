@@ -1,0 +1,364 @@
+{
+  "id": "maren_family_alliance",
+  "start_node": "start",
+  "conditions": [
+    {
+      "check": "flag.family_alliance_possible",
+      "op": "==",
+      "value": true
+    },
+    {
+      "check": "flag.maren_promise_broken",
+      "op": "==",
+      "value": true
+    }
+  ],
+  "notes": "The hardest scene in the game. All three Maren bloodline members in the same room. Old Maren, Brother Maren, Elara. Grandmother, grandson, granddaughter. The poisoner, the witness, and the healer.",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The chapel. Evening. You have gathered them here under separate pretenses — Old Maren to 'discuss the forest,' Elara to 'examine a patient,' Brother Maren because this is his home and he has nowhere else to go. When the door closes and the three of them see each other, the room temperature drops. Not metaphorically. Something in the air changes. The candle flames lean toward each other as though pulled by invisible hands.",
+      "next": "three_together"
+    },
+    "three_together": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Old Maren stands by the window. Elara near the door, arms crossed, ready to leave. Brother Maren at the altar, gripping the edge with both hands. Three people sharing a bloodline and a room and nothing else. Silas's mother. Silas's daughter. Silas's son. The dead man's family, reassembled around the shape of his absence.",
+      "next": "old_maren_speaks_first"
+    },
+    "old_maren_speaks_first": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "hollow",
+      "text": "You have your father's eyes.",
+      "next": "silence_1"
+    },
+    "silence_1": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The words hang in the chapel air. Five words. Thirty years of silence broken by five words. Brother Maren's hands tighten on the altar. His knuckles go white — Silas's knuckles, the same bone structure, the same tendons standing out under thin skin.",
+      "next": "elara_cuts"
+    },
+    "elara_cuts": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "He has his hands too. And he used them to poison our water.",
+      "next": "elara_2"
+    },
+    "elara_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "Don't look at me like that, grandmother. Don't stand there and find family resemblances in the man who sickened every child I've treated for the past two months. I pulled nightcap root symptoms out of INFANTS. He put it there. I don't care whose eyes he has.",
+      "triggers": [
+        {
+          "set_state": "flag.elara_confronted_maren_directly",
+          "value": true
+        }
+      ],
+      "next": "maren_doesnt_defend"
+    },
+    "maren_doesnt_defend": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "broken",
+      "text": "She's right.",
+      "next": "maren_truth"
+    },
+    "maren_truth": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "broken",
+      "text": "I was four when the Church took me. I remember almost nothing from before. A cottage. A woman crying. Men carrying something into the trees. The Church raised me on doctrine and certainty. They told me the forest was evil. That what happened to my father was murder by an ancient parasite wearing the mask of a god. They told me Ashvale was the infection. And they sent me here to begin the cleansing.",
+      "next": "maren_truth_2"
+    },
+    "maren_truth_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "broken",
+      "text": "I wanted to believe them. Because if they were right — if the forest was evil — then my father wasn't a sacrifice. He was a victim. And victims can be avenged. I came here to avenge my father by destroying the village he died protecting. I understand how that sounds. I understood it then. I chose not to think about it.",
+      "next": "old_maren_response"
+    },
+    "old_maren_response": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "hollow",
+      "text": "I knew.",
+      "next": "old_maren_confession"
+    },
+    "old_maren_confession": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "hollow",
+      "text": "I recognized you the day you arrived. The walk. The tilt of your head. The way you hold a pen — Silas held his pen exactly that way, pinched between the same two fingers. I knew you were my grandson before you finished your first sermon.",
+      "next": "old_maren_confession_2"
+    },
+    "old_maren_confession_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "hollow",
+      "text": "And I said nothing. Because recognizing you meant hoping. And hope, at my age, after what I have lost — hope is the most dangerous thing in the world. I watched you poison my village and I said nothing because it was easier than claiming you. Easier than loving another Maren who might be taken from me.",
+      "triggers": [
+        {
+          "set_state": "flag.old_maren_confessed_recognition",
+          "value": true
+        },
+        {
+          "set_state": "npc.old_maren.memory.confessed_cowardice",
+          "value": true
+        }
+      ],
+      "next": "elara_breaks"
+    },
+    "elara_breaks": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "You KNEW? You knew he was poisoning us and you said NOTHING? Grandmother — children were SICK. I was treating them day and night. I came to you for remedies and you — you knew the cause the entire time?",
+      "next": "old_maren_breaks"
+    },
+    "old_maren_breaks": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "weeping",
+      "text": "I knew who he was. I suspected what he was doing. I did not have proof. And I... I could not bring myself to... He was all I had left of Silas. The last piece. If I turned him in, the village would kill him, and then there would be nothing left of my son in the world except a herbalist who dropped his name and an old woman who talks to trees.",
+      "next": "elara_quiet"
+    },
+    "elara_quiet": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Elara's anger falters. Not because the answer is acceptable — it isn't — but because she recognizes the shape of it. She dropped her father's name. She ran from the Maren legacy. She, too, chose self-preservation over truth. The three of them stand in the chapel, each carrying a different version of the same cowardice, and the family resemblance has never been stronger.",
+      "next": "long_silence"
+    },
+    "long_silence": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Silence. The candles burn. Outside, the village goes about its evening — unaware that three generations of the family that shaped its history are standing in a chapel, learning how to look at each other.",
+      "next": "player_intervention"
+    },
+    "player_intervention": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "unite_them",
+          "text": "The counter-rite needs all of you. Three truths from the same bloodline. The poisoner, the witness, and the one who ran. That's enough weight to crack the pact.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_proposed_family_alliance",
+              "value": true
+            }
+          ],
+          "next": "alliance_proposal"
+        },
+        {
+          "id": "let_them_process",
+          "text": "[Say nothing. This is not your moment. Let them find their own way.]",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_let_family_process",
+              "value": true
+            }
+          ],
+          "next": "organic_moment"
+        },
+        {
+          "id": "force_pragmatism",
+          "text": "The Church army is coming. You can hate each other after we survive. Right now I need the three of you working together.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_forced_pragmatism",
+              "value": true
+            }
+          ],
+          "next": "pragmatic_path"
+        }
+      ]
+    },
+    "alliance_proposal": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "conflicted",
+      "text": "You want me to stand at the Heartwood — the place that ate my father — beside the brother who poisoned my village, and the grandmother who watched it happen, and speak my deepest truth? You want me to say it aloud? Fine. My truth is this: I dropped my father's name because I was ashamed. Ashamed of being the daughter of a sacrifice. Ashamed that my blood was the currency this village used to buy another thirty years.",
+      "triggers": [
+        {
+          "set_state": "flag.elara_truth_spoken",
+          "value": true
+        }
+      ],
+      "next": "alliance_builds"
+    },
+    "alliance_builds": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "vulnerable",
+      "text": "And mine: I poisoned this village because I was afraid. Afraid that if the forest was just a forest and the pact was just a pact, then my father chose to die. He walked into the roots and left me behind, and I couldn't forgive him. So I made the forest into a monster. It was easier to burn a monster than to grieve a father who chose to leave.",
+      "triggers": [
+        {
+          "set_state": "flag.brother_maren_truth_spoken",
+          "value": true
+        }
+      ],
+      "next": "old_maren_truth"
+    },
+    "old_maren_truth": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "weeping",
+      "text": "I recognized my grandson and said nothing because it was easier than hope. I watched him poison the village my son died for because I was afraid — afraid that if I claimed him, I would lose him the same way I lost Silas. Afraid that loving another Maren would be another invitation for the forest to take from me. So I sat on my bench and I watched and I did nothing. That is my truth. It is the ugliest thing I have ever said aloud.",
+      "triggers": [
+        {
+          "set_state": "flag.old_maren_truth_spoken",
+          "value": true
+        }
+      ],
+      "next": "the_moment"
+    },
+    "the_moment": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Three truths. Three cowardices. Three versions of the same wound — a father who walked into the roots thirty years ago and left a family that never recovered. In the silence that follows, something shifts. Not forgiveness — it is too early for forgiveness. But recognition. The recognition that they are all broken in the same shape. That the splinters fit together.",
+      "next": "elara_hand"
+    },
+    "elara_hand": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Elara uncrosses her arms. She looks at Brother Maren's hands — her father's hands — and for the first time does not flinch. She does not take them. But she does not look away.",
+      "next": "old_maren_step"
+    },
+    "old_maren_step": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "vulnerable",
+      "text": "The Heartwood. All three of us. Silas's mother, Silas's daughter, Silas's son. If the pact feeds on our family's silence, then let it choke on our voices.",
+      "triggers": [
+        {
+          "set_state": "flag.family_alliance_formed",
+          "value": true
+        },
+        {
+          "set_state": "flag.maren_family_alliance_active",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.disposition",
+          "delta": 20
+        },
+        {
+          "set_state": "npc.old_maren.disposition",
+          "delta": 15
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": 10
+        }
+      ],
+      "next": "end"
+    },
+    "organic_moment": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You say nothing. You stand by the door and you let the silence do its work. Three people. One blood. Thirty years of unspoken grief filling the chapel like incense smoke.",
+      "next": "organic_2"
+    },
+    "organic_2": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "It is Old Maren who moves first. She crosses the chapel floor — slowly, because her knees are bad, because she is eighty years old and has walked too many miles to count — and she stands in front of her grandson. She reaches up. Her hand — Silas's hand, trembling now — touches his cheek. The cheek that was struck in the village square. The bruise has faded. But not entirely.",
+      "next": "organic_3"
+    },
+    "organic_3": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "weeping",
+      "text": "You came home.",
+      "next": "organic_4"
+    },
+    "organic_4": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Brother Maren breaks. Not the controlled collapse of the private confession — something deeper, older, the breaking of a child who has been away for too long and is being touched by hands he recognizes from a life he barely remembers. He leans into her palm the way a four-year-old leans into his grandmother's hand, and thirty years compress into a single point of contact.",
+      "next": "organic_5"
+    },
+    "organic_5": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Elara watches from the doorway. Her arms are crossed. Her jaw is set. But her eyes are wet. She does not join them. Not yet. But she does not leave.",
+      "triggers": [
+        {
+          "set_state": "flag.family_alliance_forming_slowly",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.disposition",
+          "delta": 15
+        },
+        {
+          "set_state": "npc.old_maren.disposition",
+          "delta": 20
+        }
+      ],
+      "next": "end"
+    },
+    "pragmatic_path": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "Work TOGETHER? With HIM? He poisoned—",
+      "next": "pragmatic_2"
+    },
+    "pragmatic_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "hollow",
+      "text": "Enough, child. The stranger is right. The army comes and we stand here measuring grudges. Your father would be ashamed of all of us. He walked into the Heartwood to SAVE this village. The least his family can do is stand in the same room without tearing each other apart.",
+      "next": "pragmatic_3"
+    },
+    "pragmatic_3": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "conflicted",
+      "text": "...Don't use father against me. Not you. Not after what you admitted.",
+      "next": "pragmatic_4"
+    },
+    "pragmatic_4": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "hollow",
+      "text": "I use him because he is the only thing all three of us have in common. He is the center of this. He always was. His sacrifice. His children. His mother. Everything that went wrong in this family started when Silas walked into the roots. And everything that can go right starts with us deciding to stop walking away from each other.",
+      "triggers": [
+        {
+          "set_state": "flag.family_alliance_formed",
+          "value": true
+        },
+        {
+          "set_state": "flag.maren_family_alliance_active",
+          "value": true
+        },
+        {
+          "set_state": "flag.pragmatic_alliance",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "id": "alchemists_confession",
+  "name": "The Alchemist's Confession",
+  "description": "The Church Outpost holds definitive proof: Brother Maren was sent to poison Ashvale. But his private journal reveals he stopped three weeks ago — when he met Old Maren and sensed she was his grandmother. He has been sending false reports to the Church ever since.",
+  "giver": "discovery",
+  "region": "ashvale",
+  "tags": [
+    "main_quest",
+    "personal",
+    "investigation",
+    "church",
+    "moral_choice",
+    "maren_chain",
+    "layer_1"
+  ],
+  "priority": 9,
+  "chain": "prodigal_son",
+  "chain_layer": 1,
+  "states": {
+    "UNKNOWN": {
+      "transitions": [
+        {
+          "on": "flag.found_church_outpost_evidence == true",
+          "to": "DISCOVERED"
+        }
+      ]
+    },
+    "DISCOVERED": {
+      "journal_entry": "I found it at the Church Outpost. Orders bearing the Ashen Light's seal: 'Brother Maren is to administer nightcap root to the primary water source in progressive doses. Phase 1: weaken crops. Phase 2: weaken populace. Phase 3: await cleansing force.' But there is more — his private journal. Three weeks ago the entries change. The handwriting shakes. 'Cannot continue. The old woman. Silas's hands. I see Silas's hands when she gestures. I am undone.'",
+      "objectives": [
+        "You hold the Church's orders AND Maren's journal",
+        "Decide how to use the evidence"
+      ],
+      "transitions": [
+        {
+          "on": "flag.player_has_confession_evidence == true",
+          "to": "ACTIVE"
+        }
+      ],
+      "triggers": [
+        {
+          "set_state": "flag.player_has_confession_evidence",
+          "value": true
+        },
+        {
+          "set_state": "flag.maren_poisoning_confirmed",
+          "value": true
+        },
+        {
+          "set_state": "flag.maren_stopped_poisoning",
+          "value": true
+        }
+      ]
+    },
+    "ACTIVE": {
+      "journal_entry": "I have proof that Brother Maren poisoned Ashvale on Church orders — and proof that he stopped. His journal shows a man broken by recognizing his own grandmother in the village he was sent to destroy. What do I do with this? I see three paths: drag him to the village square and let the crowd decide, confront him privately in the chapel, or say nothing and use the knowledge as leverage.",
+      "objectives": [
+        "Confront Maren publicly in the village square",
+        "Confront Maren privately in the chapel",
+        "Say nothing — use the information as leverage"
+      ],
+      "transitions": [
+        {
+          "on": "flag.maren_publicly_exposed == true",
+          "to": "PUBLICLY_EXPOSED"
+        },
+        {
+          "on": "flag.maren_private_confession == true",
+          "to": "PRIVATELY_CONFRONTED"
+        },
+        {
+          "on": "flag.player_controls_maren == true",
+          "to": "LEVERAGED"
+        }
+      ]
+    },
+    "PUBLICLY_EXPOSED": {
+      "journal_entry": "I read the Church orders aloud in the village square. The crowd turned on Maren. He knelt and did not fight. He said he had stopped — three weeks ago — but no one listened. Old Maren stood at the edge of the crowd. She recognized her grandson being beaten. She said nothing. She turned and walked away. Harlan watched with the face of a man watching history repeat itself. Maren is in a cell now. The village has its answer. I am not sure it has its justice.",
+      "consequence_chain": "maren_public_exposure_chain",
+      "triggers": [
+        {
+          "set_state": "flag.church_army_accelerated",
+          "value": true
+        },
+        {
+          "set_state": "flag.maren_imprisoned",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.location_override",
+          "value": "village_cell"
+        },
+        {
+          "set_state": "npc.old_maren.disposition",
+          "delta": -20
+        },
+        {
+          "set_state": "npc.brother_maren.disposition",
+          "delta": -40
+        },
+        {
+          "set_state": "flag.village_knows_maren_poisoned",
+          "value": true
+        }
+      ]
+    },
+    "PRIVATELY_CONFRONTED": {
+      "journal_entry": "I showed Maren the journal in the chapel. He collapsed. The mask broke — not the priestly composure, not the careful deflections, but the man underneath all of it. He told me he came to destroy Ashvale because the Church said the forest was corruption. He wanted to believe them, because if the forest was evil, then what it did to his father was murder, not sacrifice. Then he met Old Maren. Saw Silas's hands when she gestured. Saw Silas's eyes in Elara. And realized he had been poisoning his own family. He offers everything: false reports, counter-rite knowledge, his life. I have to decide what to do with a penitent poisoner.",
+      "consequence_chain": "maren_private_confession_chain",
+      "triggers": [
+        {
+          "set_state": "flag.maren_is_double_agent",
+          "value": true
+        },
+        {
+          "set_state": "flag.maren_offered_counter_rite",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.personality.honesty",
+          "value": 0.7
+        },
+        {
+          "set_state": "npc.brother_maren.disposition",
+          "delta": 30
+        },
+        {
+          "set_state": "npc.brother_maren.memory.confessed_to_player",
+          "value": true
+        }
+      ]
+    },
+    "LEVERAGED": {
+      "journal_entry": "I said nothing to Maren. I did not confront him. I simply began making requests. Small ones at first. He was confused. Then terrified. He realized I knew — everything. 'What do you want from me?' he asked. I told him: everything. He is mine now. A weapon wearing a priest's robes. He told me this is what the Church did to his father — found his weakness and used it. He is right. I did not care.",
+      "consequence_chain": "maren_leverage_chain",
+      "triggers": [
+        {
+          "set_state": "flag.maren_is_puppet",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.personality.loyalty",
+          "value": 0.1
+        },
+        {
+          "set_state": "npc.brother_maren.personality.honesty",
+          "value": 0.1
+        },
+        {
+          "set_state": "npc.brother_maren.disposition",
+          "delta": -30
+        },
+        {
+          "set_state": "flag.player_moral_vector_shift",
+          "delta": -25
+        }
+      ]
+    }
+  }
+}

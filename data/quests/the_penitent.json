@@ -1,0 +1,310 @@
+{
+  "id": "the_penitent",
+  "name": "The Penitent",
+  "description": "The Church army approaches. What Maren can do — and what he is willing to do — depends entirely on how the player handled his confession. The imprisoned man, the double agent, and the puppet each face the same crisis through different cages.",
+  "giver": "consequence",
+  "region": "ashvale",
+  "tags": [
+    "main_quest",
+    "personal",
+    "church",
+    "military",
+    "moral_choice",
+    "maren_chain",
+    "layer_2"
+  ],
+  "priority": 10,
+  "chain": "prodigal_son",
+  "chain_layer": 2,
+  "prerequisites": {
+    "any_of": [
+      "flag.maren_publicly_exposed",
+      "flag.maren_private_confession",
+      "flag.player_controls_maren"
+    ]
+  },
+  "states": {
+    "UNKNOWN": {
+      "transitions": [
+        {
+          "on": "flag.church_army_approaching == true",
+          "to": "CRISIS_BEGINS"
+        }
+      ]
+    },
+    "CRISIS_BEGINS": {
+      "journal_entry": "Word has reached Ashvale: the Church of the Ashen Light is marshaling soldiers. Alchemists with fire. They are coming for the Thornwood — and Ashvale stands in their path. What happens next depends on what I did with Brother Maren.",
+      "transitions": [
+        {
+          "on": "flag.maren_publicly_exposed == true",
+          "to": "IMPRISONED_PATH"
+        },
+        {
+          "on": "flag.maren_private_confession == true",
+          "to": "SECRET_AGENT_PATH"
+        },
+        {
+          "on": "flag.player_controls_maren == true",
+          "to": "PUPPET_PATH"
+        }
+      ]
+    },
+    "IMPRISONED_PATH": {
+      "journal_entry": "Maren rots in the village cell while the Church army accelerates its advance. A publicly exposed agent means the Church knows their cover is blown — they are coming faster. But Maren still has tactical knowledge. If I can get him to talk, we gain military intelligence. The question is whether to argue for his release or let him rot.",
+      "objectives": [
+        "Visit Maren in his cell for tactical intel",
+        "Decide: argue for Maren's release (requires Old Maren trust > 50) or leave him imprisoned"
+      ],
+      "triggers": [
+        {
+          "set_state": "flag.church_army_accelerated",
+          "value": true
+        }
+      ],
+      "transitions": [
+        {
+          "on": "flag.maren_released_from_cell == true",
+          "to": "IMPRISONED_RELEASED"
+        },
+        {
+          "on": "flag.maren_left_in_cell == true",
+          "to": "IMPRISONED_LEFT"
+        }
+      ]
+    },
+    "IMPRISONED_RELEASED": {
+      "journal_entry": "I argued for Maren's release. It cost me — Old Maren's trust was the currency, and Harlan's grudging respect the receipt. Maren is free but watched. He can participate in the counter-rite. He can offer himself for sacrifice. But the village watches him with the eyes of people who remember the taste of poisoned water.",
+      "consequence_chain": "maren_released_chain",
+      "triggers": [
+        {
+          "set_state": "flag.maren_can_participate_rite",
+          "value": true
+        },
+        {
+          "set_state": "flag.sacrifice_possible_if_released",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.location_override",
+          "value": "chapel"
+        }
+      ],
+      "transitions": [
+        {
+          "on": "flag.church_army_arrives == true",
+          "to": "ENDGAME"
+        }
+      ]
+    },
+    "IMPRISONED_LEFT": {
+      "journal_entry": "Maren stays in his cell. He gave me what intel he could through the bars — troop numbers, alchemical weapons, approach vectors. But he cannot participate in the counter-rite from a cage. He cannot offer himself for sacrifice. And Old Maren will not visit him. The cell door stays locked, and with it, several paths I might have walked.",
+      "consequence_chain": "maren_imprisoned_chain",
+      "triggers": [
+        {
+          "set_state": "flag.maren_can_give_intel",
+          "value": true
+        },
+        {
+          "set_state": "flag.sacrifice_blocked",
+          "value": true
+        },
+        {
+          "set_state": "flag.counter_rite_weakened",
+          "value": true
+        }
+      ],
+      "transitions": [
+        {
+          "on": "flag.church_army_arrives == true",
+          "to": "ENDGAME"
+        }
+      ]
+    },
+    "SECRET_AGENT_PATH": {
+      "journal_entry": "Maren operates as a double agent. Each night he composes false reports by candlelight — lies that buy Ashvale time. The Church army is delayed by two weeks. He has revealed the counter-rite: a truth-speaking ceremony at the Heartwood. But he has asked me not to tell Old Maren who he is. That promise weighs heavier each day.",
+      "objectives": [
+        "Allow Maren to continue sending false reports",
+        "Prepare the counter-rite ceremony",
+        "Decide: honor Maren's request to keep his identity secret, or tell Old Maren the truth"
+      ],
+      "triggers": [
+        {
+          "set_state": "flag.church_army_delayed",
+          "value": true
+        },
+        {
+          "set_state": "flag.counter_rite_available",
+          "value": true
+        }
+      ],
+      "transitions": [
+        {
+          "on": "flag.maren_secret_protected == true && flag.church_army_arrives == true",
+          "to": "SECRET_KEPT"
+        },
+        {
+          "on": "flag.maren_promise_broken == true",
+          "to": "PROMISE_BROKEN"
+        }
+      ]
+    },
+    "SECRET_KEPT": {
+      "journal_entry": "I kept Maren's secret. Old Maren never learned that the visiting priest was her grandson. The false reports held — the Church army was delayed long enough for us to prepare. Maren will speak his truth at the counter-rite. But his grandmother will die without ever knowing he came home. There is a particular cruelty in that kindness.",
+      "consequence_chain": "maren_secret_kept_chain",
+      "triggers": [
+        {
+          "set_state": "flag.old_maren_dies_without_knowing",
+          "value": true
+        },
+        {
+          "set_state": "flag.maren_can_participate_rite",
+          "value": true
+        }
+      ],
+      "transitions": [
+        {
+          "on": "flag.counter_rite_completed == true || flag.church_army_arrives == true",
+          "to": "ENDGAME"
+        }
+      ]
+    },
+    "PROMISE_BROKEN": {
+      "journal_entry": "I told Old Maren the truth. I broke my promise to Maren. The confrontation that followed — Old Maren, Brother Maren, Elara, all three of the Maren bloodline in the same room — was the hardest thing I have witnessed in Ashvale. But from the wreckage, something emerged: the possibility of a family alliance. All three Marens, working together, speaking truth together at the Heartwood. The counter-rite at its strongest.",
+      "consequence_chain": "maren_promise_broken_chain",
+      "triggers": [
+        {
+          "set_state": "flag.family_alliance_possible",
+          "value": true
+        },
+        {
+          "set_state": "flag.counter_rite_strongest",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.disposition",
+          "delta": -25
+        }
+      ],
+      "transitions": [
+        {
+          "on": "flag.family_alliance_formed == true",
+          "to": "FAMILY_UNITED"
+        },
+        {
+          "on": "flag.family_alliance_rejected == true",
+          "to": "FAMILY_SHATTERED"
+        }
+      ]
+    },
+    "FAMILY_UNITED": {
+      "journal_entry": "Against all odds, the Maren family has united. Old Maren, Brother Maren, Elara — poisoner, grandmother, sister — standing together. The counter-rite will have maximum power. Three members of the same bloodline, each carrying a truth heavy enough to crack the pact. If this works, Ashvale is free. If it doesn't, I have destroyed a family for nothing.",
+      "consequence_chain": "maren_family_united_chain",
+      "triggers": [
+        {
+          "set_state": "flag.maren_family_alliance_active",
+          "value": true
+        },
+        {
+          "set_state": "flag.counter_rite_maximum_power",
+          "value": true
+        }
+      ],
+      "transitions": [
+        {
+          "on": "flag.counter_rite_completed == true || flag.church_army_arrives == true",
+          "to": "ENDGAME"
+        }
+      ]
+    },
+    "FAMILY_SHATTERED": {
+      "journal_entry": "The truth destroyed them. Old Maren cannot look at Brother Maren. Elara will not speak to either of them. The family that might have been is ashes before it ever caught fire. The counter-rite will proceed without the family's combined strength. I broke my promise and gained nothing.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_family_shattered",
+          "value": true
+        },
+        {
+          "set_state": "flag.counter_rite_weakened",
+          "value": true
+        }
+      ],
+      "transitions": [
+        {
+          "on": "flag.church_army_arrives == true",
+          "to": "ENDGAME"
+        }
+      ]
+    },
+    "PUPPET_PATH": {
+      "journal_entry": "Maren does whatever I say. He writes what I tell him. He goes where I point him. His eyes are empty. The false reports continue but without conviction — perfunctory lies from a man who no longer cares whether they are believed. The Church army may or may not be delayed; Maren's reports lack the careful detail of a man who is trying.",
+      "objectives": [
+        "Direct Maren's actions",
+        "Attempt the counter-rite with a compelled participant"
+      ],
+      "triggers": [
+        {
+          "set_state": "flag.church_army_delay_uncertain",
+          "value": true
+        }
+      ],
+      "transitions": [
+        {
+          "on": "flag.puppet_maren_ordered_sacrifice == true",
+          "to": "PUPPET_SACRIFICE_ATTEMPT"
+        },
+        {
+          "on": "flag.puppet_maren_ordered_rite == true",
+          "to": "PUPPET_RITE_ATTEMPT"
+        },
+        {
+          "on": "flag.church_army_arrives == true",
+          "to": "ENDGAME"
+        }
+      ]
+    },
+    "PUPPET_SACRIFICE_ATTEMPT": {
+      "journal_entry": "I ordered Maren to offer himself as sacrifice to the Heartwood. He walked into the roots without hesitation — a man told to die by the person holding his leash. The Heartwood rejected him. The roots parted. The voice that speaks through bark and soil said: 'This one is compelled. This one's truth is a cage. We do not accept the caged.' The sacrifice failed. Compelled offerings have no value to the forest.",
+      "consequence_chain": "heartwood_rejects_puppet_chain",
+      "triggers": [
+        {
+          "set_state": "flag.heartwood_rejects_compelled",
+          "value": true
+        },
+        {
+          "set_state": "flag.sacrifice_path_blocked",
+          "value": true
+        }
+      ],
+      "transitions": [
+        {
+          "on": "flag.church_army_arrives == true",
+          "to": "ENDGAME"
+        }
+      ]
+    },
+    "PUPPET_RITE_ATTEMPT": {
+      "journal_entry": "I ordered Maren to speak his truth at the counter-rite. He spoke the words. Mechanically. Accurately. And the Heartwood did not respond. Compelled truth is not truth — it is recitation. The pact requires freely given confession, and a puppet's mouth cannot give what a puppet's will does not possess. The counter-rite failed.",
+      "consequence_chain": "counter_rite_fails_compelled_chain",
+      "triggers": [
+        {
+          "set_state": "flag.counter_rite_fails_if_compelled",
+          "value": true
+        },
+        {
+          "set_state": "flag.counter_rite_path_blocked",
+          "value": true
+        }
+      ],
+      "transitions": [
+        {
+          "on": "flag.church_army_arrives == true",
+          "to": "ENDGAME"
+        }
+      ]
+    },
+    "ENDGAME": {
+      "journal_entry": "The Church army is at the gates. What Maren has become — prisoner, agent, puppet — determines what tools remain to me. The final chapter of Ashvale begins.",
+      "transitions": []
+    }
+  }
+}

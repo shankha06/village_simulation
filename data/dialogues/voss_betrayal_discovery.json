@@ -1,0 +1,192 @@
+{
+  "id": "voss_betrayal_discovery",
+  "start_node": "greta_slips",
+  "description": "Fires if the player lied to Voss about Rivendale and the truth leaks. The devastating betrayal scene.",
+  "nodes": {
+    "greta_slips": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You're in the inn when it happens. Greta is chatting with a council member about the Rivendale investigation — she overheard you talking to someone about the evidence, the medallion, Draven's involvement. She says it casually. Idle gossip. She doesn't realize Voss is three tables away.",
+      "next": "voss_hears"
+    },
+    "voss_hears": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You see it happen in slow motion. Voss's head turns. Her drink stops halfway to her mouth. Her eyes find Greta. Then find you. The transition takes one second. In that second, everything between you dies.",
+      "next": "voss_approaches"
+    },
+    "voss_approaches": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "She stands. Walks to your table. Sits down across from you. Places both hands flat on the wood. Her face is perfectly controlled. Her eyes are not.",
+      "next": "voss_confronts"
+    },
+    "voss_confronts": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "cold",
+      "text": "The Rivendale evidence. That's what Greta said. Evidence. Not graves. Not names carved in river stones. Evidence.",
+      "next": "voss_confronts_2"
+    },
+    "voss_confronts_2": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "rage",
+      "text": "You knew. You sat across from me and told me you found GRAVES. You looked me in the eye and LIED. While the man who murdered my family stood twenty feet above us, sleeping in a bed in this very inn.",
+      "next": "voss_confronts_3"
+    },
+    "voss_confronts_3": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "rage",
+      "text": "How long? How long have you known it was Draven? Were you protecting HIM? Or were you just protecting your precious negotiations from my inconvenient grief?",
+      "next": "player_response"
+    },
+    "player_response": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "apologize",
+          "text": "I was trying to protect you. I was wrong. I'm sorry.",
+          "conditions": [],
+          "triggers": [],
+          "next": "apologize_response"
+        },
+        {
+          "id": "justify",
+          "text": "If I'd told you, you'd have killed him. And then the Legion would have killed everyone in Ashvale.",
+          "conditions": [],
+          "triggers": [],
+          "next": "justify_response"
+        },
+        {
+          "id": "silent",
+          "text": "[Say nothing.]",
+          "conditions": [],
+          "triggers": [],
+          "next": "silence_response"
+        }
+      ]
+    },
+    "apologize_response": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "cold",
+      "text": "Protect me. You wanted to protect me. From the truth about the man who killed my family. The truth I specifically ASKED you to find. The truth I BEGGED you to bring me — unfiltered, you remember? I said those words. Unfiltered.",
+      "next": "apologize_response_2"
+    },
+    "apologize_response_2": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "rage",
+      "text": "And you filtered it through your own judgment and decided I couldn't handle it. That I was too fragile. Too volatile. That Commander Voss — thirty campaigns, twenty-eight victories — needed to be MANAGED like a child who might break something.",
+      "triggers": [
+        {
+          "set_state": "npc.commander_voss.memory.player_apologized_for_lie",
+          "value": true
+        }
+      ],
+      "next": "final_words"
+    },
+    "justify_response": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "rage",
+      "text": "So you made the calculation. My family's justice weighed against Ashvale's survival. And you decided — YOU, not me — that forty-three dead villagers were an acceptable cost for a successful negotiation.",
+      "next": "justify_response_2"
+    },
+    "justify_response_2": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "cold",
+      "text": "You know the worst part? You might be right. It might have been the smart play. But you took the choice away from ME. My family. My grief. My decision. And you made it for me. That's not protection. That's control.",
+      "triggers": [
+        {
+          "set_state": "npc.commander_voss.memory.player_justified_lie",
+          "value": true
+        }
+      ],
+      "next": "final_words"
+    },
+    "silence_response": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You say nothing. There is nothing to say. Voss watches you not speak, and the silence between you fills with the ghost of every conversation where you chose omission over truth.",
+      "next": "silence_response_2"
+    },
+    "silence_response_2": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "cold",
+      "text": "Nothing. Not even now. You lied to me about the most important thing in my life and you can't even look me in the eye and explain why. That tells me everything I need to know about what I meant to you.",
+      "triggers": [
+        {
+          "set_state": "npc.commander_voss.memory.player_silent_when_caught",
+          "value": true
+        }
+      ],
+      "next": "final_words"
+    },
+    "final_words": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "cold",
+      "text": "I'm going to find Draven. And you're going to stay out of my way. Whatever happens next is between him and me and the forty-three people who deserved the truth twenty years ago.",
+      "next": "final_words_2"
+    },
+    "final_words_2": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "She stands. Takes three steps toward the door. Stops. Doesn't turn around.",
+      "next": "final_words_3"
+    },
+    "final_words_3": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "sad",
+      "text": "I trusted you. Not with my life — I don't care about my life. I trusted you with my dead. That was everything I had left to give. And you buried it under a lie.",
+      "next": "voss_exits"
+    },
+    "voss_exits": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The door closes behind her. The inn is very quiet. Greta stares at you from behind the bar. She's realized what she did. Her hand covers her mouth. Nobody speaks. The evidence in your pack — the medallion, the stone fragment — has never weighed more.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_discovers_player_lied",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_betrayed",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": -60
+        },
+        {
+          "set_state": "npc.commander_voss.memory.player_is_liar",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_hunting_draven",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_unreliable_in_battle",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

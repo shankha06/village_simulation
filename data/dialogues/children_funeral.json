@@ -1,0 +1,105 @@
+{
+  "id": "children_funeral",
+  "start_node": "three_graves",
+  "nodes": {
+    "three_graves": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Three small graves. The earth is fresh and dark, turned by hands that didn't want to be turning it. The village gathers in a half-circle — not a full one. There are gaps where people should be standing. Fenrick's gap is the most visible.",
+      "next": "tomas_carries"
+    },
+    "tomas_carries": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Tomas the farmer carries the smallest coffin. His daughter Brin. Fourteen years old. The coffin is pine — clean, light, the kind of wood you use for things that shouldn't be heavy. He carries it like it weighs nothing. It does weigh nothing. That's the worst part.",
+      "next": "the_other_coffins"
+    },
+    "the_other_coffins": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Two other families carry their losses. A boy of nine. A girl of six. Their names are spoken quietly, the way you speak the names of things you're afraid to lose — too late, because you've already lost them.",
+      "next": "tam_at_graves"
+    },
+    "tam_at_graves": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Tam is alive but she won't speak. She stands at the edge of the graves, apart from everyone, drawing root patterns in the dirt with her finger. The same spiraling sigils Old Maren used to trace. Nobody taught her these. The roots did.",
+      "triggers": [
+        {
+          "set_state": "flag.tam_mute",
+          "value": true
+        },
+        {
+          "set_state": "flag.tam_drawing_root_patterns",
+          "value": true
+        }
+      ],
+      "next": "villager_accusation"
+    },
+    "villager_accusation": {
+      "type": "text",
+      "speaker": "villager",
+      "portrait": "angry",
+      "text": "They could have lived. The forest was feeding them and we CUT IT OFF.",
+      "next": "greta_defends"
+    },
+    "greta_defends": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "sad",
+      "text": "Don't. Don't do that. The choice was impossible. Both answers were wrong.",
+      "next": "greta_defends_2"
+    },
+    "greta_defends_2": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "sad",
+      "text": "Three small coffins or eight old graves. That was the math. Nobody asked for that math. Nobody wanted it. But someone had to carry it.",
+      "next": "fenrick_absent"
+    },
+    "fenrick_absent": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Fenrick doesn't attend the funeral. He's in the alley behind the inn, sitting with his back against the wall. In his hands, the list — fourteen names, written in careful letters. Three are now crossed out. Fresh ink, still wet, because his hands were shaking when he drew the lines.",
+      "triggers": [
+        {
+          "set_state": "flag.fenrick_grieving_children",
+          "value": true
+        }
+      ],
+      "next": "tomas_speaks"
+    },
+    "tomas_speaks": {
+      "type": "text",
+      "speaker": "tomas",
+      "portrait": "devastated",
+      "text": "She wanted to be a baker. Like her mother. She said — she said the smell of bread was the best smell in the world. She never got to learn.",
+      "next": "the_dirt"
+    },
+    "the_dirt": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The dirt falls on pine. Three times. The sound is too soft for what it means. Tam watches without blinking. Her finger traces another spiral in the dirt. The pattern is perfect. The silence is total. Somewhere beyond the village edge, the forest stands witness, its roots still and dark beneath soil that no longer carries stolen life.",
+      "triggers": [
+        {
+          "set_state": "flag.attended_children_funeral",
+          "value": true
+        },
+        {
+          "set_state": "flag.three_children_dead",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

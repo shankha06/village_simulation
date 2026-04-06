@@ -554,6 +554,36 @@
     "notification_text": ""
   },
   {
+    "id": "root_cradle_children_playing",
+    "category": "atmosphere",
+    "region": "ashvale",
+    "priority": 45,
+    "once_only": true,
+    "conditions": [
+      "flag.investigating_root_redistribution == true",
+      "player.current_region == ashvale"
+    ],
+    "effects": [
+      {"set_state": "flag.witnessed_root_children_playing", "value": true}
+    ],
+    "notification_text": "The children on Miller's Row are playing. Laughing. Their cheeks have color. In the middle of a famine, they look like the only healthy things left in Ashvale. You know now where that health comes from. You wish you didn't."
+  },
+  {
+    "id": "root_cradle_old_maren_weakening",
+    "category": "atmosphere",
+    "region": "ashvale",
+    "priority": 45,
+    "once_only": true,
+    "conditions": [
+      "flag.investigating_root_redistribution == true",
+      "player.current_region == ashvale"
+    ],
+    "effects": [
+      {"set_state": "flag.witnessed_maren_weakening", "value": true}
+    ],
+    "notification_text": "Old Maren's hands tremble as she traces patterns in the dirt. The patterns are slower today. Less precise. She mutters about the soil tasting different. She doesn't know why she's so tired. You do."
+  },
+  {
     "id": "offscreen_old_maren_collapsed",
     "category": "offscreen",
     "region": "ashvale",

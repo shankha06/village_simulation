@@ -1,0 +1,197 @@
+{
+  "id": "penitent_imprisoned",
+  "start_node": "start",
+  "conditions": [
+    {
+      "check": "flag.maren_imprisoned",
+      "op": "==",
+      "value": true
+    },
+    {
+      "check": "flag.church_army_approaching",
+      "op": "==",
+      "value": true
+    }
+  ],
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The village cell is a converted root cellar beneath the council hall. Damp stone, a single barred window at ground level through which you can see feet passing in the square above. Brother Maren sits against the far wall. The bruises from the mob have yellowed. He looks smaller without his robes — they took those. He wears a villager's rough-spun shirt now. It does not fit.",
+      "next": "maren_greeting"
+    },
+    "maren_greeting": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "hollow",
+      "text": "You. I wondered when you'd come. To gloat? Or because you need something? In my experience, people only visit cells when they want information.",
+      "next": "player_purpose"
+    },
+    "player_purpose": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "need_intel",
+          "text": "The Church army is coming. You know their tactics. I need numbers, weapons, approach routes.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.requested_maren_intel",
+              "value": true
+            }
+          ],
+          "next": "intel_given"
+        },
+        {
+          "id": "release_offer",
+          "text": "I'm trying to get you released. The village needs you for the counter-rite.",
+          "conditions": [
+            {
+              "check": "npc.old_maren.disposition",
+              "op": ">=",
+              "value": 50
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "flag.attempting_maren_release",
+              "value": true
+            }
+          ],
+          "next": "release_discussion"
+        },
+        {
+          "id": "grandmother_question",
+          "text": "Old Maren hasn't visited you. I thought you should know.",
+          "conditions": [],
+          "triggers": [],
+          "next": "grandmother_pain"
+        }
+      ]
+    },
+    "intel_given": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "hollow",
+      "text": "The Church has forty soldiers. Career faithful — not conscripts. Twenty alchemists with Greek fire variants — they call it 'Ash Tears.' Burns through wood, stone, flesh. Water does not extinguish it. Only smothering with earth.",
+      "next": "intel_2"
+    },
+    "intel_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "hollow",
+      "text": "They'll come from the northeast — the logging road. Burn the forest first, then the village. Standard Ashen Light doctrine: remove the corruption, then remove the host. Ashvale is the host. They don't intend for anyone to survive.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_gave_tactical_intel",
+          "value": true
+        },
+        {
+          "set_state": "flag.church_army_northeast_approach",
+          "value": true
+        },
+        {
+          "set_state": "flag.church_has_greek_fire",
+          "value": true
+        },
+        {
+          "set_state": "flag.church_army_40_soldiers",
+          "value": true
+        }
+      ],
+      "next": "intel_3"
+    },
+    "intel_3": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "hollow",
+      "text": "Their commander is Sister Vesper. She believes — truly believes — that the Thornwood is a parasite on creation. She is not cruel. She is certain. That is worse. You cannot negotiate with certainty.",
+      "triggers": [
+        {
+          "set_state": "flag.sister_vesper_commands_army",
+          "value": true
+        }
+      ],
+      "next": "intel_4"
+    },
+    "intel_4": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "hollow",
+      "text": "One weakness: the alchemists need time to prepare the Ash Tears. The compound is unstable — it must be mixed on-site. If you can disrupt their camp before the mixing is complete, the fire weapons are useless. Without the Ash Tears, they're just soldiers. Forty soldiers against a village and a forest that fights back.",
+      "triggers": [
+        {
+          "set_state": "flag.church_army_weakness_known",
+          "value": true
+        },
+        {
+          "set_state": "flag.maren_can_give_intel",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "release_discussion": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "hollow",
+      "text": "Released. Into the village I poisoned. Among the people who beat me in the square. You think they'll let me walk to the Heartwood and speak a sacred rite? They'll stone me before I reach the tree line.",
+      "next": "release_2"
+    },
+    "release_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "sad",
+      "text": "But if you can convince them... if Old Maren would speak for me... she won't, will she? She watched me beaten and said nothing. Why would she speak now?",
+      "next": "release_3"
+    },
+    "release_3": {
+      "type": "text",
+      "speaker": "player",
+      "portrait": "determined",
+      "text": "Because the Church is coming with fire. And the counter-rite needs a truth-speaker who carries real weight. Your truth — that you poisoned this village — is the heaviest truth in Ashvale right now. Without you, the rite may not work.",
+      "next": "release_4"
+    },
+    "release_4": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "sad",
+      "text": "You want me to stand before the Heartwood and confess what I did. Publicly. Again. But this time the trees will be listening. And if the forest accepts my truth — if my confession has enough weight to crack the pact — then I will have done the one thing that might make up for what I've done. Or at least the closest thing to it this world allows.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_willing_to_speak_at_rite",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "grandmother_pain": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "broken",
+      "text": "I know. I watch the feet pass the window. Hers are distinctive — the shuffle, the slight drag of the left foot. She passes the cell twice a day on her way to the market. She does not slow down. She does not look down. Twice a day, my grandmother walks over me.",
+      "next": "grandmother_pain_2"
+    },
+    "grandmother_pain_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "broken",
+      "text": "I do not blame her. I poisoned her water. I poisoned Elara's water. I poisoned every child in this village. The fact that I stopped does not undo the months I did not stop. She owes me nothing. Least of all her presence.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_knows_grandmother_avoids_cell",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.memory.grandmother_avoidance_acknowledged",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

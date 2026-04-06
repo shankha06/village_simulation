@@ -1,0 +1,221 @@
+{
+  "id": "alchemists_confession_leverage",
+  "start_node": "start",
+  "conditions": [
+    {
+      "check": "flag.player_has_confession_evidence",
+      "op": "==",
+      "value": true
+    }
+  ],
+  "notes": "Triggered when player chooses to say nothing to Maren but begins making requests. The puppet master path.",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You say nothing to Maren about the journal. You say nothing about the Church orders. Instead, you find him after his evening sermon and make a small request. Reasonable. Innocuous. A favor between allies.",
+      "next": "first_request"
+    },
+    "first_request": {
+      "type": "text",
+      "speaker": "player",
+      "portrait": "neutral",
+      "text": "Brother Maren, I need you to write a letter to the Church requesting a supply shipment for the village. Medicine. Food. Sign it with your authority.",
+      "next": "maren_complies_1"
+    },
+    "maren_complies_1": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "Of course. A reasonable request. The village needs supplies, and my seal carries weight with the regional chapter. I'll have it drafted by morning.",
+      "next": "escalation_1"
+    },
+    "escalation_1": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "He drafts the letter. You return the next day with another request. And the day after that. Each one slightly larger. Slightly more specific. The requests of someone who knows exactly what strings to pull — because they have read the puppet's manual.",
+      "next": "second_request"
+    },
+    "second_request": {
+      "type": "text",
+      "speaker": "player",
+      "portrait": "neutral",
+      "text": "I need you to adjust your next report to the Church. Tell them the village is weaker than it is. Tell them Phase 2 should be delayed.",
+      "next": "maren_hesitates"
+    },
+    "maren_hesitates": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "fearful",
+      "text": "How do you... I don't understand. What reports? What Phase 2? I am a simple priest. I write sermons, not—",
+      "next": "player_reveals"
+    },
+    "player_reveals": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You do not show him the journal. You do not show him the Church orders. You simply look at him. Steadily. The way you might look at a card player whose hand you have already seen.",
+      "next": "maren_understands"
+    },
+    "maren_understands": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The blood drains from his face. Not the sharp shock of confrontation — something worse. The slow, cold realization that he has been observed. Studied. That every move he thought was secret has been cataloged. That someone has been standing behind him this entire time, reading over his shoulder.",
+      "triggers": [
+        {
+          "set_state": "flag.player_controls_maren",
+          "value": true
+        }
+      ],
+      "next": "maren_what_do_you_want"
+    },
+    "maren_what_do_you_want": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "fearful",
+      "text": "What do you want from me?",
+      "next": "player_answer"
+    },
+    "player_answer": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "everything",
+          "text": "Everything. And you'll do it. Because the alternative is the village square.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.maren_fully_leveraged",
+              "value": true
+            },
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": -40
+            },
+            {
+              "set_state": "flag.player_moral_vector_shift",
+              "delta": -20
+            }
+          ],
+          "next": "maren_broken"
+        },
+        {
+          "id": "specific_demand",
+          "text": "Your reports. Your Church contacts. Your knowledge of the counter-rite. Everything you have, when I ask for it.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.maren_tactical_leverage",
+              "value": true
+            },
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": -25
+            }
+          ],
+          "next": "maren_tactical_response"
+        },
+        {
+          "id": "mercy_leverage",
+          "text": "I want you to do what you should have done from the start. Help this village. But now you do it because I'm watching.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.maren_mercy_leverage",
+              "value": true
+            },
+            {
+              "set_state": "npc.brother_maren.disposition",
+              "delta": -10
+            }
+          ],
+          "next": "maren_mercy_response"
+        }
+      ]
+    },
+    "maren_broken": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "broken",
+      "text": "...This is what the Church did to my father. Found his weakness and used it. Found the thing he loved and held it over him until he walked into the roots willingly. And now you're doing the same to me.",
+      "next": "maren_broken_2"
+    },
+    "maren_broken_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "broken",
+      "text": "The difference is that my father chose his cage. I don't even get that dignity.",
+      "next": "maren_broken_3"
+    },
+    "maren_broken_3": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "He straightens. The mask returns — but it is a different mask now. Not the pious priest. Not the secret poisoner. Something emptier. The face of a man who has handed his will to someone else and is waiting to be told which direction to walk.",
+      "triggers": [
+        {
+          "set_state": "npc.brother_maren.memory.fully_controlled",
+          "value": true
+        },
+        {
+          "set_state": "flag.maren_is_puppet",
+          "value": true
+        }
+      ],
+      "next": "maren_compliance"
+    },
+    "maren_tactical_response": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "Information for silence. A transaction. At least transactions have rules. Very well. Ask your questions. I'll answer. But know that every answer I give you is one more chain around my neck. And chains have a way of pulling both ends.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_is_puppet",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.memory.transactional_control",
+          "value": true
+        }
+      ],
+      "next": "maren_compliance"
+    },
+    "maren_mercy_response": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "sad",
+      "text": "You call that mercy? Forcing a man to do the right thing and making sure he knows he's being forced? That's not mercy. That's a leash with a longer chain. But... it is a longer chain. I'll take it.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_is_puppet",
+          "value": true
+        },
+        {
+          "set_state": "npc.brother_maren.memory.leashed_mercy",
+          "value": true
+        }
+      ],
+      "next": "maren_compliance"
+    },
+    "maren_compliance": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "What do you need me to do now?",
+      "triggers": [
+        {
+          "set_state": "flag.maren_awaiting_orders",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

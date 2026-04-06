@@ -1,0 +1,220 @@
+{
+  "id": "root_and_cradle",
+  "name": "The Root and the Cradle",
+  "description": "The Thornwood's root network has been redistributing life force — draining the elderly to feed the children. The forest decided who lives and who dies. Now you must decide whether to let it continue.",
+  "giver": "elara",
+  "region": "ashvale",
+  "tags": [
+    "main_quest",
+    "moral_choice",
+    "impossible_choice",
+    "tragedy",
+    "no_right_answer"
+  ],
+  "priority": 15,
+  "states": {
+    "UNKNOWN": {
+      "transitions": [
+        {
+          "on": "flag.elara_notices_health_anomaly == true",
+          "to": "DISCOVERED"
+        }
+      ]
+    },
+    "DISCOVERED": {
+      "journal_entry": "Elara has noticed something wrong with the numbers. The children on Miller's Row are healthier than they should be during a famine. The elderly on the western side are declining faster than malnutrition explains. She wants me to investigate.",
+      "objectives": [
+        "Speak with Elara about the health anomaly",
+        "Examine the children on Miller's Row",
+        "Check on the elderly in the western quarter"
+      ],
+      "transitions": [
+        {
+          "on": "flag.investigating_root_redistribution == true",
+          "to": "INVESTIGATING"
+        },
+        {
+          "on": "npc.elara.alive == false",
+          "to": "FAILED_ELARA_DEAD"
+        }
+      ]
+    },
+    "INVESTIGATING": {
+      "journal_entry": "Elara asked me to use the talisman at the root junction beneath the village well. Something is flowing through the root network — not water. Something else.",
+      "objectives": [
+        "Use the talisman at the root junction beneath the well",
+        "Follow the root channels east and west",
+        "Confront the Heartwood about the redistribution"
+      ],
+      "transitions": [
+        {
+          "on": "flag.heartwood_confronted_redistribution == true",
+          "to": "HEARTWOOD_CONFRONTED"
+        },
+        {
+          "on": "npc.elara.alive == false",
+          "to": "FAILED_ELARA_DEAD"
+        },
+        {
+          "on": "npc.old_maren.alive == false",
+          "to": "MAREN_DIED_BEFORE_CHOICE"
+        }
+      ]
+    },
+    "HEARTWOOD_CONFRONTED": {
+      "journal_entry": "The Heartwood confirmed it without shame. It has been draining life force from the elderly to feed the children through the root network. 'We preserved the seeds. The old bark falls so new growth can rise.' It does not understand why this is a problem.",
+      "objectives": [
+        "Return to Elara with the Heartwood's answer",
+        "Decide what to do about the root redistribution"
+      ],
+      "transitions": [
+        {
+          "on": "flag.root_cradle_choice_presented == true",
+          "to": "CHOICE_PRESENTED"
+        },
+        {
+          "on": "npc.elara.alive == false",
+          "to": "FAILED_ELARA_DEAD"
+        }
+      ]
+    },
+    "CHOICE_PRESENTED": {
+      "journal_entry": "Elara has laid out the mathematics of grief. Thirteen children live if the roots continue. Eight elderly die — including Old Maren. Sever the roots and the elderly survive, but three children die within the week. Tam stops speaking. There is no third option. Only arithmetic and grief.",
+      "objectives": [
+        "Choose: let the roots continue, or sever the connection"
+      ],
+      "transitions": [
+        {
+          "on": "flag.chose_children_over_elderly == true",
+          "to": "PATH_ROOTS_CONTINUE"
+        },
+        {
+          "on": "flag.chose_elderly_over_children == true",
+          "to": "PATH_ROOTS_SEVERED"
+        },
+        {
+          "on": "npc.old_maren.alive == false",
+          "to": "MAREN_DIED_BEFORE_CHOICE"
+        }
+      ]
+    },
+    "PATH_ROOTS_CONTINUE": {
+      "journal_entry": "I told Elara to let the roots continue. Thirteen children will live. Eight elderly will die. Old Maren will die. The forest's arithmetic stands. I chose the cradle over the root.",
+      "consequence_chain": "roots_continue_chain",
+      "triggers": [
+        {
+          "set_state": "flag.chose_children_over_elderly",
+          "value": true
+        },
+        {
+          "set_state": "flag.old_maren_dying_from_roots",
+          "value": true
+        },
+        {
+          "set_state": "flag.root_cradle_resolved",
+          "value": true
+        }
+      ],
+      "transitions": [
+        {
+          "on": "npc.old_maren.alive == false",
+          "to": "AFTERMATH_CHILDREN_SAVED"
+        }
+      ]
+    },
+    "PATH_ROOTS_SEVERED": {
+      "journal_entry": "I told Elara to sever the root connection. The elderly will survive. Old Maren will live. But the children — the children will begin starving within days. The forest was saving them and I stopped it. I chose the root over the cradle.",
+      "consequence_chain": "roots_severed_chain",
+      "triggers": [
+        {
+          "set_state": "flag.chose_elderly_over_children",
+          "value": true
+        },
+        {
+          "set_state": "flag.children_starving",
+          "value": true
+        },
+        {
+          "set_state": "flag.root_cradle_resolved",
+          "value": true
+        }
+      ],
+      "transitions": [
+        {
+          "on": "flag.three_children_dead == true",
+          "to": "AFTERMATH_ELDERLY_SAVED"
+        }
+      ]
+    },
+    "AFTERMATH_CHILDREN_SAVED": {
+      "journal_entry": "Old Maren is dead. Her bench is empty. The roots beneath it went dark the moment she stopped breathing. Thirteen children are alive because of what the forest took from her. Tam is showing signs of druid ability — the connection didn't die with Maren. It transferred. The forest always plans ahead.",
+      "objectives": [
+        "Attend Old Maren's passing (optional)",
+        "Check on the children of Miller's Row",
+        "Speak with Elara about what comes next"
+      ],
+      "rewards": [
+        {
+          "reputation": {
+            "ashvale_eastern_families": 20,
+            "ashvale_western_families": -40
+          }
+        }
+      ]
+    },
+    "AFTERMATH_ELDERLY_SAVED": {
+      "journal_entry": "Three small coffins. The carpenter made them from pine — clean, light, the kind of wood you use for things that shouldn't be heavy. Tam is alive but she won't speak. She stands at the graves drawing root patterns in the dirt. Fenrick won't look at me. Old Maren is alive. The counter-rite knowledge survives. But the cost — the cost is measured in small shoes that will never be worn out.",
+      "objectives": [
+        "Attend the children's funeral (optional)",
+        "Check on Tam",
+        "Speak with Old Maren about the counter-rite"
+      ],
+      "rewards": [
+        {
+          "reputation": {
+            "ashvale_eastern_families": -40,
+            "ashvale_western_families": 15
+          }
+        }
+      ]
+    },
+    "MAREN_DIED_BEFORE_CHOICE": {
+      "journal_entry": "Old Maren died before I could make a choice. The roots took her while I hesitated. The children live — the forest's arithmetic doesn't wait for human decisions. I didn't choose this. But it happened on my watch.",
+      "consequence_chain": "roots_continue_chain",
+      "triggers": [
+        {
+          "set_state": "flag.old_maren_died_from_roots",
+          "value": true
+        },
+        {
+          "set_state": "flag.failed_to_choose_in_time",
+          "value": true
+        },
+        {
+          "set_state": "flag.root_cradle_resolved",
+          "value": true
+        }
+      ],
+      "transitions": [
+        {
+          "on": "time.day_delta >= 3",
+          "to": "AFTERMATH_CHILDREN_SAVED"
+        }
+      ]
+    },
+    "FAILED_ELARA_DEAD": {
+      "journal_entry": "Elara is dead. The root redistribution continues unchecked — no one else has the knowledge to sever the connection. The children live. The elderly die. The forest's decision stands, and there is no one left to challenge it.",
+      "triggers": [
+        {
+          "set_state": "flag.root_cradle_unresolvable",
+          "value": true
+        },
+        {
+          "set_state": "flag.old_maren_dying_from_roots",
+          "value": true
+        }
+      ],
+      "consequence_chain": "roots_continue_chain"
+    }
+  }
+}

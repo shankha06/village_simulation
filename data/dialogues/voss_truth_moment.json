@@ -1,0 +1,448 @@
+{
+  "id": "voss_truth_moment",
+  "start_node": "return_to_voss",
+  "nodes": {
+    "return_to_voss": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You find Voss in the inn. Late evening. She's sitting alone, an untouched drink in front of her. When she sees you, her shoulders tighten — the way they do before a fight, before she knows what she's fighting.",
+      "next": "voss_asks"
+    },
+    "voss_asks": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "You went to Rivendale. I can see it on your face. Tell me.",
+      "next": "truth_choice"
+    },
+    "truth_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "tell_truth",
+          "text": "The village wasn't destroyed by the Ironmarch army. It was one man. And he's already in Ashvale.",
+          "conditions": [
+            {
+              "check": "flag.rivendale_truth_discovered",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "truth_path_1"
+        },
+        {
+          "id": "hide_truth",
+          "text": "I found graves. Names I couldn't read. Thirty-two cairns under birch trees. I'm sorry, Voss.",
+          "conditions": [],
+          "triggers": [],
+          "next": "lie_path_1"
+        },
+        {
+          "id": "truth_with_restraint",
+          "text": "I found the truth. But before I tell you, I need you to hear all of it. Not just the part that makes you reach for your sword.",
+          "conditions": [
+            {
+              "check": "flag.rivendale_truth_discovered",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "restraint_path_1"
+        }
+      ]
+    },
+    "truth_path_1": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "One man.",
+      "next": "truth_path_2"
+    },
+    "truth_path_2": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Not a question. A recalibration. You watch her rebuild her understanding of twenty years in real time. Her eyes don't blink.",
+      "next": "truth_path_3"
+    },
+    "truth_path_3": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "cold",
+      "text": "Who.",
+      "next": "truth_path_4"
+    },
+    "truth_path_4": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Not a question. A demand. You place the service medallion on the table between you. DRV-7. Pact Elimination Unit. Eastern Frontier Division. Her eyes drop to it. Her jaw works once.",
+      "next": "truth_path_5"
+    },
+    "truth_path_5": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "rage",
+      "text": "Draven.",
+      "next": "truth_path_6"
+    },
+    "truth_path_6": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "rage",
+      "text": "The stone. He carries a piece of it. I thought it was a keepsake. A river stone from some campaign. Something sentimental.",
+      "next": "truth_path_7"
+    },
+    "truth_path_7": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "rage",
+      "text": "It's a TROPHY. He's been wearing a piece of the thing he used to murder my family around his NECK.",
+      "next": "truth_path_8"
+    },
+    "truth_path_8": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "She stands. The chair goes over behind her. Her hand finds the sword at her hip — not drawing it, just holding. The way a drowning person holds a rope.",
+      "next": "truth_path_9"
+    },
+    "truth_path_9": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "rage",
+      "text": "Twenty years. I hated the wrong people for twenty years. I hated an army. A nation. A flag. When the whole time it was ONE MAN with THREE CHARGES and a service medallion who decided my family should drown.",
+      "next": "truth_response_choice"
+    },
+    "truth_response_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "support_rage",
+          "text": "He's in the inn. Right now. Say the word and we end this tonight.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": 10
+            },
+            {
+              "set_state": "npc.commander_voss.memory.player_supports_vengeance",
+              "value": true
+            }
+          ],
+          "next": "truth_resolve"
+        },
+        {
+          "id": "urge_caution",
+          "text": "Voss. Listen to me. If you kill him now, the Legion sends an army. Ashvale burns like Rivendale did.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.commander_voss.memory.player_urged_caution",
+              "value": true
+            }
+          ],
+          "next": "truth_caution"
+        },
+        {
+          "id": "silent_witness",
+          "text": "[Say nothing. Let her feel it.]",
+          "conditions": [],
+          "triggers": [],
+          "next": "truth_silence"
+        }
+      ]
+    },
+    "truth_resolve": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "rage",
+      "text": "Not tonight. I want him to see me coming. I want him to know WHY. But soon. Very soon. Thank you. For going there. For finding this. For not protecting me from it.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_told_draven_truth",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_knows_draven_truth",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.memory.planning_vengeance",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "truth_caution": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "cold",
+      "text": "You think I don't KNOW that? You think I haven't spent every campaign calculating the cost of revenge? The difference is — before today, it was theoretical. Now it's personal. Now it has a FACE and a NAME and he's sleeping twenty feet above my head.",
+      "next": "truth_caution_2"
+    },
+    "truth_caution_2": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "cold",
+      "text": "But... you're not wrong. Damn you, you're not wrong. I won't move on him tonight. But I make no promises about tomorrow.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_told_draven_truth",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_knows_draven_truth",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.memory.grudging_restraint",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "truth_silence": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You say nothing. She doesn't need words right now. She needs a witness. Someone to stand in the wreckage of her understanding and not look away. You do that. It's enough.",
+      "next": "truth_silence_2"
+    },
+    "truth_silence_2": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "sad",
+      "text": "...Thank you. For not filling the silence with advice. I need to think. I need to think for a very long time. Go. I'll find you when I've decided what kind of person I am.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_told_draven_truth",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_knows_draven_truth",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": 15
+        },
+        {
+          "set_state": "npc.commander_voss.memory.appreciated_silence",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "lie_path_1": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "The lie comes out smooth. Practiced — you rehearsed it on the walk back. Voss searches your face the way a soldier searches a tree line. Looking for movement. Looking for the thing that's hiding.",
+      "next": "lie_path_2"
+    },
+    "lie_path_2": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "sad",
+      "text": "Thirty-two.",
+      "next": "lie_path_3"
+    },
+    "lie_path_3": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "sad",
+      "text": "...Thank you. For going. For looking. Most people wouldn't walk half a day through Ironmarch territory for a stranger's ghosts.",
+      "next": "lie_path_4"
+    },
+    "lie_path_4": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "She turns away. Her hands grip the table edge until her knuckles go white. She stays that way for a long time. You watch the evidence in your pack — the medallion, the stone fragment — grow heavier with every breath she takes.",
+      "next": "lie_path_5"
+    },
+    "lie_path_5": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "At least they were buried properly. River stones on the cairns, you said? That's the old way. Someone who loved them did that. That's... something. That's enough.",
+      "next": "lie_path_6"
+    },
+    "lie_path_6": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "She lifts her drink. Drains it in one motion. Sets it down with the careful precision of someone holding themselves together by force of will. She doesn't look at you again.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_told_only_graves",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_lied_to_about_rivendale",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": 10
+        },
+        {
+          "set_state": "npc.commander_voss.memory.believes_only_graves",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.memory.grateful_for_closure",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "restraint_path_1": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "That's a hell of a preamble. Say it.",
+      "next": "restraint_path_2"
+    },
+    "restraint_path_2": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "You lay it out. All of it. The communion stone. The charges. The young officer. The medallion — you place it on the table. The matching crystal shard — beside it. The vision of the flood. The twelve-year-old girl on the hilltop. You tell her Draven did it. You tell her Draven is here. And then you tell her why killing him right now would doom Ashvale to the same fate as Rivendale.",
+      "next": "restraint_path_3"
+    },
+    "restraint_path_3": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Voss doesn't move through any of it. Her eyes are fixed on the medallion. Her breathing is controlled — four counts in, four counts out. The breathing of someone who learned long ago how to function while their heart was on fire.",
+      "next": "restraint_path_4"
+    },
+    "restraint_path_4": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "Silence. It stretches. The candle on the table burns down a full inch before she speaks.",
+      "next": "restraint_path_5"
+    },
+    "restraint_path_5": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "cold",
+      "text": "I've waited twenty years.",
+      "next": "restraint_path_6"
+    },
+    "restraint_path_6": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "cold",
+      "text": "I can wait twenty more days.",
+      "next": "restraint_path_7"
+    },
+    "restraint_path_7": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "rage",
+      "text": "But not one day longer. When the negotiations end — when Ashvale is safe or damned, either way — he answers to me. Not to the Legion. Not to you. To ME. Swear it.",
+      "next": "restraint_response"
+    },
+    "restraint_response": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "swear",
+          "text": "You have my word. When this is over, he's yours.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.promised_voss_draven",
+              "value": true
+            },
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": 25
+            }
+          ],
+          "next": "restraint_sworn"
+        },
+        {
+          "id": "qualified",
+          "text": "I'll do everything I can. But I won't promise a killing.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.commander_voss.disposition",
+              "delta": 5
+            }
+          ],
+          "next": "restraint_qualified"
+        }
+      ]
+    },
+    "restraint_sworn": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "neutral",
+      "text": "Good. Then I'll be the soldier Ashvale needs. For twenty days, I'll protect this village with everything I have. I'll smile at Draven across the negotiating table. I'll shake his hand if I have to. And when the clock runs out...",
+      "next": "restraint_sworn_2"
+    },
+    "restraint_sworn_2": {
+      "type": "text",
+      "speaker": "narrator",
+      "portrait": "",
+      "text": "She picks up the medallion. Closes her fist around it. The metal creaks.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_told_truth_with_restraint",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_knows_but_waits",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.memory.exercising_restraint",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.memory.counting_days",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "restraint_qualified": {
+      "type": "text",
+      "speaker": "commander_voss",
+      "portrait": "cold",
+      "text": "Fair enough. You're honest — I'll give you that. More honest than I'd be in your place. Twenty days. I'll hold. But if he leaves Ashvale before this is settled, I follow him. And nothing you say will stop me.",
+      "triggers": [
+        {
+          "set_state": "flag.voss_told_truth_with_restraint",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_knows_but_waits",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.memory.exercising_restraint",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.memory.will_pursue_draven",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

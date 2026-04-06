@@ -1,0 +1,224 @@
+{
+  "id": "draven_voss_confrontation_chain",
+  "description": "Immediate and delayed consequences for each outcome of the Draven-Voss confrontation in Layer 2.",
+  "chains": [
+    {
+      "id": "draven_killed_by_voss_chain",
+      "trigger_condition": "flag.draven_killed_by_voss == true",
+      "consequences": [
+        {
+          "type": "immediate",
+          "effects": [
+            {"set_state": "npc.ironmarch_emissary.alive", "value": false},
+            {"set_state": "flag.legion_emissary_killed", "value": true},
+            {"set_state": "flag.legion_accelerated_invasion", "value": true},
+            {"set_state": "npc.commander_voss.memory.vengeance_complete", "value": true},
+            {"set_state": "world.region.ashvale.tension_level", "delta": 40}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 1,
+          "effects": [
+            {"set_state": "flag.legion_scouts_spotted", "value": true},
+            {"set_state": "flag.villagers_panicking", "value": true},
+            {"set_state": "world.region.ashvale.civilian_morale", "delta": -20}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 3,
+          "effects": [
+            {"set_state": "flag.legion_vanguard_arrives", "value": true},
+            {"set_state": "flag.invasion_imminent", "value": true},
+            {"set_state": "world.region.ashvale.days_until_invasion", "value": 4}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 5,
+          "effects": [
+            {"set_state": "flag.voss_emotional_reckoning", "value": true},
+            {"set_state": "npc.commander_voss.memory.was_it_worth_it", "value": true}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voss_stopped_chain",
+      "trigger_condition": "flag.stopped_voss_from_draven == true",
+      "consequences": [
+        {
+          "type": "immediate",
+          "effects": [
+            {"set_state": "npc.ironmarch_emissary.disposition", "delta": 20},
+            {"set_state": "npc.ironmarch_emissary.memory.player_saved_his_life", "value": true},
+            {"set_state": "flag.negotiations_can_proceed", "value": true},
+            {"set_state": "world.region.ashvale.tension_level", "delta": 10}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 1,
+          "effects": [
+            {"set_state": "flag.voss_soldiers_conflicted", "value": true},
+            {"set_state": "npc.commander_voss.memory.soldiers_saw_humiliation", "value": true}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 2,
+          "effects": [
+            {"set_state": "flag.draven_offers_better_terms", "value": true},
+            {"set_state": "npc.ironmarch_emissary.memory.debt_to_player", "value": true}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voss_killed_by_draven_chain",
+      "trigger_condition": "flag.voss_killed_by_draven == true",
+      "consequences": [
+        {
+          "type": "immediate",
+          "effects": [
+            {"set_state": "npc.commander_voss.alive", "value": false},
+            {"set_state": "flag.no_mercenary_defense", "value": true},
+            {"set_state": "flag.iron_road_company_leaderless", "value": true},
+            {"set_state": "world.region.ashvale.defense_score", "delta": -25},
+            {"set_state": "world.region.ashvale.civilian_morale", "delta": -15}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 1,
+          "effects": [
+            {"set_state": "flag.iron_road_soldiers_scatter", "value": true},
+            {"set_state": "flag.villagers_mourning_voss", "value": true},
+            {"set_state": "world.region.ashvale.available_fighters", "delta": -20}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 2,
+          "effects": [
+            {"set_state": "npc.ironmarch_emissary.memory.haunted_by_voss", "value": true},
+            {"set_state": "flag.draven_more_aggressive_terms", "value": true}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 4,
+          "effects": [
+            {"set_state": "flag.voss_funeral_event", "value": true},
+            {"set_state": "flag.iron_road_lieutenant_takes_command", "value": true}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "calm_negotiation_chain",
+      "trigger_condition": "flag.voss_best_negotiator == true AND flag.voss_discovers_player_lied != true",
+      "consequences": [
+        {
+          "type": "immediate",
+          "effects": [
+            {"set_state": "world.region.ashvale.ironmarch_terms_favorable", "value": true},
+            {"set_state": "world.region.ashvale.defense_score", "delta": 15},
+            {"set_state": "npc.commander_voss.memory.proved_diplomatic_value", "value": true}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 3,
+          "effects": [
+            {"set_state": "flag.ironmarch_tribute_arranged", "value": true},
+            {"set_state": "flag.village_breathing_room", "value": true}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voss_betrayal_chain",
+      "trigger_condition": "flag.voss_discovers_player_lied == true",
+      "consequences": [
+        {
+          "type": "immediate",
+          "effects": [
+            {"set_state": "flag.voss_betrayed", "value": true},
+            {"set_state": "flag.voss_unreliable_in_battle", "value": true},
+            {"set_state": "flag.voss_hunting_draven", "value": true},
+            {"set_state": "world.region.ashvale.defense_score", "delta": -10}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 1,
+          "effects": [
+            {"set_state": "flag.voss_confronts_draven_alone", "value": true},
+            {"set_state": "flag.uncontrolled_confrontation_risk", "value": true}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 2,
+          "effects": [
+            {"set_state": "flag.voss_soldiers_loyalty_split", "value": true},
+            {"set_state": "npc.commander_voss.memory.isolated_and_dangerous", "value": true}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mutual_respect_chain",
+      "trigger_condition": "flag.draven_respects_voss == true AND flag.voss_knows_but_waits == true",
+      "consequences": [
+        {
+          "type": "immediate",
+          "effects": [
+            {"set_state": "flag.ceasefire_possible", "value": true},
+            {"set_state": "npc.ironmarch_emissary.memory.respects_voss", "value": true},
+            {"set_state": "npc.commander_voss.memory.earned_enemy_respect", "value": true}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 2,
+          "effects": [
+            {"set_state": "flag.ceasefire_terms_drafted", "value": true},
+            {"set_state": "flag.draven_willing_to_negotiate_honestly", "value": true}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 4,
+          "effects": [
+            {"set_state": "flag.ceasefire_during_battle_possible", "value": true},
+            {"set_state": "flag.unique_endgame_negotiated_peace", "value": true}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tense_negotiation_chain",
+      "trigger_condition": "flag.voss_knows_but_waits == true AND flag.draven_respects_voss != true",
+      "consequences": [
+        {
+          "type": "immediate",
+          "effects": [
+            {"set_state": "world.region.ashvale.defense_score", "delta": 10},
+            {"set_state": "npc.commander_voss.memory.held_discipline", "value": true}
+          ]
+        },
+        {
+          "type": "delayed",
+          "delay_days": 3,
+          "effects": [
+            {"set_state": "flag.voss_restraint_fraying", "value": true},
+            {"set_state": "flag.tense_negotiations_complete", "value": true}
+          ]
+        }
+      ]
+    }
+  ]
+}

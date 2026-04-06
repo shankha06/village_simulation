@@ -1,0 +1,253 @@
+{
+  "id": "emissarys_shadow",
+  "name": "The Emissary's Shadow",
+  "description": "When Captain Draven arrives to deliver the Ironmarch ultimatum, Voss is present. Her state of knowledge — and the player's choices — determine whether this ends in blood, diplomacy, or something worse.",
+  "giver": "system",
+  "region": "ashvale",
+  "tags": [
+    "main_chain",
+    "confrontation",
+    "iron_price_layer_2",
+    "butterfly_fate",
+    "high_stakes"
+  ],
+  "priority": 10,
+  "prerequisite_quest": "ghosts_of_rivendale",
+  "states": {
+    "WAITING": {
+      "description": "Draven has not yet arrived for the ultimatum meeting.",
+      "transitions": [
+        {
+          "on": "flag.draven_enters_ultimatum_meeting == true AND flag.voss_knows_draven_truth == true",
+          "to": "CONFRONTATION_ERUPTS"
+        },
+        {
+          "on": "flag.draven_enters_ultimatum_meeting == true AND flag.voss_lied_to_about_rivendale == true",
+          "to": "CALM_NEGOTIATIONS"
+        },
+        {
+          "on": "flag.draven_enters_ultimatum_meeting == true AND flag.voss_knows_but_waits == true",
+          "to": "TENSE_NEGOTIATIONS"
+        }
+      ]
+    },
+    "CONFRONTATION_ERUPTS": {
+      "journal_entry": "Voss knows Draven destroyed Rivendale. When he walked into the inn, the temperature dropped ten degrees. She's going to kill him. The question is whether I help, stop her, or watch.",
+      "dialogue_id": "draven_voss_confrontation",
+      "objectives": [
+        "Decide how to handle the Voss-Draven confrontation"
+      ],
+      "transitions": [
+        {
+          "on": "flag.helped_voss_kill_draven == true",
+          "to": "HELPED_VOSS"
+        },
+        {
+          "on": "flag.stopped_voss_from_draven == true",
+          "to": "STOPPED_VOSS"
+        },
+        {
+          "on": "flag.let_them_fight == true",
+          "to": "LET_THEM_FIGHT"
+        }
+      ]
+    },
+    "HELPED_VOSS": {
+      "journal_entry": "I fought beside Voss. Draven is dead. His blood is still on the inn floor. Voss stands over the body, breathing hard, the communion stone fragment clutched in her fist. She got her justice. But the Ironmarch Legion will want theirs.",
+      "consequence_chain": "draven_killed_by_voss_chain",
+      "rewards": [
+        {
+          "set_state": "flag.draven_killed_by_voss",
+          "value": true
+        },
+        {
+          "set_state": "npc.ironmarch_emissary.alive",
+          "value": false
+        },
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": 30
+        },
+        {
+          "set_state": "npc.commander_voss.memory.player_fought_beside_her",
+          "value": true
+        },
+        {
+          "set_state": "flag.legion_accelerated_invasion",
+          "value": true
+        }
+      ]
+    },
+    "STOPPED_VOSS": {
+      "journal_entry": "I restrained Voss. Physically held her back while Draven straightened his collar and walked out. She looked at me like I'd driven the sword through her myself. Draven is alive. The negotiations can proceed. But I may have lost Voss forever.",
+      "consequence_chain": "voss_stopped_chain",
+      "rewards": [
+        {
+          "set_state": "flag.stopped_voss_from_draven",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": -40
+        },
+        {
+          "set_state": "npc.commander_voss.memory.player_betrayed_her",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_may_leave_ashvale",
+          "value": true
+        }
+      ]
+    },
+    "LET_THEM_FIGHT": {
+      "journal_entry": "I stepped back and let it happen. The duel lasted forty seconds. Draven was faster than he looked. Voss fought with twenty years of rage behind every swing. But rage makes you predictable. Draven's blade found the gap in her guard. She fell. She died looking at the communion stone fragment in her hand. Draven wiped his blade and left without a word.",
+      "consequence_chain": "voss_killed_by_draven_chain",
+      "rewards": [
+        {
+          "set_state": "flag.let_them_fight",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_killed_by_draven",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.alive",
+          "value": false
+        },
+        {
+          "set_state": "npc.ironmarch_emissary.memory.killed_voss",
+          "value": true
+        }
+      ]
+    },
+    "CALM_NEGOTIATIONS": {
+      "journal_entry": "Voss doesn't know. She sat across from Draven and discussed terms with professional detachment. It was the best negotiation outcome possible — Voss is sharp, disciplined, and Draven had no emotional leverage. The Ironmarch terms are almost fair. Almost. But the lie sits in my chest like a stone.",
+      "consequence_chain": "calm_negotiation_chain",
+      "objectives": [
+        "Monitor the negotiations",
+        "Ensure the lie holds"
+      ],
+      "transitions": [
+        {
+          "on": "flag.voss_discovers_player_lied == true",
+          "to": "VOSS_DISCOVERS_LIE"
+        },
+        {
+          "on": "flag.negotiations_complete == true",
+          "to": "NEGOTIATIONS_SUCCEEDED"
+        }
+      ],
+      "rewards": [
+        {
+          "set_state": "flag.voss_best_negotiator",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.ironmarch_terms_favorable",
+          "value": true
+        }
+      ]
+    },
+    "VOSS_DISCOVERS_LIE": {
+      "journal_entry": "She found out. Greta said something — mentioned 'the Rivendale evidence' in passing. Voss's face changed. Not anger. Something worse than anger. Betrayal from someone she trusted. She looked at me the way she looks at enemies. I have become an enemy.",
+      "dialogue_id": "voss_betrayal_discovery",
+      "consequence_chain": "voss_betrayal_chain",
+      "rewards": [
+        {
+          "set_state": "flag.voss_discovers_player_lied",
+          "value": true
+        },
+        {
+          "set_state": "flag.voss_betrayed",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": -60
+        },
+        {
+          "set_state": "npc.commander_voss.memory.player_is_liar",
+          "value": true
+        }
+      ]
+    },
+    "NEGOTIATIONS_SUCCEEDED": {
+      "journal_entry": "The negotiations concluded. Voss secured terms that give Ashvale breathing room — a tribute arrangement instead of occupation. It's not freedom, but it's survival. And Voss never learned the truth. The lie holds. For now.",
+      "rewards": [
+        {
+          "set_state": "flag.ironmarch_tribute_arranged",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.defense_score",
+          "delta": 15
+        }
+      ]
+    },
+    "TENSE_NEGOTIATIONS": {
+      "journal_entry": "Voss knows. She's holding. Barely. Every time Draven speaks, her hand drifts toward her sword. But she pulls it back. She's channeling twenty years of rage into razor-sharp negotiating. Draven notices her discipline — he didn't expect it. There's something almost like respect in his eyes.",
+      "consequence_chain": "tense_negotiation_chain",
+      "objectives": [
+        "Support Voss through the negotiations",
+        "Watch for signs she might break"
+      ],
+      "transitions": [
+        {
+          "on": "flag.draven_respects_voss == true",
+          "to": "MUTUAL_RESPECT"
+        },
+        {
+          "on": "flag.voss_breaks_restraint == true",
+          "to": "CONFRONTATION_ERUPTS"
+        },
+        {
+          "on": "flag.tense_negotiations_complete == true",
+          "to": "TENSE_NEGOTIATIONS_COMPLETE"
+        }
+      ],
+      "rewards": [
+        {
+          "set_state": "npc.ironmarch_emissary.memory.noticed_voss_discipline",
+          "value": true
+        }
+      ]
+    },
+    "MUTUAL_RESPECT": {
+      "journal_entry": "Something unexpected happened. Draven recognized Voss's restraint for what it was — not weakness, but a discipline that exceeds his own. He knows she knows. And he respects that she hasn't acted on it. For the first time, a ceasefire feels possible. Not peace — never peace — but a pause in the violence long enough to save lives.",
+      "consequence_chain": "mutual_respect_chain",
+      "rewards": [
+        {
+          "set_state": "flag.draven_respects_voss",
+          "value": true
+        },
+        {
+          "set_state": "flag.ceasefire_path_open",
+          "value": true
+        },
+        {
+          "set_state": "npc.commander_voss.disposition",
+          "delta": 10
+        },
+        {
+          "set_state": "npc.ironmarch_emissary.memory.respects_voss",
+          "value": true
+        }
+      ]
+    },
+    "TENSE_NEGOTIATIONS_COMPLETE": {
+      "journal_entry": "The negotiations ended. Not well, not badly — but with a tension that everyone in the room could feel. Voss held. Draven survived. The terms are workable. And somewhere beneath the professional courtesies, two people who should be trying to kill each other found a thread of mutual understanding.",
+      "rewards": [
+        {
+          "set_state": "flag.tense_negotiations_complete",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.defense_score",
+          "delta": 10
+        }
+      ]
+    }
+  }
+}
