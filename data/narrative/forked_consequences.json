@@ -42,5 +42,96 @@
         "affects_npcs": ["commander_voss", "lord_ashworth", "gate_guard"]
       }
     }
+  },
+  {
+    "id": "fork_pact_resolution",
+    "description": "The central choice at the Heartwood",
+    "trigger": "flag.pact_path_chosen == true",
+    "forks": {
+      "sacrifice": {
+        "sets": ["flag.sacrifice_path_chosen", "flag.willing_soul_needed", "flag.forest_receptive"],
+        "affects_quests": ["heartwood_communion", "the_reckoning"],
+        "affects_npcs": ["lord_ashworth", "old_maren", "elara", "brother_maren"]
+      },
+      "severance": {
+        "sets": ["flag.severance_path_chosen", "flag.druidfire_needed", "flag.forest_hostile_to_player"],
+        "affects_quests": ["heartwood_communion", "the_reckoning"],
+        "affects_npcs": ["old_maren", "elara"]
+      },
+      "renegotiation": {
+        "sets": ["flag.renegotiation_path_chosen", "flag.faction_consent_needed", "flag.forest_cautiously_hopeful"],
+        "affects_quests": ["heartwood_communion", "the_reckoning", "unify_ashvale"],
+        "affects_npcs": ["heartwood", "old_maren", "commander_voss"]
+      },
+      "counter_rite": {
+        "sets": ["flag.counter_rite_path_chosen", "flag.all_secrets_needed", "flag.truth_as_offering"],
+        "affects_quests": ["heartwood_communion", "thirty_year_ledger"],
+        "affects_npcs": ["old_maren", "lord_ashworth", "brother_maren"]
+      }
+    }
+  },
+  {
+    "id": "fork_ironmarch_response",
+    "description": "How the player responds to the Legion ultimatum",
+    "trigger": "flag.ironmarch_ultimatum_result == true",
+    "forks": {
+      "submit": {
+        "sets": ["flag.accepted_legion_terms", "flag.ashvale_occupied", "flag.lord_powerless"],
+        "affects_quests": ["ironmarch_ultimatum", "the_reckoning"],
+        "affects_npcs": ["ironmarch_emissary", "lord_ashworth", "commander_voss"]
+      },
+      "defy": {
+        "sets": ["flag.defied_legion", "flag.war_preparations", "flag.village_united_by_threat"],
+        "affects_quests": ["ironmarch_ultimatum", "unify_ashvale"],
+        "affects_npcs": ["commander_voss", "gate_guard"]
+      },
+      "negotiate": {
+        "sets": ["flag.negotiated_with_legion", "flag.tribute_required", "flag.uneasy_truce"],
+        "affects_quests": ["ironmarch_ultimatum"],
+        "affects_npcs": ["ironmarch_emissary", "lord_ashworth"]
+      },
+      "eliminate": {
+        "sets": ["flag.draven_killed", "flag.legion_enraged", "flag.accelerated_invasion"],
+        "affects_quests": ["ironmarch_ultimatum", "the_reckoning"],
+        "affects_npcs": ["ironmarch_emissary", "commander_voss"]
+      },
+      "ally": {
+        "sets": ["flag.player_is_legion_agent", "flag.betrayed_ashvale", "flag.dark_power"],
+        "affects_quests": ["ironmarch_ultimatum", "the_reckoning", "unify_ashvale"],
+        "affects_npcs": ["ironmarch_emissary", "all"]
+      }
+    }
+  },
+  {
+    "id": "fork_ledger_disposition",
+    "description": "What the player does with the Thirty-Year Ledger",
+    "trigger": "flag.ledger_found == true",
+    "forks": {
+      "public": {
+        "sets": ["flag.ledger_made_public", "flag.ashworth_ruined", "flag.village_outrage"],
+        "affects_quests": ["thirty_year_ledger", "unify_ashvale"],
+        "affects_npcs": ["lord_ashworth", "greta"]
+      },
+      "guild": {
+        "sets": ["flag.ledger_given_to_guild", "flag.guild_has_leverage", "flag.fenrick_empowered"],
+        "affects_quests": ["thirty_year_ledger", "granary_sabotage"],
+        "affects_npcs": ["fenrick", "lord_ashworth"]
+      },
+      "military": {
+        "sets": ["flag.ledger_given_to_voss", "flag.voss_has_intelligence", "flag.military_advantage"],
+        "affects_quests": ["thirty_year_ledger", "ironmarch_ultimatum"],
+        "affects_npcs": ["commander_voss"]
+      },
+      "burned": {
+        "sets": ["flag.ledger_burned", "flag.past_stays_buried", "flag.ashworth_grateful"],
+        "affects_quests": ["thirty_year_ledger"],
+        "affects_npcs": ["lord_ashworth"]
+      },
+      "counter_rite": {
+        "sets": ["flag.ledger_given_to_old_maren", "flag.counter_rite_scroll_in_hand", "flag.names_being_gathered"],
+        "affects_quests": ["thirty_year_ledger", "heartwood_communion"],
+        "affects_npcs": ["old_maren"]
+      }
+    }
   }
 ]

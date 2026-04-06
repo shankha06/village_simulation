@@ -66,7 +66,7 @@
   },
   {
     "id": "overhear_maren_family",
-    "conditions": ["flag.maren_family_truth_revealed == true"],
+    "conditions": ["flag.maren_family_truth_revealed == true", "time.day >= 3"],
     "speakers": ["greta", "gate_guard"],
     "lines": [
       {"speaker": "greta", "text": "Did you hear? The priest — he's Old Maren's grandson."},

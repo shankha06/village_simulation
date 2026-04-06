@@ -26,6 +26,10 @@
         {
           "set_state": "world.region.ashvale.pact_status",
           "value": "renewed_with_player"
+        },
+        {
+          "set_state": "flag.other_pacts_hear_of_sacrifice",
+          "value": true
         }
       ]
     },
@@ -93,6 +97,14 @@
         {
           "set_state": "world.region.ashvale.pact_status",
           "value": "accord_of_equals"
+        },
+        {
+          "set_state": "flag.thornwood_peace_spreads",
+          "value": true
+        },
+        {
+          "set_state": "flag.ironmarch_interest_reduced",
+          "value": true
         }
       ]
     },
@@ -262,6 +274,10 @@
         {
           "set_state": "world.region.thornwood.status",
           "value": "dying"
+        },
+        {
+          "set_state": "flag.refugee_column_on_eastern_road",
+          "value": true
         }
       ]
     },
@@ -328,6 +344,14 @@
         {
           "set_state": "world.region.thornwood.status",
           "value": "burned"
+        },
+        {
+          "set_state": "flag.ironmarch_claims_ashvale_ruins",
+          "value": true
+        },
+        {
+          "set_state": "flag.church_declares_victory",
+          "value": true
         }
       ]
     },

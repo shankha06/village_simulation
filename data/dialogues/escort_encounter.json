@@ -7,6 +7,13 @@
       "speaker": "fenrick",
       "portrait": "fearful",
       "text": "Patrol ahead. Two soldiers at the bridge. The children are behind the rock — they're quiet, but the little ones are shaking.",
+      "next": "fenrick_fear_admission"
+    },
+    "fenrick_fear_admission": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "fearful",
+      "text": "My hands are shaking. Don't tell the kids. ...Don't tell anyone, actually.",
       "next": "approach_choice"
     },
     "approach_choice": {

@@ -134,7 +134,52 @@
       ]
     },
     "FAILED_CONTACT_DEAD": {
-      "journal_entry": "Fenrick is dead. The Guild's sabotage plan dies with him \u2014 unless someone else picks it up."
+      "journal_entry": "Fenrick is dead. The Guild's sabotage plan dies with him — unless another agent picks up the contract. I still have the firebomb.",
+      "transitions": [
+        {
+          "on": "flag.guild_new_contact_arrives == true",
+          "to": "ACTIVE_NEW_CONTACT"
+        },
+        {
+          "on": "flag.player_destroys_firebomb == true",
+          "to": "ABANDONED_DESTROYED"
+        },
+        {
+          "on": "flag.player_uses_firebomb_independently == true",
+          "to": "COMPLETED_ARSON"
+        }
+      ]
+    },
+    "ACTIVE_NEW_CONTACT": {
+      "journal_entry": "A new Guild agent has arrived to pick up where Fenrick left off. The sabotage plan is back on — but this one doesn't smile. This one doesn't care about children.",
+      "objectives": [
+        "Meet the new Guild contact",
+        "Decide whether to proceed with the original plan"
+      ],
+      "transitions": [
+        {
+          "on": "flag.silo_destroyed == true",
+          "to": "COMPLETED_ARSON"
+        },
+        {
+          "on": "flag.player_confessed_to_guards == true",
+          "to": "BETRAYED_GUILD"
+        },
+        {
+          "on": "flag.player_caught_at_silo == true",
+          "to": "FAILED_CAUGHT"
+        }
+      ]
+    },
+    "ABANDONED_DESTROYED": {
+      "journal_entry": "I destroyed the firebomb. The Guild's plan is dead — truly dead this time. Whatever happens to the granary, it won't be by my hand.",
+      "rewards": [
+        {
+          "reputation": {
+            "thieves_guild": -15
+          }
+        }
+      ]
     }
   }
 }

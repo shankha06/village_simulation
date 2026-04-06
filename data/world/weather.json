@@ -1,0 +1,16 @@
+{
+    "weather_states": ["clear", "overcast", "rain", "storm", "fog"],
+    "autumn_probabilities": {"clear": 0.3, "overcast": 0.3, "rain": 0.25, "storm": 0.05, "fog": 0.1},
+    "effects": {
+        "rain": {"crop_growth_modifier": 0.01, "npc_schedule_override": "indoor", "combat_modifier": -0.1, "mood_modifier": -5},
+        "storm": {"crop_growth_modifier": 0.02, "npc_schedule_override": "indoor", "combat_modifier": -0.2, "mood_modifier": -10, "fire_risk": -0.5},
+        "fog": {"visibility_modifier": -0.5, "stealth_modifier": 0.3, "mood_modifier": -3},
+        "clear": {"crop_growth_modifier": 0.0, "mood_modifier": 0},
+        "overcast": {"crop_growth_modifier": 0.0, "mood_modifier": -2}
+    },
+    "barks_by_weather": {
+        "rain": ["Rain again. My knees predicted this.", "At least it washes the blood off the cobblestones.", "The well will overflow. Small mercies."],
+        "storm": ["Stay inside tonight. The forest gets... active in storms.", "Lightning hit the old oak by the road. Still standing. Everything in this village is stubborn."],
+        "fog": ["Can't see the forest edge today. That's either a comfort or a warning.", "The fog smells green. Like sap. Like the forest is breathing on us."]
+    }
+}

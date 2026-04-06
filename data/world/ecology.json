@@ -43,6 +43,14 @@
         "prey": [],
         "notes": "Pollinators dying. Accelerates crop failure. Elara notices first."
       },
+      "cats": {
+        "pop": 0.5,
+        "growth_rate": -0.02,
+        "carrying_capacity": 1.0,
+        "predators": [],
+        "prey": ["rats"],
+        "notes": "Village cats dying from poisoned water. As cats decline, rat population accelerates."
+      },
       "weeds": {
         "pop": 0.3,
         "growth_rate": 0.05,
@@ -100,6 +108,42 @@
       ]
     },
     {
+      "watch": "ecology.ashvale.crops.pop",
+      "condition": "< 0.3",
+      "event": "bread_scarce",
+      "effects": [
+        {"set_state": "flag.bread_unavailable", "value": true},
+        {"set_state": "economy.ashvale.price_mod", "delta": 0.5}
+      ]
+    },
+    {
+      "watch": "ecology.ashvale.insects.pop",
+      "condition": "< 0.3",
+      "event": "pollinators_dead",
+      "effects": [
+        {"set_state": "flag.pollinators_dead", "value": true},
+        {"set_state": "ecology.ashvale.crops.growth_rate", "delta": -0.01}
+      ]
+    },
+    {
+      "watch": "ecology.ashvale.fish.pop",
+      "condition": "< 0.2",
+      "event": "fish_supply_gone",
+      "effects": [
+        {"set_state": "flag.fish_supply_gone", "value": true}
+      ]
+    },
+    {
+      "watch": "ecology.ashvale.livestock.pop",
+      "condition": "< 0.4",
+      "event": "livestock_critical",
+      "effects": [
+        {"set_state": "flag.livestock_critical", "value": true},
+        {"set_state": "flag.leather_scarce", "value": true},
+        {"set_state": "flag.wool_scarce", "value": true}
+      ]
+    },
+    {
       "watch": "ecology.thornwood.deer.pop",
       "condition": "> 3.5",
       "event": "deer_overpopulation",
@@ -111,6 +155,14 @@
         {
           "set_state": "world.region.thornwood.status",
           "value": "ecological_collapse"
+        },
+        {
+          "set_state": "flag.thornwood_paths_easier",
+          "value": true
+        },
+        {
+          "set_state": "ecology.thornwood.wolves.carrying_capacity",
+          "value": 1.5
         }
       ]
     },

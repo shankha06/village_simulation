@@ -74,6 +74,13 @@
           "text": "Old Maren admits her testimony against Maren is biased by centuries of Church-Druid conflict.",
           "flag": "flag.old_maren_admitted_bias",
           "points_to": ["unreliable_witness"]
+        },
+        {
+          "id": "clue_maren_elara_siblings",
+          "source": "maren_family_revelation or old_maren_intro",
+          "text": "Brother Maren and Elara are siblings — both children of Silas Maren. The priest has been poisoning his own sister's village. Whether he knows this changes everything.",
+          "flag": "flag.maren_family_truth_revealed",
+          "points_to": ["brother_maren", "personal_motive", "possible_redemption"]
         }
       ],
       "verdicts": [
@@ -101,6 +108,14 @@
           "flag": "flag.accused_lord",
           "correct": false,
           "note": "Ashworth had the knowledge but not the motive. He's bound to the land — poisoning it would be poisoning himself. The formulas in his library are ancestral records, kept as warnings. He knew what nightcap root could do because his family has feared it for generations."
+        },
+        {
+          "id": "verdict_fenrick_guilty",
+          "name": "Accuse Fenrick / The Hollow Hand",
+          "required_clues": ["clue_nightcap_in_water"],
+          "flag": "flag.accused_fenrick",
+          "correct": false,
+          "note": "Fenrick deals in steel and coin, not alchemy. The Guild wants Ashvale's wealth, not its death. Accusing them burns a bridge to people who might actually help — and to fourteen children who depend on the Guild's smuggling routes."
         }
       ]
     }

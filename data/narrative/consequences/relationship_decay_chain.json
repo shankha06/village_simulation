@@ -1,0 +1,15 @@
+{
+    "id": "relationship_decay_chain",
+    "trigger_condition": "time.day >= 10",
+    "consequences": [
+        {"type": "delayed", "delay_days": 10, "effects": [
+            {"set_state": "flag.relationship_decay_tick_1", "value": true}
+        ]},
+        {"type": "delayed", "delay_days": 17, "effects": [
+            {"set_state": "flag.relationship_decay_tick_2", "value": true}
+        ]},
+        {"type": "delayed", "delay_days": 24, "effects": [
+            {"set_state": "flag.relationship_decay_tick_3", "value": true}
+        ]}
+    ]
+}

@@ -73,5 +73,46 @@
       {"set_state": "flag.heard_crypt_from_above", "value": true}
     ],
     "notification_text": "A sound from below the floor. Scratching. Rhythmic. Patient. Something is alive in the catacombs. Or something that was alive once, and hasn't quite stopped."
+  },
+  {
+    "id": "night_greta_closing",
+    "category": "atmosphere",
+    "priority": 30,
+    "once_only": false,
+    "cooldown_days": 2,
+    "conditions": [
+      "time.hour >= 22",
+      "player.current_region == ashvale",
+      "npc.greta.met == true"
+    ],
+    "effects": [],
+    "notification_text": "The inn is quiet. Greta wipes down the bar with methodical strokes — twenty-three, always twenty-three. She pours herself one glass of Thornwood Red and stands at the window, watching the forest edge. She's done this every night for fifteen years."
+  },
+  {
+    "id": "dawn_harlan_shift_change",
+    "category": "atmosphere",
+    "priority": 25,
+    "once_only": false,
+    "cooldown_days": 3,
+    "conditions": [
+      "time.hour >= 5",
+      "time.hour <= 7",
+      "player.current_region == ashvale"
+    ],
+    "effects": [],
+    "notification_text": "The gate creaks as Harlan begins his morning check. He tests every hinge, every bolt — not because they need it, but because his hands shake when they're idle. He hums a fishing tune. The tune has no words anymore."
+  },
+  {
+    "id": "midday_market_empty",
+    "category": "atmosphere",
+    "priority": 20,
+    "once_only": true,
+    "conditions": [
+      "time.hour >= 11",
+      "time.hour <= 14",
+      "world.region.ashvale.food_supply < 40"
+    ],
+    "effects": [],
+    "notification_text": "The market square is empty at midday. No vendors. No haggling. No smell of fresh bread. Just cobblestones, a few chickens, and the wind carrying the sound of someone coughing in a house with the shutters closed."
   }
 ]

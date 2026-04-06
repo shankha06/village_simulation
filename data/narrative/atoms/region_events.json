@@ -124,6 +124,28 @@
     "notification_text": "A body in the ditch. A young man in riding leathers, face-down in the mud. Dead perhaps two days — the crows have been at him. His satchel is torn open but one letter remains, tucked inside his boot. The seal is unbroken: the Ashworth crest pressed in black wax. Someone didn't want this message delivered. Someone with a blade and a reason."
   },
   {
+    "id": "thornwood_night_entry_danger",
+    "category": "consequence",
+    "region": "thornwood",
+    "priority": 60,
+    "once_only": false,
+    "cooldown_days": 1,
+    "conditions": ["player.current_region == thornwood", "time.hour >= 20"],
+    "effects": [{"set_state": "flag.entered_thornwood_at_night", "value": true}],
+    "notification_text": "The forest is different at night. The canopy blocks all moonlight. Sounds come from directions that shouldn't have sounds. Your talisman grows warm — or is that your imagination? The wolves are hunting. And they are not the only ones."
+  },
+  {
+    "id": "thornwood_day_entry_calm",
+    "category": "atmosphere",
+    "region": "thornwood",
+    "priority": 30,
+    "once_only": false,
+    "cooldown_days": 2,
+    "conditions": ["player.current_region == thornwood", "time.hour >= 8", "time.hour <= 17"],
+    "effects": [],
+    "notification_text": "Dappled light filters through the canopy. Bird calls echo between the trunks. The forest is almost peaceful during the day — almost. But even in sunlight, you feel watched. The trees have eyes. The roots have ears."
+  },
+  {
     "id": "wolf_howl",
     "category": "atmosphere",
     "region": "thornwood",
@@ -183,6 +205,16 @@
       {"swap_visuals": "thornwood_clearing_path", "variant": "blocked_by_fallen_tree"}
     ],
     "notification_text": "A crack like thunder splits the air. You feel it in your teeth before you hear it — the death-groan of something ancient. A massive oak, wider than three men abreast, topples in slow, terrible majesty. It falls for what feels like a full minute, and when it strikes the earth, the impact shakes leaves from every tree in sight. The forest is dying. The pact demands its due, and without resolution, even the oldest guardians fall."
+  },
+  {
+    "id": "manor_trespass_detection",
+    "category": "consequence",
+    "region": "ashworth_manor",
+    "priority": 65,
+    "once_only": true,
+    "conditions": ["player.current_region == ashworth_manor", "flag.has_manor_access != true", "flag.entered_ashworth_manor == true"],
+    "effects": [{"set_state": "flag.caught_trespassing_manor", "value": true}, {"set_state": "player.reputation.ashvale_nobility", "delta": -25}, {"set_state": "player.reputation.city_guard", "delta": -15}],
+    "notification_text": "A guard spots you in the manor corridor. 'You! How did you get in here? The lord's orders are clear — no visitors!' You're escorted out firmly. Your reputation with the Ashworth household suffers. Harlan shakes his head at the gate."
   },
   {
     "id": "ashworth_pacing",
@@ -378,6 +410,58 @@
       {"set_state": "flag.moonpetal_bloom_witnessed", "value": true}
     ],
     "notification_text": "Silver light erupts from the earth. Flowers — moonpetals, Old Maren called them — burst into bloom all around you, their petals unfolding like tiny hands opening to catch the moonlight. Each one glows with its own soft luminescence, silver-white, until the clearing shimmers like a field of fallen stars. They bloom only at night. They bloom only here. And tonight, they bloom for you."
+  },
+  {
+    "id": "gossip_family_truth_spreads",
+    "category": "social",
+    "region": "ashvale",
+    "priority": 40,
+    "once_only": true,
+    "conditions": ["flag.maren_family_truth_revealed == true", "time.day >= 3"],
+    "effects": [{"set_state": "flag.family_truth_public", "value": true}],
+    "notification_text": "Word has spread through the village like fire through dry wheat. Everyone knows now — the priest is Old Maren's grandson. Elara's brother. Silas's son. The whispers follow you through the square."
+  },
+  {
+    "id": "guard_notices_firebomb",
+    "category": "consequence",
+    "region": "ashvale",
+    "priority": 55,
+    "once_only": true,
+    "conditions": ["player.has_item.firebomb == true", "player.current_region == ashvale", "time.day >= 2"],
+    "effects": [{"set_state": "flag.guard_suspicious_of_player", "value": true}],
+    "notification_text": "Harlan's eyes linger on your pack as you pass the gate. 'Smells like oil,' he mutters. 'Alchemical oil. The kind that burns hot.' He doesn't stop you. But he's watching now. More carefully than before."
+  },
+  {
+    "id": "guard_notices_nightcap",
+    "category": "discovery",
+    "region": "ashvale",
+    "priority": 50,
+    "once_only": true,
+    "conditions": ["player.has_item.nightcap_sample == true", "player.current_region == ashvale"],
+    "effects": [{"set_state": "flag.carrying_evidence_publicly", "value": true}],
+    "notification_text": "You're carrying nightcap root through the village. The distinctive purple tinge is visible through your pack. Elara would recognize it instantly. So would Brother Maren. So would whoever put it in the water."
+  },
+  {
+    "id": "bloody_player_reaction",
+    "category": "social",
+    "region": "ashvale",
+    "priority": 25,
+    "once_only": false,
+    "cooldown_days": 1,
+    "conditions": ["flag.player_in_recent_combat == true", "player.current_region == ashvale"],
+    "effects": [],
+    "notification_text": "You're drawing stares. Blood on your clothes — not all of it yours. Children point. Adults look away. Elara pauses at her garden and calls out: 'You're hurt. Come here. Let me look at those wounds.'"
+  },
+  {
+    "id": "low_health_npc_reaction",
+    "category": "social",
+    "region": "ashvale",
+    "priority": 35,
+    "once_only": false,
+    "cooldown_days": 1,
+    "conditions": ["player.health < 30"],
+    "effects": [],
+    "notification_text": "You're limping. People notice. Greta offers water without being asked. Fenrick watches from the alley — weakness is opportunity to him. Elara appears at your elbow with a poultice before you can ask."
   },
   {
     "id": "offscreen_greta_elara_argument",

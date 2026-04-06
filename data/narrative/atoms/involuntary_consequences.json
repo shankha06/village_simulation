@@ -73,5 +73,69 @@
       {"set_state": "flag.compass_points_to_crypt", "value": true}
     ],
     "notification_text": "The compass needle swings hard toward the crypt entrance. It vibrates in your hand. Silas's compass wants you to go DOWN. Into the dark. Into the place where the dead keep their secrets."
+  },
+  {
+    "id": "involuntary_fenrick_suspicious_of_investigation",
+    "category": "consequence",
+    "priority": 45,
+    "once_only": true,
+    "conditions": ["flag.accepted_sabotage == true", "flag.agreed_to_help_elara == true", "npc.fenrick.met == true", "time.day >= 5"],
+    "effects": [{"set_state": "npc.fenrick.disposition", "delta": -15}, {"set_state": "npc.fenrick.memory.suspects_player_playing_both_sides", "value": true}],
+    "notification_text": "Fenrick catches your eye across the village square. His smirk has an edge to it now. He's heard you've been asking questions about the water. Questions that might lead back to the Guild's... other activities."
+  },
+  {
+    "id": "involuntary_voss_hears_guild_ties",
+    "category": "consequence",
+    "priority": 40,
+    "once_only": true,
+    "conditions": ["flag.accepted_sabotage == true", "flag.voss_conditional_alliance == true", "time.day >= 6"],
+    "effects": [{"set_state": "npc.commander_voss.disposition", "delta": -10}, {"set_state": "flag.voss_heard_about_guild_ties", "value": true}],
+    "notification_text": "Commander Voss nods at you across the camp — but the nod is curt. Professional. She's heard you've been seen in back alleys with Fenrick. Mercenaries survive by knowing who their allies really serve."
+  },
+  {
+    "id": "involuntary_nobody_helped_elara",
+    "category": "consequence",
+    "priority": 55,
+    "once_only": true,
+    "conditions": ["flag.elara_attacked == true", "time.day >= 5", "flag.player_visited_elara_after_attack != true"],
+    "effects": [{"set_state": "npc.greta.disposition", "delta": -15}, {"set_state": "npc.greta.memory.player_ignored_elara", "value": true}, {"set_state": "flag.village_noticed_neglect", "value": true}],
+    "notification_text": "Greta catches you at the inn door. Her voice is flat. 'Elara's been lying in her cottage for days. Beaten. Alone. And you — you've been busy, I suppose.' She doesn't wait for an answer."
+  },
+  {
+    "id": "involuntary_greta_feels_forgotten",
+    "category": "consequence",
+    "priority": 30,
+    "once_only": true,
+    "conditions": ["npc.greta.met == true", "time.day >= 12", "npc.greta.disposition > 15"],
+    "effects": [{"set_state": "npc.greta.disposition", "delta": -8}, {"set_state": "npc.greta.memory.feels_used", "value": true}],
+    "notification_text": ""
+  },
+  {
+    "id": "involuntary_harlan_disappointed",
+    "category": "consequence",
+    "priority": 30,
+    "once_only": true,
+    "conditions": ["flag.harlan_honest_with_player == true", "time.day >= 15"],
+    "effects": [{"set_state": "npc.gate_guard.disposition", "delta": -10}],
+    "notification_text": ""
+  },
+  {
+    "id": "involuntary_pariah_state",
+    "category": "consequence",
+    "priority": 80,
+    "once_only": true,
+    "conditions": ["player.reputation.thieves_guild < -30", "player.reputation.city_guard < -30", "player.reputation.ashvale_nobility < -30", "player.reputation.church_ashen_light < -30"],
+    "effects": [{"set_state": "flag.player_is_pariah", "value": true}],
+    "notification_text": "You walk through the village square and every eye turns away. Not in fear — in contempt. The Guild wants you dead. The Guard wants you gone. The Church has condemned you. The Lord won't speak your name. You have made enemies of everyone. In a dying village, that is the loneliest kind of death."
+  },
+  {
+    "id": "involuntary_npc_visit_fatigue",
+    "category": "social",
+    "priority": 15,
+    "once_only": false,
+    "cooldown_days": 1,
+    "conditions": ["flag.visited_same_npc_3_times_today == true"],
+    "effects": [],
+    "notification_text": "The NPC gives you a look that says: 'Again?' There's a polite patience in their voice that wasn't there before. Even friendly people have limits."
   }
 ]

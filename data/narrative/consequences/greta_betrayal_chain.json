@@ -1,0 +1,17 @@
+{
+    "id": "greta_betrayal_chain",
+    "trigger_condition": "world.region.ashvale.status == famine",
+    "consequences": [
+        {"type": "conditional_delayed", "delay_days": 10, "condition": "npc.greta.disposition < 10 AND player.reputation.thieves_guild < -20", "effects": [
+            {"set_state": "flag.greta_sold_info_to_fenrick", "value": true},
+            {"set_state": "npc.fenrick.memory.knows_player_investigation_details", "value": true}
+        ]},
+        {"type": "conditional_delayed", "delay_days": 15, "condition": "npc.greta.disposition < 5 AND flag.ironmarch_rider_arrived == true", "effects": [
+            {"set_state": "flag.greta_sold_info_to_draven", "value": true},
+            {"set_state": "flag.draven_knows_player_plans", "value": true}
+        ]},
+        {"type": "conditional_delayed", "delay_days": 18, "condition": "world.region.ashvale.food_supply < 20", "effects": [
+            {"set_state": "flag.greta_considers_leaving", "value": true}
+        ]}
+    ]
+}
