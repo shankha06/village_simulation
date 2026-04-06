@@ -11,6 +11,7 @@
     "curiosity": 0.5,
     "honesty": 0.2
   },
+  "barter_accepts": {"information": true, "favors": true, "gold": true},
   "schedule": [
     {
       "hour": 6,
@@ -21,6 +22,11 @@
       "hour": 12,
       "location": "back_alley",
       "activity": "dealing"
+    },
+    {
+      "hour": 16,
+      "location": "back_alley",
+      "activity": "fidgeting_with_knife_handle"
     },
     {
       "hour": 18,
@@ -53,6 +59,23 @@
     "Keep walking if you've got nothing to say.",
     "Time's running out for this village."
   ],
+  "mundane_barks": [
+    "Rain's coming. Bad for business.",
+    "This knife handle needs oiling.",
+    "(counting under breath)"
+  ],
+  "daily_life": {
+    "income": 0,
+    "income_source": "guild_funds",
+    "expenses": 8,
+    "expenses_note": "feeding_children",
+    "meals": [{"hour": 2, "location": "inn_kitchen", "note": "stolen"}, {"hour": 12, "location": "market_stall", "note": "scraps"}, {"hour": 19, "location": "none", "note": "skipped"}],
+    "mundane_barks": [
+      "Rain's coming. Bad for business.",
+      "This knife handle needs oiling.",
+      "(counting under his breath)"
+    ]
+  },
   "is_combatant": true,
   "max_health": 60.0,
   "attack_damage": 8.0,

@@ -142,6 +142,15 @@
       "state_condition": "flag.maren_family_truth_revealed == true",
       "state_alt_text": "Silas Maren. Brother Maren's father. Elara's father. Old Maren's son. One name, three lives shattered.",
       "sets_flag": "flag.read_sacrifice_names"
+    },
+    {
+      "id": "hidden_legion_correspondence",
+      "type": "search",
+      "name": "Hidden Letters in Lord's Desk",
+      "position": [115, 95],
+      "text": "Tucked behind a drawer: a stack of letters bearing the Ironmarch seal. Dated over three years. They've been watching Ashvale since Lord Ashworth started showing signs of refusing the sacrifice. The Legion knew this crisis was coming. They've been waiting for it.",
+      "sets_flag": "flag.legion_planned_this",
+      "one_shot": true
     }
   ]
 }

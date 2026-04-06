@@ -33,8 +33,16 @@
         232
       ],
       "text": "The well water looks clear enough, but there's a faint chemical smell. Something isn't right.",
-      "state_condition": "flag.evidence_nightcap_root == true",
-      "state_alt_text": "You know now \u2014 nightcap root is poisoning the water supply. The source must be upstream, in Thornwood."
+      "state_conditions": [
+        {
+          "condition": "flag.well_rope_sabotaged == true",
+          "alt_text": "The well rope has been cut clean through \u2014 a deliberate act. Someone doesn't want water drawn from here anymore. The frayed end dangles uselessly into the dark."
+        },
+        {
+          "condition": "flag.evidence_nightcap_root == true",
+          "alt_text": "You know now \u2014 nightcap root is poisoning the water supply. The source must be upstream, in Thornwood."
+        }
+      ]
     },
     {
       "id": "herb_garden",
@@ -58,8 +66,16 @@
         72
       ],
       "text": "The chapel door creaks open. Inside, rows of rough-hewn pews face a simple altar draped in gray cloth.",
-      "state_condition": "time.hour >= 22",
-      "state_alt_text": "The chapel is locked for the night. But you hear something from below \u2014 a low chanting...",
+      "state_conditions": [
+        {
+          "condition": "flag.chapel_graffiti_appears == true",
+          "alt_text": "Someone has scratched words into the chapel door in jagged letters: 'FALSE PROPHET.' The paint is fresh. Brother Maren has not cleaned it off. Perhaps he hasn't seen it. Perhaps he's leaving it as evidence."
+        },
+        {
+          "condition": "time.hour >= 22",
+          "alt_text": "The chapel is locked for the night. But you hear something from below \u2014 a low chanting..."
+        }
+      ],
       "sets_flag": "flag.heard_chanting_chapel"
     },
     {
@@ -181,6 +197,108 @@
       "gives_item": "nightcap_sample",
       "sets_flag": "flag.evidence_nightcap_root",
       "one_shot": true
+    },
+    {
+      "id": "inn_broken_chair",
+      "type": "examine",
+      "name": "Broken Chair",
+      "position": [345, 55],
+      "text": "A sturdy wooden chair near the bar. Nothing remarkable.",
+      "state_condition": "flag.inn_brawl_happened == true",
+      "state_alt_text": "The chair is splintered, one leg snapped clean off. A dark stain on the floor nearby \u2014 blood or ale, hard to tell. Greta mentions a brawl broke out while you were away. 'Hungry men fight over nothing,' she says."
+    },
+    {
+      "id": "village_garden_fence",
+      "type": "examine",
+      "name": "Garden Fence",
+      "position": [220, 260],
+      "text": "A low wooden fence surrounds what was once a vegetable garden. The soil is dark and quiet.",
+      "state_condition": "flag.garden_trampled_by_deer == true",
+      "state_alt_text": "The fence is smashed flat. Hoof prints everywhere \u2014 deer, from the size of them. Whatever was growing here has been trampled into mud. The forest's animals are getting bolder, or more desperate."
+    },
+    {
+      "id": "livestock_trough",
+      "type": "examine",
+      "name": "Water Trough",
+      "position": [400, 180],
+      "text": "A stone trough for livestock, filled with well water. A few chickens peck nearby.",
+      "state_condition": "flag.livestock_dying_from_water == true",
+      "state_alt_text": "A dead cow lies on its side near the trough, bloated and stiff. Two more carcasses further on. The water in the trough has a faint purple sheen. The poison is killing more than crops now."
+    },
+    {
+      "id": "fenrick_old_stash",
+      "type": "search",
+      "name": "Loose Stone",
+      "position": [275, 210],
+      "text": "A loose stone in the alley wall. Behind it, a small hollow \u2014 you find a pouch of lockpicks and a coded note.",
+      "state_condition": "flag.fenrick_stash_moved == true",
+      "state_alt_text": "The hollow behind the stone is empty. Scratch marks suggest something was recently removed in a hurry. Fenrick has moved his stash. He's getting careful.",
+      "one_shot": true
+    },
+    {
+      "id": "old_maren_bench",
+      "type": "examine",
+      "name": "Old Maren's Bench",
+      "position": [320, 105],
+      "text": "Old Maren's stone bench at the village edge. Herb bundles hang from the armrest, drying in the wind.",
+      "state_condition": "flag.old_maren_found_collapsed == true",
+      "state_alt_text": "The bench is empty. Scattered herbs lie on the ground as if dropped suddenly. A villager tells you Old Maren was found collapsed here this morning. She's been taken inside, but she's not well. Not well at all."
+    },
+    {
+      "id": "greta_elara_note",
+      "type": "examine",
+      "name": "Crumpled Note",
+      "position": [355, 52],
+      "text": "",
+      "state_condition": "flag.greta_elara_argued == true",
+      "state_alt_text": "A crumpled note on the inn floor in Elara's handwriting: 'You KNOW what's in the water, Greta. Stop pretending the inn is neutral ground.' Greta and Elara have had words. The alliance between healer and innkeeper is fraying.",
+      "one_shot": true
+    },
+    {
+      "id": "south_gate_tracks",
+      "type": "examine",
+      "name": "Fresh Tracks",
+      "position": [165, 295],
+      "text": "Muddy ground near the gate. The usual boot prints of guards and travelers.",
+      "state_condition": "flag.harlan_let_stranger_in == true",
+      "state_alt_text": "Unfamiliar boot prints in the mud \u2014 heavy, military-issue, entering the village. Harlan let someone in after dark. He won't meet your eyes when you ask about it."
+    },
+    {
+      "id": "child_drawing",
+      "type": "examine",
+      "name": "Drawing in Dirt",
+      "position": [300, 245],
+      "text": "Scuff marks in the dirt. Children play here during the day.",
+      "state_condition": "flag.child_missing_brief_scare == true",
+      "state_alt_text": "A half-finished drawing in the dirt \u2014 root patterns, spiraling outward. A child's work, abandoned suddenly. You hear the relief in a mother's voice nearby: 'Don't you EVER wander off like that again!' The child was found at the forest edge, drawing."
+    },
+    {
+      "id": "dead_horse_stable",
+      "type": "examine",
+      "name": "Stable",
+      "position": [300, 100],
+      "text": "A horse lies on its side in the stable, barely breathing. Its water trough is full — from the village well. The same poisoned water. Elara left herbs beside it, but there's only so much herb poultice can do against nightcap root.",
+      "state_condition": "flag.livestock_dying_from_water == true",
+      "state_alt_text": "The horse is dead. Its eyes are still open, reflecting a sky it will never see again. Someone covered it with a blanket. Probably Elara.",
+      "sets_flag": "flag.saw_dying_horse"
+    },
+    {
+      "id": "chickens_square",
+      "type": "examine",
+      "name": "Village Chickens",
+      "position": [310, 250],
+      "text": "A handful of scraggly chickens peck at the cobblestones. They look as hungry as everyone else. There used to be two dozen. Now there are five.",
+      "state_condition": "world.region.ashvale.status == famine",
+      "state_alt_text": "Three chickens left. Someone is eating them at night. Nobody admits it. Nobody blames them."
+    },
+    {
+      "id": "anchor_the_dog",
+      "type": "examine",
+      "name": "A Patient Dog",
+      "position": [250, 160],
+      "text": "A brown mutt sits at the door of the cold forge, tail occasionally thumping the ground. Waiting. His name is Anchor — Harlan named him that. His real name is Bark. The blacksmith called him Bark.",
+      "state_condition": "flag.anchor_dog_followed_player == true",
+      "state_alt_text": "Anchor trots over and leans against your leg. He's chosen you now. The forge is cold. The blacksmith isn't coming back. But Anchor still checks the door every morning, just in case."
     }
   ]
 }

@@ -1,0 +1,45 @@
+{
+  "id": "pip",
+  "name": "Pip",
+  "description": "A seventeen-year-old guard who joined because the uniform came with meals. Barely able to lift his spear.",
+  "faction": "city_guard",
+  "personality": {
+    "courage": 0.3,
+    "greed": 0.1,
+    "loyalty": 0.6,
+    "cruelty": 0.0,
+    "curiosity": 0.4,
+    "honesty": 0.8
+  },
+  "schedule": [
+    {"hour": 6, "location": "barracks", "activity": "sleeping"},
+    {"hour": 14, "location": "village_gate", "activity": "guarding"},
+    {"hour": 22, "location": "village_walls", "activity": "night_watch"},
+    {"hour": 2, "location": "barracks", "activity": "sleeping"}
+  ],
+  "home_location": "barracks",
+  "dialogue_pools": {
+    "greeting": "pip_guard_dialogue",
+    "night_report": "pip_night_discovery_dialogue"
+  },
+  "default_greeting": "pip_guard_dialogue",
+  "barks": [
+    "I'm supposed to look intimidating. Is it working?",
+    "Nobody told me the meals would run out.",
+    "Did you hear that? ...Probably nothing.",
+    "I carved HELP into the inn beam. Don't tell anyone.",
+    "My spear's heavier than it looks. Everything is."
+  ],
+  "daily_life": {
+    "income": 1,
+    "expenses": 1,
+    "meals": [{"hour": 7, "location": "barracks"}, {"hour": 13, "location": "inn"}, {"hour": 20, "location": "barracks"}],
+    "mundane_barks": [
+      "Cold tonight.",
+      "My feet hurt.",
+      "I miss my mum's cooking."
+    ]
+  },
+  "is_combatant": false,
+  "max_health": 30.0
+}

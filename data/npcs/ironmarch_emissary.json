@@ -64,6 +64,17 @@
     "The Legion remembers those who cooperate. And those who don't.",
     "Lovely village. It would be a shame to see it garrisoned."
   ],
+  "daily_life": {
+    "income": 0,
+    "income_source": "legion_funds",
+    "expenses": 3,
+    "meals": [{"hour": 7, "location": "inn_room"}, {"hour": 12, "location": "inn_bar"}, {"hour": 19, "location": "inn_bar"}],
+    "mundane_barks": [
+      "The wine here is... provincial.",
+      "(polishes a button on his coat with mechanical precision)",
+      "I've counted your walls. Twice."
+    ]
+  },
   "is_combatant": true,
   "max_health": 150.0,
   "attack_damage": 18.0,

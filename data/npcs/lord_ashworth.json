@@ -49,6 +49,23 @@
     "ledger_discovery": "ledger_discovery"
   },
   "default_greeting": "ashworth_intro",
+  "barks": [],
+  "mundane_barks": [
+    "(stares at nothing for a long moment)",
+    "The carpet needs... no. It doesn't matter.",
+    "(checks palm for blood after coughing)"
+  ],
+  "daily_life": {
+    "income": 0,
+    "income_source": "treasury_depleted",
+    "expenses": 5,
+    "meals": [{"hour": 18, "location": "manor_dining", "note": "barely_eats"}],
+    "mundane_barks": [
+      "(stares at nothing)",
+      "The carpet needs replacing. No. It doesn't matter.",
+      "(coughs, checks palm for blood)"
+    ]
+  },
   "is_combatant": false,
   "max_health": 35.0,
   "can_surrender": true,

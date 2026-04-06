@@ -19,18 +19,18 @@
     },
     {
       "hour": 10,
-      "location": "inn_bar",
-      "activity": "drinking"
-    },
-    {
-      "hour": 14,
       "location": "camp_outskirts",
       "activity": "drilling_soldiers"
     },
     {
+      "hour": 14,
+      "location": "village_square",
+      "activity": "scouting"
+    },
+    {
       "hour": 20,
-      "location": "camp_outskirts",
-      "activity": "planning"
+      "location": "inn_bar",
+      "activity": "drinking"
     },
     {
       "hour": 23,
@@ -50,6 +50,24 @@
     "rivendale_discovery": "rivendale_discovery"
   },
   "default_greeting": "voss_intro",
+  "barks": [],
+  "mundane_barks": [
+    "Wind's shifted. From the east.",
+    "My lieutenant's getting sloppy.",
+    "(clenches and unclenches fist)"
+  ],
+  "daily_life": {
+    "income": 0,
+    "income_source": "mercenary_funds",
+    "expenses": 12,
+    "expenses_note": "feeding_20_soldiers",
+    "meals": [{"hour": 6, "location": "camp_outskirts"}, {"hour": 12, "location": "camp_outskirts"}, {"hour": 20, "location": "camp_outskirts"}],
+    "mundane_barks": [
+      "Wind's shifted. From the east.",
+      "My lieutenant's getting sloppy.",
+      "(clenches and unclenches fist repeatedly)"
+    ]
+  },
   "is_combatant": true,
   "max_health": 120.0,
   "attack_damage": 15.0,

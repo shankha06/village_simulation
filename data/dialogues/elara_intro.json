@@ -4,15 +4,22 @@
   "nodes": {
     "start": {
       "type": "text",
-      "speaker": "elara",
-      "portrait": "neutral",
-      "text": "Another stranger on the road. You've picked a poor time to visit Ashvale.",
+      "speaker": "",
+      "portrait": "",
+      "text": "She's kneeling in dead soil, pinching it between her fingers and frowning at it. She doesn't look up when you approach. She's muttering numbers under her breath.",
       "triggers": [
         {
           "set_state": "npc.elara.met",
           "value": true
         }
       ],
+      "next": "start_2"
+    },
+    "start_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "Oh. Sorry. I didn't — are you talking to me? I've been testing soil samples since dawn. Sixty-seven so far. All dead.",
       "next": "choice_opening"
     },
     "choice_opening": {
@@ -54,7 +61,7 @@
         },
         {
           "id": "offer_help",
-          "text": "[Offer gold] You look like you haven't eaten properly in days.",
+          "text": "You look like you haven't eaten properly in days. Here — take this.",
           "conditions": [
             {
               "check": "player.gold",
@@ -142,7 +149,7 @@
       "type": "text",
       "speaker": "elara",
       "portrait": "sad",
-      "text": "The crops started dying three weeks ago. Brother Maren says it's divine punishment for our sins. Lord Ashworth says nothing at all \u2014 he's locked himself in that manor of his.",
+      "text": "The crops started dying three — no, wait. Three weeks? Four? I've lost track. The days blur when you're counting dead root samples. Brother Maren says it's divine punishment. Lord Ashworth says — well, Lord Ashworth doesn't say anything. He's locked himself in that manor and... sorry. I'm rambling. I haven't slept properly in days.",
       "next": "village_explanation_2"
     },
     "village_explanation_2": {
@@ -218,7 +225,36 @@
           "value": true
         }
       ],
-      "next": "poison_suspicion_2"
+      "next": "poison_suspicion_trust_check"
+    },
+    "poison_suspicion_trust_check": {
+      "type": "branch",
+      "conditions": [
+        {
+          "check": "npc.elara.dialogue_stage",
+          "op": "!=",
+          "value": "intro"
+        }
+      ],
+      "if_true": "poison_suspicion_2",
+      "if_false": "poison_suspicion_not_yet"
+    },
+    "poison_suspicion_not_yet": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "neutral",
+      "text": "I shouldn't have said that. I don't know you. Not yet. I need to think about whether I can trust you with this. Come back and talk to me again \u2014 I need to see what kind of person you are before I ask for help.",
+      "triggers": [
+        {
+          "set_state": "npc.elara.dialogue_stage",
+          "value": "intro_done"
+        },
+        {
+          "set_state": "flag.elara_needs_trust",
+          "value": true
+        }
+      ],
+      "next": "end"
     },
     "poison_suspicion_2": {
       "type": "text",

@@ -1,0 +1,69 @@
+{
+  "id": "robbery_chain",
+  "trigger_condition": "player.gold > 80 AND world.region.ashvale.status == famine",
+  "consequences": [
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {
+          "notification": "You notice someone watching you count your gold at the inn."
+        },
+        {
+          "set_state": "flag.robbery_warning_given",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 3,
+      "condition": "flag.has_inn_room == false",
+      "effects": [
+        {
+          "notification": "Your pack feels lighter this morning. Someone went through it while you slept."
+        },
+        {
+          "set_state": "player.gold",
+          "delta": -15
+        },
+        {
+          "set_state": "flag.player_robbed",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 3,
+      "condition": "flag.has_inn_room == true AND flag.inn_door_locked == false",
+      "effects": [
+        {
+          "notification": "Your pack feels lighter this morning. Someone went through it while you slept."
+        },
+        {
+          "set_state": "player.gold",
+          "delta": -15
+        },
+        {
+          "set_state": "flag.player_robbed",
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 3,
+      "condition": "flag.has_inn_room == true AND flag.inn_door_locked == true",
+      "effects": [
+        {
+          "notification": "You hear someone try your door handle in the night. It holds. They move on."
+        },
+        {
+          "set_state": "flag.robbery_attempt_foiled",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

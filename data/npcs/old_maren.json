@@ -11,6 +11,7 @@
     "curiosity": 0.7,
     "honesty": 0.9
   },
+  "barter_accepts": {"herbs": true, "forest_offerings": true, "gold": false},
   "schedule": [
     {
       "hour": 5,
@@ -35,7 +36,7 @@
     {
       "hour": 22,
       "location": "village_edge_bench",
-      "activity": "sleeping"
+      "activity": "sleeping_outdoors"
     }
   ],
   "home_location": "village_edge",
@@ -53,8 +54,18 @@
     "The forest whispers your name.",
     "Patience. The earth speaks slowly.",
     "Something stirs beneath us.",
-    "The old ways remember, even if you do not."
+    "The old ways remember, even if you do not.",
+    "I don't sleep indoors. The walls block the roots' voices. Elara brings a blanket every evening. She thinks I don't notice."
   ],
+  "mundane_barks": [
+    "The soil tastes different today.",
+    "My left hand is cold. The roots are cold.",
+    "(traces patterns in dirt, then erases them)"
+  ],
+  "quest_trust_requirement": {
+    "min_interactions": 2,
+    "required_item": "marens_heirloom"
+  },
   "family": {
     "son_deceased": "silas_maren",
     "grandson": "brother_maren",
@@ -75,6 +86,17 @@
       ]
     }
   ],
+  "daily_life": {
+    "income": 0,
+    "expenses": 0,
+    "expenses_note": "forest_provides",
+    "meals": [{"hour": 6, "location": "village_edge", "note": "herbs_and_roots"}, {"hour": 18, "location": "village_edge", "note": "herbs_and_roots"}],
+    "mundane_barks": [
+      "The soil tastes different today.",
+      "My left hand is cold. The roots are cold.",
+      "(traces patterns in dirt, then erases them)"
+    ]
+  },
   "is_combatant": false,
   "max_health": 20.0,
   "can_surrender": false,

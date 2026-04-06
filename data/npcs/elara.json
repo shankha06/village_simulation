@@ -38,6 +38,7 @@
       "activity": "sleeping"
     }
   ],
+  "barter_accepts": {"herbs": true, "gold": true, "rare_ingredients": true},
   "home_location": "elara_cottage",
   "dialogue_pools": {
     "greeting": "elara_intro",
@@ -61,10 +62,29 @@
     "Someone has to figure this out before it's too late.",
     "The water... I need to test it again."
   ],
+  "mundane_barks": [
+    "(mutters) pH is wrong again...",
+    "My hands always smell like comfrey.",
+    "When did I last eat? ...Yesterday?"
+  ],
+  "quest_trust_requirement": {
+    "min_interactions": 2,
+    "flag": "npc.elara.disposition > 10"
+  },
   "family": {
     "father_deceased": "silas_maren",
     "grandmother": "old_maren",
     "brother": "brother_maren"
+  },
+  "daily_life": {
+    "income": 5,
+    "expenses": 3,
+    "meals": [{"hour": 7, "location": "herb_garden"}, {"hour": 12, "location": "village_well"}, {"hour": 19, "location": "home"}],
+    "mundane_barks": [
+      "(muttering) ...pH is wrong again...",
+      "My hands smell like comfrey. Always comfrey.",
+      "I should eat. When did I last eat?"
+    ]
   },
   "is_combatant": false,
   "max_health": 30.0,

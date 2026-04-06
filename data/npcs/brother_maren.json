@@ -63,6 +63,11 @@
     "The wicked will be cleansed.",
     "Hmm... interesting."
   ],
+  "mundane_barks": [
+    "The incense is running low.",
+    "These candles burn too quickly.",
+    "(touches feet unconsciously)"
+  ],
   "family": {
     "father_deceased": "silas_maren",
     "grandmother": "old_maren",
@@ -76,6 +81,18 @@
       ]
     }
   ],
+  "daily_life": {
+    "income": 0,
+    "income_source": "donations",
+    "expenses": 1,
+    "meals": [{"hour": 7, "location": "chapel"}, {"hour": 12, "location": "chapel"}, {"hour": 19, "location": "chapel"}],
+    "meal_note": "bread_and_water_only",
+    "mundane_barks": [
+      "The incense is running low.",
+      "These candles burn too fast.",
+      "(touches feet unconsciously \u2014 the coal scars)"
+    ]
+  },
   "is_combatant": false,
   "max_health": 40.0,
   "can_surrender": false,

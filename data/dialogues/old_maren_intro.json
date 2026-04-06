@@ -290,26 +290,22 @@
       "type": "text",
       "speaker": "old_maren",
       "portrait": "old_maren_neutral",
-      "text": "She reaches into her pouch and draws out a wooden pendant, carved with symbols that seem to shift when you're not looking directly at them.",
+      "text": "She reaches into her pouch and touches something \u2014 then stops. Her blind eyes narrow, as if seeing something in you that you cannot see yourself.",
       "next": "talisman_offer_2"
     },
     "talisman_offer_2": {
       "type": "text",
       "speaker": "old_maren",
       "portrait": "old_maren_neutral",
-      "text": "Take this. It will show you what the forest wants you to see \u2014 which is not always what you want to see. Follow the path it reveals, and the Thornwood will not bar your way. But be warned: the talisman also shows the forest what is in your heart. Go with clean intent, or do not go at all.",
+      "text": "I have something that could help you. But I do not give the forest's gifts to strangers. Come back when you have shown me you care about more than your own skin. Show me you understand what the forest has lost. Then we will talk about protection.",
       "triggers": [
         {
-          "set_state": "player.has_item.old_maren_talisman",
-          "value": true
-        },
-        {
-          "set_state": "flag.has_druid_talisman",
+          "set_state": "flag.old_maren_talisman_deferred",
           "value": true
         },
         {
           "set_state": "npc.old_maren.disposition",
-          "delta": 20
+          "delta": 5
         }
       ],
       "next": "end"

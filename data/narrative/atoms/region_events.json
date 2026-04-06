@@ -380,6 +380,106 @@
     "notification_text": "Silver light erupts from the earth. Flowers — moonpetals, Old Maren called them — burst into bloom all around you, their petals unfolding like tiny hands opening to catch the moonlight. Each one glows with its own soft luminescence, silver-white, until the clearing shimmers like a field of fallen stars. They bloom only at night. They bloom only here. And tonight, they bloom for you."
   },
   {
+    "id": "offscreen_greta_elara_argument",
+    "category": "offscreen",
+    "region": "ashvale",
+    "priority": 10,
+    "once_only": true,
+    "conditions": ["time.day >= 4", "npc.elara.met == true", "npc.greta.met == true"],
+    "effects": [{"set_state": "flag.greta_elara_argued", "value": true}],
+    "notification_text": ""
+  },
+  {
+    "id": "offscreen_fenrick_moved_stash",
+    "category": "offscreen",
+    "region": "ashvale",
+    "priority": 10,
+    "once_only": true,
+    "conditions": ["time.day >= 3", "npc.fenrick.met == true"],
+    "effects": [{"set_state": "flag.fenrick_stash_moved", "value": true}],
+    "notification_text": ""
+  },
+  {
+    "id": "offscreen_harlan_let_someone_in",
+    "category": "offscreen",
+    "region": "ashvale",
+    "priority": 10,
+    "once_only": true,
+    "conditions": ["time.day >= 5", "time.hour >= 22"],
+    "effects": [{"set_state": "flag.harlan_let_stranger_in", "value": true}],
+    "notification_text": ""
+  },
+  {
+    "id": "offscreen_villager_garden_destroyed",
+    "category": "offscreen",
+    "region": "ashvale",
+    "priority": 10,
+    "once_only": true,
+    "conditions": ["time.day >= 6"],
+    "effects": [{"set_state": "flag.garden_trampled_by_deer", "value": true}],
+    "notification_text": ""
+  },
+  {
+    "id": "offscreen_chapel_graffiti",
+    "category": "offscreen",
+    "region": "ashvale",
+    "priority": 10,
+    "once_only": true,
+    "conditions": ["time.day >= 7", "flag.maren_under_suspicion == true"],
+    "effects": [{"set_state": "flag.chapel_graffiti_appears", "value": true}],
+    "notification_text": ""
+  },
+  {
+    "id": "offscreen_well_rope_cut",
+    "category": "offscreen",
+    "region": "ashvale",
+    "priority": 10,
+    "once_only": true,
+    "conditions": ["time.day >= 8"],
+    "effects": [{"set_state": "flag.well_rope_sabotaged", "value": true}],
+    "notification_text": ""
+  },
+  {
+    "id": "offscreen_inn_brawl",
+    "category": "offscreen",
+    "region": "ashvale",
+    "priority": 10,
+    "once_only": true,
+    "conditions": ["time.day >= 5", "world.region.ashvale.food_supply < 40"],
+    "effects": [{"set_state": "flag.inn_brawl_happened", "value": true}],
+    "notification_text": ""
+  },
+  {
+    "id": "offscreen_child_missing_scare",
+    "category": "offscreen",
+    "region": "ashvale",
+    "priority": 10,
+    "once_only": true,
+    "conditions": ["time.day >= 6"],
+    "effects": [{"set_state": "flag.child_missing_brief_scare", "value": true}],
+    "notification_text": ""
+  },
+  {
+    "id": "offscreen_dead_livestock",
+    "category": "offscreen",
+    "region": "ashvale",
+    "priority": 10,
+    "once_only": true,
+    "conditions": ["time.day >= 4", "flag.evidence_nightcap_root == true"],
+    "effects": [{"set_state": "flag.livestock_dying_from_water", "value": true}],
+    "notification_text": ""
+  },
+  {
+    "id": "offscreen_old_maren_collapsed",
+    "category": "offscreen",
+    "region": "ashvale",
+    "priority": 10,
+    "once_only": true,
+    "conditions": ["time.day >= 10", "flag.maren_family_truth_revealed == true"],
+    "effects": [{"set_state": "flag.old_maren_found_collapsed", "value": true}, {"set_state": "npc.old_maren.health", "delta": -10}],
+    "notification_text": ""
+  },
+  {
     "id": "ash_circle_activates",
     "category": "mystery",
     "region": "church_outpost",

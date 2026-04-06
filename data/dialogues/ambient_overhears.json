@@ -86,5 +86,143 @@
       {"speaker": "fenrick", "text": "...Tell her mother's waiting at the end of the road. It's kinder than the truth."}
     ],
     "once_only": true
+  },
+  {
+    "id": "overhear_weather",
+    "conditions": ["time.day >= 1"],
+    "speakers": ["villager_1", "villager_2"],
+    "lines": [
+      {"speaker": "villager_1", "text": "Think it'll rain?"},
+      {"speaker": "villager_2", "text": "It should. It always rains in autumn."},
+      {"speaker": "villager_1", "text": "Not this autumn. Nothing's right this autumn."}
+    ],
+    "once_only": true
+  },
+  {
+    "id": "overhear_chickens",
+    "conditions": ["time.day >= 1"],
+    "speakers": ["villager", "farmer"],
+    "lines": [
+      {"speaker": "villager", "text": "Your chickens got into my garden again."},
+      {"speaker": "farmer", "text": "What garden? Everything's dead."},
+      {"speaker": "villager", "text": "...Fair point."}
+    ],
+    "once_only": true
+  },
+  {
+    "id": "overhear_bread",
+    "conditions": ["time.day >= 2"],
+    "speakers": ["villager", "greta"],
+    "lines": [
+      {"speaker": "villager", "text": "The bread tastes wrong."},
+      {"speaker": "greta", "text": "The flour tastes wrong. The water tastes wrong. Everything tastes wrong."},
+      {"speaker": "villager", "text": "I miss when things tasted right."}
+    ],
+    "once_only": true
+  },
+  {
+    "id": "overhear_dog",
+    "conditions": ["time.day >= 1"],
+    "speakers": ["child", "villager"],
+    "lines": [
+      {"speaker": "child", "text": "Why does Anchor sit at the forge every day?"},
+      {"speaker": "villager", "text": "He's waiting for the blacksmith to come back."},
+      {"speaker": "child", "text": "Will he come back?"},
+      {"speaker": "villager", "text": "...Eat your turnips."}
+    ],
+    "once_only": true
+  },
+  {
+    "id": "overhear_shoes",
+    "conditions": ["time.day >= 1"],
+    "speakers": ["villager_1", "villager_2"],
+    "lines": [
+      {"speaker": "villager_1", "text": "My boots are falling apart."},
+      {"speaker": "villager_2", "text": "The cobbler left last week."},
+      {"speaker": "villager_1", "text": "Before or after the baker?"},
+      {"speaker": "villager_2", "text": "After. Everyone leaves after the baker."}
+    ],
+    "once_only": true
+  },
+  {
+    "id": "overhear_sleep",
+    "conditions": ["time.day >= 3"],
+    "speakers": ["villager", "gate_guard"],
+    "lines": [
+      {"speaker": "villager", "text": "Can't sleep. The ground hums at night."},
+      {"speaker": "gate_guard", "text": "That's just the wind."},
+      {"speaker": "villager", "text": "Wind doesn't have a rhythm, Harlan."}
+    ],
+    "once_only": true
+  },
+  {
+    "id": "overhear_children_game",
+    "conditions": ["time.day >= 2"],
+    "speakers": ["child_1", "child_2"],
+    "lines": [
+      {"speaker": "child_1", "text": "I'm the forest! You have to run!"},
+      {"speaker": "child_2", "text": "I don't want to play Roots and Runners anymore."},
+      {"speaker": "child_1", "text": "Why not?"},
+      {"speaker": "child_2", "text": "Because last time, the trees played back."}
+    ],
+    "once_only": true
+  },
+  {
+    "id": "overhear_prayer",
+    "conditions": ["time.day >= 2"],
+    "speakers": ["villager", "villager_2"],
+    "lines": [
+      {"speaker": "villager", "text": "Did you go to the sermon?"},
+      {"speaker": "villager_2", "text": "Twice. He says the crops are punishment."},
+      {"speaker": "villager", "text": "Punishment for what?"},
+      {"speaker": "villager_2", "text": "He wasn't specific. That's the scary part."}
+    ],
+    "once_only": true
+  },
+  {
+    "id": "overhear_stars",
+    "conditions": ["time.hour >= 20"],
+    "speakers": ["villager", "old_maren"],
+    "lines": [
+      {"speaker": "villager", "text": "The stars look different tonight."},
+      {"speaker": "old_maren", "text": "The stars haven't changed. Your eyes have. Fear does that."}
+    ],
+    "once_only": true
+  },
+  {
+    "id": "overhear_missing_people",
+    "conditions": ["time.day >= 5"],
+    "speakers": ["villager_1", "villager_2"],
+    "lines": [
+      {"speaker": "villager_1", "text": "The Millers left. And the Thatchers."},
+      {"speaker": "villager_2", "text": "How many is that now?"},
+      {"speaker": "villager_1", "text": "Eleven families. Forty-three people."},
+      {"speaker": "villager_2", "text": "Forty-three. And the lord still hasn't said a word."}
+    ],
+    "once_only": true
+  },
+  {
+    "id": "overhear_memory",
+    "conditions": ["time.day >= 3"],
+    "speakers": ["villager", "greta"],
+    "lines": [
+      {"speaker": "villager", "text": "Remember the harvest festival?"},
+      {"speaker": "greta", "text": "Three years ago. The last good one."},
+      {"speaker": "villager", "text": "My daughter danced. She was six."},
+      {"speaker": "greta", "text": "Where is she now?"},
+      {"speaker": "villager", "text": "Sent her to my sister in the east. Before the roads got dangerous."}
+    ],
+    "once_only": true
+  },
+  {
+    "id": "overhear_forge_sound",
+    "conditions": ["time.day >= 1"],
+    "speakers": ["villager", "harlan"],
+    "lines": [
+      {"speaker": "villager", "text": "I keep hearing the forge. Hammer on anvil."},
+      {"speaker": "harlan", "text": "The forge is cold. Has been for months."},
+      {"speaker": "villager", "text": "I know. I hear it anyway."}
+    ],
+    "once_only": true
   }
 ]

@@ -4,9 +4,9 @@
   "nodes": {
     "start": {
       "type": "text",
-      "speaker": "fenrick",
-      "portrait": "neutral",
-      "text": "You don't look local. Good. I need someone without... attachments.",
+      "speaker": "",
+      "portrait": "",
+      "text": "You almost walk past him. He's leaning against a wall in the alley behind the inn, flipping a coin — not gold, copper — with the practiced disinterest of someone who wants to look like they're not watching you. He is absolutely watching you.",
       "triggers": [
         {
           "set_state": "npc.fenrick.met",
@@ -137,7 +137,7 @@
         },
         {
           "id": "report",
-          "text": "[Bluff] Interesting. I'll think about it. (Plan to report to guards)",
+          "text": "Interesting. I'll think about it.",
           "conditions": [],
           "triggers": [
             {

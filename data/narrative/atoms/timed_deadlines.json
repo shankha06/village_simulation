@@ -1,5 +1,20 @@
 [
   {
+    "id": "deadline_ironmarch_day7_warning",
+    "category": "deadline",
+    "priority": 90,
+    "once_only": true,
+    "conditions": [
+      "flag.ironmarch_rider_arrived == true",
+      "time.day >= 10",
+      "flag.ironmarch_ultimatum_result != true"
+    ],
+    "effects": [
+      {"set_state": "flag.ironmarch_final_warning", "value": true}
+    ],
+    "notification_text": "A messenger from Captain Draven arrives at the gate. 'Three days. That is all that remains of the Legion's patience. Decide, or the decision will be made for you.'"
+  },
+  {
     "id": "deadline_ironmarch_ultimatum",
     "category": "deadline",
     "priority": 95,
@@ -105,5 +120,20 @@
       {"set_state": "npc.commander_voss.alive", "value": false}
     ],
     "notification_text": "Commander Voss's camp is empty. The mercenaries packed up in the night. She waited twelve days for a reason to stay. You never gave her one."
+  },
+  {
+    "id": "deadline_do_nothing_fail",
+    "category": "deadline",
+    "priority": 100,
+    "once_only": true,
+    "conditions": [
+      "time.day >= 30",
+      "flag.pact_resolved != true",
+      "flag.ironmarch_ultimatum_result != true"
+    ],
+    "effects": [
+      {"set_state": "flag.total_inaction_failure", "value": true}
+    ],
+    "notification_text": "You waited too long. The forest claims the eastern fields. The Legion marches from the west. Ashvale is caught between root and iron, and you \u2014 you did nothing. The village's fate was decided by your silence."
   }
 ]

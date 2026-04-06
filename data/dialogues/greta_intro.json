@@ -25,13 +25,13 @@
             {
               "check": "player.gold",
               "op": ">=",
-              "value": 8
+              "value": 5
             }
           ],
           "triggers": [
             {
               "set_state": "player.gold",
-              "delta": -8
+              "delta": -5
             },
             {
               "set_state": "npc.greta.disposition",
@@ -54,7 +54,7 @@
             {
               "check": "player.gold",
               "op": ">=",
-              "value": 15
+              "value": 8
             }
           ],
           "triggers": [],
@@ -120,6 +120,24 @@
             }
           ],
           "next": "guild_gossip"
+        },
+        {
+          "id": "ask_about_guild_cold",
+          "text": "Anything... unofficial happening in town? Underground connections?",
+          "conditions": [
+            {
+              "check": "flag.knows_about_guild",
+              "op": "!=",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.greta.memory.player_fished_for_guild",
+              "value": true
+            }
+          ],
+          "next": "guild_denial"
         },
         {
           "id": "ask_about_stranger",
@@ -190,6 +208,57 @@
         }
       ],
       "next": "choice_info"
+    },
+    "guild_denial": {
+      "type": "text",
+      "speaker": "greta",
+      "portrait": "neutral",
+      "text": "A guild? In Ashvale? We're a farming village, not a city. The most underground thing here is the root cellar. Now \u2014 can I get you anything else? A room, perhaps?",
+      "triggers": [
+        {
+          "set_state": "flag.greta_denied_guild",
+          "value": true
+        }
+      ],
+      "next": "guild_denial_choice"
+    },
+    "guild_denial_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "pay_for_truth",
+          "text": "[Pay 20 gold] I think you know more than you're saying. Let's make it worth your while.",
+          "conditions": [
+            {
+              "check": "player.gold",
+              "op": ">=",
+              "value": 20
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "player.gold",
+              "delta": -20
+            },
+            {
+              "set_state": "flag.knows_about_guild",
+              "value": true
+            },
+            {
+              "set_state": "npc.greta.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "guild_gossip"
+        },
+        {
+          "id": "drop_it",
+          "text": "Never mind. What about that room?",
+          "conditions": [],
+          "triggers": [],
+          "next": "room_offer"
+        }
+      ]
     },
     "guild_gossip": {
       "type": "text",
@@ -292,7 +361,7 @@
       "type": "text",
       "speaker": "greta",
       "portrait": "neutral",
-      "text": "Fifteen gold a night. Includes breakfast \u2014 what's left of it. And a locked door between you and whatever's out there. Sleep well, stranger.",
+      "text": "Eight gold a night. Includes breakfast \u2014 what's left of it. And a locked door between you and whatever's out there. Sleep well, stranger.",
       "next": "choice_room"
     },
     "choice_room": {
@@ -300,18 +369,18 @@
       "options": [
         {
           "id": "take_room",
-          "text": "[Pay 15 gold] I'll take it.",
+          "text": "[Pay 8 gold] I'll take it.",
           "conditions": [
             {
               "check": "player.gold",
               "op": ">=",
-              "value": 15
+              "value": 8
             }
           ],
           "triggers": [
             {
               "set_state": "player.gold",
-              "delta": -15
+              "delta": -8
             },
             {
               "set_state": "flag.has_inn_room",

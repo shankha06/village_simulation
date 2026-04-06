@@ -548,7 +548,7 @@
       "text": "The Deep Root Network, after three thousand years of geological-speed debate, has reached a decision about humanity. The decision was finalized by the oldest surviving consciousness — the ocean intelligence at the Shattered Coast, which has been listening to every argument from every other consciousness since the Severance Wars ended. Its verdict is propagating through the bedrock now, moving toward every consciousness simultaneously.",
       "discovered_by_default": false,
       "conditions": [
-        "flag.prologue_complete == true"
+        "flag.act3_complete == true"
       ],
       "fragments": [
         {

@@ -18,6 +18,38 @@
           "crops"
         ],
         "notes": "Rats increase as crops die and granaries are left unattended."
+      },
+      "livestock": {
+        "pop": 1.0,
+        "growth_rate": -0.03,
+        "carrying_capacity": 2.0,
+        "predators": ["wolves"],
+        "prey": [],
+        "notes": "Dying from poisoned water. Visible dead animals near troughs."
+      },
+      "fish": {
+        "pop": 0.8,
+        "growth_rate": -0.04,
+        "carrying_capacity": 1.5,
+        "predators": [],
+        "prey": [],
+        "notes": "Stream fish dying from nightcap runoff. Dead fish floating = early warning."
+      },
+      "insects": {
+        "pop": 0.7,
+        "growth_rate": -0.02,
+        "carrying_capacity": 1.0,
+        "predators": [],
+        "prey": [],
+        "notes": "Pollinators dying. Accelerates crop failure. Elara notices first."
+      },
+      "weeds": {
+        "pop": 0.3,
+        "growth_rate": 0.05,
+        "carrying_capacity": 3.0,
+        "predators": [],
+        "prey": [],
+        "notes": "Wild thorns and nettles taking over dead farmland. Visual indicator of decay."
       }
     },
     "thornwood": {
@@ -42,12 +74,12 @@
         "notes": "Primary herbivore. Overpopulation without wolves causes deforestation."
       },
       "forest_spirits": {
-        "pop": 1.0,
+        "pop": 0.2,
         "growth_rate": 0.0,
         "carrying_capacity": 1.0,
         "predators": [],
         "prey": [],
-        "notes": "Manifestation of the Heartwood's will. Pop increases when pact is broken. Hostile to intruders."
+        "notes": "Carrying capacity increases to 5.0 when pact is broken (flag.pact_broken). Growth rate becomes 0.05."
       }
     }
   },
@@ -108,6 +140,70 @@
         },
         {
           "spawn_event": "forest_attacks_village_edge"
+        }
+      ]
+    },
+    {
+      "watch": "ecology.thornwood.wolves.pop",
+      "condition": "< 0.5",
+      "event": "deer_raid_gardens",
+      "effects": [
+        {
+          "set_state": "flag.deer_raiding_village_gardens",
+          "value": true
+        }
+      ]
+    },
+    {
+      "watch": "ecology.thornwood.wolves.pop",
+      "condition": "> 2.0",
+      "event": "wolf_attacks_livestock",
+      "effects": [
+        {
+          "set_state": "flag.wolf_attacks_on_road",
+          "value": true
+        }
+      ]
+    },
+    {
+      "watch": "flag.pact_broken",
+      "condition": "== true",
+      "event": "spirits_unleashed",
+      "effects": [
+        {
+          "set_state": "ecology.thornwood.forest_spirits.carrying_capacity",
+          "value": 5.0
+        },
+        {
+          "set_state": "ecology.thornwood.forest_spirits.growth_rate",
+          "value": 0.05
+        }
+      ]
+    },
+    {
+      "watch": "ecology.ashvale.rats.pop",
+      "condition": "> 1.5",
+      "additional_condition": "world.region.ashvale.food_supply < 30",
+      "event": "disease_risk",
+      "effects": [
+        {
+          "set_state": "flag.disease_risk_high",
+          "value": true
+        }
+      ]
+    },
+    {
+      "watch": "ecology.ashvale.rats.pop",
+      "condition": "> 2.5",
+      "event": "disease_outbreak",
+      "effects": [
+        {
+          "set_state": "flag.disease_outbreak",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.status",
+          "value": "plague"
         }
       ]
     }

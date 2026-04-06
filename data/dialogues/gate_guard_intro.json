@@ -60,14 +60,77 @@
           "conditions": [],
           "triggers": [],
           "next": "warning"
+        },
+        {
+          "id": "ask_weather",
+          "text": "Cold evening.",
+          "conditions": [],
+          "triggers": [],
+          "next": "weather_talk"
         }
       ]
+    },
+    "weather_talk": {
+      "type": "text",
+      "speaker": "gate_guard",
+      "portrait": "neutral",
+      "text": "Always is, this time of year. Autumn used to be warmer, though. Before the... well. Before everything. Used to fish with a friend of mine on evenings like this. Long time ago.",
+      "triggers": [
+        {
+          "set_state": "npc.gate_guard.memory.player_made_small_talk",
+          "value": true
+        }
+      ],
+      "next": "choice_opening"
     },
     "harlan_regret": {
       "type": "text",
       "speaker": "gate_guard",
+      "portrait": "neutral",
+      "text": "Silas? That was... a long time ago. Just someone I knew. Where did you find that?",
+      "next": "harlan_deflect_choice"
+    },
+    "harlan_deflect_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "press_harlan",
+          "text": "Just someone you knew? Your face says otherwise, Harlan.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.gate_guard.disposition",
+              "delta": -5
+            }
+          ],
+          "next": "harlan_regret_real"
+        },
+        {
+          "id": "show_compass_again",
+          "text": "[Hold compass closer] Look at the inscription. 'For my children.' You were more than acquaintances.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "npc.gate_guard.disposition",
+              "delta": 5
+            }
+          ],
+          "next": "harlan_regret_real"
+        },
+        {
+          "id": "accept_deflection",
+          "text": "Fair enough. Where can I find a place to sleep?",
+          "conditions": [],
+          "triggers": [],
+          "next": "directions_inn"
+        }
+      ]
+    },
+    "harlan_regret_real": {
+      "type": "text",
+      "speaker": "gate_guard",
       "portrait": "sad",
-      "text": "Where did you\u2014 No. Give that here. ...Silas. I haven't seen this in thirty years. We were friends, once. Before the Lord called in the debt. Before we all stood by and watched the roots take him.",
+      "text": "...Fine. We were friends. Good friends. Before the Lord called in the debt. Before we all stood by and watched the roots take him. I stood at that gate and I did nothing. That's the kind of man I am.",
       "next": "harlan_regret_2"
     },
     "harlan_regret_2": {

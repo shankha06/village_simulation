@@ -33,11 +33,23 @@
       "activity": "sleeping"
     }
   ],
+  "barter_accepts": {"food": true, "gold": true, "famine_mode": "anything"},
   "home_location": "guard_barracks",
   "dialogue_pools": {
     "greeting": "gate_guard_intro"
   },
   "default_greeting": "gate_guard_intro",
+  "daily_life": {
+    "income": 3,
+    "expenses": 2,
+    "meals": [{"hour": 7, "location": "south_gate"}, {"hour": 12, "location": "inn_common"}, {"hour": 19, "location": "south_gate"}],
+    "mundane_barks": [
+      "Could use a good rain.",
+      "Third cobweb this week at the gate.",
+      "My knees predict weather better than any almanac.",
+      "Fish were biting good last spring. Miss that."
+    ]
+  },
   "is_combatant": true,
   "max_health": 50.0,
   "attack_damage": 6.0,

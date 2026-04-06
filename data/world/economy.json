@@ -2,15 +2,30 @@
   "regions": {
     "ashvale": {
       "base_prices": {
-        "bread": 5,
-        "ale": 8,
-        "herb_poultice": 15,
-        "iron_dagger": 40,
-        "leather_vest": 30,
+        "bread": 2,
+        "ale": 5,
+        "herb_poultice": 20,
+        "iron_dagger": 120,
+        "leather_vest": 80,
         "rope": 10,
-        "torch": 3,
+        "torch": 2,
         "lockpick": 25,
-        "nightcap_antidote": 50
+        "nightcap_antidote": 50,
+        "firewood": 2,
+        "salt": 4,
+        "flour": 6,
+        "eggs": 3,
+        "dried_fish": 4,
+        "candles": 2,
+        "wool_cloth": 5,
+        "nails": 3,
+        "soap": 2,
+        "turnips": 1,
+        "cider": 6,
+        "leather_scraps": 3,
+        "needle_thread": 2,
+        "pickled_onions": 3,
+        "charcoal": 1
       },
       "supply_factors": {
         "bread": {

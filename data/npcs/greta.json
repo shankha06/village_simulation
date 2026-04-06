@@ -11,11 +11,17 @@
     "curiosity": 0.6,
     "honesty": 0.4
   },
+  "barter_accepts": {"food": true, "information": true, "gold": true, "famine_mode": "food_only"},
   "schedule": [
     {
       "hour": 6,
       "location": "inn_kitchen",
       "activity": "cooking"
+    },
+    {
+      "hour": 8,
+      "location": "village_well",
+      "activity": "fetching_water"
     },
     {
       "hour": 10,
@@ -26,6 +32,12 @@
       "hour": 14,
       "location": "inn_bar",
       "activity": "gossiping"
+    },
+    {
+      "hour": 16,
+      "location": "village_edge",
+      "activity": "visiting_old_maren",
+      "frequency": "weekly"
     },
     {
       "hour": 22,
@@ -52,8 +64,27 @@
     "Everyone's got secrets in Ashvale.",
     "Business is terrible. Nobody's buying.",
     "The manor's been quiet. Too quiet.",
-    "Come in, come in. I don't bite."
+    "Come in, come in. I don't bite.",
+    "My knees are telling me it'll rain.",
+    "I should write to my cousin in the east. If the roads are still open.",
+    "Mother always said: 'Listen to the drunks. They tell the truest lies.'"
   ],
+  "mundane_barks": [
+    "That stain on the bar is never coming out.",
+    "Dreamed about the sea again.",
+    "Someone moved my good ladle. Again."
+  ],
+  "daily_life": {
+    "income": 15,
+    "income_famine": 5,
+    "expenses": 10,
+    "meals": [{"hour": 7, "location": "inn_kitchen"}, {"hour": 12, "location": "inn_kitchen"}, {"hour": 19, "location": "inn_kitchen"}],
+    "mundane_barks": [
+      "That stain's never coming out.",
+      "I should fix that chair before someone breaks their neck.",
+      "Dreamed about the sea again last night."
+    ]
+  },
   "is_combatant": false,
   "max_health": 25.0,
   "can_surrender": true,

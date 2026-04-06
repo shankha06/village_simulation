@@ -42,6 +42,21 @@
       ]
     },
     {
+      "type": "conditional_delayed",
+      "delay_days": 12,
+      "condition": "npc.lord_ashworth.alive == true",
+      "effects": [
+        {
+          "set_state": "flag.ashworth_brief_rally",
+          "value": true
+        },
+        {
+          "set_state": "npc.lord_ashworth.health",
+          "delta": 10
+        }
+      ]
+    },
+    {
       "type": "delayed",
       "delay_days": 15,
       "effects": [
@@ -59,6 +74,21 @@
         },
         {
           "spawn_event": "ashworth_collapse"
+        }
+      ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 15,
+      "condition": "flag.elara_taught_alchemy == true AND flag.has_manor_access == true",
+      "effects": [
+        {
+          "set_state": "flag.elara_treating_ashworth",
+          "value": true
+        },
+        {
+          "set_state": "npc.lord_ashworth.death_delay",
+          "delta": 5
         }
       ]
     },

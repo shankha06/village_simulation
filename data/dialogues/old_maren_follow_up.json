@@ -20,6 +20,29 @@
           "next": "parable_sea_king"
         },
         {
+          "id": "ask_talisman",
+          "text": "You mentioned something that could help me in the forest. I'm ready.",
+          "conditions": [
+            {
+              "check": "flag.old_maren_talisman_deferred",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.has_druid_talisman",
+              "op": "!=",
+              "value": true
+            },
+            {
+              "check": "player.has_item.marens_heirloom",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "talisman_give"
+        },
+        {
           "id": "moonpetal",
           "text": "Is there anything I can bring you from the forest?",
           "conditions": [
@@ -58,6 +81,34 @@
           "next": "end"
         }
       ]
+    },
+    "talisman_give": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "neutral",
+      "text": "You came back. And you carry Silas's compass still. That tells me something about your heart \u2014 you carry the dead with respect. The forest notices such things.",
+      "next": "talisman_give_2"
+    },
+    "talisman_give_2": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "neutral",
+      "text": "Take this. It will show you what the forest wants you to see \u2014 which is not always what you want to see. Follow the path it reveals, and the Thornwood will not bar your way. But be warned: the talisman also shows the forest what is in your heart. Go with clean intent, or do not go at all.",
+      "triggers": [
+        {
+          "set_state": "player.has_item.old_maren_talisman",
+          "value": true
+        },
+        {
+          "set_state": "flag.has_druid_talisman",
+          "value": true
+        },
+        {
+          "set_state": "npc.old_maren.disposition",
+          "delta": 20
+        }
+      ],
+      "next": "choice_topics"
     },
     "parable_sea_king": {
       "type": "text",

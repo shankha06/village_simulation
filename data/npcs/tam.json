@@ -1,0 +1,45 @@
+{
+  "id": "tam",
+  "name": "Tam",
+  "description": "A seven-year-old with dirt on her knees and an unsettling habit of drawing root patterns in the soil.",
+  "faction": "",
+  "personality": {
+    "courage": 0.7,
+    "greed": 0.0,
+    "loyalty": 0.8,
+    "cruelty": 0.0,
+    "curiosity": 1.0,
+    "honesty": 0.9
+  },
+  "schedule": [
+    {"hour": 7, "location": "village_square", "activity": "playing"},
+    {"hour": 12, "location": "inn", "activity": "eating"},
+    {"hour": 15, "location": "forest_edge", "activity": "drawing_in_dirt"},
+    {"hour": 19, "location": "village_square", "activity": "playing_roots_and_runners"},
+    {"hour": 21, "location": "home", "activity": "sleeping"}
+  ],
+  "home_location": "village_house",
+  "dialogue_pools": {
+    "greeting": "village_children_dialogue"
+  },
+  "default_greeting": "village_children_dialogue",
+  "barks": [
+    "The tree said something again today!",
+    "Want to play Roots and Runners?",
+    "Mama says not to go near the well.",
+    "I drew the underneath. Want to see?",
+    "The forest isn't scary. It's just sad."
+  ],
+  "daily_life": {
+    "income": 0,
+    "expenses": 0,
+    "meals": [{"hour": 7, "location": "home"}, {"hour": 12, "location": "inn"}, {"hour": 19, "location": "home"}],
+    "mundane_barks": [
+      "I found a bug. It's dead though.",
+      "My shoes are too small.",
+      "(humming a tune no one taught her)"
+    ]
+  },
+  "is_combatant": false,
+  "max_health": 10.0
+}

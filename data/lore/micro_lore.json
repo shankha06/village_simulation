@@ -281,6 +281,78 @@
       "discovered_by_default": false,
       "conditions": ["flag.old_maren_is_druid == true"],
       "fragments": []
+    },
+    {
+      "id": "micro_old_maren_blanket",
+      "title": "The Blanket",
+      "category": "memories",
+      "text": "Every evening at dusk, Elara walks to the village edge carrying a wool blanket. She drapes it over Old Maren's shoulders without a word. Old Maren never thanks her. Elara never expects thanks. It's the closest thing to family either of them has — and neither knows how close it actually is.",
+      "discovered_by_default": false,
+      "conditions": ["npc.elara.met == true", "npc.old_maren.met == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_folk_charms",
+      "title": "Door Charms",
+      "category": "memories",
+      "text": "Half the doors in Ashvale have small carvings above the frame — a root symbol, almost invisible under decades of paint. Old Maren says they're druid protection marks from before the Church came. 'Your grandparents put them there. They knew what lived in the forest. They respected it.' Brother Maren calls them 'superstitious scars.' He hasn't noticed his own chapel door has one.",
+      "discovered_by_default": false,
+      "conditions": ["npc.old_maren.met == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_forest_bread",
+      "title": "Bread at the Edge",
+      "category": "memories",
+      "text": "There's a tradition in Ashvale: leave a heel of bread at the forest edge on the first day of each month. Nobody remembers why. Most people stopped during the famine. Old Maren still does it. 'It was the original offering,' she says. 'Before blood, before sacrifice, before any of it. Just bread. The forest liked bread. It was simpler then.'",
+      "discovered_by_default": false,
+      "conditions": ["npc.old_maren.met == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_village_shrine",
+      "title": "The Forgotten Shrine",
+      "category": "memories",
+      "text": "Behind the inn, overgrown with weeds, there's a stone pedestal with a shallow bowl on top. It used to hold offerings — flowers, grain, the first fruit of harvest. When the Church arrived, Brother Maren poured holy water into the bowl and declared it 'cleansed.' Old Maren poured the holy water out the same night. 'You don't cleanse a prayer,' she said. 'You answer it.'",
+      "discovered_by_default": false,
+      "conditions": ["flag.visited_old_maren == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_inn_name",
+      "title": "Two Names for One Inn",
+      "category": "memories",
+      "text": "The inn's official name is the Pig and Whistle — painted on a sign that nobody reads. Greta renamed it the Rotting Harvest 'as a joke' during the first year the crops outproduced the village's ability to eat them. Food literally rotted in the streets that year. The joke stopped being funny. The name stuck. Harlan still calls it the Pig and Whistle. He says the old name reminds him of better times. Greta says the new name reminds her not to take anything for granted.",
+      "discovered_by_default": false,
+      "conditions": ["npc.greta.met == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_harlan_fishing_song",
+      "title": "The Fishing Song",
+      "category": "memories",
+      "text": "Harlan hums while he stands at the gate. The same song, always — a fishing tune his father taught him. It has no words. Or rather, the words were lost. He hums the melody and fills in the gaps with sounds that might be words in a language nobody speaks anymore. Elara recognized the tune once. It's a druid chant. Harlan's father never told him that.",
+      "discovered_by_default": false,
+      "conditions": ["npc.gate_guard.met == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_chalk_drawing",
+      "title": "The Chapel Drawing",
+      "category": "memories",
+      "text": "Someone chalked a drawing on the outside chapel wall: a sun over a field of wheat, done in a child's hand. Brother Maren scrubbed it off. The next morning, it was back. He scrubbed it again. It came back again. After the fourth time, he stopped scrubbing. The drawing is still there, fading slowly in the rain. Nobody knows which child drew it. Tam says it wasn't her. Tam is a terrible liar.",
+      "discovered_by_default": false,
+      "conditions": ["npc.brother_maren.met == true"],
+      "fragments": []
+    },
+    {
+      "id": "micro_greta_singing",
+      "title": "Closing Time Song",
+      "category": "memories",
+      "text": "After the last patron leaves, Greta sings. Not well — she'd be the first to admit that. A song about a woman who loved a sailor who loved the sea. 'It's not about a sailor,' she told Elara once, after too much Thornwood Red. 'It's about loving something that will never love you back the way you need.' She was looking at the forest when she said it.",
+      "discovered_by_default": false,
+      "conditions": ["npc.greta.met == true", "flag.has_inn_room == true"],
+      "fragments": []
     }
   ]
 }

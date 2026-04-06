@@ -1,0 +1,95 @@
+{
+  "id": "willing_debate",
+  "start_node": "start",
+  "trigger_condition": "flag.has_druid_talisman == true AND flag.heartwood_contact_made == true AND npc.old_maren.met == true",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Old Maren holds the talisman between her fingers. It pulses with a faint green light. She's speaking to the Heartwood — and for the first time, you can hear both sides.",
+      "next": "maren_opens"
+    },
+    "maren_opens": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_neutral",
+      "text": "The sacrifice must be willing. That is the covenant.",
+      "next": "heartwood_responds"
+    },
+    "heartwood_responds": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "heartwood_pulse",
+      "text": "We accept all souls. But the unwilling ones... taste of ash. They weaken us. The willing ones nourish. The difference is not requirement. It is... nutrition.",
+      "next": "maren_challenges"
+    },
+    "maren_challenges": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_angry",
+      "text": "So you're saying you'd accept a prisoner dragged screaming into the roots?",
+      "next": "heartwood_admits"
+    },
+    "heartwood_admits": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "heartwood_pulse",
+      "text": "We would accept. We would not thrive. We would remember the screaming forever.",
+      "triggers": [
+        {
+          "set_state": "flag.willing_debate_witnessed",
+          "value": true
+        },
+        {
+          "set_state": "flag.heartwood_admitted_unwilling_possible",
+          "value": true
+        }
+      ],
+      "next": "player_reaction"
+    },
+    "player_reaction": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "horrified",
+          "text": "So every sacrifice the Ashworths forced... the forest remembers their screams?",
+          "conditions": [],
+          "triggers": [],
+          "next": "heartwood_remembers"
+        },
+        {
+          "id": "pragmatic",
+          "text": "If willing souls are stronger, why did the Ashworths start using unwilling ones?",
+          "conditions": [],
+          "triggers": [],
+          "next": "maren_explains_decay"
+        },
+        {
+          "id": "silent",
+          "text": "(Say nothing. Let the weight of that settle.)",
+          "conditions": [],
+          "triggers": [],
+          "next": "end"
+        }
+      ]
+    },
+    "heartwood_remembers": {
+      "type": "text",
+      "speaker": "heartwood",
+      "portrait": "heartwood_pulse",
+      "text": "Every one. The widow in Year 120 who cursed the lord's name. The old soldier in Year 180 who wept for his daughters. Silas, who was silent. Silence is the worst. We cannot tell if silence is acceptance or despair.",
+      "next": "end"
+    },
+    "maren_explains_decay": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "old_maren_sad",
+      "text": "Because willing volunteers are hard to find when the sacrifice is a secret. The first Ashworth asked for a volunteer openly. His grandson asked quietly. His great-grandson stopped asking and started choosing. That is how covenants decay. Not in a single betrayal, but in a thousand small cowardices.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

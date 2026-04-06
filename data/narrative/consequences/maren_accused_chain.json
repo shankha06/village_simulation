@@ -1,6 +1,15 @@
 {
   "id": "maren_accused_chain",
   "trigger_condition": "flag.accused_maren == true",
+  "evidence_quality_check": {
+    "strong_evidence_conditions": [
+      "flag.evidence_nightcap_root == true",
+      "flag.clue_maren_knows_alchemy == true",
+      "flag.clue_church_codename == true"
+    ],
+    "strong_evidence_flag": "flag.maren_accusation_has_evidence",
+    "weak_evidence_flag": "flag.maren_accusation_no_evidence"
+  },
   "consequences": [
     {
       "type": "immediate",
@@ -22,6 +31,30 @@
           "value": true
         }
       ]
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 2,
+      "condition": "flag.evidence_nightcap_root != true",
+      "effects": [
+        {
+          "set_state": "flag.player_lost_credibility",
+          "value": true
+        },
+        {
+          "set_state": "npc.greta.disposition",
+          "delta": -20
+        },
+        {
+          "set_state": "npc.gate_guard.disposition",
+          "delta": -15
+        },
+        {
+          "set_state": "npc.elara.disposition",
+          "delta": -10
+        }
+      ],
+      "description": "Without evidence, the village turns on the player. Accusations without proof are dangerous in Ashvale."
     },
     {
       "type": "delayed",

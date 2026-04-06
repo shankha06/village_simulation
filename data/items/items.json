@@ -32,7 +32,7 @@
       "name": "Herb Poultice",
       "description": "A healing salve made from forest herbs. Stops bleeding and dulls pain.",
       "type": "CONSUMABLE",
-      "base_value": 15,
+      "base_value": 20,
       "stackable": true,
       "max_stack": 10,
       "heal_amount": 25.0
@@ -42,7 +42,7 @@
       "name": "Stale Bread",
       "description": "Hard and tasteless, but it fills the stomach. Luxury in times of famine.",
       "type": "CONSUMABLE",
-      "base_value": 5,
+      "base_value": 2,
       "stackable": true,
       "max_stack": 20,
       "heal_amount": 5.0
@@ -52,7 +52,7 @@
       "name": "Iron Dagger",
       "description": "A simple but serviceable blade. Won't win any duels, but better than bare hands.",
       "type": "WEAPON",
-      "base_value": 40,
+      "base_value": 120,
       "stackable": false,
       "equip_slot": "weapon",
       "attack_bonus": 5.0
@@ -62,7 +62,7 @@
       "name": "Leather Vest",
       "description": "Worn leather armor. Offers modest protection against claws and blades.",
       "type": "ARMOR",
-      "base_value": 30,
+      "base_value": 80,
       "stackable": false,
       "equip_slot": "armor",
       "defense_bonus": 3.0
@@ -168,7 +168,7 @@
       "name": "Torch",
       "description": "A simple wooden torch wrapped in oil-soaked cloth. Burns for about four hours. Essential for the catacombs, where the darkness is not merely the absence of light.",
       "type": "CONSUMABLE",
-      "base_value": 5,
+      "base_value": 2,
       "stackable": true,
       "max_stack": 10
     },
@@ -200,6 +200,144 @@
       "stackable": false,
       "is_quest_item": true,
       "codex_entry": "lore_ashworth_pact_history"
+    },
+    {
+      "id": "firewood",
+      "name": "Bundle of Firewood",
+      "description": "Dry pine, split and bundled. Essential for cooking and warmth.",
+      "type": "CONSUMABLE",
+      "base_value": 2,
+      "stackable": true,
+      "max_stack": 20
+    },
+    {
+      "id": "salt",
+      "name": "Pouch of Salt",
+      "description": "Coarse salt from the eastern mines. Preserves meat, flavors food, and wards off... something, according to Old Maren.",
+      "type": "CONSUMABLE",
+      "base_value": 4,
+      "stackable": true,
+      "max_stack": 10
+    },
+    {
+      "id": "flour",
+      "name": "Sack of Flour",
+      "description": "Ground wheat. Increasingly rare since the crops failed.",
+      "type": "CONSUMABLE",
+      "base_value": 6,
+      "stackable": true,
+      "max_stack": 10
+    },
+    {
+      "id": "eggs",
+      "name": "Fresh Eggs",
+      "description": "From the village's dwindling flock. Three left. Handle with care.",
+      "type": "CONSUMABLE",
+      "base_value": 3,
+      "stackable": true,
+      "max_stack": 12
+    },
+    {
+      "id": "dried_fish",
+      "name": "Dried Fish",
+      "description": "Salted and sun-dried. Harlan's staple. Tastes like discipline and regret.",
+      "type": "CONSUMABLE",
+      "base_value": 4,
+      "stackable": true,
+      "max_stack": 15,
+      "heal_amount": 8.0
+    },
+    {
+      "id": "candles",
+      "name": "Tallow Candles",
+      "description": "Three candles, rendered from what's left of the village tallow. Brother Maren has been buying black ones.",
+      "type": "CONSUMABLE",
+      "base_value": 2,
+      "stackable": true,
+      "max_stack": 20
+    },
+    {
+      "id": "wool_cloth",
+      "name": "Rough Wool Cloth",
+      "description": "Undyed wool. Scratchy, warm, honest.",
+      "type": "CONSUMABLE",
+      "base_value": 5,
+      "stackable": true,
+      "max_stack": 10
+    },
+    {
+      "id": "nails",
+      "name": "Iron Nails",
+      "description": "A handful of hand-forged nails. The forge has been cold for months. These are from the last batch.",
+      "type": "TOOL",
+      "base_value": 3,
+      "stackable": true,
+      "max_stack": 50
+    },
+    {
+      "id": "soap",
+      "name": "Lye Soap",
+      "description": "Hard, alkaline, effective. Greta makes it from ash and animal fat.",
+      "type": "CONSUMABLE",
+      "base_value": 2,
+      "stackable": true,
+      "max_stack": 10
+    },
+    {
+      "id": "turnips",
+      "name": "Turnips",
+      "description": "The only crop still growing. Tough, bitter, and stubbornly alive.",
+      "type": "CONSUMABLE",
+      "base_value": 1,
+      "stackable": true,
+      "max_stack": 20,
+      "heal_amount": 3.0
+    },
+    {
+      "id": "cider",
+      "name": "Apple Cider",
+      "description": "Last year's pressing. Slightly sour. The apples won't come again.",
+      "type": "CONSUMABLE",
+      "base_value": 6,
+      "stackable": true,
+      "max_stack": 10
+    },
+    {
+      "id": "leather_scraps",
+      "name": "Leather Scraps",
+      "description": "Offcuts from the tanner's last project. Useful for repairs.",
+      "type": "TOOL",
+      "base_value": 3,
+      "stackable": true,
+      "max_stack": 20
+    },
+    {
+      "id": "needle_thread",
+      "name": "Needle and Thread",
+      "description": "Steel needle with a spool of linen thread. Brin the farmer's wife sews clothes smaller every week.",
+      "type": "TOOL",
+      "base_value": 2,
+      "stackable": true,
+      "max_stack": 5
+    },
+    {
+      "id": "pickled_onions",
+      "name": "Pickled Onions",
+      "description": "Harlan's personal stash. He says they're 'the only thing that makes the job bearable.'",
+      "type": "CONSUMABLE",
+      "base_value": 3,
+      "stackable": true,
+      "max_stack": 10,
+      "heal_amount": 5.0
+    },
+    {
+      "id": "charcoal",
+      "name": "Charcoal",
+      "description": "From the forge's last firing. Used for drawing, writing, and making things disappear.",
+      "type": "TOOL",
+      "base_value": 1,
+      "stackable": true,
+      "max_stack": 30
     }
   ]
 }

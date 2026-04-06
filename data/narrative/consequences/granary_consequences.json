@@ -39,7 +39,65 @@
     },
     {
       "type": "delayed",
+      "delay_days": 7,
+      "effects": [
+        {
+          "set_state": "flag.hoarding_begins",
+          "value": true
+        },
+        {
+          "set_state": "economy.ashvale.price_mod",
+          "value": 1.75
+        }
+      ]
+    },
+    {
+      "type": "delayed",
       "delay_days": 14,
+      "effects": [
+        {
+          "set_state": "flag.food_shortages",
+          "value": true
+        },
+        {
+          "set_state": "flag.rationing_enacted",
+          "value": true
+        },
+        {
+          "set_state": "economy.ashvale.price_mod",
+          "value": 2.0
+        },
+        {
+          "set_state": "world.region.ashvale.food_supply",
+          "delta": -20.0
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 21,
+      "effects": [
+        {
+          "set_state": "flag.black_market_emerges",
+          "value": true
+        },
+        {
+          "set_state": "npc.greta.memory.blames_outsiders",
+          "value": true
+        },
+        {
+          "set_state": "npc.elara.memory.village_starving",
+          "value": true
+        },
+        {
+          "set_state": "economy.ashvale.price_mod",
+          "value": 2.5
+        }
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 28,
       "effects": [
         {
           "set_state": "world.region.ashvale.status",
@@ -60,21 +118,7 @@
     },
     {
       "type": "delayed",
-      "delay_days": 21,
-      "effects": [
-        {
-          "set_state": "npc.greta.memory.blames_outsiders",
-          "value": true
-        },
-        {
-          "set_state": "npc.elara.memory.village_starving",
-          "value": true
-        }
-      ]
-    },
-    {
-      "type": "delayed",
-      "delay_days": 30,
+      "delay_days": 42,
       "effects": [
         {
           "set_state": "world.region.ashvale.unrest",
@@ -95,7 +139,7 @@
     },
     {
       "type": "conditional_delayed",
-      "delay_days": 45,
+      "delay_days": 56,
       "condition": "faction.ashvale_nobility.power < 20",
       "effects": [
         {

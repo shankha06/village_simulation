@@ -1,0 +1,55 @@
+{
+  "id": "poisoner_adapts_chain",
+  "trigger_condition": "flag.player_suspects_poison == true",
+  "consequences": [
+    {
+      "type": "delayed",
+      "delay_days": 2,
+      "effects": [
+        {
+          "set_state": "flag.poison_source_moved",
+          "value": true
+        }
+      ],
+      "description": "The nightcap source has been relocated upstream. Old evidence trails go cold."
+    },
+    {
+      "type": "delayed",
+      "delay_days": 4,
+      "effects": [
+        {
+          "set_state": "flag.false_evidence_against_elara",
+          "value": true
+        }
+      ],
+      "description": "Nightcap root samples are found hidden in Elara's cottage by a 'concerned villager.' The poisoner is framing the healer."
+    },
+    {
+      "type": "delayed",
+      "delay_days": 6,
+      "effects": [
+        {
+          "set_state": "flag.elara_cottage_broken_into",
+          "value": true
+        }
+      ],
+      "description": "Elara's cottage is broken into during the night. Her research notes on the poison are stolen. Someone is covering their tracks."
+    },
+    {
+      "type": "conditional_delayed",
+      "delay_days": 8,
+      "condition": "flag.found_true_poisoner != true",
+      "effects": [
+        {
+          "set_state": "flag.food_poisoning_started",
+          "value": true
+        },
+        {
+          "set_state": "world.region.ashvale.food_supply",
+          "delta": -15
+        }
+      ],
+      "description": "The poisoner abandons the water supply and begins contaminating food stores directly. The method has changed — nightcap in the flour, not the well."
+    }
+  ]
+}
