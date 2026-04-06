@@ -1,0 +1,139 @@
+{
+  "id": "counter_rite_ceremony_chain",
+  "description": "The truth-speaking ceremony at the Heartwood. Each participant must speak their deepest truth. The pact feeds on lies; truth starves it. All truths spoken freely = pact dissolves permanently.",
+  "chain": "prodigal_son",
+  "location": "heartwood_nexus",
+  "ceremony_rules": {
+    "core_mechanic": "Each truth spoken freely weakens the pact. Coerced or compelled truth feeds the pact instead. The pact dissolves when the accumulated weight of freely spoken truth exceeds the accumulated weight of buried lies.",
+    "rejection_conditions": [
+      "Compelled speakers (flag.maren_is_puppet) — 'This one's truth is a cage. We do not accept the caged.'",
+      "Speakers acting under duress — truth must be volunteered, not extracted",
+      "Lies spoken as truth — the Heartwood can detect deception; false truth strengthens the pact"
+    ],
+    "maximum_power_condition": "flag.maren_family_alliance_active AND flag.elara_can_be_bridge — all three Maren bloodline members speak truth together"
+  },
+  "truth_speakers": [
+    {
+      "id": "brother_maren_truth",
+      "speaker": "brother_maren",
+      "conditions": [
+        {"check": "npc.brother_maren.alive", "op": "==", "value": true},
+        {"check": "flag.maren_is_puppet", "op": "!=", "value": true}
+      ],
+      "truth": "I poisoned this village because I was afraid of what killed my father. I turned my grief into a weapon and aimed it at the people he died to protect. I came here to avenge a man I barely remember by destroying everything he loved.",
+      "weight": "very_high",
+      "weight_note": "The poisoner confessing at the nexus of the pact he was sent to reinforce. Maximum irony. Maximum weight.",
+      "rejection_if_compelled": {
+        "heartwood_voice": "This one is compelled. This one's truth is a cage. We do not accept the caged. Send us one who chooses. Send us one who bleeds willingly.",
+        "flag": "flag.heartwood_rejects_compelled"
+      }
+    },
+    {
+      "id": "old_maren_truth",
+      "speaker": "old_maren",
+      "conditions": [
+        {"check": "npc.old_maren.alive", "op": "==", "value": true},
+        {"check": "flag.old_maren_truth_spoken", "op": "==", "value": true}
+      ],
+      "truth": "I recognized my grandson and said nothing because it was easier than hope. I watched him poison the village my son died for because I was afraid that loving another Maren would be another invitation for the forest to take from me. I chose my own peace over my grandson's soul and my village's water.",
+      "weight": "high",
+      "weight_note": "The witness. The one who knew and stayed silent. Her truth addresses the oldest wound — the generation that watched and did nothing."
+    },
+    {
+      "id": "elara_truth",
+      "speaker": "elara",
+      "conditions": [
+        {"check": "npc.elara.alive", "op": "==", "value": true},
+        {"check": "flag.elara_truth_spoken", "op": "==", "value": true}
+      ],
+      "truth": "I dropped my father's name because I was ashamed of being the daughter of a sacrifice. I ran from the Maren legacy because it was easier to be the herbalist than the orphan. I healed this village's wounds while hiding from my own. And when I learned my brother was the poisoner, my first feeling was not horror — it was vindication. Proof that the Maren blood was poison. Proof that running was the right choice.",
+      "weight": "high",
+      "weight_note": "The one who ran. Her truth addresses the shame that perpetuates cycles — the choice to abandon identity rather than carry its weight."
+    },
+    {
+      "id": "lord_ashworth_truth",
+      "speaker": "lord_ashworth",
+      "conditions": [
+        {"check": "npc.lord_ashworth.alive", "op": "==", "value": true},
+        {"check": "flag.ashworth_willing_to_speak", "op": "==", "value": true}
+      ],
+      "truth": "I refused the pact not out of courage but out of cowardice. I was afraid of the ritual chamber. Afraid of the forest. Afraid of what it would ask of me. I told myself I was breaking an unjust tradition. The truth is I was a coward in a lord's clothing, and my cowardice has cost this village everything my ancestors' darker courage preserved.",
+      "weight": "high",
+      "weight_note": "The lord who broke the chain. His truth addresses the original sin of the current crisis — the refusal that triggered the pact's collection."
+    },
+    {
+      "id": "player_truth",
+      "speaker": "player",
+      "conditions": [
+        {"check": "flag.player_at_heartwood", "op": "==", "value": true}
+      ],
+      "truth_variants": [
+        {
+          "condition": {"check": "player.moral_vector", "op": "<=", "value": -30},
+          "truth": "I came to Ashvale as a stranger and I used its people. I manipulated their fears, exploited their secrets, and treated their suffering as a puzzle to be solved rather than a wound to be healed. I helped them not because I cared but because helping was the path that served me best.",
+          "weight": "high"
+        },
+        {
+          "condition": {"check": "player.moral_vector", "op": ">=", "value": 30},
+          "truth": "I came to Ashvale as a stranger and I wanted to save it. But wanting to save people is its own kind of arrogance. I made choices for them. I decided who deserved mercy and who deserved punishment. I played god in a village that already had too many gods pulling its strings.",
+          "weight": "high"
+        },
+        {
+          "condition": "default",
+          "truth": "I came to Ashvale as a stranger and I still don't know what I am. I helped and I harmed. I showed mercy and I showed cruelty. I am not the hero of this story. I am the variable. And the truth is that I don't know if the sum of my choices leaves this village better or worse than I found it.",
+          "weight": "medium"
+        }
+      ],
+      "weight_note": "The player's truth depends on their accumulated moral vector. All versions carry weight, but self-aware honesty about one's nature is the most powerful currency at the Heartwood."
+    }
+  ],
+  "ceremony_outcomes": {
+    "all_truths_spoken": {
+      "conditions": [
+        {"check": "flag.brother_maren_truth_spoken", "op": "==", "value": true},
+        {"check": "flag.old_maren_truth_spoken", "op": "==", "value": true},
+        {"check": "flag.elara_truth_spoken", "op": "==", "value": true},
+        {"check": "flag.ashworth_truth_spoken", "op": "==", "value": true},
+        {"check": "flag.player_truth_spoken", "op": "==", "value": true}
+      ],
+      "effects": [
+        {"set_state": "flag.pact_dissolved_permanently", "value": true},
+        {"set_state": "flag.counter_rite_complete_success", "value": true},
+        {"set_state": "flag.thornwood_liberated", "value": true}
+      ],
+      "description": "All truths spoken. The pact dissolves. The Heartwood releases its hold. The forest remains but the covenant is broken. Ashvale is free. The cost was the annihilation of every comfortable lie the village was built on."
+    },
+    "family_alliance_truths": {
+      "conditions": [
+        {"check": "flag.maren_family_alliance_active", "op": "==", "value": true},
+        {"check": "flag.brother_maren_truth_spoken", "op": "==", "value": true},
+        {"check": "flag.old_maren_truth_spoken", "op": "==", "value": true},
+        {"check": "flag.elara_truth_spoken", "op": "==", "value": true}
+      ],
+      "effects": [
+        {"set_state": "flag.pact_severely_weakened", "value": true},
+        {"set_state": "flag.family_alliance_rite_power", "value": true}
+      ],
+      "description": "Three Maren bloodline truths. The pact weakens dramatically — the family it has fed on for generations turns against it. Not enough to dissolve it alone, but enough to make other paths viable."
+    },
+    "partial_truths": {
+      "conditions": [
+        {"check": "flag.counter_rite_attempted", "op": "==", "value": true}
+      ],
+      "effects": [
+        {"set_state": "flag.pact_weakened", "value": true}
+      ],
+      "description": "Some truths spoken but not all. The pact weakens but does not dissolve. It will reassert itself. The timer resets but does not stop. A partial victory — buying time, not freedom."
+    },
+    "compelled_failure": {
+      "conditions": [
+        {"check": "flag.counter_rite_fails_if_compelled", "op": "==", "value": true}
+      ],
+      "effects": [
+        {"set_state": "flag.pact_strengthened_by_coercion", "value": true},
+        {"set_state": "flag.heartwood_hostile", "value": true}
+      ],
+      "description": "Compelled truth fed the pact. The ceremony backfired. The Heartwood is now hostile — the forest sees the player as another manipulator, another hand reaching for its strings. Severance becomes the only remaining path."
+    }
+  }
+}

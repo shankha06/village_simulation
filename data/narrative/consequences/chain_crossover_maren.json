@@ -1,0 +1,126 @@
+{
+  "id": "chain_crossover_maren",
+  "description": "Cross-chain connections between the Prodigal Son (Maren), Chain 1 (Elara), and Chain 2 (Voss/Draven). These consequences fire when flags from multiple chains intersect, creating emergent narrative outcomes.",
+  "crossover_consequences": [
+    {
+      "id": "elara_discovers_maren_deal",
+      "conditions": [
+        {"check": "flag.elara_wants_maren_destroyed", "op": "==", "value": true},
+        {"check": "flag.maren_private_confession", "op": "==", "value": true}
+      ],
+      "timing": {"delay_days": 2, "after": "flag.maren_private_confession"},
+      "effects": [
+        {"set_state": "flag.elara_knows_player_protected_maren", "value": true},
+        {"set_state": "npc.elara.disposition", "delta": -35},
+        {"set_state": "npc.elara.memory.player_protected_poisoner", "value": true},
+        {
+          "type": "dialogue_unlock",
+          "dialogue_id": "elara_maren_betrayal_confrontation"
+        }
+      ],
+      "dialogue_summary": {
+        "speaker": "elara",
+        "key_line": "You PROTECTED him? After what he did to me? After what he did to every child I've treated? I showed you the nightcap root symptoms in an infant's blood and you — you made a DEAL with the man who put it there?",
+        "resolution_paths": [
+          "Explain the counter-rite requires his truth (flag.elara_understands_pragmatism — disposition recovers partially)",
+          "Tell her about the family connection (flag.elara_learns_maren_is_brother — triggers sibling discovery chain)",
+          "Accept her anger (flag.elara_justified_fury — disposition stays low but respect increases)",
+          "Lie about the arrangement (flag.player_lied_to_elara — if discovered later, permanent disposition loss)"
+        ]
+      },
+      "description": "Elara wanted Maren destroyed. The player cut a deal with him instead. The herbalist who treated poisoned children learns that the player made peace with the poisoner. This is the collision point between Chain 1 and the Prodigal Son."
+    },
+    {
+      "id": "voss_maren_parallels",
+      "conditions": [
+        {"check": "flag.voss_knows_draven_truth", "op": "==", "value": true},
+        {"check": "flag.maren_publicly_exposed", "op": "==", "value": true}
+      ],
+      "timing": {"delay_days": 1, "after": "flag.maren_publicly_exposed"},
+      "effects": [
+        {"set_state": "flag.voss_sees_maren_parallel", "value": true},
+        {"set_state": "flag.voss_maren_alliance_possible", "value": true},
+        {
+          "type": "dialogue_unlock",
+          "dialogue_id": "voss_maren_reflection"
+        }
+      ],
+      "dialogue_summary": {
+        "speaker": "voss",
+        "key_line": "Your priest and my captain. Both destroyers hiding behind duty. Both men who followed orders until the orders ate them alive. At least the priest STOPPED. Draven never did. Draven is still following orders from a dead commander in a war that ended ten years ago.",
+        "resolution_paths": [
+          "Propose Voss-Maren alliance (flag.voss_maren_alliance — two broken soldiers helping each other)",
+          "Use the parallel to push Voss toward forgiveness (flag.voss_considering_forgiveness)",
+          "Use the parallel to harden Voss against both (flag.voss_hardens — 'destroyers are destroyers')"
+        ]
+      },
+      "description": "Voss knows what Draven really is. The player publicly exposed what Maren really is. Voss sees the parallel: duty-bound men who destroyed in the name of service. This intersection can create an unlikely alliance or deepen Voss's nihilism."
+    },
+    {
+      "id": "maximum_counter_rite",
+      "conditions": [
+        {"check": "flag.elara_can_be_bridge", "op": "==", "value": true},
+        {"check": "flag.family_alliance_possible", "op": "==", "value": true}
+      ],
+      "effects": [
+        {"set_state": "flag.counter_rite_maximum_configuration", "value": true},
+        {"set_state": "flag.best_ending_possible", "value": true},
+        {
+          "type": "narrative_note",
+          "text": "The stars align. Elara serves as bridge between the village and the forest. The Maren family alliance brings three bloodline truths to the Heartwood. The counter-rite ceremony achieves maximum power. The pact dissolves permanently. This is the best possible ending — achieved only through the hardest possible path: breaking promises, forcing confrontations, and trusting that truth is worth the pain it costs."
+        }
+      ],
+      "description": "Elara bridges village and forest. All three Maren bloodline members speak truth. The counter-rite dissolves the pact permanently. The BEST possible ending. Requires Chain 1 Elara trust path + Prodigal Son promise-broken path + family alliance formation."
+    },
+    {
+      "id": "scorched_earth_inevitable",
+      "conditions": [
+        {"check": "npc.elara.alive", "op": "==", "value": false},
+        {"check": "npc.voss.alive", "op": "==", "value": false},
+        {"check": "flag.maren_imprisoned", "op": "==", "value": true}
+      ],
+      "effects": [
+        {"set_state": "flag.scorched_earth_guaranteed", "value": true},
+        {"set_state": "flag.only_severance_remains", "value": true},
+        {
+          "type": "narrative_note",
+          "text": "All three chains have collapsed. Elara is dead — no bridge to the forest. Voss is dead — no military ally. Maren is imprisoned — no counter-rite speaker, no double agent, no sacrifice candidate. The only path remaining is severance: the player burns the forest alone. Scorched Earth. The worst ending — not because the village dies, but because the player is the one who burns it. Every failed chain, every dead NPC, every wrong choice has narrowed the path to this single, terrible conclusion."
+        }
+      ],
+      "description": "All three chains went wrong. Elara dead. Voss dead. Maren imprisoned. Only severance remains. The player burns the forest alone. Scorched Earth guaranteed."
+    },
+    {
+      "id": "voss_maren_cell_visit",
+      "conditions": [
+        {"check": "flag.voss_maren_alliance", "op": "==", "value": true},
+        {"check": "flag.maren_imprisoned", "op": "==", "value": true}
+      ],
+      "effects": [
+        {"set_state": "flag.voss_advocating_maren_release", "value": true},
+        {
+          "type": "event",
+          "event_id": "voss_at_maren_cell",
+          "description": "Voss sits outside the cell, back against the wall, talking to Maren through the bars. Two broken men who destroyed in the name of duty, comparing scars. Voss brought no food. He brought something more useful: the argument that will convince Harlan to release Maren. 'One soldier recognizes another,' Voss says. 'Even when the uniform is a robe.'",
+          "location": "village_cell"
+        }
+      ],
+      "description": "If Voss and Maren form an alliance AND Maren is imprisoned, Voss advocates for Maren's release. Two broken soldiers helping each other through the bars."
+    },
+    {
+      "id": "elara_maren_counter_rite_tension",
+      "conditions": [
+        {"check": "flag.elara_knows_player_protected_maren", "op": "==", "value": true},
+        {"check": "flag.counter_rite_available", "op": "==", "value": true},
+        {"check": "npc.elara.alive", "op": "==", "value": true}
+      ],
+      "effects": [
+        {"set_state": "flag.counter_rite_elara_maren_tension", "value": true},
+        {
+          "type": "narrative_note",
+          "text": "Elara must stand at the Heartwood beside the man who poisoned her patients. The counter-rite requires both of them. The ceremony will be the tensest moment in the game: two people who despise each other, forced to speak their deepest truths in the same sacred space. The pact feeds on this kind of buried hatred. If they can speak past it — genuinely, freely — the weight is enormous. If they can't, the ceremony fractures."
+        }
+      ],
+      "description": "Elara and Maren must both participate in the counter-rite. Their mutual hostility creates ceremony tension — maximum dramatic weight but also maximum risk of failure."
+    }
+  ]
+}

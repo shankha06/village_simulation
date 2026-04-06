@@ -1,0 +1,130 @@
+{
+  "id": "maren_fate_chain",
+  "description": "Layer 3 endgame flags for the Prodigal Son butterfly fate chain. Maps all possible Maren outcomes to their mechanical and narrative consequences.",
+  "chain": "prodigal_son",
+  "chain_layer": 3,
+  "fate_branches": [
+    {
+      "id": "family_alliance_path",
+      "conditions": [
+        {"check": "flag.maren_private_confession", "op": "==", "value": true},
+        {"check": "npc.brother_maren.alive", "op": "==", "value": true},
+        {"check": "flag.maren_promise_broken", "op": "==", "value": true}
+      ],
+      "effects": [
+        {"set_state": "flag.family_alliance_possible", "value": true},
+        {"set_state": "flag.counter_rite_strongest", "value": true}
+      ],
+      "description": "All three Marens can work together. The counter-rite draws on truth from the poisoner, the witness, and the one who ran. Maximum ceremony power."
+    },
+    {
+      "id": "public_exposure_path",
+      "conditions": [
+        {"check": "flag.maren_publicly_exposed", "op": "==", "value": true},
+        {"check": "npc.brother_maren.alive", "op": "==", "value": true}
+      ],
+      "effects": [
+        {"set_state": "flag.church_army_accelerated", "value": true},
+        {"set_state": "flag.maren_can_give_intel", "value": true},
+        {"set_state": "flag.sacrifice_possible_if_released", "value": true}
+      ],
+      "description": "Maren imprisoned. Church knows cover is blown — army arrives 10 days early. Maren provides tactical intel from cell. Sacrifice and counter-rite possible only if released."
+    },
+    {
+      "id": "puppet_master_path",
+      "conditions": [
+        {"check": "flag.player_controls_maren", "op": "==", "value": true}
+      ],
+      "effects": [
+        {"set_state": "flag.heartwood_rejects_compelled", "value": true},
+        {"set_state": "flag.counter_rite_fails_if_compelled", "value": true}
+      ],
+      "description": "Maren is a puppet. The Heartwood rejects compelled offerings. Sacrifice fails — 'This one's truth is a cage.' Counter-rite fails — compelled truth has no weight. The player has removed their strongest tools by taking Maren's will."
+    },
+    {
+      "id": "secret_kept_path",
+      "conditions": [
+        {"check": "flag.maren_private_confession", "op": "==", "value": true},
+        {"check": "flag.maren_secret_protected", "op": "==", "value": true}
+      ],
+      "effects": [
+        {"set_state": "flag.church_army_delayed", "value": true},
+        {"set_state": "flag.old_maren_dies_without_knowing", "value": true}
+      ],
+      "description": "The secret holds. Church army delayed 2 weeks by false reports. Old Maren never learns her grandson came home. Counter-rite proceeds without the family alliance — weaker but functional. The tragedy is quiet: a grandmother dies never knowing her grandson returned, and a grandson lives knowing his grandmother died without him."
+    },
+    {
+      "id": "puppet_released_late",
+      "conditions": [
+        {"check": "flag.player_released_puppet_maren", "op": "==", "value": true}
+      ],
+      "effects": [
+        {"set_state": "flag.maren_private_confession", "value": true},
+        {"set_state": "flag.maren_is_puppet", "value": false},
+        {"set_state": "flag.maren_recovering_will", "value": true}
+      ],
+      "description": "Player released Maren from puppet control. He transitions to the private confession path but with reduced disposition. Counter-rite possible but weakened — a man recovering his will does not have the same weight as one who never lost it."
+    },
+    {
+      "id": "maren_dead_in_cell",
+      "conditions": [
+        {"check": "flag.maren_imprisoned", "op": "==", "value": true},
+        {"check": "npc.brother_maren.alive", "op": "==", "value": false}
+      ],
+      "effects": [
+        {"set_state": "flag.maren_died_in_cell", "value": true},
+        {"set_state": "flag.counter_rite_missing_poisoner_truth", "value": true},
+        {"set_state": "flag.sacrifice_path_blocked", "value": true}
+      ],
+      "description": "Maren dies in his cell — mob violence, suicide, or Church assassination. His truth dies with him. The counter-rite loses its most powerful speaker. Old Maren loses her grandson twice."
+    }
+  ],
+  "cascade_events": [
+    {
+      "id": "family_alliance_counter_rite_bonus",
+      "trigger": {"check": "flag.maren_family_alliance_active", "op": "==", "value": true},
+      "effects": [
+        {"set_state": "flag.counter_rite_maximum_power", "value": true},
+        {
+          "type": "narrative_note",
+          "text": "Three members of the Maren bloodline speak truth at the Heartwood. The pact, which has fed on the Maren family for generations, meets the combined weight of their confession. This is the strongest possible counter-rite configuration."
+        }
+      ]
+    },
+    {
+      "id": "old_maren_death_without_knowing",
+      "trigger": {"check": "flag.old_maren_dies_without_knowing", "op": "==", "value": true},
+      "effects": [
+        {
+          "type": "event",
+          "event_id": "old_maren_deathbed_unresolved",
+          "description": "Old Maren dies on her bench at the village edge. Her last words are about Silas. She does not mention the visiting priest. She does not say 'grandson.' She dies with the shape of his face behind her eyes and the word unspoken. Brother Maren finds out an hour later and does not attend the burial. He stands in the chapel and breaks every candle in the room.",
+          "location": "village_edge_bench"
+        },
+        {"set_state": "flag.maren_grief_unresolved", "value": true}
+      ]
+    },
+    {
+      "id": "accelerated_army_pressure",
+      "trigger": {"check": "flag.church_army_accelerated", "op": "==", "value": true},
+      "effects": [
+        {"set_state": "world.church_army_arrival_days", "value": 5},
+        {
+          "type": "narrative_note",
+          "text": "Public exposure triggered the Church's contingency protocol. They know Maren is compromised. The army advances immediately — 10 days ahead of schedule. Ashvale has 5 days instead of 15."
+        }
+      ]
+    },
+    {
+      "id": "delayed_army_breathing_room",
+      "trigger": {"check": "flag.church_army_delayed", "op": "==", "value": true},
+      "effects": [
+        {"set_state": "world.church_army_arrival_days", "value": 29},
+        {
+          "type": "narrative_note",
+          "text": "Maren's false reports have bought Ashvale 2 additional weeks. The Church believes Phase 1 continues. This breathing room allows for the counter-rite preparation, the family alliance, and the gathering of truths."
+        }
+      ]
+    }
+  ]
+}

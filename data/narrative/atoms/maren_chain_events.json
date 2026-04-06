@@ -1,0 +1,122 @@
+{
+  "id": "maren_chain_events",
+  "description": "Atmospheric and narrative events for the Prodigal Son chain. These fire at specific moments to build tension, dramatic irony, and emotional weight.",
+  "chain": "prodigal_son",
+  "events": [
+    {
+      "id": "church_messenger_congratulations",
+      "type": "atmospheric",
+      "timing": "before_outpost_discovery",
+      "conditions": [
+        {"check": "flag.found_church_outpost_evidence", "op": "!=", "value": true},
+        {"check": "npc.brother_maren.met", "op": "==", "value": true},
+        {"check": "world.day", "op": ">=", "value": 5}
+      ],
+      "location": "village_square",
+      "time": "morning",
+      "description": "A Church messenger arrives in the village square. He does not seek out the player. He walks directly to the chapel, bearing a sealed letter. Through the chapel window you can see Brother Maren break the seal, read the contents, and go very still. The messenger leaves without speaking to anyone else. Later, if you pass the chapel, you hear the sound of paper burning.",
+      "effects": [
+        {"set_state": "flag.church_messenger_arrived", "value": true},
+        {"set_state": "flag.clue_maren_received_orders", "value": true}
+      ],
+      "player_observation": "The letter bore the Ashen Light's seal — the same seal you've seen on official Church documents. Whatever it said, Maren burned it. People who burn letters from their superiors are either very loyal or very afraid.",
+      "dramatic_irony_note": "The letter congratulates Maren on Phase 1 progress and provides Phase 2 instructions. The player does not know this yet. The burning is Maren destroying evidence of his crime — OR destroying orders he no longer intends to follow."
+    },
+    {
+      "id": "maren_writing_false_reports",
+      "type": "atmospheric",
+      "timing": "layer_2_active",
+      "conditions": [
+        {"check": "flag.maren_is_double_agent", "op": "==", "value": true},
+        {"check": "world.time_period", "op": "==", "value": "night"}
+      ],
+      "location": "chapel",
+      "time": "midnight",
+      "repeatable": true,
+      "repeat_interval_days": 3,
+      "description": "Through the chapel window, candlelight. You can see Brother Maren's silhouette bent over his desk, writing. His hand pauses. Resumes. Pauses again. He crosses something out. Starts over. The false reports to the Church — each one a lie that buys Ashvale another day. You watch him write sentences that could get him executed, and his hand shakes with every line.",
+      "effects": [],
+      "player_observation": "He writes lies to save a village he almost destroyed. There is a word for this in most languages. In Ashvale, they have not invented it yet."
+    },
+    {
+      "id": "old_maren_sensing_grandson_in_prison",
+      "type": "emotional",
+      "timing": "after_public_exposure",
+      "conditions": [
+        {"check": "flag.maren_imprisoned", "op": "==", "value": true},
+        {"check": "npc.old_maren.alive", "op": "==", "value": true}
+      ],
+      "location": "village_cell_exterior",
+      "time": "evening",
+      "description": "Old Maren is walking her usual route to the market. She passes the cell where Brother Maren is kept. She does not stop. She does not look down through the barred window at ground level. But her pace changes — a slight hitch in her stride, barely perceptible. She is aware of him the way a tree is aware of its roots: not through sight or sound, but through something deeper. Something that runs in the blood.",
+      "effects": [
+        {"set_state": "flag.old_maren_sensed_grandson_in_cell", "value": true}
+      ],
+      "player_observation": "She knows he's down there. She walks over him twice a day. She never looks."
+    },
+    {
+      "id": "maren_at_elara_garden_dawn",
+      "type": "emotional",
+      "timing": "layer_2_active",
+      "conditions": [
+        {"check": "flag.maren_private_confession", "op": "==", "value": true},
+        {"check": "npc.brother_maren.alive", "op": "==", "value": true},
+        {"check": "flag.maren_recognized_family", "op": "==", "value": true}
+      ],
+      "location": "herb_garden",
+      "time": "dawn",
+      "description": "Dawn. Brother Maren stands outside Elara's herb garden. He does not enter. He watches her work — the way she pinches stems between thumb and forefinger, the slight twist, the careful hands. Silas's technique. Passed from father to daughter without either of them knowing the other existed. Maren's own hands mirror the movement unconsciously. He catches himself doing it and puts his hands behind his back. He leaves before she notices him.",
+      "effects": [
+        {"set_state": "flag.maren_watched_elara_garden", "value": true}
+      ],
+      "player_observation": "He watches his sister tend herbs with their father's hands and does not speak. She does not know he is watching. They are the loneliest two people in Ashvale, separated by six feet of garden fence and thirty years of silence."
+    },
+    {
+      "id": "puppet_maren_empty_chapel",
+      "type": "atmospheric",
+      "timing": "layer_2_active",
+      "conditions": [
+        {"check": "flag.maren_is_puppet", "op": "==", "value": true}
+      ],
+      "location": "chapel",
+      "time": "afternoon",
+      "description": "The chapel is empty of worshippers. Brother Maren sits at the altar, hands flat on the surface, staring at nothing. He is not praying. He is not writing. He is waiting. A puppet between performances, stored on its shelf. When a villager enters seeking counsel, his face animates — the mask of a priest clicks into place — and he performs his function. When they leave, the mask drops. The emptiness returns. It is worse than grief. Grief implies loss. This is the absence that follows when someone has been removed from themselves.",
+      "effects": [],
+      "player_observation": "You did this. Not the Church. Not the forest. You. He was a man who poisoned a village and chose to stop. You took his choice and made him into furniture."
+    },
+    {
+      "id": "harlan_visits_cell",
+      "type": "emotional",
+      "timing": "after_public_exposure",
+      "conditions": [
+        {"check": "flag.maren_imprisoned", "op": "==", "value": true},
+        {"check": "npc.harlan.alive", "op": "==", "value": true}
+      ],
+      "location": "village_cell",
+      "time": "late_night",
+      "description": "Late at night. Harlan — Silas's best friend, the man who carried the coffin — brings a bowl of stew to the cell. He does not speak to Maren. He pushes the bowl through the bars. Their eyes meet. Harlan sees Silas's eyes looking back at him from the face of the man who poisoned Silas's village. He turns away. At the door he stops. 'Your father was the best man I ever knew,' he says, without turning around. 'I don't know what that makes you.' He leaves.",
+      "effects": [
+        {"set_state": "flag.harlan_visited_maren_in_cell", "value": true},
+        {"set_state": "npc.harlan.memory.visited_silas_son", "value": true}
+      ],
+      "player_observation": "Harlan feeds the man who poisoned his village. Because the man has his dead best friend's eyes. There is no moral framework for this. There is only Harlan, and a bowl of stew, and thirty years of missing someone."
+    },
+    {
+      "id": "false_report_interception_risk",
+      "type": "tension",
+      "timing": "layer_2_active",
+      "conditions": [
+        {"check": "flag.maren_is_double_agent", "op": "==", "value": true},
+        {"check": "world.day", "op": ">=", "value": 20}
+      ],
+      "location": "village_outskirts",
+      "time": "morning",
+      "description": "A Church courier is spotted on the road approaching Ashvale. Not the usual messenger — this one wears the red sash of an inspector. Sister Vesper has sent someone to verify Maren's reports. The courier is two days out. If they reach the village and see a community that is recovering rather than dying, the false reports unravel and the army follows within a week.",
+      "effects": [
+        {"set_state": "flag.church_inspector_approaching", "value": true},
+        {"set_state": "flag.false_reports_at_risk", "value": true}
+      ],
+      "player_observation": "The inspector comes. Maren's lies are about to be tested against reality. Two days to decide: intercept the inspector, accelerate the counter-rite, or abandon the deception and prepare for war."
+    }
+  ]
+}
