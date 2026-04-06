@@ -1,0 +1,381 @@
+{
+  "id": "pip_night_discovery_dialogue",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "urgent",
+      "text": "You need to wake up. Now. I know it's — what time is it — four in the morning? Five? I've lost track. My lantern died an hour ago and I've been standing in the dark counting my heartbeats because that's all I could do. But I saw something. I SAW something and I need someone else to know because if I'm the only one who knows then maybe I imagined it and I really, really need to not have imagined it.",
+      "next": "what_day"
+    },
+    "what_day": {
+      "type": "choice",
+      "speaker": "system",
+      "options": [
+        {
+          "id": "day2_report",
+          "text": "[Day 2-3] Slow down. What did you see?",
+          "conditions": [
+            {
+              "check": "flag.well_visitor_spotted",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.manor_shadow_spotted",
+              "op": "==",
+              "value": false
+            }
+          ],
+          "triggers": [],
+          "next": "well_visitor_report"
+        },
+        {
+          "id": "day4_report",
+          "text": "[Day 4-5] Slow down. What did you see?",
+          "conditions": [
+            {
+              "check": "flag.manor_shadow_spotted",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.chapel_cellar_figure_spotted",
+              "op": "==",
+              "value": false
+            }
+          ],
+          "triggers": [],
+          "next": "manor_shadow_report"
+        },
+        {
+          "id": "day6_report",
+          "text": "[Day 6-7] Slow down. What did you see?",
+          "conditions": [
+            {
+              "check": "flag.chapel_cellar_figure_spotted",
+              "op": "==",
+              "value": true
+            },
+            {
+              "check": "flag.forest_footprints_found",
+              "op": "==",
+              "value": false
+            }
+          ],
+          "triggers": [],
+          "next": "chapel_figure_report"
+        },
+        {
+          "id": "day8_report",
+          "text": "[Day 8+] Slow down. What did you see?",
+          "conditions": [
+            {
+              "check": "flag.forest_footprints_found",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "footprints_report"
+        }
+      ]
+    },
+    "well_visitor_report": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "frightened",
+      "text": "The well. Someone was at the well. Two in the morning — I know because the fox hadn't crossed yet and the fox crosses at three. A figure. Dark cloak. They leaned over the well wall and did something with their hand — I heard glass. Like a vial. Clink-clink on the stone ledge inside the well. Then they left. Walked toward the chapel district. Fast. Measured steps, like they were counting paces. And their cloak caught on the nail — you know the bent nail by the well that Harlan keeps saying he'll fix? It tore. I found the scrap. Blue wool. Smells of lye and something metallic. I don't get paid enough for this. I don't get paid AT ALL anymore.",
+      "next": "well_visitor_response"
+    },
+    "well_visitor_response": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "take_fabric",
+          "text": "Give me the fabric. That's evidence.",
+          "triggers": [
+            {
+              "grant_item": "well_cloak_scrap"
+            },
+            {
+              "set_state": "flag.cloak_scrap_collected",
+              "value": true
+            }
+          ],
+          "next": "pip_hands_over"
+        },
+        {
+          "id": "ask_chapel_direction",
+          "text": "The chapel district — could it be Brother Maren?",
+          "triggers": [],
+          "next": "pip_considers_maren"
+        },
+        {
+          "id": "stake_out_well",
+          "text": "We watch tomorrow night. Both of us. We catch them in the act.",
+          "triggers": [
+            {
+              "set_state": "flag.pip_well_stakeout_planned",
+              "value": true
+            }
+          ],
+          "next": "pip_agrees_plan"
+        }
+      ]
+    },
+    "manor_shadow_report": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "terrified",
+      "text": "I was walking the north wall — the stretch that overlooks the manor garden. Third hour, dead quiet, not even the wind. And I saw a shadow on the manor wall. Not a person's shadow. A SHADOW. By itself. No source. It moved along the wall — smooth, like oil — from the east wing to the west. It stopped at Lord Ashworth's window. The one he never opens. And it pressed against the glass. The glass fogged up. From the INSIDE. Like something on both sides was breathing on it. Then the shadow dropped — straight down, INTO the ground — and the glass cleared. I went down at dawn to check. There's a handprint on the window. Green pollen. Long fingers. Not human fingers. I touched it and my hand went numb for ten minutes. What IS that? What leaves a handprint made of pollen and goes into the ground?",
+      "next": "manor_shadow_response"
+    },
+    "manor_shadow_response": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "forest_explanation",
+          "text": "The forest. The Heartwood is visiting the manor. It's been visiting the Ashworths for three hundred years.",
+          "conditions": [
+            {
+              "check": "flag.heartwood_contact_made",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.pip.courage",
+              "delta": -5
+            }
+          ],
+          "next": "pip_processes_forest"
+        },
+        {
+          "id": "investigate_together",
+          "text": "Show me the handprint. Before the rain washes it away.",
+          "triggers": [
+            {
+              "set_state": "flag.investigated_manor_handprint",
+              "value": true
+            }
+          ],
+          "next": "pip_leads_to_manor"
+        },
+        {
+          "id": "reassure_pip",
+          "text": "You're not crazy, Pip. Something is happening in this village. You're the only one awake enough to see it.",
+          "triggers": [
+            {
+              "set_state": "npc.pip.courage",
+              "delta": 10
+            },
+            {
+              "set_state": "npc.pip.disposition",
+              "delta": 10
+            }
+          ],
+          "next": "pip_grateful"
+        }
+      ]
+    },
+    "chapel_figure_report": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "conspiratorial",
+      "text": "Someone's living in the chapel cellar. Not Brother Maren — someone ELSE. I saw them come out the side door at midnight. Hooded. Church robes but different — silver stitching where Maren uses gray. They carried a satchel that clinked like glass vials. Walked toward the forest path. No lantern. They knew the way in the dark, every stone, like they've done it a hundred times. I got close enough to see a face — sharp jaw, scar above the left eye. Nobody I've seen before. A stranger. In a village where we count heads every morning. Someone has been hiding in Ashvale and nobody noticed. Or someone noticed and didn't tell us. Either way — that person walked toward Thornwood carrying glass vials at midnight. The well is being poisoned with nightcap root. The well is reached by someone with Church robes and glass vials. I'm seventeen. I'm terrified. And even I can draw that line.",
+      "next": "chapel_figure_response"
+    },
+    "chapel_figure_response": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "confront_maren_now",
+          "text": "Brother Maren has been hiding a Church agent. We confront him. Tonight.",
+          "triggers": [
+            {
+              "set_state": "flag.maren_confrontation_triggered",
+              "value": true
+            }
+          ],
+          "next": "pip_ready_confront"
+        },
+        {
+          "id": "follow_next_time",
+          "text": "Next time they leave, we follow. I want to know where they go in the forest.",
+          "triggers": [
+            {
+              "set_state": "flag.operative_tracking_planned",
+              "value": true
+            }
+          ],
+          "next": "pip_agrees_follow"
+        },
+        {
+          "id": "search_cellar_first",
+          "text": "If they're gone, the cellar's empty. Let's search it before they come back.",
+          "triggers": [
+            {
+              "set_state": "flag.cellar_search_planned",
+              "value": true
+            }
+          ],
+          "next": "pip_agrees_cellar"
+        }
+      ]
+    },
+    "footprints_report": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "shaken",
+      "text": "Footprints. Coming FROM the forest. INTO the village. Bare feet. But not — not right. The toes are too long. The prints are too deep, like whatever made them was heavier than a person but walked like a person. Seven prints from the treeline to the cobblestones and then nothing because stone doesn't hold tracks. Whatever walked out of Thornwood last night came into Ashvale while we slept. It's IN the village. Or it WAS. And the soil in the prints — I touched it, I know I shouldn't have — it's warm. Not sun-warm. BODY-warm. Like the footprints are still alive. Like the ground remembers the weight of whatever walked on it and is still holding that memory hours later. I don't know what to do. I don't know what any of this means. I'm a boy with a spear and I'm watching things walk out of a thinking forest and I need someone — ANYONE — to tell me what happens next.",
+      "next": "footprints_response"
+    },
+    "footprints_response": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "track_them",
+          "text": "We track the prints. Where do they lead inside the village?",
+          "triggers": [
+            {
+              "set_state": "flag.tracked_forest_prints",
+              "value": true
+            },
+            {
+              "spawn_event": "follow_silas_trail"
+            }
+          ],
+          "next": "pip_tracks"
+        },
+        {
+          "id": "set_trap",
+          "text": "Tonight, we wait at the treeline. Whatever comes out, we see it face to face.",
+          "triggers": [
+            {
+              "set_state": "flag.vigil_set_for_silas",
+              "value": true
+            }
+          ],
+          "next": "pip_terrified_but_willing"
+        },
+        {
+          "id": "tell_old_maren",
+          "text": "Old Maren needs to see these prints. She'll know what made them.",
+          "triggers": [
+            {
+              "set_state": "flag.maren_told_about_prints",
+              "value": true
+            }
+          ],
+          "next": "pip_agrees_maren"
+        }
+      ]
+    },
+    "pip_hands_over": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "relieved",
+      "text": "Here. Take it. Blue wool. Still smells. I've been holding it for two hours and my hand smells of lye. Whoever this belongs to washes their clothes in Church soap — I know because Brother Maren's robes smell the same way. Lye and metal. I'm not saying it's him. I'm saying it's someone who shops at the same soap merchant. Draw your own conclusions.",
+      "next": "pip_farewell"
+    },
+    "pip_considers_maren": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "uncertain",
+      "text": "Brother Maren? He... could be. The walk fits — he's a pacer, counts his steps, very precise. But the cloak was heavy — civilian, not Church robes. And Maren doesn't wear blue. He wears gray. Always gray. But someone else in the chapel district... who else IS in the chapel district? It's just Maren and the bell tower and the cellar. Unless someone's in the cellar that we don't know about. I haven't checked the cellar. Should I check the cellar? I don't want to check the cellar.",
+      "next": "pip_farewell"
+    },
+    "pip_agrees_plan": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "nervous",
+      "text": "Together. Right. Two of us. That's twice as many eyes and half as much terror per person. I know a spot — the shadow under the herb garden eave where the moonlight doesn't reach. You can see the whole well. Midnight. I'll be there. I'll bring the spear. Not because it'll help against a person with a poisoned vial, but because holding it makes me feel like I'm doing something. Don't be late. If you're late, I'll assume you're dead and I'll run. Nothing personal. Survival.",
+      "next": "pip_farewell"
+    },
+    "pip_processes_forest": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "overwhelmed",
+      "text": "The forest visits the MANOR? Three hundred years? I've been standing on a wall sixty feet from a thinking forest that makes house calls to the lord's study? What am I guarding against? You can't guard against THAT. That's like guarding against the weather. Or time. Or gravity. I'm a boy with a pointy stick trying to keep out something that's been coming and going through the lord's window since before my grandmother's grandmother was BORN. I need to sit down. Is there a chair? There's no chair on the wall. I'll sit on the wall. The wall is fine. Everything is fine.",
+      "next": "pip_farewell"
+    },
+    "pip_leads_to_manor": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "determined",
+      "text": "This way. North wall, ground level, the window overlooking the dead garden. There — see it? The handprint. Green pollen — bright green, the kind of green you only see in deep forest. Long fingers. Look how they splay — wider than a man's hand. And the thumb is on the wrong side. Wait — is the thumb on the wrong side? Or is the print from the INSIDE of the glass? Someone — something — pressed its hand against the glass from inside the manor. While Lord Ashworth slept. Something was in the manor last night. In the room with the window that doesn't open.",
+      "next": "pip_farewell"
+    },
+    "pip_grateful": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "touched",
+      "text": "Not crazy. Okay. Not crazy is good. Not crazy means the things I'm seeing are real, which is terrifying, but at least it's a SHARED terror. Shared terror is manageable. Private terror is madness. Thank you for believing me. Harlan would tell me I'm imagining things. Greta would pour me a drink and change the subject. You looked me in the eye and said 'you're not crazy.' I'm going to remember that. When I'm standing on the wall at three in the morning watching shadows move, I'm going to remember someone said I wasn't crazy. That's my new spear. That's what I carry.",
+      "next": "pip_farewell"
+    },
+    "pip_ready_confront": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "fierce",
+      "text": "Tonight. Good. I'll bring the spear. You bring... whatever you bring. We knock on the chapel door, we ask to see the cellar, and if Maren says no, we LOOK ANYWAY. I'm done being polite while people poison wells and hide agents in cellars. I'm seventeen. I'm scared. But I'm also angry. And angry is new. Angry is useful. Let's go before I lose it.",
+      "next": "pip_farewell"
+    },
+    "pip_agrees_follow": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "focused",
+      "text": "Follow them. Into the forest. At night. [long pause] You know, six weeks ago that sentence would have made me wet myself. Now it's just... Tuesday. Fine. We follow. I know the path they took — eastern trail, past Old Maren's stones. I'll mark it with lamp oil drops so we can find our way back. If we come back. We're coming back, right? Tell me we're coming back.",
+      "next": "pip_farewell"
+    },
+    "pip_agrees_cellar": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "nervous",
+      "text": "The cellar. Right. The dark, underground room beneath the chapel where a mysterious stranger hides. My favorite kind of room. [grips spear tighter] Let's go fast. In, search, out. I'll watch the door. You search. If you find anything with nightcap root on it, we have our poisoner. If you find anything else — anything weird, anything Church, anything that glows — don't touch it. Grab it with cloth. I have a spare shirt that's mostly clean. Use that. Let's move.",
+      "next": "pip_farewell"
+    },
+    "pip_tracks": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "professional",
+      "text": "The prints enter the village here — at the eastern gate, which I was NOT guarding at the time because I was on the north wall watching the manor shadow. They came in while I was looking the other way. The prints end at the cobblestones but there's a residue — dark soil, warm, forest-smell. If we follow the residue trail... it goes three directions. One toward the old carpenter's workshop. One toward a cottage on the south lane — Old Maren's? And one toward... the bakery. Where the baker's wife sleeps. Why would something from the forest visit a bakery, a workshop, and an old woman's cottage? What do those three places have in common?",
+      "triggers": [
+        {
+          "set_state": "flag.silas_trail_mapped",
+          "value": true
+        }
+      ],
+      "next": "pip_farewell"
+    },
+    "pip_terrified_but_willing": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "brave",
+      "text": "Wait at the treeline. At night. For something that walks out of a thinking forest on bark-feet. [breathes deeply] Okay. I said I wanted to be a guard. This is guarding. This is the actual job — standing between the village and the unknown and saying 'show yourself.' I'll be there. I'll bring the spear and the lantern and every ounce of courage I have, which isn't much, but it's mine. If whatever comes out is friendly, we talk. If it's not, we run. I'm fast. I'm very fast. Fear makes you fast. I've been training for this my whole life without knowing it.",
+      "next": "pip_farewell"
+    },
+    "pip_agrees_maren": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "respectful",
+      "text": "Old Maren. Yes. She'll know. She always knows. She sits on that bench like she's reading the ground through her feet. If anyone can look at a bark-foot print and tell us what made it, it's her. I'll go to her cottage. Dawn is in twenty minutes — she'll be up. She's always up before dawn. I think she sleeps like I do: badly, briefly, with one ear on the forest. Let's go. And bring the compass — the one that points wrong. I have a feeling it's going to point at whoever left these prints.",
+      "next": "pip_farewell"
+    },
+    "pip_farewell": {
+      "type": "text",
+      "speaker": "pip",
+      "portrait": "resolute",
+      "text": "Right. I should get back to the wall. Or to bed. Or to... I don't know where to go. I used to know where to go. Gate, wall, bed, gate. Simple. Now every night is a new horror and every morning is a new mystery and I'm navigating all of it with a leaking lantern and a spear I can barely lift. But I'm navigating. That counts. Right? That counts.",
+      "triggers": [
+        {
+          "set_state": "flag.pip_night_report_complete",
+          "value": true
+        }
+      ],
+      "next": null
+    }
+  }
+}

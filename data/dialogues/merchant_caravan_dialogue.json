@@ -1,0 +1,338 @@
+{
+  "id": "merchant_caravan_dialogue",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "orin",
+      "portrait": "jovial",
+      "text": "Welcome, welcome. Orin Blackwell, Eastern Road Trading Company, sole proprietor since my partner died of bad oysters in Thornhaven. You're looking at the finest — and only — merchant caravan willing to run the Ashvale route. Everyone else thinks this road's cursed. I think cursed roads have the best profit margins. What can I sell you?",
+      "triggers": [
+        {
+          "set_state": "npc.orin.met",
+          "value": true
+        }
+      ],
+      "next": "choice_opening"
+    },
+    "choice_opening": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "browse_goods",
+          "text": "What've you got? Show me your stock.",
+          "triggers": [],
+          "next": "orin_inventory"
+        },
+        {
+          "id": "ask_news",
+          "text": "What's the news from the east? What are people saying?",
+          "triggers": [],
+          "next": "orin_news"
+        },
+        {
+          "id": "ask_about_route",
+          "text": "You said nobody else runs this route. Why do you?",
+          "triggers": [],
+          "next": "orin_motivation"
+        },
+        {
+          "id": "ask_about_ironmarch",
+          "text": "Seen any Ironmarch soldiers on the road?",
+          "triggers": [],
+          "next": "orin_ironmarch"
+        },
+        {
+          "id": "ask_about_silverpine",
+          "text": "Any word from Silverpine? The mountain village up north?",
+          "conditions": [
+            {
+              "check": "flag.heartwood_contact_made",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "orin_silverpine"
+        }
+      ]
+    },
+    "orin_inventory": {
+      "type": "text",
+      "speaker": "orin",
+      "portrait": "business",
+      "text": "Salt from the Greymarsh flats — half-price, I'm overstocked, the coastal towns have a surplus since the fishing season tanked. Dried cod from Millbrook — ugly but nutritious, keeps for months. Lamp oil — premium grade from the eastern refineries, and I'll warn you, price is going up because the refineries are running low on raw stock. Iron tools from Thornhaven — hammer heads, nail stock, a decent saw. Three bolts of undyed wool — Ashvale's going to need warm clothes before winter. And for the discerning customer... [glances around, lowers voice] ...I may have a bottle of Silvergreen — that's Silverpine mountain spirits, fermented from lichens. Tastes like drinking a pine forest. Ninety proof. One bottle, sealed. Fifty gold. Worth every copper if you need to forget something or remember something or just need your chest to feel warm for an hour.",
+      "next": "shopping_choice"
+    },
+    "shopping_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "buy_supplies",
+          "text": "[Open trade] Let me see your prices.",
+          "triggers": [
+            {
+              "spawn_event": "orin_trade_interface"
+            }
+          ],
+          "next": "after_trade"
+        },
+        {
+          "id": "ask_about_letter",
+          "text": "You're carrying more than trade goods, aren't you? I noticed the locked box under your seat.",
+          "conditions": [
+            {
+              "check": "flag.knows_about_guild",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "orin_locked_box"
+        },
+        {
+          "id": "back_to_talk",
+          "text": "Maybe later. Tell me about the road instead.",
+          "triggers": [],
+          "next": "choice_opening"
+        }
+      ]
+    },
+    "orin_news": {
+      "type": "text",
+      "speaker": "orin",
+      "portrait": "serious",
+      "text": "News? None of it good. Thornhaven's grain prices have doubled — their harvest was poor too, though not as bad as yours. The eastern provinces are tightening borders because of 'security concerns,' which is Legion-speak for 'we're building a perimeter and we don't want witnesses.' Millbrook had a fire — the tannery district, sixteen buildings. Some say arson. Some say the Ironmarch is salting villages that won't cooperate. The Church has sent missionaries to three villages in the past month — all of them pacted villages, all of them in trouble. Coincidence? I sell goods, not opinions. But I'll tell you this: the Church doesn't send missionaries to save souls. They send missionaries to count resources. The priests are scouts. The prayers are reconnaissance.",
+      "next": "news_choice"
+    },
+    "news_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "ask_church_detail",
+          "text": "Three pacted villages? Which ones? What happened to them?",
+          "triggers": [],
+          "next": "orin_pacted_villages"
+        },
+        {
+          "id": "ask_about_millbrook",
+          "text": "Millbrook — that's where Fenrick sends children. Was the fire near the foster district?",
+          "conditions": [
+            {
+              "check": "flag.fenrick_children_revealed",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "orin_millbrook"
+        },
+        {
+          "id": "return_to_main",
+          "text": "Grim news. Anything else?",
+          "triggers": [],
+          "next": "choice_opening"
+        }
+      ]
+    },
+    "orin_motivation": {
+      "type": "text",
+      "speaker": "orin",
+      "portrait": "honest",
+      "text": "Profit. Pure and simple. When supply drops and demand stays constant, the man with the wagon gets rich. That's economics. But... there's another reason. My mother was from a pacted village — not Ashvale, a place called Greendale, south of here. River pact. The village died when I was ten. The river reclaimed it. We fled with nothing. My mother spent the rest of her life talking about the village — the people, the market, the way the river sang at night. She loved that place. It killed itself and she still loved it. I run this route because somewhere in the back of my merchant brain, I'm still a ten-year-old boy trying to bring supplies to a village my mother loved. Ashvale isn't Greendale. But it's close enough.",
+      "triggers": [
+        {
+          "set_state": "flag.orin_backstory_known",
+          "value": true
+        },
+        {
+          "set_state": "npc.orin.disposition",
+          "delta": 10
+        }
+      ],
+      "next": "choice_opening"
+    },
+    "orin_ironmarch": {
+      "type": "text",
+      "speaker": "orin",
+      "portrait": "cautious",
+      "text": "Soldiers? More than soldiers. A camp. Three miles east, off the main road, in the birch grove near the old waystone. Thirty tents. Maybe a hundred men. They've got a supply line running south — wagons with crates marked 'agricultural equipment,' which is Legion code for 'things that burn.' Their commander is a woman named Voss — no, wait, Voss is YOUR mercenary. The LEGION commander is a man called Draven. Young. Intense. Carries a stone he fidgets with. My driver Pell saw him drilling troops at dawn — real precision, real discipline. These aren't garrison soldiers bored at a checkpoint. These are the tip of the spear. Whatever they're planning for Ashvale, it isn't conversation.",
+      "triggers": [
+        {
+          "set_state": "flag.ironmarch_camp_confirmed",
+          "value": true
+        }
+      ],
+      "next": "choice_opening"
+    },
+    "orin_silverpine": {
+      "type": "text",
+      "speaker": "orin",
+      "portrait": "quiet",
+      "text": "Silverpine. Yes. I was there three weeks ago. The mountain... it's different from your forest. Less hostile. More... parental? The villagers describe it like living inside a protective hand. The mountain reshapes itself around them — grows shelter when it's cold, opens vents for fresh air, channels water to where the crops need it. The children play in caves that weren't there yesterday. The Church has labeled it a 'corruption zone' and sent an inquisitor. The villagers are afraid. Not of the mountain — of the man coming to investigate it. His name is Father Aldous. I've met him. He's not a zealot. He's worse — he's a bureaucrat. Zealots you can reason with. Bureaucrats have checklists. And Silverpine is on his list right below Ashvale.",
+      "triggers": [
+        {
+          "set_state": "flag.silverpine_inquisitor_coming",
+          "value": true
+        }
+      ],
+      "next": "silverpine_choice"
+    },
+    "silverpine_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "warn_silverpine",
+          "text": "Can you carry a message to Silverpine? Warn them?",
+          "triggers": [
+            {
+              "set_state": "flag.orin_messenger_to_silverpine",
+              "value": true
+            },
+            {
+              "set_state": "npc.orin.disposition",
+              "delta": 5
+            }
+          ],
+          "next": "orin_accepts_message"
+        },
+        {
+          "id": "ask_about_pebbles",
+          "text": "Did you hear about the child with the stone rabbit? The one the mountain made?",
+          "triggers": [],
+          "next": "orin_pebbles"
+        },
+        {
+          "id": "return_to_main",
+          "text": "That's useful. What else do you know?",
+          "triggers": [],
+          "next": "choice_opening"
+        }
+      ]
+    },
+    "orin_pacted_villages": {
+      "type": "text",
+      "speaker": "orin",
+      "portrait": "grim",
+      "text": "Greendale — that's my mother's village, river pact, died forty years ago when the pact broke. The river rose and swallowed it in a night. Harrowfen — marsh pact, south of the Wending. The Church 'cleansed' it six years ago. Salted the marshes. The village survived but the land didn't — it's dust now. The people scattered. And Ashvale. You're the third. The Church is working down a list, friend. Your forest is next. The only question is whether the Legion gets here first or the inquisitors do. Because the Legion burns and the Church salts, and the result is the same: dead land, dead pact, refugees on the road. I've seen it twice. I don't want to see it a third time. So I run this route. And I bring salt and iron and lamp oil. And I hope someone in this village is smart enough to find a third option before the first two arrive.",
+      "triggers": [
+        {
+          "set_state": "flag.church_salt_the_earth_plan",
+          "value": true
+        }
+      ],
+      "next": "choice_opening"
+    },
+    "orin_millbrook": {
+      "type": "text",
+      "speaker": "orin",
+      "portrait": "concerned",
+      "text": "The foster district? No — the fire was in the tannery quarter, north side. The foster families are south, near the school. They're safe. I checked. The baker family — the one with the Guild foster child, little boy named Ash — they're fine. I brought them extra flour last trip. The boy is... he's a good kid. Quiet. Draws a lot. Mostly draws trees, which would concern me more if I didn't know who was paying for his education. Your Fenrick has good taste in surrogate families. The baker's wife treats the boy like her own. Some debts are repaid in ways the creditors never planned.",
+      "triggers": [
+        {
+          "set_state": "flag.fenrick_children_confirmed_safe",
+          "value": true
+        }
+      ],
+      "next": "choice_opening"
+    },
+    "orin_locked_box": {
+      "type": "text",
+      "speaker": "orin",
+      "portrait": "guarded",
+      "text": "You've got sharp eyes for a traveler. [long pause] The box contains a letter. Sealed. Addressed in cipher. I don't know who it's from — it was placed in my wagon at the Thornhaven depot by a woman I've never seen before who paid me ten gold to deliver it to 'the keeper of the Ashvale well.' I don't read other people's mail. I don't ask questions about sealed letters. I've been running Guild cargo for fifteen years and the one rule that's kept me alive is: don't open, don't ask, don't remember. But I'll tell you this — the woman who gave it to me was crying. Not sobbing — the kind of crying where the tears fall but the face doesn't move. Like she'd been doing it so long her face had given up participating. Whatever's in that letter, someone paid for it with more than gold.",
+      "triggers": [
+        {
+          "set_state": "flag.ledger_letter_known",
+          "value": true
+        }
+      ],
+      "next": "locked_box_choice"
+    },
+    "locked_box_choice": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "claim_letter",
+          "text": "I know who that's for. I'll deliver it.",
+          "conditions": [
+            {
+              "check": "flag.guild_real_motive_known",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "grant_item": "ledger_sealed_letter"
+            },
+            {
+              "set_state": "flag.ledger_letter_in_possession",
+              "value": true
+            }
+          ],
+          "next": "orin_hands_over"
+        },
+        {
+          "id": "tell_fenrick",
+          "text": "I know someone who can read that cipher. I'll connect you.",
+          "triggers": [
+            {
+              "set_state": "flag.fenrick_told_about_letter",
+              "value": true
+            }
+          ],
+          "next": "orin_agrees"
+        }
+      ]
+    },
+    "orin_accepts_message": {
+      "type": "text",
+      "speaker": "orin",
+      "portrait": "willing",
+      "text": "Silverpine's on my route — three weeks north if the passes are clear. I'll carry a message. No charge. Consider it... professional courtesy between endangered villages. Write it tonight. Seal it with wax — not Church wax, they track the seal patterns. Plain tallow. I leave at dawn when the road reopens. If the road reopens. That Legion checkpoint is a problem none of my usual solutions — charm, bribery, creative invoicing — can solve.",
+      "next": "choice_opening"
+    },
+    "orin_pebbles": {
+      "type": "text",
+      "speaker": "orin",
+      "portrait": "warm",
+      "text": "Pebbles. The stone rabbit. Yes, I saw it. The girl — Mira, eight years old, braids like rope — she showed me behind her mother's back. The rabbit is... it's extraordinary. Granite, smooth as soap, warm to the touch. Two quartz crystals for eyes. The detail is impossible — every whisker, every fold of ear. And when Mira holds it, it vibrates. Not shaking — purring. Like the stone is alive. Which, if I understand the pacts correctly, it is. A mountain carved a toy for a child. That's either the most terrifying thing I've ever heard or the most gentle. I choose gentle. The world doesn't have enough gentle left to waste it on fear.",
+      "next": "choice_opening"
+    },
+    "after_trade": {
+      "type": "text",
+      "speaker": "orin",
+      "portrait": "business",
+      "text": "Pleasure doing business. I'll be in the square for three days if the weather holds and the road stays open. After that — east, toward Thornhaven, then north to Silverpine if the passes are clear. You need anything else, you know where to find me. Right here, next to the mules, smelling of salt and lamp oil. The glamorous life of a frontier merchant.",
+      "next": "choice_opening"
+    },
+    "orin_hands_over": {
+      "type": "text",
+      "speaker": "orin",
+      "portrait": "relieved",
+      "text": "Good. Take it. I've been carrying it for four days and it's been burning a hole in my conscience. Whatever's in there — whatever grief paid for its delivery — I hope it helps. The Guild does good work, even when the methods are ugly. My mother would have given anything for someone like Fenrick when Greendale fell. Instead she got nothing. No one came. No one helped. The Guild makes sure that doesn't happen again. That's worth a locked box and a few uncomfortable questions.",
+      "next": "orin_farewell"
+    },
+    "orin_agrees": {
+      "type": "text",
+      "speaker": "orin",
+      "portrait": "neutral",
+      "text": "Your friend with the cipher — I'll meet them. Greta's inn, after dark? I'll bring the box. Your friend brings the key. We'll see what a crying woman paid ten gold to say to Ashvale.",
+      "next": "orin_farewell"
+    },
+    "orin_farewell": {
+      "type": "text",
+      "speaker": "orin",
+      "portrait": "jovial",
+      "text": "Safe travels, friend. And remember — Orin Blackwell, Eastern Road Trading Company. We deliver anywhere the road goes and some places it doesn't. Our motto: 'If it fits in the wagon and doesn't bite the mules, we'll carry it.' The mules are Patience and Regret. Don't ask why.",
+      "triggers": [
+        {
+          "set_state": "flag.orin_dialogue_complete",
+          "value": true
+        }
+      ],
+      "next": null
+    }
+  }
+}

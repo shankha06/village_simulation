@@ -1,0 +1,50 @@
+[project]
+name = "dungeon-crawler"
+version = "0.1.0"
+description = "A vast terminal-based procedural dungeon crawler with deep simulation"
+requires-python = ">=3.11"
+dependencies = [
+    "esper>=3.2",
+    "tcod>=17.0",
+    "numpy>=1.26",
+    "noise>=1.2",
+    "pyyaml>=6.0",
+    "repowise>=0.1.31",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-benchmark>=4.0",
+    "mypy>=1.0",
+    "ruff>=0.1",
+]
+gpu = [
+    "cupy-cuda12x>=13.0",
+]
+
+[project.scripts]
+dungeon = "engine.main:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=7.0",
+    "pytest-benchmark>=4.0",
+    "mypy>=1.0",
+    "ruff>=0.1",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["engine", "game", "utils", "config"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
