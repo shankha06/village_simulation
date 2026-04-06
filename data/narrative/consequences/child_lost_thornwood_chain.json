@@ -1,0 +1,39 @@
+{
+  "id": "child_lost_thornwood_chain",
+  "trigger_condition": "flag.child_lost_in_thornwood == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {"set_state": "npc.fenrick.disposition", "delta": -40},
+        {"set_state": "npc.fenrick.memory.child_died_because_of_player", "value": true},
+        {"set_state": "npc.greta.memory.child_lost_in_forest", "value": true},
+        {"set_state": "flag.village_mourning_child", "value": true}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {"set_state": "npc.greta.disposition", "delta": -20},
+        {"set_state": "flag.fenrick_blames_player", "value": true}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {"set_state": "ecology.thornwood.forest_spirits.pop", "delta": 0.1},
+        {"set_state": "flag.child_became_forest_spirit", "value": true}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 7,
+      "effects": [
+        {"set_state": "flag.fenrick_refuses_to_speak", "value": true},
+        {"set_state": "npc.old_maren.memory.felt_new_spirit_in_roots", "value": true}
+      ]
+    }
+  ]
+}

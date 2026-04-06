@@ -46,7 +46,8 @@
     "friendly": "ashworth_desperate_plea",
     "hostile": "ashworth_cornered",
     "ledger_quest": "ashworth_ledger_quest",
-    "ledger_discovery": "ledger_discovery"
+    "ledger_discovery": "ledger_discovery",
+    "sacrifice_conversation": "ashworth_sacrifice_dialogue"
   },
   "default_greeting": "ashworth_intro",
   "barks": [],

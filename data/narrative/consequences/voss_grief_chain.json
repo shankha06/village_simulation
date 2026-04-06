@@ -1,0 +1,23 @@
+{
+  "id": "voss_grief_chain",
+  "trigger_condition": "flag.rivendale_only_graves == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {"set_state": "npc.commander_voss.disposition", "delta": 10},
+        {"set_state": "npc.commander_voss.memory.graves_found", "value": true},
+        {"set_state": "npc.commander_voss.memory.grateful_for_closure", "value": true}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {"set_state": "npc.commander_voss.memory.more_determined_to_protect", "value": true},
+        {"set_state": "world.region.ashvale.defense_score", "delta": 10},
+        {"set_state": "flag.voss_determined_to_protect_ashvale", "value": true}
+      ]
+    }
+  ]
+}

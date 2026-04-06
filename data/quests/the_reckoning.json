@@ -121,6 +121,10 @@
           "to": "PATH_LAST_STAND"
         },
         {
+          "on": "flag.severance_completed == true AND time.day >= severance_day + 5 AND flag.chose_last_stand != true AND flag.factions_united != true",
+          "to": "PATH_SCORCHED_EARTH"
+        },
+        {
           "on": "flag.abandoned_ashvale == true",
           "to": "PATH_SCORCHED_EARTH"
         }

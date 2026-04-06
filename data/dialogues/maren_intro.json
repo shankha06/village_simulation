@@ -3,6 +3,103 @@
   "start_node": "start",
   "nodes": {
     "start": {
+      "type": "conditional",
+      "condition": {"check": "time.hour", "op": ">=", "value": 20},
+      "if_true": "start_night",
+      "if_false": "start_day"
+    },
+    "start_night": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "The chapel is dim. Brother Maren startles when you enter -- he wasn't expecting company at this hour. You notice his hands are stained with something dark.",
+      "triggers": [
+        {
+          "set_state": "npc.brother_maren.met",
+          "value": true
+        },
+        {
+          "set_state": "flag.noticed_maren_stained_hands",
+          "value": true
+        }
+      ],
+      "next": "start_night_2"
+    },
+    "start_night_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "fearful",
+      "text": "You -- I didn't hear you come in. The door was locked. I'm certain it was locked.",
+      "next": "choice_night_opening"
+    },
+    "choice_night_opening": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "night_hands",
+          "text": "What's on your hands, Brother?",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.asked_about_stained_hands",
+              "value": true
+            }
+          ],
+          "next": "maren_hands_excuse"
+        },
+        {
+          "id": "night_midnight",
+          "text": "You said to come at midnight. I'm here.",
+          "conditions": [
+            {
+              "check": "flag.maren_midnight_meeting",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "maren_midnight_bridge"
+        },
+        {
+          "id": "night_normal",
+          "text": "The door was open. I need to speak with you.",
+          "conditions": [],
+          "triggers": [],
+          "next": "choice_opening"
+        }
+      ]
+    },
+    "maren_hands_excuse": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "Ink. I was copying scripture by candlelight. The old texts fade if they are not maintained. It is... tedious work, best done in silence.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_claimed_ink_on_hands",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_maren_night_activity",
+          "value": true
+        }
+      ],
+      "next": "choice_opening"
+    },
+    "maren_midnight_bridge": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "Good. You came alone, as I asked. Lock the door behind you. What I have to show you cannot leave this room.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_midnight_meeting_started",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "start_day": {
       "type": "text",
       "speaker": "brother_maren",
       "portrait": "neutral",
@@ -164,6 +261,42 @@
           "next": "maren_reacts_to_evidence"
         },
         {
+          "id": "show_cloak_scrap",
+          "text": "[Show the torn cloak scrap] I found this near the poison cache. Church weave. Your size.",
+          "conditions": [
+            {
+              "check": "flag.cloak_scrap_collected",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.brother_maren.memory.player_showed_cloak_evidence",
+              "value": true
+            }
+          ],
+          "next": "maren_cloak_panic"
+        },
+        {
+          "id": "show_journal_page",
+          "text": "[Show the journal page] I found a page from your journal. Dosage calculations for nightcap root.",
+          "conditions": [
+            {
+              "check": "flag.found_journal_page",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.brother_maren.memory.player_found_journal",
+              "value": true
+            }
+          ],
+          "next": "maren_journal_counter"
+        },
+        {
           "id": "bluff_accusation",
           "text": "I found it in your chapel cellar. Care to explain?",
           "conditions": [],
@@ -192,6 +325,60 @@
           "next": "maren_silence_reaction"
         }
       ]
+    },
+    "maren_cloak_panic": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "His composure shatters. He lunges for the cloth, fingers grasping. For a heartbeat his mask is gone entirely -- not a priest, not a servant of the Light, just a terrified man watching the noose tighten.",
+      "next": "maren_cloak_panic_2"
+    },
+    "maren_cloak_panic_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "fearful",
+      "text": "Give that to me. GIVE IT. You don't understand what you're holding. That cloth -- it could be anyone's. The Church distributes robes to half the villages in this region. This proves NOTHING.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_tried_to_destroy_evidence",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_maren_panicked_at_evidence",
+          "value": true
+        }
+      ],
+      "next": "choice_deeper"
+    },
+    "maren_journal_counter": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "angry",
+      "text": "That is NOT a dosage calculation. It is a study of poisons so that I might IDENTIFY them. The Ashen Light teaches its servants to recognize the tools of evil. How else would I know nightcap root by sight? I study what harms so that I may heal. You have taken the notes of a scholar and twisted them into an accusation.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_gave_counter_explanation",
+          "value": true
+        },
+        {
+          "set_state": "flag.clue_maren_knows_poison_dosages",
+          "value": true
+        }
+      ],
+      "next": "maren_journal_counter_2"
+    },
+    "maren_journal_counter_2": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "But I will say this: the fact that you found those notes means someone has been in my private quarters. Someone who wanted you to find exactly what you found. Ask yourself -- who benefits from turning you against me?",
+      "triggers": [
+        {
+          "set_state": "flag.maren_deflected_journal_evidence",
+          "value": true
+        }
+      ],
+      "next": "choice_deeper"
     },
     "maren_reacts_to_evidence": {
       "type": "text",
@@ -311,6 +498,11 @@
           "text": "Why did the Church send YOU specifically to Ashvale?",
           "conditions": [
             {
+              "check": "npc.brother_maren.disposition",
+              "op": ">=",
+              "value": 20
+            },
+            {
               "check": "flag.maren_preached_to_player",
               "op": "==",
               "value": true
@@ -323,6 +515,29 @@
             }
           ],
           "next": "why_ashvale"
+        },
+        {
+          "id": "ask_why_ashvale_deflected",
+          "text": "Why did the Church send YOU specifically to Ashvale?",
+          "conditions": [
+            {
+              "check": "npc.brother_maren.disposition",
+              "op": "<",
+              "value": 20
+            },
+            {
+              "check": "flag.maren_preached_to_player",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [
+            {
+              "set_state": "npc.brother_maren.memory.player_asked_why_him",
+              "value": true
+            }
+          ],
+          "next": "why_ashvale_deflection"
         }
       ]
     },
@@ -351,6 +566,19 @@
       "triggers": [
         {
           "set_state": "flag.maren_spoke_of_forest_will",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "why_ashvale_deflection": {
+      "type": "text",
+      "speaker": "brother_maren",
+      "portrait": "neutral",
+      "text": "The Church assigns where it wills. I go where I am sent. There is no mystery in obedience, only purpose. If you seek deeper answers, you will need to earn deeper trust.",
+      "triggers": [
+        {
+          "set_state": "flag.maren_deflected_personal_question",
           "value": true
         }
       ],

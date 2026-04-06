@@ -54,6 +54,11 @@
     "follow_up": "brother_maren_follow_up",
     "sacred_text_quest": "maren_sacred_text"
   },
+  "reputation_gate": {
+    "faction": "church_ashen_light",
+    "hostile_below": -30,
+    "hostile_pool": "maren_threatens"
+  },
   "default_greeting": "maren_intro",
   "barks": [
     "The Light sees all, child.",

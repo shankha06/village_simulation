@@ -49,6 +49,11 @@
     "ghost_quest": "voss_ghost_quest",
     "rivendale_discovery": "rivendale_discovery"
   },
+  "reputation_gate": {
+    "faction": "iron_road_company",
+    "hostile_below": -30,
+    "hostile_pool": "voss_enemy"
+  },
   "default_greeting": "voss_intro",
   "barks": [],
   "mundane_barks": [

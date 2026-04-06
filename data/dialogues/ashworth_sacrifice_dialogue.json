@@ -1,0 +1,186 @@
+{
+  "id": "ashworth_sacrifice_dialogue",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "fearful",
+      "text": "You want me to... No. No. I know what you're going to say. I've seen it in your eyes since you came back from the Heartwood. The answer is no. I won't do it. I CAN'T do it.",
+      "next": "choice_approach"
+    },
+    "choice_approach": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "path_a_ghost_letters",
+          "text": "[Show the ghost letters] Five families, Lord Ashworth. Five families your house destroyed. Read their names.",
+          "conditions": [
+            {"check": "flag.ghost_letters_collected", "op": "==", "value": true}
+          ],
+          "triggers": [],
+          "next": "ghost_letters_reaction"
+        },
+        {
+          "id": "path_b_maren_connection",
+          "text": "Your family chose Silas Maren. You know that, don't you? Your father picked HIM.",
+          "conditions": [
+            {"check": "flag.maren_family_truth_revealed", "op": "==", "value": true}
+          ],
+          "triggers": [],
+          "next": "maren_connection_reaction"
+        },
+        {
+          "id": "path_c_bloodline_dying",
+          "text": "Look at yourself. The coughing. The blood on your palm. The land is already killing you.",
+          "conditions": [
+            {"check": "flag.ashworth_health_declining", "op": "==", "value": true}
+          ],
+          "triggers": [],
+          "next": "bloodline_dying_reaction"
+        },
+        {
+          "id": "path_d_elara_confronts",
+          "text": "[Bring Elara forward] There's someone here who deserves to say this more than I do.",
+          "conditions": [
+            {"check": "flag.elara_in_party", "op": "==", "value": true},
+            {"check": "flag.elara_knows_maren_truth", "op": "==", "value": true}
+          ],
+          "triggers": [],
+          "next": "elara_confrontation"
+        },
+        {
+          "id": "leave",
+          "text": "I understand. I won't force this on you.",
+          "conditions": [],
+          "triggers": [],
+          "next": "ashworth_refuses"
+        }
+      ]
+    },
+    "ghost_letters_reaction": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "fearful",
+      "text": "Where did you... those were buried. Those were BURIED with them. You dug up the — give me those. GIVE THEM TO ME.",
+      "next": "ghost_letters_reads"
+    },
+    "ghost_letters_reads": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "His hands shake as he reads. One letter. Two. By the third, his knees buckle. By the fifth, he is sitting on the stone floor of his own manor, weeping like the child he was when his father first explained what the forest required.",
+      "next": "ghost_letters_resolution"
+    },
+    "ghost_letters_resolution": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "vulnerable",
+      "text": "Five families. Five. And my father smiled at each of them the morning before. Told them they were chosen for honor. I watched from the window. I was eight years old and I knew — I KNEW — it was murder. And I said nothing. For thirty years, I said nothing.",
+      "triggers": [
+        {"set_state": "flag.ashworth_willing", "value": true},
+        {"set_state": "npc.lord_ashworth.memory.guilt_overwhelmed_fear", "value": true}
+      ],
+      "next": "ashworth_accepts"
+    },
+    "maren_connection_reaction": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "fearful",
+      "text": "Don't. Don't say that name to me.",
+      "next": "maren_connection_push"
+    },
+    "maren_connection_push": {
+      "type": "text",
+      "speaker": "player",
+      "portrait": "",
+      "text": "Silas Maren had a son. A four-year-old boy who watched men carry his father into the trees. That boy grew up in a Church orphanage, and he came back here to find out why. Your family's choice created Brother Maren. Every poisoned well, every dead crop — it all traces back to your father's hand pointing at Silas.",
+      "next": "maren_connection_breaks"
+    },
+    "maren_connection_breaks": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "vulnerable",
+      "text": "I... I chose him. Not my father. Me. Father asked which family could be spared, and I pointed at the Marens because Silas's boy had stolen my toy horse the week before. I was eight. I pointed because of a TOY HORSE.",
+      "triggers": [
+        {"set_state": "flag.ashworth_willing", "value": true},
+        {"set_state": "npc.lord_ashworth.memory.confessed_choosing_silas", "value": true}
+      ],
+      "next": "ashworth_accepts"
+    },
+    "bloodline_dying_reaction": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "neutral",
+      "text": "I know what I look like. I own a mirror. What of it?",
+      "next": "bloodline_dying_push"
+    },
+    "bloodline_dying_push": {
+      "type": "text",
+      "speaker": "player",
+      "portrait": "",
+      "text": "The pact is consuming you from the inside. No heirs. No health. No treasury. Your line ends here regardless — bleeding out slowly in a manor that smells of dust and regret. You can die in that bed upstairs in a month, having changed nothing. Or you can walk into the roots and end three hundred years of suffering. Your choice — but one of them means something.",
+      "next": "bloodline_dying_accepts"
+    },
+    "bloodline_dying_accepts": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "neutral",
+      "text": "...You have a cruel way with words. But you're not wrong. The Ashworth name is already dead. Has been for years. I've just been too much of a coward to bury it.",
+      "triggers": [
+        {"set_state": "flag.ashworth_willing", "value": true},
+        {"set_state": "npc.lord_ashworth.memory.accepted_pragmatically", "value": true}
+      ],
+      "next": "ashworth_accepts"
+    },
+    "elara_confrontation": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "Lord Ashworth. Look at me. LOOK AT ME. Your father chose MY father. Silas Maren. The healer who treated your gout and your wife's fever and your stable boy's broken arm. He healed your family for ten years, and your father fed him to the roots like compost.",
+      "next": "elara_confrontation_2"
+    },
+    "elara_confrontation_2": {
+      "type": "text",
+      "speaker": "elara",
+      "portrait": "angry",
+      "text": "I grew up without him. My brother grew up without him and it BROKE him — broke him into the thing that's been poisoning your village. Your family did that. Your family made us into what we are. So don't you DARE tell me you're afraid. You owe us this. You owe every family in Ashvale this.",
+      "next": "elara_confrontation_ashworth"
+    },
+    "elara_confrontation_ashworth": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "vulnerable",
+      "text": "...Elara. I knew your father. He was a good man. The best man in this village. And my family... yes. We chose him because good men don't fight back. That was the logic. Good men go quietly into the dark.",
+      "triggers": [
+        {"set_state": "flag.ashworth_willing", "value": true},
+        {"set_state": "npc.lord_ashworth.memory.elara_broke_him", "value": true},
+        {"set_state": "npc.lord_ashworth.disposition", "delta": -20}
+      ],
+      "next": "ashworth_accepts"
+    },
+    "ashworth_accepts": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "neutral",
+      "text": "My family made this pact. My family broke it. Let it end with me. I will go to the Heartwood. I will not run. I will not flinch. This is the one thing left that I can do that matters.",
+      "triggers": [
+        {"set_state": "npc.lord_ashworth.memory.accepted_sacrifice", "value": true}
+      ],
+      "next": "end"
+    },
+    "ashworth_refuses": {
+      "type": "text",
+      "speaker": "lord_ashworth",
+      "portrait": "fearful",
+      "text": "Good. Good. I... thank you. I know what you must think of me. A coward hiding behind stone walls while the village dies. You're right. But knowing what I am doesn't make me brave enough to change it.",
+      "triggers": [
+        {"set_state": "npc.lord_ashworth.memory.refused_sacrifice", "value": true}
+      ],
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

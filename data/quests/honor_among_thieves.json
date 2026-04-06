@@ -154,6 +154,7 @@
     },
     "COMPLETED_THORNWOOD_LOSS": {
       "journal_entry": "One of the children wandered off the path. The forest took her. Fenrick is inconsolable. We saved two, but lost one to my decision.",
+      "consequence_chain": "child_lost_thornwood_chain",
       "rewards": [
         {
           "reputation": {

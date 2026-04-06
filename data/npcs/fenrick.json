@@ -50,6 +50,11 @@
     "escort_quest": "fenrick_escort_quest",
     "escort_encounter": "escort_encounter"
   },
+  "reputation_gate": {
+    "faction": "thieves_guild",
+    "hostile_below": -30,
+    "hostile_pool": "fenrick_hostile"
+  },
   "default_greeting": "fenrick_intro",
   "barks": [
     "Tick tock, stranger.",

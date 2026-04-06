@@ -82,6 +82,7 @@
     },
     "COMPLETED_GRAVES": {
       "journal_entry": "Only graves. Thirty-two cairns in neat rows, each marked with a river stone. Someone buried them properly. Voss will want to know. I'm not sure I want to tell her.",
+      "consequence_chain": "voss_grief_chain",
       "rewards": [
         {
           "reputation": {}
@@ -101,6 +102,7 @@
     },
     "COMPLETED_LETTER": {
       "journal_entry": "I found a letter in the ruins, sealed with a military stamp. It's from Voss's old commander, Captain Aldric. He ordered the retreat from Rivendale — not Voss. She was following orders. The guilt she carries was never hers.",
+      "consequence_chain": "voss_letter_chain",
       "rewards": [
         {
           "item": "aldrics_letter"

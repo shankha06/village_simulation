@@ -16,6 +16,10 @@
     "UNKNOWN": {
       "transitions": [
         {
+          "on": "npc.lord_ashworth.alive == false",
+          "to": "FAILED_LORD_DEAD"
+        },
+        {
           "on": "npc.lord_ashworth.met == true && npc.lord_ashworth.disposition >= 0",
           "to": "DISCOVERED"
         }
@@ -24,6 +28,10 @@
     "DISCOVERED": {
       "journal_entry": "Lord Ashworth, in a moment of drunken despair, mentioned a ledger — hidden in the catacombs beneath the manor. It records every sacrifice Ashvale has made to the forest for thirty years. Every name. Every deal.",
       "transitions": [
+        {
+          "on": "npc.lord_ashworth.alive == false",
+          "to": "FAILED_LORD_DEAD"
+        },
         {
           "on": "flag.accepted_ledger_quest == true",
           "to": "ACTIVE"
@@ -114,6 +122,9 @@
           "item": "voss_military_writ"
         }
       ]
+    },
+    "FAILED_LORD_DEAD": {
+      "journal_entry": "Lord Ashworth is dead. The ledger — if it exists — must be found without his guidance. The catacombs remain."
     },
     "COMPLETED_BURNED": {
       "journal_entry": "I burned the ledger. The names, the history, the proof — all ash now. Nothing changes. The pact continues as it always has. Lord Ashworth wept with relief.",

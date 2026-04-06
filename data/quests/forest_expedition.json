@@ -34,6 +34,10 @@
       ],
       "transitions": [
         {
+          "on": "flag.old_maren_in_party == true AND flag.old_maren_weakening == true",
+          "to": "MAREN_TOO_WEAK"
+        },
+        {
           "on": "flag.entered_deep_thornwood == true",
           "to": "IN_THE_WOODS"
         },
@@ -265,6 +269,24 @@
         {
           "set_state": "player.moral_vector",
           "delta": 30
+        }
+      ]
+    },
+    "MAREN_TOO_WEAK": {
+      "journal_entry": "Old Maren collapsed at the forest's edge. Her breathing is shallow, her skin cold. The Thornwood is draining her \u2014 she cannot accompany me further. I must enter the deep forest without her guidance, or wait for her to recover.",
+      "objectives": [
+        "Bring Old Maren back to safety",
+        "Enter the Thornwood alone or with other companions",
+        "Or wait for Old Maren to recover"
+      ],
+      "transitions": [
+        {
+          "on": "flag.entered_deep_thornwood == true AND flag.old_maren_in_party == false",
+          "to": "IN_THE_WOODS"
+        },
+        {
+          "on": "flag.old_maren_recovered == true",
+          "to": "ACTIVE"
         }
       ]
     },

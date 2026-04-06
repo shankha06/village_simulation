@@ -118,7 +118,17 @@
       ]
     },
     "FAILED_ELARA_DEAD": {
-      "journal_entry": "Elara is dead. The investigation dies with her \u2014 unless I continue alone. But who killed her, and why?"
+      "journal_entry": "Elara is dead. The investigation dies with her \u2014 unless I continue alone. But who killed her, and why?",
+      "transitions": [
+        {
+          "on": "flag.player_continues_investigation_alone == true",
+          "to": "EVIDENCE_FOUND"
+        },
+        {
+          "on": "flag.old_maren_helps_investigation == true",
+          "to": "EVIDENCE_FOUND"
+        }
+      ]
     }
   }
 }

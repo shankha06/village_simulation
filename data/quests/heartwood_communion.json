@@ -29,6 +29,61 @@
       ],
       "transitions": [
         {
+          "on": "flag.counter_rite_scroll_in_hand == true AND flag.all_secrets_spoken == true",
+          "to": "COUNTER_RITE_PATH"
+        },
+        {
+          "on": "flag.chose_fulfill_pact == true",
+          "to": "SACRIFICE_PATH"
+        },
+        {
+          "on": "flag.chose_sever_pact == true",
+          "to": "SEVERANCE_PATH"
+        },
+        {
+          "on": "flag.chose_renegotiate_pact == true",
+          "to": "RENEGOTIATION_PATH"
+        }
+      ]
+    },
+    "COUNTER_RITE_PATH": {
+      "journal_entry": "The counter-rite \u2014 Old Maren's alternative. Every secret this village has buried must be spoken aloud at the site of the original pact. The truth itself is the offering.",
+      "objectives": [
+        "Speak all discovered truths at the blood-root"
+      ],
+      "transitions": [
+        {
+          "on": "flag.counter_rite_completed == true",
+          "to": "PACT_DISSOLVED_THROUGH_TRUTH"
+        },
+        {
+          "on": "flag.counter_rite_failed == true",
+          "to": "PACT_UNRESOLVED"
+        }
+      ]
+    },
+    "PACT_DISSOLVED_THROUGH_TRUTH": {
+      "journal_entry": "The names of the sacrificed echoed through the Heartwood. Every truth spoken was a root loosened, a chain broken. The pact did not burn or sever \u2014 it simply dissolved, like a lie exposed to daylight. The forest shuddered, and then was still. Not dead. Not angry. Just... free.",
+      "consequence_chain": "counter_rite_complete_chain",
+      "rewards": [
+        {
+          "set_state": "flag.pact_dissolved_by_truth",
+          "value": true
+        },
+        {
+          "set_state": "flag.forest_at_peace",
+          "value": true
+        },
+        {
+          "set_state": "player.moral_vector",
+          "delta": 45
+        }
+      ]
+    },
+    "PACT_UNRESOLVED": {
+      "journal_entry": "The counter-rite failed. Not enough truths were spoken \u2014 or the truths I knew were not enough. The pact holds. The Heartwood waits, patient and hungry as ever.",
+      "transitions": [
+        {
           "on": "flag.chose_fulfill_pact == true",
           "to": "SACRIFICE_PATH"
         },
@@ -179,12 +234,42 @@
       ],
       "transitions": [
         {
+          "on": "flag.old_maren_weakening == true AND flag.old_maren_found_collapsed == true",
+          "to": "SEVERANCE_BLOCKED_HEALTH"
+        },
+        {
           "on": "flag.druidfire_ritual_learned == true",
           "to": "SEVERANCE_PREPARED"
         },
         {
           "on": "flag.old_maren_refused_to_teach == true",
           "to": "SEVERANCE_BLOCKED"
+        }
+      ]
+    },
+    "SEVERANCE_BLOCKED_HEALTH": {
+      "journal_entry": "Old Maren collapsed before she could finish teaching me the ritual. Her connection to the forest is killing her \u2014 the very knowledge I need is draining the life from the only person who possesses it. I must find another way to learn the druidfire rite, or abandon the severance entirely.",
+      "objectives": [
+        "Find another source for the druidfire ritual",
+        "Search the druid ruins for written instructions",
+        "Or choose a different path at the Heartwood"
+      ],
+      "transitions": [
+        {
+          "on": "flag.found_ritual_in_ruins == true",
+          "to": "SEVERANCE_PREPARED"
+        },
+        {
+          "on": "flag.old_maren_recovered == true",
+          "to": "SEVERANCE_PATH"
+        },
+        {
+          "on": "flag.chose_fulfill_pact == true",
+          "to": "SACRIFICE_PATH"
+        },
+        {
+          "on": "flag.chose_renegotiate_pact == true",
+          "to": "RENEGOTIATION_PATH"
         }
       ]
     },

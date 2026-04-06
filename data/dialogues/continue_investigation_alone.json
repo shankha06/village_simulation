@@ -1,0 +1,113 @@
+{
+  "id": "continue_investigation_alone",
+  "start_node": "start",
+  "nodes": {
+    "start": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "Elara is gone. The water samples she collected sit untouched in her workshop. Her notes, half-finished. The investigation has no one left to carry it -- unless you do.",
+      "next": "choice_continue"
+    },
+    "choice_continue": {
+      "type": "choice",
+      "options": [
+        {
+          "id": "continue_alone",
+          "text": "I'll finish what she started. I owe her that much.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.player_continues_investigation_alone",
+              "value": true
+            },
+            {
+              "set_state": "flag.player_took_elara_notes",
+              "value": true
+            }
+          ],
+          "next": "alone_resolve"
+        },
+        {
+          "id": "seek_old_maren",
+          "text": "Old Maren knew Elara. She might know enough herbalism to read these notes.",
+          "conditions": [
+            {
+              "check": "npc.old_maren.met",
+              "op": "==",
+              "value": true
+            }
+          ],
+          "triggers": [],
+          "next": "old_maren_approach"
+        },
+        {
+          "id": "give_up",
+          "text": "Without Elara, the trail is cold. I don't have her knowledge.",
+          "conditions": [],
+          "triggers": [
+            {
+              "set_state": "flag.abandoned_water_investigation",
+              "value": true
+            }
+          ],
+          "next": "give_up_ending"
+        }
+      ]
+    },
+    "alone_resolve": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You gather Elara's notes and water samples. Her handwriting is precise, clinical. She was methodical even in fear. The last entry reads: 'Source contamination confirmed. Three possible vectors. Check the chapel cellar, the guild storehouse, and the manor well.'",
+      "triggers": [
+        {
+          "set_state": "flag.has_elara_investigation_notes",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "old_maren_approach": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "sad",
+      "text": "Elara... my granddaughter's child. She had her mother's hands. Steady. Certain. Show me what she found.",
+      "next": "old_maren_reads"
+    },
+    "old_maren_reads": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "neutral",
+      "text": "Nightcap root. Yes. I taught Elara's mother to identify it -- and how to counteract it. These notes... she was close. Very close. The source is upstream, but the person introducing it must have access to the cave system near the spring.",
+      "next": "old_maren_offers"
+    },
+    "old_maren_offers": {
+      "type": "text",
+      "speaker": "old_maren",
+      "portrait": "neutral",
+      "text": "I am old and half-blind, but I know these forests better than anyone living. I will help you finish what Elara began. She deserved better than to die with her work unfinished.",
+      "triggers": [
+        {
+          "set_state": "flag.old_maren_helps_investigation",
+          "value": true
+        },
+        {
+          "set_state": "npc.old_maren.memory.helping_finish_elaras_work",
+          "value": true
+        }
+      ],
+      "next": "end"
+    },
+    "give_up_ending": {
+      "type": "text",
+      "speaker": "",
+      "portrait": "",
+      "text": "You close Elara's workshop door. The investigation dies here, with her. The poison will continue. The village will continue to sicken. And whoever killed Ashvale's healer walks free.",
+      "next": "end"
+    },
+    "end": {
+      "type": "end"
+    }
+  }
+}

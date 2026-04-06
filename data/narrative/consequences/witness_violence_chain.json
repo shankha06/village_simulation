@@ -1,0 +1,31 @@
+{
+  "id": "witness_violence_chain",
+  "trigger_condition": "flag.player_attacked_npc_publicly == true",
+  "consequences": [
+    {
+      "type": "immediate",
+      "effects": [
+        {"set_state": "flag.nearby_npcs_witnessed_violence", "value": true},
+        {"set_state": "flag.guards_alerted_to_violence", "value": true},
+        {"broadcast_memory": "witnessed_player_violence", "radius": "nearby", "value": true},
+        {"broadcast_disposition": "nearby", "delta": -30}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 1,
+      "effects": [
+        {"set_state": "flag.bounty_on_player", "value": true, "condition": "flag.guards_alive == true"},
+        {"set_state": "player.reputation_delta", "faction": "relevant_faction", "delta": -40}
+      ]
+    },
+    {
+      "type": "delayed",
+      "delay_days": 3,
+      "effects": [
+        {"set_state": "flag.npcs_refuse_trade_with_player", "value": true},
+        {"set_state": "flag.dialogue_routes_hostile", "value": true}
+      ]
+    }
+  ]
+}
