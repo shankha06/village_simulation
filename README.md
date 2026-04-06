@@ -306,32 +306,177 @@ Built on **10 interconnected autoload singletons** communicating through a signa
 
 <div align="center">
 
-## ─── Quick Start ───
+## ─── Installation & Setup ───
 
 </div>
 
+### Prerequisites
+
+- [**Godot Engine 4.6+**](https://godotengine.org/download) (standard version, not .NET)
+- **Git** for cloning the repository
+- **~200 MB** disk space
+
+### Install & Run
+
 ```bash
-# Clone
+# 1. Clone the repository
 git clone https://github.com/shankha06/village_simulation.git
 cd village_simulation
 
-# Play (requires Godot 4.6+)
+# 2. Option A — Run the game directly
 godot --path .
 
-# Or open in editor
-godot --path . --editor    # Then press F5
+# 2. Option B — Open in the Godot editor, then press F5
+godot --path . --editor
 ```
+
+> **Note:** On Linux, the Godot binary may be named `godot4` or require the full path. You can also download it directly from [godotengine.org/download](https://godotengine.org/download) and run:
+> ```bash
+> /path/to/Godot_v4.6.2-stable_linux.x86_64 --path .
+> ```
+
+---
+
+<div align="center">
+
+## ─── How to Play ───
+
+</div>
+
+### Controls
 
 | Key | Action | | Key | Action |
 |:---:|:-------|---|:---:|:-------|
-| `WASD` | Move | | `I` | Inventory |
-| `E` | Interact | | `J` | Journal |
-| `Space` | Dodge | | `Q` | Quest Log |
-| `Click` | Attack | | `L` | Lore / Codex |
-| `H` | Help | | `M` | Map |
+| `W A S D` | Move (8 directions) | | `I` | Open Inventory |
+| `E` | Interact / Talk | | `J` | Open Journal |
+| `Space` | Dodge Roll (i-frames) | | `Q` | Quest Log |
+| `Left Click` | Attack (melee) | | `L` | Lore / Codex |
+| `H` | Help Overlay | | `M` | Map |
+| `Esc` | Close Menus / Pause | | `Tab` | Cycle Journal Tabs |
+
+### Your First 10 Minutes
+
+1. **Watch the prologue** — A cinematic text crawl sets the stage. Press any key to skip if replaying.
+
+2. **Talk to Harlan at the gate** — He's the first NPC you'll meet. He warns about the water and the forest. If you have the compass (you do — it starts in your inventory), show it to him. His reaction reveals the first thread of a 30-year mystery.
+
+3. **Read the Notice Board** — Near the gate. It lists the village's problems and updates as the world changes.
+
+4. **Visit Greta at the inn** — She's the village gossip hub. Buy a drink, ask questions. She knows something about everyone — for a price.
+
+5. **Find Elara near the herb garden** — She's investigating the dying crops. Help her, and the main mystery begins. Refuse, and the story takes a different path.
+
+6. **Explore everything** — Examine objects (dead birds at the well, old graves, the silo). Read signs. Search barrels. The world is dense with interactive elements — look for the floating **E** prompt.
+
+### Tips for New Players
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+**Exploration**
+- 🔍 **Examine everything.** Graves, wells, barrels, signs — every object has text that changes based on what you've discovered.
+- 🌙 **Explore at different times.** Some events only happen at night. Some objects reveal secrets at dawn. The chapel cellar is accessible after midnight.
+- 🗺️ **Check your Quest Log (Q)** for current objectives. The Lore tab (L) tracks discovered mysteries with [???] placeholders that fill in as you learn more.
+- 🧭 **The compass reacts** to nearby secrets. Watch for notifications about it trembling or pointing.
+
+</td>
+<td width="50%" valign="top">
+
+**Conversation**
+- 💬 **Talk to everyone twice.** NPCs remember what you said. Return visits unlock new dialogue — they'll never repeat the same conversation.
+- 👀 **Watch for conditional options.** Some dialogue choices only appear if you've discovered specific things. Showing evidence to NPCs changes conversations dramatically.
+- 🤫 **Silence is a choice.** Sometimes saying nothing reveals more than asking. Watch NPC reactions.
+- ⚖️ **There are no "right" answers.** Every choice closes some doors and opens others.
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+**Combat & Survival**
+- ⚔️ **Combat is dangerous, not a grind.** Low HP pool. Every fight has a narrative reason. You can often avoid combat through dialogue.
+- 🏃 **Dodge roll (Space)** grants brief invincibility frames. Use it.
+- 🕊️ **Spare defeated enemies** for future consequences. Killing has ripple effects — nearby NPCs witness and remember.
+- 🧪 **Craft items** once NPCs teach you recipes. Elara teaches alchemy. Old Maren teaches druidfire.
+
+</td>
+<td valign="top">
+
+**The World Changes**
+- 📅 **Time passes.** The world changes whether you're watching or not. Consequence chains fire over days and weeks. Check back on areas you've visited.
+- 🌾 **Your choices are visible.** Burned buildings stay burned. Dead farmland spreads. Roots creep closer. The tilemap physically changes based on your decisions.
+- ⏰ **Deadlines are real.** Some events have timed triggers. The Ironmarch ultimatum. The new moon. Ignore them at Ashvale's peril.
+- 💀 **NPCs can die.** Permanently. And their death changes every quest they were connected to.
+
+</td>
+</tr>
+</table>
+
+### Walkthrough Hints (Spoiler-Free)
 
 <details>
-<summary><b>Project Structure</b></summary>
+<summary><b>Act 1 — The Poison Mystery</b> (click to expand)</summary>
+<br>
+
+- The key question: **Who is poisoning the water?** There are 3 suspects and 10 clues scattered across dialogue and interactable objects.
+- Talk to **Elara** first — she has the scientific evidence.
+- Talk to **Greta** — she overhears everything. Pay for information.
+- Talk to **Brother Maren** — watch his face when you mention nightcap root.
+- Talk to **Old Maren** — she'll give you the talisman if you earn her trust.
+- Visit the **well** with the investigation quest active — you can collect evidence.
+- The **Church Outpost** in Thornwood has definitive proof — but you need to discover its existence first.
+- **Don't accuse too early.** Wrong accusations have severe consequences.
+
+</details>
+
+<details>
+<summary><b>Act 2 — The Gathering Storm</b></summary>
+<br>
+
+- A rider arrives with news of the **Ironmarch Legion**. The clock starts ticking.
+- You need allies. Visit **Commander Voss** — prove yourself through evidence or combat.
+- Unite the factions: Guild, Guard, Church, Druids, Mercenaries. Each requires different approaches.
+- The **Eastern Road** is where the Legion confrontation happens.
+- **Fenrick** has a side mission that changes your understanding of the Guild entirely.
+
+</details>
+
+<details>
+<summary><b>Act 3 — Into the Thornwood</b></summary>
+<br>
+
+- You need the **Druid Talisman** from Old Maren to access the Heartwood Clearing.
+- The **Warden** tests you before granting passage. Three trials. Failure means combat.
+- At the Heartwood: **three paths.** Sacrifice, Severance, or Renegotiation. Each costs something irreplaceable.
+- Bring allies. Who you bring changes the encounter.
+- The **Ritual Chamber** beneath the manor offers a darker path — if you found the crypt key.
+
+</details>
+
+<details>
+<summary><b>Maximizing Replayability</b></summary>
+<br>
+
+- **Play once blind.** Don't optimize. Let the consequences happen.
+- **Second playthrough:** Try the opposite approach — burn what you saved, save what you burned.
+- **Third playthrough:** Focus on the family mystery — show the compass to everyone, find all ghost letters.
+- **Fourth playthrough:** Speed run the main quest to see how different the world looks with minimal intervention.
+- There are **10 endings** and **113 quest resolution variants.** No two runs need to be the same.
+- Hidden secrets only trigger at specific times of day or with specific items. Explore at midnight. Explore at dawn. The world rewards attention.
+
+</details>
+
+---
+
+<div align="center">
+
+## ─── Project Structure ───
+
+</div>
+
+<details>
+<summary><b>Click to expand full project layout</b></summary>
 
 ```
 village_simulation/
@@ -348,12 +493,13 @@ village_simulation/
 ├── data/
 │   ├── dialogues/       # 64+ branching dialogue trees
 │   ├── quests/          # 15 FSM quest definitions
-│   ├── narrative/       # 51 consequence chains, atoms, clues
+│   ├── narrative/       # 51+ consequence chains, atoms, clues
 │   ├── lore/            # 88 codex + 40 memories + ghost letters + world history
 │   ├── world/           # Tilemaps, interactables, ecology, economy
 │   └── items/           # 21 items + 5 recipes
 ├── assets/              # Pixel art, audio, UI
-└── tools/               # Python generators
+├── docs/images/         # Promotional images for README
+└── tools/               # Python generators for art, audio, tilemaps
 ```
 
 </details>
