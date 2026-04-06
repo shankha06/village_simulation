@@ -6,7 +6,12 @@
 
 <br>
 
-![Stats](docs/images/stats_banner.png)
+[![Godot 4.6](https://img.shields.io/badge/Godot-4.6.2-478CBF?style=for-the-badge&logo=godot-engine&logoColor=white)](https://godotengine.org)
+[![Version](https://img.shields.io/badge/v0.9.0-Release_Candidate-4B0082?style=for-the-badge)]()
+[![Files](https://img.shields.io/badge/412+-Game_Files-8B4513?style=for-the-badge)]()
+[![Quests](https://img.shields.io/badge/23-Quests-DAA520?style=for-the-badge)]()
+[![Endings](https://img.shields.io/badge/10+-Endings-8B0000?style=for-the-badge)]()
+[![Playtime](https://img.shields.io/badge/15--20h-Per_Run-2F4F4F?style=for-the-badge)]()
 
 <br>
 
@@ -112,7 +117,7 @@ They are **siblings** — neither knows. Old Maren recognized her grandson the d
 
 A single decision cascades through **six interconnected systems** over weeks of in-game time. The player who burned the silo and the player who helped Elara investigate experience completely different worlds — different NPC dialogue, different economy, different faction power, different visual environment, different endings.
 
-**51 consequence chains. 500+ flags. No two playthroughs are the same.**
+**79 consequence chains. 500+ flags. No two playthroughs are the same.**
 
 ---
 
@@ -148,7 +153,7 @@ Every ending plants a **sequel hook**. The Heartwood's distress call is propagat
 
 </div>
 
-> *88 codex entries. 144 progressive fragments. 40 village memories. 5 ghost letters. 30 micro-lore entries. This isn't a world described in exposition dumps — it's a world you discover in margins, scratches, and whispers.*
+> *139 lore entries. 144 progressive fragments. 40 village memories. 5 ghost letters. 30 micro-lore entries. This isn't a world described in exposition dumps — it's a world you discover in margins, scratches, and whispers.*
 
 <table>
 <tr>
@@ -207,7 +212,7 @@ Built on **10 interconnected autoload singletons** communicating through a signa
       │         ├──→ RelationshipMgr  ──→  5-axis update     ──→  dialogue gating
       │         └──→ TimeManager      ──→  scheduled events  ──→  delayed consequences
       │
-      └──→ 51 consequence chains with delayed/conditional effects over days
+      └──→ 79 consequence chains with delayed/conditional effects over days
 ```
 
 <details>
@@ -217,7 +222,7 @@ Built on **10 interconnected autoload singletons** communicating through a signa
 |:-------|:--------|:------|
 | **GameState** | Centralized blackboard — every system reads/writes here | 500+ flags |
 | **NarrativeEngine** | JSON dialogue trees with conditions, triggers, slot-filling | 64 trees, 1000+ nodes |
-| **QuestManager** | FSM-based quests with silent background updates | 15 quests, 113 variants |
+| **QuestManager** | FSM-based quests with silent background updates | 23 quests, 150+ variants |
 | **WorldSimulation** | Ecology, economy, rumor propagation | Daily ticks |
 | **ConsequenceChains** | Immediate + delayed + conditional cascading effects | 51 chains |
 | **RelationshipManager** | Trust, affection, respect, fear, debt per NPC | 5 dimensions |
@@ -491,10 +496,10 @@ village_simulation/
 │   ├── effects/         # Day/night, weather, visual changes
 │   └── intro/           # Cinematic prologue
 ├── data/
-│   ├── dialogues/       # 64+ branching dialogue trees
-│   ├── quests/          # 15 FSM quest definitions
-│   ├── narrative/       # 51+ consequence chains, atoms, clues
-│   ├── lore/            # 88 codex + 40 memories + ghost letters + world history
+│   ├── dialogues/       # 93 branching dialogue trees
+│   ├── quests/          # 23 FSM quest definitions
+│   ├── narrative/       # 79+ consequence chains, atoms, clues
+│   ├── lore/            # 139 lore entries + 40 memories + ghost letters + world history
 │   ├── world/           # Tilemaps, interactables, ecology, economy
 │   └── items/           # 21 items + 5 recipes
 ├── assets/              # Pixel art, audio, UI
