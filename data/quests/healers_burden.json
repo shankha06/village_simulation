@@ -157,7 +157,7 @@
     },
     "FAILED_ELARA_DEAD": {
       "journal_entry": "Elara is gone. The herbs sit in my pack, useless. The antidote she dreamed of will never be brewed. The village's best healer is dead, and the crops keep dying.",
-      "consequence_chain": ""
+      "consequence_chain": "elara_death_chain"
     },
     "COMPLETED_CHURCH_EXPOSED": {
       "journal_entry": "The village now knows the Church had a cure all along. Brother Maren's influence is cracking. But was it incompetence — or intention?",

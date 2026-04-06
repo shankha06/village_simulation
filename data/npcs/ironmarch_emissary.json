@@ -52,8 +52,8 @@
   "dialogue_pools": {
     "greeting": "draven_intro",
     "negotiation": "draven_negotiation",
-    "hostile": "draven_hostile",
-    "ultimatum_expired": "draven_ultimatum_expired"
+    "hostile": "draven_negotiation",
+    "ultimatum_expired": "draven_negotiation"
   },
   "default_greeting": "draven_intro",
   "barks": [

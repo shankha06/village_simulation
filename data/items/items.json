@@ -338,6 +338,118 @@
       "base_value": 1,
       "stackable": true,
       "max_stack": 30
+    },
+    {
+      "id": "rope",
+      "name": "Coil of Rope",
+      "description": "A sturdy hemp rope, weathered but serviceable. Useful for climbing, binding, or improvised barriers.",
+      "type": "TOOL",
+      "base_value": 5,
+      "stackable": true,
+      "max_stack": 5
+    },
+    {
+      "id": "elaras_healing_salve",
+      "name": "Elara's Healing Salve",
+      "description": "A potent salve brewed by Elara from moonpetal and forest herbs. Heals wounds and purges mild toxins. The jar smells of clean earth and green things.",
+      "type": "CONSUMABLE",
+      "base_value": 40,
+      "stackable": true,
+      "max_stack": 3,
+      "heal_amount": 50.0,
+      "is_quest_item": true
+    },
+    {
+      "id": "guild_signet_ring",
+      "name": "Guild Signet Ring",
+      "description": "A tarnished silver ring bearing the Hollow Hand's sigil. Marks the wearer as a trusted associate of the Guild. Opens doors that gold cannot.",
+      "type": "KEY_ITEM",
+      "base_value": 0,
+      "stackable": false,
+      "is_quest_item": true
+    },
+    {
+      "id": "wardens_whisker",
+      "name": "Warden's Whisker",
+      "description": "A thin tendril of living wood, still warm and slightly responsive to touch. A gift from the rat king spirit. It twitches near hidden things.",
+      "type": "KEY_ITEM",
+      "base_value": 0,
+      "stackable": false,
+      "is_quest_item": true
+    },
+    {
+      "id": "wardens_bark_shield",
+      "name": "Warden's Bark Shield",
+      "description": "A shield grown from living thornwood bark, gifted by the Warden after passing all three tests. It repairs itself slowly and hardens against hostile magic.",
+      "type": "ARMOR",
+      "base_value": 0,
+      "stackable": false,
+      "equip_slot": "shield",
+      "defense_bonus": 8.0,
+      "is_quest_item": true
+    },
+    {
+      "id": "wardens_heartwood_shard",
+      "name": "Warden's Heartwood Shard",
+      "description": "A jagged piece of the Warden's core, torn free during combat. It pulses with residual anger. The forest remembers how you obtained this.",
+      "type": "KEY_ITEM",
+      "base_value": 0,
+      "stackable": false,
+      "is_quest_item": true
+    },
+    {
+      "id": "voss_military_writ",
+      "name": "Military Writ",
+      "description": "A formal document signed by Commander Voss granting the bearer authority to requisition supplies and command respect from the Iron Road Company.",
+      "type": "KEY_ITEM",
+      "base_value": 0,
+      "stackable": false,
+      "is_quest_item": true
+    },
+    {
+      "id": "counter_rite_scroll",
+      "name": "Counter-Rite Scroll",
+      "description": "Old Maren's instructions for the truth-speaking ceremony that can dissolve the pact. Written in druid shorthand on bark parchment. The ink is sap.",
+      "type": "KEY_ITEM",
+      "base_value": 0,
+      "stackable": false,
+      "is_quest_item": true
+    },
+    {
+      "id": "silas_root_map",
+      "name": "Silas's Root Map",
+      "description": "A map drawn in smoke and memory by Silas's spirit. Shows a path through the Thornwood's root network that bypasses the Warden entirely.",
+      "type": "KEY_ITEM",
+      "base_value": 0,
+      "stackable": false,
+      "is_quest_item": true
+    },
+    {
+      "id": "shadow_essence",
+      "name": "Shadow Essence",
+      "description": "A dark, swirling substance collected from the defeated spirit manifestations. Cold to the touch. Useful in alchemical preparations or as proof of the supernatural.",
+      "type": "LORE",
+      "base_value": 15,
+      "stackable": true,
+      "max_stack": 5
+    },
+    {
+      "id": "vision_of_the_old_forest",
+      "name": "Vision of the Old Forest",
+      "description": "Not a physical object but a memory seared into your mind. You can close your eyes and see the forest as it was before the pact: green, welcoming, alive with birdsong. The vision grants insight into the Heartwood's true desires.",
+      "type": "KEY_ITEM",
+      "base_value": 0,
+      "stackable": false,
+      "is_quest_item": true
+    },
+    {
+      "id": "dravens_service_medallion",
+      "name": "Draven's Service Medallion",
+      "description": "A tarnished bronze medallion bearing the Ironmarch Legion's crest and Draven's service number. Proof that the man who destroyed Rivendale serves as the Legion's emissary to Ashvale.",
+      "type": "KEY_ITEM",
+      "base_value": 0,
+      "stackable": false,
+      "is_quest_item": true
     }
   ]
 }

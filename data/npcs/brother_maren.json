@@ -46,12 +46,12 @@
   "home_location": "chapel",
   "dialogue_pools": {
     "greeting": "maren_intro",
-    "about_curse": "maren_curse_sermon",
-    "confronted": "maren_confronted",
-    "friendly": "maren_confides",
-    "hostile": "maren_threatens",
+    "about_curse": "maren_intro",
+    "confronted": "maren_confrontation",
+    "friendly": "maren_follow_up",
+    "hostile": "maren_confrontation",
     "midnight_meeting": "maren_midnight",
-    "follow_up": "brother_maren_follow_up",
+    "follow_up": "maren_follow_up",
     "sacred_text_quest": "maren_sacred_text"
   },
   "reputation_gate": {

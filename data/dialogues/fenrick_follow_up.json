@@ -437,6 +437,23 @@
       ],
       "next": "end"
     },
+    "back_out_response": {
+      "type": "text",
+      "speaker": "fenrick",
+      "portrait": "neutral",
+      "text": "Changed your mind? That's a dangerous habit in this line of work. The Hand doesn't forget commitments. Walk away if you want, but don't think this is over. You know too much now.",
+      "triggers": [
+        {
+          "set_state": "npc.fenrick.memory.player_backed_out",
+          "value": true
+        },
+        {
+          "set_state": "npc.fenrick.disposition",
+          "delta": -10
+        }
+      ],
+      "next": "end"
+    },
     "children_hint": {
       "type": "text",
       "speaker": "fenrick",

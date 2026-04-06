@@ -49,7 +49,7 @@
       "id": "micro_guard_rations",
       "title": "Harlan's Pickled Onions",
       "category": "daily_life",
-      "text": "The gate guards eat dried fish imported from the eastern coast. It tastes like salt and boredom. Harlan keeps a jar of pickled onions behind his post -- a luxury he's maintained for thirty-one years. He says they're the only thing that makes the job bearable.",
+      "text": "The gate guards eat dried fish imported from the eastern coast. It tastes like salt and boredom. Harlan keeps a jar of pickled onions behind his post -- a luxury he's maintained for thirty years. He says they're the only thing that makes the job bearable.",
       "discovered_by_default": false,
       "conditions": ["npc.gate_guard.met == true"],
       "fragments": []

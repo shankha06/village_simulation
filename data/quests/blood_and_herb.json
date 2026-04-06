@@ -43,6 +43,14 @@
         {
           "on": "flag.maren_poisoned_elara == true",
           "to": "ELARA_POISONED"
+        },
+        {
+          "on": "flag.maren_confessed_to_elara == true",
+          "to": "CURED_BY_BROTHER"
+        },
+        {
+          "on": "npc.elara.alive == false",
+          "to": "ELARA_DIES_FROM_POISON"
         }
       ]
     },
@@ -176,7 +184,7 @@
       ]
     },
     "PATIENT_DIES": {
-      "journal_entry": "Two recovered. The third — a girl named Brin, Tomas's daughter — did not. Elara won't leave her cottage.",
+      "journal_entry": "Two recovered. The third — Brin, Tomas's wife — did not. Elara won't leave her cottage.",
       "consequence_chain": "brin_death_chain",
       "rewards": [
         {

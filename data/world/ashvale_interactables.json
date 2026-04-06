@@ -293,7 +293,7 @@
       "type": "examine",
       "name": "Crumpled Note",
       "position": [355, 52],
-      "text": "",
+      "text": "A scrap of paper on the inn floor, too crumpled to read clearly.",
       "state_condition": "flag.greta_elara_argued == true",
       "state_alt_text": "A crumpled note on the inn floor in Elara's handwriting: 'You KNOW what's in the water, Greta. Stop pretending the inn is neutral ground.' Greta and Elara have had words. The alliance between healer and innkeeper is fraying.",
       "one_shot": true

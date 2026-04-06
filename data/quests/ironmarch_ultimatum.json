@@ -13,6 +13,14 @@
   ],
   "priority": 15,
   "states": {
+    "UNKNOWN": {
+      "transitions": [
+        {
+          "on": "flag.ironmarch_rider_warning == true",
+          "to": "DISCOVERED"
+        }
+      ]
+    },
     "DISCOVERED": {
       "journal_entry": "A rider warned that the Ironmarch Legion is coming. The village is in a panic. I should prepare for their arrival.",
       "transitions": [

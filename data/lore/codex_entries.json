@@ -519,7 +519,7 @@
       "id": "lore_harlan_guard",
       "title": "The Gatekeeper's Guilt",
       "category": "personal",
-      "text": "Harlan has guarded Ashvale's gate for thirty-one years. He was posted here the day after Silas Maren was sacrificed. He considers it his penance.",
+      "text": "Harlan has guarded Ashvale's gate for thirty years. He was posted here the day after Silas Maren was sacrificed. He considers it his penance.",
       "discovered_by_default": false,
       "conditions": [
         "npc.gate_guard.met == true"

@@ -4,8 +4,8 @@
   "nodes": {
     "start": {
       "type": "text",
-      "speaker": "",
-      "portrait": "",
+      "speaker": "narrator",
+      "portrait": "none",
       "text": "She's kneeling in dead soil, pinching it between her fingers and frowning at it. She doesn't look up when you approach. She's muttering numbers under her breath.",
       "triggers": [
         {

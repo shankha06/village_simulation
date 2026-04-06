@@ -42,9 +42,9 @@
   "home_location": "guild_hideout",
   "dialogue_pools": {
     "greeting": "fenrick_intro",
-    "after_sabotage": "fenrick_post_sabotage",
-    "hostile": "fenrick_hostile",
-    "player_refused_job": "fenrick_second_chance",
+    "after_sabotage": "fenrick_follow_up",
+    "hostile": "fenrick_pressure",
+    "player_refused_job": "fenrick_follow_up",
     "pressure": "fenrick_pressure",
     "follow_up": "fenrick_follow_up",
     "escort_quest": "fenrick_escort_quest",

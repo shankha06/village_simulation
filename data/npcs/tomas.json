@@ -1,14 +1,14 @@
 {
     "id": "tomas",
     "name": "Tomas",
-    "description": "A stubborn farmer who keeps repairing a fence that doesn't need it. His daughter Brin is fourteen.",
+    "description": "A stubborn farmer who keeps repairing a fence that doesn't need it. His wife Brin was a seamstress before the famine.",
     "faction": "",
     "personality": {"courage": 0.5, "greed": 0.2, "loyalty": 0.7, "cruelty": 0.0, "curiosity": 0.2, "honesty": 0.8},
     "schedule": [{"hour": 6, "location": "farm_fence", "activity": "repairing"}, {"hour": 12, "location": "inn", "activity": "eating"}, {"hour": 14, "location": "farm_fence", "activity": "repairing"}, {"hour": 20, "location": "home", "activity": "sleeping"}],
     "home_location": "farm_house",
     "dialogue_pools": {"greeting": "tomas_fence_dialogue"},
     "default_greeting": "tomas_fence_dialogue",
-    "barks": ["The fence holds. For now.", "Brin says I'm wasting my time. She's probably right.", "Roots moved again last night. Two inches."],
+    "barks": ["The fence holds. For now.", "Brin says I'm wasting my time. She's probably right.", "Roots moved again last night. Two inches.", "Another board to replace. Always another board."],
     "is_combatant": false,
     "max_health": 40.0,
     "can_surrender": true

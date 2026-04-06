@@ -41,11 +41,11 @@
   "home_location": "mercenary_camp",
   "dialogue_pools": {
     "greeting": "voss_intro",
-    "combat_offer": "voss_duel",
-    "spared": "voss_spared",
-    "allied": "voss_alliance",
+    "combat_offer": "voss_intro",
+    "spared": "voss_truth_moment",
+    "allied": "voss_alliance_deep",
     "alliance_deep": "voss_alliance_deep",
-    "hostile": "voss_enemy",
+    "hostile": "voss_betrayal_discovery",
     "ghost_quest": "voss_ghost_quest",
     "rivendale_discovery": "rivendale_discovery"
   },

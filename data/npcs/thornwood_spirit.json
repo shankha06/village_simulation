@@ -36,9 +36,9 @@
   "home_location": "thornwood_edge",
   "dialogue_pools": {
     "greeting": "warden_first_contact",
-    "with_talisman": "warden_talisman_communion",
-    "hostile": "warden_hostile",
-    "after_communion": "warden_post_communion",
+    "with_talisman": "warden_test",
+    "hostile": "warden_first_contact",
+    "after_communion": "warden_riddles",
     "warden_test": "warden_test",
     "warden_riddles": "warden_riddles"
   },

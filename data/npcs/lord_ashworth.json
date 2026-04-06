@@ -41,10 +41,10 @@
   "home_location": "ashworth_manor",
   "dialogue_pools": {
     "greeting": "ashworth_intro",
-    "about_poison": "ashworth_confession",
-    "confronted": "ashworth_breakdown",
-    "friendly": "ashworth_desperate_plea",
-    "hostile": "ashworth_cornered",
+    "about_poison": "ashworth_intro",
+    "confronted": "ashworth_intro",
+    "friendly": "ashworth_dying",
+    "hostile": "ashworth_intro",
     "ledger_quest": "ashworth_ledger_quest",
     "ledger_discovery": "ledger_discovery",
     "sacrifice_conversation": "ashworth_sacrifice_dialogue"

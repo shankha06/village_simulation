@@ -67,8 +67,8 @@
     },
     "harmony_hidden_cost": {
       "type": "text",
-      "speaker": "",
-      "portrait": "",
+      "speaker": "narrator",
+      "portrait": "none",
       "text": "But not everything survives the transformation. The outer fields -- the ones that grew Cinder-Root, the only treatment for root-lung disease -- are swallowed by the new forest. What was tilled earth becomes loam and moss. The village gains a miracle. And quietly, in the margin of the miracle, something irreplaceable is lost.",
       "triggers": [
         {
@@ -156,7 +156,7 @@
     },
     "maren_prayer": {
       "type": "text",
-      "speaker": "maren",
+      "speaker": "brother_maren",
       "portrait": "peaceful",
       "text": "I preached that the Ashen Light would burn away corruption. I was wrong. The Light doesn't burn. It grows. This \u2014 all of this \u2014 this is what divinity looks like. Not punishment. Symbiosis.",
       "conditions": [

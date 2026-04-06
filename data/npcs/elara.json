@@ -42,12 +42,12 @@
   "home_location": "elara_cottage",
   "dialogue_pools": {
     "greeting": "elara_intro",
-    "about_famine": "elara_famine_reaction",
-    "about_poison": "elara_poison_discussion",
-    "friendly": "elara_friendly",
-    "hostile": "elara_hostile",
-    "player_asked_about_village": "elara_village_detail",
-    "player_is_ally": "elara_ally_dialogue",
+    "about_famine": "elara_follow_up",
+    "about_poison": "elara_investigation",
+    "friendly": "elara_follow_up",
+    "hostile": "elara_follow_up",
+    "player_asked_about_village": "elara_follow_up",
+    "player_is_ally": "elara_follow_up",
     "investigation": "elara_investigation",
     "follow_up": "elara_follow_up",
     "herb_quest": "elara_herb_quest",
@@ -56,7 +56,7 @@
     "well_trance": "wells_memory_trance",
     "blood_and_herb": "blood_and_herb_crisis",
     "flawed_antidote": "flawed_antidote_death",
-    "betrayal_confrontation": "elara_betrayal_dialogue"
+    "betrayal_confrontation": "elara_maren_reconciliation"
   },
   "default_greeting": "elara_intro",
   "barks": [

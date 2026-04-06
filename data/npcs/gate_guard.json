@@ -39,6 +39,14 @@
     "greeting": "gate_guard_intro"
   },
   "default_greeting": "gate_guard_intro",
+  "barks": [
+    "Another quiet night. Quiet's not always good.",
+    "Could use a good rain.",
+    "Third cobweb this week at the gate.",
+    "My knees predict weather better than any almanac.",
+    "Fish were biting good last spring. Miss that.",
+    "Keep moving. Nothing happens at this gate."
+  ],
   "daily_life": {
     "income": 3,
     "expenses": 2,
